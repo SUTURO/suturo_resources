@@ -1,0 +1,17 @@
+# Moves robot into perceiving position:
+# raise/lower torso to the given joint state, and the arm w.r.t. the given mode
+# define the goal
+float64 torso_joint_state
+uint8 PERCEIVE_ARM_LOW=0 # look front with arm down
+uint8 PERCEIVE_SIDE=1 # look sideways, arm slightly extended
+uint8 PERCEIVE_ARM_HIGH=2 # look front, arm up, gripper sideways
+uint8 perceive_mode
+---
+# define the result
+uint8 SUCCESS=0
+uint8 FAILED=1
+
+uint8 error_code
+---
+# define feedback
+float64 torso_joint_state

@@ -1,0 +1,13 @@
+# Grasps the object with the given object_frame_id.
+# define the goal
+string object_frame_id #tf_frame == knowrob_object_id
+---
+# define the result
+uint8 SUCCESS=0
+uint8 FAILED=1
+
+uint8 error_code
+---
+# define the feedback
+geometry_msgs/TransformStamped tf_gripper_to_object
+float64 gripper_joint_state
