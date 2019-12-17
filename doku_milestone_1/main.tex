@@ -6,6 +6,16 @@
 \usepackage{subfiles}
 \usepackage{url}
 
+%Makro für Autor der einzelnen Textabschnitte. 
+%Soll unter einem \chapter{•} benutzt werden.
+\makeatletter
+\newcommand{\chapterauthor}[1]{%
+{\vspace*{-55pt}\linespread{1.1}\raggedleft\normalsize\upshape#1%
+\par\nobreak\vspace*{35pt}}%
+\@afterheading%
+}
+\makeatother
+
 \usepackage[textwidth=2cm,
 	figwidth=\textwidth,
 	figheight=8cm,
