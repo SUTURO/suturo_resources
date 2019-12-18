@@ -1,6 +1,8 @@
 # Grasps the object with the given object_frame_id.
 # define the goal
-string object_frame_id #tf_frame == knowrob_object_id
+#string object_frame_id #tf_frame == knowrob_object_id
+geometry_msgs/PoseStamped goal_pose # in map
+geometry_msgs/Vector3 object_size
 ---
 # define the result
 uint8 SUCCESS=0
