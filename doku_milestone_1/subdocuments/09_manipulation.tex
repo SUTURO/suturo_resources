@@ -2,6 +2,43 @@
 \begin{document}
 	
 	\chapter{Manipulation}
-		\chapterauthor{\todo{add Author}}
+		\chapterauthor{Marc Stelter, Jan Neuman \& Fabian Weihe}
 	
+	\subsection{General}
+	We created four Actionservers for Manipulation.\\
+	The "move\_gripper\_action\_server" moves the gripper to the given position.\\
+	The "percive\_action\_server" moves the robot into perceiving positon.\\
+	The "grasps\_object\_server" recives the size of an object and grasps it.\\
+	The "place\_server" places the attatched object at the given pose.\\
+	Further we've created an Launchfile, which launch the Actionservers, rviz and giskard.
+	
+	\vspace{1cm}
+	\todo{insert UML image}
+	
+	\subsection{Move Gripper}
+	\todo{write documentation}
+	
+	\vspace{1cm}
+	
+	\subsection{Percive Position}
+	\todo{write documentation}
+
+	\vspace{1cm}
+	
+	\subsection{Grasps Object}
+	The server recieves a PoseStamed ("goal\_pose") and a Vector3("object\_size"). In the first step the script open the gripper to the maximum. After that the arm is moved to the object. If the arm moved in the given position the script closes the gripper. At the end we add the grasped object in Giskard and attach it to the robot. Finally we transform to a position, where we can comfortly move with an object in the gripper.\\
+	Finally we return if the action has failed or succeded.
+	
+	
+	\vspace{1cm}
+	
+	\subsection{Place Object}
+	\todo{write documentation}
+	
+	\vspace{1cm}
+	
+	\subsection{Launch}
+	We created a package named "launch". The package contains a Launchfile to launch the Actionservers with their dependencies. The File includes five arguments.\\
+	The first one is a boolean called "sim". On false giskard is launched to work on the real robot. Otherwise on true giskard is launched to work in a simulation. Additional to that the iai\_hsr\_sim is launched for the simulation.\\
+	The other four arguments are booleans, too. Which defines whether an actionserver should start. 
 \end{document}
