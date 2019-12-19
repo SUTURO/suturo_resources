@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(
    FILES
+   RSObject.msg
    RSObjectDescriptions.msg
 )
 generate_messages(DEPENDENCIES ${MSG_DEPS})
