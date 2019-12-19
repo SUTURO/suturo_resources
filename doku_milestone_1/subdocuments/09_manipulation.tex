@@ -1,5 +1,4 @@
 \documentclass[main.tex]{subfiles}
-\usepackage{graphicx}
 \begin{document}
 	
 	\chapter{Manipulation}
@@ -13,11 +12,10 @@
 	The "place\_server" places the attached object at the given pose.\\
 	Further we've created an Launchfile, which launch the Actionservers, rviz and giskard.
 	
-	\includegraphics[scale=0.5]{Manipulation.png}
+	\includegraphics[scale=0.5]{subdocuments/Manipulation.png}
 	
 	\subsection{Move Gripper}
-	\todo{write documentation}
-	
+	The received pose is simply forwarded as a cartesian goal to giskard, which in turn will take care of the collision avoidance and movement. Giskards error\_code gets returned to the client.
 	\vspace{1cm}
 	
 	\subsection{Perceive Position}
@@ -33,8 +31,7 @@
 	\vspace{1cm}
 	
 	\subsection{Place Object}
-	\todo{write documentation}
-	
+	The object to be placed needs to be attached to the gripper in giskard. Giskard is then used to move the object to its goal. In order to release the gripper the hsr python interface is used directly.
 	\vspace{1cm}
 	
 	\subsection{Launch}
