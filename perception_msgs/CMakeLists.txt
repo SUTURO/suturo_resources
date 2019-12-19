@@ -14,6 +14,10 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
+add_message_files(
+   FILES
+   RSObjectDescriptions.msg
+)
 generate_messages(DEPENDENCIES ${MSG_DEPS})
 
 catkin_package(DEPENDS ${MSG_DEPS} message_runtime actionlib)
