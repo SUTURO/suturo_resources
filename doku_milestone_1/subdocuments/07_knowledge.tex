@@ -29,7 +29,7 @@
 		
 		\subsubsection{Parsing Text in ROS}
 		To use parse the text we decided to use Google Sling. Sling is a tensorflow powered semantic parser. The Python Sling API sadly only supports Python versions 3+. Because of that we had to find a way to bridge the gap between a ROS node, Python 2.7, and Sling.\\
-		The solution was to create a ROS node which performs a system subprocess call to start a separate python3 script. This script simply starts a TinyRPC server. RPC stands for remote procedure call, this allows one program to provide a function for a different program. The ROS node takes a string from a simple message, calls the Sling API via TinyRPC and gets a String as return variable. This just gets published as a String again.
+		The solution was to create a ROS node which performs a system subprocess call to start a separate python3 script. This script simply starts a TinyRPC server. RPC stands for remote procedure call, this allows one program to provide a function for a different program, even over different programming languages and over multiple systems. The ROS node takes a string from a simple message, calls the Sling API via TinyRPC and gets a String as return variable. This just gets published as a String again.
 		
 		\subsection{Speech to Text}
 		We are currently using the python SpeechRecognition library. This library supports online and offline speech recognizer. Sadly the only free only recognizer is provided by google, but even that is limited to 1 hour of speech per day. While the offline parser CMU-Sphinx is so bad it can't be used in a serious way.
