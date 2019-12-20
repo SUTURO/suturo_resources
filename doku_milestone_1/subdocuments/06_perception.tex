@@ -10,18 +10,18 @@
  	
  	\subsection{RoboSherlock}
 	Robosherlock gives the user the opportunity to string together several annotators, forming a perception pipeline. These annotators are individual pieces of
-	software, which perform a specific task on the input data and save the result in RoboSherlock's internal data structure, the CAS (Common Analysis Structure).
+	software, which perform a specific task on the input data and save the result in RoboSherlock's internal data structure; the CAS (Common Analysis Structure).
 	Robosherlock provides several annotators, but own annotators can be added. The exact specifications of the RoboSherlock pipeline used by us will be document in
 	the pipeline definition section.\\
 	
 	RoboSherlock is open source and developed by the Institute of Artificial Intelligence at the University of Bremen and you can find the github repository at 			github.com/RoboSherlock/robosherlock.
  	
  	\subsection{Caffe}
- 	Caffe is a neural networking framework. You can use it to train your own neural networks, or work with existing and pre-trained ones.\\
+ 	Caffe is an open source neural networking framework. You can use it to train your own neural networks, or work with existing and pre-trained ones.\\
  	
- 	We plan to use a pre-trained net for feature extraction in the following way: We insert our training data into the neural network and save the output of the 			nodes belonging to the second last layer of the neural network. This data are our extracted features. We can now use them together with the labels belonging to 	the pictures we inserted, to train different machine learning algorithms, like for example KNN.\\
+ 	We plan to use a pre-trained net for feature extraction in the following way: We insert our training data into the neural network and save the output of the 			nodes belonging to the second last layer of the neural network. These data are our extracted features. We can now use them together with the labels belonging to 	the pictures we inserted, to train different machine learning algorithms, like for example KNN.\\
  	
- 	Caffe is also open source, and you can find more information at caffe.berkeleyvision.org.\\
+ 	More information can be found at: at caffe.berkeleyvision.org.\\
  	
  	\section{Package}
  	\subsection{Launchfile}
