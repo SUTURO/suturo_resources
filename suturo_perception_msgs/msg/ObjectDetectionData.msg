@@ -15,6 +15,7 @@ float64 depth
 std_msgs/ColorRGBA color
 float64 confidence_color
 
+string region
 
 # Shape values
 uint8 ARROW=0 # Not used
