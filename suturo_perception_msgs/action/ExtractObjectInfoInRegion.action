@@ -1,0 +1,9 @@
+#goal definition
+bool visualize
+string region
+---
+#result definition
+ObjectDetectionData[] detectionData
+---
+#feedback
+string feedback
