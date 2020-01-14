@@ -1,5 +1,6 @@
 #goal definition
 bool visualize
+string[] regions
 ---
 #result definition
 ObjectDetectionData[] detectionData
