@@ -1,6 +1,5 @@
 #goal definition
 bool visualize
-string region
 string[] regions
 ---
 #result definition
