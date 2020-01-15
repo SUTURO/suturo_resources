@@ -1,1 +1,0 @@
-string[] obj_descriptions
