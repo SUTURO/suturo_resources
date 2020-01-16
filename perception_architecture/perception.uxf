@@ -1,260 +1,149 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>40</x>
-      <y>250</y>
-      <w>150</w>
-      <h>40</h>
+      <x>180</x>
+      <y>279</y>
+      <w>162</w>
+      <h>63</h>
     </coordinates>
-    <panel_attributes>Trigger</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>20</x>
-      <y>220</y>
-      <w>190</w>
-      <h>580</h>
-    </coordinates>
-    <panel_attributes>RoboSherlock</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>300</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>CollectionReader</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>350</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>ImagePreprocessor</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>450</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>NormalEstimator</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>400</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>PointCloudFilter</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>500</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>PlaneAnnotator</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>550</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>PointCloudCluster
-Extractor</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>600</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>ClusterMerger</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>650</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>ClusterColor
-HistogramCalculator</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>700</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>Cluster3DGeometry
-Annotator</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>40</x>
-      <y>750</y>
-      <w>150</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>TFBroadcaster</panel_attributes>
+    <panel_attributes>rs_hsrb_perception
+
+SuturoProcessManager</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>160</y>
-      <w>500</w>
-      <h>80</h>
+      <x>531</x>
+      <y>216</y>
+      <w>54</w>
+      <h>81</h>
     </coordinates>
-    <panel_attributes>launch
+    <panel_attributes>start
 lt=&lt;-
 </panel_attributes>
-    <additional_attributes>480.0;60.0;480.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>450</x>
+      <y>171</y>
+      <w>207</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>rs_perception
+
+HSRB Perception Launchfile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>477</x>
+      <y>279</y>
+      <w>135</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>actionserver
+
+Perception
+ActionServer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>333</x>
+      <y>279</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>start
+lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLState</id>
     <coordinates>
       <x>180</x>
-      <y>130</y>
-      <w>230</w>
-      <h>40</h>
+      <y>432</y>
+      <w>162</w>
+      <h>63</h>
     </coordinates>
-    <panel_attributes>HSRB Perception Launchfile</panel_attributes>
+    <panel_attributes>robosherlock
+
+RoboSherlock AE</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
-      <y>160</y>
-      <w>200</w>
-      <h>80</h>
+      <x>198</x>
+      <y>333</y>
+      <w>45</w>
+      <h>117</h>
     </coordinates>
-    <panel_attributes>launch
+    <panel_attributes>init
 lt=&lt;-
 </panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;40.0;180.0;40.0;180.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>710</x>
-      <y>220</y>
-      <w>150</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>Perception
-ActionServer</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>250</y>
-      <w>440</w>
-      <h>50</h>
+      <x>234</x>
+      <y>333</y>
+      <w>153</w>
+      <h>117</h>
     </coordinates>
-    <panel_attributes>trigger
-lt=)-
-/perception_pipeline/trigger</panel_attributes>
-    <additional_attributes>20.0;20.0;420.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>420</x>
-      <y>300</y>
-      <w>310</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>subscribe
-lt=&lt;-
-/perception_pipeline/result_advertiser</panel_attributes>
-    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>200</x>
-      <y>300</y>
-      <w>210</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>publish
-lt=&lt;-
+    <panel_attributes>return
+lt=-&gt;
 RSObjectDescriptions</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>390</x>
-      <y>300</y>
-      <w>40</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>type=decision</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>250</y>
-      <w>130</w>
-      <h>50</h>
+      <x>333</x>
+      <y>306</y>
+      <w>162</w>
+      <h>45</h>
     </coordinates>
-    <panel_attributes>lt=-()
-m2=provide
-</panel_attributes>
-    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+    <panel_attributes>return
+lt=-&gt;
+ObjectDetectionData</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>390</x>
-      <y>390</y>
-      <w>40</w>
-      <h>40</h>
+      <x>747</x>
+      <y>360</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>type=decision
 </panel_attributes>
@@ -263,27 +152,240 @@ m2=provide
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>350</y>
-      <w>360</w>
-      <h>90</h>
+      <x>603</x>
+      <y>360</y>
+      <w>162</w>
+      <h>45</h>
     </coordinates>
-    <panel_attributes>publish ObjectDetectionData
-lt=&lt;-
-topic /perception_actionserver/result</panel_attributes>
-    <additional_attributes>10.0;60.0;340.0;60.0;340.0;10.0</additional_attributes>
+    <panel_attributes>publish
+lt=-&gt;
+ObjectDetectionData</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>279</y>
+      <w>117</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Action
+ExtractObjectInfo
+--
+bool visualize
+string[] regions</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>350</y>
-      <w>430</w>
-      <h>140</h>
+      <x>603</x>
+      <y>279</y>
+      <w>126</w>
+      <h>45</h>
     </coordinates>
-    <panel_attributes>call ExtractObjectInfoAction
-lt=()-&gt;
-server perception_actionserver</panel_attributes>
-    <additional_attributes>10.0;110.0;410.0;110.0;410.0;10.0</additional_attributes>
+    <panel_attributes>goal
+lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>819</x>
+      <y>279</y>
+      <w>153</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>call
+lt=&lt;-()
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>360</y>
+      <w>198</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>subscribe
+lt=&lt;-()
+perception_actionserver
+/result</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>477</y>
+      <w>126</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>goal
+lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>477</y>
+      <w>117</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Action
+ExtractPlaneInfo
+--
+bool visualize
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>819</x>
+      <y>477</y>
+      <w>153</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>call
+lt=&lt;-()
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>540</y>
+      <w>198</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>subscribe
+lt=&lt;-()
+perception_actionserver_
+plane/result</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>747</x>
+      <y>540</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>type=decision
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>540</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>publish
+lt=-&gt;
+ObjectDetectionData</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>180</y>
+      <w>324</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>launch
+lt=&lt;-()
+hsrb_perception.launch</panel_attributes>
+    <additional_attributes>10.0;20.0;340.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>405</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>publish
+lt=-&gt;
+String</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>747</x>
+      <y>405</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>type=decision
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>405</y>
+      <w>198</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>subscribe
+lt=&lt;-()
+perception_actionserver
+/feedback</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>585</y>
+      <w>162</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>publish
+lt=-&gt;
+String</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>747</x>
+      <y>585</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>type=decision
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>585</y>
+      <w>198</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>subscribe
+lt=&lt;-()
+perception_actionserver_
+plane/feedback</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
   </element>
 </diagram>
