@@ -1,13 +1,15 @@
 # Places the object in the gripper down at the given pose.
-# define the goal
+
+# goal
+string object_frame_id
 geometry_msgs/PoseStamped goal_pose # pose in map
 ---
-# define the result
+# result
 uint8 SUCCESS=0
 uint8 FAILED=1
 
 uint8 error_code
 ---
-# define feedback
+# feedback
 geometry_msgs/TransformStamped tf_object_to_goal # object-pose in goal_frame
 float64 gripper_joint_state
