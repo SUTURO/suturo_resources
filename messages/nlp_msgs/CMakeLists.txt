@@ -17,7 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(
    FILES
-   static_commands.msg
+   StaticCommands.msg
 )
 
 generate_messages(
