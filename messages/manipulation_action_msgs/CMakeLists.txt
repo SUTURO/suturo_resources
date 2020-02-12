@@ -14,7 +14,7 @@ set(MSG_DEPS
 set(ACT_FILES
   Grasp.action
   MoveGripper.action
-  Perceive.action
+  TakePose.action
   Place.action
 )
 

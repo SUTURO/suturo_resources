@@ -1,11 +1,12 @@
 # Moves robot into perceiving position:
 
 # goal
-uint8 TABLE_BIG=0 
-uint8 TABLE_SMALL=1 
-uint8 SHELF1=2 
-uint8 SHELF2=3 
-uint8 perceive_mode
+uint8 NEUTRAL=0
+uint8 LOOK_LOW=1
+uint8 LOOK_HIGH=2
+uint8 GAZE=3
+uint8 pose_mode
+geometry_msgs/Vector3 gaze_point
 ---
 # result
 uint8 SUCCESS=0

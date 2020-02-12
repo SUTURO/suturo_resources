@@ -1,8 +1,12 @@
 # Places the object in the gripper down at the given pose.
-
 # goal
+uint8 FREE=0 # Given orientation is used
+uint8 FRONT=1 #Orientation is calculated from robot orientation
+uint8 TOP=2 #Orientation is calculated from robot orientation
+
 string object_frame_id
-geometry_msgs/PoseStamped goal_pose # pose in map
+geometry_msgs/PoseStamped goal_pose # pose in map Position of hand_palm_link
+uint8 place_mode
 ---
 # result
 uint8 SUCCESS=0
