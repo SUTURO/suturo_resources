@@ -7,7 +7,7 @@
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_small_shelf.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/IAI_tables.urdf.xacro"/>
 
-    <xacro:property name="pi" value="3.1415926535897931" /> 
+    <!--<xacro:property name="pi" value="3.1415926535897931" /> -->
     <xacro:property name="half_pi" value="1.570796327" /> 
     <xacro:property name="simulated" value="true" />
 
