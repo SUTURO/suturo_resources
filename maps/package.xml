@@ -1,0 +1,17 @@
+<package format="2">
+  <name>maps</name>
+  <version>0.1.0</version>
+
+  <description>
+    Maps for the Sututro project
+  </description>
+
+  <author email="stelter2@uni-bremen.de">Marc Stelter</author>
+
+
+  <maintainer email="stelter2@uni-bremen.de">Marc Stelter</maintainer>
+  <license>ToDo</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
