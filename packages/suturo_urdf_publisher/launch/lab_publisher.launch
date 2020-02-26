@@ -3,7 +3,7 @@
   <include file="$(find iai_maps)/launch/map.launch" />
 
   <arg name="model" default="$(find suturo_urdf_publisher)/urdf/hsrb_lab.urdf.xacro"/>
-  <param name="hsrb_lab" command="$(find xacro)/xacro.py '$(arg model)'" />
+  <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(arg model)'" />
 
   <node pkg="joint_state_publisher" type="joint_state_publisher"
         name="kitchen_joint_state_publisher" output="screen">
@@ -31,7 +31,7 @@
 
   <group>
     <param name="robot_description"
-           command="$(find xacro)/xacro.py
+           command="$(find xacro)/xacro --inorder 
                     '$(find hsrb_description)/robots/hsrb4s.urdf.xacro'"/>
  	<!-- HSR IK solver
  	<include file="$(find kdl_ik_service)/launch/kdl_ik.launch" /> -->
