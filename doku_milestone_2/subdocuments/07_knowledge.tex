@@ -2,6 +2,34 @@
 \begin{document}
 	
 	\chapter{Knowledge}
-		\chapterauthor{Author}
-	
+		\chapterauthor{Jeremias Thun}
+		\section{General}
+				
+
+
+		\section{OWL}
+
+
+		\section{URDF}
+
+
+		\section{next\_object/1}
+		The decision about what object should be the next to take is now part of Knowledge rather than Planning. The actual implementation does nothing more than return the one object with the shortest distance to the robot right now. We moved this calculation to Knowledge to be able to start reasoning about other criteria when deciding what object to take. We started thinking about and partly working on
+\begin{itemize}
+\item which known object classes are difficult to grip and should not be taken at first?
+\item which objects have no class at all, therefore are likely to be put in a less good place and should not be taken at first?
+\item which objects are in groups and therefore difficult to grip?
+\item what is the confidence of the object class?
+\item in case the object class is unknown and the object is placed based on it's color or size: What is the confidence of those attributes?
+\end{itemize}
+
+Since the Robot should not have a specific place to stand when it is taking any object (the standing pose should be dependent on the next object), most objects should be reachable from some point in the map.
+
+		\section{Finding a place for the Objects}
+		We refactored the decision about where to put a specific object. In the old architecture we would always look for classes up to two steps higher in the hierarchy. In the new architecture we ask for the class-distance in the OWL and are able to easily define the distance we want to have.\\
+Also, we want to be able to have a full idea of the ordered shelf before we start putting things in. That way we could avoid Groups being sorted partly by class and partly by some arbitrary attribute like color or size (which both can vary extremely within a group of two of three similar classes). 
+
+		\section{up-and-coming}
+		One next step is to generify the different surfaces and their function. Depending on the RoboCup-Task the same surface can be the Source or the Target. To solve the cleanup-task we need to go through every surface that isn't the goal surface and look for objects to clean up. We want to represent that functionality in our OWL-Representation. 
+
 \end{document}
