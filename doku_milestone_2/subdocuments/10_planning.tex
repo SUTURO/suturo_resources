@@ -2,6 +2,60 @@
 \begin{document}
 	
 	\chapter{Planning}
-		\chapterauthor{Author}
+		\chapterauthor{Torge Olliges}
+                The Planning team consisting of Torge Olliges (Groupleader), Philipp Klein (Cleanup), Tom-Eric Lehmkuhl (Grocery) and Jan Schimpf (Cleanup). It was basically responsible for the integration and connection of the results of the other groups. To achieve this task the planning group orientated itself along the lines of the legacy code of our predecessors and came up with the general architecture of the project. The planning group was also mainly in charge of testing on the HSR. At the beginning of this Milestone we created diagramms which model how we want our robot to behave depending on the Task (Cleanup/Grocery). During the time that we worked on milestone 2 we communicated our progress and current tasks in the group so that everybody knew what the other group members are doing and how we were progressing. In the following sections (one for each package or abstraction layer) we will explain the concrete tasks and provide results of our work.
+                \section{Low Level Interfaces (LLIF)}
+                \subsection{Manipulation}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}
+                \subsection{Knowledge}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}
+                \subsection{Perception}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}
+                \subsection{NLP}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}
 
+                
+                \section{Common Functions (COMF)}
+                The common functions package consists of functions which are common to both tasks. We created a functions file corresponding to the groups which they are interacting with and providing functionality to.
+                \subsection{Desginators}
+                For this milestone we added designators to use in our high level plans.
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}
+                
+                \subsection{Manipulation}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}
+                
+                \subsection{Knowledge}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}Knowledge Functions:
+                
+                \subsection{Perception}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}Perception Functions:
+                
+                \subsection{NLP}
+                \subsubsection{New}
+                \subsubsection{Modified}
+                \subsubsection{Unchanged}NLP functions:
+                
+                \section{Grocery Storing (GROCERY)}
+                This package depends on common functions and low level interfacing and contains the execute file for the grocery task. Furthermore it contains a init file for the task. This connects our action clients out of the LLIF package to the action servers of the other groups and starts the master node for planning (planning_node). The grocery_bw file provides functions for the interaction with the bullet world.   
+                \section{Cleanup (CLEAN)}
+                Equal to GROCERY just different inits and execute files.
+                \section{Bullet World}
+                The bulletworld is a new feature which we implemented for this milestone. It is a representation of the real world which lets us check for visibilty or reachability without having to use the real robot. We added a function to spawn primitiv objects in the bullet world which were detected by the perception part to have a representation of the current world state. We decided not to test grasping with the bullet world becasue we can't use giskard in our bullet world, this would minder our capabilities.
+                
 \end{document}
