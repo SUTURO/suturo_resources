@@ -2,12 +2,30 @@
 \begin{document}
 	
 	\chapter{Knowledge}
-		\chapterauthor{Jeremias Thun}
+		\chapterauthor{Jeremias Thun, Fabian Rosenstock}
 		\section{General}
 				
 
 
 		\section{OWL}
+		In our current Ontology all physical objects are represented as subclasses of EnduringThing-Localized. We removed the reference to the Robocup for our Ontology. To realize this we renamed the Class Robocupitems to Item. The physical objects are divided in different classes based on the use of the objects. For that we used the following classes.
+		\begin{itemize}
+		\item CleaningSupply
+		\item Clothes
+		\item Electronic
+		\item Furniture
+		\item Groceries
+		\item PersonalHygiene
+		\item Receptacle
+		\item Tableware
+		\item Tool
+		\item Toy
+		\item Unknown
+		\item WritingMaterial
+		\end{itemize}
+		
+		We want the decision which object to take next, to depend on the confidence of the object class, color and shape. To realize this goal we added Regions and Data properties to our Ontology.\\
+		Some classes that represent properties of Objects and other concepts like the shape of objects or physical places were subclasses of EnduringThing-Localized. Those classes have been moved to the intended places.
 
 
 		\section{URDF}
@@ -30,6 +48,7 @@ Since the Robot should not have a specific place to stand when it is taking any 
 Also, we want to be able to have a full idea of the ordered shelf before we start putting things in. That way we could avoid Groups being sorted partly by class and partly by some arbitrary attribute like color or size (which both can vary extremely within a group of two of three similar classes). 
 
 		\section{up-and-coming}
-		One next step is to generify the different surfaces and their function. Depending on the RoboCup-Task the same surface can be the Source or the Target. To solve the cleanup-task we need to go through every surface that isn't the goal surface and look for objects to clean up. We want to represent that functionality in our OWL-Representation. 
+		One next step is to generify the different surfaces and their function. Depending on the RoboCup-Task the same surface can be the Source or the Target. To solve the cleanup-task we need to go through every surface that isn't the goal surface and look for objects to clean up. We want to represent that functionality in our OWL-Representation. \\
+		Many of the classes representing physical objects belong to subclasses of designed artifact or other subclasses of the class Physical object. Our plan is to move these classes to the appropriate place. To realize this goal we have to adjust our prolog code since currently the existing structure of our ontology is used there.
 
 \end{document}
