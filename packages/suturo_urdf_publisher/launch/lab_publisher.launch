@@ -1,7 +1,5 @@
 <launch>
 
-  <include file="$(find iai_maps)/launch/map.launch" />
-
   <arg name="model" default="$(find suturo_urdf_publisher)/urdf/hsrb_lab.urdf.xacro"/>
   <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(arg model)'" />
 
