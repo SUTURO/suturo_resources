@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 
 <robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_table.urdf.xacro"/>
-    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsrb_lab_walls.urdf.xacro"/>
-    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_shelf.urdf.xacro"/>
-    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_small_shelf.urdf.xacro"/>
-    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/IAI_tables.urdf.xacro"/>
+    <xacro:include filename="$(find cram_hsrb_lab_demo)/launch/hsr_table.urdf.xacro"/>
+    <xacro:include filename="$(find cram_hsrb_lab_demo)/launch/hsrb_lab_walls.urdf.xacro"/>
+    <xacro:include filename="$(find cram_hsrb_lab_demo)/launch/hsr_shelf.urdf.xacro"/>
+    <xacro:include filename="$(find cram_hsrb_lab_demo)/launch/hsr_small_shelf.urdf.xacro"/>
+    <xacro:include filename="$(find iai_kitchen)/urdf_obj/IAI_tables.urdf.xacro"/>
 
-    <!--<xacro:property name="pi" value="3.1415926535897931" /> -->
+    <xacro:property name="pi" value="3.1415926535897931" /> 
     <xacro:property name="half_pi" value="1.570796327" /> 
     <xacro:property name="simulated" value="true" />
 
     <xacro:property name="data" 
-    value="${load_yaml('$(find suturo_urdf_publisher)/urdf/yaml/semantic_map_manual_data.yaml')}" />
+    value="${load_yaml('$(find cram_hsrb_lab_demo)/resource/semantic_map_manual_data.yaml')}" />
 
     <xacro:property name="table_x" 
         value="${data['robocup_table']['x_pos']}" />
@@ -94,7 +94,7 @@
 
     <!-- OTHER-->
        <robocup_table name="table_2" parent="room_link" size_x="${table_depth}" size_y="${table_width}" size_z="${table_height}" >
-        <origin xyz="-1.7025 1.2 0" rpy="0 0 ${pi}" />
+        <origin xyz="-1.6 1.2 0" rpy="0 0 ${pi}" />
       </robocup_table>
 
        <robocup_table name="table_3" parent="room_link" size_x="${small_table_depth}" size_y="${small_table_width}" size_z="${small_table_height}" >
