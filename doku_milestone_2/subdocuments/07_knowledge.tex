@@ -2,34 +2,58 @@
 \begin{document}
 	
 	\chapter{Knowledge}
-		\chapterauthor{Jeremias Thun}
+		\chapterauthor{Jeremias Thun, Fabian Rosenstock}
 		\section{General}
 				
 
 
 		\section{OWL}
+		The main class "EnduringThing-Localized" contains the subclasses for every physical object in the ontology that is currently used. The main class itself remained from the predecessor of SUTURO 19/20. Another goal is to change this for the next milestone and delete this main class since it is superfluous.
+The reference to the RoboCup was removed as well to create a more general ontology. This was realized by renaming the class "Robocupitems" to "Item". The physical objects are then divided into different classes, which are based on the use of the objects. For that the following classes were used:
+		
+		\begin{itemize}
+		\item CleaningSupply
+		\item Clothes
+		\item Electronic
+		\item Furniture
+		\item Groceries
+		\item PersonalHygiene
+		\item Receptacle
+		\item Tableware
+		\item Tool
+		\item Toy
+		\item Unknown
+		\item WritingMaterial
+		\end{itemize}
+		
+		One of the goals was that the object that is to be carried next is dependent on the confidence of the object class, color, and shape. In order to realize this goal regions and data property were added to the ontology. Classes that represented these properties of an object were once a subclass of "EnduringThing-Localized" but have been converted into independent classes instead.  
+
 
 
 		\section{URDF}
 
 
 		\section{next\_object/1}
-		The decision about what object should be the next to take is now part of Knowledge rather than Planning. The actual implementation does nothing more than return the one object with the shortest distance to the robot right now. We moved this calculation to Knowledge to be able to start reasoning about other criteria when deciding what object to take. We started thinking about and partly working on
+		The decision about which object should be the next to take is now part of Knowledge rather than Planning. The actual implementation does nothing more than returning the one object with the shortest distance to the robot at the moment. This calculation was moved to Knowledge to be able to start reasoning about other criteria when deciding what object to take. Some criteria that are being taken into consideration by this algorithm is:
+		
 \begin{itemize}
-\item which known object classes are difficult to grip and should not be taken at first?
-\item which objects have no class at all, therefore are likely to be put in a less good place and should not be taken at first?
+\item which known object classes are difficult to grip and should not be taken first?
+\item which objects have no class at all, therefore are likely to be placed with the wrong cluster and should not be taken first?
 \item which objects are in groups and therefore difficult to grip?
 \item what is the confidence of the object class?
 \item in case the object class is unknown and the object is placed based on it's color or size: What is the confidence of those attributes?
 \end{itemize}
 
-Since the Robot should not have a specific place to stand when it is taking any object (the standing pose should be dependent on the next object), most objects should be reachable from some point in the map.
+Since the robot's standing pose is supposed to depent on the next object rather than a specific spot that is hard coded, most objects should be reachable from a point in the map. 
 
 		\section{Finding a place for the Objects}
-		We refactored the decision about where to put a specific object. In the old architecture we would always look for classes up to two steps higher in the hierarchy. In the new architecture we ask for the class-distance in the OWL and are able to easily define the distance we want to have.\\
-Also, we want to be able to have a full idea of the ordered shelf before we start putting things in. That way we could avoid Groups being sorted partly by class and partly by some arbitrary attribute like color or size (which both can vary extremely within a group of two of three similar classes). 
+		The decision about in which class to sort an bject was refactored. In the old architecture the program would always look as far as the two previous branches in the hierachy. In the new architecture, the program asks for the class-distance in the OWL file and is able to define how much higher we need to go in the hierachy to get a match.\\
+Another goal is to be able to have a full categorized picture of the shelf before the robot starts to put things inside. By approaching it like this, it is avoided that items that are placed in the shelf are sorted with the wrong groups, and the groups themselves ending up being mixed; partially sorted by class and partially sorted by attributes, which can vary extremely.
+ 
 
 		\section{up-and-coming}
-		One next step is to generify the different surfaces and their function. Depending on the RoboCup-Task the same surface can be the Source or the Target. To solve the cleanup-task we need to go through every surface that isn't the goal surface and look for objects to clean up. We want to represent that functionality in our OWL-Representation. 
+		One next step is to generify the different surfaces and their function. Depending on the challenge for the RoboCup, the same surface can be the source or the target. In order to be able to perform the clean up task the robot needs to go through every surface and look for objects to clean up. This functionality is represented in the OWL-representation.\\
+Many of the classes, representing physical objects, belong to subclasses of "designed artifact" or other subclasses of the "physical object" class. The plan is to move these classes to the appropriate branch. In order to realize this, the prolog code needs to be adjusted since it uses the currently existing structure of the onology.
+
 
 \end{document}
