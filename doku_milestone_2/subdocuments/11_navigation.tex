@@ -2,38 +2,35 @@
 \begin{document}
 	
 	\chapter{Navigation}
-		\chapterauthor{Marc Stelter}
-		\section{Mapping}
+	\chapterauthor{Marc Stelter}
+		\section{General}
+		During this Milestone the main task of Navigation has been to find Objects on the floor.
 		
-		The mapping process for the HSR is already well covered by it's own documentation
-		\ \\
-		In order to make the process easier to tweak a launchfile has been created for hector\_slamm. It simply starts a hector\_mapping node with some predefined parameters. At the moment these are the default parameters suggested by the original documentation.
+		\section{Finding objects}
+		The final solution during this milestone for the task has been to create a new python node, which interprets the laser scan and Map too publish an PoseArray of points that might be an object of interest. The points are published as PoseArray to enable easy visualization of the results in rviz while containing a minimal overhead in the form of an orientation and no data loss in the form of position.
 		
-		\begin{lstlisting}
-<launch>
-  <node pkg="hector_mapping" type="hector_mapping"
-   name="hector_mapping" output="screen">
-    <param name="map_size" value="2048"/>
-    <param name="map_resolution" value="0.05"/>
-    <param name="pub_map_odom_transform" value="true"/>
-    <param name="scan_topic" value="/hsrb/base_scan"/>
-    <param name="use_tf_scan_transformation" value="true"/>
-    <param name="map_update_angle_thresh" value="2.0"/>
-    <param name="map_update_distance_thresh" value="0.10"/>
-    <param name="scan_subscriber_queue_size" value="1"/>
-    <param name="update_factor_free" value="0.39"/>
-    <param name="update_factor_occupied" value="0.85"/>
-    <param name="base_frame" value="base_link"/>
-  </node>
-</launch>
-		\end{lstlisting}
+		\subsection{Algorithm}
+		The algorithm to find these obstacles works in three steps. First of all the rays of the laser scan get bundled as clusters. This is archived by calculating the point of a ray on the map and checking if the point is within a certain distance to the previous ray if this is true the ray gets added to that cluster. Otherwise a new cluster is started.
 		
-		\section{Localization}
-		The original localization of the robot has to be done manually at the moment.
-		\ \\
-		the snap\_map\_icp package has not yet been included in the process and is left for future tests and validation.
+		In the second step all clusters, which do not consist of at least a minimum number or rays, are removed from further processing.
 		
-		\section{Movement}
-		The included move\_base action client is used to move the robot to a given goal. The goal is defined with a move\_base\_ simple goal action. The move\_base package then finds a path based on local and global path finding based on corresponding costmaps. 
+		During the last step for each point of a cluster is compared with the map. Another tolerance parameter is used here. If a certain percentage of points is matched with an obstacle (defined as an occupancy threshold) on the map the cluster gets removed.
+		
+		For the remaining clusters the center of each one is calculated and returned as pose.
+		
+		\subsection{Parameters}
+		The values for the parameters have been derived through testing and are as follow:
+		\begin{itemize}
+			\item occ\_threshold: 40 
+			\item min\_scans\_cluster: 10
+			\item min\_percentage\_covered: 0.7
+			\item rad\_neighbour: 0.1 (m)
+			\item error\_map: 0.1 (m)
+			\item use\_every\_n\_scan: 15
+		\end{itemize}
+		
+		\subsection{Problems} 
+		While the above algorithm is an easy and stable solution for the initial task a problem originating in the hardware of the hsr remains. The laser scanner is positioned at an height of 15 cm, which makes the detection of all objects below this point impossible.
+	
 	
 \end{document}
