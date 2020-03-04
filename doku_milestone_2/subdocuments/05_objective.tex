@@ -2,23 +2,146 @@
 \begin{document}
 	
 	\chapter{Objective}
-	\chapterauthor{Author}
+	\chapterauthor{Marc Stelter}
 	\section{Clean Up}
 	
-	\subsection{Premise}
+	\subsection{Find obstacles}
+	Navigation looks for obstacles on the ground, that are not in the map.
+	
+	\subsubsection{Premise}
+	\begin{itemize}
+		\item The map is published
+		\item The laser scanner is publishing data
+		\item There exists an up to date transform from the map to the laser scanner
+	\end{itemize} 
+	
+	\subsubsection{Procedure}
+	\begin{itemize}			
+		\item The scans get bundled and projected on the map. Overlaying Clusters get removed.
+	\end{itemize}
+	
+	\subsubsection{Completion}
+	\begin{itemize}
+		\item A PoseArray containing the Poses (centroid of each Cluster) is published		
+	\end{itemize}
+	
+	\subsection{Move to point of interest}
+	Planning determines a point of interest and drives the hrs to it.
+	
+	\subsubsection{Premise}
 		\begin{itemize}
-			\item 
+			\item The obstacle\_finder publishes a PoseArray of possible points of interest
+			\item Position of tables and shelfs 
 		\end{itemize} 
 		
-	\subsection{Procedure}
+	\subsubsection{Procedure}
 		\begin{itemize}			
-			\item 				
+			\item Planning determines the next point of interest based on the euclidean distance
+			\item Planning sends a goal to navigation. 				
 		\end{itemize}
 	
-	\subsection{Completion}
+	\subsubsection{Completion}
 		\begin{itemize}
-			\item 		
+			\item The hsr reached the point of interest		
 		\end{itemize}
+		
+	\subsection{Take pose}
+	Brings the hsr in a pose which enables it to perceive a certain scene.
+	
+	\subsubsection{Premise}
+	\begin{itemize}
+		\item The hsr stands at the correct position with the correct orientation
+		\item The hsr has enough space to take the pose  
+	\end{itemize} 
+	
+	\subsubsection{Procedure}
+	\begin{itemize}			
+		\item Planning determines the pose the hsr should take
+		\item Planning sends a goal to manipulation with the pose.
+		\item Manipulation sets the joints for the pose and calls giskard to apply them. 				
+	\end{itemize}
+	
+	\subsubsection{Completion}
+	\begin{itemize}
+		\item The hsr is in the correct pose
+		\item Planning has received an result from manipulation indicating success or failure		
+	\end{itemize}
+	
+	\subsection{Perceive scene} 
+	
+	\subsubsection{Premise}
+	\begin{itemize}
+		\item The hsr looks at the scene (correct position, orientation and pose)
+		\item The hsr publishes a depth and camera image
+		\item The definition of regions is loaded 
+	\end{itemize} 
+	
+	\subsubsection{Procedure}
+	\begin{itemize}			
+		\item Planning sends action to perception indication which region to perceive
+		\item Perception applies the given region filter
+		\item Perception extracts found objects
+		\item Perception classifies the objects	
+		\item Planning Filters out Objects with low confidence and forwards the others to knowledge
+		\item Knowlegde adds the objects to the knowledge-base and publishes a new object-state			
+	\end{itemize}
+	
+	\subsubsection{Completion}
+	\begin{itemize}
+		\item The found objects are in the knowledge-base
+		\item The found objects can be seen in planning and manipulations representations of the world 		
+	\end{itemize}
+	
+	\subsection{Grasp object}
+	
+	\subsubsection{Premise}
+	\begin{itemize}
+		\item It exist at least one object in the knowledge-base, that is not at its goal position
+		\item The world and object are present in giskards world
+		\item The gripper is free
+		\item The object can be grasped 
+	\end{itemize} 
+	
+	\subsubsection{Procedure}
+	\begin{itemize}			
+		\item Planning asks knowledge for the next object
+		\item Knowledge determines the next object and returns it
+		\item Planning sends a command to navigation moving the hsr to the correct pose
+		\item Planning determines how to grasp the object and sends a corresponding command to manipulation
+		\item Manipulation moves the gripper to grasp the object
+		\item Manipulations moves the closed gripper with the object in a neutral pose
+		\item Manipulation checks if an object is in the gripper 				
+	\end{itemize}
+	
+	\subsubsection{Completion}
+	\begin{itemize}
+		\item Planning receives a result from manipulation indication success or failure
+		\item The object is in the closed gripper	
+	\end{itemize}
+	
+	\subsection{Place object}
+	
+	\subsubsection{Premise}
+	\begin{itemize}
+		\item The hsr holds an object in his gripper
+		\item The world and object are present in the giskard world
+	\end{itemize} 
+	
+	\subsubsection{Procedure}
+	\begin{itemize}			
+		\item Planning asks knowledge for the goal pose of the grasped object
+		\item Knowledge determines a goal pose for the object
+		\item Planning sends a command to navigation moving the hsr to the correct pose
+		\item Planning sends an action to manipulation indicating the pose and method for placing the object
+		\item Manipulation moves the gripper to the target pose, opens it and goes in a neutral pose 				
+	\end{itemize}
+	
+	\subsubsection{Completion}
+	\begin{itemize}
+		\item The hsr is in neutral pose
+		\item Planning received a result indication success or failure from manipulation
+				
+	\end{itemize}
 	
 	\section{Storing Groceries}
 	
