@@ -8,7 +8,9 @@
 
 
 		\section{OWL}
-		In our current Ontology all physical objects are represented as subclasses of EnduringThing-Localized. We removed the reference to the Robocup for our Ontology. To realize this we renamed the Class Robocupitems to Item. The physical objects are divided in different classes based on the use of the objects. For that we used the following classes.
+		The main class "EnduringThing-Localized" contains the subclasses for every physical object in the ontology that is currently used. The main class itself remained from the predecessor of SUTURO 19/20. Another goal is to change this for the next milestone and delete this main class since it is superfluous.
+The reference to the Robocup was removed as well to create a more general ontology. This was realized by renaming the class "Robocupitems" to "Item". The physical objects are then divided into different classes, which are based on the use of the objects. For that the following classes were used:
+		
 		\begin{itemize}
 		\item CleaningSupply
 		\item Clothes
@@ -24,24 +26,25 @@
 		\item WritingMaterial
 		\end{itemize}
 		
-		We want the decision which object to take next, to depend on the confidence of the object class, color and shape. To realize this goal we added Regions and Data properties to our Ontology.\\
-		Some classes that represent properties of Objects and other concepts like the shape of objects or physical places were subclasses of EnduringThing-Localized. Those classes have been moved to the intended places.
+		One of the goals was that the object that is to be carried next is dependent on the confidence of the object class, color, and shape. In order to realize this goal regions and data property were added to the ontology. Classes that represented these properties of an object were once a subclass of "EnduringThing-Localized" but have been converted into independent classes instead.  
+
 
 
 		\section{URDF}
 
 
 		\section{next\_object/1}
-		The decision about what object should be the next to take is now part of Knowledge rather than Planning. The actual implementation does nothing more than return the one object with the shortest distance to the robot right now. We moved this calculation to Knowledge to be able to start reasoning about other criteria when deciding what object to take. We started thinking about and partly working on
+		The decision about which object should be the next to take is now part of Knowledge rather than Planning. The actual implementation does nothing more than returning the one object with the shortest distance to the robot at the moment. This calculation was moved to Knowledge to be able to start reasoning about other criteria when deciding what object to take. Some criteria that are being taken into consideration by this algorithm is:
+		
 \begin{itemize}
-\item which known object classes are difficult to grip and should not be taken at first?
-\item which objects have no class at all, therefore are likely to be put in a less good place and should not be taken at first?
+\item which known object classes are difficult to grip and should not be taken first?
+\item which objects have no class at all, therefore are likely to be placed with the wrong cluster and should not be taken first?
 \item which objects are in groups and therefore difficult to grip?
 \item what is the confidence of the object class?
 \item in case the object class is unknown and the object is placed based on it's color or size: What is the confidence of those attributes?
 \end{itemize}
 
-Since the Robot should not have a specific place to stand when it is taking any object (the standing pose should be dependent on the next object), most objects should be reachable from some point in the map.
+Since the robot's standing pose is supposed to depent on the next object rather than a specific spot that is hard coded, most objects should be reachable from a point in the map. 
 
 		\section{Finding a place for the Objects}
 		We refactored the decision about where to put a specific object. In the old architecture we would always look for classes up to two steps higher in the hierarchy. In the new architecture we ask for the class-distance in the OWL and are able to easily define the distance we want to have.\\
