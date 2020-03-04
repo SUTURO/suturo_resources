@@ -85,7 +85,7 @@
     <!--Astuff von Arthur-->
     <robocup_shelf name="shelf" parent="room_link" 
     size_x="${shelf_depth}" size_y="${shelf_width}" size_z="${shelf_height}" floors_height="${shelf_floors_height}">
-    <origin xyz="0.0 -0.1 0" rpy="0 0 -${half_pi}" />
+    <origin xyz="0.1 -0.1 0" rpy="0 0 -${half_pi}" />
     </robocup_shelf>
 
     <robocup_table name="table" parent="room_link" size_x="${table_depth}" size_y="${table_width}" size_z="${table_height}" >
