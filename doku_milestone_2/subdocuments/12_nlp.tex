@@ -11,8 +11,26 @@
   
   
   \section{Context-Free Grammar}
-  
+  NLP works with something called context-free grammar (CFG). It is a certain type of formal grammar, meaning, a set of  production ruled that describe all possible strings in a given language. Productions rules are simple replacements. For example there is a sentence like:
 
-	
+\begin{equation}
+Bring the [item] to the [surface].
+\end{equation}
+
+Both [item] and [surface] are replacable and would count as a production rule. Now, this example is already more specific. A more vague example would look like this:
+
+\begin{equation}
+A → α
+A → β
+\end{equation}
+
+A can be replaced by about anything given any value. To translate this into a more Suturo related context, the grammar would translate to this:
+
+\begin{equation}
+A → [item]
+A → [surface]
+\end{equation}
+
+Both item and surface can then be further defined. In CFG all rules are one-to-one, one-to-many, and one-to-none. These rules are applied regardless of context, hends the name context-free grammar. A nother less official rule is, that the production rule always is a nonterminal symbol, but for understanding purposes, this inofficial rule was ignored here.
 
 \end{document}
