@@ -1,16 +1,16 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-	
+
 	\chapter{Perception}
 		\chapterauthor{Jan-Frederik Stock, Evan Kapitzke,\\Leonidas Paniago De Oliveira Neto}
-		
+
 		\section{General}
 		The main changes and improvements upon the status presented at milestone 1 are the following: Perception now runs inside an actionserver, in contrast to 				plain robosherlock. Additionally, Caffe is now used for feature extraction, and KNN is used for the classification of detected objects. Also, image data of 		available objects was recorded, which was then used for classification purposes.
-		
+
 		\section{Actionserver and process manager}
 			\subsection{Interfaces}
 			\includegraphics[width=\textwidth]{../architecture/perception_architecture/perception.pdf}
-			
+
 			\subsection{Packages}
 			\subsubsection{Launch}
 			In order to start the perception action servers you have to call:\\
@@ -19,7 +19,7 @@
 			\subsubsection{actionserver}
 			Implements the "ExtractObjectInfo" and "ExtractPlaneInfo" action servers and the corresponding action clients.
 			Internally the "SuturoProcessManager" from "rs\_hsrb\_perception" is used to communicate with RoboSherlock.
-			The action server invokes "SuturoProcessManager::run()" with the given parameters. 
+			The action server invokes "SuturoProcessManager::run()" with the given parameters.
 			The executable "perception\_server" starts both action servers.
 			Set "\_region:=\textbf{region\_name}" as parameter in "ExtractObjectInfo" to enable the RegionFilter.
 
@@ -31,7 +31,7 @@
 			\subsubsection{rs\_hsrb\_perception (forked from suturo1819)}
 			Implements a RoboSherlock process manager "SuturoProcessManager".
 			The manager gets called from the "actionserver" and executes the selected pipeline once.
-			
+
 			In order to perceive objects that are placed on the ground, the SuturoRegionFilter gets reconfigured
 			to disable the region filtering. Set the region parameter to \{ "robocup\_default" \} to enable this feature.
 
@@ -64,25 +64,25 @@
 		\section{Classification}
 		    \subsection{Feature Extraction}
 		    In order to gain features on which to train classifiers, Caffe\footnote{\url{https://caffe.berkeleyvision.org/}}, in combination with the robosherlock 				package rs\_addons\footnote{\url{https://github.com/bbferka/rs_addons}} is used. rs\_addons was forked, off of another fork\footnote{\url{https://					github.com/Vanessa-rin/rs_addons}} to be able to make changes to the source code\footnote{\url{https://github.com/Jastock/rs_addons/tree/								rs_classifier_makeover}}.\\
-		    
+
 		    rs\_addons provides a program called "featureExtractor". It needs a split file, which specifies the classes your classifier will later output, as well 				as an output folder and the caffemodel to use as inputs. To make this process easier, shell scripts to generate a split file and a classlist from 					directory names can be found in \url{https://github.com/SUTURO/suturo_perception/tree/master/featureExtraction/tools}. Training images have to be 					provided as well, which have to be placed in the "object\_data" folder in the rs\_resources\footnote{\url{https://github.com/RoboSherlock/							rs_resources}} package. More information on how the training images can be recorded will be provided in the "Recording of images" section.\\
-		    
-		     Running this program will provide a file containing a matrix with features for every class specified in the split file. It also provides a file with a 			mapping from the classnames to the numbers used in the feature matrix to represent the classes. These files can now be used to train classifiers. For 				exact information on how to do feature extraction using this method, refer to \url{https://github.com/SUTURO/suturo_perception/blob/master/							featureExtraction/featureExtraction.md}. 
-			
+
+		     Running this program will provide a file containing a matrix with features for every class specified in the split file. It also provides a file with a 			mapping from the classnames to the numbers used in the feature matrix to represent the classes. These files can now be used to train classifiers. For 				exact information on how to do feature extraction using this method, refer to \url{https://github.com/SUTURO/suturo_perception/blob/master/							featureExtraction/featureExtraction.md}.
+
 			\subsection{Classifiers}
 			The newly generated files from the previous section can then be used in the annotators for classification provided by rs\_addons. Until now, the KNN-					Annotator was used for classification. The SVM-Annotator and the RF-Annotator were tested to make sure they work, but to use them effectively, their 					settings have to be tweaked.\\
-			
+
 			To find out which of these methods for classification works best for this specific problem, they have to be objectively compared. Up to this point, 					there is no effective way of doing this. The implementation of such a way is a goal for the next milestone. The idea is to implement a tool that 						can be used to label the objects in an example scene. A different tool can then run classification algorithms on these labeled scenes and calculate 					evaluation criteria, such as accuracy, recall, precision and the f-score. The tool should also be able to evaluate the speed of the algorithms. On the 				basis of these criteria, the algorithms can be objectively compared and the best one for the problem at hand can be selected.
-			
+
 			\subsection{KNN Confidence}
 			In the official version of rs\_addons the confidence for a prediction is calculated by only looking at the distance of the first neighbor to the new 					sample. This is not a sufficient representation and it does not show difference when choosing different K's. To fix this, a new version of the 						confidence was implemented by dividing the number of neighbors belonging to the result class by the total number of neighbors, in other words the K.
-			The new version can be found in \url{https://github.com/Jastock/rs_addons/blob/rs_classifier_makeover/src/classifiers/RSKNN.cpp}, in the 								"calculateConfidence" function.  
-			
+			The new version can be found in \url{https://github.com/Jastock/rs_addons/blob/rs_classifier_makeover/src/classifiers/RSKNN.cpp}, in the 								"calculateConfidence" function.
+
 			\subsection{Saving the classification results}
-			To be able to compare and visualize the classification results, the classificationEvaluation package was implemented. It provides an actionclient, that 			sends action goals to the perception actionserver and receives the results. These results can be represented in a markdown table or plotted in a 						scatterplot. By leaving the "rsClassificationEvalutator" node running and stopping the actionserver to alter the configuration, different K's can be 					tested and saved in case of using KNN. The package can be found here: . 
-		
-		
-		\section{Recording of images}  
+			To be able to compare and visualize the classification results, the classificationEvaluation package was implemented. It provides an actionclient, that 			sends action goals to the perception actionserver and receives the results. These results can be represented in a markdown table or plotted in a 						scatterplot. By leaving the "rsClassificationEvalutator" node running and stopping the actionserver to alter the configuration, different K's can be 					tested and saved in case of using KNN. The package can be found here: \url{https://github.com/SUTURO/suturo_perception/tree/master/classificationEvaluation}. 
+
+
+		\section{Recording of images}
 		Image capture is the first step to classification with the main goal in creating a big dataset
 		for the Robocup containing objects from several supermarkets.
 		The process is composed of starting the camera driver,
@@ -91,25 +91,25 @@
 		then OpenNi 2 work as a driver for the camera and as interface to ros.
 		For easy use we have a shell script that will download all needed dependencies
 		and make changes on the package then the default version of OpenNi 2 do
- 		not publish depth registration data. 
-		If downloaded manually the user has to set "depth\_registration" to true in "openni2.launch", 
-		the easy way to find the package is with "rospack find openni2\_launch". 
-		There are some calibration files for the camera, but we did not use them in this milestone 
+ 		not publish depth registration data.
+		If downloaded manually the user has to set "depth\_registration" to true in "openni2.launch",
+		the easy way to find the package is with "rospack find openni2\_launch".
+		There are some calibration files for the camera, but we did not use them in this milestone
 		and are not required nevertheless some warnings will be thrown for not using any calibration files.
 
 		Worth mentioning that OpenNi 2 will not work on VirtualBox the camera will be found but OpenNi 2 will not publish any data.
 		Once started with "roslaunch openni2\_launch openni2.launch" OpenNi 2 will search for any supported camera and
 		if found start publishing if needed. The next step is to find the turntable plane and remove any artifacts by changing parameters
 		for the "PointCloudFilter" in "estimate\_plane.yaml" under the "rs\_turn\_table" workspace.
-		Better to start with really small values like 0.1 to -0.1 and increase if needed 
-		and make sure to use the right "target\_frame" for the current camera. 
+		Better to start with really small values like 0.1 to -0.1 and increase if needed
+		and make sure to use the right "target\_frame" for the current camera.
 		Check if in PlaneAnnotator "save\_to\_file" is true if not set to true.
 		Mount the camera on the tripod using the 3D printed connection,
 		set up a good angle using rviz for feedback on the pointcloud we want to see the plane clearly.
 		Start the pipeline with "rosrun RoboSherlock run \_ae:=estimate\_plane \_vis:=true"
 		if the plane is visible just kill the process, the PlaneAnnotator will automatically save the last plane.
 
-		At last, we have to take the pictures, in the current workspace (rs\_turn\_table) create a folder named "data" 
+		At last, we have to take the pictures, in the current workspace (rs\_turn\_table) create a folder named "data"
 		in data create a new folder with the name for the object to record.
 		In "save\_images.yaml" under "SaveClusterCloudsAndImages" change "objectName" to the object name.
 		Start the pipeline with "rosrun RoboSherlock run \_ae:=save\_images \_vis:=true " pictures will only be saved
