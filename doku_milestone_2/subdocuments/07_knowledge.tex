@@ -29,6 +29,9 @@ The reference to the RoboCup was removed as well to create a more general ontolo
 		One of the goals was that the object that is to be carried next is dependent on the confidence of the object class, color, and shape. In order to realize this goal regions and data property were added to the ontology. Classes that represented these properties of an object were once a subclass of "EnduringThing-Localized" but have been converted into independent classes instead.  
 
 
+		\section{gripping\_subscriber}
+		Implements the "\_\_init\_\_" function that initializes the gripper and the "callback" function to check constantly whether the status of the gripper changed. If the gripper opend the "release\_object\_from\_gripper" function calls the beliefstate to release the object from the gripper, if there is one. If the gripper closed the "attach\_object\_to\_gripper" function attaches the closest object to the gripper, if it is within reach.
+
 
 		\section{URDF}
 
