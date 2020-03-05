@@ -1,0 +1,18 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+	
+
+	\chapter{NLP/NLG}
+	\chapterauthor{Merete Bommarius, Paul Schnipper}
+  
+  \section{Natural Language Generation}
+  
+  
+  \section{Context-Free Grammar}
+  
+
+	
+
+\end{document}
