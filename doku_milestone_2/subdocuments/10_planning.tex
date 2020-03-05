@@ -11,10 +11,17 @@
                 \subsubsection{Unchanged}
                 \subsection{Navigation}
                 \subsubsection{New}
+                \begin{itemize}
+ 				 \item poi-client is an interface to a navigation client, which returns points in a room, where objects could be 
+  				 \item obstacle-map-subscriber is an interface to check if there is a point in the obstacle map
+				\end{itemize}  
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 \subsection{Knowledge}
                 \subsubsection{New}
+                \begin{itemize}
+ 				 \item knowlegde-inserter is an interface to knowledge, which can insert the objects recognized by perception into the knowledgebase
+				\end{itemize}
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 \subsection{Perception}
@@ -42,6 +49,10 @@
                 
                 \subsection{Navigation}
                 \subsubsection{New}
+                \begin{itemize}
+ 				 \item pose-with-distance-to-point is a function to calculate a given number of positions around a given position at a given distance
+ 				 \item move-to-poi is a function to find the next points where an object could be. These points are then approached at a 90 degree angle and then the perceive pose is entered. All points that can't be approached because they are in the obstacle map or the simulator can't find them are not approached
+				\end{itemize}
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 
