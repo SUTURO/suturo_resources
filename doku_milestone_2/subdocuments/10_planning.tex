@@ -45,6 +45,7 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 \subsubsection{Unchanged}
                 \subsection{NLP}
                 \subsubsection{New}
+                The \textbf{nlp-subscriber} provides functions for subscribing the topics from nlp. At the topic \textit{suturo\_speech\_recognition\/hard\_commands} the commands "start", "stop" and "continue" are published, if they are recognised by nlp. The subscriber for the hard-commands \textit{static-command-listener} calls the function \textit{set-state-fluent} with the message as argument and a fluent-variable is set according to the command. The message for dynmaic-commands is not defined yet.
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
 
@@ -54,7 +55,7 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 \subsection{Designators}
                 For this milestone we added designators to use in our high level plans.
                 \subsubsection{New} 
-                The designators /textit {grasping} and /textit {placing} are wrappers for /textit {call-grasp-action} and /textit {call-place-action} and both get 12 arguments the x,y,z coordiants of the object, the x,y,z,w quaternion values, the x,y,z dimensions of the object, the object-id and the grasp-pose. 
+                The designators \textit {grasping} and \textit {placing} are wrappers for \textit {call-grasp-action} and \textit {call-place-action} and both get 12 arguments the x,y,z coordiants of the object, the x,y,z,w quaternion values, the x,y,z dimensions of the object, the object-id and the grasp-pose. 
 
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
@@ -74,6 +75,10 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 
                 \subsection{Navigation}
                 \subsubsection{New}
+                  \begin{itemize}
+                    \item \textit{move-to-table} in \textbf{high-level-plans} queries the position of the table from knowledge, and adds a buffer, to create a position before the table and navigates the robot to it. If the argument is NIL, the robot will position himself frontally to the table. If the argument is set to T, the robot will be turned for percieving the table.
+                    \item \textit{move-to-shelf} in \textbf{high-level-plans} queries the position of the shelf from knowledge, and adds a buffer, to create a position before the shelf and navigates the robot to it. If the argument is NIL, the robot will position himself frontally to the shelf. If the argument is set to T, the robot will be turned for percieving the shelf.
+                  \end{itemize}
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 
