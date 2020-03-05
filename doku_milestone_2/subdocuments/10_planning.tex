@@ -8,17 +8,12 @@
                 \subsection{Manipulation}
                 \subsubsection{New}
                 \subsubsection{Modified}
-                Grasp-action-client:
-                Place-action-client:
-                percieve-action-client renamed to take-pose-action-client prevent further confusion between it and the perception client
-                take-pose-action-client:
+The /textbf {Grasp-action-client} and textbf {Place-action-client} were updated with an additional argument  grasp pose which specifics from which direction the object is grasped.
+The /textbf {percieve-action-client} renamed to /textbf {take-pose-action-client} to prevent further confusion between it and the perception client.
+The /textbf {take-pose-action-client} was reworked and now either takes a Int for a set pose or it gets the value 0 to and then ten more Int's to move the Hsr into a pose.
                 \subsubsection{Unchanged}
                 \subsection{Navigation}
                 \subsubsection{New}
-                \begin{itemize}
- 				 \item poi-client is an interface to a navigation client, which returns points in a room, where objects could be 
-  				 \item obstacle-map-subscriber is an interface to check if there is a point in the obstacle map
-				\end{itemize}  
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 \subsection{Knowledge}
@@ -56,11 +51,11 @@
                 
                 \section{Common Functions (COMF)}
                 The common functions package consists of functions which are common to both tasks. We created a functions file corresponding to the groups which they are interacting with and providing functionality to.
-                \subsection{Desginators}
+                \subsection{Designators}
                 For this milestone we added designators to use in our high level plans.
-                \subsubsection{New}
-                grasping:
-                placing:
+                \subsubsection{New} 
+                The designators /textit {grasping} and /textit {placing} are wrappers for /textit {call-grasp-action} and /textit {call-place-action} and both get 12 arguments the x,y,z coordiants of the object, the x,y,z,w quaternion values, the x,y,z dimensions of the object, the object-id and the grasp-pose. 
+
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 
@@ -79,10 +74,6 @@
                 
                 \subsection{Navigation}
                 \subsubsection{New}
-                \begin{itemize}
- 				 \item pose-with-distance-to-point is a function to calculate a given number of positions around a given position at a given distance
- 				 \item move-to-poi is a function to find the next points where an object could be. These points are then approached at a 90 degree angle and then the perceive pose is entered. All points that can't be approached because they are in the obstacle map or the simulator can't find them are not approached
-				\end{itemize}
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 
