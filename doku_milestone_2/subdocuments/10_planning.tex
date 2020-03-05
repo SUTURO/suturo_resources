@@ -2,7 +2,7 @@
 \begin{document}
 	
 	\chapter{Planning}
-		\chapterauthor{Torge Olliges}
+		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
                 The Planning team consisting of Torge Olliges (Groupleader), Philipp Klein (Cleanup), Tom-Eric Lehmkuhl (Grocery) and Jan Schimpf (Cleanup). It was basically responsible for the integration and connection of the results of the other groups. To achieve this task the planning group orientated itself along the lines of the legacy code of our predecessors and came up with the general architecture of the project. The planning group was also mainly in charge of testing on the HSR. At the beginning of this Milestone we created diagramms which model how we want our robot to behave depending on the Task (Cleanup/Grocery). During the time that we worked on milestone 2 we communicated our progress and current tasks in the group so that everybody knew what the other group members are doing and how we were progressing. In the following sections (one for each package or abstraction layer) we will explain the concrete tasks and provide results of our work.
                 \section{Low Level Interfaces (LLIF)}
                 \subsection{Manipulation}
@@ -24,8 +24,24 @@
                 \subsection{Knowledge}
                 \subsubsection{New}
                 \begin{itemize}
- 				 \item knowlegde-inserter is an interface to knowledge, which can insert the objects recognized by perception into the knowledgebase
-				\end{itemize}
+ 				          \item knowlegde-inserter is an interface to knowledge, which can insert the objects recognized by perception into the knowledgebase
+				        \end{itemize}
+				          \textbf{knowledge-client} \\
+				          The knowledge-client is an interface to knowledge, which is responsible for the request to the knowledgebase. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
+				          \begin{itemize}
+				             \item \textit{prolog-table-objects} returns all objects on the table
+				             \item \textit{prolog-object-goal} returns the goal shelf for an object
+				             \item \textit{prolog-object-goal-pose} returns the goal pose for an object
+				             \item \textit{prolog-all-objects-in-shelf} returns all objects in the shelf
+				             \item \textit{prolog-next-object} returns the next object to grasp choosen by knowledge
+				             \item \textit{prolog-object-dimensions} returns the dimension for an object (depth, width, height)
+				             \item \textit{prolog-object-pose} returns the pose of an object as list
+				             \item \textit{prolog-table-pose} returns the pose of the table as list (x, y, z)
+				             \item \textit{prolog-shelf-pose} returns the pose of the shelf as list (x, y, z)
+				             \item \textit{prolog-object-in-gripper} returns the dimension of the object in gripper as list (depth, width, height)
+				           \end{itemize} 
+				            The functions \textit{knowledge-set-table-source} and \textit{knowledge-set-ground-source} are for setting the sources for selecting the next object. The task "Storing Groceries" needs the table as source and "Clean-up" needs also the ground as source. 
+				        
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 \subsection{Perception}
