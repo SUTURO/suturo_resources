@@ -2,7 +2,7 @@
 \begin{document}
 	
 	\chapter{Knowledge}
-		\chapterauthor{Jeremias Thun, Fabian Rosenstock}
+		\chapterauthor{Jeremias Thun, Fabian Rosenstock, Paul Schnipper}
 		\section{General}
 				
 
@@ -34,7 +34,61 @@ The reference to the RoboCup was removed as well to create a more general ontolo
 
 
 		\section{URDF}
-
+		
+		\subsection{Idea}
+		One of this years main goals for the SUTURO group was to allow modules to be more general and enable other RoboCup task.\\
+		Knowledges only responsibility is to remember all objects, with their respective attributes and determine the exact position the object has to be moved to.\\
+		Previous to this milestone objects could only ever be either on the table or on the shelf. This was a problem for the "Clean-Up" challenge, in it objects can be found anywhere in the room, and have to be placed inside a basket. This is why we decided to completely rework the surfaces.pl file. Sadly it used a feature of KnowRob called SRDL. The Semantic Robot Description Language uses ontologies to describe mechanical features of a robot. Sadly we do not have access to the URDF to SRDL allowing us to compile the new representation of the room created by planning.\\
+		Because of these reasons we decided to use the KnowRob component URDFProlog. It is capable of loading URDF files into the rdf-store. Problems occurred when we tried to use rdf\_urdf.pl in conjunction to knowrob\_memory. With this package loaded all quantitative information is stored in the mem-store instead, thus the decision was made to create a fork from KnowRob. In it rdf\_urdf.pl itself uses knowrob\_memory and mem\_store\_retrieve replacing rdf\_has. This version of KnowRob  can be found on github: \hyperref[https://github.com/JeremiasThun/knowrob]{\mbox{JeremiasThun/knowrob}}.\\
+		
+		\subsection{Surfaces.pl}
+		Using the URDF-data in the surfaces.pl got rewriten.
+		\newpage
+		\lstset{language=Prolog,numbers=left}
+		
+		To use surfaces.pl, init.pl loads the URDF representing the room into the knowledgebase first, by executing rdf\_urdf\_load\_file.
+		It then finds all surfaces big enough to support an object and by calling assert\_surface\_types the surfaces are stored and grouped by type. At this point the ground is also created as a surface.\\
+		
+		
+		\begin{lstlisting}
+:- ros_package_path('knowledge', X),
+	atom_concat(X, '/urdf/hsrb_lab.urdf', FileURL),
+	kb_create(urdf:'Robot', Robot),
+	rdf_urdf_load_file(Robot, FileURL).	
+		
+:- forall(supporting_surface(SurfaceLink),
+	assert_surface_types(SurfaceLink)).
+		\end{lstlisting}
+		
+		
+		The type holds the information whether a surface is source or target. next\_object only looks for objects on surfaces set to source. What type is source can be set on-the-fly.\\
+		
+		Target surfaces can not be set at the moment, because the object\_goal\_pose does not yet support surfaces other then the 'old' shelf.\\
+		
+		The most effort was put in to create code that determines witch surface found objects are actually standing on. This works in two steps.\\
+		First: For this the corners of the boxes representing surfaces are projected into a 2D plane. Using the X and Y position of the object and properties of triangles and rectangles the validity is checked.\\
+		Second: If the objects is inside the 2D plane the Z coordinates are compared. When the position is above the surface within a certain threshold the object is asserted as being on this surface.\\
+		When there is no surface found on which the object is standing on and the object is low enough in the world, the object is asserted to be on the ground.\\
+		
+		
+		\subsection{The new URDF file}
+		
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{pictures/knowledge_urdf.png}
+		\caption{The current URDF.}
+		\label{fig:knowledge_urdf}
+		\end{figure}
+		
+		The new URDF file contains multiple tables and two shelf. The second, smaller shelf has  one door on it. In red are the walls. Surfaces.pl sees these as boxes, but their size is to small to be a supporting surface. They are only this high because in the RoboCup the arena will have similar low wall. A possible next step for knowledge might be the support for meshes. The two bigger tables in green are not URDF-boxes, so their size can not be determined by rdf\_urdf. This is why they are non existing for knowledge.\\
+		To determine the position of the surface the current method is to add all parentjoints together. In the future using tf\_lookups will  simplify this.
+		
+		\subsection{Determining the goal position}
+		
+		As said previously one of the goals was that knowledge could freely based on information given by planning and the URDF decide where an object should be placed.\\
+		Dew to time constrains the object\_goal\_surface and object\_goal\_pose functions where not reworked only adapted to use the new surfaces.
+		
+		
 
 		\section{next\_object/1}
 		The decision about which object should be the next to take is now part of Knowledge rather than Planning. The actual implementation does nothing more than returning the one object with the shortest distance to the robot at the moment. This calculation was moved to Knowledge to be able to start reasoning about other criteria when deciding what object to take. Some criteria that are being taken into consideration by this algorithm is:
@@ -55,8 +109,11 @@ Another goal is to be able to have a full categorized picture of the shelf befor
  
 
 		\section{up-and-coming}
-		One next step is to generify the different surfaces and their function. Depending on the challenge for the RoboCup, the same surface can be the source or the target. In order to be able to perform the clean up task the robot needs to go through every surface and look for objects to clean up. This functionality is represented in the OWL-representation.\\
-Many of the classes, representing physical objects, belong to subclasses of "designed artifact" or other subclasses of the "physical object" class. The plan is to move these classes to the appropriate branch. In order to realize this, the prolog code needs to be adjusted since it uses the currently existing structure of the onology.
+		One next step is to generify the different surfaces and their function. Depending on the challenge for the RoboCup, the same surface can be the source or the target. In order to be able to perform the clean up task the robot needs to go through every surface and look for objects to clean up. This functionality will be represented in the OWL-representation.\\
+		Knowledge should also be able to tell planning all possible surfaces as points of interest, places it should look at to find misplaced objects.\\
+		As a feature for Natural-Language-Generation grouping the shelf surfaces and finding descriptive names for them will be of use.\\
+		Many of the classes, representing physical objects, belong to subclasses of "designed artifact" or other subclasses of the "physical object" class. The plan is to move these classes to the appropriate branch. In order to realize this, the prolog code needs to be adjusted since it uses the currently existing structure of the ontology.\\
+		Another useful feature will be to have a way to forget all recognized objects, currently the knowledgebase has to be restarted for this, making testing more difficult. 
 
 
 \end{document}
