@@ -24,23 +24,23 @@
 	\vspace{1cm}
 	
 	\subsection{Grasps Object}
-	The server receives a PoseStamped ("goal\_pose"), a Vector3("object\_size") and a "grasp\_mode". In the first step the script opens the gripper to the maximum. After that the arm is moved to the object. The "grasp\_mode" determines if the object should be grasped from the front or the top or a free given orientation. When the arm has moved to the given position "goal\_pose", the script closes the gripper. At the end the grasped object given by "object\_frame\_id" is added in Giskard and attached to the robot. Then the server transforms to a position, where it can comfortably move with an object in the gripper.\\
+	The server receives a PoseStamped ("goal\_pose"), a Vector3("object\_size") and a "grasp\_mode". In the first step the script opens the gripper to the maximum. After that the arm is moved to the object. The "grasp\_mode" determines if the object should be grasped from the front or the top or a free given orientation. When the arm has moved to the given position "goal\_pose", the script closes the gripper. At the end the grasped object given by "object\_frame\_id" is added in giskard and attached to the robot. Then the server transforms to a position, where it can comfortably move with an object in the gripper.\\
 	Finally it checks if the object is in the gripper and returns whether the action has failed or succeeded.
 	
 	\vspace{1cm}
 	
 	\subsection{Place Object}
-	The object "object\_frame\_id" that was attached by the grasp server is moved to the goal position "goal\_pose". The "place\_mode" defines the orientation in which the object should be placed. In order to release the gripper the hsr python interface is used directly. Finally the object is detached and the "error\_code" is returned.
+	The object "object\_frame\_id" that was attached by the grasp server is moved to the goal position "goal\_pose". The "place\_mode" defines the orientation in which the object should be placed. In order to release the gripper the HSR Python interface is used directly. Finally the object is detached and the "error\_code" is returned.
 	
 	\vspace{1cm}
 	
 	\subsection{Object State Listener}
-	The object state listener is responsible for taking an "object\_state\_array" from Knowledge and adding this given object to giskard for the action servers to use.
+	The object state listener is responsible for taking an "object\_state\_array" from knowledge and adding this given object to giskard for the action servers to use.
 	
 	\vspace{1cm}
 	
 	\subsection{Launch}
-	The "Launch" package contains a Launchfile to launch the Actionservers with their dependencies. The File includes five arguments.\\
+	The "Launch" package contains a Launchfile to launch the Actionservers with their dependencies. The file includes five arguments.\\
 	The first one is a boolean called "sim". On false giskard is launched to work on the real robot. Otherwise on true giskard is launched to work in a simulation. Additional to that the iai\_hsr\_sim is launched for the simulation.\\
 	The other four arguments are booleans, too. Which defines whether an actionserver should start. 
 \end{document}
