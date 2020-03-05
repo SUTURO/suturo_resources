@@ -16,6 +16,10 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 \subsubsection{Unchanged}
                 \subsection{Navigation}
                 \subsubsection{New}
+                 \begin{itemize}
+ 				 \item poi-client is an interface to a navigation client, which returns points in a room, where objects could be 
+  				 \item obstacle-map-subscriber is an interface to check if there is a point in the obstacle map
+				\end{itemize}  
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 \subsection{Knowledge}
@@ -58,6 +62,8 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 For this milestone we added designators to use in our high level plans.
                 \subsubsection{New} 
                 The designators \textit {grasping} and \textit {placing} are wrappers for \textit {call-grasp-action} and \textit {call-place-action} and both get 12 arguments the x,y,z coordiants of the object, the x,y,z,w quaternion values, the x,y,z dimensions of the object, the object-id and the grasp-pose. 
+                
+                The designators \textit {saying} and \textit {perceive} are wrappers for \textit {call-text-to-speech-action} and \textit {call-robosherlock-pipeline}. 
 
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
