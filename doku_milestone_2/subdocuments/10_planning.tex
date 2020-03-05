@@ -67,9 +67,21 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 place-object
                 place-object-list
                 create-place-list
-                grasp-hsr
-                place-hsr
-                move-grasp
+                
+                
+                
+                                  \begin{itemize}  
+                  \item \textit{grasp-object} in \textbf{manipulation-functions} gets a object-id and the grasp-pose as arguments, uses the object-id querie knowledge for the pose of the object with \textit{prolog-object-pose}, the dimensions of the object with \textit{prolog-object-dimensions} and then uses the returned data to call the grasping designator.
+                  \item \textit{place-object} in \textbf{manipulation-functions} gets the object-id of the object in the gripper and which grasp-pose is used to grasp it as arguments, then knowledge is queried to get the goal pose of the object ith \textit{prolog-object-goal-pose}, the dimensions of the object with \textit{prolog-object-dimensions} of the object and then uses the returned data to call the placing designator.
+                  \item \textit{place-object-list} in \textbf{manipulation-functions}
+                  gets a list with arguments to call the placing designator 
+                  \item \textit{create-place-list} in \textbf{manipulation-functions} 
+                  gets the object-id of the object in the gripper and which grasp-pose is used to grasp it as arguments, then knowledge is queried to get the goal pose of the object ith \textit{prolog-object-goal-pose}, the dimensions of the object with \textit{prolog-object-dimensions} of the object, this is then used to create a list with five elements that can be used to call \textit{place-object-list}. Four of these elements are slightly offset on either the x-coordinate or the y-coordinate by 5cm.  
+                  \item \textit{place-hsr} in \textbf{high-level-plans}  gets the object-id of the object in the gripper and which grasp-pose is used to grasp it as arguments, makes use of \textit{create-place-list}, calls \textit{place-object-list} with the first element, if it fails then the first element is removed from the list and retried and loop until either we had a success or the list is empty
+                  \item \textit{grasp-hsr} in \textbf{high-level-plans} gets a object-id and the grasp-pose as arguments, it calls \textit{place-object} and if that fails it will get into position to percieve the object, call perception and then insert the new data into knowledge and then retry the call \textit{place-object} for the object.
+                  \item \textit{move-grasp} in \textbf{high-level-plans} gets a object-id and the grasp-pose as arguments, it moves the hsr into a position from where it can grasp and then calls \textit{grasp-hsr }.
+                  
+                  \end{itemize}
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
                 
