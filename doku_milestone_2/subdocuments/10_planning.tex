@@ -3,14 +3,16 @@
 	
 	\chapter{Planning}
 		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
-                The Planning team consisting of Torge Olliges (Groupleader), Philipp Klein (Cleanup), Tom-Eric Lehmkuhl (Grocery) and Jan Schimpf (Cleanup). It was basically responsible for the integration and connection of the results of the other groups. To achieve this task the planning group orientated itself along the lines of the legacy code of our predecessors and came up with the general architecture of the project. The planning group was also mainly in charge of testing on the HSR. At the beginning of this Milestone we created diagramms which model how we want our robot to behave depending on the Task (Cleanup/Grocery). During the time that we worked on milestone 2 we communicated our progress and current tasks in the group so that everybody knew what the other group members are doing and how we were progressing. In the following sections (one for each package or abstraction layer) we will explain the concrete tasks and provide results of our work.
+		
+                The planning team is consisting of Torge Olliges (Groupleader), Philipp Klein (Clean up), Tom-Eric Lehmkuhl (Grocery storing) and Jan Schimpf (Clean up). The group is responsible for the integration and connection of the results of the other groups. To achieve this task the planning group orientated itself along the lines of the legacy code of our predecessors and came up with the general architecture of the project. The planning group was also mainly in charge of testing on the HSR. At the beginning of this milestone planning created diagrams which model how the robot has to behave, depending on the task (Clean up/Grocery storing). During the time that the group worked on the second milestone, planning communicated the progress and current tasks in the group so that everybody knew what the other group members were doing and how they were progressing. In the following sections (one for each package or abstraction layer) the concrete tasks and results of our work will explained and presented.
+		
                 \section{Low Level Interfaces (LLIF)}
                 \subsection{Manipulation}
                 \subsubsection{New}
                 \subsubsection{Modified}
 The /textbf {Grasp-action-client} and textbf {Place-action-client} were updated with an additional argument  grasp pose which specifics from which direction the object is grasped.
 The /textbf {percieve-action-client} renamed to /textbf {take-pose-action-client} to prevent further confusion between it and the perception client.
-The /textbf {take-pose-action-client} was reworked and now either takes a Int for a set pose or it gets the value 0 to and then ten more Int's to move the Hsr into a pose.
+The /textbf {take-pose-action-client} was reworked and now either takes a Int for a set pose or it gets the value 0 to and then ten more Int's to move the HSR into a pose.
                 \subsubsection{Unchanged}
                 \subsection{Navigation}
                 \subsubsection{New}
@@ -19,7 +21,7 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 \subsection{Knowledge}
                 \subsubsection{New}
                 \begin{itemize}
- 				          \item knowlegde-inserter is an interface to knowledge, which can insert the objects recognized by perception into the knowledgebase
+ 				          \item knowlegde-inserter is an interface to knowledge, which can insert the objects recognized by perception into the knowledge base
 				        \end{itemize}
 				          \textbf{knowledge-client} \\
 				          The knowledge-client is an interface to knowledge, which is responsible for the request to the knowledgebase. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
@@ -89,7 +91,7 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 \subsubsection{New}
                   \begin{itemize}
                     \item \textit{move-to-table} in \textbf{high-level-plans} queries the position of the table from knowledge, and adds a buffer, to create a position before the table and navigates the robot to it. If the argument is NIL, the robot will position himself frontally to the table. If the argument is set to T, the robot will be turned for percieving the table.
-                    \item \textit{move-to-shelf} in \textbf{high-level-plans} queries the position of the shelf from knowledge, and adds a buffer, to create a position before the shelf and navigates the robot to it. If the argument is NIL, the robot will position himself frontally to the shelf. If the argument is set to T, the robot will be turned for percieving the shelf.
+                    \item \textit{move-to-shelf} in \textbf{high-level-plans} queries the position of the shelf from knowledge, and adds a buffer, to create a position before the shelf and navigates the robot to it. If the argument is NIL, the robot will position himself frontally to the shelf. If the argument is set to T, the robot will be turned for perceiving the shelf.
                   \end{itemize}
                 \subsubsection{Modified}
                 \subsubsection{Unchanged}
@@ -114,6 +116,6 @@ The /textbf {take-pose-action-client} was reworked and now either takes a Int fo
                 \section{Cleanup (CLEAN)}
                 Equal to GROCERY just different inits and execute files.
                 \section{Bullet World}
-                The bulletworld is a new feature which we implemented for this milestone. It is a representation of the real world which lets us check for visibilty or reachability without having to use the real robot. We added a function to spawn primitiv objects in the bullet world which were detected by the perception part to have a representation of the current world state. We decided not to test grasping with the bullet world becasue we can't use giskard in our bullet world, this would minder our capabilities. 
+                The bulletworld is a new feature which we implemented for this milestone. It is a representation of the real world which lets us check for visibilty or reachability without having to use the real robot. A function to spawn primitive objects in the bullet world has been added, which was detected by the perception part to have a representation of the current world state. It was decided not to test grasping with the bullet world because giskard can't be used in the bullet world, this would minder planning's capabilities. 
                 
 \end{document}
