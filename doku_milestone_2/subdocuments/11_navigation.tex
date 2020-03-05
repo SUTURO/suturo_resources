@@ -4,13 +4,13 @@
 	\chapter{Navigation}
 	\chapterauthor{Marc Stelter}
 		\section{General}
-		During this Milestone the main task of Navigation has been to find Objects on the floor.
+		During this milestone the main task of Navigation has been to find Objects on the floor.
 		
 		\section{Finding objects}
-		The final solution during this milestone for the task has been to create a new python node, which interprets the laser scan and Map too publish an PoseArray of points that might be an object of interest. The points are published as PoseArray to enable easy visualization of the results in rviz while containing a minimal overhead in the form of an orientation and no data loss in the form of position.
+		The final solution during this milestone for the task has been to create a new Python node, which interprets the laser scan and the map to publish a "PoseArray" of points that might be an object of interest. The points are published as "PoseArray" to enable easy visualization of the results in rviz while containing a minimal overhead in the form of orientation and no data loss in the form of position.
 		
 		\subsection{Algorithm}
-		The algorithm to find these obstacles works in three steps. First of all the rays of the laser scan get bundled as clusters. This is archived by calculating the point of a ray on the map and checking if the point is within a certain distance to the previous ray if this is true the ray gets added to that cluster. Otherwise a new cluster is started.
+		The algorithm to find these obstacles works in three steps. First of all the rays of the laser scan get bundled as clusters. This is then archived by calculating the point of a ray on the map and checking if the point is within a certain distance to the previous ray. If this is true the ray gets added to that cluster. Otherwise a new cluster is started.
 		
 		In the second step all clusters, which do not consist of at least a minimum number or rays, are removed from further processing.
 		
