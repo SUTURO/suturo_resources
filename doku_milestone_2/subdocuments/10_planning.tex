@@ -86,12 +86,12 @@
                     \item \textit{move-to-shelf} in \textbf{high-level-plans} queries the position of the shelf from knowledge, and adds a buffer, to create a position before the shelf and navigates the robot to it. If the argument is NIL, the robot will position himself frontally to the shelf. If the argument is set to T, the robot will be turned for perceiving the shelf.
                   \end{itemize}
                 \subsection{Knowledge}
+                We didn't implement any higher level functions for the knowledge interface because they are not needed.
                 \subsection{Perception}
 	                \begin{itemize}
 	                	\item  \textit{get-confident-objects} in \textbf{perception-functions} gets the message which is received by the robosherlock action client and filters the found objects for insufficient confidence. It checks first if the confidence\_class is higher then the threshold value 0.5 if that it is not the case then it checks the confidence\_shape and the confidence\_color if none of the values passes the check then the object is removed from the message.
 	                	\item \textit{scan-shelf} in \textbf{perception-functions} will be used in the execute grocery file to get a cleaner and easier to maintain code. Functions similar to this which will combine a few function calls to make the usage easier will be added for grasping and placing in the future.
 	                \end{itemize}
-                \subsection{NLP}
                 \section{Grocery Storing (GROCERY)}
                 This package depends on common functions and low level interfacing and contains the execute file for the grocery task. Furthermore it contains a init file for the task. This connects our action clients out of the LLIF package to the action servers of the other groups and starts the master node for planning (planning\_node). The grocery\_bw file provides functions for the interaction with the bullet world.
                 
