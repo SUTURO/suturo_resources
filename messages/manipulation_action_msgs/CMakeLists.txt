@@ -1,31 +1,40 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(manipulation_action_msgs)
 
-if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
-endif()
-
 set(MSG_DEPS
   std_msgs
   geometry_msgs
   actionlib_msgs
+  message_generation
 )
 
-set(ACT_FILES
+find_package(catkin REQUIRED COMPONENTS
+  std_msgs
+  geometry_msgs
+  actionlib_msgs
+  message_generation
+  actionlib
+)
+
+add_message_files(
+  DIRECTORY msg
+  FILES
+  ObjectInGripper.msg
+)
+
+add_action_files(
+  DIRECTORY action
+  FILES
   Grasp.action
   MoveGripper.action
   TakePose.action
   Place.action
 )
 
-find_package(catkin REQUIRED COMPONENTS
-  ${MSG_DEPS}
-  message_generation
-  actionlib
+generate_messages(DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  actionlib_msgs
 )
-
-add_action_files(DIRECTORY action FILES ${ACT_FILES})
-
-generate_messages(DEPENDENCIES ${MSG_DEPS})
 
 catkin_package(DEPENDS ${MSG_DEPS} message_runtime actionlib)
