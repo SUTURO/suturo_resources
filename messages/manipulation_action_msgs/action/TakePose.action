@@ -5,7 +5,8 @@ uint8 FREE=0
 uint8 NEUTRAL=1
 uint8 LOOK_LOW=2
 uint8 LOOK_HIGH=3
-uint8 GAZE=4
+uint8 LOOK_FLOOR = 4
+uint8 GAZE=5
 
 uint8 pose_mode
 geometry_msgs/Vector3 gaze_point
