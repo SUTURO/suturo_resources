@@ -25,19 +25,7 @@
     <xacro:property name="table_width" 
         value="${data['robocup_table']['width']}" />
     <xacro:property name="table_height" 
-        value="${data['robocup_table']['height']}" />
-    <xacro:property name="small_table_x" 
-        value="${data['robocup_small_table']['x_pos']}" />
-    <xacro:property name="small_table_y" 
-        value="${data['robocup_small_table']['y_pos']}" />
-    <xacro:property name="small_table_z_rot" 
-        value="${data['robocup_small_table']['z_rot']}" />
-    <xacro:property name="small_table_depth" 
-        value="${data['robocup_small_table']['depth']}" />
-    <xacro:property name="small_table_width" 
-        value="${data['robocup_small_table']['width']}" />
-    <xacro:property name="small_table_height" 
-        value="${data['robocup_small_table']['height']}" />    
+        value="${data['robocup_table']['height']}" /> 
     <xacro:property name="shelf_x" 
         value="${data['robocup_shelf']['x_pos']}" />
     <xacro:property name="shelf_y" 
@@ -93,26 +81,10 @@
       </robocup_table>
 
     <!-- OTHER-->
-       <robocup_table name="table_2" parent="room_link" size_x="${table_depth}" size_y="${table_width}" size_z="${table_height}" >
-        <origin xyz="-1.6 1.2 0" rpy="0 0 ${pi}" />
-      </robocup_table>
-
-       <robocup_table name="table_3" parent="room_link" size_x="${small_table_depth}" size_y="${small_table_width}" size_z="${small_table_height}" >
-        <origin xyz="2.3 1 0" rpy="0 0 ${pi}" />
-      </robocup_table>
-
       <robocup_small_shelf name="shelf_small" parent="room_link" 
         size_x="${shelf_2_depth}" size_y="${shelf_2_width}" size_z="${shelf_2_height}" floors_height="${shelf_2_floors_height}">
         <origin xyz="-0.95 -0.1 0" rpy="0 0 -${half_pi}" />
       </robocup_small_shelf>
-
-    <iai_table_1 name="table_area" parent="room_link">
-        <origin xyz="2.35 2.35 0" rpy="0 0 ${pi}" />
-    </iai_table_1>
-
-    <iai_table_1 name="table_area_2" parent="room_link">
-        <origin xyz="0.25 2.35 0" rpy="0 0 ${pi}" />
-    </iai_table_1>
 
     <hsr_lab_walls parent="room_link">
         <origin xyz="0 1.2 0" rpy="0 0 0" />

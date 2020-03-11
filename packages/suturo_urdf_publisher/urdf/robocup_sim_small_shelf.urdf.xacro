@@ -6,9 +6,6 @@
     <color rgba="0.7 0.7 0.8 1"/>
   </material>
 
-  <material name="shelf_door_grey">
-    <color rgba="0.9 0.9 0.98 1"/>
-  </material>
 
   <macro name="robocup_small_shelf" params="name parent *origin size_x size_y size_z floors_height">
     
@@ -51,10 +48,6 @@
       <origin xyz="${size_x/2} ${size_y} ${size_z/2}" rpy="0 0 0"/>
     </robocup_small_shelf_piece>
 
-    <robocup_small_shelf_door name="${name}_door_left" parent="${name}_left_side" 
-      size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" offset_x="${size_x}">
-      <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
-    </robocup_small_shelf_door>
 
     <!-- FLOORS -->
     <xacro:if value="${num_floors > 0}">
@@ -115,35 +108,6 @@
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
       <child link="${name}_piece"/>
-    </joint>
-  </macro>
-
-  <macro name="robocup_small_shelf_door" params="name parent *origin box_z_offset=0.0 size_x size_y size_z offset_x">
-
-    <!-- LINK -->
-    <link name="${name}_door">
-      <visual>
-        <material name="shelf_door_grey"/>
-        <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${size_y} ${size_z}" />
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${size_y} ${size_z}" />
-        </geometry>
-      </collision>
-    </link>
-
-    <!-- JOINT -->
-    <joint name="${name}_door_joint" type="revolute">
-      <origin xyz="${offset_x/-2} ${size_y/-2} 0" rpy="0 0 3.1416"/>
-      <axis xyz="0 0 1" />
-      <parent link="${parent}_piece"/>
-      <child link="${name}_door"/>
-      <limit effort="30" velocity="1.0" lower="0.0" upper="1.91986" />
     </joint>
   </macro>
 
