@@ -73,7 +73,7 @@
     <!--Astuff von Arthur-->
     <robocup_shelf name="shelf" parent="room_link" 
     size_x="${shelf_depth}" size_y="${shelf_width}" size_z="${shelf_height}" floors_height="${shelf_floors_height}">
-    <origin xyz="${shelf_x} ${shelf_y} 0" rpy="0 0 -${half_pi}" />
+    <origin xyz="${shelf_x} ${shelf_y} 0" rpy="0 0 ${shelf_z_rot}" />
     </robocup_shelf>
 
     <robocup_table name="table" parent="room_link" size_x="${table_depth}" size_y="${table_width}" size_z="${table_height}" >
@@ -83,7 +83,7 @@
     <!-- OTHER-->
       <robocup_small_shelf name="shelf_small" parent="room_link" 
         size_x="${shelf_2_depth}" size_y="${shelf_2_width}" size_z="${shelf_2_height}" floors_height="${shelf_2_floors_height}">
-        <origin xyz="${shelf_2_x} ${shelf_2_y} 0" rpy="0 0 -${half_pi}" />
+        <origin xyz="${shelf_2_x} ${shelf_2_y} 0" rpy="0 0 ${shelf_2_z_rot}" />
       </robocup_small_shelf>
 
     <hsr_lab_walls parent="room_link">
