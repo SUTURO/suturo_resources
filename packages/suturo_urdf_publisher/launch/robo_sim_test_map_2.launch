@@ -1,0 +1,6 @@
+<launch>
+    <arg name="map_file" default="$(find maps)/robocup_sim/robocup_sim_map-2.yaml"/>
+
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+</launch>
