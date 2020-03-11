@@ -6,7 +6,7 @@ robocup_table:
    width:  0.55
    height: 0.45
    depth: 0.55
-   z_rot: 3.141 # rotate 90 degree counter-clockwise w.r.t env_origin
+   z_rot: 0 # rotate 90 degree counter-clockwise w.r.t env_origin
    x_pos: -0.25
    y_pos: 1.70  
 robocup_shelf_2:
