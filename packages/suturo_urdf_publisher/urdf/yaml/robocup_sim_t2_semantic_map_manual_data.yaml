@@ -15,8 +15,8 @@ robocup_shelf_2:
    height: 1.0
    depth: 0.44
    z_rot: -1.57079632679
-   x_pos: -0.50
-   y_pos: -1
+   x_pos: -1.0
+   y_pos: -0.5
    floors_height: [0.2, 0.45, 0.73, 0.98]
    num_floors: 4
 robocup_shelf:
