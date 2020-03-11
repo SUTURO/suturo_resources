@@ -2,7 +2,7 @@
 
 <robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_table.urdf.xacro"/>
-    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsrb_lab_walls.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/robocup_sim_walls.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_shelf.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_small_shelf.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/IAI_tables.urdf.xacro"/>
