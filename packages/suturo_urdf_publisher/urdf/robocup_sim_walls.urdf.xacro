@@ -10,13 +10,13 @@
       <visual>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="1.75 0.15 0.7" />
+            <box size="2 0.15 0.7" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="1.75 0.15 0.7" />
+            <box size="2 0.15 0.7" />
         </geometry>
       </collision>
     </link>
@@ -26,13 +26,13 @@
       <visual>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="2.25 0.15 0.7" />
+            <box size="3 0.15 0.7" />
         </geometry>
      </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="2.25 0.15 0.7" />
+            <box size="3 0.15 0.7" />
         </geometry>
       </collision>
     </link>
@@ -158,25 +158,25 @@
     </joint>
     
     <joint name="wall_1_joint" type="fixed">
-      <origin xyz="0 -0.5 0" rpy="0 -0 3.14159" />
+      <origin xyz="0.75 -0.5 0" rpy="0 -0 0" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_1"/>
     </joint>
     
     <joint name="wall_2_joint" type="fixed">
-        <origin xyz="-2.25 -0.94 0" rpy="0 -0 3.14159" />
+        <origin xyz="-1.75 -0.94 0" rpy="0 -0 0" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_2"/>
     </joint>
     
     <joint name="wall_3_joint" type="fixed">
-        <origin xyz="1.75 -0.5 0" rpy="0 -0 -1.5798" />
+        <origin xyz="1.75 -0.5 0" rpy="0 -0 1.5798" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_3"/>
     </joint>
     
     <joint name="wall_4_joint" type="fixed">
-        <origin xyz="0 -1.75 0" rpy="0 -0 3.14159" />
+        <origin xyz="-2.25 -1.75 0" rpy="0 -0 -1.5798" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_4"/>
     </joint>
