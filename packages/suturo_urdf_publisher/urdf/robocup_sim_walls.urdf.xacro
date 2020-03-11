@@ -140,7 +140,7 @@
     </joint>
     
     <joint name="wall_3_joint" type="fixed">
-        <origin xyz="2.5 -0.94 0" rpy="0 -0 1.5798" />
+        <origin xyz="2.5 2.25 0" rpy="0 -0 1.5798" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_3"/>
     </joint>
@@ -152,13 +152,13 @@
     </joint>
   
     <joint name="wall_5_joint" type="fixed">
-        <origin xyz="-2.35 4.55 0" rpy="0 -0 3.14159" />
+        <origin xyz="-2.35 3 0" rpy="0 -0 1.5798" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_5"/>
     </joint>
 
     <joint name="wall_6_joint" type="fixed">
-        <origin xyz="-2.35 5.15 0" rpy="0 -0 1.5798" />
+        <origin xyz="0 5.15 0" rpy="0 -0 0" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_6"/>
     </joint>
