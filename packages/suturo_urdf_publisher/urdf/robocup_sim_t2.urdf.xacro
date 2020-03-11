@@ -62,7 +62,7 @@
     <xacro:if value="${simulated}">
         <link name="world"/> 
         <joint name="world_room_joint" type="fixed">
-            <origin xyz="0.0 0.12 0 " rpy="0 0 0" />
+            <origin xyz="0.0 0.0 0 " rpy="0 0 0" />
             <parent link="world"/>
             <child link="room_link"/>
         </joint>         
@@ -73,7 +73,7 @@
     <!--Astuff von Arthur-->
     <robocup_shelf name="shelf" parent="room_link" 
     size_x="${shelf_depth}" size_y="${shelf_width}" size_z="${shelf_height}" floors_height="${shelf_floors_height}">
-    <origin xyz="0.1 -0.1 0" rpy="0 0 -${half_pi}" />
+    <origin xyz="${shelf_x} ${shelf_y} 0" rpy="0 0 -${half_pi}" />
     </robocup_shelf>
 
     <robocup_table name="table" parent="room_link" size_x="${table_depth}" size_y="${table_width}" size_z="${table_height}" >
@@ -83,11 +83,11 @@
     <!-- OTHER-->
       <robocup_small_shelf name="shelf_small" parent="room_link" 
         size_x="${shelf_2_depth}" size_y="${shelf_2_width}" size_z="${shelf_2_height}" floors_height="${shelf_2_floors_height}">
-        <origin xyz="-0.95 -0.1 0" rpy="0 0 -${half_pi}" />
+        <origin xyz="${shelf_2_x} ${shelf_2_y} 0" rpy="0 0 -${half_pi}" />
       </robocup_small_shelf>
 
     <hsr_lab_walls parent="room_link">
-        <origin xyz="0 1.2 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
     </hsr_lab_walls>
 
 </robot>

@@ -28,7 +28,7 @@ robocup_shelf:
    x_pos: 1.52
    y_pos: -0.15
    floors_height: [0.21, 0.61, 0.95, 1.33]
-   num_floors: 5   
+   num_floors: 4   
 # adjust for the region filter
 surface_top_offset: 0.30 # 30cm above region surface
 surface_bottom_offset: 0.05 # 5cm into region surface
