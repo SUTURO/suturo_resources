@@ -77,7 +77,7 @@
     </robocup_shelf>
 
     <robocup_table name="table" parent="room_link" size_x="${table_depth}" size_y="${table_width}" size_z="${table_height}" >
-        <origin xyz="-2.5 0.2 0" rpy="0 0 ${table_z_rot}" />
+        <origin xyz="${table_x} ${table_y} 0" rpy="0 0 ${table_z_rot}" />
       </robocup_table>
 
     <!-- OTHER-->
