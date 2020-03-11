@@ -12,7 +12,7 @@
     <xacro:property name="simulated" value="true" />
 
     <xacro:property name="data" 
-    value="${load_yaml('$(find suturo_urdf_publisher)/urdf/yaml/semantic_map_manual_data.yaml')}" />
+    value="${load_yaml('$(find suturo_urdf_publisher)/urdf/yaml/robocup_sim_t1_semantic_map_manual_data.yaml')}" />
 
     <xacro:property name="table_x" 
         value="${data['robocup_table']['x_pos']}" />

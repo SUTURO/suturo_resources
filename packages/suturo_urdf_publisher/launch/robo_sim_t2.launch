@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="model" default="$(find suturo_urdf_publisher)/urdf/robocup_sim_t1.urdf.xacro"/>
+  <arg name="model" default="$(find suturo_urdf_publisher)/urdf/robocup_sim_t2.urdf.xacro"/>
   <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(arg model)'" />
 
   <node pkg="joint_state_publisher" type="joint_state_publisher"
