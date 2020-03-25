@@ -1,0 +1,31 @@
+<launch>
+
+  <arg name="model" default="$(find suturo_urdf_publisher)/urdf/hsr_wall.urdf.xacro"/>
+  <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(arg model)'" />
+
+  <node pkg="joint_state_publisher" type="joint_state_publisher"
+        name="kitchen_joint_state_publisher" output="screen">
+    <remap from="robot_description" to="hsrb_lab"/>
+    <param name="rate" value="25"/>
+    <param name="use_gui" value="False"/>
+    <remap from="/joint_states" to="/kitchen/joint_states" />
+    <rosparam param="source_list">
+      - /kitchen/cram_joint_states
+    </rosparam>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="kitchen_link_broadcaster"
+    args="0 0 0 0 0 0 /map /iai_kitchen/world 25">
+  </node>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"
+    name="kitchen_state_publisher" output="screen">
+    <param name="tf_prefix" value="/iai_kitchen"/>
+    <param name="publish_frequency" value="2"/>
+    <remap from="robot_description" to="hsrb_lab" />
+    <remap from="/joint_states" to="/kitchen/joint_states" />
+  </node>
+
+
+
+</launch>

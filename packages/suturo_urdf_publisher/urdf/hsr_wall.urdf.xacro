@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<robot name="robocup_wall" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="wall_red">
+    <color rgba="0.75 0.22 0.17 1"/>
+  </material>
+
+    <macro name="robocup_wall" params="name parent pos_1_x pos_1_y pos_2_x pos_2_y">
+
+
+      <joint name="${name}_1_joint" type="fixed">
+        <origin xyz="${pos_1_x} ${pos_1_y} 0.3"/>
+        <parent link="world"/>
+        <child link="${name}_link"/>
+      </joint>
+
+      <joint name="${name}_2_joint" type="fixed">
+        <origin xyz="${pos_2_x} ${pos_2_y} 0.3"/>
+        <parent link="world"/>
+        <child link="${name}_link"/>
+      </joint>
+
+      <link name="${name}_link">
+        <visual>
+          <material name="wall_red"/>
+          <origin xyz="${pos_2_x} ${pos_2_y} 0.3"/>
+          <geometry>
+            <box size="${(pos_1_x - pos_2_x) + (pos_1_y - pos_2_y)} 0.02 0.6" />
+          </geometry>
+        </visual>
+        <!--
+          <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+              <box size="${size_x} ${size_y} ${size_z}" />
+            </geometry>
+          </collision>
+        -->
+      </link>
+  </macro>
+
+  <link name="world"/>
+
+  <robocup_wall name="wall_1" parent="map" pos_1_x="1" pos_1_y="1" pos_2_x="-1" pos_2_y="-1"/>
+
+</robot>
