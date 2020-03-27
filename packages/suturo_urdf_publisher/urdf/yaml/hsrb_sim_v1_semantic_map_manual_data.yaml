@@ -1,0 +1,71 @@
+names:
+   - robocup_table
+   - robocup_shelf
+hcr_shefl_2:
+   type: Shelf
+   width: 0.414
+   height: 1.196
+   depth: 0.266
+   z_rot: 0.0
+   x_pos: -11.299196
+   y_pos: -8.863353
+   floors_height: [0.32, 0.582, 0.884]
+   num_floors: 3
+bookshelf_clone_0:
+   type: Shelf
+   width: 0.88
+   height: 0.9
+   depth: 0.4
+   z_rot: 3.1415926
+   x_pos: 6.757380
+   y_pos: 0.730992
+   floors_height: [0.32, 0.582, 0.884]
+   num_floors: 3
+bookshelf_clone:
+   type: Shelf
+   width: 0.88
+   height: 0.9
+   depth: 0.4
+   z_rot: -1.5707
+   x_pos: 5.351680
+   y_pos: 4.954290
+   floors_height: [0.32, 0.582, 0.884]
+   num_floors: 3
+bookshelf:
+   type: Shelf
+   width: 0.88
+   height: 0.9
+   depth: 0.4
+   z_rot: -1.5707
+   x_pos: 0.419292
+   y_pos: 4.967030
+   floors_height: [0.32, 0.582, 0.884]
+   num_floors: 3
+table:
+   type: Table
+   width:  1.5
+   height: 0.619873
+   depth: 0.8
+   z_rot: -0.6694823268 
+   x_pos: 1.294200
+   y_pos: -0.166561 
+table_clone:
+   type: Table
+   width:  1.5
+   height: 0.619873
+   depth: 0.8
+   z_rot: -1.57079
+   x_pos: 5.160520
+   y_pos: -2.643470 
+bed_table:
+   type: Table
+   width: 0.898000
+   height: 0.635
+   depth: 0.398000
+   z_rot: 0.272852
+   x_pos: -1.218320
+   y_pos: -2.491170
+# TODO: Bucket for Cleanup
+# adjust for the region filter
+surface_top_offset: 0.30 # 30cm above region surface
+surface_bottom_offset: 0.05 # 5cm into region surface
