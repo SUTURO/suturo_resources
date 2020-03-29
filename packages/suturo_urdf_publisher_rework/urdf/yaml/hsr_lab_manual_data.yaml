@@ -1,0 +1,81 @@
+tables:
+   amount: 3
+   0:
+      name: table_0
+      width:  0.95
+      height: 0.72
+      depth: 0.55
+      z_rot: -1.57079632679
+      x_pos: -2.5
+      y_pos: 0.2
+   1:
+      name: table_1
+      width:  0.95
+      height: 0.72
+      depth: 0.55
+      z_rot: 3.14159265359
+      x_pos: -1.6
+      y_pos: 1.2
+   2:
+      name: table_2
+      width:  0.55
+      height: 0.45
+      depth: 0.55
+      z_rot: 3.14159265359
+      x_pos: 2.3
+      y_pos: 1
+
+shelves:
+   amount: 2
+   0:
+      name: shelf_0
+      width: 0.98
+      height: 1.5
+      depth: 0.36
+      z_rot: -1.57079632679
+      x_pos: 0.1
+      y_pos: -0.1
+      floors_height: [0.06, 0.43, 0.80, 1.162, 1.478]
+      number_of_floors: 5
+   1:
+      name: shelf_1
+      width: 0.71
+      height: 1.04
+      depth: 0.34
+      z_rot: -1.57079632679
+      x_pos: -0.95
+      y_pos: -0.1
+      floors_height: [0.055, 0.45, 0.71, 1.02]
+      number_of_floors: 4
+
+walls:
+   amount: 4
+   0:
+      name: wall_0
+      pos_1_x: -2.5
+      pos_1_y: -0.55
+      pos_2_x: 2.5
+      pos_2_y: -0.55
+   1:
+      name: wall_1
+      pos_1_x: 2.5
+      pos_1_y: -0.55
+      pos_2_x: 2.5
+      pos_2_y: 3.45
+   2:
+      name: wall_2
+      pos_1_x: -2.5
+      pos_1_y: 3.45
+      pos_2_x: -2.5
+      pos_2_y: -0.55
+   3:
+      name: wall_3
+      pos_1_x: -2.5
+      pos_1_y: 3.45
+      pos_2_x: 2.5
+      pos_2_y: 3.45
+
+
+# adjust for the region filter
+surface_top_offset: 0.30 # 30cm above region surface
+surface_bottom_offset: 0.05 # 5cm into region surface

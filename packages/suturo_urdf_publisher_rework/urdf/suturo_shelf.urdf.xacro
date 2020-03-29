@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_shelf" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="shelf_blue">
+    <color rgba="0.59 0.88 0.9 1"/>
+  </material>
+
+  <xacro:macro name="suturo_shelf" params="name parent *origin size_x size_y size_z floors_height number_of_floors">
+    
+    <!-- General conveinience links -->
+    <link name="${name}_origin"/>
+    <link name="${name}_center"/>
+    <link name="${name}_base_center"/>
+
+    <joint name="${name}_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_origin"/>
+    </joint>
+
+    <joint name="${name}_center_joint" type="fixed">
+      <origin xyz="${size_x/2} ${size_y/2} ${size_z/2}" rpy="0 0 0" />
+      <parent link="${name}_origin"/>
+      <child link="${name}_center"/>
+    </joint> 
+
+    <joint name="${name}_base_center_joint" type="fixed">
+      <origin xyz="${size_x/2} ${size_y/2} 0.0" rpy="0 0 0" />
+      <parent link="${name}_origin"/>
+      <child link="${name}_base_center"/>
+    </joint> 
+
+
+    <!-- WALLS -->
+    <xacro:suturo_shelf_piece name="${name}_back" parent="${name}_origin"
+      size_x="0.01" size_y="${size_y}" size_z="${size_z}">
+      <origin xyz="${size_x} ${size_y/2} ${size_z/2}" rpy="0 0 0"/>
+    </xacro:suturo_shelf_piece>
+
+    <xacro:suturo_shelf_piece name="${name}_right_side" parent="${name}_origin"
+      size_x="${size_x}" size_y="0.01" size_z="${size_z}">
+      <origin xyz="${size_x/2} 0.0 ${size_z/2}" rpy="0 0 0"/>
+    </xacro:suturo_shelf_piece>
+
+    <xacro:suturo_shelf_piece name="${name}_left_side" parent="${name}_origin"
+      size_x="${size_x}" size_y="0.01" size_z="${size_z}">
+      <origin xyz="${size_x/2} ${size_y} ${size_z/2}" rpy="0 0 0"/>
+    </xacro:suturo_shelf_piece>
+
+
+
+    <xacro:macro name="shelf_floor_loop" params="floor_number">
+        <xacro:suturo_shelf_piece name="${name}_floor_${floor_number}" parent="${name}_base_center"
+          size_x="${size_x}" size_y="${size_y}" size_z="0.04" box_z_offset="-0.02">
+        <origin xyz="0.0 0.0 ${floors_height[floor_number]}" rpy="0 0 0"/>
+      </xacro:suturo_shelf_piece>
+      <xacro:if value="${(number_of_floors - 1) > floor_number}">
+            <xacro:shelf_floor_loop floor_number="${floor_number + 1}" />
+      </xacro:if>
+    </xacro:macro>
+
+    <xacro:shelf_floor_loop floor_number="0" />
+
+  </xacro:macro>
+
+
+
+  <!-- Creates a link with collision and visual box of given dimensions,
+  and a respective joint to append it to the parent with given origin.  -->
+  <xacro:macro name="suturo_shelf_piece" params="name parent *origin box_z_offset=0.0 size_x size_y size_z">
+
+    <!-- LINK -->
+    <link name="${name}_piece">
+      <visual>
+        <material name="shelf_blue"/>
+        <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- JOINT -->
+    <joint name="${name}_piece_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_piece"/>
+    </joint>
+  </xacro:macro>
+
+
+</robot>

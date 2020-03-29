@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+
+<robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="data"
+    value="${load_yaml('$(find suturo_urdf_publisher_rework)/urdf/yaml/$(arg yaml_file)')}" />
+
+
+    <!--  Include the files containing the macros -->
+    <xacro:include filename="$(find suturo_urdf_publisher_rework)/urdf/suturo_table.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_urdf_publisher_rework)/urdf/suturo_wall.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_urdf_publisher_rework)/urdf/suturo_shelf.urdf.xacro"/>
+
+    <!-- general data -->
+
+    <xacro:property name="number_of_tables" value="${data['tables']['amount']}" />
+    <xacro:property name="number_of_shelves" value="${data['shelves']['amount']}" />
+    <xacro:property name="number_of_walls" value="${data['walls']['amount']}" />
+
+
+    <!--  ~~Tables~~  -->
+    <xacro:macro name="table_loop" params="table_number">
+        <xacro:suturo_table name="${data['tables'][table_number]['name']}"
+                          parent="room_link"
+                          size_x="${data['tables'][table_number]['depth']}"
+                          size_y="${data['tables'][table_number]['width']}"
+                          size_z="${data['tables'][table_number]['height']}">
+            <origin xyz="${data['tables'][table_number]['x_pos']} ${data['tables'][table_number]['y_pos']} 0"
+                            rpy="0 0 ${data['tables'][table_number]['z_rot']}" />
+        </xacro:suturo_table>
+        <xacro:if value="${(number_of_tables - 1) > table_number}">
+            <xacro:table_loop table_number="${table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+    
+    
+    <!--  ~~Shelves~~  -->
+    <xacro:macro name="shelf_loop" params="shelf_number">
+        <xacro:suturo_shelf name="${data['shelves'][shelf_number]['name']}"
+                          parent="room_link"
+                          size_x="${data['shelves'][shelf_number]['depth']}"
+                          size_y="${data['shelves'][shelf_number]['width']}"
+                          size_z="${data['shelves'][shelf_number]['height']}"
+                          floors_height="${data['shelves'][shelf_number]['floors_height']}"
+                          number_of_floors="${data['shelves'][shelf_number]['number_of_floors']}">
+            <origin xyz="${data['shelves'][shelf_number]['x_pos']} ${data['shelves'][shelf_number]['y_pos']} 0"
+                            rpy="0 0 ${data['shelves'][shelf_number]['z_rot']}" />
+        </xacro:suturo_shelf>
+        <xacro:if value="${(number_of_shelves - 1) > shelf_number}">
+            <xacro:shelf_loop shelf_number="${shelf_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+
+    <!--  ~~Walls~~  -->
+    <xacro:macro name="wall_loop" params="wall_number">
+        <xacro:suturo_wall name="${data['walls'][wall_number]['name']}"
+                          parent="room_link"
+                          pos_1_x="${data['walls'][wall_number]['pos_1_x']}"
+                          pos_1_y="${data['walls'][wall_number]['pos_1_y']}"
+                          pos_2_x="${data['walls'][wall_number]['pos_2_x']}"
+                          pos_2_y="${data['walls'][wall_number]['pos_2_y']}">
+        </xacro:suturo_wall>
+        <xacro:if value="${(number_of_walls - 1) > wall_number}">
+            <xacro:wall_loop wall_number="${wall_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+
+    <!--Calling the loops-->
+    <xacro:if value="${number_of_tables > 0}">
+        <xacro:table_loop table_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_shelves > 0}">
+        <xacro:shelf_loop shelf_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_walls > 0}">
+        <xacro:wall_loop wall_number="0" />
+    </xacro:if>
+    
+    
+
+    <link name="world"/>
+    <joint name="world_room_joint" type="fixed">
+        <origin xyz="0.0 0.12 0 " rpy="0 0 0" />
+        <parent link="world"/>
+        <child link="room_link"/>
+    </joint>
+
+    <link name="room_link" />
+
+
+</robot>
