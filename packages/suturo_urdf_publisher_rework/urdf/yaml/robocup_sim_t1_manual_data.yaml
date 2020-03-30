@@ -21,6 +21,7 @@ shelves:
       y_pos: -0.5
       floors_height: [0.2, 0.45, 0.73, 0.98]
       number_of_floors: 4
+      door: no
    1:
       name: shelf_1
       width: 1.0
@@ -31,6 +32,7 @@ shelves:
       y_pos: 0.05
       floors_height: [0.21, 0.61, 0.95, 1.33]
       number_of_floors: 4
+      door: no
 
 walls:
    amount: 0

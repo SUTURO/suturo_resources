@@ -1,7 +1,7 @@
 <launch>
   
   <include file="$(find suturo_urdf_publisher_rework)/launch/enviorment.launch" >
-          <arg name="yaml" default="robocup_sim_t1_manual_data.yaml" />
+          <arg name="yaml" value="robocup_sim_t1_manual_data.yaml" />
   </include>
 
 </launch>

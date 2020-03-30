@@ -41,7 +41,8 @@
                           size_y="${data['shelves'][shelf_number]['width']}"
                           size_z="${data['shelves'][shelf_number]['height']}"
                           floors_height="${data['shelves'][shelf_number]['floors_height']}"
-                          number_of_floors="${data['shelves'][shelf_number]['number_of_floors']}">
+                          number_of_floors="${data['shelves'][shelf_number]['number_of_floors']}"
+                          door="${data['shelves'][shelf_number]['door']}">
             <origin xyz="${data['shelves'][shelf_number]['x_pos']} ${data['shelves'][shelf_number]['y_pos']} 0"
                             rpy="0 0 ${data['shelves'][shelf_number]['z_rot']}" />
         </xacro:suturo_shelf>
