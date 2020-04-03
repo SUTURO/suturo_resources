@@ -7,8 +7,8 @@ hcr_shefl_2:
    height: 1.196
    depth: 0.266
    z_rot: 0.0
-   x_pos: -11.299196
-   y_pos: -8.863353
+   x_pos: -2.962060
+   y_pos: -5.703390
    floors_height: [0.32, 0.582, 0.884]
    num_floors: 3
 bookshelf_clone_0:
@@ -16,7 +16,7 @@ bookshelf_clone_0:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: 3.1415926
+   z_rot: 1.5707963
    x_pos: 6.757380
    y_pos: 0.730992
    floors_height: [0.32, 0.582, 0.884]
@@ -26,7 +26,7 @@ bookshelf_clone:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: -1.5707
+   z_rot: 3.1415926
    x_pos: 5.351680
    y_pos: 4.954290
    floors_height: [0.32, 0.582, 0.884]
@@ -36,7 +36,7 @@ bookshelf:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: -1.5707
+   z_rot: 3.1415926
    x_pos: 0.419292
    y_pos: 4.967030
    floors_height: [0.32, 0.582, 0.884]
@@ -62,7 +62,7 @@ bed_table:
    width: 0.898000
    height: 0.635
    depth: 0.398000
-   z_rot: 0.272852
+   z_rot: 3.4144446536
    x_pos: -1.218320
    y_pos: -2.491170
 # TODO: Bucket for Cleanup
