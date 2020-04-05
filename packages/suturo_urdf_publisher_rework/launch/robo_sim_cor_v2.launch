@@ -1,0 +1,7 @@
+<launch>
+  
+  <include file="$(find suturo_urdf_publisher_rework)/launch/enviorment.launch" >
+          <arg name="yaml" value="robocup_sim_corona_v2_manual_data.yaml" />
+  </include>
+
+</launch>
