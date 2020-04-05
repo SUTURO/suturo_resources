@@ -1,5 +1,5 @@
 tables:
-   amount: 1
+   amount: 2
    0:
       name: table_0
       width:  0.95
@@ -8,6 +8,14 @@ tables:
       z_rot: 3.14159265359
       x_pos: -1.6
       y_pos: 1.2
+   1:
+      name: table_1
+      width:  0.55
+      height: 0.45
+      depth: 0.55
+      z_rot: 3.14159265359
+      x_pos: 2.3
+      y_pos: 1
 
 shelves:
    amount: 1
