@@ -69,16 +69,18 @@
 
     <!-- door -->
     <xacro:if value="${door == 'left'}">
-      <xacro:suturo_shelf_door name="${name}_door_left" parent="${name}_left_side"
-        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" offset_x="${size_x}">
+      <xacro:suturo_shelf_left_door name="${name}_door_left" parent="${name}_left_side"
+        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" shelf_x_size="${size_x}">
         <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
-      </xacro:suturo_shelf_door>
+      </xacro:suturo_shelf_left_door>
     </xacro:if>
+
+
     <xacro:if value="${door == 'right'}">
-      <xacro:suturo_shelf_door name="${name}right" parent="${name}_right_side"
-        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" offset_x="${size_x}">
+      <xacro:suturo_shelf_right_door name="${name}_door_right" parent="${name}_right_side"
+        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" shelf_x_size="${size_x}">
         <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
-      </xacro:suturo_shelf_door>
+      </xacro:suturo_shelf_right_door>
     </xacro:if>
 
 
@@ -117,29 +119,57 @@
   </xacro:macro>
 
 
-  <xacro:macro name="suturo_shelf_door" params="name parent *origin box_z_offset=0.0 size_x size_y size_z offset_x">
+  <xacro:macro name="suturo_shelf_left_door" params="name parent *origin size_x size_y size_z shelf_x_size">
 
-    <link name="${name}_door">
+    <link name="${name}_link">
       <visual>
         <material name="shelf_door_green"/>
-        <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
       </collision>
     </link>
 
-    <joint name="${name}_door_joint" type="revolute">
-      <origin xyz="${offset_x/-2} ${size_y/-2} 0" rpy="0 0 3.1416"/>
+    <joint name="${name}_joint" type="revolute">
+      <origin xyz="${shelf_x_size/-2} ${size_y/-2} 0" rpy="0 0 3.1416"/>
       <axis xyz="0 0 1" />
       <parent link="${parent}_piece"/>
-      <child link="${name}_door"/>
+      <child link="${name}_link"/>
+      <limit effort="30" velocity="1.0" lower="0.0" upper="1.91986" />
+    </joint>
+  </xacro:macro>
+
+
+  <xacro:macro name="suturo_shelf_right_door" params="name parent *origin size_x size_y size_z shelf_x_size">
+
+    <link name="${name}_link">
+      <visual>
+        <material name="shelf_door_green"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_joint" type="revolute">
+      <origin xyz="${shelf_x_size/-2} ${size_y/2} 0" rpy="0 0 -3.1416"/>
+      <axis xyz="0 0 1" />
+      <parent link="${parent}_piece"/>
+      <child link="${name}_link"/>
       <limit effort="30" velocity="1.0" lower="0.0" upper="1.91986" />
     </joint>
   </xacro:macro>
