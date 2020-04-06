@@ -75,6 +75,11 @@ shelves:
 walls:
    amount: 0
 
+# Moves everything in the URDF by the given distances
+world_offset:
+   X: 0.0
+   Y: 0.0
+
 
 # adjust for the region filter
 surface_top_offset: 0.30 # 30cm above region surface
