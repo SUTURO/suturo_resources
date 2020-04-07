@@ -28,6 +28,8 @@
 
     <link name="${name}_origin"/>
     
+     <link name="${name}_front_edge_center"/>
+    
     <!-- JOINTS -->
 
     <joint name="${name}_origin_joint" type="fixed">
@@ -41,5 +43,11 @@
       <parent link="${name}_origin"/>
       <child link="${name}_center"/>
     </joint>
+    
+    <joint name="${name}_front_edge_center_joint" type="fixed">
+      <origin xyz="0 ${size_y/2} ${size_z}" rpy="0 0 0" />
+      <parent link="${name}_origin"/>
+      <child link="${name}_front_edge_center"/>
+    </joint> 
   </xacro:macro>
 </robot>
