@@ -3,11 +3,11 @@
   <arg name="model" default="$(find suturo_urdf_publisher_rework)/urdf/suturo_enviorment.urdf.xacro"/>
   <arg name="yaml" default="hsr_lab_manual_data.yaml"/>
   
-  <param name="hsrb_lab" command="$(find xacro)/xacro --inorder $(arg model) yaml_file:=$(arg yaml)" />
+  <param name="enviorment_urdf" command="$(find xacro)/xacro --inorder $(arg model) yaml_file:=$(arg yaml)" />
 
   <node pkg="joint_state_publisher" type="joint_state_publisher"
         name="enviorment_joint_state_publisher" output="screen">
-    <remap from="robot_description" to="hsrb_lab"/>
+    <remap from="robot_description" to="enviorment_urdf"/>
     <param name="rate" value="25"/>
     <param name="use_gui" value="False"/>
     <remap from="/joint_states" to="/enviorment/joint_states" />
@@ -24,7 +24,7 @@
     name="enviorment_state_publisher" output="screen">
     <param name="tf_prefix" value="/enviorment"/>
     <param name="publish_frequency" value="2"/>
-    <remap from="robot_description" to="hsrb_lab" />
+    <remap from="robot_description" to="enviorment_urdf" />
     <remap from="/joint_states" to="/enviorment/joint_states" />
   </node>
 
