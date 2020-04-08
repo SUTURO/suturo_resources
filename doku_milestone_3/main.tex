@@ -1,0 +1,73 @@
+\documentclass[12pt,a4paper]{report}%Papierformate
+
+\usepackage[round]{natbib}		%Zitate
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{subfiles}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[parfill]{parskip}
+\usepackage{hyperref}
+\usepackage{float}
+
+%Makro für Autor der einzelnen Textabschnitte. 
+%Soll unter einem \chapter{•} benutzt werden.
+\makeatletter
+\newcommand{\chapterauthor}[1]{%
+{\vspace*{-55pt}\linespread{1.1}\raggedleft\normalsize\upshape#1%
+
+\par\nobreak\vspace*{35pt}}%
+\@afterheading%
+}
+
+\makeatother
+
+\usepackage[textwidth=2cm,
+	figwidth=\textwidth,
+	figheight=8cm,
+	textsize=small,
+	color=red!20,
+	bordercolor=white]{todonotes}
+
+
+
+\MakeOuterQuote{"}
+
+\begin{document}
+
+% ================ STARTSEITE =========================
+\begin{titlepage}
+
+{
+	\centering
+	{\scshape\LARGE University of Bremen \par}
+	\vspace{1cm}
+	{\scshape\Large Suturo \par}
+	\vspace{1.5cm}
+	{\huge\bfseries Final Report???? \par}
+	\vspace{2cm}
+	\hfill
+	\\
+	{08.04.2020 \par}
+}
+
+\end{titlepage}
+
+\tableofcontents
+
+\subfile{subdocuments/01_introduction.tex}
+\subfile{subdocuments/02_architecture.tex}
+\subfile{subdocuments/03_planning_method_doku.tex}
+\subfile{subdocuments/04_perception_method_doku.tex}
+\subfile{subdocuments/05_knowledge_method_doku.tex}
+\subfile{subdocuments/06_nlp_method_doku.tex}
+\subfile{subdocuments/07_manipulation_method_doku.tex}
+\subfile{subdocuments/08_navigation_method_doku.tex}
+\subfile{subdocuments/09_grocery_storing_task.tex}
+\subfile{subdocuments/10_cleanup_task.tex}
+\subfile{subdocuments/11_organisational.tex}
+
+
+
+\end{document}
