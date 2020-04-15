@@ -48,7 +48,24 @@ hsr_forget_object(Object) :-
 
 \subsection{beliefstate.pl}
 
-In the Belief State mostly all changing information about our Knowledge is managed. Here lie the predicates that are called in \texttt{create\_object\_at/9}
+In the Belief State mostly all changing information about our Knowledge is managed. Here lie the predicates that are called in \texttt{create\_object\_at/9}. To actually create a new Object in our belief state, there is:
+\begin{lstlisting}
+new_perceived_at(ObjType, Transform, Threshold, Instance) :-
+\begin{lstlisting}
+This Module also gives the opportunity to look at a specific Position in the map and ask, whether there already is a known Object and, if so, which one:
+\begin{lstlisting}
+hsr_existing_object_at(_, Transform, Threshold, Instance) :-
+\end{lstlisting}
+To determine, whether an object is hard to grasp it is often helpful to know, whether there are other objects right next to it. That is why there is a specific attribute that stores Groups of Objectts. 
+\begin{lstlisting}
+group_objecs(Objs)
+\end{lstlisting}
+This Predicate takes a list of Objects and iterates through them to see if there are any groups and create them if necessary.\\
+To make it more human-readable, there are also two other predicates that basically just call \texttt{group\_objects} with a different list of Objects:
+\begin{lstlisting}
+group_shelf_objects/0
+group_table_objects/0
+\end{lstlisting}
 
 \subsection{pickup.pl}
 
