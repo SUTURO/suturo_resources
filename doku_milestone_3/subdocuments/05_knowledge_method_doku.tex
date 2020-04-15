@@ -10,8 +10,70 @@
 
 	\chapter{Knowledge Function Documentation}
 
-		\chapterauthor{}
-	  	
+		\chapterauthor{Jeremias Thun}
+
+All the Information about the existing surfaces and the objects are managed in our Knowledgebase. Every question about the relationship between these Objects as well as which one should be taken next and where should it be put is answerd by this Knowledgebase. The Knowledgebase is built as part of KnowRob. All data is stored as RDF triple, organized by an OWL ontology. This is where logical relationship between the category of objects and surfaces is implemented. 
+		
+\section{Knowledgebase}
+\chapterauthor{Jeremias Thun}
+
+\subsection{object\_state.pl}
+
+First of all, we need to add some objects that we can work on to our Knowledgebase. This is where the perceived objects go when the Percpetion-Group found something:
+
+\begin{lstlisting}
+create_object_at(
+	PerceivedObjectType, 
+	PercTypeConfidence, 
+	Transform, 
+	Threshold, 
+	Instance, 
+	[Width, Depth, Height], 
+	Shape, 
+	PercShapeConfidence, 
+	Color, 
+	PercColorCondidence) :-
+\end{lstlisting}
+This confusingly big predicate takes all the perceived Data, creates a corresponding Object in the Knowledgebase and adds all the attributes. Within this procedure, there are a few verifications and changes made, though: The Class, Shape and Color of the Object all have a probability with which they are correctly perceived. These confidences are stored as link to the Object (more on that in the OWL-Chapter), but only if they satisfy a secified threshold. If they don't, the attributes are set back to default values. Also we check if the given data makes any sence, i.e. if the object has a reasonable size.\\
+Besides a few helper predicates, this module also contains two helpful little predicates to get all Objects that are stored at that moment:
+\begin{lstlisting}
+hsr_existing_objects(Objects) :-
+    belief_existing_objects(Objects, [hsr_objects:'Item']).
+\end{lstlisting}
+And there \texttt{hsr\_forget\_object/1} removes an Object from the beliefstate:
+\begin{lstlisting}
+hsr_forget_object(Object) :-
+    rdf_retractall(Object,_,_).
+\end{lstlisting}
+
+\subsection{beliefstate.pl}
+
+In the Belief State mostly all changing information about our Knowledge is managed. Here lie the predicates that are called in \texttt{create\_object\_at/9}
+
+\subsection{pickup.pl}
+
+\subsection{surfaces.pl}
+
+\subsection{spatial\_comp.pl}
+
+
+\begin{lstlisting}
+object_goal_surface(Instance, Surface) :-
+    object_goal_surface(Instance, Surface, _, _).
+
+object_goal_surface(Instance, Surface, Context, RefObject):-
+    most_related_object(Instance, RefObject, Context),
+    find_supporting_surface(RefObject, Surface).
+
+\end{lstlisting}
+
+jhl
+
+\section{Onthology}
+\chapterauthor{Fabian Rosenstock}
+
+\section{Scripts and higher Architecture}
+\chapterauthor{Jeremias Thun}	  	
 
 	\endgroup
 
