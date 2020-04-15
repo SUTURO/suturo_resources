@@ -1,0 +1,49 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+	\begingroup
+
+	\renewcommand{\cleardoublepage}{}
+
+	\renewcommand{\clearpage}{}
+
+	\chapter{Planning Function Documentation}
+
+		\chapterauthor{}
+		
+		\section{GROCERY}
+		
+		\subsection{execute-grocery.lisp}
+		
+		\begin{itemize}
+			\item execute-grocery \\
+			main function for the grocery storing task when this function is called it starts all subroutines to execute the planned behavior for this task
+			\item perceive-shelf \\
+			perceives shelfs depending on the given regions value
+			\item perceive-table \\
+			perceives the robocup table
+			\item grasp-handling \\
+			grasping with primitive failure handling
+			\item grasp-with-failure-handling \\
+			grasping with more sophisticated failure handling
+			\item place-handling
+		\end{itemize}
+		
+		\subsection{grocery-bw.lisp}
+		
+		\begin{itemize}
+			\item spawn-btr-objects
+		\end{itemize}
+	  	
+	  	\section{CLEANUP}
+	  	
+	  	
+	  	\section{COMF}
+	  	
+	  	
+	  	\section{LLIF}
+
+	\endgroup
+
+\end{document}
