@@ -11,6 +11,171 @@
 
 \chapter{Perception Function Documentation}
 
+\chapterauthor{Leonidas Paniago}
+		\section{rs\_perception}
+
+			\subsection{Pipeline: hsrb\_1ms}
+
+The main pipeline for detecting and identifying Objects with Robosherlock consists of following Annotators :  
+\begin{itemize}
+	\item CollectionReader : Takes care of the Camera  Input
+	\item ImagePreprocessor : Create missing Images and implement Image Filters  
+	\item SuturoRegionFilter : Remove all points that are not in the defined Regions 
+	\item NormalEstimator : Estimate Surface Normals in a PointCloud 
+	\item PlaneAnnotator : Search for Horizontal Planes in which the search location for Objects is set
+	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
+	\item ClusterColorHistogramCalculator : Calculate the individuall color quantity in relation to all colors on the cluster   
+	\item Cluster3DGeometryAnnotator : Extrakts basic attributes of cluster like initial pose, semantic size and 3D bounding box 
+	\item PrimitiveShapeAnnotator : Assing basic shape to the cluster
+	\item RegionAnnotator : Further restriction on witch areas will be used based on defined Regions 
+	\item CaffeAnnotator : Deep learning method for Object recognition based on pre recorded Images 
+	\item KnnAnnotator : Uses K-Nearest-Neighbor for Klassifikation of Objects 
+\end{itemize}
+
+Each Annotator contains  changeable variables that enable customization to the given Tasks, for most of time we used the defaut settings. 
+Robosherlock pipeline works sequential meaning any change to the order can change the outcoming. Some of the Annotator are essential for the pipeline to work, like the CollectionReader. 
+Furthermore for any new Annotator created, need to consideration where to put it.\\
+ The following Pictures are an example of the Robosherlock pipeline output :  \\
+%Bild Hinzufügen 
+
+\begin{figure}[H]
+     \begin{center}
+%
+        \subfigure[2D-ImagePreProcessor]{%
+            \includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
+        }%
+        \subfigure[3D-RegionFilter]{%
+           \includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
+        }\\ %  ------- End of the first row ----------------------%
+        \subfigure[2D-NormalEstimator]{%
+            \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
+        }%
+        \subfigure[3D-NormalEstimator]{%
+           \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
+        }%
+%
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+     \begin{center}
+%
+        \subfigure[2D-PlaneAnnotator]{%
+            \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
+        }%
+        \subfigure[3D-RegionFilter]{%
+           \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
+        }\\ %  ------- End of the first row ----------------------%
+        \subfigure[2D-PointCloudClusterExtractor]{%
+            \includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
+        }%
+        \subfigure[3D-PointCloudClusterExtractor]{%
+            \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
+        }%
+%
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+     \begin{center}
+%
+        \subfigure[2D-ClusterColorHistogramAnnotator]{%
+            \includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
+        }%
+        \subfigure[2D-Cluster3DGeometryAnnotator]{%
+          \includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
+        }\\ %  ------- End of the first row ----------------------%
+        \subfigure[3D-Cluster3DGeometryAnnotator]{%
+            \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
+        }%
+%
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+     \begin{center}
+%
+         \subfigure[2D-PrimitiveShapeAnnotator]{%
+           \includegraphics[width=0.5\textwidth]{pictures/2d/PrimitiveShapeAnnotator.png}
+        }%
+        \subfigure[2D-SuturoShapeAnnotator]{%
+           \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
+        }\\ %  ------- End of the first row ----------------------%
+         \subfigure[3D-PrimitiveShapeAnnotator]{%
+            \includegraphics[width=0.5\textwidth]{pictures/pcl/PrimitiveShapeAnnotator.png}
+        }%
+        \subfigure[2D-KnnAnnotator]{%
+            \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
+        }%
+%
+    \end{center}
+\end{figure}
+
+			\subsection{Pipeline: hsrb\_planes} 
+This pipeline is only used for Plane detection. Doors and Walls are detected by differentiating between Horizontal and Vertical planes.
+\begin{itemize}
+	\item CollectionReader : Takes care of the Camera  Input
+	\item ImagePreprocessor : Create missing Images and implement Image Filters 
+	\item PointCloudFilter : Filter Points that are over set Limitations like Size and Depht
+	\item NormalEstimator : Estimate Surface Normals in a PointCloud 
+	\item PlaneAnnotator : Search for Horizontal and Vertical Planes in which the search location for Objects is set
+	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
+\end{itemize}
+
+			\subsection{Pipeline: storage\_suturo} 
+Pipeline for Storing actual scene in MongoDB, all saved scenes can be reaplayed for testing with out the HSR and have the same functionality. 
+\begin{itemize}
+	\item CollectionReader : Takes care of the Camera  Input
+	\item ImagePreprocessor : Create missing Images and implement Image Filters 
+	\item StorageWriterSuturo :  Store set topics in MongoDB
+\end{itemize}
+
+		\section{actionserver}
+
+			\subsection{ExtractObjectInfoClient}
+Call ExtractObjectInfoServer and wait until result arrive or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. 
+
+			\subsection{ExtractObjectInfoServer}
+Recive goal from ExtractObjectInfoClient and pass on to SuturoPrecessManager, Check for result and publisht it under perception\_actionserver/result 
+
+			\subsection{ExtractPlaneInfoClient}
+Call ExtractPlaneInfoServer and wait until result arrive or the time out runs out. This Client do not support regions. 
+
+			\subsection{ExtractPlaneInfoServer}
+Recive goal from ExtractPlaneInfoClient and pass on to SuturoPrecessManager, Check for result and publisht it under perception\_actionserver\_plane/result.
+
+			\subsection{perception\_server}
+Launch ExtractObjectInfoServe and ExtractPlaneInfoServer no other Functionality.
+
+%		\section{rs\_hsrb\_perception}
+%rs\_hsrb\_perception is package from the last Suturo group. All changes are made to the new sub Branch suturo20.
+
+%			\subsection{SuturoProcessManager}
+%Annotator based on RSProcessManager. Starts different Robosherlock pipelines based on witch Server makes the Call.  Each server use the same run method with different arguments. 
+
+		\section{rs\_turn\_table}
+rs\_turn\_table is package from the last Suturo group.There was no big changes to the core code, only small situational changes not implemented on the master. 
+This package is mainly for Image recording, All recorded images will then be used for Object recognition.  
+			\subsection{Pipeline: estimate\_plane}
+\begin{itemize}
+	\item CollectionReader : Takes care of the Camera  Input
+	\item ImagePreprocessor : Create missing Images and implement Image Filters  
+	\item PointCloudFilter : Filter Points that are over set Limitations like Size and Depht
+	\item PlaneAnnotator : Search for Horizontal Plane and save it to a file 
+\end{itemize}
+This Pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on PointCloudFilter by hand. It is desirable that only one plane is visible. 
+
+			\subsection{Pipeline: save\_images}
+\begin{itemize}
+	\item CollectionReader : Takes care of the Camera  Input
+	\item ImagePreprocessor : Create missing Images and implement Image Filters  
+	\item PointCloudFilter : Filter Points that are over set Limitations like Size and Depht
+	\item PlaneAnnotator : Use saved plane in which the search location for Objects is set
+	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
+	\item SaveClusterCloudsAndImages : Save Information about the Cluster to a file 
+\end{itemize}
+Uses the saved Plane and take periodic Images from Objects on the plane, if there is more that one Cluster visible the Annotator will not trigger the Save process.
+
 \section{classificationEvaluation Package}
 \chapterauthor{Jan-Frederik Stock}
 
