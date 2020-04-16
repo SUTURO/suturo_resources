@@ -28,13 +28,21 @@ To make the grammar more correct more easily, the current program imports a soft
 
 	 \section{Implemented NLP Modules}
 	 	\chapterauthor{Merete Bommarius}
-	\begin{tabular}[h]{l}
-	Module & Communication & Desscription\\
-	Frame semantics & The frame semantics  module doesn‘t necessarily communicate with the other modules, but it is needed for training the parser. & It is used for background work to establish a working parser and provide a general structure that the parser can be trained with, when it‘s being trained on framing sentences correctly itself.\\
-	Context-Free grammar & The frame semantics  module doesn‘t necessarily communicate with the other modules, but it is needed for training the parser. & Again, the context-free grammar serves as background work, done beforehand. This time for the randomizer that generated the amount of commands needed for training the parser.\\
-	Parsing & The parser communicates with the TinyRPC interface, which is used to make the communaction between Python2 & Python3 possible. This then forwards the communicates with the Planning group of the SUTURO project, which is responsible for bringing everything together. & The parser is a way for the group to computationally annotate sentences, so that it‘s not needed to do it by hand anymore.\\
-	Training the parser & This part is a subsection of the parsing module, which serves as further elaboration. & This is needed to make the parser more accurate in the fields that the group needs it in.\\
-	\end{tabular}
+	 	
+	 	\begin{tabular}{ | p{3cm} | p{5cm} | p{5cm} | } 
+	 		\hline 
+	 		\textbf{Module} & \textbf{Communication} & \textbf{Description} \\ 
+	 		\hline 
+	 		Frame semantics & The frame semantics  module doesn‘t necessarily communicate with the other modules, but it is needed for training the parser. & It is used for background work to establish a working parser and provide a general structure that the parser can be trained with, when it‘s being trained on framing sentences correctly itself \\ 
+	 		\hline 
+	 		Context-Free grammar & The frame semantics  module doesn‘t necessarily communicate with the other modules, but it is needed for training the parser. & Again, the context-free grammar serves as background work, done beforehand. This time for the randomizer that generated the amount of commands needed for training the parser. \\
+	 		\hline 
+	 		Parsing & The parser communicates with the TinyRPC interface, which is used to make the communaction between Python2 \& Python3 possible. This then forwards the communicates with the Planning group of the SUTURO project, which is responsible for bringing everything together. & The parser is a way for the group to computationally annotate sentences, so that it‘s not needed to do it by hand anymore.\\
+	 		\hline 
+	 		Training the parser & This part is a subsection of the parsing module, which serves as further elaboration. & This is needed to make the parser more accurate in the fields that the group needs it in.\\
+	 		\hline 
+	 	\end{tabular} 
+
 	
 	\section{Frame Semantics}
 	 	\chapterauthor{Merete Bommarius}
