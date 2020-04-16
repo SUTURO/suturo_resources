@@ -12,6 +12,33 @@
 
 		\chapterauthor{}
 		
+		\section{place\_server.py}  \chapterauthor{Marc Stelter}
+		Places the object in the gripper at the given position. Depending on the place\_mode the orientation of the gripper is calculated. Giskard is then used to move the gripper to the given position. If giskard was successful and the gripper is at the correct position the object is released and robot returns into a neutral pose. In the case of an error the Object will not be released and the robot finishes in a neutral position. 
+		
+		\begin{itemize}
+			\item Input: PlaceActionGoal 
+				\subitem string object\_frame\_id 
+				\subitem geometry\_msgs/PoseStamped goal\_pose
+				\subitem place\_mode
+			\item Return: PlaceActionResult
+				\subitem int error\_code (0 success, else failure)
+		\end{itemize}
+	
+		\section{object\_state\_listener.py} \chapterauthor{Marc Stelter}
+		Adds, modifies or removes objects from the giskard environment believe state.
+		
+		\begin{itemize}
+			\item Topic: /object\_state
+			\item Input: knowrob\_objects/ObjectStateArray
+			\item Methods:
+				\subitem def delete\_object(self, object\_state\_array): removes the objects
+				\subitem def add\_object(self, object\_state\_array): adds or modifies the objects
+				\subitem def object\_state\_callback(self, object\_state\_array): processes a new ObjectStateArray message
+		\end{itemize}
+		
+		\section{giskard\_load\_static\_objects.py} \chapterauthor{Marc Stelter}
+		Simple script meant to be run once at startup. Loads the environment from the parameter server and adds it to giskards believe state. 
+		The script can be run again in order to reload the environment. The old environment will automatically be removed.
 
 	\endgroup
 
