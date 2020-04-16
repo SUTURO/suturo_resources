@@ -1,16 +1,63 @@
 \documentclass[main.tex]{subfiles}
 
+
 \begin{document}
 
-	\begingroup
+\begingroup
 
-	\renewcommand{\cleardoublepage}{}
+\renewcommand{\cleardoublepage}{}
 
-	\renewcommand{\clearpage}{}
+\renewcommand{\clearpage}{}
 
-	\chapter{Perception Function Documentation}
+\chapter{Perception Function Documentation}
 
-		\chapterauthor{}
+\section{classificationEvaluation Package}
+\chapterauthor{Jan-Frederik Stock}
+
+The classificationEvaluation package is used to save and display the classificationresults of the perceptionpipeline. The results can be saved in a markdown table and/or be displayed as a scatterplot. It consists mainly of the rsClassificationEvaluator.py pythonscript. Here, the class ResultActionClient is implemented, which serves as an actionclient for the perception object info actionserver.\\
+
+\subsection{The ResultActionClient class}
+The class provides the following methods:
+
+\begin{itemize}
+\item 
+sendGoal(self)\\
+This method is used to send a goal to the ExtractObjectInfoServer and thus triggering the perceptionpipeline.
+
+\item saveResult(self, result)\\
+This method saves the actionresult, which is the classification, in a field of the class.
+
+\item saveToMd(self, algorithm)\\
+This method saves the collected classifcationresults in a markdown table. If a markdown file with the name "evaluation.md" is found in the directory the script is executed in, the results are appended to it, otherwise the file is created.
+
+\item plotResult(self)\\
+The method plots the collected results using the scatterplotfunction from matplotlib.
+
+\subsection{Main method}
+The main method tries to create an instance of the resultActionClient class, does some i/o with the user, sets the parameters for the resultActionClass and then triggers the action. It also uses the provided methods to save the results to a markdown file and plot them.
+
+\section{Feature Extraction Tools}
+The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
+
+\subsection{make\_split\_from\_directory.sh} 
+This bash script can be used to create a split yaml-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parentdirectory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the yaml-file will be created. It then creates the yaml-file using the directorynames of the imagedirectories as classnames.
+
+\subsection{make\_list\_from\_directory.sh}
+This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a splitfile but a list of the classnames. This is required by the classifing annotator and has to be pasted into the annotators yaml-file. The comma after the last classname in the list has to be removed manually.
+
+\section{calculateConfidence in RSKNN.cpp}
+In the RSKNN.cpp, implementing KNN-classification in the rs\_addons package, the following method was added:
+
+\begin{lstlisting}
+double RSKNN::calculateConfidence(double classificationResult, cv::Mat neighborResponses)
+\end{lstlisting}
+
+It calculates the classification confidence for the KNN-classification by dividing the number of neighbours belonging to the result class, by the total number of visited neighbours. 
+
+
+
+\end{itemize}
+
 		
 		
 	\endgroup
