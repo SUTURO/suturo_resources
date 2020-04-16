@@ -1,6 +1,6 @@
 <launch>
   
-  <include file="$(find suturo_urdf_publisher_rework)/launch/enviorment.launch" >
+  <include file="$(find suturo_urdf_publisher_rework)/launch/environment.launch" >
           <arg name="yaml" value="robocup_sim_t2_manual_data.yaml" />
   </include>
 
