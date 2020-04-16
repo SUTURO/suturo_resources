@@ -10,38 +10,39 @@
 
 	\chapter{Planning Function Documentation}
 
-		\chapterauthor{}
+		\chapterauthor{Planning Group}
 		
 		\section{GROCERY}
 		
 		\subsection{execute-grocery.lisp}
-		
+		This file contains the main function for this tasks and some subroutines.
 		\begin{itemize}
 			\item \textbf{execute-grocery} \\
-			main function for the grocery storing task when this function is called it starts all subroutines to execute the planned behavior for this task
+			This is the main function for the grocery storing task, when this function is called it starts all subroutines to execute the planned behavior for this task, including failure handling
 			\item \textbf{perceive-shelf} \\
-			this function perceives shelfs depending on the given region
-			\item perceive-table \\
-			perceives the table depending on the table position given by the knowledge base
+			This function is a subroutine for perceiving shelfs depending on the given region value
+			\item \textbf{perceive-table} \\
+			This function is a subroutine for perceiving the table depending on the table position given by the knowledge base
 			\item \textbf{grasp-handling} \\
-			grasping with primitive failure handling, which object will be grasped is determined by the knowledge base
+			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
 			\item \textbf{grasp-with-failure-handling} \\
-			grasping with more sophisticated failure handling, which object will be grasped is determined by the knowledge base
+			This function is a subroutine for grasping objects with more sophisticated failure handling, which object will be grasped is determined by the knowledge base
 			\item place-handling
+			This function is a subroutine for placing objects
 		\end{itemize}
 		
 		\subsection{grocery-bw.lisp}
-		
+		This file contains functions used in combination of the bulletworld simulation.
 		\begin{itemize}
-			\item spawn-btr-objects
-			this functions spawns given primitiv objects at the position of the by robosherlock perceived objects 
+			\item \textbf{spawn-btr-objects}
+			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects 
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
-			main function for the clean up task when this function is called it starts all the subroutines to execute the planned behavior for this task
+			This is the main function for the clean up task, when this function is called it starts all the subroutines to execute the planned behavior for this task
 			\item \textbf{shelf-scan} \\
 			perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
@@ -62,12 +63,13 @@
 
 	    \subsection{cleanup-bw.lisp}
 		\begin{itemize}
-			\item spawn-btr-objects
-			this functions spawns given primitiv objects at the position of the by robosherlock perceived objects 
+			\item \textbf{spawn-btr-objects}
+			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects  
 		\end{itemize}
 	  	
 	  	\section{COMF}
 	    \subsection{high-level-plans.lisp}
+	    This file contains all high level plans.(high level plans ar below execute level)
 	    \begin{itemize}
 	    \item \textbf{try-movement} \\
 	    
@@ -87,10 +89,12 @@
 	    This function moves the robot to the shelf position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
 		\end{itemize}
 	    \subsection{knowledge-functions.lisp}
+	    The knowledge function file contains all functions common to both tasks which are used in the connection with the knowledge part
 	    \begin{itemize}
 	    	\item \textbf{Fehlt} \\
 	    \end{itemize}
 	    \subsection{manipulation-functions.lisp}
+	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
 	    \item \textbf{place-object} \\
 	    gets the object id and the grasp position to create a place designator  
@@ -102,12 +106,15 @@
 	    gets the object id and grasp position to create a list with positions to place the object
 		\end{itemize}
 	    \subsection{navigation-functions.lisp}
+	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
 	    \begin{itemize}
 	    	\item \textbf{Fehlt} \\
+	    	Ist vielleicht sogar leer... dann file löschen?
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
 	    \begin{itemize}
 	    	\item \textbf{Fehlt} \\
+	    	Ist vielleicht sogar leer... dann file löschen?
 	    \end{itemize}
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
@@ -133,7 +140,41 @@
 	    \end{itemize}
 
 	  	\section{LLIF}
-		Fehlt einfach mal komplett?
+		Hier fehlen evtl noch files:
+		\subsection{grasp-action-client.lisp}
+		\subsection{place-action-client.lisp}
+		\subsection{take-pose-action-server.lisp}
+		\subsection{move-gripper-client.lisp}
+		\subsection{knowledge-client.lisp}
+		\subsection{knowledge-insertion-client.lisp}
+		\subsection{navigation-action.lisp}
+		\subsection{nlp-subscriber.lisp}
+		\subsection{text-to-speech.lisp}
+		\subsection{obstacle-map-subscriber.lisp}
+		\subsection{robosherlock-client-object.lisp}
+		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for objects.
+		\begin{itemize}
+			\item \textbf{init-robosherlock-object-action-client} \\
+			This function initiates the connection to the robosherlock object action server
+			\item \textbf{get-robosherlock-client} \\
+			This function returns the robosherlock action client
+			\item \textbf{make-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{call-robosherlock-object-pipeline} \\
+			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result
+		\end{itemize}
+		\subsection{robosherlock-client-plane.lisp}
+		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.
+		\begin{itemize}
+			\item \textbf{init-robosherlock-plane-action-client} \\
+			This function initiates the connection to the robosherlock plane action server
+			\item \textbf{get-robosherlock-client} \\
+			This function returns the robosherlock action client
+			\item \textbf{make-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{call-robosherlock-plane-pipeline} \\
+			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result
+		\end{itemize}
 	\endgroup
 
 \end{document}
