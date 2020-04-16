@@ -219,12 +219,72 @@ double RSKNN::calculateConfidence(double classificationResult, cv::Mat neighborR
 
 It calculates the classification confidence for the KNN-classification by dividing the number of neighbours belonging to the result class, by the total number of visited neighbours. 
 
-
-
 \end{itemize}
 
-		
-		
-	\endgroup
 
+\section{rs\_hsrb\_perception Package}
+\chapterauthor{Evan Kapitzke}
+
+The rs\_hsrb\_perception package was created in the Suturo Master-project. The package implements an RoboSherlock process manager, namely SuturoProcessManager. Additionally, it contains modified annotators to annotate regions.
+
+\subsection{RegionAnnotator}
+\begin{itemize}
+\item TyErrorId process(tcas, res\_spec)\\
+Iterates through the clusters that are currently saved in the CAS and annotates the region in which their are present based on the cluster pose.
+This method only got changed in order to work with the RoboSherlock master.
+\end{itemize}
+
+\subsection{SaveClusterCloudsAndImages}
+Currently not used.
+
+\subsection{SuturoClassifier}
+Currently not used.
+
+\subsection{SuturoProcessManager}
+\begin{itemize}
+\item setup()\\
+Creates the ressource manager and instantiates the region vector.
+
+\item init(pipeline)\\
+Initializes the given pipeline (aggregate analysis engine YAML descriptor) and starts the visualizer.
+This method got changed in order to allow the visualization of the pipeline.
+
+\item run(args, detectionData)\\
+Executes the initialized pipeline once with the given arguments and saves the result in detectionData.
+This method now checks for the region "robocup\_default" and disables the region filter to perceive objects that can not be found
+in a region. For example, a pringles dose that is placed on the ground.
+
+\item has\_vertical\_plane()\\
+Returns true if the current CAS contains a vertical plane.
+
+\item getClusterFeatures(cluster, data)\\
+Extracts the annotations of the given cluster and generates an ObjectDetectionData object. 
+This object will be added to the data pointer. makeObjectDetectionData(...) from suturo\_conversion is used.
+Currently only one KnnAnnotator (for known objects) is used to determine the class label of an object.
+
+\item visControlCallback(req, res)\\
+Callback for navigation through the different annotation previews in the visualization window.
+\end{itemize}
+
+\subsection{SuturoRegionFilter}
+Adapted region filter from RoboSherlock.
+
+\begin{itemize}
+\item reconfigure()\\
+Reconfigures the annotator to disable / enable its functionality without restarting the pipeline or removing it.
+\end{itemize}
+
+\subsection{suturo\_conversion}
+Implements template functions to convert from and to PoseStamped objects.
+Following functions got changed:
+
+\begin{itemize}
+\item decode\_shape(shapes)\\
+Converts the result of the PrimitiveShapeAnnotator to match the required shape format in the ObjectDetectionData object.
+
+\item makeObjectDetectionData(pose, geometry, shape, objClass, confidence, c, odd)\\
+Combines the given parameters to an ObjectDetectionData message.
+\end{itemize}
+
+\endgroup
 \end{document}
