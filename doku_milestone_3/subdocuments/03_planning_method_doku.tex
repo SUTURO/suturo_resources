@@ -42,23 +42,27 @@
 			\item execute-cleanup \\
 			main function for the clean up task when this function is called it starts all the subroutines to execute the planned behaiior for this task
 			\item shelf-scan \\
-			
+			perceives the entire shelf using perceive-shelf
+			\item perceive-shelf\\
+			same as in grocery perceives the shelf depending on the given regions value
 			\item perceive-table \\
-			
+			same as in grocery perceives the robocub table
 			\item transport \\
-			
+            transports all objects found on the robocub table and then places them into the shelf
 			\item point-of-interest-search \\
-			
+			moves to a point of interest and perceives it 
 			\item point-of-interest-transport \\
-			
+			grasp objects found with point of interest search and places them into the shelf
 			\item grasp-with-failure-handling-floor \\
-			
+			grasping with failure handling it falls to grasp an object from the floor
 			\item grasp-handling\\
+			grasping with primitive failture handling for grasping from the robocub table
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
 		\begin{itemize}
 			\item spawn-btr-objects
+			spawns perceived objects into the bulletworld
 		\end{itemize}
 	  	
 	  	\section{COMF}
@@ -68,7 +72,9 @@
 		\item try-movement-stampedList\\
 	    \item move-hsr\\
 	    \item grasp-hsr\\
+	    grasp failure handling 
 	    \item place-hsr\\
+	    place failure handling
 	    \item move-to-poi\\
 	    \item move-to-poi-and-scan\\
 	    \item move-to-table\\
@@ -78,9 +84,13 @@
 	    \subsection{manipulation-functions.lisp}
 	    \begin{itemize}
 	    \item place-object\\
+	    gets the object id and the grasp position to create a place designator  
 		\item place-object-list\\
+		gets a list and uses that to create a place designator 
 	    \item grasp-object\\
+	    gets the object id and what grasp position should be used to create a grasp desingator
 	    \item create-place-list\\
+	    gets the object id and grasp position to create a list with positions to place the object
 		\end{itemize}
 	    \subsection{navigation-functions.lisp}
 	    \subsection{nlp-functions.lisp}
