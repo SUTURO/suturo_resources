@@ -50,9 +50,7 @@ To make the grammar more correct more easily, the current program imports a soft
 As mentioned in the previous section, frame semantics are used to give the parser a sense of structure. The way the group approached this was by framing about 100 commands by hand and then used those annotated sentences as examples of how the parser should interprete sentences that might be similar but are not in the list of commands. 
 Here is an example of an annotated sentence: 
 
-\begin{verbatim}
-[bring]$_{action}$ [me]$_{beneficiary}$ [the pills]$_{item}$ [from the shelf]$_{source}$.
-\end{verbatim}
+\texttt{ [bring]$_{action}$  [me]$_{beneficiary}$ [the pills]$_{item}$ [from the shelf]$_{source}.$}
 	
 	\section{Parsing}
 	 	\chapterauthor{Merete Bommarius}
@@ -72,14 +70,18 @@ The sentence used as an example for this was: ‘take the cup to the table‘. A
 	\section{Training the Parser}
 	 	\chapterauthor{Merete Bommarius}
 	In order to really be able to train the parser there are a few requirements that need to be met. First, there must be a corpus which the training program can use as a reference. This corpus should contain 50.000+ sentences. The solution that was used in order to get to this number was writing about 120 sentences and annotate them. Annotating helps setting the guidelines for the grammar that was used to set guidelines for the random sentence generator that was used to provide us with the required numbers of sentences.
-The grammar that was written looks for example like this:
+	The grammar that was written looks for example like this:
 
-\begin{verbatim}
-MovementOnly\\
-MovementOnly \rightarrow take ITEM [from SOURCE] [to DESTINATION] [MANNER]\\
-MovementOnly \rightarrow bring [BENEFICIARY] ITEM [from SOURCE]\\
-- This describes the ‘MovementOnly‘ action. With this action, they primarily use their motion rather than their visual sense. This action contains simple movements like moving from a source to a destination or simply into a given direction.
-\end{verbatim}
+		
+		\texttt{MovementOnly\\
+		MovementOnly $\rightarrow$ take ITEM [from SOURCE] [to DESTINATION] [MANNER]\\
+		MovementOnly $\rightarrow$ bring [BENEFICIARY] ITEM [from SOURCE]\\}
+		
+		\texttt{This describes the 'MovementOnly' action.
+		With this action, they primarily use their motion rather than their visual sense. This action contains simple movements like moving from a source to a\\ destination or simply into a given direction.}
+		
+
+
 
 	As you can see, the grammar starts off with a term which is then explained in further detail. It also provides a structure that is to be used for the sentence, which is later being randomly generated.\\ 
 Depending on how thoroughly the training of the parser is supposed to be, it might take a few days up till a few weeks, and the parser needs to be retrained if new information or commands are added.
