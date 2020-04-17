@@ -10,98 +10,171 @@
 
 	\chapter{Planning Function Documentation}
 
-		\chapterauthor{}
+		\chapterauthor{Planning Group}
 		
 		\section{GROCERY}
 		
 		\subsection{execute-grocery.lisp}
-		
+		This file contains the main function for this tasks and some subroutines.
 		\begin{itemize}
-			\item execute-grocery \\
-			main function for the grocery storing task when this function is called it starts all subroutines to execute the planned behavior for this task
-			\item perceive-shelf \\
-			perceives shelfs depending on the given regions value
-			\item perceive-table \\
-			perceives the robocup table
-			\item grasp-handling \\
-			grasping with primitive failure handling
-			\item grasp-with-failure-handling \\
-			grasping with more sophisticated failure handling
+			\item \textbf{execute-grocery} \\
+			This is the main function for the grocery storing task, when this function is called it starts all subroutines to execute the planned behavior for this task, including failure handling
+			\item \textbf{perceive-shelf} \\
+			This function is a subroutine for perceiving shelfs depending on the given region value
+			\item \textbf{perceive-table} \\
+			This function is a subroutine for perceiving the table depending on the table position given by the knowledge base
+			\item \textbf{grasp-handling} \\
+			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
+			\item \textbf{grasp-with-failure-handling} \\
+			This function is a subroutine for grasping objects with more sophisticated failure handling, which object will be grasped is determined by the knowledge base
 			\item place-handling
+			This function is a subroutine for placing objects
 		\end{itemize}
 		
 		\subsection{grocery-bw.lisp}
-		
+		This file contains functions used in combination of the bulletworld simulation.
 		\begin{itemize}
-			\item spawn-btr-objects
+			\item \textbf{spawn-btr-objects}
+			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects 
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
-			\item execute-cleanup \\
-			main function for the clean up task when this function is called it starts all the subroutines to execute the planned behaiior for this task
-			\item shelf-scan \\
+			\item \textbf{execute-cleanup} \\
+			This is the main function for the clean up task, when this function is called it starts all the subroutines to execute the planned behavior for this task
+			\item \textbf{shelf-scan} \\
 			perceives the entire shelf using perceive-shelf
-			\item perceive-shelf\\
+			\item \textbf{perceive-shelf} \\
 			same as in grocery perceives the shelf depending on the given regions value
-			\item perceive-table \\
+			\item \textbf{perceive-table} \\
 			same as in grocery perceives the robocub table
-			\item transport \\
+			\item \textbf{transport} \\
             transports all objects found on the robocub table and then places them into the shelf
-			\item point-of-interest-search \\
+			\item \textbf{point-of-interest-search} \\
 			moves to a point of interest and perceives it 
-			\item point-of-interest-transport \\
+			\item \textbf{point-of-interest-transport} \\
 			grasp objects found with point of interest search and places them into the shelf
-			\item grasp-with-failure-handling-floor \\
+			\item \textbf{grasp-with-failure-handling-floor} \\
 			grasping with failure handling it falls to grasp an object from the floor
-			\item grasp-handling\\
+			\item \textbf{grasp-handling}\\
 			grasping with primitive failture handling for grasping from the robocub table
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
 		\begin{itemize}
-			\item spawn-btr-objects
-			spawns perceived objects into the bulletworld
+			\item \textbf{spawn-btr-objects}
+			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects  
 		\end{itemize}
 	  	
 	  	\section{COMF}
 	    \subsection{high-level-plans.lisp}
+	    This file contains all high level plans.(high level plans ar below execute level)
 	    \begin{itemize}
-	    \item try-movement\\
-		\item try-movement-stampedList\\
-	    \item move-hsr\\
-	    \item grasp-hsr\\
-	    grasp failure handling 
-	    \item place-hsr\\
-	    place failure handling
-	    \item move-to-poi\\
-	    \item move-to-poi-and-scan\\
-	    \item move-to-table\\
-	    \item move-to-shelf\\
+	    \item \textbf{try-movement} \\
+	    
+		\item \textbf{try-movement-stampedList} \\
+		tries a given list of
+	    \item \textbf{move-hsr} \\
+	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
+	    \item \textbf{grasp-hsr} \\
+	    FEHLT
+	    \item \textbf{place-hsr} \\
+	    FEHLT
+	    \item \textbf{move-to-poi} \\
+	    \item \textbf{move-to-poi-and-scan} \\
+	    \item \textbf{move-to-table} \\
+	    This function moves the robot to the table position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
+	    \item \textbf{move-to-shelf} \\
+	    This function moves the robot to the shelf position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
 		\end{itemize}
 	    \subsection{knowledge-functions.lisp}
-	    \subsection{manipulation-functions.lisp}
+	    The knowledge function file contains all functions common to both tasks which are used in the connection with the knowledge part
 	    \begin{itemize}
-	    \item place-object\\
+	    	\item \textbf{Fehlt} \\
+	    \end{itemize}
+	    \subsection{manipulation-functions.lisp}
+	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
+	    \begin{itemize}
+	    \item \textbf{place-object} \\
 	    gets the object id and the grasp position to create a place designator  
-		\item place-object-list\\
+		\item \textbf{place-object-list} \\
 		gets a list and uses that to create a place designator 
-	    \item grasp-object\\
+	    \item \textbf{grasp-object} \\
 	    gets the object id and what grasp position should be used to create a grasp desingator
-	    \item create-place-list\\
+	    \item \textbf{create-place-list} \\
 	    gets the object id and grasp position to create a list with positions to place the object
 		\end{itemize}
 	    \subsection{navigation-functions.lisp}
+	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
+	    \begin{itemize}
+	    	\item \textbf{Fehlt} \\
+	    	Ist vielleicht sogar leer... dann file löschen?
+	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
-	    \subsection{perceotion-functions.lisp}
+	    \begin{itemize}
+	    	\item \textbf{Fehlt} \\
+	    	Ist vielleicht sogar leer... dann file löschen?
+	    \end{itemize}
+	    \subsection{perception-functions.lisp}
+	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
+	    \begin{itemize}
+	    	\item \textbf{get-confident-objects} \\
+	    	This function filters the objects detected by robosherlock by their confidence (class, shape, color), the default threshold value is 0.5
+	    \end{itemize}
 	    \subsection{safety-check.lisp}
+	    \begin{itemize}
+	    	\item \textbf{Fehlt} \\
+	    \end{itemize}
 	    \subsection{process-modules.lisp}
+	    \begin{itemize}
+	    	\item \textbf{Fehlt} \\
+	    \end{itemize}
 	    \subsection{select-process-modules.lisp}
+	    \begin{itemize}
+	    	\item \textbf{Fehlt} \\
+	    \end{itemize}
 	    \subsection{designators.lisp}
+	    \begin{itemize}
+	    	\item \textbf{Fehlt} \\
+	    \end{itemize}
 
 	  	\section{LLIF}
-
+		Hier fehlen evtl noch files:
+		\subsection{grasp-action-client.lisp}
+		\subsection{place-action-client.lisp}
+		\subsection{take-pose-action-server.lisp}
+		\subsection{move-gripper-client.lisp}
+		\subsection{knowledge-client.lisp}
+		\subsection{knowledge-insertion-client.lisp}
+		\subsection{navigation-action.lisp}
+		\subsection{nlp-subscriber.lisp}
+		\subsection{text-to-speech.lisp}
+		\subsection{obstacle-map-subscriber.lisp}
+		\subsection{robosherlock-client-object.lisp}
+		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for objects.
+		\begin{itemize}
+			\item \textbf{init-robosherlock-object-action-client} \\
+			This function initiates the connection to the robosherlock object action server
+			\item \textbf{get-robosherlock-client} \\
+			This function returns the robosherlock action client
+			\item \textbf{make-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{call-robosherlock-object-pipeline} \\
+			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result
+		\end{itemize}
+		\subsection{robosherlock-client-plane.lisp}
+		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.
+		\begin{itemize}
+			\item \textbf{init-robosherlock-plane-action-client} \\
+			This function initiates the connection to the robosherlock plane action server
+			\item \textbf{get-robosherlock-client} \\
+			This function returns the robosherlock action client
+			\item \textbf{make-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{call-robosherlock-plane-pipeline} \\
+			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result
+		\end{itemize}
 	\endgroup
 
 \end{document}

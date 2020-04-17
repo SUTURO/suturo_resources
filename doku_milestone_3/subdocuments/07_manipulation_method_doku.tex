@@ -22,7 +22,7 @@
 		The "place\_server" places the attached object at the given pose.\\
 		Further Manipulation has a "suturo\_manipulation\_launch" package, which launches the Actionservers, rviz and giskard and a "object\_state\_listener" package.
 
-		\subsection{Grasp Object}
+		\subsection{Grasp Object} \chapterauthor{Fabian Weihe}
 			The script recives a string ("object\_frame\_id"), a PoseStamped ("goal\_pose"), a Vector3 ("object\_size") and an uint8 (grasp\_mode).
 			
 			\vspace{0,25 cm}
@@ -59,7 +59,68 @@
 			The method "move\_to\_transport\_pose" transform the robot in a position, where it can comfortably move arround.
 			
 			\vspace{0,25 cm}
-			The last method "object\_in\_gripper" checks if the robot hold something in the gripper and return a boolean.
+			The last method "object\_in\_gripper" checks if the robot hold something in the gripper and returns a boolean.\\
+			
+			\section{take\_pose\_server.py} \chapterauthor{Jan Neumann}
+			
+			The Take\_Pose\_Server puts the HSR into a pose to perceive objects depending on the chosen pose\_mode. \\
+			In FREE mode the server puts the HSR into a pose given by the float joint goals in the message. This is used for testing and error handling in Planning. \\
+			In NEUTRAL mode the HSR is put into a predefined pose that is used when the HSR is transporting an object. \\
+			In LOOK\_LOW, LOOK\_HIGH and LOOK\_FLOOR mode the server puts the HSR into a predefined position that is specifically designed to perceive objects on the tables, shelves and floor in the HSR lab. The advantage is that this works independently from other parts of the suturo project. The disadvantage is that these modes are not suited to perceive objects on planes that have a different heigth than the ones specified. \\
+			In GAZE mode the server receives a Vector 3 gaze\_point which represents the coordinates of the middle of a plane that the HSR is supposed to perceive objects on. The server then calculates the heigth and direction for the camera to perceive objects on the given plane and puts the HSR into the resulting pose.
+			
+			\begin{itemize}
+				\item Input: TakePoseGoal 
+				\subitem uint8 pose\_mode
+				\subsubitem FREE=0
+				\subsubitem NEUTRAL=1
+				\subsubitem LOOK\_LOW=2
+				\subsubitem LOOK\_HIGH=3
+				\subsubitem LOOK\_FLOOR=4
+				\subsubitem GAZE=5
+				\subitem geometry\_msgs/Vector3 gaze\_point
+				\subitem float32 head\_pan\_joint
+				\subitem float32 head\_tilt\_joint
+				\subitem float32 arm\_lift\_joint
+				\subitem float32 arm\_flex\_joint
+				\subitem float32 arm\_roll\_joint
+				\subitem float32 wrist\_flex\_joint
+				\subitem float32 wrist\_roll\_joint
+				\item Return: TakePoseResult
+				\subitem uint8 error\_code 
+				\subsubitem SUCCESS=0
+				\subsubitem FAILED=1
+			\end{itemize}
+			
+			
+			\section{place\_server.py}  \chapterauthor{Marc Stelter}
+			Places the object in the gripper at the given position. Depending on the place\_mode the orientation of the gripper is calculated. Giskard is then used to move the gripper to the given position. If giskard was successful and the gripper is at the correct position the object is released and robot returns into a neutral pose. In the case of an error the Object will not be released and the robot finishes in a neutral position. 
+			
+			\begin{itemize}
+				\item Input: PlaceActionGoal 
+				\subitem string object\_frame\_id 
+				\subitem geometry\_msgs/PoseStamped goal\_pose
+				\subitem place\_mode
+				\item Return: PlaceActionResult
+				\subitem int error\_code (0 success, else failure)
+			\end{itemize}
+			
+			\section{object\_state\_listener.py} \chapterauthor{Marc Stelter}
+			Adds, modifies or removes objects from the giskard environment believe state.
+			
+			\begin{itemize}
+				\item Topic: /object\_state
+				\item Input: knowrob\_objects/ObjectStateArray
+				\item Methods:
+				\subitem def delete\_object(self, object\_state\_array): removes the objects
+				\subitem def add\_object(self, object\_state\_array): adds or modifies the objects
+				\subitem def object\_state\_callback(self, object\_state\_array): processes a new ObjectStateArray message
+			\end{itemize}
+			
+			\section{giskard\_load\_static\_objects.py} \chapterauthor{Marc Stelter}
+			Simple script meant to be run once at startup. Loads the environment from the parameter server and adds it to giskards believe state. 
+			The script can be run again in order to reload the environment. The old environment will automatically be removed.
+			
 			 
 
 
