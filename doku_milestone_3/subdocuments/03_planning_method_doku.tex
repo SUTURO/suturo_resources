@@ -82,7 +82,9 @@
 	    \item \textbf{place-hsr} \\
 	    FEHLT
 	    \item \textbf{move-to-poi} \\
+	    This function moves the robot to the next point of interest that can be approached. 
 	    \item \textbf{move-to-poi-and-scan} \\
+	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
 	    \item \textbf{move-to-table} \\
 	    This function moves the robot to the table position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
 	    \item \textbf{move-to-shelf} \\
@@ -108,8 +110,12 @@
 	    \subsection{navigation-functions.lisp}
 	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
 	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
-	    	Ist vielleicht sogar leer... dann file löschen?
+	    	\item \textbf{points-around-point} \\
+	    	This function returns a given number of positions with a given 	distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
+	    	\item \textbf{pose-with-distance-to-points} \\
+	    	This function moves the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
+	    	\item \textbf{pointInPolygon} \\
+This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
 	    \begin{itemize}
@@ -151,6 +157,23 @@
 		\subsection{nlp-subscriber.lisp}
 		\subsection{text-to-speech.lisp}
 		\subsection{obstacle-map-subscriber.lisp}
+	    \begin{itemize}
+	    	\item \textbf{obstacle-map-listener} \\
+	    	This function subscribes the obstacle map and stores the current map in a variable.
+	    	\item \textbf{saveObstacleMap} \\
+	    	Makes a copy of the given message and stores it in a variable.
+	    	\item \textbf{getMapPoint} \\
+	    	Returns the occupancy from a given position in the map.
+	    \end{itemize}
+		\subsection{poi-client.lisp}
+ 		\begin{itemize}
+	    	\item \textbf{closestPoi} \\
+	    	This function returns the next point of interest in relation to the passed point.
+	    	\item \textbf{sortedPoiByDistance} \\
+	    	This function returns all points of interest sorted in relation to the given point.
+	    	\item \textbf{point-listener} \\
+	    	This function subscribes the point of interessts and stores them in a variable.
+	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
 		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for objects.
 		\begin{itemize}
