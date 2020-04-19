@@ -69,22 +69,42 @@ group_table_objects/0
 
 \subsection{pickup.pl}
 
+In the pickup module the information necessary to pick an object up are organized.
+
+\begin{lstlisting}
+next_object(BestObj) :-
+\end{lstlisting}
+As soon as there are some objects stored in our beliefstate, Knowledge is able zu tell, which Object should be the next one, the robot takes and puts somewhere. This prediacte returns the Object, that is standing on a surface, that was previously declared as \texttt{source} surface and is closest to the robot.
+
+\subsection{assignplaces.pl}
+
+Like \texttt{pickup.pl}, this module organizes the information necessary for when an object is placed.\\
+
+In the end, everything Planning needs is given by
+\begin{lstlisting}
+object_goal_pose_offset(Instance, [[X,Y,Z], Rotation],Context):-
+\end{lstlisting}
+It takes an Object and returns the pose this object should be placed and as Context it also returns, why this decision was made the way it was.\\
+But this predicate actually contains a few other queries. Some of the most important ones are:
+
+\begin{lstlisting}
+object_goal_surface(Instance, NearestSurface, Context, Self) :-
+\end{lstlisting}
+First we need a decision about what surface the object should be placed on. This is simply based on which surface is nearest to the robot and has the attribute of a \texttt{target} surface.
+\begin{lstlisting}
+most_related_object(Source, Target, Distance) :-
+distance_to_object(Source, Target, Distance) :-
+\end{lstlisting}
+
+Here lies the decision about what object is most similar to the one, \texttt{object\_goal\_pose\_offset} got. \texttt{distance\_to\_object} can tell, how similar two objects are (what the legical distance between them is) in the class hierarchy. This is based on the knowrob-predicate \texttt{distance\_of/3}. The \texttt{most\_related\_obeject} iterates through every object already in place and either finds a similar one based on similar object-classes or, in case the class of our object is \texttt{Other}, looks for another object that has the same color or size as our object. This is also, where the context, i.e. the human readable reason why the object was placed the way it was, is generated. It tells us, if the decision was based on it's class (if so, how similar they were), on it's size or it's color.
+
 \subsection{surfaces.pl}
+
+The bigges module is the \texttt{surfaces} module. This is where you can find everything you need to know about surfaces.
 
 \subsection{spatial\_comp.pl}
 
 
-\begin{lstlisting}
-object_goal_surface(Instance, Surface) :-
-    object_goal_surface(Instance, Surface, _, _).
-
-object_goal_surface(Instance, Surface, Context, RefObject):-
-    most_related_object(Instance, RefObject, Context),
-    find_supporting_surface(RefObject, Surface).
-
-\end{lstlisting}
-
-jhl
 
 \section{Ontology}
 \chapterauthor{Fabian Rosenstock}
@@ -98,8 +118,8 @@ jhl
 	  	
 
 \section{Scripts and higher Architecture}
-\chapterauthor{}	  	
-
+\chapterauthor{gfdhjlhkj}	  	
+hgfkjh
 
 	\endgroup
 
