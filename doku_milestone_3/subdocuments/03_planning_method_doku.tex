@@ -15,7 +15,7 @@
 		\section{GROCERY}
 		
 		\subsection{execute-grocery.lisp}
-		This file contains the main function for this tasks and some subroutines.
+		This file contains the main function for this task and some subroutines.
 		\begin{itemize}
 			\item \textbf{execute-grocery} \\
 			This is the main function for the grocery storing task, when this function is called it starts all subroutines to execute the planned behavior for this task, including failure handling
@@ -35,38 +35,38 @@
 		This file contains functions used in combination of the bulletworld simulation.
 		\begin{itemize}
 			\item \textbf{spawn-btr-objects}
-			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects 
+			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects 
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
-	  	This file contains the main function for this tasks and some subroutines.
+	  	This file contains the main function for this task and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
 			This is the main function for the clean up task, when this function is called it starts all the subroutines to execute the planned behavior for this task
 			\item \textbf{shelf-scan} \\
-			perceives the entire shelf using perceive-shelf
+			This function perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
-			same as in grocery perceives the shelf depending on the given regions value
+			This function is the same as in the grocery package, it perceives the shelf depending on the given regions value
 			\item \textbf{perceive-table} \\
-			same as in grocery perceives the robocub table
+			This function is the same as in the grocery package, it perceives the robocup table
 			\item \textbf{transport} \\
-            transports all objects found on the robocub table and then places them into the shelf
+            This transports all objects found on the robocup table and then places them into the shelf
 			\item \textbf{point-of-interest-search} \\
-			moves to a point of interest and perceives it 
+			This function moves the robot to a point of interest and perceives it 
 			\item \textbf{point-of-interest-transport} \\
-			grasp objects found with point of interest search and places them into the shelf
+			This function lets the robot grasp objects found with point of interest search and places them into the shelf
 			\item \textbf{grasp-with-failure-handling-floor} \\
 			grasping with failure handling it falls to grasp an object from the floor
 			\item \textbf{grasp-handling}\\
-			grasping with primitive failture handling for grasping from the robocub table
+			This function handles grasping with primitive failure handling for grasping from the robocub table
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
         This file contains functions used in combination of the bulletworld simulation.
 		\begin{itemize}
 			\item \textbf{spawn-btr-objects}
-			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects  
+			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects  
 		\end{itemize}
 	  	
 	  	\section{COMF}
@@ -98,13 +98,13 @@
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
 	    \item \textbf{place-object} \\
-	    gets the object id and the grasp position to create a place designator  
+	    This function receives the object id and the grasp position as input to create a place designator  
 		\item \textbf{place-object-list} \\
-		gets a list and uses that to create a place designator 
+		This function receives a list and uses that to create a place designator 
 	    \item \textbf{grasp-object} \\
-	    gets the object id and what grasp position should be used to create a grasp desingator
+	    This function receives the object id and what grasp position should be used as input to create a grasp designator
 	    \item \textbf{create-place-list} \\
-	    gets the object id and grasp position to create a list with positions to place the object
+	    This function receives the object id and grasp position as input to create a list with positions to place the object
 		\end{itemize}
 	    \subsection{navigation-functions.lisp}
 	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
@@ -113,8 +113,8 @@
 	    	This function returns a given number of positions with a given 	distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
 	    	\item \textbf{pose-with-distance-to-points} \\
 	    	This function moves the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
-	    	\item \textbf{pointInPolygon} \\
-This function checks if a point is inside a polygon.
+	    	\item \textbf{point-in-polygon} \\
+			This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
 	     We didn't implement any higher level functions for the nlp interface because they are not needed.
@@ -130,7 +130,7 @@ This function checks if a point is inside a polygon.
 	    	\item \textbf{execute-safety-check} \\
 	    	Start the plan. The robot moves through the entrance door as soon as it is open. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
 	    	\item \textbf{check-goal-reached}\\
-	    	Überprüft, ob der Roboter am Zielpunkt angekommen ist. Dies wird als Workaround benutzt, da der Roboter noch nicht erkennen kann, ob eine Tür geöffnet wurde.
+	    	This function checks if the robot has arrived at the target point. This is a workaround because the robot cannot yet detect if a door has been opened.
 	    \end{itemize}
 	    \subsection{process-modules.lisp}
 	    \begin{itemize}
@@ -146,10 +146,9 @@ This function checks if a point is inside a polygon.
 	    \end{itemize}
 
 	  	\section{LLIF}
-		Hier fehlen evtl noch files:
+		This package contains all low level interfacing files, for example the action clients for the connection with manipulation, knowledge and perception.
 		\subsection{grasp-action-client.lisp}
-		This file is responsible for the low level communication with the
-		grasp action server which is responsible for grasping objects.
+		This file is responsible for the low level communication with the grasp action server which is responsible for grasping objects.
 		\begin{itemize}
 			\item \textbf{init-grasp-action-client} \\
 			This function initiates the connection to the grasp action server
@@ -160,11 +159,10 @@ This function checks if a point is inside a polygon.
 			\item \textbf{ensure-grasp-goal-reached} \\
             This function makes sure the goal was reached
 			\item \textbf{call-grasp-action} \\
-			This function takes the x,y,z coordiantes, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the graspmode.
+			This function takes the x,y,z coordinates, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the grasp mode.
 		\end{itemize}
 		\subsection{place-action-client.lisp}
-		This file is responsible for the low level communication with the
-		place action server which is responsible for placing objects.
+		This file is responsible for the low level communication with the place action server which is responsible for placing objects.
 	    \begin{itemize}
 			\item \textbf{init-place-action-client} \\
 			This function initiates the connection to the place action server
@@ -175,11 +173,10 @@ This function checks if a point is inside a polygon.
 			\item \textbf{ensure-place-goal-reached} \\
             This function makes sure the goal was reached
 			\item \textbf{call-place-action} \\
-			This function takes the x,y,z coordiantes, quaternion values  and the object-id of the object that is placed and the graspmode.
+			This function takes the x,y,z coordinates, quaternion values  and the object-id of the object that is placed and the grasp mode.
 		\end{itemize}
 		\subsection{take-pose-action-server.lisp}
-		This file is responsible for the low level communication with the
-		take pose action server which is responsible taking different poses.
+		This file is responsible for the low level communication with the take pose action server which is responsible taking different poses.
 		\begin{itemize}
 			\item \textbf{init-take-pose-action-client} \\
 			This function initiates the connection to the take pose action server
@@ -190,11 +187,10 @@ This function checks if a point is inside a polygon.
 			\item \textbf{ensure-take-pose-goal-reached} \\
             This function makes sure the goal was reached
 			\item \textbf{call-take-pose-action} \\
-			This function takes a integeter for a set pose or for a custom pose than needs ten more float values to set the joints.
+			This function takes a integer for a set pose or for a custom pose than needs ten more float values to set the joints.
 		\end{itemize}
 		\subsection{move-gripper-client.lisp}
-		This file is responsible for the low level communication with the
-		move gripper action client which is responsible for the moving the gripper.
+		This file is responsible for the low level communication with the move gripper action client which is responsible for the moving the gripper.
 		\begin{itemize}
 			\item \textbf{init-move-gripper-action-client} \\
 			This function initiates the connection to the move gripper action server
@@ -208,18 +204,18 @@ This function checks if a point is inside a polygon.
 			This function takes x,y,z coordiantes and four quaternion values to move the gripper to that position. 
 		\end{itemize}
 		\subsection{knowledge-client.lisp}
-		The knowledge-client is an interface to knowledge, which is responsible for the request to the knowledgebase. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
+		The knowledge-client is an interface to knowledge, which is responsible for the request to the knowledge base. For every request exists a function, which calls the prolog query and returns the result. Implemented requests are:
 			\begin{itemize}
 				\item \textbf{knowledge-set-tables-source} \\ Sets all tables as source.
 				\item \textbf{knowledge-set-ground-source} \\ Sets the ground as source.
 				\item \textbf{knowledge-set-target-surfaces} \\ Sets all shelves as target surfaces.
-			  \item \textbf{prolog-add-test-objects} \\ Adds test objects on the tables.
+				\item \textbf{prolog-add-test-objects} \\ Adds test objects on the tables.
 				\item \textbf{prolog-table-objects} \\ Returns all objects on the table.
 				\item \textbf{prolog-object-goal} \\ Returns the goal shelf for an object.
-			  \item \textbf{prolog-object-goal-pose} \\ Returns the goal pose for an object.
+			    \item \textbf{prolog-object-goal-pose} \\ Returns the goal pose for an object.
 				\item \textbf{prolog-all-objects-in-shelf} \\ Returns all objects in the shelf.
 				\item \textbf{prolog-next-object} \\ Returns the next object to grasp choosen by knowledge.
-		    \item \textbf{prolog-object-dimensions} \\ Returns the dimension for an object (depth, width, height).
+		        \item \textbf{prolog-object-dimensions} \\ Returns the dimension for an object (depth, width, height).
 				\item \textbf{prolog-object-pose} \\ Returns the pose of an object as list.
 				\item \textbf{prolog-table-pose} \\ Returns the pose of the table as list (x, y, z).
 				\item \textbf{prolog-shelf-pose} \\ Returns the pose of the shelf as list (x, y, z).
@@ -234,16 +230,16 @@ This function checks if a point is inside a polygon.
 	    \begin{itemize}
 	    	\item \textbf{obstacle-map-listener} \\
 	    	This function subscribes the obstacle map and stores the current map in a variable.
-	    	\item \textbf{saveObstacleMap} \\
+	    	\item \textbf{save-obstacle-map} \\
 	    	Makes a copy of the given message and stores it in a variable.
-	    	\item \textbf{getMapPoint} \\
+	    	\item \textbf{get-map-point} \\
 	    	Returns the occupancy from a given position in the map.
 	    \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
-	    	\item \textbf{closestPoi} \\
+	    	\item \textbf{closest-poi} \\
 	    	This function returns the next point of interest in relation to the passed point.
-	    	\item \textbf{sortedPoiByDistance} \\
+	    	\item \textbf{sorted-poi-by-distance} \\
 	    	This function returns all points of interest sorted in relation to the given point.
 	    	\item \textbf{point-listener} \\
 	    	This function subscribes the point of interessts and stores them in a variable.
