@@ -150,7 +150,46 @@ is_shelf(Shelf) :-
     shelf_surfaces(Shelves),
     member(Shelf, Shelves).
 \end{lstlisting}
-\texttt{surface\_type\_of/2} expects returns the type as simple atom, which can be \texttt{ground}, \texttt{table} or \texttt{shelf}.
+\texttt{surface\_type\_of/2} expects returns the type as simple atom, which can be \texttt{ground}, \texttt{table} or \texttt{shelf}.\\
+Last but not least there is 
+\begin{lstlisting}
+find_supportinf_surface/2
+\end{lstlisting}
+which goes in both directions and links an object to the surface it is standing on.
+
+\subsubsection{Get poses}
+When the Roboter first goes to a surface to scan the objects that are standing there, Planning need to know the positions of those surfaces. That's what this chapter is about. It is based on
+\begin{lstlisting}
+pose_of_surfaces(Surfaces, Positions) :-
+\end{lstlisting}
+which takes a list of surfaces, sorts them by their distance to the roboter (where the nearest surface comes first in the list) and returns the sorted list of their positions.\\
+The two other predicates just call \texttt{pose\_of\_surfaces/2} with a preset list of surfaces of a specified type:
+\begin{lstlisting}
+pose_of_tables(Positions) :-
+pose_of_shelves(Positions) :-
+\end{lstlisting}
+
+\subsubsection{Find Objects}
+As an equivilant to \texttt{is\_surface} we also have
+\begin{lstlisting}
+is_object/1
+\end{lstlisting}
+To find Objects, there is our core predicate
+\begin{lstlisting}
+objects_on_list_of_surfaces(ObjectInstances, SurfaceList):-
+\end{lstlisting}
+which just runs through all the given surfaces and returns a list of every object that was found on them.\\
+All the other predicates in this chapter are variations of this idea:
+\begin{lstlisting}
+objects_on_surface/2,
+all_objects_on_source_surfaces/1,
+all_objects_on_target_surfaces/1,
+all_objects_on_ground/1,
+all_objects_in_whole_shelf/1,
+ all_objects_on_tables/1,
+\end{lstlisting}
+
+\subsubsection{Create Object}
 
 
 \subsection{spatial\_comp.pl}
