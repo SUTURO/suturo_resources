@@ -12,10 +12,16 @@
 
 		\chapterauthor{Jeremias Thun}
 
-All the Information about the existing surfaces and the objects are managed in our Knowledgebase. Every question about the relationship between these Objects as well as which one should be taken next and where should it be put is answerd by this Knowledgebase. The Knowledgebase is built as part of KnowRob. All data is stored as RDF triple, organized by an OWL ontology. This is where logical relationship between the category of objects and surfaces is implemented. 
+All the Information about the existing surfaces and the objects are managed in our Knowledgebase. Every question about the relationship between these Objects as well as which one should be taken next and where should it be put is answerd by this Knowledgebase.  The Knowledgebase is built as part of KnowRob. All data is stored as RDF triple, organized by an OWL ontology. This is where logical relationship between the category of objects and surfaces is implemented. \\
 		
-\section{Knowledgebase}
+\section{Knowledge base}
 \chapterauthor{Jeremias Thun}
+
+The Knowledge base as well as knowrob is written in Prolog. To interact manually with the knowledge base, you can (after you started Knowledge) run
+\begin{lstlisting}
+rosrun rosprolog rosprolog_commandline.py
+\end{lstlisting}
+which opens a prolog shell in your commandline.
 
 \subsection{object\_state.pl}
 
@@ -84,7 +90,7 @@ In the end, everything Planning needs is given by
 \begin{lstlisting}
 object_goal_pose_offset(Instance, [[X,Y,Z], Rotation],Context):-
 \end{lstlisting}
-It takes an Object and returns the pose this object should be placed and as Context it also returns, why this decision was made the way it was.\\
+It takes an Object and returns the pose this object should be placed in and as Context it also returns, why this decision was made the way it was.\\
 But this predicate actually contains a few other queries. Some of the most important ones are:
 
 \begin{lstlisting}
@@ -100,7 +106,52 @@ Here lies the decision about what object is most similar to the one, \texttt{obj
 
 \subsection{surfaces.pl}
 
-The bigges module is the \texttt{surfaces} module. This is where you can find everything you need to know about surfaces.
+The bigges module is the \texttt{surfaces} module. This is where you can find everything you need to know about surfaces.\\
+The surfaces are, just like objects, stored as an atom, wich represents an instance of an OWL-Class and look like this:
+\begin{lstlisting}
+?- is_surface('http://ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject_UHOJSVEC)
+true.
+\end{lstlisting}
+The only exception is the surface \texttt{ground}, which has no representation in the URDF, and is just an infinite surface that is everywhere below a certain height. This surface is just stored like this:
+\begin{lstlisting}
+?- is_surface(ground)
+true.
+\end{lstlisting}
+
+\subsubsection{find surfaces}
+
+You can call
+\begin{lstlisting}
+all_surfaces/1
+\end{lstlisting}
+to get all surfaces that are loaded in the URDF regardless of their role of if they even have a role. This predicate comes in handy, if you want to iterate through the available surfaces.\\
+To find surfaces of a specific type, there are equivilent predicates that can give you lists of all tables, shelves, the ground or all source or target surfaces:
+\begin{lstlisting}
+all_source_surfaces/1
+all_target_surfaces/1
+ground_surface/1
+shelf_surfaces/1
+table_surfaces/1
+\end{lstlisting}
+
+There are also a few predicates that go in the other direction: If you have a surface and want to know if it is of a certain type, you can execute one of the following predicates:
+\begin{lstlisting}
+surface_type_of(Surrface, Type) :-
+
+is_surface(Surface) :-
+    all_surfaces(Surfaces),
+    member(Surface, Surfaces).
+
+is_table(Table) :-
+    table_surfaces(Tables),
+    member(Table, Tables).
+
+is_shelf(Shelf) :-
+    shelf_surfaces(Shelves),
+    member(Shelf, Shelves).
+\end{lstlisting}
+\texttt{surface\_type\_of/2} expects returns the type as simple atom, which can be \texttt{ground}, \texttt{table} or \texttt{shelf}.
+
 
 \subsection{spatial\_comp.pl}
 
