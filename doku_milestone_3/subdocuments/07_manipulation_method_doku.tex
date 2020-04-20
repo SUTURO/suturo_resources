@@ -15,12 +15,12 @@
 		
 		\subsection{General}
 
-		Manipulation has four Actionservers.\\
+		Manipulation has four action servers.\\
 		The "move\_gripper\_action\_server" moves the gripper to the given position.\\
 		The "take\_pose\_action\_server" moves the robot into perceiving position.\\
 		The "grasps\_object\_server" receives the size and position of an object and grasps it.\\
 		The "place\_server" places the attached object at the given pose.\\
-		Further Manipulation has a "suturo\_manipulation\_launch" package, which launches the Actionservers, rviz and giskard and a "object\_state\_listener" package.
+		Further Manipulation has a "suturo\_manipulation\_launch" package, which launches the action servers, rviz and giskard and a "object\_state\_listener" package.
 
 		\subsection{Grasp Object} \chapterauthor{Fabian Weihe}
 			The script recives a string ("object\_frame\_id"), a PoseStamped ("goal\_pose"), a Vector3 ("object\_size") and an uint8 (grasp\_mode).
@@ -39,13 +39,13 @@
 			0 ("FREE"): we use the given orientation.\\
 			 1 ("FRONT"): grasp the object frontal.\\
 			 2 ("TOP"): grasp the object from the top\\
-			 3 ("JUST"): just close the gripper with trasport pose.
+			 3 ("JUST"): just close the gripper with transport pose.
 			 
 			 \vspace{0,75 cm}
-			 The first method "get\_current\_joint\_state"  sets the value of every slider to ists corresponding current joint state.
+			 The first method "get\_current\_joint\_state"  sets the value of every slider to its corresponding current joint state.
 			 
 			 \vspace{0,25 cm}
-			 "execute\_cb" is the first method wich is called, when the server recives a new goal. Based on wich "grasp\_mode" is choosen the method either call "grasp\_to\_position" or "just\_grasp". The only case where "just\_grasp" is called is in "grasp\_mode" 3 ("JUST").
+			 "execute\_cb" is the first method which is called, when the server receives a new goal. Based on which "grasp\_mode" is chosen the method either call "grasp\_to\_position" or "just\_grasp". The only case where "just\_grasp" is called is in "grasp\_mode" 3 ("JUST").
 			 
 			 \vspace{0,25 cm}
 			 In every other case "grasp\_to\_position" is called.\\
@@ -66,8 +66,8 @@
 			The Take\_Pose\_Server puts the HSR into a pose to perceive objects depending on the chosen pose\_mode. \\
 			In FREE mode the server puts the HSR into a pose given by the float joint goals in the message. This is used for testing and error handling in Planning. \\
 			In NEUTRAL mode the HSR is put into a predefined pose that is used when the HSR is transporting an object. \\
-			In LOOK\_LOW, LOOK\_HIGH and LOOK\_FLOOR mode the server puts the HSR into a predefined position that is specifically designed to perceive objects on the tables, shelves and floor in the HSR lab. The advantage is that this works independently from other parts of the suturo project. The disadvantage is that these modes are not suited to perceive objects on planes that have a different heigth than the ones specified. \\
-			In GAZE mode the server receives a Vector 3 gaze\_point which represents the coordinates of the middle of a plane that the HSR is supposed to perceive objects on. The server then calculates the heigth and direction for the camera to perceive objects on the given plane and puts the HSR into the resulting pose.
+			In LOOK\_LOW, LOOK\_HIGH and LOOK\_FLOOR mode the server puts the HSR into a predefined position that is specifically designed to perceive objects on the tables, shelves and floor in the HSR lab. The advantage is that this works independently from other parts of the suturo project. The disadvantage is that these modes are not suited to perceive objects on planes that have a different height than the ones specified. \\
+			In GAZE mode the server receives a Vector 3 gaze\_point which represents the coordinates of the middle of a plane that the HSR is supposed to perceive objects on. The server then calculates the height and direction for the camera to perceive objects on the given plane and puts the HSR into the resulting pose.
 			
 			\begin{itemize}
 				\item Input: TakePoseGoal 
