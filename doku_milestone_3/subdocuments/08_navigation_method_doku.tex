@@ -10,8 +10,40 @@
 
 	\chapter{Navigation Function Documentation}
 
-		\chapterauthor{}
+		\chapterauthor{Marc Stelter}
 		
+		\section{mapping\_hector\_slam}
+		Contains a simple launch file starting hector\_slam with the correct parameters for the hsr.
+		
+		\section{obstacle\_finder.py}
+		Uses the laser scanner in accordance with the map to find objects.
+		
+		\begin{itemize}
+			\item Input: 
+				\subitem nav\_msgs/OccupancyGrid
+				\subitem sensor\_msgs/LaserScan
+			\item Parameter:
+				\subitem occ\_threshold 
+				Minimum value for a cell in the OccupancyGrid to be occupied
+				\subitem min\_scans\_cluster
+				Minimum number of laser rays to form a cluster
+				\subitem min\_percentage\_covered
+				Percentage of a cluster covered by the map to be part of it
+				\subitem rad\_neighbour (m)
+				Max distance between cells of a cluster
+				\subitem error\_map (m)
+				Allowed deviation in the map
+				\subitem use\_every\_n\_scan
+				Skip ecery nth LaserScan message 
+			\item  Publish:
+				\subitem Topic: /object\_finder
+				\subitem Type: geometry\_msgsPoseArray
+		\end{itemize}
+		
+		\section{nav\_fix.py}
+		Small node that takes in the original navigation goal and publishes an intermediate goal upon failure. The original goal gets published 3 times.
+		
+		This small node has proven to be useful inside the hsr lab, since some cables seem to be triggering the magnetic sensors.
 
 	\endgroup
 
