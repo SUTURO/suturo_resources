@@ -55,16 +55,16 @@ table_clone:
    height: 0.619873
    depth: 0.8
    z_rot: -1.57079
-   x_pos: 5.160520
-   y_pos: -2.643470 
+   x_pos: 5.91052
+   y_pos: -3.04347 
 bed_table:
    type: Table
    width: 0.898000
    height: 0.635
    depth: 0.398000
    z_rot: 3.4144446536
-   x_pos: -1.218320
-   y_pos: -2.491170
+   x_pos: -1.14768
+   y_pos: -2.00515
 # TODO: Bucket for Cleanup
 # adjust for the region filter
 surface_top_offset: 0.30 # 30cm above region surface
