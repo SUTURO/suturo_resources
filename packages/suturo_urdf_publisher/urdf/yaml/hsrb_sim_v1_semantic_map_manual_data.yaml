@@ -36,9 +36,9 @@ bookshelf:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: -1.5707963
-   x_pos: -0.020708
-   y_pos: 4.967030
+   z_rot: 1.5707963
+   x_pos: -0.859292
+   y_pos: 4.567030
    floors_height: [0.32, 0.582, 0.884]
    num_floors: 3
 table:
