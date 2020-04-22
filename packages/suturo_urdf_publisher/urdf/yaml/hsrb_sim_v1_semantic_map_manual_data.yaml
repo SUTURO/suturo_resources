@@ -6,9 +6,9 @@ hcr_shefl_2:
    width: 0.414
    height: 1.196
    depth: 0.266
-   z_rot: 0.0
-   x_pos: -2.962060
-   y_pos: -6.14339
+   z_rot: 3.1415926
+   x_pos: -2.96206
+   y_pos: -5.31539
    floors_height: [0.32, 0.582, 0.884]
    num_floors: 3
 bookshelf_clone_0:
@@ -16,9 +16,9 @@ bookshelf_clone_0:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: 3.1415926
-   x_pos: 6.757380
-   y_pos: 1.17099
+   z_rot: 0.0
+   x_pos: 6.357380
+   y_pos: 0.29099
    floors_height: [0.32, 0.582, 0.884]
    num_floors: 3
 bookshelf_clone:
@@ -26,9 +26,9 @@ bookshelf_clone:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: -1.5707963
-   x_pos: 4.91168
-   y_pos: 4.954290
+   z_rot: 1.5707963
+   x_pos: 5.79168
+   y_pos: 4.554290
    floors_height: [0.32, 0.582, 0.884]
    num_floors: 3
 bookshelf:
