@@ -19,9 +19,9 @@
 The main pipeline for detecting and identifying objects with RoboSherlock consists of following annotators:  
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Implements image filters  
+	\item ImagePreprocessor : Implements image filters
 	\item SuturoRegionFilter : Removes all points that are not in the defined regions 
-	\item NormalEstimator : Estimate surface normals in a PointCloud 
+	\item NormalEstimator : Estimate surface normal's in a PointCloud 
 	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS.
 	\item PointCloudClusterExtractor : Extracts all points that are found in the PointCloud that are perpendicular to the plane 
 	\item ClusterColorHistogramCalculator : Calculate the individual color quantity in relation to all colors in the cluster   
@@ -32,10 +32,9 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
 	\item KnnAnnotator : Uses K-Nearest-Neighbor for the classification of objects 
 \end{itemize}
 
-Each annotator contains changeable variables that enable customization to the given tasks, for most of time we used the default settings. 
-RoboSherlock pipeline works sequential meaning any change to the order can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader. 
-Furthermore for any new annotator created, need to consideration where to put it.\\
- The following Pictures are an example of the RoboSherlock pipeline output :  \\
+Each annotator contains changeable variables that enable customization to the given tasks.
+RoboSherlock pipeline works sequential meaning any change to the order can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
+The following pictures are an example of the RoboSherlock pipeline output :  \\
 %Bild Hinzufügen 
 
 \begin{figure}[H]
@@ -127,7 +126,7 @@ Pipeline for storing the actual scene in MongoDB, all saved scenes can be replay
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
 	\item ImagePreprocessor : Implements image filters 
-	\item StorageWriterSuturo :  Store set topics in MongoDB
+	\item StorageWriterSuturo :  Records defined camera topics into the MongoDB
 \end{itemize}
 
 		\section{actionserver}
@@ -136,45 +135,40 @@ Pipeline for storing the actual scene in MongoDB, all saved scenes can be replay
 Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. 
 
 			\subsection{ExtractObjectInfoServer}
-Receives a goal from ExtractObjectInfoClient and then SuturoProcessManager, Checks for result and publishes it under perception\_actionserver/result 
+Receives a goal from ExtractObjectInfoClient and then SuturoProcessManager, checks for result and publishes it under perception\_actionserver/result 
 
 			\subsection{ExtractPlaneInfoClient}
 Call ExtractPlaneInfoServer and wait until the result arrives or the time out runs out. This client has no additional parameters.
 
 			\subsection{ExtractPlaneInfoServer}
-Receives a goal from ExtractPlaneInfoClient and pass on to SuturoPrecessManager, Checks for result and publishes it under perception\_actionserver\_plane/result.
+Receives a goal from ExtractPlaneInfoClient and pass on to SuturoProcessManager, checks for result and publishes it under perception\_actionserver\_plane/result.
 
 			\subsection{perception\_server}
-Launch ExtractObjectInfoServe and ExtractPlaneInfoServer no other Functionality.
-
-%		\section{rs\_hsrb\_perception}
-%rs\_hsrb\_perception is package from the last Suturo group. All changes are made to the new sub Branch suturo20.
-
-%			\subsection{SuturoProcessManager}
-%Annotator based on RSProcessManager. Starts different Robosherlock pipelines based on witch Server makes the Call.  Each server use the same run method with different arguments. 
+Launches the ExtractObjectInfoServer and ExtractPlaneInfoServer and has no other functionality.
 
 		\section{rs\_turn\_table}
 rs\_turn\_table is package from the last Suturo group.There was no big changes to the core code, only small situational changes not implemented on the master. 
-This package is mainly for Image recording, All recorded images will then be used for Object recognition.  
+This package is mainly for image recording, all recorded images will then be used for object recognition.  
 			\subsection{Pipeline: estimate\_plane}
 \begin{itemize}
-	\item CollectionReader : Takes care of the Camera  Input
-	\item ImagePreprocessor : Create missing Images and implement Image Filters  
-	\item PointCloudFilter : Filter Points that are over set limitations like size and depth
+	\item CollectionReader : Takes care of the camera input
+	\item ImagePreprocessor : Implements image filters  
+	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
 	\item PlaneAnnotator : Finds a plane and save it to a file 
 \end{itemize}
 This Pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on PointCloudFilter by hand. It is desirable that only one plane is visible. 
 
 			\subsection{Pipeline: save\_images}
 \begin{itemize}
-	\item CollectionReader : Takes care of the Camera  Input
-	\item ImagePreprocessor : Create missing Images and implement Image Filters  
-	\item PointCloudFilter : Filter Points that are over set Limitations like Size and Depht
-	\item PlaneAnnotator : Use saved plane in which the search location for Objects is set
-	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
+	\item CollectionReader : Takes care of the camera input
+	\item ImagePreprocessor : Implements image filters  
+	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
+	\item NormalEstimator : Estimate surface normal's in a PointCloud 
+	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS.
+	\item PointCloudClusterExtractor : Extracts all points that are found in the PointCloud that are perpendicular to the plane 
 	\item SaveClusterCloudsAndImages : Save Information about the Cluster to a file 
 \end{itemize}
-Uses the saved Plane and take periodic Images from Objects on the plane, if there is more that one Cluster visible the Annotator will not trigger the Save process.
+Uses the saved plane and take periodic images from objects on the plane, if there is more that one cluster visible the annotator will not trigger the saving process.
 
 \section{classificationEvaluation Package}
 \chapterauthor{Jan-Frederik Stock}
