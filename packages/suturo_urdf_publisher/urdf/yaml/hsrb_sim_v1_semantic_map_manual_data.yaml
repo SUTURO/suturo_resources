@@ -19,7 +19,7 @@ bookshelf_clone_0:
    z_rot: 0.0
    x_pos: 6.357380
    y_pos: 0.29099
-   floors_height: [0.32, 0.582, 0.884]
+   floors_height: [0.032, 0.4, 0.8]
    num_floors: 3
 bookshelf_clone:
    type: Shelf
@@ -29,7 +29,7 @@ bookshelf_clone:
    z_rot: 1.5707963
    x_pos: 5.79168
    y_pos: 4.554290
-   floors_height: [0.32, 0.582, 0.884]
+   floors_height: [0.032, 0.4, 0.8]
    num_floors: 3
 bookshelf:
    type: Shelf
@@ -39,7 +39,7 @@ bookshelf:
    z_rot: 1.5707963
    x_pos: 0.859292
    y_pos: 4.567030
-   floors_height: [0.32, 0.582, 0.884]
+   floors_height: [0.032, 0.4, 0.8]
    num_floors: 3
 table:
    type: Table
