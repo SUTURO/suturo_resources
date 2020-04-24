@@ -39,7 +39,7 @@
   <group>
     <param name="robot_description"
            command="$(find xacro)/xacro --inorder 
-                    '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
+                    '$(find hsrb_description)/robots/hsrb4s.urdf.xacro'"/>
  	<!-- HSR IK solver
  	<include file="$(find kdl_ik_service)/launch/kdl_ik.launch" /> -->
    </group>
