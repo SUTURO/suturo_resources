@@ -65,6 +65,14 @@ bed_table:
    z_rot: 3.4144446536
    x_pos: -1.14768
    y_pos: -2.00515
+bucket:
+   type: Bucket
+   width: 1.0
+   height: 0.4
+   depth: 1.0
+   z_rot: 3.14159
+   x_pos: -2.280490
+   y_pos: 3.119460
 # TODO: Bucket for Cleanup
 # adjust for the region filter
 surface_top_offset: 0.30 # 30cm above region surface

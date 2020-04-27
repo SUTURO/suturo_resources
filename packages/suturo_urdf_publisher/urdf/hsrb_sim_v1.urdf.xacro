@@ -3,6 +3,7 @@
 <robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_table.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_door.urdf.xacro"/>    
+    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_bucket.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/robocup_sim_walls.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/robocup_sim_shelf.urdf.xacro"/>
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/IAI_tables.urdf.xacro"/>
@@ -121,6 +122,19 @@
     <xacro:property name="bed_table_height" 
         value="${data['bed_table']['height']}" /> 
 
+    <xacro:property name="bucket_x" 
+        value="${data['bucket']['x_pos']}" />
+    <xacro:property name="bucket_y" 
+        value="${data['bucket']['y_pos']}" />
+    <xacro:property name="bucket_z_rot" 
+        value="${data['bucket']['z_rot']}" />
+    <xacro:property name="bucket_depth" 
+        value="${data['bucket']['depth']}" />
+    <xacro:property name="bucket_width" 
+        value="${data['bucket']['width']}" />
+    <xacro:property name="bucket_height" 
+        value="${data['bucket']['height']}" /> 
+
 
     <xacro:if value="${simulated}">
         <link name="world"/> 
@@ -175,6 +189,10 @@
         <origin xyz="-1.93446 4.97898 1.045" rpy="0 0 0" />
     </suturo_door>
 
+
+    <robocup_bucket name="bucket" parent="room_link" size_x="${bucket_depth}" size_y="${bucket_width}" size_z="${bucket_height}" >
+        <origin xyz="${bucket_x} ${bucket_y} 0" rpy="0 0 ${bucket_z_rot}" />
+    </robocup_bucket>
 
 
 </robot>
