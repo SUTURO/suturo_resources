@@ -31,8 +31,80 @@
 	\section{The suturo\_julius Package}
 	\chapterauthor{Paul Schnipper}
 		\subsection{About Julius}
-			Julius 	
-		\subsection{Dictionaries}
+			Julius is a continuous speech recognition software. It is released under BSD-3 license by the Kyoto University. Toyota created a ROS-wrapper for Julius, it is published a part of the \texttt{ros-kinetic-hsrb-full} apt-get-Package.\\
+			In theory the Julius engine supports a lot of different languages, but currently there are only two speech models
+			Julius works on dictionaries. Dictionaries are a customizable way of providing the speech recognizer with words or sentences to recognize.
+		\subsection{how dictionaries work}
+			Dictionaries can be either word-based or grammar-based. Dew to word-based dictionaries only producing single-word output and grammar-based dictionaries being capable of whole-sentence recognition, the SUTURO-Project uses grammar-based dictionaries.
+		
+		\subsubsection{word-based dictionary}
+			For testing purposes we created one word-based dictionaries. It can be found in \lstinline|/suturo_julius/dictionaries/examples/word|.\\
+			This contains the \texttt{word\_sample} file.\\
+			\begin{lstlisting}
+				shelf sh eh l f
+				table t ey b ax l
+				milk m ih l k
+				chocolate ch ao k l ax t
+				robot	r ow b ow t
+				chips	ch ih p s
+				a	ah
+				vase	w ah z\end{lstlisting}
+			The file just contains words and their phonetic representation in a single line seperated by a single space.
+			
+		\subsubsection{grammar-based dictionaries}
+			Grammar-based dictionaries consist of two editable files. The \texttt{.grammar} and \texttt{.voca} file.\\
+			The \texttt{.grammar} file describe how sentences are build. Sentences are build in a Backus–Naur form grammar.\\
+			\begin{lstlisting}
+				S : NS_B COMMANDS NS_E
+				COMMANDS : COMMAND
+				COMMANDS : COMMAND and COMMAND
+				COMMAND : move to the LOCATION
+				COMMAND : grasp the ITEM
+				LOCATION : couch table
+				LOCATION : table
+				LOCATION : shelf
+				ITEM : Beer can
+				ITEM : Coke
+				ITEM : Marmelade
+				ITEM : Cookies
+			\end{lstlisting}
+			Every symbol is nonterminal, except for symbols defined in the \texttt{.voca} file. Terminals are defined as a word category. The category is defined through \newline \lstinline{% <<name>>}
+			In the \texttt{.voca} file the word and the the phonetic representation are separated by a space.
+			\begin{lstlisting}
+				% and
+				and ae n d
+				% move
+				move m uw v
+				% to
+				to t uw
+				to t ih
+				% the
+				the dh ax
+				% grasp
+				grasp g r ae s p
+				% couch
+				couch k aw ch
+				% table
+				table t ey b ax l
+				% shelf
+				shelf sh eh l f
+				% Beer
+				Beer b ih r
+				% can
+				can k ae n
+				% Coke
+				Coke k ow k
+				% Marmelade
+				Marmelade m aa r m ax l ey d
+				% Cookies
+				Cookies k uh k ix
+				Oreos ao r iy ow s
+			\end{lstlisting}
+		Grammars have to be compiled to run. To compile run \texttt{rosrun tmc\_julius mkdfa.pl <<grammar\_name>>} e.g. \texttt{rosrun tmc\_julius mkdfa.pl grammar}. Both the \texttt{.grammar} and \texttt{.voca} file have to be named identical. E.g. \texttt{grammar.grammar} and \texttt{grammar.voca}. The compiler creates the \texttt{.dfa}, \texttt{dict} and \texttt{.term} files.	
+		
+		\subsection{The Suturo Dictionaries}
+		The suturo\_julius package contains 3 different grammar-based dictionaries. hard\_commands contains sentences telling the robot to start, stop or continue the task.
+		soft\_commands describes commands the robot may execute in the RoboCup. This dictionary contains sentences like: Fetch the cup from the table.Or: Find me some chocolate.
 		\subsection{Configuration files}
 		\subsection{Launchfiles}
 	
