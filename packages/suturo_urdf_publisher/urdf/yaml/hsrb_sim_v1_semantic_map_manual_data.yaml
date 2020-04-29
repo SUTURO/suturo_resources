@@ -69,7 +69,7 @@ bucket:
    type: Bucket
    width: 1.0
    height: 0.4
-   depth: 1.0
+   depth: 0.2
    z_rot: 3.14159
    x_pos: -2.280490
    y_pos: 3.119460
