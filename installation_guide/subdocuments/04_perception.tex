@@ -5,33 +5,37 @@
  \section{Perception}
  Create a new Workspace or open the workspace where you want to install the perception part. Now run the following commands to download dependencies into your workspace.
  
- \begin{lstlisting}
- git clone https://github.com/SUTURO/suturo_perception.git
- git clone https://github.com/SUTURO/suturo_resources.git 
- git clone https://github.com/evankapi/rs_hsrb_perception.git -b suturo20
- git clone https://github.com/RoboSherlock/robosherlock.git --recursive
- git clone https://github.com/RoboSherlock/rs_resources.git
- git clone https://github.com/Jastock/rs_addons.git
- cd ..
- rosdep install --from-path . --ignore-src -r \end{lstlisting}
+ \begin{itemize}
+
+\item git clone \url{https://github.com/SUTURO/suturo_perception.git}
+\item git clone \url{https://github.com/SUTURO/suturo_resources.git} 
+\item git clone \url{https://github.com/evankapi/rs_hsrb_perception.git} -b suturo20
+\item git clone \url{https://github.com/RoboSherlock/robosherlock.git} -{}-recursive
+\item git clone \url{https://github.com/RoboSherlock/rs_resources.git}
+\item git clone \url{https://github.com/Jastock/rs_addons.git}
+\item cd ..
+\item rosdep install -{}-from-path . -{}-ignore-src -r 
+\end{itemize}
  
  Then install the rs\_addons dependencies by running the following commands.
- \begin{lstlisting}
- sudo add-apt-repository ppa:robosherlock/ppa
- sudo apt-get update
- sudo apt-get install rapidjson \end{lstlisting}
+ \begin{itemize}
+\item sudo add-apt-repository ppa:robosherlock/ppa
+\item sudo apt-get update
+\item sudo apt-get install rapidjson 
+ \end{itemize}
  
  Now install Caffe using the following commands.
- \begin{lstlisting}
- sudo apt-get update
- sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
- sudo apt-get install --no-install-recommends libboost-all-dev
- sudo apt-get install libgflags-dev
- sudo apt-get install libgoogle-glog-dev
- sudo apt-get install libopenblas-dev
- sudo apt-get install liblmdb-dev
- cd ~
- git clone https://github.com/BVLC/caffe.git \end{lstlisting}
+ \begin{itemize}
+\item sudo apt-get update
+\item sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+\item sudo apt-get install -{}-no-install-recommends libboost-all-dev
+\item sudo apt-get install libgflags-dev
+\item sudo apt-get install libgoogle-glog-dev
+\item sudo apt-get install libopenblas-dev
+\item sudo apt-get install liblmdb-dev
+\item cd $\sim$
+\item git clone \url{https://github.com/BVLC/caffe.git}
+ \end{itemize}
  
  For GPU acceleration install cude, a graphics card driver update may be necessary.
  
@@ -48,10 +52,11 @@
  	
  \end{itemize}
 Now you need to build caffe using the following commands.
-\begin{lstlisting}
- make all
- make test
- make runtest  \end{lstlisting}
+\begin{itemize}
+\item make all
+\item make test
+\item make runtest  
+ \end{itemize}
 
  
 \end{document}
