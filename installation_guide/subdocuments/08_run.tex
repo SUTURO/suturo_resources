@@ -60,7 +60,6 @@ perception_actionserver/result
 \item \begin{verbatim}
 perception_actionserver_plane/result
 \end{verbatim}
-\item rosrun actionserver ExtractPlaneInfoClient
 \end{itemize}
 
 The action client is not necessary for the HSR demo.
@@ -79,12 +78,13 @@ The action client is not necessary for the HSR demo.
 	\subsubsection{Groceries}
 	To start the grocery plan you now need to load the package \begin{verbatim}
 	grocery_demo
-	\end{verbatim} using the following commands.
+	\end{verbatim}
+	 using the following commands:
 	\begin{itemize}
 \item (swank:operate-on-system-for-emacs "grocery-demo" (quote load-op))
 \item (grocery::init-interfaces)
 \end{itemize}
-This step takes some time. After that th task can be started:
+This step takes some time. After that the task can be started:
 \begin{itemize}
 \item (grocery::execute-grocery)
 \end{itemize}
@@ -92,12 +92,13 @@ This step takes some time. After that th task can be started:
 	\subsubsection{Cleanup}
 	To start the cleanup plan you now need to load the package \begin{verbatim}
 	cleanup_demo
-	\end{verbatim} using the following commands.
+	\end{verbatim}
+	 using the following commands:
 	\begin{itemize}
 \item (swank:operate-on-system-for-emacs "cleanup-demo" (quote load-op))
-\item (grocery::init-interfaces)
+\item (clean::init-interfaces)
 \end{itemize}
-This step takes some time. After that th task can be started:
+This step takes some time. After that the task can be started:
 \begin{itemize}
 \item (clean::execute-cleanup)
 \end{itemize}
