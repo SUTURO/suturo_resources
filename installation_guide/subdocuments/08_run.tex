@@ -4,10 +4,66 @@
 	\section{Run}
 	\subsection{Knowledge}
 	\subsubsection{Knowledge}
+	To start knowledge you need to run the following command.
+	\begin{itemize}
+\item roslaunch knowledge knowledge.launch
+\end{itemize}
+If you want to manually interact with the knowledge base you can run 
+\begin{itemize}
+\item \begin{verbatim}rosrun rosprolog rosprolog_commandline.py \end{verbatim}
+\end{itemize}
+to start a SWI-Prolog interface.
 	
 	\subsubsection{NLP}
 	
 	\subsection{Perception}
+
+	To start perception you first need to start the pipelines:
+	\begin{itemize}
+\item \begin{verbatim} roscd rs_perception \end{verbatim} 
+\item \begin{verbatim}
+roslaunch rs_perception hsrb_perception.launch
+\end{verbatim}
+\end{itemize}	
+
+After that start the action clients:
+\begin{itemize}
+\item rosrun actionserver ExtractObjectInfoClient
+\item rosrun actionserver ExtractPlaneInfoClient
+\end{itemize}
+
+To Limit the perception of objects to a specific region you can use:
+\begin{itemize}
+\item \begin{verbatim} set_region:=region name \end{verbatim} 
+\end{itemize}
+Region names:
+\begin{itemize}
+\item \begin{verbatim} bed_table- table_clone \end{verbatim} 
+\item \begin{verbatim} table \end{verbatim} 
+\item \begin{verbatim} hcr_shelf_2_0 \end{verbatim} 
+\item \begin{verbatim} hcr_shelf_2_1 \end{verbatim}
+\item \begin{verbatim} hcr_shelf_2_2 \end{verbatim}
+\item \begin{verbatim} bookshelf_clone_0_0 \end{verbatim} 
+\item \begin{verbatim} bookshelf_clone_0_1 \end{verbatim} 
+\item \begin{verbatim} bookshelf_clone_0_2 \end{verbatim} 
+\item \begin{verbatim} bookshelf_0_0 \end{verbatim} 
+\item \begin{verbatim} bookshelf_0_1 \end{verbatim} 
+\item \begin{verbatim} bookshelf_0_2 \end{verbatim} 
+\item \begin{verbatim} robocup_default \end{verbatim} 
+\end{itemize}
+
+The result topics are the following.
+\begin{itemize}
+\item \begin{verbatim}
+perception_actionserver/result
+\end{verbatim}
+\item \begin{verbatim}
+perception_actionserver_plane/result
+\end{verbatim}
+\item rosrun actionserver ExtractPlaneInfoClient
+\end{itemize}
+
+The action client is not necessary for the HSR demo.
 	
 	\subsection{Manipulation}
 	\subsubsection{Manipulation}
@@ -15,6 +71,35 @@
 	\subsubsection{Navigation}
 	
 	\subsection{Planning}
+	Before you start planning the simulation environment, knowledge, perception and manipulation must be launched.\\
+	The first step to launching planning is the following command.
+	\begin{itemize}
+\item \begin{verbatim} roslisp_repl \end{verbatim} 
+\end{itemize}
+	\subsubsection{Groceries}
+	To start the grocery plan you now need to load the package \begin{verbatim}
+	grocery_demo
+	\end{verbatim} using the following commands.
+	\begin{itemize}
+\item (swank:operate-on-system-for-emacs "grocery-demo" (quote load-op))
+\item (grocery::init-interfaces)
+\end{itemize}
+This step takes some time. After that th task can be started:
+\begin{itemize}
+\item (grocery::execute-grocery)
+\end{itemize}
 
+	\subsubsection{Cleanup}
+	To start the cleanup plan you now need to load the package \begin{verbatim}
+	cleanup_demo
+	\end{verbatim} using the following commands.
+	\begin{itemize}
+\item (swank:operate-on-system-for-emacs "cleanup-demo" (quote load-op))
+\item (grocery::init-interfaces)
+\end{itemize}
+This step takes some time. After that th task can be started:
+\begin{itemize}
+\item (clean::execute-cleanup)
+\end{itemize}
 
 \end{document}
