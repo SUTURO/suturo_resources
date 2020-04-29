@@ -39,29 +39,31 @@
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
+	  	This file contains the main function for this tasks and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
 			This is the main function for the clean up task, when this function is called it starts all the subroutines to execute the planned behavior for this task
 			\item \textbf{shelf-scan} \\
-			perceives the entire shelf using perceive-shelf
+			This function perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
 			same as in grocery perceives the shelf depending on the given regions value
 			\item \textbf{perceive-table} \\
 			same as in grocery perceives the robocub table
 			\item \textbf{transport} \\
-            transports all objects found on the robocub table and then places them into the shelf
+            This function transports all objects found on the robocub table and then places them into the shelf
 			\item \textbf{point-of-interest-search} \\
-			moves to a point of interest and perceives it 
+			This function moves to a point of interest and perceives it 
 			\item \textbf{point-of-interest-transport} \\
-			grasp objects found with point of interest search and places them into the shelf
+			This function grasps objects found with point of interest search and places them into the shelf
 			\item \textbf{grasp-with-failure-handling-floor} \\
-			grasping with failure handling it falls to grasp an object from the floor
+			This function is a subroutine for grasping objects from the floor with failure handling, which object will be grasped is determined by the knowledge base
 			\item \textbf{grasp-handling}\\
-			grasping with primitive failture handling for grasping from the robocub table
+			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
+        This file contains functions used in combination of the bulletworld simulation.
 		\begin{itemize}
 			\item \textbf{spawn-btr-objects}
 			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects  
@@ -78,9 +80,9 @@
 	    \item \textbf{move-hsr} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
 	    \item \textbf{grasp-hsr} \\
-	    FEHLT
+	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling
 	    \item \textbf{place-hsr} \\
-	    FEHLT
+	    This function takes a object-id and a grasp-pose. Places the object in the gripper in the goal and includes failure handling.
 	    \item \textbf{move-to-poi} \\
 	    This function moves the robot to the next point of interest that can be approached. 
 	    \item \textbf{move-to-poi-and-scan} \\
@@ -91,10 +93,7 @@
 	    This function moves the robot to the shelf position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
 		\end{itemize}
 	    \subsection{knowledge-functions.lisp}
-	    The knowledge function file contains all functions common to both tasks which are used in the connection with the knowledge part
-	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
-	    \end{itemize}
+	     We didn't implement any higher level functions for the knowledge interface because they are not needed.
 	    \subsection{manipulation-functions.lisp}
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
@@ -118,10 +117,7 @@
 This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
-	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
-	    	Ist vielleicht sogar leer... dann file löschen?
-	    \end{itemize}
+	     We didn't implement any higher level functions for the nlp interface because they are not needed.
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
 	    \begin{itemize}
@@ -129,8 +125,12 @@ This function checks if a point is inside a polygon.
 	    	This function filters the objects detected by robosherlock by their confidence (class, shape, color), the default threshold value is 0.5
 	    \end{itemize}
 	    \subsection{safety-check.lisp}
+	    The plan is for the procedure in which the robot is inspected. 
 	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
+	    	\item \textbf{execute-safety-check} \\
+	    	Start the plan. The robot moves through the entrance door as soon as it is open. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
+	    	\item \textbf{check-goal-reached}\\
+	    	Überprüft, ob der Roboter am Zielpunkt angekommen ist. Dies wird als Workaround benutzt, da der Roboter noch nicht erkennen kann, ob eine Tür geöffnet wurde.
 	    \end{itemize}
 	    \subsection{process-modules.lisp}
 	    \begin{itemize}
@@ -148,13 +148,87 @@ This function checks if a point is inside a polygon.
 	  	\section{LLIF}
 		Hier fehlen evtl noch files:
 		\subsection{grasp-action-client.lisp}
+		This file is responsible for the low level communication with the
+		grasp action server which is responsible for grasping objects.
+		\begin{itemize}
+			\item \textbf{init-grasp-action-client} \\
+			This function initiates the connection to the grasp action server
+			\item \textbf{get-grasp-action-client} \\
+			This function returns the grasp action client
+			\item \textbf{make-grasp-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{ensure-grasp-goal-reached} \\
+            This function makes sure the goal was reached
+			\item \textbf{call-grasp-action} \\
+			This function takes the x,y,z coordiantes, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the graspmode.
+		\end{itemize}
 		\subsection{place-action-client.lisp}
+		This file is responsible for the low level communication with the
+		place action server which is responsible for placing objects.
+	    \begin{itemize}
+			\item \textbf{init-place-action-client} \\
+			This function initiates the connection to the place action server
+			\item \textbf{get-place-action-client} \\
+			This function returns the place action client
+			\item \textbf{make-place-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{ensure-place-goal-reached} \\
+            This function makes sure the goal was reached
+			\item \textbf{call-place-action} \\
+			This function takes the x,y,z coordiantes, quaternion values  and the object-id of the object that is placed and the graspmode.
+		\end{itemize}
 		\subsection{take-pose-action-server.lisp}
+		This file is responsible for the low level communication with the
+		take pose action server which is responsible taking different poses.
+		\begin{itemize}
+			\item \textbf{init-take-pose-action-client} \\
+			This function initiates the connection to the take pose action server
+			\item \textbf{get-take-pose-action-client} \\
+			This function returns the take pose action client
+			\item \textbf{make-take-pose-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{ensure-take-pose-goal-reached} \\
+            This function makes sure the goal was reached
+			\item \textbf{call-take-pose-action} \\
+			This function takes a integeter for a set pose or for a custom pose than needs ten more float values to set the joints.
+		\end{itemize}
 		\subsection{move-gripper-client.lisp}
+		This file is responsible for the low level communication with the
+		move gripper action client which is responsible for the moving the gripper.
+		\begin{itemize}
+			\item \textbf{init-move-gripper-action-client} \\
+			This function initiates the connection to the move gripper action server
+			\item \textbf{get-move-gripper-action-client} \\
+			This function returns the move gripper action client
+			\item \textbf{make-move-gripper-action-goal} \\
+			This function makes and returns a action client goal
+			\item \textbf{ensure-take-pose-goal-reached} \\
+            This function makes sure the goal was reached
+			\item \textbf{call-move-gripper-action} \\
+			This function takes x,y,z coordiantes and four quaternion values to move the gripper to that position. 
+		\end{itemize}
 		\subsection{knowledge-client.lisp}
+		The knowledge-client is an interface to knowledge, which is responsible for the request to the knowledgebase. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
+			\begin{itemize}
+				\item \textbf{knowledge-set-tables-source} \\ Sets all tables as source.
+				\item \textbf{knowledge-set-ground-source} \\ Sets the ground as source.
+				\item \textbf{knowledge-set-target-surfaces} \\ Sets all shelves as target surfaces.
+			  \item \textbf{prolog-add-test-objects} \\ Adds test objects on the tables.
+				\item \textbf{prolog-table-objects} \\ Returns all objects on the table.
+				\item \textbf{prolog-object-goal} \\ Returns the goal shelf for an object.
+			  \item \textbf{prolog-object-goal-pose} \\ Returns the goal pose for an object.
+				\item \textbf{prolog-all-objects-in-shelf} \\ Returns all objects in the shelf.
+				\item \textbf{prolog-next-object} \\ Returns the next object to grasp choosen by knowledge.
+		    \item \textbf{prolog-object-dimensions} \\ Returns the dimension for an object (depth, width, height).
+				\item \textbf{prolog-object-pose} \\ Returns the pose of an object as list.
+				\item \textbf{prolog-table-pose} \\ Returns the pose of the table as list (x, y, z).
+				\item \textbf{prolog-shelf-pose} \\ Returns the pose of the shelf as list (x, y, z).
+				\item \textbf{prolog-object-in-gripper} \\ Returns the dimension of the object in gripper as list (depth, width, height).
+			\end{itemize} 
 		\subsection{knowledge-insertion-client.lisp}
 		\subsection{navigation-action.lisp}
 		\subsection{nlp-subscriber.lisp}
+		The \textbf{nlp-subscriber} provides functions subscribing to the topics from nlp. At the topic \textit{suturo\_speech\_recognition\/hard\_commands} the commands "start", "stop" and "continue" are published, if they are recognised by nlp. The subscriber for the hard-commands \textit{static-command-listener} calls the function \textit{set-state-fluent} with the message as argument and a fluent-variable is set according to the command. The message for dynamic-commands is not defined yet.
 		\subsection{text-to-speech.lisp}
 		\subsection{obstacle-map-subscriber.lisp}
 	    \begin{itemize}

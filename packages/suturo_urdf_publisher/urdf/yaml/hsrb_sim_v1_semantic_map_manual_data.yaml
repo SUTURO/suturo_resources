@@ -6,9 +6,9 @@ hcr_shefl_2:
    width: 0.414
    height: 1.196
    depth: 0.266
-   z_rot: 0.0
-   x_pos: -2.962060
-   y_pos: -6.14339
+   z_rot: 3.1415926
+   x_pos: -2.96206
+   y_pos: -5.31539
    floors_height: [0.32, 0.582, 0.884]
    num_floors: 3
 bookshelf_clone_0:
@@ -16,30 +16,30 @@ bookshelf_clone_0:
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: 3.1415926
-   x_pos: 6.757380
-   y_pos: 1.17099
-   floors_height: [0.32, 0.582, 0.884]
+   z_rot: 0.0
+   x_pos: 6.357380
+   y_pos: 0.29099
+   floors_height: [0.06, 0.44, 0.81]
    num_floors: 3
 bookshelf_clone:
    type: Shelf
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: -1.5707963
-   x_pos: 4.91168
-   y_pos: 4.954290
-   floors_height: [0.32, 0.582, 0.884]
+   z_rot: 1.5707963
+   x_pos: 5.79168
+   y_pos: 4.554290
+   floors_height: [0.06, 0.44, 0.81]
    num_floors: 3
 bookshelf:
    type: Shelf
    width: 0.88
    height: 0.9
    depth: 0.4
-   z_rot: -1.5707963
-   x_pos: -0.020708
-   y_pos: 4.967030
-   floors_height: [0.32, 0.582, 0.884]
+   z_rot: 1.5707963
+   x_pos: 0.859292
+   y_pos: 4.567030
+   floors_height: [0.06, 0.44, 0.81]
    num_floors: 3
 table:
    type: Table
@@ -47,24 +47,32 @@ table:
    height: 0.619873
    depth: 0.8
    z_rot: -0.6694823268 
-   x_pos: 1.294200
-   y_pos: -0.166561 
+   x_pos: 0.5151
+   y_pos: -0.506436
 table_clone:
    type: Table
    width:  1.5
    height: 0.619873
    depth: 0.8
    z_rot: -1.57079
-   x_pos: 5.160520
-   y_pos: -2.643470 
+   x_pos: 5.91052
+   y_pos: -3.04347 
 bed_table:
    type: Table
    width: 0.898000
    height: 0.635
    depth: 0.398000
    z_rot: 3.4144446536
-   x_pos: -1.218320
-   y_pos: -2.491170
+   x_pos: -1.14768
+   y_pos: -2.00515
+bucket:
+   type: Bucket
+   width: 1.0
+   height: 0.4
+   depth: 1.0
+   z_rot: 3.14159
+   x_pos: -2.280490
+   y_pos: 3.119460
 # TODO: Bucket for Cleanup
 # adjust for the region filter
 surface_top_offset: 0.30 # 30cm above region surface

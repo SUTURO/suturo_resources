@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_door" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="door_green">
+    <color rgba="0 0.31 0.22 1"/>
+  </material>
+
+  <macro name="suturo_door" params="name parent *origin height width">
+    <!-- LINKS -->
+
+    <link name="${name}_center">
+      <visual>
+        <material name="door_green"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${width} ${0.03} ${height}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${width} ${0.03} ${height}" />
+        </geometry>
+      </collision>
+    </link>     
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_center"/>
+    </joint>
+
+  </macro>
+</robot>

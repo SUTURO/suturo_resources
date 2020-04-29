@@ -3,6 +3,9 @@
   <arg name="model" default="$(find suturo_urdf_publisher)/urdf/hsrb_sim_v1.urdf.xacro"/>
   <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(arg model)'" />
 
+<param name="kitchen_description"
+         command="$(find xacro)/xacro.py '$(find suturo_urdf_publisher)/urdf/hsrb_sim_v1.urdf.xacro'"/>
+
   <node pkg="joint_state_publisher" type="joint_state_publisher"
         name="kitchen_joint_state_publisher" output="screen">
     <remap from="robot_description" to="hsrb_lab"/>
@@ -25,6 +28,12 @@
     <remap from="robot_description" to="hsrb_lab" />
     <remap from="/joint_states" to="/kitchen/joint_states" />
   </node>
+
+ <!--
+   <node pkg="robot_state_publisher" type="robot_state_publisher"
+     name="robot_state_publisher" output="screen">
+     <param name="publish_frequency" value="25"/>
+   </node> -->
 
 
   <group>
