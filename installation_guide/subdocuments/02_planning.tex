@@ -1,0 +1,23 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+	\section{Planning}
+	
+	For the installation of the planning part you need Roslisp\_repl.
+	You can install it using the following command.
+	\begin{lstlisting}
+	sudo apt-get install ros-kinetic-roslisp-repl \end{lstlisting}
+
+	Create a new Workspace or open the workspace where you want to install the planning part. Now clone all the following repositories into the src folder of your workspace.
+	\begin{itemize}
+	\item Cram: \url{https://github.com/Plexiglas/cram.git}
+		\begin{itemize}
+		\item Branch: hsrb
+		\end{itemize}
+	\item iai_maps: \url{https://github.com/code-iai/iai_maps.git}
+	\item iai_common_msgs: \url{https://github.com/code-iai/iai_common_msgs.git}
+	\item giskard_msgs: \url{https://github.com/SemRoCo/giskard_msgs.git}
+	
+	\end{itemize}
+\end{document}
