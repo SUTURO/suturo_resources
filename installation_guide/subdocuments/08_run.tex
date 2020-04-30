@@ -70,9 +70,18 @@ perception_actionserver_plane/result
 The action client is not necessary for the HSR demo.
 	
 	\subsection{Manipulation}
+	To start the four Manipulation servers run the following command:
+	\begin{itemize}
+		\item roslaunch suturo\_manipulation\_launch start\_manipulation\_servers.launch
+	\end{itemize}
+	If the start succeded every server will return a message that it successfully started in the terminal.
 	\subsubsection{Manipulation}
 	
 	\subsubsection{Navigation}
+	Run the following comman start navigation:
+	\begin{itemize}
+		\item roslaunch suturo\_navigation\_launch start\_suturo\_navigation.launch
+	\end{itemize}
 	
 	\subsection{Planning}
 	Before you start planning the simulation environment, knowledge, perception and manipulation must be launched.\\
