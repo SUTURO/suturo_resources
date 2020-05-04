@@ -27,7 +27,7 @@
 			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
 			\item \textbf{grasp-with-failure-handling} \\
 			This function is a subroutine for grasping objects with more sophisticated failure handling, which object will be grasped is determined by the knowledge base
-			\item place-handling
+			\item \textbf{place-handling}
 			This function is a subroutine for placing objects
 		\end{itemize}
 		
@@ -47,11 +47,11 @@
 			\item \textbf{shelf-scan} \\
 			This function perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
-			same as in grocery perceives the shelf depending on the given regions value
+			Same as in grocery perceives the shelf depending on the given regions value
 			\item \textbf{perceive-table} \\
-			same as in grocery perceives the robocub table
+			Same as in grocery perceives the robocub table
 			\item \textbf{transport} \\
-            This function transports all objects found on the robocub table and then places them into the shelf
+            This function transports all objects found on the robocup table and then places them into the shelf
 			\item \textbf{point-of-interest-search} \\
 			This function moves to a point of interest and perceives it 
 			\item \textbf{point-of-interest-transport} \\
@@ -73,10 +73,8 @@
 	    \subsection{high-level-plans.lisp}
 	    This file contains all high level plans.(high level plans ar below execute level)
 	    \begin{itemize}
-	    \item \textbf{try-movement} \\
-	    
 		\item \textbf{try-movement-stampedList} \\
-		tries a given list of
+		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
 	    \item \textbf{move-hsr} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
 	    \item \textbf{grasp-hsr} \\
@@ -113,7 +111,7 @@
 	    	This function returns a given number of positions with a given 	distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
 	    	\item \textbf{pose-with-distance-to-points} \\
 	    	This function moves the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
-	    	\item \textbf{pointInPolygon} \\
+	    	\item \textbf{point-in-polygon} \\
 This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
