@@ -106,12 +106,35 @@
 		The suturo\_julius package contains 3 different grammar-based dictionaries. hard\_commands contains sentences telling the robot to start, stop or continue the task.
 		soft\_commands describes commands the robot may execute in the RoboCup. This dictionary contains sentences like: Fetch the cup from the table.Or: Find me some chocolate.
 		\subsection{Configuration files}
+		The \texttt{julius\_conf} folder contains one \texttt{.jconf} file. The context of the file has been taken from the \texttt{tmc\_julius} package.
 		\subsection{Launchfiles}
-	
+		The \texttt{suturo\_julius} package provides four different launch files.\\
+		\begin{itemize}
+			\item julius\_qa\_system.launch:
+			\subitem Launching julius just with the grammar for the QA-system.
+			\item speech\_recognition\_grammar.launch:
+			\subitem Launching Julius with the grammars for hard commands and for dynamic commands.
+			\item speech\_recognition\_hard\_commands.launch:
+			\subitem Launching Julius just with the grammar for the hard commands.
+			\item speech\_recognition\_word.launch:
+			\subitem An example for how Julius is launched with a word based dictionary.
+		\end{itemize}
 	\section{The suturo\_textparser Package}
 	\chapterauthor{Paul Schnipper}
 		\subsection{textparser.py}
-		\subsection{slingparserRosInterface.py \& slingparser.py3}		
+		The textparser node is designed to take in the output from Julius and check if the output is a hard command or send it to the Sling-Parser.
+		\subsubsection{callback(data)}
+		The \texttt{callback} function is called with the data published by Julius. Julius publishes its output in the \texttt{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \texttt{callback} function calls the \texttt{find\_first} function.
+		
+		\subsubsection{find\_first(data)}
+		The \texttt{find\_first} function takes the data published by Julius and checks weather the recognition confidence is high enough 
+		
+		\subsection{slingparserRosInterface.py \& slingparser.py3}	
+		\subsubsection{About Sling}
+		\subsubsection{About TinyRPC}
+		\subsubsection{slingparserRosInterface.py}
+		\subsubsection{slingparser.py3}
+			
 	
 	\section{The suturo\_nlg Package}
 	\chapterauthor{Paul Schnipper}
