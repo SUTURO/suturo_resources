@@ -131,16 +131,32 @@ This function checks if a point is inside a polygon.
 	    	Überprüft, ob der Roboter am Zielpunkt angekommen ist. Dies wird als Workaround benutzt, da der Roboter noch nicht erkennen kann, ob eine Tür geöffnet wurde.
 	    \end{itemize}
 	    \subsection{process-modules.lisp}
-	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
+	     \begin{itemize}
+	    	\item \textbf{hsr-navigation process module} \\
+		A process module which gets a motion deisgnator as input and calls the low level interface to excecute navigation commands.
+		\item \textbf{hsr-text-to-speech process module} \\
+		A process module which receives a motion-designator and calls the low level interface to exceute speech actions.
+		\item \textbf{hsr-perceive process module} \\
+		A process module which receives a motion-designator and calls the low level interface to execute perception actions.
+		\item\textbf{hsr-arm process module} \\
+		A process module which receives a motion-designator and performs grasping or placing actions by calling the low level interfaces to execute those manipulation commands 
 	    \end{itemize}
 	    \subsection{select-process-modules.lisp}
-	    \begin{itemize}
+	     \begin{itemize}
 	    	\item \textbf{Fehlt} \\
 	    \end{itemize}
 	    \subsection{designators.lisp}
+	    Contains motion-designators for of the following type
 	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
+	    	\item \textbf{going} \\
+		Used for navigation purposes.
+		\item \textbf{moving-torso} \\
+		Used for moving the torso.
+		\item \textbf{looking} \\
+		Used for neck movement and general looking purposes.
+		\item \textbf{opening} \\
+		
+		\item \textbf{closing} \\
 	    \end{itemize}
 
 	  	\section{LLIF}
