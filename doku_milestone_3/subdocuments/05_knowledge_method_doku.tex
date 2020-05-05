@@ -228,8 +228,10 @@ make_all_surface_type_role(SurfaceType, Role):-
 	  	
 
 \section{Scripts and higher Architecture}
-\chapterauthor{gfdhjlhkj}	  	
-hgfkjh
+\chapterauthor{Fabian Rosenstock}	  	
+\subsection{store\_object\_info\_server.py}
+This script stores the send data in our Knowledge base.
+To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since we have different naming conventions. After that it tests whether the class exists in our Ontology. If the classname is empty or if the class does not exist in our ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the ObjectDetectionData message. If the object has a legal position it gets added to the knowledge base and the objects at that position are put into one group.
 
 	\endgroup
 
