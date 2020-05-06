@@ -111,7 +111,7 @@
 		The \texttt{suturo\_julius} package provides four different launch files.\\
 		\begin{itemize}
 			\item julius\_qa\_system.launch:
-			\subitem Launching julius just with the grammar for the QA-system.
+			\subitem Launching Julius just with the grammar for the QA-system.
 			\item speech\_recognition\_grammar.launch:
 			\subitem Launching Julius with the grammars for hard commands and for dynamic commands.
 			\item speech\_recognition\_hard\_commands.launch:
@@ -124,13 +124,30 @@
 		\subsection{textparser.py}
 		The textparser node is designed to take in the output from Julius and check if the output is a hard command or send it to the Sling-Parser.
 		\subsubsection{callback(data)}
-		The \texttt{callback} function is called with the data published by Julius. Julius publishes its output in the \texttt{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \texttt{callback} function calls the \texttt{find\_first} function.
+		The \texttt{callback} function is called with the data published by Julius. Julius publishes its output in the \texttt{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \texttt{callback} function calls the \texttt{find\_first} function to get a String representing the recognized sentence. It is then checked if the String is a static command. To do that the \texttt{is\_static} command is called.
 		
 		\subsubsection{find\_first(data)}
-		The \texttt{find\_first} function takes the data published by Julius and checks weather the recognition confidence is high enough 
-		
+		The \texttt{find\_first} function takes the data published by Julius and checks weather the recognition confidence is high enough. If so it returns the recognized sentence as String, if the confidence is not high enough the function returns an empty string.\\
+        
+        \subsubsection{is\_static(sentence)}
+        The \texttt{is\_static} command calls the \texttt{is\_stop}, \texttt{is\_start} and \texttt{is\_continue} functions. If the sentence is one of these hard command types the function publishes the command type on the \texttt{'hard\_commands'} topic.
+        
+		\subsubsection{is\_stop, is\_start and is\_continue}
+        These functions check weather a string is a hard command of the type \texttt{STOP, START or CONTINUE} respectively. To perform this check the \texttt{is\_in\_file} function is called. The text files containing the hard commands can be found in the \texttt{commands} folder.
+        
+        \subsubsection{is\_in\_file}
+        This function checks if a string is identical to a single line in a text file.
+        
 		\subsection{slingparserRosInterface.py \& slingparser.py3}	
-		\subsubsection{About Sling}
+        \subsubsection{Frame Semantics}
+        \chapterauthor{Merete Bommarius}
+        Frame semantics is a theory of linguistic meaning, developed by Charles J. Fillmore. It extends his earlier case, grammar and relates linguistic semantics to encyclopedic knowledge. The theory applies the notion of a semantic frame, which is also used in AI. A semantic frame can also be defined as a coherent structure of related concepts. The frames themselves are based on recurring human experiences.\\
+        As mentioned in the previous section, frame semantics are used to give the parser a sense of structure. The way the group approached this was by framing about 100 commands by hand and then used those annotated sentences as examples of how the parser should interprete sentences that might be similar but are not in the list of commands. 
+        Here is an example of an annotated sentence: 
+        
+        \texttt{ [bring]$_{action}$  [me]$_{beneficiary}$ [the pills]$_{item}$ from [the shelf]$_{source}.$}
+		\subsubsection{About SLING}
+        SLING is a natural language frame semantic parser developed by Google. It is published under the Apache License 2.0. Sling  
 		\subsubsection{About TinyRPC}
 		\subsubsection{slingparserRosInterface.py}
 		\subsubsection{slingparser.py3}
