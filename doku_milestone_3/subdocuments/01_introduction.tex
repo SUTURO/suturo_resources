@@ -3,23 +3,22 @@
 	\chapter{Introduction}
 	\chapterauthor{Merete Bommarius}
 
-This is the documentation for the final Milestone of the SUTURO project. Because of the Corona virus, the group wasn't able to go to the lab and demonstrate their accomplishments with the real robot, but managed to do it virtually instead.\\
-The goal of the project was competing in the RoboCup. This was cut short, since the competition was cancelled because of the virus. The group planned to compete in two categories; storing groceries and clean-up. Instead of competing, the group will now present the tasks virtually in front of the tutors. This will be further elaborate on in one of the following sections.\\
-In the following sections, every group will go through the work they did in the Milestone, elaborating on the architecture, code, and software.
-	
-	The goal of the Suturo project was the successful participation in the RoboCup@Home with the HSR from Toyota. During the RoboCup the HSR has to perform different task autonomously. 
-	This year we chose to focus on the tasks storing groceries and clean up as found on the RoboCup@Home website. Within the storing groceries task the HSR has to identify objects on a table and store them in a shelf a logical position depending on other items in the shelf. For the cleanup task the objects are distributed in a room and have to be found by the HSR and then brought to a designated goal position.
+This is the documentation for the final Milestone of the SUTURO project. Due to specific circumstances that will be elaborated later in the documentation, the group was not able to work on the HSR itself and switched to a virtual substitute.\\
+	The goal of the Suturo project was the successful participation in the RoboCup@Home with the HSR from Toyota. During the RoboCup the HSR has to perform different task autonomously.\\ 
+	This year the group chose to focus on the tasks storing groceries and clean up, as found on the RoboCup@Home website. Within the storing groceries task, the HSR has to identify objects on a table and store them in a shelf, in a logical position depending on other items in the shelf. For the clean-up task, the objects are distributed in a room and have to be found by the HSR and brought to a designated goal.\\
+	In the following sections, every group will go through the work they did in the Milestone, elaborating on the architecture, code, and software.\\
 	
 	\subsection{Challenges} 
-	These task can be expressed as several challenges which we had to face:
+	\chapterauthor{}
+	These tasks can be expressed as several challenges which the group had to face:
 	\begin{itemize}
-		\item Decision making: The robot has to react to environmental changes so there can not be just one sequence otherwise it would fail if even the slightest changes to the environment are made. It has to be able to avoid danger for itself and others and to know when it is done with the task currently given.
-		\item Navigation: In order to get from one position to another for example the table and shelf we need to be able to move the robot. 
-		\item Localization: The robot needs to know where it is in the world. And where the objects he found currently are.
-		\item Detection: The robot has to be able to find objects without prior knowledge of their position
-		\item Recognition: The robot has to be able to recognize objects
-		\item Classification: The robot has to be able to classify objects depending on their size, color, shape and type
-		\item Manipulation: This for a human seemingly easy task is quite complex for an actual robot since several factors have to be considered. First of all the kinematic chain of the robot. This is an description of how the robot can move. Now in order to grasp an Object It has to be calculated how these joints are moved. Additionally the environment has to be taken into account to avoid any collisions ...
+		\item Decision making: The robot has to react to environmental changes, so there cannot be just one sequence which otherwise would fail if even the slightest changes are made to the environment. It has to be able to avoid danger for itself and others and to know when it is done with the task currently given.
+		\item Navigation: In order to get from one position to another, e.g. the table and shelf, there needs to be freedom to move the robot. 
+		\item Localization: The robot needs to know where it and the objects it found currently are in the world.
+		\item Detection: The robot has to be able to find objects without prior knowledge of their position.
+		\item Recognition: The robot has to be able to recognize objects.
+		\item Classification: The robot has to be able to classify objects depending on their size, color, shape and type.
+		\item Manipulation: This for a human seemingly easy task, is quite complex for an actual robot, since several factors have to be considered. First, of all the kinematic chains of the robot; this is an description of how the robot can move. Now, in order to grasp an object, it has to be calculated how these joints are moved. Additionally, the environment has to be taken into account to avoid any collisions ...
 		\item ...
 
 	\end{itemize}
