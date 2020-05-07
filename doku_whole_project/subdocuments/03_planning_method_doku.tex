@@ -13,7 +13,7 @@
 		\chapterauthor{Planning Group}
 		
 		\section{GROCERY}
-		
+		This package contains the main function for this tasks and some subroutines.
 		\subsection{execute-grocery.lisp}
 		This file contains the main function for this tasks and some subroutines.
 		\begin{itemize}
@@ -39,7 +39,7 @@
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
-	  	This file contains the main function for this tasks and some subroutines.
+	  	This package contains the main function for this tasks and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
@@ -70,6 +70,7 @@
 		\end{itemize}
 	  	
 	  	\section{COMF}
+		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
 	    This file contains all high level plans.(high level plans ar below execute level)
 	    \begin{itemize}
@@ -160,7 +161,7 @@ This function checks if a point is inside a polygon.
 	    \end{itemize}
 
 	  	\section{LLIF}
-		Hier fehlen evtl noch files:
+		The Low Level Interfacing package (LLIF) contains all action clients which communcate with the action servers of the other group.
 		\subsection{grasp-action-client.lisp}
 		This file is responsible for the low level communication with the
 		grasp action server which is responsible for grasping objects.
