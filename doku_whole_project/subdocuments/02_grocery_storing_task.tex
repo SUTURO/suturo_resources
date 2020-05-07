@@ -17,8 +17,9 @@
 
 	The goal which has to be achieved in the grocery task is to collect objects from a table and place them in a logical position in a shelf. The HSR has to autonomusly navigate the environment, it has to manipulate objects like doors and grocery items like chips, bananas etc. furthermore the HSR has to be able to lift items of the table and place them in the shelf where the final position of the moved object should either be grouped with similar objects (similarity is defined by size, color, shape and class) or open a new group apart from items which are not similar. The HSR has 5 minutes to achieve the given task. HIER FEHLT NOCH GENAUERE BESCHREIBUNG
 	
-	\section{Architecture}
-	
+
+	\section{Tasks}
+
 		\begin{figure}	
 			\centering
 			\includegraphics[width=0.85\textwidth]{pictures/diagramms/first-part-grocery-sequence.png}
@@ -32,15 +33,40 @@
 			\label{grocery_seq_02}
 		\end{figure}
 	
-	\subsection{Explaination}
 	
-		The sequence diagramm above does not depict when the actionservers are running it rather displays the time they are actively used
+		The sequence diagramm in figure \ref{grocery_seq_01} and \ref{grocery_seq_01} does not depict when the actionservers are running it rather displays the time they are actively used	
+	
+	In the following subsections the execution and the procedure depicted in figure \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
 
-	\section{Tasks}
-	In the following subsections the execution and the procedure depicted in \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
-
-	\subsection{startup sequence}
-	At first the table and target surfaces are set this is done by knowledge which had to ................ together with planning we decided to call knowledge rather then having it hardcoded in the KB because .........
+	At first the definition of the task is set in knowledge: We want to find objects on all the tables, so all the table surfaces are set as \texttt{source} and we want to place the found objects in shelves, so all the shelves are set as \texttt{target}. This procedure enables Knowledge, to genetically work over \texttt{source} and \texttt{target} surfaces regardless of what they actually are.
+	
+	% Manipulation: take pose action
+	
+	% NLP: Talk Request
+	
+	% Knowledge: get ttable-poses
+	
+	% Navigation: moveBaseAction
+	
+	% NLP: Talk Request
+	
+	% Manipulation: TakePoseAction
+	
+	% Perception: Percieve and return data
+	
+	% Knowledge: Store Data
+	
+	% NLP: Talk Request
+	
+	% Manipulation: Take pose
+	
+	% 2x NLP: Talk
+	
+	% Knowledge: get shelf poses
+	
+	% Manipulation: move to table
+	
+	% 
 
 	\subsection{perceive table sequence}
 	At the beginning we planned to scan the shelf first but during testing we found out that it will take less time to scan the shelf with the first object already in hand so the HSR scans the table for this perception, planning and knowledge had to do ...........
@@ -48,7 +74,7 @@
 	\subsection{grasp preparation sequence}
 	\subsection{handle grasp failure sequence}
 	\subsection{travel sequence}
-	Maybe to redundant....
+	Maybe too redundant....
 	\subsection{loop shelfes sequence}
 	\subsection{main loop sequence}
 	
