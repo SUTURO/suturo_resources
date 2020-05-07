@@ -64,7 +64,7 @@ hsr_existing_object_at(_, Transform, Threshold, Instance) :-
 \end{lstlisting}
 To determine, whether an object is hard to grasp it is often helpful to know, whether there are other objects right next to it. That is why there is a specific attribute that stores Groups of Objectts. 
 \begin{lstlisting}
-group_objecs(Objs)
+group_objects(Objs)
 \end{lstlisting}
 This Predicate takes a list of Objects and iterates through them to see if there are any groups and create them if necessary.\\
 To make it more human-readable, there are also two other predicates that basically just call \texttt{group\_objects} with a different list of Objects:
@@ -78,7 +78,7 @@ group_table_objects/0
 In the pickup module the information necessary to pick an object up are organized.
 
 \begin{lstlisting}
-next_object(BestObj) :-
+next_object_(BestObj) :-
 \end{lstlisting}
 As soon as there are some objects stored in our beliefstate, Knowledge is able zu tell, which Object should be the next one, the robot takes and puts somewhere. This prediacte returns the Object, that is standing on a surface, that was previously declared as \texttt{source} surface and is closest to the robot.
 
@@ -88,13 +88,13 @@ Like \texttt{pickup.pl}, this module organizes the information necessary for whe
 
 In the end, everything Planning needs is given by
 \begin{lstlisting}
-object_goal_pose_offset(Instance, [[X,Y,Z], Rotation],Context):-
+object_goal_pose_offset_(Instance, [[X,Y,Z], Rotation],Context):-
 \end{lstlisting}
 It takes an Object and returns the pose this object should be placed in and as Context it also returns, why this decision was made the way it was.\\
 But this predicate actually contains a few other queries. Some of the most important ones are:
 
 \begin{lstlisting}
-object_goal_surface(Instance, NearestSurface, Context, Self) :-
+object_goal_surface_(Instance, NearestSurface, Context, Self) :-
 \end{lstlisting}
 First we need a decision about what surface the object should be placed on. This is simply based on which surface is nearest to the robot and has the attribute of a \texttt{target} surface.
 \begin{lstlisting}
@@ -109,7 +109,7 @@ Here lies the decision about what object is most similar to the one, \texttt{obj
 The bigges module is the \texttt{surfaces} module. This is where you can find everything you need to know about surfaces.\\
 The surfaces are, just like objects, stored as an atom, wich represents an instance of an OWL-Class and look like this:
 \begin{lstlisting}
-?- is_surface('http://ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject_UHOJSVEC)
+?- is_surface('http://ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject_UHOJSVEC')
 true.
 \end{lstlisting}
 The only exception is the surface \texttt{ground}, which has no representation in the URDF, and is just an infinite surface that is everywhere below a certain height. This surface is just stored like this:
@@ -153,7 +153,7 @@ is_shelf(Shelf) :-
 \texttt{surface\_type\_of/2} expects returns the type as simple atom, which can be \texttt{ground}, \texttt{table} or \texttt{shelf}.\\
 Last but not least there is 
 \begin{lstlisting}
-find_supportinf_surface/2
+find_supporting_surface/2
 \end{lstlisting}
 which goes in both directions and links an object to the surface it is standing on.
 
@@ -185,11 +185,31 @@ objects_on_surface/2,
 all_objects_on_source_surfaces/1,
 all_objects_on_target_surfaces/1,
 all_objects_on_ground/1,
-all_objects_in_whole_shelf/1,
- all_objects_on_tables/1,
+all_objects_in_whole_shelf_/1,
+all_objects_on_tables_/1,
 \end{lstlisting}
 
-\subsubsection{Create Object}
+\subsubsection{Roles}
+
+To be able to use the same predicates for both Tasks Grocery Storing and Cleanup, we implemented the concept of a surface role. All the most important predicates do something at a surface, depending on it's role. For example, when we find the next object to grasp, it should be the next object standing on a surface, that we want to grasp from. Or when we place an object on a surface, it should be a surface that we want to put things on. Which surfaces get what role only depends on the task that the robot is currently working on. In the Grocery Storing task, all the shelves are target surfaces and all the tables are source surfaces, in the Cleanup task only the basket is a target surfaces and everything else (including the ground) is a source surface. This way, knowledge doesn't need to know the specific task, it just needs to know, which surfaces have what role.\\
+This is implemented by 
+
+\begin{lstlisting}
+make_role(SurfaceLink, Role):-
+    rdf_retractall(SurfaceLink, hsr_objects:'sourceOrTarget',_),
+    rdf_assert(SurfaceLink, hsr_objects:'sourceOrTarget', Role).
+\end{lstlisting}
+and there are a few other predicates, that use this \texttt{make\_role/2} and apply it to different lists of surfaces:
+\begin{lstlisting}
+% Gives a list of surfaces the role source
+make_surfaces_source(Surfaces):-
+
+% Gives a list of surfaces the role target
+make_surfaces_target(Surfaces):-
+
+% Gives all surfaces with given name (ground, table, basket or shelf) the Role (target or source)
+make_all_surface_type_role(SurfaceType, Role):-
+\end{lstlisting}
 
 
 \subsection{spatial\_comp.pl}
@@ -208,8 +228,10 @@ all_objects_in_whole_shelf/1,
 	  	
 
 \section{Scripts and higher Architecture}
-\chapterauthor{gfdhjlhkj}	  	
-hgfkjh
+\chapterauthor{Fabian Rosenstock}	  	
+\subsection{store\_object\_info\_server.py}
+This script stores the send data in our Knowledge base.
+To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since we have different naming conventions. After that it tests whether the class exists in our Ontology. If the classname is empty or if the class does not exist in our ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the ObjectDetectionData message. If the object has a legal position it gets added to the knowledge base and the objects at that position are put into one group.
 
 	\endgroup
 

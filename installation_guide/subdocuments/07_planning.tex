@@ -1,0 +1,32 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+	\section{Planning}
+	
+	For the installation of the planning part you need Roslisp\_repl.
+	You can install it using the following command.
+	\begin{itemize}
+	\item sudo apt-get install ros-kinetic-roslisp-repl 
+	\end{itemize}
+
+	Create a new Workspace or open the workspace where you want to install the planning part. Now run the following commands in your workspace.
+	\begin{itemize}
+	\item cd src
+	\item wstool init
+	\item wstool merge \url{https://raw.githubusercontent.com/SUTURO/suturo_planning/milestone_03/install.rosinstall}
+	\item wstool update
+	\item rosdep install -{}-ignore-src -{}-from-paths src/ -r
+	\item cd ..
+	\item catkin build
+	\item source devel/setup.bash
+	\item \begin{verbatim}roslisp_repl\end{verbatim}
+	\end{itemize}
+	
+	Now you can load the packages grocery\_demo and cleanup\_demo.
+	To do that Type the following commands in emacs.
+	\begin{itemize}
+	\item (swank:operate-on-system-for-emacs"grocery-demo"(quoteload-op))
+	\item (swank:operate-on-system-for-emacs"cleanup-demo"(quoteload-op)) \end{itemize}
+	
+\end{document}

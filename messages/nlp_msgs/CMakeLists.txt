@@ -16,8 +16,11 @@ find_package(catkin REQUIRED COMPONENTS
 
 
 add_message_files(
+   DIRECTORY msg
    FILES
    StaticCommand.msg
+   SpeechgenerationAttribute.msg
+   Speechgeneration.msg
 )
 
 generate_messages(

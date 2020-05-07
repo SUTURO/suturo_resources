@@ -1,0 +1,29 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+	\chapter{Introduction}
+	\chapterauthor{Merete Bommarius}
+
+This is the documentation for the whole SUTURO project in the semester 2019/2020. Due to specific circumstances that will be elaborated later in the documentation, the group was not able to work on the HSR itself during the thrid and last milestone and switched to a virtual substitute.\\
+	The goal of the Suturo project was the successful participation in the RoboCup@Home with the HSR from Toyota. During the RoboCup the HSR has to perform different task autonomously.\\ 
+	This year the group chose to focus on the tasks storing groceries and clean up, as found on the RoboCup@Home website. Within the storing groceries task, the HSR has to identify objects on a table and store them in a shelf, in a logical position depending on other items in the shelf. For the clean up task, the objects are distributed in a room and have to be found by the HSR and brought to a designated goal.\\
+	In the following sections, every group will go through the results and work that went into creating them during the course of the project, elaborating on the architecture, code and software.\\
+	
+	\subsection{Challenges} 
+	\chapterauthor{Torge Olliges, Marc Stelter}
+	These tasks can be expressed as several challenges which the group had to face:
+	\begin{itemize}
+		\item Decision making: The robot has to react to environmental changes, so there cannot be just one sequence which otherwise would fail if even the slightest changes are made to the environment. It has to be able to avoid danger for itself and others and to know when it is done with the task currently given.
+		\item Navigation: In order to get from one position to another, e.g. the table and shelf, there needs to be freedom to move the robot. 
+		\item Localization: The robot needs to know where it and the objects it found currently are in the world.
+		\item Detection: The robot has to be able to find objects without prior knowledge of their position.
+		\item Recognition: The robot has to be able to recognize objects.
+		\item Classification: The robot has to be able to classify objects depending on their size, color, shape and type.
+		\item Manipulation: This for a human seemingly easy task, is quite complex for an actual robot, since several factors have to be considered. First, of all the kinematic chains of the robot; this is an description of how the robot can move. Now, in order to grasp an object, it has to be calculated how these joints are moved. Additionally, the environment has to be taken into account to avoid any collisions ...
+		\item ...
+
+	\end{itemize}
+	
+	\textit{(Further details to the problems should be given)}	
+	
+
+\end{document}

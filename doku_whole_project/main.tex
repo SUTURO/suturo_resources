@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}%Papierformate
+\documentclass[12pt,a4paper]{report}%Papierformate
 
 \usepackage[round]{natbib}		%Zitate
 \usepackage[utf8]{inputenc}
@@ -14,7 +14,7 @@
 \usepackage{color}
 
 \definecolor{mygray}{rgb}{0.7,0.7,0.7}
-\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygreen}{rgb}{0,0.35,0}
 
 \lstset{ 
   backgroundcolor=\color{mygray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
@@ -39,6 +39,7 @@
   showtabs=false,                  % show tabs within strings adding particular underscores
   stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
   tabsize=2,	                   % sets default tabsize to 2 spaces
+  language=Prolog
   %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
@@ -76,11 +77,11 @@
 	\vspace{1cm}
 	{\scshape\Large Suturo \par}
 	\vspace{1.5cm}
-	{\huge\bfseries Installation guide \par}
+	{\huge\bfseries Final Report \par}
 	\vspace{2cm}
 	\hfill
 	\\
-	{01.05.2020 \par}
+	{\today \par}
 }
 
 \end{titlepage}
@@ -88,15 +89,18 @@
 \tableofcontents
 
 \subfile{subdocuments/01_introduction.tex}
-\subfile{subdocuments/02_knowledge.tex}
-\subfile{subdocuments/03_nlp.tex}
-\subfile{subdocuments/04_perception.tex}
-\subfile{subdocuments/05_manipulation.tex}
-\subfile{subdocuments/06_navigation.tex}
-\subfile{subdocuments/07_planning.tex}
-\subfile{subdocuments/08_run.tex}
-
-
+\subfile{subdocuments/01a_architecture.tex}
+\subfile{subdocuments/01b_organization.tex}
+\subfile{subdocuments/02_grocery_storing_task.tex}
+\subfile{subdocuments/02b_cleanup_task.tex}
+\subfile{subdocuments/03_planning_method_doku.tex}
+\subfile{subdocuments/04_perception_method_doku.tex}
+\subfile{subdocuments/05_knowledge_method_doku.tex}
+\subfile{subdocuments/06_nlp_method_doku.tex}
+\subfile{subdocuments/07_manipulation_method_doku.tex}
+\subfile{subdocuments/08_navigation_method_doku.tex}
+\subfile{subdocuments/11_organisational.tex}
+\subfile{subdocuments/12_future.tex}
 
 
 \end{document}

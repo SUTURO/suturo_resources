@@ -13,7 +13,7 @@
 		\chapterauthor{Planning Group}
 		
 		\section{GROCERY}
-		
+		This package contains the main function for this tasks and some subroutines.
 		\subsection{execute-grocery.lisp}
 		This file contains the main function for this tasks and some subroutines.
 		\begin{itemize}
@@ -27,7 +27,7 @@
 			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
 			\item \textbf{grasp-with-failure-handling} \\
 			This function is a subroutine for grasping objects with more sophisticated failure handling, which object will be grasped is determined by the knowledge base
-			\item place-handling
+			\item \textbf{place-handling}
 			This function is a subroutine for placing objects
 		\end{itemize}
 		
@@ -39,7 +39,7 @@
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
-	  	This file contains the main function for this tasks and some subroutines.
+	  	This package contains the main function for this tasks and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
@@ -47,11 +47,11 @@
 			\item \textbf{shelf-scan} \\
 			This function perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
-			same as in grocery perceives the shelf depending on the given regions value
+			Same as in grocery perceives the shelf depending on the given regions value
 			\item \textbf{perceive-table} \\
-			same as in grocery perceives the robocub table
+			Same as in grocery perceives the robocub table
 			\item \textbf{transport} \\
-            This function transports all objects found on the robocub table and then places them into the shelf
+            This function transports all objects found on the robocup table and then places them into the shelf
 			\item \textbf{point-of-interest-search} \\
 			This function moves to a point of interest and perceives it 
 			\item \textbf{point-of-interest-transport} \\
@@ -70,13 +70,12 @@
 		\end{itemize}
 	  	
 	  	\section{COMF}
+		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
 	    This file contains all high level plans.(high level plans ar below execute level)
 	    \begin{itemize}
-	    \item \textbf{try-movement} \\
-	    
 		\item \textbf{try-movement-stampedList} \\
-		tries a given list of
+		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
 	    \item \textbf{move-hsr} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
 	    \item \textbf{grasp-hsr} \\
@@ -98,13 +97,13 @@
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
 	    \item \textbf{place-object} \\
-	    gets the object id and the grasp position to create a place designator  
+	    This function gets the object id and the grasp position and uses that to create a place designator  
 		\item \textbf{place-object-list} \\
-		gets a list and uses that to create a place designator 
+		This function gets a list and uses that to create a place designator 
 	    \item \textbf{grasp-object} \\
-	    gets the object id and what grasp position should be used to create a grasp desingator
+	    This function gets the object id and what grasp position should be used to grasp the object and uses that to create a grasp desingator
 	    \item \textbf{create-place-list} \\
-	    gets the object id and grasp position to create a list with positions to place the object
+	    This function gets the object id and grasp position to create a list with positions to place the object
 		\end{itemize}
 	    \subsection{navigation-functions.lisp}
 	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
@@ -113,7 +112,7 @@
 	    	This function returns a given number of positions with a given 	distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
 	    	\item \textbf{pose-with-distance-to-points} \\
 	    	This function moves the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
-	    	\item \textbf{pointInPolygon} \\
+	    	\item \textbf{point-in-polygon} \\
 This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
@@ -133,20 +132,36 @@ This function checks if a point is inside a polygon.
 	    	Überprüft, ob der Roboter am Zielpunkt angekommen ist. Dies wird als Workaround benutzt, da der Roboter noch nicht erkennen kann, ob eine Tür geöffnet wurde.
 	    \end{itemize}
 	    \subsection{process-modules.lisp}
-	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
+	     \begin{itemize}
+	    	\item \textbf{hsr-navigation process module} \\
+		A process module which gets a motion deisgnator as input and calls the low level interface to excecute navigation commands.
+		\item \textbf{hsr-text-to-speech process module} \\
+		A process module which receives a motion-designator and calls the low level interface to exceute speech actions.
+		\item \textbf{hsr-perceive process module} \\
+		A process module which receives a motion-designator and calls the low level interface to execute perception actions.
+		\item\textbf{hsr-arm process module} \\
+		A process module which receives a motion-designator and performs grasping or placing actions by calling the low level interfaces to execute those manipulation commands 
 	    \end{itemize}
 	    \subsection{select-process-modules.lisp}
-	    \begin{itemize}
+	     \begin{itemize}
 	    	\item \textbf{Fehlt} \\
 	    \end{itemize}
 	    \subsection{designators.lisp}
+	    Contains motion-designators for of the following type
 	    \begin{itemize}
-	    	\item \textbf{Fehlt} \\
+	    	\item \textbf{going} \\
+		Used for navigation purposes.
+		\item \textbf{moving-torso} \\
+		Used for moving the torso.
+		\item \textbf{looking} \\
+		Used for neck movement and general looking purposes.
+		\item \textbf{opening} \\
+		
+		\item \textbf{closing} \\
 	    \end{itemize}
 
 	  	\section{LLIF}
-		Hier fehlen evtl noch files:
+		The Low Level Interfacing package (LLIF) contains all action clients which communcate with the action servers of the other group.
 		\subsection{grasp-action-client.lisp}
 		This file is responsible for the low level communication with the
 		grasp action server which is responsible for grasping objects.
@@ -234,16 +249,16 @@ This function checks if a point is inside a polygon.
 	    \begin{itemize}
 	    	\item \textbf{obstacle-map-listener} \\
 	    	This function subscribes the obstacle map and stores the current map in a variable.
-	    	\item \textbf{saveObstacleMap} \\
+	    	\item \textbf{save-obstacle-map} \\
 	    	Makes a copy of the given message and stores it in a variable.
-	    	\item \textbf{getMapPoint} \\
+	    	\item \textbf{get-map-point} \\
 	    	Returns the occupancy from a given position in the map.
 	    \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
-	    	\item \textbf{closestPoi} \\
+	    	\item \textbf{closest-poi} \\
 	    	This function returns the next point of interest in relation to the passed point.
-	    	\item \textbf{sortedPoiByDistance} \\
+	    	\item \textbf{sorted-poi-by-distance} \\
 	    	This function returns all points of interest sorted in relation to the given point.
 	    	\item \textbf{point-listener} \\
 	    	This function subscribes the point of interessts and stores them in a variable.
