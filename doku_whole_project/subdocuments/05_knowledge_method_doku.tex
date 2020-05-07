@@ -218,14 +218,30 @@ make_all_surface_type_role(SurfaceType, Role):-
 
 \section{Ontology}
 \chapterauthor{Fabian Rosenstock}
+\subsection{About Ontologies}
+An Ontology is a knowledge represantation. To fullfill this task ontologies define classes, their attributes and relations between them. Ontologies are hierarchical build and differnt axioms and restrictions for classes can be defined.
+
+
 \subsection{Robocup}
-	  	
-	  	The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs.
-	  	
-	  	\subsection{Objects}
-	  	
-	  	This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have.  
-	  	
+The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs. To do that it imports the srdl2-comp ontology that is part of knowrob. Furthermore our objects ontology gets imported.
+
+
+
+
+\subsection{Objects}
+
+This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. 
+The objects ontology imports the knowrob and the urdf ontology provided by knowrob.
+For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of ColorRegion and different materials are defined in subclasses of MaterialRegion. Different shapes are represented by subclasses of ShapeRegion.
+For those characteristics subclasses of PhysicalQuality are added. Those represent the quality of the object, while the regions represent the actual values.
+To represent the confidence with which the robot perceived a characteristic of an object the class ConfidenceRegion and subclasses for the different characteristics are defined.
+The physical objects, we can encounter are represented by the subclasses of PhysicalObject.
+One of these subclasses is PhysicalPlace. The subclasses of PhysicalPlace represent places, like the shelf. The surfaces are represented by subclasses of PhysicalPlace aswell. To represent these PhysicalPlace has the subclass Surface, where different kinds of surfaces are defined.
+The Unknown class represents perceived objects, for which we dont know or are not sure what kind of physical object it is.
+Most of the items, that have a representation in our ontology, are subclasses of DesignedArtifact.
+Electrical Devices like a camera are defined in the class ElectricalDevice, a subclass of Appliance, which is itself a subclass of DesignedArtifact.
+
+
 
 \section{Scripts and higher Architecture}
 \chapterauthor{Fabian Rosenstock}	  	
