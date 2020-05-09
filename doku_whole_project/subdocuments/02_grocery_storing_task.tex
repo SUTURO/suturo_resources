@@ -33,28 +33,28 @@
 			\label{grocery_seq_02}
 		\end{figure}
 	
-	
-		The sequence diagramm \ref{grocery_seq_01} and \ref{grocery_seq_02} does not depict when the actionservers are running it rather displays the time they are actively used.
-
-	\section{Tasks}
-	In the following subsections the execution and the procedure depicted in \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
+	\subsection{Setup}
 		The sequence diagramm in figure \ref{grocery_seq_01} and \ref{grocery_seq_01} does not depict when the actionservers are running it rather displays the time they are actively used	
 	
 	In the following subsections the execution and the procedure depicted in figure \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
 
-	At first the definition of the task is set in knowledge: We want to find objects on all the tables, so all the table surfaces are set as \texttt{source} and we want to place the found objects in shelves, so all the shelves are set as \texttt{target}. This procedure enables Knowledge, to genetically work over \texttt{source} and \texttt{target} surfaces regardless of what they actually are.
+	% Knowledge: set-tables-source 
+	At first the definition of the task is set in knowledge: We want to find objects on all the tables, so all the table surfaces are set as \texttt{source} and we want to place the found objects in shelves, so all the shelves are set as \texttt{target}. This procedure enables Knowledge, to generically work over \texttt{source} and \texttt{target} surfaces regardless of what they actually are.
+	
+	\subsection{Scan Table}
 	
 	% Manipulation: take pose action
 	
 	% NLP: Talk Request
 	
-	% Knowledge: get ttable-poses
+	% Knowledge: get table-poses
+Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so Planning can determine where to go next.
 	
 	% Navigation: moveBaseAction
 	
-	% NLP: Talk Request
+	% NLP
 	
-	% Manipulation: TakePoseAction
+	% Manipuilation: TakePoseAction
 	
 	% Perception: Percieve and return data
 	
@@ -66,21 +66,66 @@
 	
 	% 2x NLP: Talk
 	
-	% Knowledge: get shelf poses
+	% Knowledge: prolog_table_pose (???)
 	
-	% Manipulation: move to table
+	% Navigation: MoveBaseAction
 	
-	% 
-
-	\subsection{perceive table sequence}
-	At the beginning we planned to scan the shelf first but during testing we found out that it will take less time to scan the shelf with the first object already in hand so the HSR scans the table for this perception, planning and knowledge had to do ...........
-
-	\subsection{grasp preparation sequence}
-	\subsection{handle grasp failure sequence}
-	\subsection{travel sequence}
-	Maybe too redundant....
-	\subsection{loop shelfes sequence}
-	\subsection{main loop sequence}
+	\subsection{Grasp Object}
+	
+	% Knowledge: next_object
+	
+	% 2x NLP: Talk Request
+	
+	% Manipulation: GraspAction
+	
+	% Planning: This whole thing is gonna be looped 
+	
+	% NLP
+	
+	% Knowledge: Shelf Positions
+Knowledge finds all the shelves available and sorts them, just like the tables before, by their distance to the robot. This way, the Robot can navigate to all the shelves starting with the nearest one to scan the objects already in place.
+	
+	% Navigation: Move to Shelf
+	
+	\subsection{Scan shelf floors}
+	
+	% Planning: Loop through all shelf floors
+	
+	% NLP
+	
+	% Manipulation: go into percieve pose
+	
+	% Perception: Percieve shelf
+	
+	% Knowledge: Store new Objects
+	
+	\subsection{Place Object}
+	
+	% Planning: Loop this while some items are left
+	
+	% Knowledge: shelf positions
+	
+	% navigation: move to shelf (???)
+	
+	% Knowledge: Object goal pose
+Knowledge now determines the most suitable position for the Object, it earlier chose to be the next Object. The way this decision is made is discussed later in the Knowledge function documentation (see section \ref{sec:kn_find_surf} under "Finding a goal surface for an Object"). For now it is enough to know, that Knowledge finds not only a suitable surface for that object but also the exact coordinates in the world frame for that object based on its own properties and based all the other known Objects in the scene.
+	
+	% Manipulation: TakePoseAction
+	
+	% NLP
+	
+	% Manipulation: TakePoseAction
+	
+	% NLP
+	
+	% Knowledge: table pose
+	
+	% Knowledge: next_object
+	
+	% 2x NLP
+	
+	% Planning: Finish
+	
 	
 	\section{Conclusion}
 
