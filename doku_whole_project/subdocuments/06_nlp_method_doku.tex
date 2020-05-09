@@ -158,15 +158,15 @@ Oreos ao r iy ow s
             As mentioned previously, shallow semantic parsing is used to parse and frame the commands that the robot will receive. The one that the group initially wanted to used is named open-sesame but is currently unavailable since it is being updated and rewritten to work with Python3. Instead we use a parser called Sling. It is not as good as open-sesame would have been, which is why it needs training.\\ 
             In the first Milestone, the parsing for the sentence looks like this:
     
-            \begin{verbatim}
-{‘predicate’: ‘take’} {‘ARG1’: ‘cup’} {‘ARG2’: ‘table’}
-            \end{verbatim}
+\begin{lstlisting}
+{'predicate': 'take'} {'ARG1': 'cup'} {'ARG2': 'table'}
+\end{lstlisting}
             
             The sentence used as an example for this was: ‘take the cup to the table‘. After training the parser, the annotation for the sentence would look more like:
             
-            \begin{verbatim}
-{‘predicate’: ‘take’} {‘object’: ‘cup’} {‘destination’: ‘table’}
-            \end{verbatim}
+\begin{lstlisting}
+{'predicate': 'take'} {'object': 'cup'} {'destination': 'table'}
+\end{lstlisting}
             
         \subsubsection{Training the Parser}
             \chapterauthor{Merete Bommarius}
@@ -174,10 +174,10 @@ Oreos ao r iy ow s
             The grammar that was written looks for example like this:
             
             
-            \texttt{MovementOnly\\
+\texttt{MovementOnly\\
                 MovementOnly $\rightarrow$ take ITEM [from SOURCE] [to DESTINATION] [MANNER]\\
-                MovementOnly $\rightarrow$ bring [BENEFICIARY] ITEM [from SOURCE]\\}
-            
+                MovementOnly $\rightarrow$ bring [BENEFICIARY] ITEM [from SOURCE]}
+                
             \textit{This describes the 'MovementOnly' action.
                 With this action, they primarily use their motion rather than their visual sense. This action contains simple movements like moving from a source to a\\ destination or simply into a given direction.}            
             As you can see, the grammar starts off with a term which is then explained in further detail. It also provides a structure that is to be used for the sentence, which is later being randomly generated.\\ 

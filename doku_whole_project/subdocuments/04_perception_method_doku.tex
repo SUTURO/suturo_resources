@@ -191,6 +191,7 @@ This method saves the collected classifcationresults in a markdown table. If a m
 
 \item plotResult(self)\\
 The method plots the collected results using the scatterplotfunction from matplotlib.
+\end{itemize}
 
 \subsection{Main method}
 The main method tries to create an instance of the resultActionClient class, does some i/o with the user, sets the parameters for the resultActionClass and then triggers the action. It also uses the provided methods to save the results to a markdown file and plot them.
@@ -215,8 +216,6 @@ double RSKNN::calculateConfidence(double classificationResult, cv::Mat neighborR
 
 It calculates the classification confidence for the KNN-classification by dividing the number of neighbours belonging to the result class, by the total number of visited neighbours. 
 
-\end{itemize}
-
 \section{The clusterLabeling Package}
 \chapterauthor{Jan-Frederik Stock}
 The clusterLabeling package is used to create labels for clusters in a scene. These labels can later be used to evaluate the actual classification, by calculating the accuracy of the used classifier on the scene.
@@ -233,31 +232,22 @@ The classifcationEvaluationAnntator can read a labeling file and will then compa
 
 \subsection{Documentation}
 \subsubsection{clusterLabelingAnnotator}
-\begin{itemize}
-\item 
 \begin{lstlisting}
 TyErrorId processWithLock(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
-\end{itemize}
 This is the main processing method of the annotator. It gets the detected clusters, draws a rectangle around their position, writes the number corresponding to their position in the clusters vector next to the rectangle and then displays the new picture in the viewer.
 
 
 \subsubsection{classificationEvaluationAnnotator}
-\begin{itemize}
-\item 
 \begin{lstlisting}
 TyErrorId initialize(AnnotatorContext \&ctx)
 \end{lstlisting}
-\end{itemize}
 
 This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the yaml description and reads in the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class.
 
-\begin{itemize}
-\item 
 \begin{lstlisting}
 TyErrorId process(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
-\end{itemize}
 
 This method loops through the identified clusters in a frame and compares the classification with the corresponding labels in the JSON-file for the frame. It then calculates the accuracy based on the comparison.
 
