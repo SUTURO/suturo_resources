@@ -4,6 +4,12 @@
 	\chapter{Knowledge}
 	\chapterauthor{Jeremias Thun}
 
+In the ontologies, the knowledge group has started a new way of thinking about the objects as well as the surfaces. The objects are now all part of the \texttt{PhysicalObject} category and the surfaces have gotten their own representation as part of our ontology for the first time as you can see in the final report in section 8.2.3 "Objects".
 
+To be able to work on the clean up task, Knowledge introduces a new surface, called the bucket. It can support objects just as tables and shelves, but when the robot puts objects in the bucket, it doesn't care where in the bucket is some space left or not. The robot can just put objects in the same place over and over again.
+
+When working on the bucket surface, it came in handy that the Knowledge group also finished generifying the surfaces by defining them by their role as \texttt{target} or \texttt{source} surface rather than their physics. This way, the same surface can have different roles in different tasks without knowledge needing to know how exactly the task is defined. You can find the detailed explaination of the role concept in the final report in section 8.1.5 under "Roles".
+
+The Knowledge group also successfully worked on a fundamental rework for the URDF structure and the xacro-script as well as the associated yaml to make them more user friendly when switching to a new environment and to have a more intuitive representation of the surfaces in the URDF.
 	
 \end{document}
