@@ -307,30 +307,30 @@ An Ontology is a knowledge represantation. To fullfill this task ontologies defi
 
 
 \subsection{Robocup}
-The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs. To do that it imports the srdl2-comp ontology that is part of knowrob. Furthermore our objects ontology gets imported.\\
-
+The \texttt{Robocup} ontology defines concepts used to describe the robocup and concepts needed for the URDFs. To do that it imports the \texttt{srdl2-comp} ontology that is part of knowrob. Furthermore our \texttt{objects} ontology gets imported.\\
+Since the concept of the robocup is not fully implemented yet, this ontology does not contain much apart from a class for the robocup, the tasks clean up and grocery storing and a \texttt{supports} property, that connects an object to the objects it supports.
 
 \subsection{Objects}
 
-This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. \\
-The objects ontology imports the knowrob and the urdf ontology provided by knowrob.\\
-For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of ColorRegion and different materials are defined in subclasses of MaterialRegion. Different shapes are represented by subclasses of ShapeRegion.\\
-For those characteristics subclasses of PhysicalQuality are added. Those represent the quality of the object, while the regions represent the actual values.\\
-To represent the confidence with which the robot perceived a characteristic of an object the class ConfidenceRegion and subclasses for the different characteristics are defined.\\
-The physical objects, we can encounter are represented by the subclasses of PhysicalObject.
-One of these subclasses is PhysicalPlace. The subclasses of PhysicalPlace represent places, like the shelf. The surfaces are represented by subclasses of PhysicalPlace aswell. To represent these PhysicalPlace has the subclass Surface, where different kinds of surfaces are defined.\\
-The Unknown class represents perceived objects, for which the robot doesnt know or is not sure what kind of physical object it is.\\
-Most of the items, that have a representation in our ontology, are subclasses of DesignedArtifact.
+This ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. \\
+The \texttt{objects} ontology imports the \texttt{knowrob} and the \texttt{urdf} ontology provided by knowrob.\\
+For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \texttt{ColorRegion} and different materials are defined in subclasses of \texttt{MaterialRegion}. Different shapes are represented by subclasses of \texttt{ShapeRegion}.\\
+For those characteristics subclasses of \texttt{PhysicalQuality} are added. Those represent the quality of the object, while the regions represent the actual values.\\
+To represent the confidence with which the robot perceived a characteristic of an object the class \texttt{ConfidenceRegion} and subclasses for the different characteristics are defined.\\
+The physical objects, we can encounter are represented by the subclasses of \texttt{PhysicalObject}.
+One of these subclasses is \texttt{PhysicalPlace}. The subclasses of \texttt{PhysicalPlace} represent places, like the shelf. The surfaces are represented by subclasses of \texttt{PhysicalPlace} aswell. To represent these \texttt{PhysicalPlace} has the subclass \texttt{Surface}, where different kinds of surfaces are defined.\\
+The \texttt{Unknown} class represents perceived objects, for which the robot doesnt know or is not sure what kind of physical object it is.\\
+Most of the items, that have a representation in our ontology, are subclasses of \texttt{DesignedArtifact}.
 Here you can find every item, that is created following a certain design. 
-Examples for this are DesignedFurniture like a table and DesignedTools like a knife.\\
-A huge part of the known items are different kinds of food or drinks. Most of these are categorised as ProcessedFood or Drink. Both of these are a subclass of DesignedSubstance. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the DesignedArtifact class. Those objects are categorised as NaturalFood, a subclass of BiologicalObject. This class is a subclass of PhysicalBody.\\
-The object properties hassurface and issurfaceof are used to connect a surface and the dedicated object.\\
-Since these surfaces can fullfill different roles the properties hasLocationRole and isLocationRoleOf are defined to connect the Source and Target roles to surfaces.\\
-For the grouping of objects the property inGroup is responsible. This property connects an object to a group.\\
-The supportedBy property connects an object to the object (most likely surface) it is standing on.\\
-To store the confidence for the different characteristics subproperties of the property hasRegionDataValue have been added.\\
-The size property is responsible for storing the size of an object.\\
-To distinguish objects we can move from others we added the supportable property. This property stores a boolean for an object.
+Examples for this are \texttt{DesignedFurniture} like a table and \texttt{DesignedTools} like a knife.\\
+A huge part of the known items are different kinds of food or drinks. Most of these are categorised as \texttt{ProcessedFood} or \texttt{Drink}. Both of these are a subclass of \texttt{DesignedSubstance}. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the \texttt{DesignedArtifact} class. Those objects are categorised as \texttt{NaturalFood}, a subclass of \texttt{BiologicalObject}. This class is a subclass of \texttt{PhysicalBody}.\\
+The object properties \texttt{hassurface} and \texttt{issurfaceof} are used to connect a surface and the dedicated object.\\
+Since these surfaces can fullfill different roles the properties \texttt{hasLocationRole} and \texttt{isLocationRoleOf} are defined to connect the \texttt{Source} and \texttt{Target} roles to surfaces.\\
+For the grouping of objects the property \texttt{inGroup} is responsible. This property connects an object to a group.\\
+The \texttt{supportedBy} property connects an object to the object (most likely surface) it is standing on.\\
+To store the confidence for the different characteristics subproperties of the property \texttt{hasRegionDataValue} have been added.\\
+The \texttt{size} property is responsible for storing the size of an object.\\
+To distinguish objects we can move from others we added the \texttt{supportable} property. This property stores a boolean for an object.
 
 
 
@@ -338,7 +338,7 @@ To distinguish objects we can move from others we added the supportable property
 \chapterauthor{Fabian Rosenstock}	  	
 \subsection{store\_object\_info\_server.py}
 This script stores the send data in our Knowledge base.
-To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since we have different naming conventions. After that it tests whether the class exists in our Ontology. If the classname is empty or if the class does not exist in our ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the ObjectDetectionData message. If the object has a legal position it gets added to the knowledge base and the objects at that position are put into one group.
+To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since we have different naming conventions. After that it tests whether the class exists in our Ontology. If the classname is empty or if the class does not exist in our ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the \texttt{ObjectDetectionData} message. If the object has a legal position it gets added to the knowledge base and the objects at that position are put into one group.
 
 	\endgroup
 
