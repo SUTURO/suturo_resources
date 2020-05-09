@@ -37,7 +37,6 @@
 		The sequence diagramm \ref{grocery_seq_01} and \ref{grocery_seq_02} does not depict when the actionservers are running it rather displays the time they are actively used.
 
 	\section{Tasks}
-	In the following subsections the execution and the procedure depicted in \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
 		The sequence diagramm in figure \ref{grocery_seq_01} and \ref{grocery_seq_01} does not depict when the actionservers are running it rather displays the time they are actively used	
 	
 	In the following subsections the execution and the procedure depicted in figure \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
@@ -48,7 +47,8 @@
 	
 	% NLP: Talk Request
 	
-	% Knowledge: get ttable-poses
+	% Knowledge: get table-poses
+Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so Planning can determine where to go next.
 	
 	% Navigation: moveBaseAction
 	
@@ -67,10 +67,23 @@
 	% 2x NLP: Talk
 	
 	% Knowledge: get shelf poses
+Knowledge finds all the shelves available and sorts them, just like the tables before, by their distance to the robot. This way, the Robot can navigate to all the shelves starting with the nearest one to scan the objects already in place.
 	
-	% Manipulation: move to table
+	% Navigation: move to table
 	
-	% 
+	% Knowledge: prolog-forget-table-objects
+	
+	% NLP
+	
+	% Manipulation: Pose to scan
+	
+	% Perception: Scan Shelf
+	
+	% Knowledge: create percieved objects
+	
+	% NLP
+	
+	% Manipulation
 
 	\subsection{perceive table sequence}
 	At the beginning we planned to scan the shelf first but during testing we found out that it will take less time to scan the shelf with the first object already in hand so the HSR scans the table for this perception, planning and knowledge had to do ...........
