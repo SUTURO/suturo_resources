@@ -196,6 +196,7 @@ The method plots the collected results using the scatterplotfunction from matplo
 The main method tries to create an instance of the resultActionClient class, does some i/o with the user, sets the parameters for the resultActionClass and then triggers the action. It also uses the provided methods to save the results to a markdown file and plot them.
 
 \section{Feature Extraction Tools}
+ \chapterauthor{Jan-Frederik Stock}
 The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
 
 \subsection{make\_split\_from\_directory.sh} 
@@ -205,6 +206,7 @@ This bash script can be used to create a split yaml-file which is required to pe
 This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a splitfile but a list of the classnames. This is required by the classifing annotator and has to be pasted into the annotators yaml-file. The comma after the last classname in the list has to be removed manually.
 
 \section{calculateConfidence in RSKNN.cpp}
+\chapterauthor{Jan-Frederik Stock}
 In the RSKNN.cpp, implementing KNN-classification in the rs\_addons package, the following method was added:
 
 \begin{lstlisting}
@@ -214,6 +216,51 @@ double RSKNN::calculateConfidence(double classificationResult, cv::Mat neighborR
 It calculates the classification confidence for the KNN-classification by dividing the number of neighbours belonging to the result class, by the total number of visited neighbours. 
 
 \end{itemize}
+
+\section{The clusterLabeling Package}
+\chapterauthor{Jan-Frederik Stock}
+The clusterLabeling package is used to create labels for clusters in a scene. These labels can later be used to evaluate the actual classification, by calculating the accuracy of the used classifier on the scene.
+
+\subsection{Usage}
+
+\subsubsection{The clusterLabelingAnnotator}
+The clusterLabelingAnnotator is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is reached, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. It is very important that you do not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise it can not be guaranteed that the cluster numbering will change. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline.\\
+
+To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the labelingAnnotator in the visualizer, which will display a number for every cluster. Now, you can note the class for every cluster in a labeling JSON-file, look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again an proceed labeling. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
+
+\subsubsection{classificationEvalutationAnnotator}
+The classifcationEvaluationAnntator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor yaml-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in robosherlocks terminal output. 
+
+\subsection{Documentation}
+\subsubsection{clusterLabelingAnnotator}
+\begin{itemize}
+\item 
+\begin{lstlisting}
+TyErrorId processWithLock(CAS \&tcas, ResultSpecification const \&res_spec)
+\end{lstlisting}
+\end{itemize}
+This is the main processing method of the annotator. It gets the detected clusters, draws a rectangle around their position, writes the number corresponding to their position in the clusters vector next to the rectangle and then displays the new picture in the viewer.
+
+
+\subsubsection{classificationEvaluationAnnotator}
+\begin{itemize}
+\item 
+\begin{lstlisting}
+TyErrorId initialize(AnnotatorContext \&ctx)
+\end{lstlisting}
+\end{itemize}
+
+This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the yaml description and reads in the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class.
+
+\begin{itemize}
+\item 
+\begin{lstlisting}
+TyErrorId process(CAS \&tcas, ResultSpecification const \&res_spec)
+\end{lstlisting}
+\end{itemize}
+
+This method loops through the identified clusters in a frame and compares the classification with the corresponding labels in the JSON-file for the frame. It then calculates the accuracy based on the comparison.
+
 
 
 \section{rs\_hsrb\_perception Package}
