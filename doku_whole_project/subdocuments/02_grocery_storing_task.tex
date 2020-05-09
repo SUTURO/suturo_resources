@@ -37,11 +37,16 @@
 		The sequence diagramm \ref{grocery_seq_01} and \ref{grocery_seq_02} does not depict when the actionservers are running it rather displays the time they are actively used.
 
 	\section{Tasks}
+	
+	\subsection{Setup}
 		The sequence diagramm in figure \ref{grocery_seq_01} and \ref{grocery_seq_01} does not depict when the actionservers are running it rather displays the time they are actively used	
 	
 	In the following subsections the execution and the procedure depicted in figure \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to the excact plan. Some more detail challanges will be explained aswell.
 
+	% Knowledge: set-tables-source 
 	At first the definition of the task is set in knowledge: We want to find objects on all the tables, so all the table surfaces are set as \texttt{source} and we want to place the found objects in shelves, so all the shelves are set as \texttt{target}. This procedure enables Knowledge, to genetically work over \texttt{source} and \texttt{target} surfaces regardless of what they actually are.
+	
+	\subsection{Scan Table}
 	
 	% Manipulation: take pose action
 	
@@ -52,9 +57,9 @@ Knowledge finds all the tables available, sorts them by their distance to the ro
 	
 	% Navigation: moveBaseAction
 	
-	% NLP: Talk Request
+	% NLP
 	
-	% Manipulation: TakePoseAction
+	% Manipuilation: TakePoseAction
 	
 	% Perception: Percieve and return data
 	
@@ -66,34 +71,45 @@ Knowledge finds all the tables available, sorts them by their distance to the ro
 	
 	% 2x NLP: Talk
 	
-	% Knowledge: get shelf poses
+	% Knowledge: prolog_table_pose (???)
+	
+	% Navigation: MoveBaseAction
+	
+	\subsection{Grasp Object}
+	
+	% Knowledge: next_object
+	
+	% 2x NLP: Talk Request
+	
+	% Manipulation: GraspAction
+	
+	% Planning: This whole thing is gonna be looped
+	
+	% NLP
+	
+	% Knowledge: Shelf Positions
 Knowledge finds all the shelves available and sorts them, just like the tables before, by their distance to the robot. This way, the Robot can navigate to all the shelves starting with the nearest one to scan the objects already in place.
 	
-	% Navigation: move to table
+	% Navigation: Move to Shelf
 	
-	% Knowledge: prolog-forget-table-objects
+	\subsection{Scan shelf floors}
 	
-	% NLP
-	
-	% Manipulation: Pose to scan
-	
-	% Perception: Scan Shelf
-	
-	% Knowledge: create percieved objects
+	% Planning: Loop through all shelf floors
 	
 	% NLP
 	
-	% Manipulation
-
-	\subsection{perceive table sequence}
-	At the beginning we planned to scan the shelf first but during testing we found out that it will take less time to scan the shelf with the first object already in hand so the HSR scans the table for this perception, planning and knowledge had to do ...........
-
-	\subsection{grasp preparation sequence}
-	\subsection{handle grasp failure sequence}
-	\subsection{travel sequence}
-	Maybe too redundant....
-	\subsection{loop shelfes sequence}
-	\subsection{main loop sequence}
+	% Manipulation: go into percieve pose
+	
+	% Perception: Percieve shelf
+	
+	% Knowledge: Store new Objects
+	
+	\subsection{Place Object}
+	
+	% Planning: Give already gotten object goal pose to Manipulation
+	
+	% Manipulation: Place Object
+	
 	
 	\section{Conclusion}
 
