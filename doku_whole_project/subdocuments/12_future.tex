@@ -16,6 +16,10 @@
 		
 		\section{Specific features}
 		Here comes a list and an explaination of different features that would be nice to implement even though we didn't have the time to implement them ourselves in the end.
+		
+		\subsection{Knowledge: Continue optimizing the object goal pose}
+		\chapterauthor{Jeremias Thun}
+		The decision about where to put the object works for some scenarios very well but it can have some problems depending on the order in which the objects are grasped. One of the biggest problems is: As described in section \ref{sec:kn_pickup}, the objects  similar to one of the already placed objects are put into a list, which is then cut to only place those most similar to the reference object. If we were for example placing three bananas next to two apples where there only enough space for one mor object, Knowledge would recognize that the bananas need to open a new group and cut the last two bananas out. But to keep it simple, we ignore those two bananas at the time - which leads to a situation in which Knowledge would place the first banana next to the two apples and only starting a new group for the bananas when it is looking for a place for the second and third banana.
 	  	
 	  	\subsection{Knowledge: Optimize next\_object/1}
 	  	\chapterauthor{Jeremias Thun}
@@ -24,14 +28,19 @@
 	  	
 	  	Based on the new object placing strategy it would be pretty nice to weigh in which object fits the best to it's reference object. Especially when you expect to get more information during your run it can significantly improve the resulting order of the objects if the ones that will more likeley be put next to their reference object would be taken earlier.
 	  	
-	  	% occlusion / Grouping
-	  	
 		On the other hand if the time is limited and your most important goal is to get at least some of the recognized objects in their final place (this is pretty much the RoboCup scenario), it can be a good idea to take those objects first, that perception was most confident about. This way, if you fail to place all the objects before the time runs out, you will have at least placed the ones you did with a higher confidence. This is a scenario, in which the idea to take the most similar objects first can be a good idea, too: That way, the few actually placed objects would be in an intuitively good order.
 		
 		If there are significant differences, you could also make some tests and see which objects are easier to grasp so you can take them first. But in our test series there were no significant differences in that matter. 
 		
 		With all these criteria the real challenge is to make them work with each other without having to use a machine learning algorithm. A nice approach could be for example, to first look for the distance to the robot, define a threshold within wich the physical distance doesn't make a real difference, look for other objects with the same distance to the robot plus this threshold and sort them by one or two of the other criteria. 
 		
+		\subsection{Knowledge: Unit Tests}
+		\chapterauthor{Jeremias Thun}
+		Knowledge is not that easy to test in an integrated system. To really test all it's potential, you would need all the other groups to have fully functional versions of their code and you will need quite some time to watch the robot move itself and the objects just to know if the nth object is placed correctly.\\
+		That is why especially Knowledge can really profit from some Unit Testing.
+		
+		We already started working on some unit tests for our code, but sadly we never got to actually have tests at a level that they can help us find bugs. To write and execute those Tests, \texttt{rosprolog} thankfully provides a special ROS Script, documented in the readme of \texttt{rosprolog}.
+
 
 	\endgroup
 
