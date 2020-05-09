@@ -108,6 +108,7 @@ Knowledge finds all the shelves available and sorts them, just like the tables b
 	% navigation: move to shelf (???)
 	
 	% Knowledge: Object goal pose
+Knowledge now determines the most suitable position for the Object, it earlier chose to be the next Object. The way this decision is made is discussed later in the Knowledge function documentation (see section \ref{sec:kn_find_surf} under "finding a surface"). For now it is enough to know, that Knowledge finds not only a suitable surface for that object but also the exact coordinates in the world frame for that object based on its own properties and based all the other known Objects in the scene.
 	
 	% Manipulation: TakePoseAction
 	
