@@ -24,6 +24,8 @@
 	  	
 	  	Based on the new object placing strategy it would be pretty nice to weigh in which object fits the best to it's reference object. Especially when you expect to get more information during your run it can significantly improve the resulting order of the objects if the ones that will more likeley be put next to their reference object would be taken earlier.
 	  	
+	  	% occlusion / Grouping
+	  	
 		On the other hand if the time is limited and your most important goal is to get at least some of the recognized objects in their final place (this is pretty much the RoboCup scenario), it can be a good idea to take those objects first, that perception was most confident about. This way, if you fail to place all the objects before the time runs out, you will have at least placed the ones you did with a higher confidence. This is a scenario, in which the idea to take the most similar objects first can be a good idea, too: That way, the few actually placed objects would be in an intuitively good order.
 		
 		If there are significant differences, you could also make some tests and see which objects are easier to grasp so you can take them first. But in our test series there were no significant differences in that matter. 
