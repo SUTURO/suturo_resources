@@ -73,10 +73,44 @@ group_shelf_objects/0
 group_table_objects/0
 \end{lstlisting}
 
-\subsubsection{Finding a surface}\label{sec:kn_find_surf}
+\subsubsection{Finding a goal surface for an Object\label{sec:kn_find_surf}}
 
-The second part of our beliefstate decides, what surface Knowledge beliefs to be the most fit for an object at a certain time. This part still has a few flaws but here is what it can do:\\
-When 
+The second part of our beliefstate decides, what surface Knowledge beliefs to be the most fit for an object at a certain time. This part still has a few flaws but here is what it does:
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{pictures/knowledge_placing_objects.png}
+\caption{The object placing strategy}
+\label{fig:kn_obj_placement}
+\end{figure}
+
+Based on all the known objects, we want to find a suitable grouping on the shelf floors for them. This grouping needs to be more detailed if the known objects are more similar and it needs to be less specific if we have a wider range of very different objects (as you can see in figure \ref{fig:kn_obj_placement}). On the other hand we need to stay flexible in case we haven't scanned the whole scene at this point or if the scene changes behind our back. For example if the second scene in figure \ref{fig:kn_obj_placement} finds another Apple and a Banana later, Knowledge should reconsider the earlier grouping and maybe open a third floor.
+
+This is achieved by first taking the one object we want to place right now and finding the object thats is most similar to it, standing on a target surface. The predicate
+\begin{lstlisting}
+most_related_object(Source, Target) :-
+\end{lstlisting}
+first looks for Objects with a similar class and finds the logical distance to that class. If that distance is below a threshold defined in \texttt{config.pl} and that class is not the general fallback \texttt{hsr\_objects:'Other'}, this most related Object gets linked to the first Object as it's \texttt{refObject} and the first object also get's the distance stored.\\
+If the criteria don't match, \texttt{most\_related\_object} looks for a suitable object with a similar color or size instead and otherwise does the same procedure. The distance is defined as always a bit more than the maximum class difference, so sorting by class is always preferred.
+
+Once the reference Object is found, the supposed surface seems to be the one, that reference object is standing on. But what if we just assigned an onion to an apple, while we already know about two bananas and a peach, that would fit much better to that apple? To avoid that, we are now running the \texttt{most\_related\_object/2} for all the other known objects on \texttt{source} surfaces and take the ones, that should end up on the same surface as our first object. This is done by the predicate
+\begin{lstlisting}
+% OtherObjects returns a list of all the objects, that one day 
+% would be put on Surface.
+objects_on_same_surface_in_future(Surface, OtherObjects) :-
+\end{lstlisting}
+which also sorts all the objects that sould end up on that surface by the "distance" to their \texttt{refObject}. This way, the objects that come first in the list \texttt{OtherObjects} are more similar to one of the objects already placed on that surface than the ones that come later in the list.
+
+Based on that list it is pretty easy, to just add up the width of the first few objects and cut the list where the objects don't fit on their \texttt{supposedSurface} anymore, which is done by the predicate
+\begin{lstlisting}
+% Takes a list of objects and divides it into the first n objects that fit on
+% the given surface and the rest.
+objects_fit_on_surface(Objects, Surface, FittingObjects, NotFittingObjects) :-
+\end{lstlisting}
+
+In the end, all the \texttt{FittingObjects} have found their \texttt{supposedSurface}. This surface is now stored as an rdf link to them so we dont need to restart the whole calculation everytime we want to place one of them. The other \texttt{NotFittingObjects} as well as all the objects supposed to go on a different surface are now without a proper surface though. If one of them needs to be placed, the whole procedure would start again. If in the meantime we found some other objects that would fit better on a surface some objects are already assigned to, these assignments can be removed in order to make space for the new better fitting objects. All of this is organized by the predicate 
+\begin{lstlisting}
+object_goal_surface_(Object, Surface, Context, RefObject) :-
+\end{lstlisting}
 
 \subsection{pickup.pl}
 
@@ -96,18 +130,7 @@ In the end, everything Planning needs is given by
 object_goal_pose_offset_(Instance, [[X,Y,Z], Rotation],Context):-
 \end{lstlisting}
 It takes an Object and returns the pose this object should be placed in and as Context it also returns, why this decision was made the way it was.\\
-But this predicate actually contains a few other queries. Some of the most important ones are:
-
-\begin{lstlisting}
-object_goal_surface_(Instance, NearestSurface, Context, Self) :-
-\end{lstlisting}
-First we need a decision about what surface the object should be placed on. This is simply based on which surface is nearest to the robot and has the attribute of a \texttt{target} surface.
-\begin{lstlisting}
-most_related_object(Source, Target, Distance) :-
-distance_to_object(Source, Target, Distance) :-
-\end{lstlisting}
-
- Here lies the decision about what object is most similar to the one, \texttt{object\_goal\_pose\_offset} got. \texttt{distance\_to\_object} can tell, how similar two objects are (what the legical distance between them is) in the class hierarchy. This is based on the knowrob-predicate \texttt{distance\_of/3}. The \texttt{most\_related\_obeject} iterates through every object already in place and either finds a similar one based on similar object-classes or, in case the class of our object is \texttt{Other}, looks for another object that has the same color or size as our object. This is also, where the context, i.e. the human readable reason why the object was placed the way it was, is generated. It tells us, if the decision was based on it's class (if so, how similar they were), on it's size or it's color.
+It looks for the \texttt{object\_goal\_surface/4} (see section \ref{fig:kn_obj_placement} under 'Finding a goal surface for an Object') and finds a suitable position for the object on that surface. To do that, it adds an offset to the position of the \texttt{refObject} and returns that position in the world frame.
 
 \subsection{surfaces.pl}
 
@@ -205,7 +228,7 @@ all_objects_on_tables_/1,
         \label{fig:kn_ro_gr}
     %\end{minipage}\hfill
     %\begin{minipage}{0.45\textwidth}
-        \centering
+    %    \centering
         \includegraphics[width=0.8\textwidth]{pictures/knowledge_roles_cl.png}
         \caption{Roles in Clean Up}
         \label{fig:kn_ro_cl}
@@ -244,30 +267,23 @@ An Ontology is a knowledge represantation. To fullfill this task ontologies defi
 
 
 \subsection{Robocup}
-The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs. To do that it imports the srdl2-comp ontology that is part of knowrob. Furthermore our objects ontology gets imported.\\
+The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs. To do that it imports the srdl2-comp ontology that is part of knowrob. Furthermore our objects ontology gets imported.
+
+
 
 
 \subsection{Objects}
 
-This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. \\
-The objects ontology imports the knowrob and the urdf ontology provided by knowrob.\\
-For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of ColorRegion and different materials are defined in subclasses of MaterialRegion. Different shapes are represented by subclasses of ShapeRegion.\\
-For those characteristics subclasses of PhysicalQuality are added. Those represent the quality of the object, while the regions represent the actual values.\\
-To represent the confidence with which the robot perceived a characteristic of an object the class ConfidenceRegion and subclasses for the different characteristics are defined.\\
+This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. 
+The objects ontology imports the knowrob and the urdf ontology provided by knowrob.
+For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of ColorRegion and different materials are defined in subclasses of MaterialRegion. Different shapes are represented by subclasses of ShapeRegion.
+For those characteristics subclasses of PhysicalQuality are added. Those represent the quality of the object, while the regions represent the actual values.
+To represent the confidence with which the robot perceived a characteristic of an object the class ConfidenceRegion and subclasses for the different characteristics are defined.
 The physical objects, we can encounter are represented by the subclasses of PhysicalObject.
-One of these subclasses is PhysicalPlace. The subclasses of PhysicalPlace represent places, like the shelf. The surfaces are represented by subclasses of PhysicalPlace aswell. To represent these PhysicalPlace has the subclass Surface, where different kinds of surfaces are defined.\\
-The Unknown class represents perceived objects, for which the robot doesnt know or is not sure what kind of physical object it is.\\
+One of these subclasses is PhysicalPlace. The subclasses of PhysicalPlace represent places, like the shelf. The surfaces are represented by subclasses of PhysicalPlace aswell. To represent these PhysicalPlace has the subclass Surface, where different kinds of surfaces are defined.
+The Unknown class represents perceived objects, for which we dont know or are not sure what kind of physical object it is.
 Most of the items, that have a representation in our ontology, are subclasses of DesignedArtifact.
-Here you can find every item, that is created following a certain design. 
-Examples for this are DesignedFurniture like a table and DesignedTools like a knife.\\
-A huge part of the known items are different kinds of food or drinks. Most of these are categorised as ProcessedFood or Drink. Both of these are a subclass of DesignedSubstance. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the DesignedArtifact class. Those objects are categorised as NaturalFood, a subclass of BiologicalObject. This class is a subclass of PhysicalBody.\\
-The object properties hassurface and issurfaceof are used to connect a surface and the dedicated object.\\
-Since these surfaces can fullfill different roles the properties hasLocationRole and isLocationRoleOf are defined to connect the Source and Target roles to surfaces.\\
-For the grouping of objects the property inGroup is responsible. This property connects an object to a group.\\
-The supportedBy property connects an object to the object (most likely surface) it is standing on.\\
-To store the confidence for the different characteristics subproperties of the property hasRegionDataValue have been added.\\
-The size property is responsible for storing the size of an object.\\
-To distinguish objects we can move from others we added the supportable property. This property stores a boolean for an object.
+Electrical Devices like a camera are defined in the class ElectricalDevice, a subclass of Appliance, which is itself a subclass of DesignedArtifact.
 
 
 
