@@ -314,16 +314,49 @@ Since the concept of the robocup is not fully implemented yet, this ontology doe
 
 This ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. \\
 The \texttt{objects} ontology imports the \texttt{knowrob} and the \texttt{urdf} ontology provided by knowrob.\\
-For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \texttt{ColorRegion} and different materials are defined in subclasses of \texttt{MaterialRegion}. Different shapes are represented by subclasses of \texttt{ShapeRegion}.\\
-For those characteristics subclasses of \texttt{PhysicalQuality} are added. Those represent the quality of the object, while the regions represent the actual values.\\
+For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \texttt{ColorRegion} and different materials are defined in subclasses of \texttt{MaterialRegion}. Different shapes are represented by subclasses of \texttt{ShapeRegion}. An overview over the regions is given in figure \ref{fig:region_ont}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_region.png}
+\caption{Regions in our ontology}
+\label{fig:region_ont}
+\end{figure}
+
+For those characteristics we have subclasses of \texttt{PhysicalQuality}, as seen in figure \ref{fig:quality_ont}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_quality.png}
+\caption{Qualitys in our ontology}
+\label{fig:quality_ont}
+\end{figure}
+
+ Those represent the quality of the object, while the regions represent the actual values.\\
 To represent the confidence with which the robot perceived a characteristic of an object the class \texttt{ConfidenceRegion} and subclasses for the different characteristics are defined.\\
 The physical objects, we can encounter are represented by the subclasses of \texttt{PhysicalObject}.
-One of these subclasses is \texttt{PhysicalPlace}. The subclasses of \texttt{PhysicalPlace} represent places, like the shelf. The surfaces are represented by subclasses of \texttt{PhysicalPlace} aswell. To represent these \texttt{PhysicalPlace} has the subclass \texttt{Surface}, where different kinds of surfaces are defined.\\
+One of these subclasses is \texttt{PhysicalPlace}. The subclasses of \texttt{PhysicalPlace} represent places, like the shelf. The surfaces are represented by subclasses of \texttt{PhysicalPlace} aswell. To represent these \texttt{PhysicalPlace} has the subclass \texttt{Surface}, where different kinds of surfaces are defined. This can be seen in figure \ref{fig:place_ont}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_place.png}
+\caption{Physical places in our ontology}
+\label{fig:place_ont}
+\end{figure}
+
 The \texttt{Unknown} class represents perceived objects, for which the robot doesnt know or is not sure what kind of physical object it is.\\
 Most of the items, that have a representation in our ontology, are subclasses of \texttt{DesignedArtifact}.
 Here you can find every item, that is created following a certain design. 
 Examples for this are \texttt{DesignedFurniture} like a table and \texttt{DesignedTools} like a knife.\\
-A huge part of the known items are different kinds of food or drinks. Most of these are categorised as \texttt{ProcessedFood} or \texttt{Drink}. Both of these are a subclass of \texttt{DesignedSubstance}. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the \texttt{DesignedArtifact} class. Those objects are categorised as \texttt{NaturalFood}, a subclass of \texttt{BiologicalObject}. This class is a subclass of \texttt{PhysicalBody}.\\
+A huge part of the known items are different kinds of food or drinks. Most of these are categorised as \texttt{ProcessedFood} or \texttt{Drink}. Both of these are a subclass of \texttt{DesignedSubstance}. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the \texttt{DesignedArtifact} class. Those objects are categorised as \texttt{NaturalFood}, a subclass of \texttt{BiologicalObject}. This class is a subclass of \texttt{PhysicalBody}. The figure \ref{fig:object_ont} gives an overview over the \texttt{PhysicalObject} class.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_objects.png}
+\caption{Physical objects in our ontology}
+\label{fig:object_ont}
+\end{figure}
+
 The object properties \texttt{hassurface} and \texttt{issurfaceof} are used to connect a surface and the dedicated object.\\
 Since these surfaces can fullfill different roles the properties \texttt{hasLocationRole} and \texttt{isLocationRoleOf} are defined to connect the \texttt{Source} and \texttt{Target} roles to surfaces.\\
 For the grouping of objects the property \texttt{inGroup} is responsible. This property connects an object to a group.\\
