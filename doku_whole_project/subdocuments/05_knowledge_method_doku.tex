@@ -244,23 +244,30 @@ An Ontology is a knowledge represantation. To fullfill this task ontologies defi
 
 
 \subsection{Robocup}
-The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs. To do that it imports the srdl2-comp ontology that is part of knowrob. Furthermore our objects ontology gets imported.
-
-
+The Robocup Ontology defines Concepts used to describe the Robocup and Concepts needed for the URDFs. To do that it imports the srdl2-comp ontology that is part of knowrob. Furthermore our objects ontology gets imported.\\
 
 
 \subsection{Objects}
 
-This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. 
-The objects ontology imports the knowrob and the urdf ontology provided by knowrob.
-For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of ColorRegion and different materials are defined in subclasses of MaterialRegion. Different shapes are represented by subclasses of ShapeRegion.
-For those characteristics subclasses of PhysicalQuality are added. Those represent the quality of the object, while the regions represent the actual values.
-To represent the confidence with which the robot perceived a characteristic of an object the class ConfidenceRegion and subclasses for the different characteristics are defined.
+This Ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example find similar objects. The Ontology furthermore defines different properties objects can have. \\
+The objects ontology imports the knowrob and the urdf ontology provided by knowrob.\\
+For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of ColorRegion and different materials are defined in subclasses of MaterialRegion. Different shapes are represented by subclasses of ShapeRegion.\\
+For those characteristics subclasses of PhysicalQuality are added. Those represent the quality of the object, while the regions represent the actual values.\\
+To represent the confidence with which the robot perceived a characteristic of an object the class ConfidenceRegion and subclasses for the different characteristics are defined.\\
 The physical objects, we can encounter are represented by the subclasses of PhysicalObject.
-One of these subclasses is PhysicalPlace. The subclasses of PhysicalPlace represent places, like the shelf. The surfaces are represented by subclasses of PhysicalPlace aswell. To represent these PhysicalPlace has the subclass Surface, where different kinds of surfaces are defined.
-The Unknown class represents perceived objects, for which we dont know or are not sure what kind of physical object it is.
+One of these subclasses is PhysicalPlace. The subclasses of PhysicalPlace represent places, like the shelf. The surfaces are represented by subclasses of PhysicalPlace aswell. To represent these PhysicalPlace has the subclass Surface, where different kinds of surfaces are defined.\\
+The Unknown class represents perceived objects, for which the robot doesnt know or is not sure what kind of physical object it is.\\
 Most of the items, that have a representation in our ontology, are subclasses of DesignedArtifact.
-Electrical Devices like a camera are defined in the class ElectricalDevice, a subclass of Appliance, which is itself a subclass of DesignedArtifact.
+Here you can find every item, that is created following a certain design. 
+Examples for this are DesignedFurniture like a table and DesignedTools like a knife.\\
+A huge part of the known items are different kinds of food or drinks. Most of these are categorised as ProcessedFood or Drink. Both of these are a subclass of DesignedSubstance. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the DesignedArtifact class. Those objects are categorised as NaturalFood, a subclass of BiologicalObject. This class is a subclass of PhysicalBody.\\
+The object properties hassurface and issurfaceof are used to connect a surface and the dedicated object.\\
+Since these surfaces can fullfill different roles the properties hasLocationRole and isLocationRoleOf are defined to connect the Source and Target roles to surfaces.\\
+For the grouping of objects the property inGroup is responsible. This property connects an object to a group.\\
+The supportedBy property connects an object to the object (most likely surface) it is standing on.\\
+To store the confidence for the different characteristics subproperties of the property hasRegionDataValue have been added.\\
+The size property is responsible for storing the size of an object.\\
+To distinguish objects we can move from others we added the supportable property. This property stores a boolean for an object.
 
 
 
