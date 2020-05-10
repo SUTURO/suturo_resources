@@ -168,8 +168,7 @@ Oreos ao r iy ow s
 {'predicate': 'take'} {'object': 'cup'} {'destination': 'table'}
 \end{lstlisting}
             
-        \subsubsection{Training the Parser}
-            \chapterauthor{Merete Bommarius}
+        \subsubsection{Training the Parser \small{\textit{Merete Bommarius}}}
             In order to really be able to train the parser there are a few requirements that need to be met. First, there must be a corpus which the training program can use as a reference. This corpus should contain 50.000+ sentences. The solution that was used in order to get to this number was writing about 120 sentences and annotate them. Annotating helps setting the guidelines for the grammar that was used to set guidelines for the random sentence generator that was used to provide us with the required numbers of sentences.
             The grammar that was written looks for example like this:
             
@@ -197,7 +196,22 @@ Oreos ao r iy ow s
     \subsection{knowledge\_interface.py}
     
 \section{The suturo\_speechparser Package}
-    \chapterauthor{Paul Schnipper}	
+    \chapterauthor{Paul Schnipper}
+    This package contains three launchfiles created to launch nodes spreading the four previous packages.\\
+    \begin{itemize}
+        \item \texttt{hard\_commands\_only.launch}
+            \subitem Starts Julius just with the dictionary for hard commands.
+            \subitem And start a textparser node.
+        \item \texttt{qa\_system.launch}
+            \subitem Starts Julius with the dictionary for the QA-System.
+            \subitem Starts a textparser node.
+            \subitem Starts a slingparser node.
+            \subitem Starts a knowledge\_interface node.
+            \subitem And starts a demo\_answers node.        
+        \item \texttt{speechparser.launch}
+            \subitem Placeholder for a later system similar to \texttt{qa\_system.launch}. This is supposed to be used for complex commands given to the robot.  
+        
+    \end{itemize}
      
     	
 \end{document}
