@@ -5,15 +5,15 @@
 	\chapterauthor{Fabian Weihe}
 	
 	The main focus in this milestone was on improving the existing code from the milestones before and make a version of manipulation which works well in the simulation.\\
-	So a big part of time was used to rework the scripts and the code for gazebo.\\
-	On the other hand we fixed some bugs to develop a smoother experience. We improved the collision handling while grasping and placing. For that we specified an area around the gripper, which shouldn't touch any surfaces or objects except for the object we want to grasp.\\
-	We also added waypoints to prevent collision with the shelf by grasping or placing.\\
-	In milestone three we had a bug, which caused the robot to sometimes drop objects in front of the shelf (instead of placing them inside), but returning success as result. We can prevent this now by comparing the goal coordinates with the current coordinates of the object. Currently that code is on a seperated branch though.\\
-	In the thrid milestone we have finished working on the \texttt{take\_pose\_server}. Please see chapter 10.1 in the final report for details.\\
-	We added a function to the \texttt{grasp\_object\_server}, which allows to move to \texttt{transport\_pose} and just close the gripper. This is usefull in case we can't grasp an object by ourselves and want to be able to just take it for example out of the hand of a helping human. In order to do this we made a big refactor in the \texttt{grasp\_object\_server} which is why this feature is currently not in master branch. For details on this, please take a look in the final report at chapter 10.0.2.
-	We also finished the \texttt{place\_server}. You can see the documentation for it in the final report at chapter 10.2. You should also look at chapter 10.3 for the \texttt{object\_state\_listener} and 10.4 for \texttt{giskard\_load\_static\_objects}.\\
-	Another goal at this milestone was to open room doors and shelf doors. Because of the current situation we decided to focus on the shelf doors first. We have decided to try and achieve this by using the constraint feature of giskard for a smooth sequence of events. Unfortunately we had some issues with testing at this point, so we did not integraded this feature in milestone 3.\\
-	We have discarded our goal to check for an object in the gripper with the hand camera because we had a good function for this in \texttt{grasp\_object\_server} already. Also, we don't need this feature in the simulation, because we don't have any inaccuracies there.
+	A big chunk of time was used to rework the scripts and the code for gazebo.\\
+	On the other hand we fixed some bugs to develop a smoother experience. We improve the collision handling while grasping and placing. For that we specified a area around the gripper, which shouldn't touch any surfaces or objects, accept for the object we want to grasp.\\
+	We also add way points to prevent collision with the shelf by grasping or placing.\\
+	In milestone three we had a bug, which cause that we sometimes dropped objects in front of the shelf, but returning success as result. We preventing this now by compare the goal coordinates with the current coordinates. Currently this code is on a seperated branch.\\
+	In the third milestone we've finished the take\_pose\_server. Please see chapter 10.1 in the final report for the method documentation.\\
+	We add a function to the grasp\_object\_server, which allows to move to transport\_pose and close the gripper. This is usefull in case we can't grasp an object by ourself but want to sorted in the shelf or put it in the bucket for "clean up". In order to this we made a big refactorisation of the grasp\_object\_server, so this feature is currently not in master, but you can see the documentation for it in the final report at chapter 10.0.2.
+	We also finished the place\_server. You can see the documentation for it in the final report under chapter 10.2. You should also look at chapter 10.3 for the object\_state\_listener and 10.4 for giskard\_load\_static\_objects.\\
+	Another goal at this milestone was to open room doors and shelf doors. Because of the current situation we decided to focus on shelf doors first. We've decided to do that with the constraint feature of giskard for a smooth sequence of events. Unfortunately we had some issues with testing at this point . So we didn't integrate this feature in milestone 3.\\
+	We have discard our goal to check for an object in gripper with the hand camera. The reasons for that were, that we had a good function for this in grasp\_object\_server already and we don't need this feature in the simulation, because we don't have any inaccuracies there.
 	
 	
 	
