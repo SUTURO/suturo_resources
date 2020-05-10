@@ -6,24 +6,24 @@
                 The planning team is consisting of Torge Olliges (Grocery storing), Philipp Klein (Clean up), Tom-Eric Lehmkuhl (Groupleader, Grocery storing) and Jan Schimpf (Clean up). The group is responsible for the integration and connection of the results of the other groups. Planning has also created a sophisticated sequence diagram that explains the process and the interaction of all groups. This diagram is also used for the final documentation, which Planning has been working on very intensively over the past weeks. Furthermore, planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bugfixing and adaptation of the current code. The current code has been slightly improved in many places, as well as small new features implemented for cleanup. All essential changes are listed below. 
           
           		\section{Refactoring}
-	        	    We have refactored almost every files, we have done this to increase the readability and code quality.   
+	        	    We have refactored almost every file, we have done this to increase the readability and code quality.   
 	        	    
 	        	\section{Low Level Interfaces (LLIF)}
-	                The low level interfaces package mainly consist of the action client which connect to the action servers of the other groups.
+	                The low level interfaces package mainly consists of the action client which connects to the action servers of the other groups.
                 
                
                 \subsection{Knowledge}
 	                
 				    \begin{itemize}
-				      \item \textit{knowledge-set-buckets-target} set the target for all objects to the bucket.
+				      \item \textit{knowledge-set-buckets-target} sets the target for all objects to the bucket.
 				       \item \textit{knowledge-set-ground-source} has been modified to work with several surfaces. 
 				       \item \textit{knowledge-set-tables-source} has been modified to work with several surfaces. 
-				       \item \textit{knowledge-set-target-surfaces} has been modified to work with several surfaces.
+				       \item \textit{knowledge-set-target-surfaces} has been modified to work with multiple surfaces.
 		
 				    \end{itemize} 
                                            
                 \section{Common Functions (COMF)}
-	                The common functions package is the renamed common plans package and consists of functions which are common to both tasks. We created a functions file corresponding to the groups which they are interacting with and providing mid level functions to.
+	                The \texttt{common functions} package is the renamed \texttt{common plans} package and consists of functions which are common to both tasks. We created a functions file corresponding to the groups which they are interacting with and providing mid level functions to.
 	               
                 \subsection{Navigation}
                   \begin{itemize}
@@ -33,7 +33,7 @@
                   \end{itemize}
                 
                 \section{Grocery Storing (GROCERY)}
-                Grocery was extended by the NLP part, which waits for an input to start the plan and stops it at any time via a stop command. Also the perceive shelf function was modified to work with the new surfaces. Smaller bugs that occurred have also been fixed.
+                Grocery Storing was extended by the NLP part, which waits for an input to start the plan and stops it at any time via a stop command. Also the perceive shelf function was modified to work with the new surfaces. Smaller bugs that occurred have also been fixed.
                 
                 \section{Cleanup (CLEAN)}
                 Cleanup was rewritten or adapted in large parts. The new version now includes new features, as well as driving to a bucket given by knowledge and an improved version to find points of interest. Also many existing bugs have been fixed, so the plan is now able to clean up any number of items at any position.
