@@ -78,7 +78,7 @@ group_table_objects/0
 The second part of our beliefstate decides, what surface Knowledge beliefs to be the most fit for an object at a certain time. This part still has a few flaws but here is what it does:
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{pictures/knowledge_placing_objects}
+\includegraphics[width=0.8\textwidth]{pictures/knowledge/knowledge_placing_objects}
 \caption{The object placing strategy}
 \label{fig:kn_obj_placement}
 \end{figure}
@@ -134,7 +134,7 @@ It looks for the \texttt{object\_goal\_surface/4} (see section \ref{fig:kn_obj_p
 
 \subsection{surfaces.pl}
 
-The bigges module is the \texttt{surfaces} module. This is where you can find everything you need to know about surfaces.\\
+The biggest module is the \texttt{surfaces} module. This is where you can find everything you need to know about surfaces.\\
 The surfaces are, just like objects, stored as an atom, wich represents an instance of an OWL-Class and look like this:
 \begin{lstlisting}
 ?- is_surface('http://ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject_UHOJSVEC')
@@ -146,7 +146,39 @@ The only exception is the surface \texttt{ground}, which has no representation i
 true.
 \end{lstlisting}
 
-\subsubsection{find surfaces}
+Right now, Knowledge can handle four different types of surfaces: Tables, Shelves, Buckets and the Ground, as you can see in the figures \ref{fig:kn_first_surface} to \ref{fig:kn_last_surface}. They themselves are not limited in number, but it would take some rewriting in the urdf script to work with different \textit{types} of surfaces.
+
+\begin{figure}
+\label{fig:kn_surfaces}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pictures/knowledge/table}
+        \caption{The Table surface}
+        \label{fig:kn_first_surface}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pictures/knowledge/shelf}
+        \caption{The Shelf surface}
+        \label{fig:kn_ro_cl}
+    \end{minipage}\\
+    ~\\
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pictures/knowledge/ground}
+        \caption{The Ground surface}
+        
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{pictures/knowledge/bucket}
+        \caption{The Bucket surface}
+        \label{fig:kn_last_surface}
+    \end{minipage}
+\end{figure}
+
+\subsubsection{Find surfaces}
 
 You can call
 \begin{lstlisting}
@@ -223,13 +255,13 @@ all_objects_on_tables_/1,
     \centering
     %\begin{minipage}{0.45\textwidth}
     %    \centering
-        \includegraphics[width=0.8\textwidth]{pictures/knowledge_roles_gr}
+        \includegraphics[width=0.8\textwidth]{pictures/knowledge/knowledge_roles_gr}
         \caption{Roles in Grocery Storing}
         \label{fig:kn_ro_gr}
     %\end{minipage}\hfill
     %\begin{minipage}{0.45\textwidth}
     %    \centering
-        \includegraphics[width=0.8\textwidth]{pictures/knowledge_roles_cl}
+        \includegraphics[width=0.8\textwidth]{pictures/knowledge/knowledge_roles_cl}
         \caption{Roles in Clean Up}
         \label{fig:kn_ro_cl}
     %\end{minipage}
