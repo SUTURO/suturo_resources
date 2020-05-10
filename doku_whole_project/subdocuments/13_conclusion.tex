@@ -21,6 +21,20 @@
 		
 		Third, the clusterLabeling package was added, including the clusterLabelingAnnotator, which displays numbers for every cluster in a given frame, and the classificationEvaluatationAnnotator which calculates the accuracy of a classifier on a given scene, based on labeling data created with the help of the classificationEvaluationAnnotator. 
 		
+		Additionally, the rs\_hsrb\_perception package provided by previous SUTURO projects were adapted to work with the newest version of robosherlock. Also some changes were made to the package, including a change to the classification, and it was made possible to visualize the current pipeline.
+		
+		Another addition by the perceptiongroup was a classifier on 2D images, which uses Deep Learning. This could for example be used to recognize specific persons.
+		
+		Furthermore, a python pure embedding annotator was added, to be able to work on the images received by robosherlock via a python script.
+		
+		Perception also worked on handcameratracking, which could be used to correct the movement while grasping an object. A prototype implementation for this is available, but it could not be integrated due to versionconflicts. 
+		
+		An essential part of perception was also to record images to train classifiers on, a problem the group worked on in this context was the recording of transparent objects.
+		
+		Another package implemented by the perceptiongroup was the classificationEvaluation package, which can be used to save classification results in a markdown table and plot them.
+		
+		
+		
 		
 		\section{Knowledge}
 		The knowledge groups objective was to store information given to it by other groups, mainly perception, in an organized manner and making specific, needed information available.
