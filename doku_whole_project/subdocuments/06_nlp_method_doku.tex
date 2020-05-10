@@ -183,17 +183,33 @@ Oreos ao r iy ow s
             Depending on how thoroughly the training of the parser is supposed to be, it might take a few days up till a few weeks, and the parser needs to be retrained if new information or commands are added.
         
         \subsubsection{About SLING}
-            SLING is a natural language frame semantic parser developed by Google. It is published under the Apache License 2.0. SLING is  
+            SLING is a natural language frame semantic parser developed by Google. It is published under the Apache License 2.0.
         \subsubsection{About TinyRPC}
-        \subsubsection{slingparserRosInterface.py}
+             remote procedure calls (RPC) are a way for one program to call functions provided by a different program. (In the background ROS is based on RPC technology as well.) tinyrpc is a framework for constructing remote procedure call RPC services in Python. Tiny-RPC implements the JSON-RPC protocol.\\
+             TinyRPC is used to bridge the problem, that two powerful and necessary libraries, Sling and SimpleNLG (See The Suturo\_nlg Package) are only available for Python3.\\
+             To solve this problem, the \texttt{slingparserRosInterface.py} starts \texttt{slingparser.py3} as a subprocess. The slingparser.py3 upon startup initializes the tinyRPC server and provides the \texttt{semantic\_parse()} function.
+        \subsubsection[slingparserros]{slingparserRosInterface.py}
+            The \texttt{slingparserRosInterface.py} subscribes to a topic on witch \texttt{String} messages are published. It then calls the the semantic parse function provided by the \texttt{slingparser.py} script. This functions returns the annotated semantic frames in a python dictionary. This dictionary is then translated into a \texttt{MeaningRepresentation} message. This message definition contains an array of \texttt{KeyValuePair} messages. Each of these messages contains the frame as a key and the contents of the frame as the associated value.
         \subsubsection{slingparser.py3}
-    
+            The slingparser.py3 script wraps the Sling Semantic Parser. It currently loads a hard coded \texttt{flow} file.
+            The \texttt{semantic\_parse} function actually calls the sling parser and takes its output and writes it into a dictionary to return.
     
 \section{The suturo\_nlg Package}
 \chapterauthor{Paul Schnipper}
-    \subsection{nlg\_ros.py \& nlg.py3}
-    \subsection{demo\_answers\_ros.py \& demo\_answers.py3}
+    The \texttt{suturo\_nlg} package handles speech generation. But also contains the \texttt{knowledge\_interface} node, designed to answer simple questions by querying KnowRob through ROSProlog.
     \subsection{knowledge\_interface.py}
+        The knowledge interface is designed to answer three different kinds of questions. Where is ITEM X supposed to go? What is on SURFACE? Is there a ITEM X on SURFACE?\\
+        The \texttt{knowledge\_interface} subscribes to a topic using the \texttt{MeaningRepresentation} message. (See \hyperref[slingparserros]{slingparserRosInterface}) When there is a message published on this topic the \texttt{callback} function is called.
+        \subsubsection{callback}
+            The callback function takes the \texttt{MeaningRepresentation} message and converts it into a dictionary.
+            Depending of what the predicate is one of the following functions is called.
+            \begin{itemize}
+                \item what\_is\_on
+                \item supposed\_to\_go
+                \item is\_there             
+            \end{itemize}
+    \subsection{demo\_answers\_ros.py \& demo\_answers.py3}
+    
     
 \section{The suturo\_speechparser Package}
     \chapterauthor{Paul Schnipper}
