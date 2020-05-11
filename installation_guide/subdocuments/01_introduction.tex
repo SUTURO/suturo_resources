@@ -13,25 +13,25 @@
 	The catkin\_tools package also needs to be installed. You find the instructions on how to install it \href{https://catkin-tools.readthedocs.io/en/latest/installing.html}{here}.\\
 	To follow this guide you will also need python-wstool.
 	You can install it by running this command:
-	\begin{itemize}
-	\item sudo apt-get install python-rosinstall python-wstool
-	\end{itemize}
+	\begin{lstlisting}
+sudo apt-get install python-rosinstall python-wstool
+\end{lstlisting}
 	
 	
 	\subsection{Create a Workspace}
 	The first step is to open the directory where you want to create the workspace.\\
 	Now run the following commands.
-	\begin{itemize}
-	\item source /opt/ros/kinetic/setup.bash
-	\item mkdir -p YOURWORKSPACENAME/src
-	\item cd YOURWORKSPACENAME/
-	\item catkin build 
-	\end{itemize}
+	\begin{lstlisting}
+source /opt/ros/kinetic/setup.bash
+mkdir -p YOURWORKSPACENAME/src
+cd YOURWORKSPACENAME/
+catkin build 
+\end{lstlisting}
 	
 	To load the environment of a workspace, you can run the command:
-	\begin{itemize}
-	\item source devel/setup.bash
-	\end{itemize}
+	\begin{lstlisting}
+source devel/setup.bash
+\end{lstlisting}
 	in your workspace.
 	
 	

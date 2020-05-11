@@ -5,26 +5,26 @@
 \subsection{Knowledge}
 First install the stable SWI Prolog. \href{https://www.swi-prolog.org/build/PPA.html}{Here} you find the instructions for that.\\
 If you want to edit the Ontologies install ROS-Protege. To do that follow \href{https://github.com/protegeproject/protege/wiki/Building-from-Source}{these} instructions, but replace step one with
-\begin{itemize}
-\item git clone \url{https://github.com/daniel86/ros-protege.git} 
-\end{itemize}
+\begin{lstlisting}
+git clone %*\url{https://github.com/daniel86/ros-protege.git}*)
+\end{lstlisting}
 
 Now create a new Workspace or open the workspace where you want to install the knowledge part and run the following commands.
-\begin{itemize}
-\item cd src
-\item \begin{verbatim}mkdir knowledge_deps\end{verbatim}
-\item \begin{verbatim}cd knowledge_deps\end{verbatim}
-\item wstool init
-\item wstool merge \url{https://raw.githubusercontent.com/SUTURO/suturo_knowledge/master/install.rosinstall}
-\item wstool update
-\item \begin{verbatim}rosdep install --ignore-src --from-paths dul/ knowrob/ ease_ontology/\end{verbatim}
-\item cd ../..
-\item catkin build
-\item source devel/setup.bash
-\item cd src
-\item git clone \url{git@github.com:SUTURO/suturo_knowledge.git}
-\item cd ..
-\item catkin build  
-\end{itemize}
+\begin{lstlisting}
+cd src
+mkdir knowledge_deps
+cd knowledge_deps
+wstool init
+wstool merge %*\href{https://raw.githubusercontent.com/SUTURO/suturo_knowledge/master/install.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SUTURO/suturo\ _knowledge/master/install.rosinstall}}*)
+wstool update
+rosdep install --ignore-src --from-paths dul/ knowrob/ \ ease_ontology/
+cd ../..
+catkin build
+source devel/setup.bash
+cd src
+git clone %*\url{https://github.com/SUTURO/suturo_knowledge.git}*)
+cd ..
+catkin build  
+\end{lstlisting}
 
 \end{document}
