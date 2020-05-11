@@ -15,11 +15,11 @@
 		Here comes a compact conclusion about what decisions were or were not good and should or should not be done the same way in the future.
 		
 		\section{Specific features}
-		Here comes a list and an explaination of different features that would be nice to implement even though we didn't have the time to implement them ourselves in the end.
+		Here comes a list and an explanation of different features that would be nice to implement even though we didn't have the time to implement them ourselves in the end.
 		
 		\subsection{Knowledge: Continue optimizing the object goal pose}
 		\chapterauthor{Jeremias Thun}
-		The decision about where to put the object works for some scenarios very well but it can have some problems depending on the order in which the objects are grasped. One of the biggest problems is: As described in section \ref{sec:kn_pickup}, the objects  similar to one of the already placed objects are put into a list, which is then cut to only place those most similar to the reference object. If we were for example placing three bananas next to two apples where there only enough space for one mor object, Knowledge would recognize that the bananas need to open a new group and cut the last two bananas out. But to keep it simple, we ignore those two bananas at the time - which leads to a situation in which Knowledge would place the first banana next to the two apples and only starting a new group for the bananas when it is looking for a place for the second and third banana.
+		The decision about where to put the object works for some scenarios very well but it can have some problems depending on the order in which the objects are grasped. One of the biggest problems is: As described in section \ref{sec:kn_pickup}, the objects  similar to one of the already placed objects are put into a list, which is then cut to only place those most similar to the reference object. If we were for example placing three bananas next to two apples where there only enough space for one more object, Knowledge would recognize that the bananas need to open a new group and cut the last two bananas out. But to keep it simple, we ignore those two bananas at the time - which leads to a situation in which Knowledge would place the first banana next to the two apples and only starting a new group for the bananas when it is looking for a place for the second and third banana.
 	  	
 	  	\subsection{Knowledge: Optimize next\_object/1}
 	  	\chapterauthor{Jeremias Thun}

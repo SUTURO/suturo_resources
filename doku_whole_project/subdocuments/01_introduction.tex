@@ -3,7 +3,7 @@
 	\chapter{Introduction}
 	\chapterauthor{Merete Bommarius}
 
-This is the documentation for the whole SUTURO project in the semester 2019/2020. Due to specific circumstances that will be elaborated later in the documentation, the group was not able to work on the HSR itself during the thrid and last milestone and switched to a virtual substitute.\\
+This is the documentation for the whole Suturo project in the semester 2019/2020. Due to specific circumstances that will be elaborated later in the documentation, the group was not able to work on the HSR itself during the thrid and last milestone and switched to a virtual substitute.\\
 	The goal of the Suturo project was the successful participation in the RoboCup@Home with the HSR from Toyota. During the RoboCup the HSR has to perform different task autonomously.\\ 
 	This year the group chose to focus on the tasks storing groceries and clean up, as found on the RoboCup@Home website. Within the storing groceries task, the HSR has to identify objects on a table and store them in a shelf, in a logical position depending on other items in the shelf. For the clean up task, the objects are distributed in a room and have to be found by the HSR and brought to a designated goal.\\
 	In the following sections, every group will go through the results and work that went into creating them during the course of the project, elaborating on the architecture, code and software.\\
@@ -20,9 +20,9 @@ This is the documentation for the whole SUTURO project in the semester 2019/2020
 		\item Sorting: When placing the objects, the robot has to sort them in way, that humans can intuitively agree.
 		\item Manipulation: This for a human seemingly easy task, is quite complex for an actual robot, since several factors have to be considered. First, of all the kinematic chains of the robot; this is an description of how the robot can move. Now, in order to grasp an object, it has to be calculated how these joints are moved. Additionally, the environment has to be taken into account to avoid any collisions.
 		\item Communication: For humans to understand what to robot does at what point, it needs to communicate extensively not only about \textit{what} but also about \textit{why} it is trying to do what it does.
-		\item Running stable: In a complex environment there will always be some reasons for the robot, to not sucessfully finish it's tasks in the first try. That's why it needs some error handling to know, how to proceed if something unexpected happened.
+		\item Running stable: In a complex environment there will always be some reasons for the robot, to not successfully finish it's tasks in the first try. That's why it needs some error handling to know, how to proceed if something unexpected happened.
 		\item Decision making: The robot has to react to environmental changes, so there cannot be just one sequence which otherwise would fail if even the slightest changes are made to the environment. It has to be able to avoid danger for itself and others and to know when it is done with the task currently given.
-		\item Timing: The RoboCup@Home rulebooks had very strict restrictions this year about how much time the robot is allowed to take to do each task. So everything has to work as fast as possible and as simultanious as possible.
+		\item Timing: The RoboCup@Home rulebooks had very strict restrictions this year about how much time the robot is allowed to take to do each task. So everything has to work as fast as possible and as simultaneous as possible.
 		
 	\end{itemize}
 	
