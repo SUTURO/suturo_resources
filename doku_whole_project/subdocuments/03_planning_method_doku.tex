@@ -91,8 +91,6 @@
 	    \item \textbf{move-to-shelf} \\
 	    This function moves the robot to the shelf position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
 		\end{itemize}
-	    \subsection{knowledge-functions.lisp}
-	     We didn't implement any higher level functions for the knowledge interface because they are not needed.
 	    \subsection{manipulation-functions.lisp}
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
@@ -129,7 +127,7 @@ This function checks if a point is inside a polygon.
 	    	\item \textbf{execute-safety-check} \\
 	    	Start the plan. The robot moves through the entrance door as soon as it is open. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
 	    	\item \textbf{check-goal-reached}\\
-	    	Überprüft, ob der Roboter am Zielpunkt angekommen ist. Dies wird als Workaround benutzt, da der Roboter noch nicht erkennen kann, ob eine Tür geöffnet wurde.
+	    	Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
 	    \end{itemize}
 	    \subsection{process-modules.lisp}
 	     \begin{itemize}
@@ -241,6 +239,17 @@ This function checks if a point is inside a polygon.
 				\item \textbf{prolog-object-in-gripper} \\ Returns the dimension of the object in gripper as list (depth, width, height).
 			\end{itemize} 
 		\subsection{knowledge-insertion-client.lisp}
+		The client is used to insert objects recognized by perception into the knowledgebase. To do this, the message from perception is passed to the action server of knowledge, which is responsible for inserting the objects.
+		\begin{itemize}
+		  \item \textbf{init-knowledge-action-client} \\
+		  This function initiates the connection to the store object info server from knowledge.
+		  \item \textbf{get-knowledge-client} \\
+		  This function returns the take knowledge insertion client.
+		  \item \textbf{insert-knowledge-objects (objectArrayMsg)} \\
+		  Calls the action with the passed message to insert the contained objects into the knowledgebase.
+		  \item \textbf{knowledge-insertion-test} \\
+		  Creates a dummy message with which the action is called. Used to test the connection. Not working yet. Probably the wrong message type is used.
+		\end{itemize}
 		\subsection{navigation-action.lisp}
 		\subsection{nlp-subscriber.lisp}
 		The \textbf{nlp-subscriber} provides functions subscribing to the topics from nlp. At the topic \textit{suturo\_speech\_recognition\/hard\_commands} the commands "start", "stop" and "continue" are published, if they are recognised by nlp. The subscriber for the hard-commands \textit{static-command-listener} calls the function \textit{set-state-fluent} with the message as argument and a fluent-variable is set according to the command. The message for dynamic-commands is not defined yet.
