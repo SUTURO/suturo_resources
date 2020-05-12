@@ -2,7 +2,7 @@
 \begin{document}
 \newpage
 	\section{Introduction}
-	This document describes how to install and run the different parts of our system. If you manually write the commands into your terminal you can leave out the \texttt{\textbackslash} in the commands, that go over two lines. They are only added so you can copy the commands into your terminal.\\
+	This document describes how to install and run the different parts of our system.\\
 	In figure \ref{fig:architecture} you can see the architecture of our system.
 	\begin{figure}[h]
 \centering
@@ -13,16 +13,18 @@
 	
 	\subsection{Prerequisites}
 	
-	For our system you will need \textbf{Ubuntu 16.04}.\\
-	Furthermore Ros-Kinetic is needed. Instructions on how to install Ros can be found \href{http://wiki.ros.org/kinetic/Installation/Ubuntu}{here}. It is recommended to install the Desktop-Full version.\\
-	You also have to setup your PC for the use of the HSR.
-	A description on how to do that can be found \href{https://docs.hsr.io/manual_en/howto/pc_install.html}{here}\\
-	The catkin\_tools package also needs to be installed. You find the instructions on how to install it \href{https://catkin-tools.readthedocs.io/en/latest/installing.html}{here}.\\
-	To follow this guide you will also need python-wstool.
+	Because of different dependencies our system only runs on \textbf{Ubuntu 16.04}.\\
+	The system runs with Ros-Kinetic. Instructions on how to install Ros can be found \href{http://wiki.ros.org/kinetic/Installation/Ubuntu}{here}. It is recommended to install the Desktop-Full version.\\
+	Since we work with the HSR you have to setup your PC for that.
+	A description on how to do that can be found \href{https://docs.hsr.io/manual_en/howto/pc_install.html}{here}.\\
+	We furthermore use some tools for the installation. You have to install these before installing our system.\\
+	First the catkin\_tools package needs to be installed. You find the instructions on how to install it \href{https://catkin-tools.readthedocs.io/en/latest/installing.html}{here}.\\
+	Python-wstool is also needed.
 	You can install it by running this command:
 	\begin{lstlisting}
 sudo apt-get install python-rosinstall python-wstool
 \end{lstlisting}
+If you write the commands manually into your terminal you can leave out the "\textbackslash" in the commands, that go over two lines.
 	
 	\subsection{Workspaces}
 	\subsubsection{Create a Workspace}
