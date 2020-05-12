@@ -4,7 +4,7 @@ cd knowledge_deps
 wstool init
 wstool merge %*\href{https://raw.githubusercontent.com/SUTURO/suturo_knowledge/master/install.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SUTURO\ /suturo_knowledge/master/install.rosinstall}}*)
 wstool update
-rosdep install --ignore-src --from-paths dul/ knowrob/ \ ease_ontology/
+rosdep install --ignore-src --from-paths dul/ knowrob/ \ ease_ontology/ genowl/ rosowl/ iai_common_msgs/
 cd ../..
 catkin build
 source devel/setup.bash

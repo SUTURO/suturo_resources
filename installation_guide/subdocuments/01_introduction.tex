@@ -2,7 +2,14 @@
 \begin{document}
 \newpage
 	\section{Introduction}
-	This document describes how to install the different parts of our system.
+	This document describes how to install and run the different parts of our system. If you manually write the commands into your terminal you can leave out the \texttt{\textbackslash} in the commands, that go over two lines. They are only added so you can copy the commands into your terminal.\\
+	In figure \ref{fig:architecture} you can see the architecture of our system.
+	\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{architecture/architecture}
+\caption{Architecture}
+\label{fig:architecture}
+\end{figure}
 	
 	\subsection{Prerequisites}
 	
@@ -17,8 +24,8 @@
 sudo apt-get install python-rosinstall python-wstool
 \end{lstlisting}
 	
-	
-	\subsection{Create a Workspace}
+	\subsection{Workspaces}
+	\subsubsection{Create a Workspace}
 	The first step is to open the directory where you want to create the workspace.\\
 	Now run the following commands.
 	\begin{lstlisting}
@@ -34,6 +41,18 @@ source devel/setup.bash
 \end{lstlisting}
 	in your workspace.
 	
+	\subsubsection{How we manage our Workspaces}
+	
+	We use three workspaces for our system, since using just one causes some problems.\\
+	The first workspace contains the \nameref{sec:Manipulation} part (without Navigation).\\
+	In the second workspace we installed the \nameref{sec:Planning} part.\\
+	Everything else can be installed in the third workspace.\\
+	\\
+	Before starting a part of our system we run 
+	\begin{lstlisting}
+source devel/setup.bash
+\end{lstlisting}
+to source the relevant workspace in our Terminal.
 	
 
 \end{document}
