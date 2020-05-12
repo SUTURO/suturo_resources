@@ -221,19 +221,25 @@ This function checks if a point is inside a polygon.
 			This function takes x,y,z coordiantes and four quaternion values to move the gripper to that position. 
 		\end{itemize}
 		\subsection{knowledge-client.lisp}
-		The knowledge-client is an interface to knowledge, which is responsible for the request to the knowledgebase. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
+		The knowledge-client is an interface to knowledge, which is responsible for the request to KnowRob. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
 			\begin{itemize}
+			  \item \textbf{with-safe-prolog} \\
+			  Makro for executing the queries. Catches errors caused by connection problems.
+			  \item \textbf{knowrob-symbol-$>$string (knowrob-symbol)} \\
+			  Converts the given knowrob symbol into a string.
+			  \item \textbf{object-name-$>$class (object-name)} \\
+			  Returns the class of the given object.
 				\item \textbf{knowledge-set-tables-source} \\ Sets all tables as source.
 				\item \textbf{knowledge-set-ground-source} \\ Sets the ground as source.
 				\item \textbf{knowledge-set-target-surfaces} \\ Sets all shelves as target surfaces.
 			  \item \textbf{prolog-add-test-objects} \\ Adds test objects on the tables.
 				\item \textbf{prolog-table-objects} \\ Returns all objects on the table.
-				\item \textbf{prolog-object-goal} \\ Returns the goal shelf for an object.
-			  \item \textbf{prolog-object-goal-pose} \\ Returns the goal pose for an object.
+				\item \textbf{prolog-object-goal (object-name)} \\ Returns the goal surface for the given object.
+			  \item \textbf{prolog-object-goal-pose (object-name)} \\ Returns the goal pose for the given object.
 				\item \textbf{prolog-all-objects-in-shelf} \\ Returns all objects in the shelf.
 				\item \textbf{prolog-next-object} \\ Returns the next object to grasp choosen by knowledge.
-		    \item \textbf{prolog-object-dimensions} \\ Returns the dimension for an object (depth, width, height).
-				\item \textbf{prolog-object-pose} \\ Returns the pose of an object as list.
+		    \item \textbf{prolog-object-dimensions (object-name)} \\ Returns the dimension for the given object (depth, width, height).
+				\item \textbf{prolog-object-pose (object-name)} \\ Returns the pose of the given object as list.
 				\item \textbf{prolog-table-pose} \\ Returns the pose of the table as list (x, y, z).
 				\item \textbf{prolog-shelf-pose} \\ Returns the pose of the shelf as list (x, y, z).
 				\item \textbf{prolog-object-in-gripper} \\ Returns the dimension of the object in gripper as list (depth, width, height).
