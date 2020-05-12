@@ -7,22 +7,31 @@
 	\renewcommand{\cleardoublepage}{}
 
 	\renewcommand{\clearpage}{}
+	
+	\newpage
 
 	\chapter{Planning Function Documentation}
 
 		\chapterauthor{Planning Group}
 		
+		The planning group is responsible for the integration and connection of the
+    results of the other groups. Planning has also created a sophisticated se-
+    quence diagram that explains the process and the interaction of all groups.
+    Furthermore, planning was also responsible for the planning and execution of the final demo. This
+    includes the integration of the HSR on the simulator, as well as bugfixing and
+    adaptation of the current code.
+		
 		\section{GROCERY}
-		This package contains the main function for this tasks and some subroutines.
+		This package contains the main function for this task and some subroutines.
 		\subsection{execute-grocery.lisp}
-		This file contains the main function for this tasks and some subroutines.
+		This file contains the main function for this task and some subroutines.
 		\begin{itemize}
 			\item \textbf{execute-grocery} \\
-			This is the main function for the grocery storing task, when this function is called it starts all subroutines to execute the planned behavior for this task, including failure handling
-			\item \textbf{perceive-shelf} \\
-			This function is a subroutine for perceiving shelfs depending on the given region value
+			This is the main function for the grocery storing task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
+			\item \textbf{perceive-shelf (shelf-region)} \\
+			This function is a subroutine for perceiving shelfs. It uses the functions from llif to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the knowledge-insertion-client.
 			\item \textbf{perceive-table} \\
-			This function is a subroutine for perceiving the table depending on the table position given by the knowledge base
+			This function is a subroutine for perceiving the table. It uses the functions from llif to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the knowledge-insertion-client.
 			\item \textbf{grasp-handling} \\
 			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
 			\item \textbf{grasp-with-failure-handling} \\
@@ -39,11 +48,11 @@
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
-	  	This package contains the main function for this tasks and some subroutines.
+	  	This package contains the main function for this task and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
-			This is the main function for the clean up task, when this function is called it starts all the subroutines to execute the planned behavior for this task
+			This is the main function for the clean up task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
 			\item \textbf{shelf-scan} \\
 			This function perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
@@ -114,7 +123,7 @@
 This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{nlp-functions.lisp}
-	     We didn't implement any higher level functions for the nlp interface because they are not needed.
+	    \textbf{Fehlt!}
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
 	    \begin{itemize}
@@ -125,7 +134,7 @@ This function checks if a point is inside a polygon.
 	    The plan is for the procedure in which the robot is inspected. 
 	    \begin{itemize}
 	    	\item \textbf{execute-safety-check} \\
-	    	Start the plan. The robot moves through the entrance door as soon as it is open. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
+	    	Start the plan. The robot navigates through the entrance door as soon as it is open. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
 	    	\item \textbf{check-goal-reached}\\
 	    	Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
 	    \end{itemize}
