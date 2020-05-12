@@ -10,18 +10,10 @@
 sudo apt-get install ros-kinetic-roslisp-repl 
 \end{lstlisting}
 
-	Create a new Workspace or open the workspace where you want to install the planning part. Now run the following commands in your workspace.
-	\begin{lstlisting}
-cd src
-wstool init
-wstool merge %*\href{https://raw.githubusercontent.com/SUTURO/suturo_planning/milestone_03/install.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SUTURO/suturo\ _planning/milestone_03/install.rosinstall}}*)
-wstool update
-rosdep install --ignore-src --from-paths src/ -r
-cd ..
-catkin build
-source devel/setup.bash
-roslisp_repl
-\end{lstlisting}
+	Create a new Workspace or open the workspace where you want to install the planning part. Now run the following commands in your workspace.\\
+\begin{mdframed}[backgroundcolor=mygray, rightline=false]
+\lstinputlisting[frame={}]{code/planning_install.txt}
+\end{mdframed}
 	
 	Now you can load the packages grocery\_demo and cleanup\_demo.
 	To do that Type the following commands in emacs.
