@@ -18,6 +18,7 @@
 	    Furthermore, planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bug fixing and adaptation of the current code.
 		
 		\section{Grocery}
+		\label{grocery}
 		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
 		This package contains the main function for this task and some subroutines.
 		\subsection{execute-grocery.lisp}
@@ -45,6 +46,7 @@
 		\end{itemize}
 	  	
 	  	\section{Clean Up}
+	  	\label{clean}
 	  	\chapterauthor{Phillip Klein, Jan Schimpf, Torge Olliges}
 	  	This package contains the main function for this task and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
@@ -73,6 +75,7 @@
 		\end{itemize}
 	  	
 	  	\section{Common functions}
+	  	\label{comf}
 	  	\chapterauthor{Torge Olliges, Phillip Klein, Tom-Eric Lehmkuhl, Jan Schimpf}
 	  	
 		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
@@ -158,6 +161,7 @@
 	    \end{itemize}
 
 	  	\section{Low level interfacing}
+	  	\label{llif}
 	  	\chapterauthor{Torge Olliges, Phillip Klein, Tom-Eric Lehmkuhl, Jan Schimpf}
 		The Low Level Interfacing package (LLIF) contains all action clients which communcate with the action servers of the other groups.
 		\subsection{grasp-action-client.lisp}
@@ -173,7 +177,7 @@
 			\item \textbf{ensure-grasp-goal-reached} \\
             This function makes sure the goal was reached
 			\item \textbf{call-grasp-action} \\
-			This function takes the x,y,z coordiantes, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the graspmode.
+			This function takes the x,y,z coordinates, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the grasp mode.
 		\end{itemize}
 		\subsection{place-action-client.lisp}
 		This file is responsible for the low level communication with the
@@ -188,7 +192,7 @@
 			\item \textbf{ensure-place-goal-reached} \\
             This function makes sure the goal was reached
 			\item \textbf{call-place-action} \\
-			This function takes the x,y,z coordiantes, quaternion values  and the object-id of the object that is placed and the graspmode.
+			This function takes the x,y,z coordinates, quaternion values  and the object-id of the object that is placed and the graspmode.
 		\end{itemize}
 		\subsection{take-pose-action-server.lisp}
 		This file is responsible for the low level communication with the
@@ -202,8 +206,8 @@
 			This function makes and returns a action client goal
 			\item \textbf{ensure-take-pose-goal-reached} \\
             This function makes sure the goal was reached
-			\item \textbf{call-take-pose-action} \\
-			This function takes a integeter for a set pose or for a custom pose than needs ten more float values to set the joints.
+			\item \textbf{call-take-pose-action(pose)} \\
+			This function takes a integer for a set pose or for a custom pose than needs ten more float values to set the joints.
 		\end{itemize}
 		\subsection{move-gripper-client.lisp}
 		This file is responsible for the low level communication with the
@@ -226,7 +230,7 @@
 			  \item \textbf{with-safe-prolog} \\
 			  Makro for executing the queries. Catches errors caused by connection problems.
 			  \item \textbf{knowrob-symbol-$>$string (knowrob-symbol)} \\
-			  Converts the given knowrob symbol into a string.
+			  Converts the given \textit{KnowRob} symbol into a string.
 			  \item \textbf{object-name-$>$class (object-name)} \\
 			  Returns the class of the given object.
 				\item \textbf{knowledge-set-tables-source} \\ Sets all tables as source.
@@ -252,7 +256,7 @@
 		  \item \textbf{get-knowledge-client} \\
 		  This function returns the take knowledge insertion client.
 		  \item \textbf{insert-knowledge-objects (objectArrayMsg)} \\
-		  Calls the action with the passed message to insert the contained objects into the knowledgebase.
+		  Calls the action with the passed message to insert the contained objects into the knowledge base.
 		  \item \textbf{knowledge-insertion-test} \\
 		  Creates a dummy message with which the action is called. Used to test the connection. Not working yet. Probably the wrong message type is used.
 		\end{itemize}
@@ -274,19 +278,19 @@
 	    	\item \textbf{sorted-poi-by-distance} \\
 	    	This function returns all points of interest sorted in relation to the given point.
 	    	\item \textbf{point-listener} \\
-	    	This function subscribes the point of interessts and stores them in a variable.
+	    	This function subscribes the point of interests and stores them in a variable.
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
-		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for objects.
+		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.
 		\begin{itemize}
 			\item \textbf{init-robosherlock-object-action-client} \\
-			This function initiates the connection to the robosherlock object action server
+			This function initiates the connection to the \textit{RoboSherlock} object action server
 			\item \textbf{get-robosherlock-client} \\
 			This function returns the robosherlock action client
 			\item \textbf{make-action-goal} \\
 			This function makes and returns a action client goal
 			\item \textbf{call-robosherlock-object-pipeline} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result.
+			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
 		\end{itemize}
 		\subsection{robosherlock-client-plane.lisp}
 		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.
@@ -298,7 +302,7 @@
 			\item \textbf{make-action-goal} \\
 			This function makes and returns a action client goal
 			\item \textbf{call-robosherlock-plane-pipeline} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result
+			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result
 		\end{itemize}
 	\endgroup
 
