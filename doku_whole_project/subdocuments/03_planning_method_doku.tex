@@ -12,21 +12,18 @@
 
 	\chapter{Planning Function Documentation}
 
-		\chapterauthor{Planning Group}
+		\chapterauthor{Torge Olliges, Phillip Klein, Tom-Eric Lehmkuhl, Jan Schimpf}
 		
-		The planning group is responsible for the integration and connection of the
-    results of the other groups. Planning has also created a sophisticated se-
-    quence diagram that explains the process and the interaction of all groups.
-    Furthermore, planning was also responsible for the planning and execution of the final demo. This
-    includes the integration of the HSR on the simulator, as well as bugfixing and
-    adaptation of the current code.
+		The planning group is responsible for the integration and connection of the results of the other groups. Planning has also created a sophisticated sequence diagram that explains the process and the interaction of all groups.
+	    Furthermore, planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bug fixing and adaptation of the current code.
 		
-		\section{GROCERY}
+		\section{Grocery}
+		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
 		This package contains the main function for this task and some subroutines.
 		\subsection{execute-grocery.lisp}
 		This file contains the main function for this task and some subroutines.
 		\begin{itemize}
-			\item \textbf{execute-grocery} \\
+			\item \textbf{execute-grocery()} \\
 			This is the main function for the grocery storing task. When this function is called, it starts all necessary subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
 			\item \textbf{perceive-shelf (shelf-region)} \\
 			This function is a subroutine for perceiving shelfs. It uses the functions from llif to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the knowledge-insertion-client.
@@ -44,10 +41,11 @@
 		This file contains functions used in combination with the bulletworld simulation.
 		\begin{itemize}
 			\item \textbf{spawn-btr-objects (perception-msg)}
-			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the objects robosherlock perceives as real.  
+			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the objects robosherlock perceived.  
 		\end{itemize}
 	  	
-	  	\section{CLEANUP}
+	  	\section{Clean Up}
+	  	\chapterauthor{Phillip Klein, Jan Schimpf, Torge Olliges}
 	  	This package contains the main function for this task and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
@@ -75,35 +73,37 @@
 		\end{itemize}
 	  	
 	  	\section{Common functions}
+	  	\chapterauthor{Torge Olliges, Phillip Klein, Tom-Eric Lehmkuhl, Jan Schimpf}
+	  	
 		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
 	    This file contains all high level plans.(high level plans are below execute level)
 	    \begin{itemize}
-		\item \textbf{try-movement-stampedList} \\
+		\item \textbf{try-movement-stampedList(stamped-list)} \\
 		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
-	    \item \textbf{move-hsr} \\
+	    \item \textbf{move-hsr()} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
-	    \item \textbf{grasp-hsr} \\
+	    \item \textbf{grasp-hsr()} \\
 	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling
-	    \item \textbf{place-hsr} \\
+	    \item \textbf{place-hsr()} \\
 	    This function takes a object-id and a grasp-pose. Places the object in the gripper in the goal and includes failure handling.
-	    \item \textbf{move-to-poi} \\
+	    \item \textbf{move-to-poi()} \\
 	    This function moves the robot to the next point of interest that can be approached. 
-	    \item \textbf{move-to-poi-and-scan} \\
+	    \item \textbf{move-to-poi-and-scan()} \\
 	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
-	    \item \textbf{move-to-table} \\
+	    \item \textbf{move-to-table(turn)} \\
 	    This function moves the robot to the table position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
-	    \item \textbf{move-to-shelf} \\
+	    \item \textbf{move-to-shelf(turn)} \\
 	    This function moves the robot to the shelf position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
 		\end{itemize}
 	    \subsection{manipulation-functions.lisp}
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
-	    \item \textbf{place-object} \\
+	    \item \textbf{place-object(object)} \\
 	    This function gets the object id and the grasp position and uses that to create a place designator  
 		\item \textbf{place-object-list} \\
 		This function gets a list and uses that to create a place designator 
-	    \item \textbf{grasp-object} \\
+	    \item \textbf{grasp-object(object)} \\
 	    This function gets the object id and what grasp position should be used to grasp the object and uses that to create a grasp desingator
 	    \item \textbf{create-place-list} \\
 	    This function gets the object id and grasp position to create a list with positions to place the object
@@ -116,7 +116,7 @@
 	    	\item \textbf{pose-with-distance-to-points} \\
 	    	This function moves the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
 	    	\item \textbf{point-in-polygon} \\
-This function checks if a point is inside a polygon.
+			This function checks if a point is inside a polygon.
 	    \end{itemize}
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
@@ -143,10 +143,6 @@ This function checks if a point is inside a polygon.
 		\item\textbf{hsr-arm process module} \\
 		A process module which receives a motion-designator and performs grasping or placing actions by calling the low level interfaces to execute those manipulation commands 
 	    \end{itemize}
-	    \subsection{select-process-modules.lisp}
-	     \begin{itemize}
-	    	\item \textbf{Fehlt} \\
-	    \end{itemize}
 	    \subsection{designators.lisp}
 	    Contains motion-designators for of the following type
 	    \begin{itemize}
@@ -162,6 +158,7 @@ This function checks if a point is inside a polygon.
 	    \end{itemize}
 
 	  	\section{Low level interfacing}
+	  	\chapterauthor{Torge Olliges, Phillip Klein, Tom-Eric Lehmkuhl, Jan Schimpf}
 		The Low Level Interfacing package (LLIF) contains all action clients which communcate with the action servers of the other groups.
 		\subsection{grasp-action-client.lisp}
 		This file is responsible for the low level communication with the
@@ -259,10 +256,8 @@ This function checks if a point is inside a polygon.
 		  \item \textbf{knowledge-insertion-test} \\
 		  Creates a dummy message with which the action is called. Used to test the connection. Not working yet. Probably the wrong message type is used.
 		\end{itemize}
-		\subsection{navigation-action.lisp}
 		\subsection{nlp-subscriber.lisp}
 		The \textbf{nlp-subscriber} provides functions subscribing to the topics from nlp. At the topic \textit{suturo\_speech\_recognition\/hard\_commands} the commands "start", "stop" and "continue" are published, if they are recognised by nlp. The subscriber for the hard-commands \textit{static-command-listener} calls the function \textit{set-state-fluent} with the message as argument and a fluent-variable is set according to the command. The message for dynamic-commands is not defined yet.
-		\subsection{text-to-speech.lisp}
 		\subsection{obstacle-map-subscriber.lisp}
 	    \begin{itemize}
 	    	\item \textbf{obstacle-map-listener} \\
@@ -291,7 +286,7 @@ This function checks if a point is inside a polygon.
 			\item \textbf{make-action-goal} \\
 			This function makes and returns a action client goal
 			\item \textbf{call-robosherlock-object-pipeline} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result
+			This function takes a array of regions and a boolean value for visualization, this function calls the robosherlock object pipeline with the input values and returns the result.
 		\end{itemize}
 		\subsection{robosherlock-client-plane.lisp}
 		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.

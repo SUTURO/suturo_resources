@@ -9,6 +9,7 @@
 	\renewcommand{\clearpage}{}
 
 	\chapter{Architecture Overview}
+		In this chapter we will summarize and explain the architecture and interaction between different components of the project.
 		In order to cope with the challenges we were facing as mentioned in the introduction they have been summarized into five groups:
 
 		\begin{itemize}
@@ -18,6 +19,7 @@
 			\item Manipulation: Interaction with the world and objects within the world
 			\item Planning: Decision making, execution and error handling
 		\end{itemize}
+		
 
 
 		\chapterauthor{}
@@ -32,20 +34,20 @@
 		\end{figure}
 		
 		\section{Description}
-			As seen in the diagram \(\ref{architecture}\), the component which each group was responsible for are visualized. The perception component consists mainly off the SuturoProcessManager module which wraps the robosherlock pipeline \textbf{(HIER PERCEPTION BITTE BESSER ERLÄUTERN)}. The robosherlock pipeline then handles the classification and annotation. The Knowledge component consists of the knowledge base which is a wrapped information storage (database) for the HSR, it handles position data as well as some logic for goal position determination. The Manipulation component is responsible for gripper movement, head/body movement and grasp/place operations. For this Manipulation is using Giskard. The Navigation component is only used for moving the HSR and for collision avoidance during movement and uses the basic movement interface of the HSR. The Planning component uses cram to implement multi layered plans for executing the tasks.
+			As seen in the diagram \(\ref{architecture}\), the component which each group was responsible for are visualized. The perception component consists mainly off the \textit{SuturoProcessManager} module which wraps the \textit{RoboSherlock} pipeline \textbf{(HIER PERCEPTION BITTE BESSER ERLÄUTERN)}. The \textit{RoboSherlock} pipeline then handles the classification and annotation. The Knowledge component consists of the knowledge base which is a wrapped information storage (database) for the HSR, it handles position data as well as some logic for goal position determination. The Manipulation component is responsible for gripper movement, head/body movement and grasp/place operations. For this Manipulation is using \textit{Giskard}. The Navigation component is only used for moving the HSR and for collision avoidance during movement and uses the basic movement interface of the HSR. The Planning component uses cram to implement multi layered plans for executing the tasks.
 			\begin{itemize}
 				\item{\textbf{Cram}} \\
-					 Cram is a software toolbox for the design, the implementation, and the deployment of cognition-enabled autonomous robots
+					 \textit{Cram} is a software toolbox for the design, the implementation, and the deployment of cognition-enabled autonomous robots
 				\item{\textbf{Giskard}} \\
-					giskard is a  framework for constraint based motion planning and execution.
+					\textit{Giskard} is a  framework for constraint based motion planning and execution.
 				\item{\textbf{Julius}} \\
-					Julius is a continuous speech recognition software. It is capable of recognizing spoken sentence as-live. Julius' main strength is the fact, that it works on dictionaries. Dictionaries are a simple way for developers to adapt Julius to only recognize domain-specific sentences. Julius is not specifically created for ROS, but Toyota created a wrapper to allow the output of Julius to be published in ROS.
+					\textit{Julius} is a continuous speech recognition software. It is capable of recognizing spoken sentence as-live. Julius' main strength is the fact, that it works on dictionaries. Dictionaries are a simple way for developers to adapt Julius to only recognize domain-specific sentences. Julius is not specifically created for ROS, but Toyota created a wrapper to allow the output of Julius to be published in ROS.
 				\item{\textbf{KnowRob}} \\
-				    KnowRob is a framework created to combine different knowledge sources (such as knowledge about and provided by the robot, common sense, research etc.) and provide some reasoning methods to work with them. 
+				    \textit{KnowRob} is a framework created to combine different knowledge sources (such as knowledge about and provided by the robot, common sense, research etc.) and provide some reasoning methods to work with them. 
 				\item{\textbf{Robosherlock}} \\
-					RoboSherlock is a common framework for cognitive perception, based on the principle of unstructured information management (UIM).
+					\textit{RoboSherlock} is a common framework for cognitive perception, based on the principle of unstructured information management (UIM).
 				\item{\textbf{Caffee}} \\
-					Caffe is a deep learning framework made with expression, speed, and modularity in mind. It is developed by Berkeley AI Research (BAIR) and by community contributors.
+					\textit{Caffe} is a deep learning framework made with expression, speed, and modularity in mind. It is developed by Berkeley AI Research (BAIR) and by community contributors.
 
 			\end{itemize}
 	  		 
