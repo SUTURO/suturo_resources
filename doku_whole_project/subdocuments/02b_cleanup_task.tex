@@ -13,7 +13,7 @@
 		\chapterauthor{Torge Olliges, Jan Schimpf}
 		
 		\section{Goal}
-		For Clean Up the HSR had to navigate a room in which objets are distributed. The robot has no prior knowledge of the position of the objects but it does know the position of the goal which was a bucket. It had to be able to detect the objects in the room pick them up and transport them to the designated goal position. The HSR had to achieve the tasks given autonomusly and manipulate objects like the objects explained in the goal section of the Clean Up task chapter. It had 5 minutes to achieve this task.
+		For Clean Up the HSR had to navigate a room in which objects are distributed. The robot has no prior knowledge of the position of the objects but it does know the position of the goal which was a bucket. It had to be able to detect the objects in the room pick them up and transport them to the designated goal position. The HSR had to achieve the tasks given autonomously and manipulate objects like the objects explained in the goal section of the Clean Up task chapter. It had 5 minutes to achieve this task.
 		
 
 	  	\section{Tasks}
@@ -25,7 +25,7 @@
 	  		\caption{Sequence diagram of the complete run of the clean up task \textit{(explanations below)}}
 	  		\label{Clean Up sequence}
 	  	\end{figure}
-		hier bitte aus dem sequenz diagramm einen einzelnen task als subsection z.b. schritt: tür öffnen, dafür mussten perception dies tun manipulation das tun etc.
+		% TODO: Entfernen - hier bitte aus dem sequenz diagramm einen einzelnen task als subsection z.b. schritt: tür öffnen, dafür mussten perception dies tun manipulation das tun etc.
 		
 
 	\subsection{Scan table sequence}
@@ -50,7 +50,8 @@
 	The robot has to take one of 3 perceive poses depending on the heights of the objects he wants to look at.
 	
 	% Perception: Percieve and return data
-	The HSR takes a picture of the scene it is currently looking at and processes it by \textbf{PERCEPTION SCHREIBT HIER BITTE MEHR}
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
+
 	
 	% Knowledge: Store Data
 	Knowledge checks the data of the object, that is supposed to be stored. If the class is unknown to knowledge, it is set to other. If the data is valid the object gets added to the knowledge base and the objects at the position of the new object are put into a group.
@@ -76,17 +77,17 @@
 	Informing which object the robot will grasp using the object id
 	
 	%grasp-object
-	The object id is used to querie the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server to grasp the object. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
+	The object id is used to query the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server to grasp the object. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog pose
 	 
 	%NLP succesfully grasped
-	Informing that the robot has succesfully grasped an object
+	Informing that the robot has successfully grasped an object
     
 	\subsection{Place sequence}
 	%Navigation: moveBaseAction
 	The robot moves to the designated location in this case the bucket.
-	The coordinates for the navigation call are quried from the Knowledge base and adjusted so the robot looks at the bucket and can place the object inside it. 
+	The coordinates for the navigation call are queried from the Knowledge base and adjusted so the robot looks at the bucket and can place the object inside it. 
 	
 	%NLP placing the object
 	Informing that the robot is now placing the object
@@ -97,7 +98,7 @@
 	 %Knowledge: prolog goal
 	 
 	%NLP placed the object
-	Informing that the robot has succesfully placed the object
+	Informing that the robot has successfully placed the object
 
 	%Manipulation: Take pose
 	Returns the robot into the default pose.
@@ -110,15 +111,16 @@
     Informing that the robot has found a point of interest to search for objects
     
     %move-to-poi
-    The first set of coordiantes from a list containing the coordiantes of locations with that may have objects is used to move the robot into positon to percieve it. 
+    The first set of coordinates from a list containing the coordinates of locations with that may have objects is used to move the robot into position to perceive it. 
     The list is created by looking at the returns of the laser scanner and overlapped with the obstacle map to filter out furniture and walls. 
-    The Robot then takes a percieve position so it can percieve the floor.
+    The Robot then takes a perceive position so it can perceive the floor.
     
     %NLP perceiving the postition
     Informing that the robot is now perceiving the position
       
     %call-robosherlock-object-pipeline
-    The HSR takes a picture of the scene it is currently looking at and processes it by \textbf{PERCEPTION SCHREIBT HIER BITTE MEHR}
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
+
     
     %Knowledge:insert-knowledge-objects
     Knowledge checks the data of the object, that is supposed to be stored. If the class is unknown to knowledge, it is set to other. If the data is valid the object gets added to the knowledge base and the objects at the position of the new object are put into a group.

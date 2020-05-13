@@ -66,7 +66,7 @@
 	The robot has to take one of 3 perceive poses depending on the heights of the objects he wants to look at.
 	
 	% Perception: Percieve and return data
-	The HSR takes a picture of the scene it is currently looking at and processes it by \textbf{PERCEPTION SCHREIBT HIER BITTE MEHR}
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
 	
 	% Knowledge: Store Data
 	Knowledge checks the data of the object, that is supposed to be stored. If the class is unknown to knowledge, it is set to other. If the data is valid the object gets added to the knowledge base and the objects at the position of the new object are put into a group.
@@ -109,6 +109,7 @@ Knowledge finds all the shelves available and sorts them, just like the tables b
 	% Manipulation: go into percieve pose
 	
 	% Perception: Percieve shelf
+	The HSR takes a picture of the shelf it is currently looking at and processes it with RoboSherlock. Based on the requested shelf level the input images are filtered in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
 	
 	% Knowledge: Store new Objects
 	
