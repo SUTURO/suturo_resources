@@ -76,7 +76,7 @@
 	Informing which object the robot will grasp using the object id
 	
 	%grasp-object
-	The object id is used to querie the Knowledge base for the dimensions of the object and the pose of the object.The results are then used to call the manipulation server. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
+	The object id is used to querie the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog pose
 	 
@@ -85,11 +85,14 @@
 	
 	\subsection{Place sequence}
 	%Navigation: moveBaseAction
+	The robot moves to the designated location in this case the bucket.
+	The coordinates for the navigation call are quried from the Knowledge base and adjusted so the robot looks at the bucket and can place the object inside it. 
 	
 	%NLP placing the object
 	Informing that the robot is now placing the object
 
 	%place-object
+	The object id is used to querie the Knowledge base for the dimensions of the object and the goal of the object. The results are then used to call the manipulation place server. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog goal
 	 
@@ -97,13 +100,15 @@
 	Informing that the robot has succesfully placed the object
 
 	%Manipulation: Take pose
-	Return the robot into a neutral pose to prevent 
+	Returns the robot into the default pose.
 	
 	\subsection{Point of interest search sequence}
     %NLP found an point of interest to search
     Informing that the robot has found a point of interest to search for objects
     
     %move-to-poi
+    The first set of coordiantes from a list containing the coordiantes of locations with that may have objects is used to move the robot into positon to percieve it. 
+    The list is created by looking at the returns of the laser scanner and overlapped with the obstacle map to filter out furniture and walls. 
     
     %NLP perceiving the postition
     Informing that the robot is now perceiving the position
@@ -115,9 +120,10 @@
     Knowledge checks the data of the object, that is supposed to be stored. If the class is unknown to knowledge, it is set to other. If the data is valid the object gets added to the knowledge base and the objects at the position of the new object are put into a group.
     
     %call-take-pose-action
-   
-    % Navigation: MoveBaseAction
+   	Returns the robot into the default pose.
 
+    % Navigation: MoveBaseAction
+    Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from     the pose he took to perceive the objects.
 	\section{Conclusion}
 		
 		
