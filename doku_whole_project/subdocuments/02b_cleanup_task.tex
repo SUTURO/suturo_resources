@@ -8,42 +8,117 @@
 
 	\renewcommand{\clearpage}{}
 
-	\chapter{Cleanup Task Overview}
+	\chapter{Clean Up Task Overview}
 
-		\chapterauthor{Torge Olliges}
+		\chapterauthor{Torge Olliges, Jan Schimpf}
 		
 		\section{Goal}
-		For the cleanup task the HSR had to navigate a room in which objets are distributed. The robot has no prior knowledge of the position of the objects but it does know the position of the goal which was ....... It had to be able to detect the objects in the room pick them up and transport them to the designated goal position. The HSR had to achieve the tasks given autonomusly and manipulate objects like the objects explained in the goal section of the gorcery task chapter. It had 5 minutes to achieve this task.
+		For Clean Up the HSR had to navigate a room in which objets are distributed. The robot has no prior knowledge of the position of the objects but it does know the position of the goal which was a bucket. It had to be able to detect the objects in the room pick them up and transport them to the designated goal position. The HSR had to achieve the tasks given autonomusly and manipulate objects like the objects explained in the goal section of the Clean Up task chapter. It had 5 minutes to achieve this task.
 		
-		\section{Architecture}
-		
-		\section{Description}
-	  	
+
 	  	\section{Tasks}
+	  	\subsection{Setup}
+	First the interface to knowledge is called to set the target to basket. In addition, the floor and the table are set as sources, since objects are picked up from both. Since knowledge is responsible for the internal representation of the surfaces and the management of the associated objects, we have to tell them from where we will pick up objects and where they will be taken. 
 	  	\begin{figure}	
 	  		\centering
 	  		\includegraphics[width=0.85\textwidth]{pictures/diagramms/cleanup-sequence.png}
 	  		\caption{Sequence diagram of the complete run of the clean up task \textit{(explanations below)}}
-	  		\label{cleanup-sequence}
+	  		\label{Clean Up sequence}
 	  	\end{figure}
 		hier bitte aus dem sequenz diagramm einen einzelnen task als subsection z.b. schritt: tür öffnen, dafür mussten perception dies tun manipulation das tun etc.
 		
-		\subsection{startup sequence}
-	First the interface to knowledge is called to set the target to basket. In addition, the floor and the table are set as sources, since objects are picked up from both. Since knowledge is responsible for the internal representation of the surfaces and the management of the associated objects, we have to tell them from where we will pick up objects and where they will be taken. 
 
-	\subsection{perceive table sequence}
-	To scan the table, the robot is moved to the table. This is done with a position of the table given by Knowlege. After that, manipulation is given the command to go into the perceive pose, so that the table is well visible in the camera image. Then perception is called, so that they can process the current camera image. The region of the table is also passed to Perception so that Perception can apply a region filter.
-
-	\subsection{grasp sequence}
-	\subsection{travel sequence}
-	\subsection{place sequence}
-	\subsection{point of interest search sequence}
-	\subsection{point of interest grasp sequence}
-	\subsection{point of interest place sequence}
-
-
+	\subsection{Scan table sequence}
+	% Manipulation: take pose action
+	The robot is set to the default pose so it doesn't collide with any objects, this could happen if the robot is told to move while in a pose where for example the arm is extended.
+	
+	% NLP: Talk Request
+	
+	The talk requests are used to inform the developer as well as the people following the robot or evaluating its behavior about what the robot is about to do. They are also used for safety measures so the robot can warn when it is going to move so bystanders can step aside. 
+	
+	% Knowledge: get table-poses
+	Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so Planning can determine where to go next.
+	
+	% Navigation: moveBaseAction
+	
+	The robot moves to the designated location in this case the table, it will be turned $90^\circ$ so it is in a pose where perceiving the table isn't hindered by the arm of the HSR. 
+	
+	% NLP
+	Informing that the robot is perceiving the table now.
+	
+	% Manipuilation: TakePoseAction
+	The robot has to take one of 3 perceive poses depending on the heights of the objects he wants to look at.
+	
+	% Perception: Percieve and return data
+	The HSR takes a picture of the scene it is currently looking at and processes it by \textbf{PERCEPTION SCHREIBT HIER BITTE MEHR}
+	
+	% Knowledge: Store Data
+	Knowledge checks the data of the object, that is supposed to be stored. If the class is unknown to knowledge, it is set to other. If the data is valid the object gets added to the knowledge base and the objects at the position of the new object are put into a group.
+	% NLP: Talk Request
+	
+	% Manipulation: Take pose
+	Take default pose.
+	
+	% 2x NLP: Talk
 		
-		\section{Conclusion}
+	% Navigation: MoveBaseAction
+	Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from the pose he took to perceive the objects.
+	
+	\subsection{Grasp sequence}
+	
+	%prolog-next-object
+    The Knowledge base is queried for next Object that should be grasped.
+	What the next object should be is determined by \textbf{KNOWLEDGE LEUTE MÜSSEN DAS ERKLÄREN}.	
+	
+	%NLP Grasping object
+	Informing that the robot will now grasp an object
+	%NLP Which object
+	Informing which object the robot will grasp using the object id
+	
+	%grasp-object
+	The object id is used to querie the Knowledge base for the dimensions of the object and the pose of the object.The results are then used to call the manipulation server. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
+	 %Knowledge: prolog dimensions
+	 %Knowledge: prolog pose
+	 
+	%NLP succesfully grasped
+	Informing that the robot has succesfully grasped an object
+	
+	\subsection{Place sequence}
+	%Navigation: moveBaseAction
+	
+	%NLP placing the object
+	Informing that the robot is now placing the object
+
+	%place-object
+	 %Knowledge: prolog dimensions
+	 %Knowledge: prolog goal
+	 
+	%NLP placed the object
+	Informing that the robot has succesfully placed the object
+
+	%Manipulation: Take pose
+	Return the robot into a neutral pose to prevent 
+	
+	\subsection{Point of interest search sequence}
+    %NLP found an point of interest to search
+    Informing that the robot has found a point of interest to search for objects
+    
+    %move-to-poi
+    
+    %NLP perceiving the postition
+    Informing that the robot is now perceiving the position
+      
+    %call-robosherlock-object-pipeline
+    The HSR takes a picture of the scene it is currently looking at and processes it by \textbf{PERCEPTION SCHREIBT HIER BITTE MEHR}
+    
+    %Knowledge:insert-knowledge-objects
+    Knowledge checks the data of the object, that is supposed to be stored. If the class is unknown to knowledge, it is set to other. If the data is valid the object gets added to the knowledge base and the objects at the position of the new object are put into a group.
+    
+    %call-take-pose-action
+   
+    % Navigation: MoveBaseAction
+
+	\section{Conclusion}
 		
 		
 	\endgroup
