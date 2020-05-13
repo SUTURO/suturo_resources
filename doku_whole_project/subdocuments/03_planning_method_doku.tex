@@ -53,12 +53,6 @@
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup} \\
 			This is the main function for the clean up task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
-			\item \textbf{shelf-scan} \\
-			\textbf{Die Funktion ist nicht mehr vorhanden!?} \\
-			This function perceives the entire shelf using perceive-shelf
-			\item \textbf{perceive-shelf} \\
-			\textbf{Die Funktion ist nicht mehr vorhanden!?} \\
-			Same as in grocery perceives the shelf depending on the given regions value
 			\item \textbf{perceive-table} \\
 			This function is a subroutine for perceiving the table. It uses the functions from llif to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the knowledge-insertion-client.
 			\item \textbf{transport} \\
@@ -124,8 +118,6 @@
 	    	\item \textbf{point-in-polygon} \\
 This function checks if a point is inside a polygon.
 	    \end{itemize}
-	    \subsection{nlp-functions.lisp}
-	    \textbf{Fehlt!}
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
 	    \begin{itemize}
