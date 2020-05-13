@@ -27,7 +27,7 @@
 		This file contains the main function for this task and some subroutines.
 		\begin{itemize}
 			\item \textbf{execute-grocery} \\
-			This is the main function for the grocery storing task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
+			This is the main function for the grocery storing task. When this function is called, it starts all necessary subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
 			\item \textbf{perceive-shelf (shelf-region)} \\
 			This function is a subroutine for perceiving shelfs. It uses the functions from llif to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the knowledge-insertion-client.
 			\item \textbf{perceive-table} \\
@@ -41,10 +41,10 @@
 		\end{itemize}
 		
 		\subsection{grocery-bw.lisp}
-		This file contains functions used in combination of the bulletworld simulation.
+		This file contains functions used in combination with the bulletworld simulation.
 		\begin{itemize}
-			\item \textbf{spawn-btr-objects}
-			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects 
+			\item \textbf{spawn-btr-objects (perception-msg)}
+			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the objects robosherlock perceives as real.  
 		\end{itemize}
 	  	
 	  	\section{CLEANUP}
@@ -54,34 +54,36 @@
 			\item \textbf{execute-cleanup} \\
 			This is the main function for the clean up task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
 			\item \textbf{shelf-scan} \\
+			\textbf{Die Funktion ist nicht mehr vorhanden!?} \\
 			This function perceives the entire shelf using perceive-shelf
 			\item \textbf{perceive-shelf} \\
+			\textbf{Die Funktion ist nicht mehr vorhanden!?} \\
 			Same as in grocery perceives the shelf depending on the given regions value
 			\item \textbf{perceive-table} \\
-			Same as in grocery perceives the robocub table
+			This function is a subroutine for perceiving the table. It uses the functions from llif to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the knowledge-insertion-client.
 			\item \textbf{transport} \\
-            This function transports all objects found on the robocup table and then places them into the shelf
+            This function is a subroutine for transporting all objects after another found on the table to the bucket and drops these in there. For this the function grasp-handling is called.
 			\item \textbf{point-of-interest-search} \\
-			This function moves to a point of interest and perceives it 
+			This function navigates to a point of interest and calls the low level functions for perceiving it. 
 			\item \textbf{point-of-interest-transport} \\
-			This function grasps objects found with point of interest search and places them into the shelf
-			\item \textbf{grasp-with-failure-handling-floor} \\
-			This function is a subroutine for grasping objects from the floor with failure handling, which object will be grasped is determined by the knowledge base
+			This function grasps objects found with point of interest search and drops them into the bucket. For this the function hsr-failure-handling-grasp is called.
+			\item \textbf{hsr-failure-handling-grasp} \\
+			This function is a subroutine for grasping objects with failure handling, which object will be grasped is determined by the knowledge base.
 			\item \textbf{grasp-handling}\\
 			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
-        This file contains functions used in combination of the bulletworld simulation.
+        This file contains functions used in combination with the bulletworld simulation.
 		\begin{itemize}
-			\item \textbf{spawn-btr-objects}
-			This function spawns given objects as primitiv objects in the bulletworld simulation at the corresponding position of the by robosherlock perceived real life objects  
+			\item \textbf{spawn-btr-objects (perception-msg)}
+			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the objects robosherlock perceives as real.
 		\end{itemize}
 	  	
-	  	\section{COMF}
+	  	\section{Common functions}
 		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
-	    This file contains all high level plans.(high level plans ar below execute level)
+	    This file contains all high level plans.(high level plans are below execute level)
 	    \begin{itemize}
 		\item \textbf{try-movement-stampedList} \\
 		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
@@ -167,8 +169,8 @@ This function checks if a point is inside a polygon.
 		\item \textbf{closing} \\
 	    \end{itemize}
 
-	  	\section{LLIF}
-		The Low Level Interfacing package (LLIF) contains all action clients which communcate with the action servers of the other group.
+	  	\section{Low level interfacing}
+		The Low Level Interfacing package (LLIF) contains all action clients which communcate with the action servers of the other groups.
 		\subsection{grasp-action-client.lisp}
 		This file is responsible for the low level communication with the
 		grasp action server which is responsible for grasping objects.
