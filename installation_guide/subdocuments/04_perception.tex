@@ -3,7 +3,7 @@
 
 \begin{document}
  \section{Perception}
- Create a new Workspace or open the workspace where you want to install the perception part. Now run the following commands to download dependencies into your workspace.
+ Create a new workspace or open the workspace where you want to install the perception part. Now run the following commands to download dependencies into your workspace.
  
  \begin{lstlisting}
 cd src
@@ -78,7 +78,7 @@ The installation with cmake is highly recommended, but if this should not work, 
  \item Copy the Makefile.config.example with "cp Makefile.config.example Makefile.config"
  \item Make the following changes on the Makefile.config :
  	\begin{itemize}
- 	\item If cude is not installed uncomment CPU\_ONLY := 1 to enable building for CPU only
+ 	\item If CUDA is not installed uncomment CPU\_ONLY := 1 to enable building for CPU only
  	\item Change "BLAS := atlas" to "BLAS := open"
  	\item If any hdf5 related erros appear in the next step, add "/usr/lib/x86\_64-linux-gnu/hdf5/serial" to LIBRARY\_DIRS and "/usr/include/hdf5/serial/" to INCLUDE\_DIRS
  	\item Save and exit
