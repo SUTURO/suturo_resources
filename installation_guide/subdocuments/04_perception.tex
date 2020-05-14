@@ -23,6 +23,7 @@ sudo apt-get update
 sudo apt-get install rapidjson 
 \end{lstlisting}
  
+ 
  Now install Caffe using the following commands.
  \begin{lstlisting}
 sudo apt-get update
@@ -36,8 +37,42 @@ cd
 git clone %*\url{https://github.com/BVLC/caffe.git}*)
 \end{lstlisting}
  
- For GPU acceleration install cude, a graphics card driver update may be necessary.
+ For GPU acceleration install CUDA, a graphics card driver update may be necessary.
  
+ Installation with CMake:\\
+ 
+ Change into your caffe directory and open up the CMakeLists.txt in your editor. After the comment labeled "Options" you can set options for your build. If you installed CUDA and want GPU acceleration set CPU\_ONLY to OFF, otherwise set it to on ON.
+ 
+ Now enter your cmake directory and open up the Dependencies.cmake file. Got to the comment labeled "BLAS" and in the line under 
+ 
+ \begin{lstlisting}
+ if(NOT APPLE)
+ \end{lstlisting}
+ 
+ change it to 
+ 
+ \begin{lstlisting}
+ set(BLAS "Open" CACHE STRING "Selected BLAS library")
+ \end{lstlisting}
+ 
+ Exit the file and from your cmake directory run the following commands:
+ \begin{lstlisting}
+ cmake ..
+ make all
+ make install
+ make runtest
+ \end{lstlisting}
+ You should now have a functioning caffe installation.
+
+\newpage
+ 
+ 
+ 
+ 
+Installation with make:
+
+The installation with cmake is highly recommended, but if this should not work, the following is the alternative.
+
  Make following changes to the Caffe directory : 
  \begin{itemize}
  \item Copy the Makefile.config.example with "cp Makefile.config.example Makefile.config"
