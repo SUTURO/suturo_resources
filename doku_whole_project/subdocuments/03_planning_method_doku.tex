@@ -64,7 +64,7 @@
 			\item \textbf{hsr-failure-handling-grasp ()} \\
 			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
 			\item \textbf{grasp-handling ()}\\
-			This function is a subroutine for grasping objects with primitive failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
@@ -86,9 +86,9 @@
 		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
 	    \item \textbf{move-hsr ()} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
-	    \item \textbf{grasp-hsr ()} \\
+	    \item \textbf{grasp-hsr (object-id grasp-pose)} \\
 	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling
-	    \item \textbf{place-hsr ()} \\
+	    \item \textbf{place-hsr (object-id grasp-pose)} \\
 	    This function takes a object-id and a grasp-pose. Places the object in the gripper in the goal and includes failure handling.
 	    \item \textbf{move-to-poi ()} \\
 	    This function moves the robot to the next point of interest that can be approached. 
@@ -105,13 +105,13 @@
 	    \label{manipulation}
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
-	    \item \textbf{place-object(object)} \\
+	    \item \textbf{place-object(object-id grasp-pose)} \\
 	    This function gets the object id and the grasp position and uses that to create a place designator  
-		\item \textbf{place-object-list} \\
+		\item \textbf{place-object-list(place-list)} \\
 		This function gets a list and uses that to create a place designator 
-	    \item \textbf{grasp-object(object)} \\
+	    \item \textbf{grasp-object(object-id grasp-pose)} \\
 	    This function gets the object id and what grasp position should be used to grasp the object and uses that to create a grasp desingator
-	    \item \textbf{create-place-list} \\
+	    \item \textbf{create-place-list (object-id grasp-pose)} \\
 	    This function gets the object id and grasp position to create a list with positions to place the object
 		\end{itemize}
 	    \subsection{navigation-functions.lisp}
@@ -171,43 +171,43 @@
 		This file is responsible for the low level communication with the
 		grasp action server which is responsible for grasping objects.
 		\begin{itemize}
-			\item \textbf{init-grasp-action-client} \\
+			\item \textbf{init-grasp-action-client()} \\
 			This function initiates the connection to the grasp action server
-			\item \textbf{get-grasp-action-client} \\
+			\item \textbf{get-grasp-action-client()} \\
 			This function returns the grasp action client
-			\item \textbf{make-grasp-action-goal} \\
+			\item \textbf{make-grasp-action-goal()} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-grasp-goal-reached} \\
+			\item \textbf{ensure-grasp-goal-reached()} \\
             This function makes sure the goal was reached
-			\item \textbf{call-grasp-action} \\
+			\item \textbf{call-grasp-action()} \\
 			This function takes the x,y,z coordinates, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the grasp mode.
 		\end{itemize}
 		\subsection{place-action-client.lisp}
 		This file is responsible for the low level communication with the
 		place action server which is responsible for placing objects.
 	    \begin{itemize}
-			\item \textbf{init-place-action-client} \\
+			\item \textbf{init-place-action-client()} \\
 			This function initiates the connection to the place action server
-			\item \textbf{get-place-action-client} \\
+			\item \textbf{get-place-action-client()} \\
 			This function returns the place action client
-			\item \textbf{make-place-action-goal} \\
+			\item \textbf{make-place-action-goal()} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-place-goal-reached} \\
+			\item \textbf{ensure-place-goal-reached()} \\
             This function makes sure the goal was reached
-			\item \textbf{call-place-action} \\
+			\item \textbf{call-place-action()} \\
 			This function takes the x,y,z coordinates, quaternion values  and the object-id of the object that is placed and the graspmode.
 		\end{itemize}
 		\subsection{take-pose-action-server.lisp}
 		This file is responsible for the low level communication with the
 		take pose action server which is responsible taking different poses.
 		\begin{itemize}
-			\item \textbf{init-take-pose-action-client} \\
+			\item \textbf{init-take-pose-action-client()} \\
 			This function initiates the connection to the take pose action server
-			\item \textbf{get-take-pose-action-client} \\
+			\item \textbf{get-take-pose-action-client()} \\
 			This function returns the take pose action client
-			\item \textbf{make-take-pose-action-goal} \\
+			\item \textbf{make-take-pose-action-goal()} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-take-pose-goal-reached} \\
+			\item \textbf{ensure-take-pose-goal-reached()} \\
             This function makes sure the goal was reached
 			\item \textbf{call-take-pose-action(pose)} \\
 			This function takes a integer for a set pose or for a custom pose than needs ten more float values to set the joints.
@@ -216,15 +216,15 @@
 		This file is responsible for the low level communication with the
 		move gripper action client which is responsible for the moving the gripper.
 		\begin{itemize}
-			\item \textbf{init-move-gripper-action-client} \\
+			\item \textbf{init-move-gripper-action-client()} \\
 			This function initiates the connection to the move gripper action server
-			\item \textbf{get-move-gripper-action-client} \\
+			\item \textbf{get-move-gripper-action-client()} \\
 			This function returns the move gripper action client
-			\item \textbf{make-move-gripper-action-goal} \\
+			\item \textbf{make-move-gripper-action-goal()} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-take-pose-goal-reached} \\
+			\item \textbf{ensure-take-pose-goal-reached()} \\
             This function makes sure the goal was reached
-			\item \textbf{call-move-gripper-action} \\
+			\item \textbf{call-move-gripper-action()} \\
 			This function takes x,y,z coordiantes and four quaternion values to move the gripper to that position. 
 		\end{itemize}
 		\subsection{knowledge-client.lisp}
