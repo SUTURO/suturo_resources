@@ -25,6 +25,13 @@
 		\chapterauthor{Evan Kapitzke}
 		The estimation of the grasping pose could be done with RoboSherlock. Based on the depth camera image we would calculate a few possible grasping points, which then could be used by Manipulation to optimize their grasping procedure. The depth camera images are only available while Perception processes them. The calculation should be implemented in an additional annotator and some modifications to the process manager.
 		
+		\subsection{Perception: Comparing classifiers}
+		\chapterauthor{Jan-Frederik Stock}
+		With the clusterLabeling package, it is now possible to quantify classification performance and thus compare different classifiers. To achieve a 					representative result, a couple of different scenes with different objects should be recorded, with the objects not overlapping. It is crucial to get a
+		good clustering for the scenes, so point cloud filtering should be used to achieve this. Now, the scenes have to be labeled, the more frames the better. 
+		When this is done, the different classifiers can be tested with the classificationEvaluationAnnotator. It is very important to not change anything but 
+		the classifier in the pipeline, so the results do not get distorted.
+		
 		
 		% Knowledge:
 		\subsection{Knowledge: Continue optimizing the object goal pose}
