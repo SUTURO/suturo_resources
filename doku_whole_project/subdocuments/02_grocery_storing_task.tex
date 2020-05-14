@@ -56,7 +56,6 @@
 	Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so Planning can determine where to go next.
 	
 	% Navigation: moveBaseAction
-	
 	The robot moves to the designated location in this case the table, it will be turned $90^\circ$ so it is in a pose where perceiving the table isn't hindered by the arm of the HSR. 
 	
 	% NLP
@@ -85,7 +84,7 @@
 	\subsection{Grasp Object}
 	
 	% Knowledge: next_object
-	Ask the KB which is the next object which the robot should deliver to it's target. What the next object should be is determined by \textbf{KNOWLEDGE LEUTE MÜSSEN DAS ERKLÄREN}
+	The Knowledge base now determins which object should be grasped next to place it in one of the shelves. This decision is purely based on the distance of the objects to the robot in a way that the nearest object standing on one of the tables will be taken first.
 	
 	% 2x NLP: Talk Request
 	
@@ -118,6 +117,7 @@ Knowledge finds all the shelves available and sorts them, just like the tables b
 	% Planning: Loop this while some items are left
 	
 	% Knowledge: shelf positions
+	Knowledge again provides a list of all the shelf surfaces, sorted by their distance to the robot and returns it to Planning.
 	
 	% navigation: move to shelf (???)
 	
@@ -135,6 +135,7 @@ Knowledge now determines the most suitable position for the Object, it earlier c
 	% Knowledge: table pose
 	
 	% Knowledge: next_object
+	Then, Knowledge again finds the nearest object standing on a table that sould be taken next.
 	
 	% 2x NLP
 	
