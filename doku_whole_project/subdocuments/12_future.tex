@@ -32,7 +32,15 @@
 		When this is done, the different classifiers can be tested with the classificationEvaluationAnnotator. It is very important to not change anything but 
 		the classifier in the pipeline, so the results do not get distorted.
 		
-		
+		\subsection{Perception: HSR hand camera for feedback on object position}
+		\chapterauthor{Leonidas Paniago De Oliveira Neto}
+One of the problems we had with the HSR was that more so often he would grab wrong.
+To counter act the imprecision we wanted to use the HSR hand camera for some kind of feedback on the object position.
+Implemented is a phyton script using YOLO (You only look once) algorithms that uses the webcam and output how far the found objects are from the screen middle.
+Further more there is a Robosherlock Annotator that implements YOLO but due to version conflict with ROS the code is not full functional.
+The best way to proceed is to try another object detection algorithms from OpenCV or maybe if the color is known to look for it in the picture.
+In my Opinion this should be a major focus for new groups in so far that the grasp problem is not resolved by any other means.
+
 		% Knowledge:
 		\subsection{Knowledge: Continue optimizing the object goal pose}
 		\chapterauthor{Jeremias Thun}
