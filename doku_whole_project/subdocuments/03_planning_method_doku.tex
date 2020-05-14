@@ -27,15 +27,15 @@
 			\item \textbf{execute-grocery()} \\
 			This is the main function for the grocery storing task. When this function is called, it starts all necessary subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
 			\item \textbf{perceive-shelf (shelf-region)} \\
-			This function is a subroutine for perceiving shelfs. It uses the functions from llif to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the knowledge-insertion-client.
-			\item \textbf{perceive-table} \\
-			This function is a subroutine for perceiving the table. It uses the functions from llif to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the knowledge-insertion-client.
-			\item \textbf{grasp-handling} \\
-			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
+			This function is a subroutine for perceiving shelfs. It uses the functions from \nameref{object-perceive} to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+			\item \textbf{perceive-table ()} \\
+			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+			\item \textbf{grasp-handling ()} \\
+			This function is a subroutine for grasping objects with primitive failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
 			\item \textbf{grasp-with-failure-handling} \\
-			This function is a subroutine for grasping objects with more sophisticated failure handling, which object will be grasped is determined by the knowledge base
-			\item \textbf{place-handling}
-			This function is a subroutine for placing objects
+			This function is a subroutine for grasping objects with more sophisticated failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+			\item \textbf{place-handling ()}
+			This function is a subroutine for placing objects. It uses the functions from \nameref{manipulation}.
 		\end{itemize}
 		
 		\subsection{grocery-bw.lisp}
@@ -47,24 +47,24 @@
 	  	
 	  	\section{Clean Up}
 	  	\label{clean}
-	  	\chapterauthor{Phillip Klein, Jan Schimpf, Torge Olliges}
+	  	\chapterauthor{Phillip Klein, Jan Schimpf, Torge Olliges, Tom-Eric Lehmkuhl}
 	  	This package contains the main function for this task and some subroutines.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
-			\item \textbf{execute-cleanup} \\
+			\item \textbf{execute-cleanup ()} \\
 			This is the main function for the clean up task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
-			\item \textbf{perceive-table} \\
-			This function is a subroutine for perceiving the table. It uses the functions from llif to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the knowledge-insertion-client.
-			\item \textbf{transport} \\
+			\item \textbf{perceive-table ()} \\
+			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+			\item \textbf{transport ()} \\
             This function is a subroutine for transporting all objects after another found on the table to the bucket and drops these in there. For this the function grasp-handling is called.
-			\item \textbf{point-of-interest-search} \\
-			This function navigates to a point of interest and calls the low level functions for perceiving it. 
-			\item \textbf{point-of-interest-transport} \\
+			\item \textbf{point-of-interest-search ()} \\
+			This function navigates to a point of interest and calls the functions from \nameref{object-perceive} to erceive it. 
+			\item \textbf{point-of-interest-transport ()} \\
 			This function grasps objects found with point of interest search and drops them into the bucket. For this the function hsr-failure-handling-grasp is called.
-			\item \textbf{hsr-failure-handling-grasp} \\
-			This function is a subroutine for grasping objects with failure handling, which object will be grasped is determined by the knowledge base.
-			\item \textbf{grasp-handling}\\
-			This function is a subroutine for grasping objects with primitive failure handling, which object will be grasped is determined by the knowledge base
+			\item \textbf{hsr-failure-handling-grasp ()} \\
+			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+			\item \textbf{grasp-handling ()}\\
+			This function is a subroutine for grasping objects with primitive failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
@@ -84,22 +84,25 @@
 	    \begin{itemize}
 		\item \textbf{try-movement-stampedList(stamped-list)} \\
 		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
-	    \item \textbf{move-hsr()} \\
+	    \item \textbf{move-hsr ()} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
-	    \item \textbf{grasp-hsr()} \\
+	    \item \textbf{grasp-hsr ()} \\
 	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling
-	    \item \textbf{place-hsr()} \\
+	    \item \textbf{place-hsr ()} \\
 	    This function takes a object-id and a grasp-pose. Places the object in the gripper in the goal and includes failure handling.
-	    \item \textbf{move-to-poi()} \\
+	    \item \textbf{move-to-poi ()} \\
 	    This function moves the robot to the next point of interest that can be approached. 
-	    \item \textbf{move-to-poi-and-scan()} \\
+	    \item \textbf{move-to-poi-and-scan ()} \\
 	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
-	    \item \textbf{move-to-table(turn)} \\
-	    This function moves the robot to the table position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
-	    \item \textbf{move-to-shelf(turn)} \\
-	    This function moves the robot to the shelf position which is determined by the knowledge base, it takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving) 
+	    \item \textbf{move-to-table (turn)} \\
+	    This function navigates the robot to the table position which is determined in \nameref{knowledge-client}. It takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving). 
+	    \item \textbf{move-to-shelf (turn)} \\
+	    This function navigates the robot to the shelf position which is determined in \nameref{knowledge-client}. It takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving).
+	    \item \textbf{move-to-bucket ()} \\
+	    This function navigates the robot to the bucket position which is determined in \nameref{knowledge-client}.  
 		\end{itemize}
 	    \subsection{manipulation-functions.lisp}
+	    \label{manipulation}
 	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
 	    \begin{itemize}
 	    \item \textbf{place-object(object)} \\
@@ -227,6 +230,7 @@
 		\subsection{knowledge-client.lisp}
 		The knowledge-client is an interface to knowledge, which is responsible for the request to KnowRob. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
 			\begin{itemize}
+			\label{knowledge-client}
 			  \item \textbf{with-safe-prolog} \\
 			  Makro for executing the queries. Catches errors caused by connection problems.
 			  \item \textbf{knowrob-symbol-$>$string (knowrob-symbol)} \\
@@ -249,6 +253,7 @@
 				\item \textbf{prolog-object-in-gripper} \\ Returns the dimension of the object in gripper as list (depth, width, height).
 			\end{itemize} 
 		\subsection{knowledge-insertion-client.lisp}
+		\label{knowledge-insertion}
 		The client is used to insert objects recognized by perception into the knowledgebase. To do this, the message from perception is passed to the action server of knowledge, which is responsible for inserting the objects.
 		\begin{itemize}
 		  \item \textbf{init-knowledge-action-client} \\
@@ -281,6 +286,7 @@
 	    	This function subscribes the point of interests and stores them in a variable.
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
+		\label{object-perceive}
 		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.
 		\begin{itemize}
 			\item \textbf{init-robosherlock-object-action-client} \\
