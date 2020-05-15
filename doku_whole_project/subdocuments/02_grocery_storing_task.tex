@@ -62,7 +62,8 @@
 	Informing that the robot is perceiving the table now.
 	
 	% Manipuilation: TakePoseAction
-	The robot has to take one of 3 perceive poses depending on the heights of the objects he wants to look at.
+	Manipulation gets the task to put the HSR into a pose to perceive an object depending on the height of the plane the object is on.
+    That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
 	
 	% Perception: Percieve and return data
 	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
@@ -72,7 +73,7 @@
 	% NLP: Talk Request
 	
 	% Manipulation: Take pose
-	Take default pose.
+	The robot is set to the default pose.
 	
 	% 2x NLP: Talk
 	
@@ -89,7 +90,7 @@
 	% 2x NLP: Talk Request
 	
 	% Manipulation: GraspAction
-	
+	Manipulation gets the task to grasp the given object. To do that the Grasp Action Server has to calculate the correct orientations to grasp from the right direction and do collision avoidance with all other objects which is done by using giskard.
 	% Planning: This whole thing is gonna be looped 
 	
 	% NLP
@@ -106,7 +107,8 @@ Knowledge finds all the shelves available and sorts them, just like the tables b
 	% NLP
 	
 	% Manipulation: go into percieve pose
-	
+	Manipulation gets the task to put the HSR into a pose to perceive an object depending on the height of the plane the object is on.
+    That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
 	% Perception: Percieve shelf
 	The HSR takes a picture of the shelf it is currently looking at and processes it with RoboSherlock. Based on the requested shelf level the input images are filtered in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
 	
@@ -124,12 +126,12 @@ Knowledge finds all the shelves available and sorts them, just like the tables b
 	% Knowledge: Object goal pose
 Knowledge now determines the most suitable position for the Object, it earlier chose to be the next Object. The way this decision is made is discussed later in the Knowledge function documentation (see section \ref{sec:kn_find_surf} under "Finding a goal surface for an Object"). For now it is enough to know, that Knowledge finds not only a suitable surface for that object but also the exact coordinates in the world frame for that object based on its own properties and based all the other known Objects in the scene.
 	
-	% Manipulation: TakePoseAction
-	
+	% Manipulation: PlaceAction???
+    Manipulation gets the task to place the previously grasped object in the given destination. To do that the Place Action Server has to calculate the correct orientations to place from the right direction and do collision avoidance with all other objects which is done by using giskard.
 	% NLP
 	
 	% Manipulation: TakePoseAction
-	
+	The robot is set to the default pose.
 	% NLP
 	
 	% Knowledge: table pose
