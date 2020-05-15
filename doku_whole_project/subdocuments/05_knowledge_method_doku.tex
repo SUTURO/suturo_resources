@@ -12,14 +12,14 @@
 
 		\chapterauthor{Jeremias Thun}
 
-All the Information about the existing surfaces and the objects are managed in our Knowledgebase. Every question about the relationship between these Objects as well as which one should be taken next and where it should be put is answerd by this Knowledgebase.  The Knowledgebase is built as part of KnowRob. All data is stored as RDF triple, organized by an OWL ontology. This is where logical relationship between the category of objects and surfaces is implemented.
+All the Information about the existing surfaces and the objects are managed in our Knowledge base. Every question about the relationship between these Objects as well as which one should be taken next and where it should be put is answerd by this Knowledge base.  The Knowledge base is built as part of KnowRob. All data is stored as RDF triple, organized by an OWL ontology. This is where logical relationship between the category of objects and surfaces is implemented.
 
 Most of the Knowledge part is based on the knowledge processing system KnowRob (www.knowrob.org), which provides us with the fundamental opportunity to not only work with prolog in ROS and organize our Knowledge in RDF triples based on ontologies that themselves are also based on KnowRob, it also provides a lot of fundamental and utility functions to make storing and processing all the knowledge easier. 
 		
 \section{Knowledge base}
 \chapterauthor{Jeremias Thun}
 
-The Knowledge base as well as knowrob is written in Prolog. To interact manually with the knowledge base, you can (after you started Knowledge) run
+The Knowledge base as well as KnowRob is written in Prolog. To interact manually with the Knowledge base, you can (after you started Knowledge) run
 \begin{lstlisting}
 rosrun rosprolog rosprolog_commandline.py
 \end{lstlisting}
@@ -27,7 +27,7 @@ which opens a prolog shell in your commandline.
 
 \subsection{object\_state.pl}
 
-First of all, we need to add some objects that we can work on to our Knowledgebase. This is where the perceived objects go when the Perception-Group found something:
+First of all, we need to add some objects that we can work on to our Knowledge base. This is where the perceived objects go when the Perception-Group found something:
 
 \begin{lstlisting}
 create_object_at(
@@ -42,7 +42,7 @@ create_object_at(
 	Color, 
 	PercColorCondidence) :-
 \end{lstlisting}
-This confusingly big predicate takes all the perceived Data, creates a corresponding Object in the Knowledgebase and adds all the attributes. Within this procedure, there are a few verifications and changes made, though: The Class, Shape and Color of the Object all have a probability with which they are correctly perceived. These confidences are stored as link to the Object (more on that in the OWL-Chapter), but only if they satisfy a specified threshold. If they don't, the attributes are set back to default values. Also we check if the given data makes any sense, i.e. if the object has a reasonable size.\\
+This confusingly big predicate takes all the perceived Data, creates a corresponding Object in the Knowledge base and adds all the attributes. Within this procedure, there are a few verifications and changes made, though: The Class, Shape and Color of the Object all have a probability with which they are correctly perceived. These confidences are stored as link to the Object (more on that in the OWL-Chapter), but only if they satisfy a specified threshold. If they don't, the attributes are set back to default values. Also we check if the given data makes any sense, i.e. if the object has a reasonable size.\\
 Besides a few helper predicates, this module also contains two helpful little predicates to get all Objects that are stored at that moment:
 \begin{lstlisting}
 hsr_existing_objects(Objects) :-
@@ -121,7 +121,7 @@ In the pickup module the information necessary to pick an object up are organize
 \begin{lstlisting}
 next_object_(BestObj) :-
 \end{lstlisting}
-As soon as there are some objects stored in our beliefstate, Knowledge is able zu tell, which Object should be the next one, the robot takes and puts somewhere. This prediacte returns the Object, that is standing on a surface, that was previously declared as \texttt{source} surface and is closest to the robot.
+As soon as there are some objects stored in our beliefstate, Knowledge is able to tell, which Object should be the next one, the robot takes and puts somewhere. This predicate returns the Object, that is standing on a surface, that was previously declared as \texttt{source} surface and is closest to the robot.
 
 \subsection{assignplaces.pl}
 
@@ -269,7 +269,7 @@ all_objects_on_tables_/1,
     %\end{minipage}
 \end{figure}
 
-To be able to use the same predicates for both Tasks Grocery Storing and Cleanup, we implemented the concept of a surface role. All the most important predicates do something at a surface, depending on it's role. For example, when we find the next object to grasp, it should be the next object standing on a surface, that we want to grasp from. Or when we place an object on a surface, it should be a surface that we want to put things on. Which surfaces get what role only depends on the task that the robot is currently working on. In the Grocery Storing task, all the shelves are target surfaces and all the tables are source surfaces (see figure \ref{fig:kn_ro_gr}), in the Cleanup task only the basket is a target surfaces and everything else (including the ground) is a source surface (see figure \ref{fig:kn_ro_cl}). This way, knowledge doesn't need to know the specific task, it just needs to know, which surfaces have what role.\\
+To be able to use the same predicates for both Tasks Grocery Storing and Cleanup, we implemented the concept of a surface role. All the most important predicates do something at a surface, depending on it's role. For example, when we find the next object to grasp, it should be the next object standing on a surface, that we want to grasp from. Or when we place an object on a surface, it should be a surface that we want to put things on. Which surfaces get what role only depends on the task that the robot is currently working on. In the Grocery Storing task, all the shelves are target surfaces and all the tables are source surfaces (see figure \ref{fig:kn_ro_gr}), in the Cleanup task only the basket is a target surfaces and everything else (including the ground) is a source surface (see figure \ref{fig:kn_ro_cl}). This way, Knowledge doesn't need to know the specific task, it just needs to know, which surfaces have what role.\\
 This is implemented by 
 
 \begin{lstlisting}
@@ -341,45 +341,45 @@ An Ontology is a knowledge represantation. To fullfill this task ontologies defi
 
 
 \subsection{Robocup}
-The \texttt{Robocup} ontology defines concepts used to describe the robocup and concepts needed for the URDFs. To do that it imports the \texttt{srdl2-comp} ontology that is part of knowrob. Furthermore our \texttt{objects} ontology gets imported.\\
+The \texttt{Robocup} ontology defines concepts used to describe the robocup and concepts needed for the URDFs. To do that it imports the \texttt{srdl2-comp} ontology that is part of KnowRob. Furthermore the \texttt{objects} ontology gets imported.\\
 Since the concept of the robocup is not fully implemented yet, this ontology does not contain much apart from a class for the robocup, the tasks clean up and grocery storing and a \texttt{supports} property, that connects an object to the objects it supports.
 
 \subsection{Objects}
 
 This ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example to find similar objects. The Ontology furthermore defines different properties objects can have. \\
-The \texttt{objects} ontology imports the \texttt{knowrob} and the \texttt{urdf} ontology provided by knowrob.\\
+The \texttt{objects} ontology imports the \texttt{knowrob} and the \texttt{urdf} ontology provided by KnowRob.\\
 For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \texttt{ColorRegion} and different materials are defined in subclasses of \texttt{MaterialRegion}. Different shapes are represented by subclasses of \texttt{ShapeRegion}. An overview over the regions is given in figure \ref{fig:region_ont}.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_region}
-\caption{Regions in our ontology}
+\caption{Regions}
 \label{fig:region_ont}
 \end{figure}
 
-For those characteristics we have subclasses of \texttt{PhysicalQuality}, as seen in figure \ref{fig:quality_ont}.
+For those characteristics subclasses of \texttt{PhysicalQuality} have been added, as seen in figure \ref{fig:quality_ont}.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_quality}
-\caption{Qualitys in our ontology}
+\caption{Qualitys}
 \label{fig:quality_ont}
 \end{figure}
 
  Those represent the quality of the object, while the regions represent the actual values.\\
 To represent the confidence with which the robot perceived a characteristic of an object the class \texttt{ConfidenceRegion} and subclasses for the different characteristics are defined.\\
-The physical objects, we can encounter are represented by the subclasses of \texttt{PhysicalObject}.
+Physical objects are represented by the subclasses of \texttt{PhysicalObject}.
 One of these subclasses is \texttt{PhysicalPlace}. The subclasses of \texttt{PhysicalPlace} represent places, like the shelf. The surfaces are represented by subclasses of \texttt{PhysicalPlace} aswell. To represent these \texttt{PhysicalPlace} has the subclass \texttt{Surface}, where different kinds of surfaces are defined. This can be seen in figure \ref{fig:place_ont}.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_place}
-\caption{Physical places in our ontology}
+\caption{Physical places}
 \label{fig:place_ont}
 \end{figure}
 
 The \texttt{Unknown} class represents perceived objects, for which the robot doesn't know or is not sure what kind of physical object it is.\\
-Most of the items, that have a representation in our ontology, are subclasses of \texttt{DesignedArtifact}.
+Most of the items, that have a representation in the \texttt{objects} ontology, are subclasses of \texttt{DesignedArtifact}.
 Here you can find every item, that is created following a certain design. 
 Examples for this are \texttt{DesignedFurniture} like a table and \texttt{DesignedTools} like a knife.\\
 A huge part of the known items are different kinds of food or drinks. Most of these are categorised as \texttt{ProcessedFood} or \texttt{Drink}. Both of these are a subclass of \texttt{DesignedSubstance}. The exception to this are things like tomatoes, since these are not designed and therefor dont fit in the \texttt{DesignedArtifact} class. Those objects are categorised as \texttt{NaturalFood}, a subclass of \texttt{BiologicalObject}. This class is a subclass of \texttt{PhysicalBody}. The figure \ref{fig:object_ont} gives an overview over the \texttt{PhysicalObject} class.
@@ -387,7 +387,7 @@ A huge part of the known items are different kinds of food or drinks. Most of th
 \begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_objects}
-\caption{Physical objects in our ontology}
+\caption{Physical objects}
 \label{fig:object_ont}
 \end{figure}
 
@@ -397,15 +397,15 @@ For the grouping of objects the property \texttt{inGroup} is responsible. This p
 The \texttt{supportedBy} property connects an object to the object (most likely surface) it is standing on.\\
 To store the confidence for the different characteristics subproperties of the property \texttt{hasRegionDataValue} have been added.\\
 The \texttt{size} property is responsible for storing the size of an object.\\
-To distinguish objects we can move from others we added the \texttt{supportable} property. This property stores a boolean for an object.
+To distinguish objects the robot can move from others the \texttt{supportable} property has been added. This property stores a boolean for an object.
 
 
 
 \section{Scripts and higher Architecture}
 \chapterauthor{Fabian Rosenstock}	  	
 \subsection{store\_object\_info\_server.py}
-This script stores the send data in our Knowledge base.
-To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since we have different naming conventions. After that it tests whether the class exists in our Ontology. If the classname is empty or if the class does not exist in our ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the \texttt{ObjectDetectionData} message. If the object has a legal position it gets added to the knowledge base and the objects at that position are put into one group.
+This script stores the send data in the Knowledge base.
+To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since Perception uses different naming conventions. After that it tests whether the class exists in the \texttt{objects} ontology. If the classname is empty or if the class does not exist in the \texttt{objects} ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the \texttt{ObjectDetectionData} message. If the object has a legal position it gets added to the Knowledge base and the objects at that position are put into one group.
 
 	\endgroup
 
