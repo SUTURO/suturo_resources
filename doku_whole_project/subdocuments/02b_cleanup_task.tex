@@ -47,7 +47,8 @@
 	Informing that the robot is perceiving the table now.
 	
 	% Manipuilation: TakePoseAction
-	The robot has to take one of 3 perceive poses depending on the heights of the objects he wants to look at.
+	Manipulation gets the task to put the HSR into a pose to perceive an object depending on the height of the plane the object is on.
+    That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
 	
 	% Perception: Percieve and return data
 	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
@@ -58,7 +59,7 @@
 	% NLP: Talk Request
 	
 	% Manipulation: Take pose
-	Take default pose.
+	The robot is set to the default pose.
 	
 	% 2x NLP: Talk
 		
@@ -77,7 +78,7 @@
 	Informing which object the robot will grasp using the object id
 	
 	%grasp-object
-	The object id is used to query the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server to grasp the object. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
+	The object id is used to query the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server to grasp the object. Manipulation then gets the task to grasp the given object. To do that the Grasp Action Server has to calculate the correct orientations to grasp from the right direction and do collision avoidance with all other objects which is done by using giskard.
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog pose
 	 
@@ -93,7 +94,7 @@
 	Informing that the robot is now placing the object
 
 	%place-object
-	The object id is used to querie the Knowledge base for the dimensions of the object and the goal of the object. The results are then used to call the manipulation place server to place the object. Manipulation then \textbf{MANIPULATION LEUTE MÜSSEN DAS ERKLÄREN}
+	The object id is used to querie the Knowledge base for the dimensions of the object and the goal of the object. The results are then used to call the manipulation place server to place the object. Manipulation then gets the task to place the previously grasped object in the given destination. To do that the Place Action Server has to calculate the correct orientations to place from the right direction and do collision avoidance with all other objects which is done by using giskard.
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog goal
 	 
