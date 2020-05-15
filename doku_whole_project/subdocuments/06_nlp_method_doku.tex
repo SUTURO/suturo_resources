@@ -76,7 +76,7 @@ ITEM : Marmelade
 ITEM : Cookies
         \end{lstlisting}
         Every symbol is nonterminal, except for symbols defined in the \texttt{.voca} file. Terminals are defined as a word category. The category is defined through \newline \lstinline{% <<name>>}
-        In the \texttt{.voca} file the word and the the phonetic representation are separated by a space.
+        In the \texttt{.voca} file the word and the phonetic representation are separated by a space.
         \begin{lstlisting}
 % and
 and ae n d
@@ -133,7 +133,7 @@ Oreos ao r iy ow s
     \subsection{textparser.py}
         The textparser node is designed to take in the output from Julius and check if the output is a hard command or send it to the Sling-Parser.
         \subsubsection{callback(data)}
-            The \texttt{callback} function is called with the data published by Julius. Julius publishes its output in the \texttt{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \texttt{callback} function calls the \texttt{find\_first} function to get a String representing the recognized sentence. It is then checked if the String is a static command. To do that the \texttt{is\_static} command is called. If the recogized sentence is not a static command the sentence is published on the \texttt{/to\_slingparser} topic to be analysed by SLING.
+            The \texttt{callback} function is called with the data published by Julius. Julius publishes its output in the \texttt{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \texttt{callback} function calls the \texttt{find\_first} function to get a String representing the recognized sentence. It is then checked if the String is a static command. To do that the \texttt{is\_static} command is called. If the recognized sentence is not a static command the sentence is published on the \texttt{/to\_slingparser} topic to be analysed by SLING.
     
         \subsubsection{find\_first(data)}
             The \texttt{find\_first} function takes the data published by Julius and checks weather the recognition confidence is high enough. If so it returns the recognized sentence as String, if the confidence is not high enough the function returns an empty string.\\
@@ -189,7 +189,7 @@ Oreos ao r iy ow s
              TinyRPC is used to bridge the problem, that two powerful and necessary libraries, Sling and SimpleNLG (See The Suturo\_nlg Package) are only available for Python3.\\
              To solve this problem, the \texttt{slingparserRosInterface.py} starts \texttt{slingparser.py3} as a subprocess. The slingparser.py3 upon startup initializes the tinyRPC server and provides the \texttt{semantic\_parse()} function.
         \subsubsection[slingparserros]{slingparserRosInterface.py}
-            The \texttt{slingparserRosInterface.py} subscribes to a topic on witch \texttt{String} messages are published. It then calls the the semantic parse function provided by the \texttt{slingparser.py} script. This functions returns the annotated semantic frames in a python dictionary. This dictionary is then translated into a \texttt{MeaningRepresentation} message. This message definition contains an array of \texttt{KeyValuePair} messages. Each of these messages contains the frame as a key and the contents of the frame as the associated value.
+            The \texttt{slingparserRosInterface.py} subscribes to a topic on which \texttt{String} messages are published. It then calls the the semantic parse function provided by the \texttt{slingparser.py} script. This functions returns the annotated semantic frames in a python dictionary. This dictionary is then translated into a \texttt{MeaningRepresentation} message. This message definition contains an array of \texttt{KeyValuePair} messages. Each of these messages contains the frame as a key and the contents of the frame as the associated value.
         \subsubsection{slingparser.py3}
             The slingparser.py3 script wraps the Sling Semantic Parser. It currently loads a hard coded \texttt{flow} file.
             The \texttt{semantic\_parse} function actually calls the sling parser and takes its output and writes it into a dictionary to return.
