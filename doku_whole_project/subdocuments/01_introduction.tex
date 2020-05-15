@@ -2,6 +2,7 @@
 \begin{document}
 	\chapter{Introduction}
 	\chapterauthor{Merete Bommarius}
+	\label{introduction}
 	
 This is the documentation for the whole SUTURO project of 2019/2020. The goal of the SUTURO project was the successful participation in the RoboCup@Home with the Human Support Robot (HSR) from Toyota. During the RoboCup, the HSR had to perform different tasks autonomously.
 This year the group chose to focus on the tasks “Storing Groceries“ and “Clean Up“, as found in the Rulebook of 2019, which can be found on the RoboCup@Home website (http://www.robocupathome.org/rules). 
@@ -10,22 +11,23 @@ Clean Up is a different task for which the HSR has to tidy up a room with assort
 Due to specific circumstances, which will be explained later in the documentation, the group was not able to work on the HSR itself during the third and final milestone and switched to a virtual substitute.
 In the following sections, the challenges that were encountered will be described, each subgroup of the project will elaborate on their work, and in the end, there will be a section of ideas on how to make the project better for the next generation of SUTURO.
 	
-	\section{Challenges} 
+	\section{Challenges}
+	\label{challanges}
 	\chapterauthor{Torge Olliges, Marc Stelter, Jeremias Thun}
 	These tasks can be expressed as several challenges which the group had to face:
 	% TO DO: Im Robocup gibt es bekannte *und unbekannte* Objekte
 	\begin{itemize}
 		\item Navigation: In order to get from one position to another, e.g. to a table, shelf object. The robot has to be able to perform these navigation actions autonomously. 
-		\item Localization: The robot needs to know where it is and the robot has to know where objects are located.
+		\item Localization: The robot needs to know where it is located.
 		\item Detection: The robot has to be able to find objects without prior knowledge of their position.
 		\item Recognition: The robot has to be able to recognize objects.
 		\item Classification: The robot has to be able to classify objects depending on their size, color, shape and type.
 		\item Sorting: When placing the objects, the robot has to sort them in way, that humans can intuitively agree.
-		\item Manipulation: The robot has to be able to move its joints according to the given commands like grasping, placing or head movements.
+		\item Manipulation: The robot has to be able to place and grasp objects and the robot has to be able to move it's head.
 		\item Communication: To communicate what the robot does and which decisions it makes, it needs to be able to have voice output.
-		\item Running stable: In a complex environment there will always be some reasons for the robot to not successfully finish its tasks. That's why error handling needs to be provided, to fix problems during runtime e.g. grasping a object fails.
-		\item Decision making: The robot has to react to environmental changes, so there cannot be just one sequence which otherwise would fail if even the slightest changes were made to the environment. It has to be able to avoid danger for itself and others and to know when it is done with the task currently given.
-		\item Timing: The RoboCup@Home rulebooks had very strict restrictions this year about how much time the robot is allowed to take to do each task. So everything has to work as fast as possible and as simultaneous as possible.
+		\item Running stable: The robot has to be able to adapt to changes in it's environment.
+		\item Decision making: Decisions have to be made according to the current environment, they can not be predefined. 
+		\item Timing: During the RoboCup each task has a limited timeframe.
 		
 	\end{itemize}
 

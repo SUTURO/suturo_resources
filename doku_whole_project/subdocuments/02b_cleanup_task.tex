@@ -13,19 +13,20 @@
 		\chapterauthor{Torge Olliges, Jan Schimpf}
 		
 		\section{Goal}
-		For Clean Up the HSR had to navigate a room in which objects are distributed. The robot has no prior knowledge of the position of the objects but it does know the position of the goal which was a bucket. It had to be able to detect the objects in the room pick them up and transport them to the designated goal position. The HSR had to achieve the tasks given autonomously and manipulate objects like the objects explained in the goal section of the Clean Up task chapter. It had 5 minutes to achieve this task.
+		For Clean Up the HSR had to navigate a room in which objects are distributed. The goal position for the objects was given prior to the beginning of the task. The objects were located at previously unknown positions. The HSR had to be able to detect them in the room pick them up and transport them to the designated goal position. The HSR had to achieve the given tasks autonomously and manipulate objects like explained in the goal section of the Clean Up task chapter. It had 5 minutes to complete the task.
 		
 
 	  	\section{Tasks}
 	  	\subsection{Setup}
-	First the interface to knowledge is called to set the target to basket. In addition, the floor and the table are set as sources, since objects are picked up from both. Since knowledge is responsible for the internal representation of the surfaces and the management of the associated objects, we have to tell them from where we will pick up objects and where they will be taken. 
 	  	\begin{figure}	
 	  		\centering
 	  		\includegraphics[width=0.85\textwidth]{pictures/diagramms/cleanup-sequence.png}
 	  		\caption{Sequence diagram of the complete run of the clean up task \textit{(explanations below)}}
 	  		\label{Clean Up sequence}
 	  	\end{figure}
-		% TODO: Entfernen - hier bitte aus dem sequenz diagramm einen einzelnen task als subsection z.b. schritt: tür öffnen, dafür mussten perception dies tun manipulation das tun etc.
+	  	% TODO: Entfernen - hier bitte aus dem sequenz diagramm einen einzelnen task als subsection z.b. schritt: tür öffnen, dafür mussten perception dies tun manipulation das tun etc.
+	First the interface to knowledge is called to set the target to basket. In addition, the floor and the table are set as sources, since objects are picked up from both. Since knowledge is responsible for the internal representation of the surfaces and the management of the associated objects, we have to tell them from where we will pick up objects and where they will be taken. 
+	  	
 		
 
 	\subsection{Scan table sequence}
