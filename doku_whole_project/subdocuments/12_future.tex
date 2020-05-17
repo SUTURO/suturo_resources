@@ -72,7 +72,11 @@ In my Opinion this should be a major focus for new groups in so far that the gra
 		% Manipulation
 		\subsection{Manipulation: Open Doors}
 		\chapterauthor{Jan Neumann}
-		%TODO 
+		The RoboCup challenges reward bonus points when the robot is able to open doors by itself. To accomplish that task, constraints in giskard can be used. The idea is to have the following constraints:\\
+		One constraint maintains a set distance between the rotation axis(door hinges) and the point where the robot has grasped the door. That should result in a rotation on the xy plane in map around the rotation axis with radius = calculated distance.\\
+		One constraint maintains a constant height on the z axis in map.\\
+		To make sure that the orientation of the robots hand stays the same relative to the door, three constraints(x,y,z) make sure that one of the three axis in hand\_palm\_link points toward the doors rotation axis at all times, deriving from the method used in the Pointing constraint.\\
+		Finally two constraints represent the distance on the xy plane in map to a goal point to which the hand should move. This goal point is calculated by rotating the initial grasp point around the rotation axis by a given angle(usually 90 degrees).
 		
 		% Navigation
 		
