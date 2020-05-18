@@ -296,15 +296,29 @@
 	    	Makes a copy of the given message and stores it in a variable.
 	    	\item \textbf{get-map-point (vect3)} \\
 	    	Returns the occupancy from a given position in the map.
+	    	\item \textbf{robot-in-obstacle-stamped (point)} \\
+	    	Wrapper for the robot-in-obstacle function to use a stamped pose.
+	    	\item \textbf{robot-in-obstacle (point)} \\
+	    	Returns if the obstacle value for the given point is lower then 66.
+	    	\item \textbf{circle-is-in-obstacle (point)} \\
+	    	Returns if the obstacle value for the given point is lower then 66.
 	    \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
 	    	\item \textbf{closest-poi (point)} \\
 	    	This function returns the next point of interest in relation to the passed point.
+	    	\item \textbf{closest-point-in-list (point stampedList)} \\
+	    	Returns the closest point in relation of the given point.
 	    	\item \textbf{sorted-poi-by-distance (point)} \\
 	    	This function returns all points of interest sorted in relation to the given point.
+	    	\item \textbf{sorted-stamped-by-distance (point list)} \\
+	    	Sort a list of stamped poses by the distance to the given point.
+	    	\item \textbf{add-stamped-poi (stamped)} \\
+	    	Add a stamped pose to the list of pois.
 	    	\item \textbf{point-listener} \\
 	    	This function subscribes the point of interests and stores them in a variable.
+	    	\item \textbf{add-poi-from-topic (poseArrayMsg)} \\
+	    	Save the given points to the parameter *poi*.
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
 		\label{object-perceive}
