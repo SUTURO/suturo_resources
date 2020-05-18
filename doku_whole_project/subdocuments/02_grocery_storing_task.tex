@@ -12,22 +12,19 @@
 	
 	\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl, Evan Kapitzke, Jeremias Thun}
 
-\textit{This chapter as well as the chapter about the Clean Up task could sadly not have been finished in time. In the next days, there will follow some explanations about the different tasks, the robot is doing during these two challenges. It will come together as a continuous text that will give a less technical overview about all the whole process. The parts that are already written in these two chapters will probably not make much sense without the rest.}
-
 	\section{Goal}
-
-	The goal of the Storing Groceries task is to collect objects from a table and place them in a shelf, grouped with similar objects. The HSR has to autonomously navigate the environment, it has to manipulate objects like doors and grocery items like chips, bananas et cetera. Furthermore the HSR has to be able to lift items off the table and place them in the shelf. The HSR has 5 minutes to complete the task.
-	
+	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects in the shelf. Furthermore it needs to grasp and place one object after the other. It also needs to navigate between the shelf and table. For additional points the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
 
 	\section{Tasks}
-
-		\begin{figure}	
+	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given.
+	
+		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.85\textwidth]{pictures/diagramms/first-part-grocery-sequence.png}
 			\caption{Sequence diagram of the complete run of the grocery storing task \textit{(explanations below)}}
 			\label{grocery_seq_01}
 		\end{figure}
-		\begin{figure}	
+		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.85\textwidth]{pictures/diagramms/second-part-grocery-sequence.png}
 			\caption{Sequence diagram of the complete run of the grocery storing task \textit{(explanations below)}}
@@ -36,9 +33,7 @@
 		\textit{The sequence diagram in figure \ref{grocery_seq_01} and \ref{grocery_seq_01} does not depict when the action servers are running it rather displays the time they are actively used.}
 	
 	\subsection{Setup}
-		
 	
-	In the following subsections the execution and the procedure depicted in figure \ref{grocery_seq_01} and \ref{grocery_seq_02} will be explained in detail and include decisions made which let to this exact plan. Some more detailed challenges will be explained as well.
 
 	% Knowledge: set-tables-source 
 	At first the definition of the task is set in knowledge: We want to find objects on all the tables, so all the table surfaces are set as \texttt{source} and we want to place the found objects in shelves, so all the shelves are set as \texttt{target}. This procedure enables Knowledge, to generically work over \texttt{source} and \texttt{target} surfaces regardless of what they actually are.
