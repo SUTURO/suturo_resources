@@ -32,24 +32,24 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
 	\item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
 \end{itemize}
 
-Each annotator contains changeable variables that enable customization to the given tasks.
+Each annotator contains changeable parameter that enable customization to the given tasks.
 A \textit{RoboSherlock} pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
-The following pictures are an example of the RoboSherlock pipeline output:  \\
+The following pictures are an example of the hsrb\_1ms pipeline output in exact order:  \\
 %Bild Hinzufügen 
 
 \begin{figure}[H]
      \begin{center}
 %
-        \subfigure[2D-ImagePreProcessor]{%
+        \subfigure[ImagePreProcessor]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
         }%
-        \subfigure[3D-RegionFilter]{%
+        \subfigure[SuturoRegionFilter]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
         }\\ %  ------- End of the first row ----------------------%
-        \subfigure[2D-NormalEstimator]{%
+        \subfigure[NormalEstimator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
         }%
-        \subfigure[3D-NormalEstimator]{%
+        \subfigure[NormalEstimator]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
         }%
 %
@@ -59,16 +59,16 @@ The following pictures are an example of the RoboSherlock pipeline output:  \\
 \begin{figure}[H]
      \begin{center}
 %
-        \subfigure[2D-PlaneAnnotator]{%
+        \subfigure[PlaneAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
         }%
-        \subfigure[3D-RegionFilter]{%
+        \subfigure[PlaneAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
         }\\ %  ------- End of the first row ----------------------%
-        \subfigure[2D-PointCloudClusterExtractor]{%
+        \subfigure[PointCloudClusterExtractor]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
         }%
-        \subfigure[3D-PointCloudClusterExtractor]{%
+        \subfigure[PointCloudClusterExtractor]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
         }%
 %
@@ -78,13 +78,13 @@ The following pictures are an example of the RoboSherlock pipeline output:  \\
 \begin{figure}[H]
      \begin{center}
 %
-        \subfigure[2D-ClusterColorHistogramAnnotator]{%
+        \subfigure[ClusterColorHistogramAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
         }%
-        \subfigure[2D-Cluster3DGeometryAnnotator]{%
+        \subfigure[Cluster3DGeometryAnnotator]{%
           \includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
         }\\ %  ------- End of the first row ----------------------%
-        \subfigure[3D-Cluster3DGeometryAnnotator]{%
+        \subfigure[Cluster3DGeometryAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
         }%
 %
@@ -94,16 +94,16 @@ The following pictures are an example of the RoboSherlock pipeline output:  \\
 \begin{figure}[H]
      \begin{center}
 %
-         \subfigure[2D-PrimitiveShapeAnnotator]{%
+         \subfigure[PrimitiveShapeAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/2d/PrimitiveShapeAnnotator.png}
         }%
-        \subfigure[2D-SuturoShapeAnnotator]{%
+        \subfigure[SuturoShapeAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
         }\\ %  ------- End of the first row ----------------------%
-         \subfigure[3D-PrimitiveShapeAnnotator]{%
+         \subfigure[PrimitiveShapeAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/PrimitiveShapeAnnotator.png}
         }%
-        \subfigure[2D-KnnAnnotator]{%
+        \subfigure[KnnAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
         }%
 %
@@ -324,39 +324,39 @@ Handcamera\_tracking is the github sub branch containing rs\_Athene and all foll
 None of them made it to the main branch because they were not finished or were not suitable for any current task.
 
 				\subsection{TwoDAnnotator}
-The TwoDAnnotator should replace the old ShapeAnnotator by improving the accuracy, reducing processing time and expanding the usability. 
-Since, the old annotator only process RGB-D images only the head camera are usable for the task making the HSR hand camera useless. The process also takes a very long time with less than desirable results.
-To fix this issues the TwoDAnnotator only uses RGB images, that makes the processing less demanding than there's fewer data to process. Furthermore all the HSR camera are usable for shape recognition then each one are capable of RGB.
-The TwoDAnnotator work by converting the RGB image to grayscale, smoothing it for better results and then running the canny-algorithm thereby getting all edges present in the image, the edges are then used for the contour search, all found contours are then analyzed for form.
-Turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment, it did not bring any improvement over the old ShapeAnnotator and need further work to be usable. 
+The TwoDAnnotator is responsible for shape recognition that should replace the old ShapeAnnotator by improving the accuracy, reducing processing time and expanding the usability. 
+Since the old annotator only process RGB-D images (color and dense depth images) which makes the head-camera the only usable camera for the task. The task also takes a very long time with less than desirable results.
+To fix this issues, the TwoDAnnotator use only RGB (color images) images, that makes the processing less demanding than there's fewer data to process. Furthermore all the HSR cameras are usable for shape recognition because each one are capable of outputing RGB images.
+The TwoDAnnotator works by : converting the RGB image to grayscale then smoothing the grayscale output for better results and afterwards running the canny-algorithm (openCV implementation). This provides all edges in the image which are used for the contour search, all found contours get examined for geometric shapes. 
+During testing, it turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment. It did not bring any improvement over the old ShapeAnnotator and need further work to be usable. 
 In the end, this approach was no longer needed and was discarded. 
 
-\begin{figure}[h]
-\caption{TwoDAnnotator output example}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{pictures/perception/TwoDAnnotator.png}
+\caption{TwoDAnnotator output example}
 \end{figure}
 				\subsection{YOLO}
-The YOLO annotator is as the name suggests an implementation for the You Only Look Once algorithm, it contains all needed code for the algorithm to work.
-But due to ROS not supporting openCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the support is included, then a similar approach was utilized in the GoogLeNet annotator with success and the created prototype worked like intended.
-The approach is based on a python example and works by loading a pretrained network and feeding it with RGB images, the output consists of all found classes and their bounding boxes that are over a set threshold.
-In addition to classification the annotator calculated the distance from each bounding box center to the image center. Then the main focus for this annotator was on feedback on the current object position in relation to the camera center.
+The YOLO annotator is as the name suggests, a implementation for the You Only Look Once network. It contains all needed code for the network to work.
+But due to ROS not supporting openCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the supported version of ROS gets updated. Then a similar approach was utilized in the GoogLeNet annotator which successed and the created YOLO prototype worked like intended.
+The approach is based on a python example and works by loading a pretrained network and feeding it with RGB images. The output consists of all found classes and their bounding boxes that are over a set threshold.
+In addition to classification the annotator calculated the distance from each bounding box center to the image center. Then the main focus for this annotator was, getting feedback on the current object position in relation to the camera center.
 
-\begin{figure}[h]
-\caption{Python prototype output}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{pictures/perception/YOLO.png}
+\caption{Python prototype output}
 \end{figure}
 
 				\subsection{GoogLeNet}
-GoogLeNet is an annotator with a similar approach to the YOLO annotator both network uses RGB images, with the advantage that GoogLeNet runs on an older openCV version compatible with ROS.
-The Robosherlock implementation uses the trained network to classify objects.the whole class structure is very similar to the YOLO annotator, then openCV uses the same framework for all supported network architectures.
-GoogLeNet differs from YOLO by only outputting the classes probability there is no information about where the classes are in the image. This makes the annotator useless for tracking objects, but can still be used for classification by extracting the classes with high probability.
+GoogLeNet is an annotator wich a similar approach to the YOLO annotator. Both network uses RGB images with the advantage that GoogLeNet runs on an older openCV version compatible with ROS.
+The Robosherlock implementation uses the trained network to classify objects.The whole class structure is very similar to the YOLO annotator, than openCV uses the same framework for all supported network architectures.
+GoogLeNet differs from YOLO by only outputting the classes probability so there is no information about where the classes are in the image. This makes the annotator useless for tracking objects, but can still be used for classification by extracting the classes with high probability.
 Due to the output there is no visualization for this annotator.
 
 				\subsection{PythonEmbedding}
-PythonEmbedding annotator is an example of how a Python pure embedding can be implemented in Robosherlock. The annotator converts the basic image container Mat to NumPy array, it will then open the script “Hello\_World.py”. The only existing function “start” will be called using the array as input, resulting in a new window with the send image.
-The current version of Robosherlock do not support Python, Python pure embedding could represent an interim solution to this problem.
+PythonEmbedding annotator is an example of how a Python pure embedding (calling python script during runtime in c++) can be implemented in Robosherlock. The annotator converts the basic image container Mat to NumPy array. The script “Hello\_World.py” will then open and calls the only existing function “start”  using the image array as input, resulting in a new window with the send image.
+The current version of Robosherlock do not support Python annotators, Python pure embedding could represent an interim solution to this problem.
 
 \endgroup
 \end{document}
