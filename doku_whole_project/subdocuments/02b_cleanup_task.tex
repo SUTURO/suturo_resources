@@ -13,35 +13,33 @@
 		\chapterauthor{Torge Olliges, Jan Schimpf}
 		
 		\section{Goal}
-		For Clean Up the HSR had to navigate a room in which objects are distributed. The goal position for the objects was given prior to the beginning of the task. The objects were located at previously unknown positions. The HSR had to be able to detect them in the room pick them up and transport them to the designated goal position. The HSR had to achieve the given tasks autonomously and manipulate objects like explained in the goal section of the Clean Up task chapter. It had 5 minutes to complete the task.
-		
+		The goal of the Clean Up task is like the name indicates to clean a room. In the RoboCup several objects get distributed through out the room. The objects can be placed on the floor, tables or other furniture. Each of these objects is clearly visible and not hidden behind something. The task of the HSR is now to find these objects and place them into an designated basket. There exist multiple target positions and the HSR has to decide by itself the correct one based on the object. Like the Storing Grocery task the time limit is 5 minutes.
 
 	  	\section{Tasks}
-	  	\subsection{Setup}
+	  	The figure \ref{clean_up_seq_01} shows the procedure of Clean Up. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given 	
+
 	  	\begin{figure}	
 	  		\centering
 	  		\includegraphics[width=0.85\textwidth]{pictures/diagramms/cleanup-sequence.png}
 	  		\caption{Sequence diagram of the complete run of the clean up task \textit{(explanations below)}}
-	  		\label{Clean Up sequence}
+	  		\label{clean_up_seq_01}
 	  	\end{figure}
 	  	% TODO: Entfernen - hier bitte aus dem sequenz diagramm einen einzelnen task als subsection z.b. schritt: tür öffnen, dafür mussten perception dies tun manipulation das tun etc.
-	First the interface to knowledge is called to set the target to basket. In addition, the floor and the table are set as sources, since objects are picked up from both. Since knowledge is responsible for the internal representation of the surfaces and the management of the associated objects, we have to tell them from where we will pick up objects and where they will be taken. 
 	  	
-		
+	\subsection{Setup}
+	First the interface to Knowledge is called to set the \textit{target} to basket. In addition, the floor and the table are set as \textit{sources}, since objects are picked up from both. 
 
 	\subsection{Scan table sequence}
 	% Manipulation: take pose action
-	The robot is set to the default pose so it doesn't collide with any objects, this could happen if the robot is told to move while in a pose where for example the arm is extended.
+	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm.
 	
-	% NLP: Talk Request
-	
+	% NLP: Talk Request	
 	The talk requests are used to inform the developer as well as the people following the robot or evaluating its behavior about what the robot is about to do. They are also used for safety measures so the robot can warn when it is going to move so bystanders can step aside. 
 	
 	% Knowledge: get table-poses
 	Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so Planning can determine where to go next.
 	
-	% Navigation: moveBaseAction
-	
+	% Navigation: moveBaseAction	
 	The robot moves to the designated location in this case the table, it will be turned $90^\circ$ so it is in a pose where perceiving the table isn't hindered by the arm of the HSR. 
 	
 	% NLP
@@ -67,7 +65,7 @@
 	% Navigation: MoveBaseAction
 	Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from the pose he took to perceive the objects.
 	
-	\subsection{Grasp sequence}
+	\subsection{Grasp sequence}\label{clean_up_grasp_seq}
 	
 	%prolog-next-object
     The Knowledge base is queried for next Object that should be grasped.
@@ -109,13 +107,16 @@
 	The first one is for the table and stops if there are no more objects on it to be placed in the bucked. The sedon one is for the point of interest search and stops if there are not points of interest left.
 	
 	\subsection{Point of interest search sequence}
+	The object finder node publishes a list of poses that may be an object. This list will from now on be called points of interests.
+	
     %NLP found an point of interest to search
     Informing that the robot has found a point of interest to search for objects
     
     %move-to-poi
-    The first set of coordinates from a list containing the coordinates of locations with that may have objects is used to move the robot into position to perceive it. 
-    The list is created by looking at the returns of the laser scanner and overlapped with the obstacle map to filter out furniture and walls. 
-    The Robot then takes a perceive position so it can perceive the floor.
+    The first pose of the points of interest is taken. A target position is calculated that enables the HSR to perceive the position. This target pose is then send to navigation and executed.
+    
+    %call-take-pose-action
+    The HSR is brought into the perceive pose for the floor.
     
     %NLP perceiving the postition
     Informing that the robot is now perceiving the position
@@ -131,11 +132,13 @@
    	Returns the robot into the default pose to be able to grasp the object.
 
     % Navigation: MoveBaseAction
-    Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from     the pose he took to perceive the objects.
+    Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from the pose he took to perceive the objects.
 
-    After the place sequence that comes after this is identical to the one shown in \emph{5.2.3}
+    The plan continuous from the \ref{clean_up_grasp_seq}.
+    
+    
 	\section{Conclusion}
-	The outcome of the Clean Up task can be declared as successful, the robot was in a executable and working state for the third milestone demo. During those runs it achieved it's tasks like grasping the objects of the table or from the floor, transporting the objects and placing them in the bucket.
+	The outcome of the Clean Up task can be declared as successful, the robot was in a executable and working state for the third milestone demo. During those runs it achieved it's tasks like grasping the objects of the table or from the floor, transporting the objects and placing them in the basket.
 	Even with the run being successfully completed the plan has similar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are to small to be picked up by the laser scanner won't be found by the robot.
 	\endgroup
 
