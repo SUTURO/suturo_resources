@@ -11,9 +11,9 @@
 
 \chapter{Perception Function Documentation}
 
-\chapterauthor{Leonidas Paniago}
-		\section{rs\_perception}
 
+		\section{rs\_perception}
+		\chapterauthor{Leonidas Paniago}
 			\subsection{Pipeline: hsrb\_1ms}
 
 The main pipeline for detecting and identifying objects with RoboSherlock consists of the following annotators:  
@@ -130,7 +130,7 @@ Pipeline for storing camera images in MongoDB, all saved scenes can be replayed 
 \end{itemize}
 
 		\section{actionserver}
-
+		\chapterauthor{Leonidas Paniago}
 			\subsection{ExtractObjectInfoClient}
 Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. 
 
@@ -147,6 +147,7 @@ Receives a goal from ExtractPlaneInfoClient and pass on to SuturoProcessManager,
 Launches the ExtractObjectInfoServer and ExtractPlaneInfoServer and has no other functionality.
 
 		\section{rs\_turn\_table}
+		\chapterauthor{Leonidas Paniago}
 rs\_turn\_table is package from the last Suturo group.There were no big changes to the core code, only small situational changes not implemented on the master. 
 This package is mainly for image recording, all recorded images will then be used for object recognition.  
 			\subsection{Pipeline: estimate\_plane}
@@ -316,6 +317,46 @@ Converts the result of the PrimitiveShapeAnnotator to match the required shape f
 \item makeObjectDetectionData(pose, geometry, shape, objClass, confidence, c, odd)\\
 Combines the given parameters to an ObjectDetectionData message.
 \end{itemize}
+
+			\section{rs\_Athene}
+			\chapterauthor{Leonidas Paniago De Oliveira Neto}
+Handcamera\_tracking is the github sub branch containing rs\_Athene and all following featured annotators. 
+None of them made it to the main branch because they were not finished or were not suitable for any current task.
+
+				\subsection{TwoDAnnotator}
+The TwoDAnnotator should replace the old ShapeAnnotator by improving the accuracy, reducing processing time and expanding the usability. 
+Since, the old annotator only process RGB-D images only the head camera are usable for the task making the HSR hand camera useless. The process also takes a very long time with less than desirable results.
+To fix this issues the TwoDAnnotator only uses RGB images, that makes the processing less demanding than there's fewer data to process. Furthermore all the HSR camera are usable for shape recognition then each one are capable of RGB.
+The TwoDAnnotator work by converting the RGB image to grayscale, smoothing it for better results and then running the canny-algorithm thereby getting all edges present in the image, the edges are then used for the contour search, all found contours are then analyzed for form.
+Turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment, it did not bring any improvement over the old ShapeAnnotator and need further work to be usable. 
+In the end, this approach was no longer needed and was discarded. 
+
+\begin{figure}[h]
+\caption{TwoDAnnotator output example}
+\centering
+\includegraphics[width=1\textwidth]{pictures/perception/TwoDAnnotator.png}
+\end{figure}
+				\subsection{YOLO}
+The YOLO annotator is as the name suggests an implementation for the You Only Look Once algorithm, it contains all needed code for the algorithm to work.
+But due to ROS not supporting openCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the support is included, then a similar approach was utilized in the GoogLeNet annotator with success and the created prototype worked like intended.
+The approach is based on a python example and works by loading a pretrained network and feeding it with RGB images, the output consists of all found classes and their bounding boxes that are over a set threshold.
+In addition to classification the annotator calculated the distance from each bounding box center to the image center. Then the main focus for this annotator was on feedback on the current object position in relation to the camera center.
+
+\begin{figure}[h]
+\caption{Python prototype output}
+\centering
+\includegraphics[width=1\textwidth]{pictures/perception/YOLO.png}
+\end{figure}
+
+				\subsection{GoogLeNet}
+GoogLeNet is an annotator with a similar approach to the YOLO annotator both network uses RGB images, with the advantage that GoogLeNet runs on an older openCV version compatible with ROS.
+The Robosherlock implementation uses the trained network to classify objects.the whole class structure is very similar to the YOLO annotator, then openCV uses the same framework for all supported network architectures.
+GoogLeNet differs from YOLO by only outputting the classes probability there is no information about where the classes are in the image. This makes the annotator useless for tracking objects, but can still be used for classification by extracting the classes with high probability.
+Due to the output there is no visualization for this annotator.
+
+				\subsection{PythonEmbedding}
+PythonEmbedding annotator is an example of how a Python pure embedding can be implemented in Robosherlock. The annotator converts the basic image container Mat to NumPy array, it will then open the script “Hello\_World.py”. The only existing function “start” will be called using the array as input, resulting in a new window with the send image.
+The current version of Robosherlock do not support Python, Python pure embedding could represent an interim solution to this problem.
 
 \endgroup
 \end{document}
