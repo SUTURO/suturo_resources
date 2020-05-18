@@ -331,7 +331,7 @@ The TwoDAnnotator works by : converting the RGB image to grayscale then smoothin
 During testing, it turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment. It did not bring any improvement over the old ShapeAnnotator and need further work to be usable. 
 In the end, this approach was no longer needed and was discarded. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{pictures/perception/TwoDAnnotator.png}
 \caption{TwoDAnnotator output example}
@@ -342,7 +342,7 @@ But due to ROS not supporting openCV latest version there is no way to execute t
 The approach is based on a python example and works by loading a pretrained network and feeding it with RGB images. The output consists of all found classes and their bounding boxes that are over a set threshold.
 In addition to classification the annotator calculated the distance from each bounding box center to the image center. Then the main focus for this annotator was, getting feedback on the current object position in relation to the camera center.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{pictures/perception/YOLO.png}
 \caption{Python prototype output}
