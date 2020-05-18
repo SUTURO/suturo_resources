@@ -26,6 +26,23 @@
 		\chapterauthor{Torge Olliges}
 		A plan which determines if and how a door has to be open can be implemented by future groups.
 		
+		\subsection{Planning: Automatic position determination for targets}
+		\chapterauthor{Tom-Eric Lehmkuhl}	
+		For new targets to be navigated to, a position should be determined automatically from which the robot can operate. On the one hand, this should reduce the effort to use the robot in a new environment and on the other hand, it should make working with several tables and shelves easier. It is important to determine from which position a table/shelf has to be approached and to check that nothing stands/lies in the way. In addition, the distance must be selected such that the robot can perceive, grip and place objects.
+		
+		\vspace{0.4cm}
+		
+		\subsection{Planning: Continue plan where it was stopped}
+		\chapterauthor{Tom-Eric Lehmkuhl}
+		If a plan is interrupted by the stop command of NLP, it should be possible to continue it with the continue command at the point where it was stopped. For this purpose, a macro has already been experimented with on the branch nlp-test. However, this has not yet worked. Alternatively, it would be easier to work with fluents and create several breakpoints.Then there would only be a few specific points where the robot could be stop.
+		
+		\vspace{0.4cm}
+		
+		\subsection{Planning: NLP dynamic commands}
+		\chapterauthor{Tom-Eric Lehmkuhl}
+		Plans are required for all dynamic commands to be supported. The idea is that Knowledge provides a set of information, such as object, action, and location, which is used to start a corresponding plan. For example, from the values (\textit{pringles, grasping, table}), a plan to grasp the pringles from the table would be started.
+		
+		\vspace{0.4cm}
 		
 		% Perception:
 		\subsection{Perception: Compute grasp pose}
