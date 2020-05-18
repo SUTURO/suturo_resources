@@ -34,22 +34,22 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
 
 Each annotator contains changeable parameter that enable customization to the given tasks.
 A \textit{RoboSherlock} pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
-The following pictures are an example of the RoboSherlock pipeline output:  \\
+The following pictures are an example of the hsrb\_1ms pipeline output in exact order:  \\
 %Bild Hinzufügen 
 
 \begin{figure}[H]
      \begin{center}
 %
-        \subfigure[2D-ImagePreProcessor]{%
+        \subfigure[ImagePreProcessor]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
         }%
-        \subfigure[3D-RegionFilter]{%
+        \subfigure[SuturoRegionFilter]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
         }\\ %  ------- End of the first row ----------------------%
-        \subfigure[2D-NormalEstimator]{%
+        \subfigure[NormalEstimator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
         }%
-        \subfigure[3D-NormalEstimator]{%
+        \subfigure[NormalEstimator]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
         }%
 %
@@ -59,16 +59,16 @@ The following pictures are an example of the RoboSherlock pipeline output:  \\
 \begin{figure}[H]
      \begin{center}
 %
-        \subfigure[2D-PlaneAnnotator]{%
+        \subfigure[PlaneAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
         }%
-        \subfigure[3D-RegionFilter]{%
+        \subfigure[PlaneAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
         }\\ %  ------- End of the first row ----------------------%
-        \subfigure[2D-PointCloudClusterExtractor]{%
+        \subfigure[PointCloudClusterExtractor]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
         }%
-        \subfigure[3D-PointCloudClusterExtractor]{%
+        \subfigure[PointCloudClusterExtractor]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
         }%
 %
@@ -78,13 +78,13 @@ The following pictures are an example of the RoboSherlock pipeline output:  \\
 \begin{figure}[H]
      \begin{center}
 %
-        \subfigure[2D-ClusterColorHistogramAnnotator]{%
+        \subfigure[ClusterColorHistogramAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
         }%
-        \subfigure[2D-Cluster3DGeometryAnnotator]{%
+        \subfigure[Cluster3DGeometryAnnotator]{%
           \includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
         }\\ %  ------- End of the first row ----------------------%
-        \subfigure[3D-Cluster3DGeometryAnnotator]{%
+        \subfigure[Cluster3DGeometryAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
         }%
 %
@@ -94,16 +94,16 @@ The following pictures are an example of the RoboSherlock pipeline output:  \\
 \begin{figure}[H]
      \begin{center}
 %
-         \subfigure[2D-PrimitiveShapeAnnotator]{%
+         \subfigure[PrimitiveShapeAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/2d/PrimitiveShapeAnnotator.png}
         }%
-        \subfigure[2D-SuturoShapeAnnotator]{%
+        \subfigure[SuturoShapeAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
         }\\ %  ------- End of the first row ----------------------%
-         \subfigure[3D-PrimitiveShapeAnnotator]{%
+         \subfigure[PrimitiveShapeAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/PrimitiveShapeAnnotator.png}
         }%
-        \subfigure[2D-KnnAnnotator]{%
+        \subfigure[KnnAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
         }%
 %
