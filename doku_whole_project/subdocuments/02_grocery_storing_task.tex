@@ -41,7 +41,7 @@
 	\subsection{Scan Table}
 	
 	% Manipulation: take pose action
-	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are the forwarded to Giskard.
+	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are the forwarded to \textit{Giskard}.
 	
 	% NLP: Talk Request
 	
@@ -72,7 +72,7 @@
 	
 	% 2x NLP: Talk
 	
-	% Knowledge: prolog_ shelf_pose (???)
+	% Knowledge: prolog_ table_pose
 	
 	% Navigation: MoveBaseAction
 	Turn the HSR by $90^\circ$ so it looks straight at the table and can grasp an object.
@@ -85,7 +85,7 @@
 	% 2x NLP: Talk Request
 	
 	% Manipulation: GraspAction
-	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise Giskard would stop the gripper in front of the object. During the course of the project it became apparent that Giskard had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional way point is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successful the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
+	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the course of the project it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional way point is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successful the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
 	
 	% Planning: 
 	This whole thing is gonna be looped 
@@ -100,14 +100,14 @@
 	\subsection{Scan shelf floors}
 	
 	% Planning: Loop through all shelf floors
-	
+	In the scan shelf floors function
 	% NLP
 	
 	% Manipulation: go into percieve pose
 	Since the shelf floors are of different heights the HSR has to take multiple perceive poses.
 	
 	% Perception: Percieve shelf
-	The HSR takes a picture of the shelf it is currently looking at and processes it with RoboSherlock. Based on the requested shelf level the input images are filtered in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
+	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
 	
 	% Knowledge: Store new Objects
 	
@@ -124,7 +124,7 @@
 	Knowledge now determines the most suitable position for the Object, it earlier chose to be the next Object. The way this decision is made is discussed later in the Knowledge function documentation (see section \ref{sec:kn_find_surf} under "Finding a goal surface for an Object"). For now it is enough to know, that Knowledge finds not only a suitable surface for that object but also the exact coordinates in the world frame for that object based on its own properties and based all the other known Objects in the scene.
 	
 	% Manipulation: PlaceAction
-	The overall procedure of placing an object is very similar to the grasping process. Different modes are available but only the front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a way point is determined to allow smooth in and  out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backwards movement. Afterwards collision for the object gets enabled again. The actual movement planning and execution is done by Giskard.   	
+	The overall procedure of placing an object is very similar to the grasping process. Different modes are available but only the front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a way point is determined to allow smooth in and  out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backwards movement. Afterwards collision for the object gets enabled again. The actual movement planning and execution is done by \textit{Giskard}.   	
 	
 	% NLP
 	
