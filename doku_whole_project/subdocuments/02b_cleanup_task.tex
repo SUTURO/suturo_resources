@@ -52,7 +52,7 @@
     That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
 	
 	% Perception: Percieve and return data
-	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
+	The HSR takes a picture of the scene it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
 
 	
 	% Knowledge: Store Data
@@ -79,7 +79,7 @@
 	Informing which object the robot will grasp using the object id
 	
 	%grasp-object
-	The object id is used to query the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server to grasp the object. Manipulation then gets the task to grasp the given object. To do that the Grasp Action Server has to calculate the correct orientations to grasp from the right direction and do collision avoidance with all other objects which is done by using giskard.
+	The object id is used to query the Knowledge base for the dimensions of the object and the pose of the object. The results are then used to call the manipulation grasp server to grasp the object. Manipulation then gets the task to grasp the given object. To do that the Grasp Action Server has to calculate the correct orientations to grasp from the right direction and do collision avoidance with all other objects which is done by using \textit{Giskard}.
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog pose
 	 
@@ -95,7 +95,7 @@
 	Informing that the robot is now placing the object
 
 	%place-object
-	The object id is used to querie the Knowledge base for the dimensions of the object and the goal of the object. The results are then used to call the manipulation place server to place the object. Manipulation then gets the task to place the previously grasped object in the given destination. To do that the Place Action Server has to calculate the correct orientations to place from the right direction and do collision avoidance with all other objects which is done by using giskard.
+	The object id is used to query the Knowledge base for the dimensions of the object and the goal of the object. The results are then used to call the manipulation place server to place the object. Manipulation then gets the task to place the previously grasped object in the given destination. To do that the Place Action Server has to calculate the correct orientations to place from the right direction and do collision avoidance with all other objects which is done by using \textit{Giskard}.
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog goal
 	 
@@ -121,7 +121,7 @@
     Informing that the robot is now perceiving the position
       
     %call-robosherlock-object-pipeline
-	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
+	The HSR takes a picture of the scene it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
 
     
     %Knowledge:insert-knowledge-objects
@@ -136,7 +136,7 @@
     After the place sequence that comes after this is identical to the one shown in \emph{5.2.3}
 	\section{Conclusion}
 	The outcome of the Clean Up task can be declared as successful, the robot was in a executable and working state for the third milestone demo. During those runs it achieved it's tasks like grasping the objects of the table or from the floor, transporting the objects and placing them in the bucket.
-	Even with the run being succesfully completed the plan has simliar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are to small to be picked up by the laser scanner won't be found by the robot.
+	Even with the run being successfully completed the plan has similar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are to small to be picked up by the laser scanner won't be found by the robot.
 	\endgroup
 
 \end{document}
