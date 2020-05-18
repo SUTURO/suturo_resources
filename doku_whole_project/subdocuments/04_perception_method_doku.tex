@@ -33,7 +33,7 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
 \end{itemize}
 
 Each annotator contains changeable variables that enable customization to the given tasks.
-A RoboSherlock pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
+A \textit{RoboSherlock} pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
 The following pictures are an example of the RoboSherlock pipeline output:  \\
 %Bild Hinzufügen 
 
@@ -228,7 +228,7 @@ The clusterLabelingAnnotator is the Annotator used for labeling. It is best plac
 To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the labelingAnnotator in the visualizer, which will display a number for every cluster. Now, you can note the class for every cluster in a labeling JSON-file, look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again an proceed labeling. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
 
 \subsubsection{classificationEvalutationAnnotator}
-The classifcationEvaluationAnntator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor yaml-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in robosherlocks terminal output. 
+The classifcationEvaluationAnntator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor yaml-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. 
 
 \subsection{Documentation}
 \subsubsection{clusterLabelingAnnotator}
