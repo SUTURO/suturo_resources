@@ -9,13 +9,15 @@
 	\renewcommand{\clearpage}{}
 
 	\chapter{Conlusion}
-		\chapterauthor{Jan-Frederik Stock}
+		\chapterauthor{Jan-Frederik Stock, Torge Olliges}
 		In the following chapter, the achievements and additions to previously available features and frameworks of the six subgroups of the SUTURO project will be described.
 		
 		\section{Planning}
-		The task of the planning group was to write plans for the two RoboCup tasks "clean up" and "storing groceries" which use the components of the other groups to reach the goals specified in these tasks.
+		The task of the planning group was to write plans for the two RoboCup tasks Clean Up and Storing Groceries which use the components of the other groups to reach the goals specified in these tasks.
 		
-		The planning group managed two write function plans for both tasks, including failure handling. Also Planning integrated hard commands like "start" and "stop" into their plans, which are voice commands received by NLP.
+		Planning successfully implemented interfaces to all other groups to be able to call them if needed. These interfaces include integrating and handling hard commands like "start" and "stop" into their plans, which are voice commands received by NLP, managing Manipulation actions like grasping placing, managing the robot position with the navigation component and detecting/recognizing objects with the perception component.
+		
+		In conclusion: Planning group accomplished writing functioning plans for both tasks. This includes failure handling and interfacing with other components.
 		
 		\section{Perception}
 		The perception groups objective was to use the available image data of the HSR to extract as much information as possible, for the other groups to use.
@@ -26,7 +28,7 @@
 		
 		Third, the \textit{clusterLabeling} package was added, including the \textit{clusterLabelingAnnotator}, which displays numbers for every cluster in a given frame, and the \textit{classificationEvaluatationAnnotator} which calculates the accuracy of a classifier on a given scene, based on labeling data created with the help of the \textit{classificationEvaluationAnnotator}. 
 		
-		Additionally, the rs\_hsrb\_perception package provided by previous SUTURO projects were adapted to work with the newest version of \textit{RoboSherlock}. Also some changes were made to the package, including a change to the classification, and it was made possible to visualize the current pipeline.
+		Additionally, the \textit{rs\_hsrb\_perception} package provided by previous SUTURO projects were adapted to work with the newest version of \textit{RoboSherlock}. Also some changes were made to the package, including a change to the classification, and it was made possible to visualize the current pipeline.
 		
 		Another addition by the perception group was a classifier on 2D images, which uses Deep Learning. This could for example be used to recognize specific persons.
 		
@@ -52,7 +54,8 @@
 		
 		The surfaces are now generic and are organized according to their role and not their physics, which makes them more intuitively accessible. Knowledge is also able to handle any number of surfaces.
 		
-		Lastly, Knowledge improved on the placing of objects, which now adapts better to the environment. 		
+		Lastly, Knowledge improved on the placing of objects, which now adapts better to the environment.
+		 		
 		\section{NLP}
 		The NLP groups task was to both generate speech, so that the robot can give a vocal output, and process speech as an input, so that the robot can react to vocal commands.
 		
