@@ -38,7 +38,7 @@ The following pictures are an example of the hsrb\_1ms pipeline output in exact 
 %Bild Hinzufügen 
 
 \begin{figure}[H]
-     \begin{center}
+\centering
 %
         \subfigure[ImagePreProcessor]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
@@ -51,33 +51,25 @@ The following pictures are an example of the hsrb\_1ms pipeline output in exact 
         }%
         \subfigure[NormalEstimator]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
-        }%
-%
-    \end{center}
-\end{figure}
-
-\begin{figure}[H]
-     \begin{center}
-%
+        }\\ %---End row----
         \subfigure[PlaneAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
         }%
         \subfigure[PlaneAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
-        }\\ %  ------- End of the first row ----------------------%
+        }
+\caption{hsrb\_1ms pipeline (1)}
+
+\end{figure}
+\newpage
+\begin{figure}[H]
+\centering
         \subfigure[PointCloudClusterExtractor]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
         }%
         \subfigure[PointCloudClusterExtractor]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
-        }%
-%
-    \end{center}
-\end{figure}
-
-\begin{figure}[H]
-     \begin{center}
-%
+        }\\%----------end row---------
         \subfigure[ClusterColorHistogramAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
         }%
@@ -87,27 +79,24 @@ The following pictures are an example of the hsrb\_1ms pipeline output in exact 
         \subfigure[Cluster3DGeometryAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
         }%
-%
-    \end{center}
-\end{figure}
-
-\begin{figure}[H]
-     \begin{center}
-%
          \subfigure[PrimitiveShapeAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/2d/PrimitiveShapeAnnotator.png}
         }%
+\caption{hsrb\_1ms pipeline (2)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
         \subfigure[SuturoShapeAnnotator]{%
            \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
-        }\\ %  ------- End of the first row ----------------------%
+        }%  ------- End of the first row ----------------------%
          \subfigure[PrimitiveShapeAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/pcl/PrimitiveShapeAnnotator.png}
-        }%
+        }\\%
         \subfigure[KnnAnnotator]{%
             \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
         }%
-%
-    \end{center}
+\caption{hsrb\_1ms pipeline (3)}
 \end{figure}
 
 			\subsection{Pipeline: hsrb\_planes} 
