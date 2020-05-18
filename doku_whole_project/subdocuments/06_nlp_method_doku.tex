@@ -37,7 +37,7 @@ Deep semantic parsing on the other hand is concerned with producing precise repr
 \chapterauthor{Paul Schnipper}
 
     \subsection{About Julius}
-      Julius is a continuous speech recognition software. It is released under BSD-3 license by the Kyoto University. Toyota created a ROS-wrapper for Julius, it is published a part of the \{ros-kinetic-hsrb-full} apt-get-Package.\\
+      Julius is a continuous speech recognition software. It is released under BSD-3 license by the Kyoto University. Toyota created a ROS-wrapper for Julius, it is published a part of the \{ros-kinetic-hsrb-full\} apt-get-Package.\\
       In theory the Julius engine supports a lot of different languages, but currently there are only two speech models
      Julius works on dictionaries. Dictionaries are a customizable way of providing the speech recognizer with words or sentences to recognize.
     \subsection{how dictionaries work}
@@ -45,7 +45,7 @@ Deep semantic parsing on the other hand is concerned with producing precise repr
     
         \subsubsection{word-based dictionary}
             For testing purposes we created one word-based dictionaries. It can be found in \lstinline|/suturo_julius/dictionaries/examples/word|.\\
-            This contains the \{word\_sample} file.\\
+            This contains the \{word\_sample\} file.\\
             \begin{lstlisting}
 shelf sh eh l f
 table t ey b ax l
@@ -56,11 +56,11 @@ chips	ch ih p s
 a	ah
 vase	w ah z
             \end{lstlisting}
-            The file just contains words and their phonetic representation in a single line seperated by a single space.
+            The file just contains words and their phonetic representation in a single line separated by a single space.
             
     \subsubsection{grammar-based dictionaries}
-        Grammar-based dictionaries consist of two editable files. The \{.grammar} and \{.voca} file.\\
-        The \{.grammar} file describe how sentences are build. Sentences are build in a Backus–Naur form grammar.\\
+        Grammar-based dictionaries consist of two editable files. The \{.grammar\} and \{.voca\} file.\\
+        The \{.grammar\} file describe how sentences are build. Sentences are build in a Backus–Naur form grammar.\\
         \begin{lstlisting}
 S : NS_B COMMANDS NS_E
 COMMANDS : COMMAND
@@ -75,8 +75,8 @@ ITEM : Coke
 ITEM : Marmelade
 ITEM : Cookies
         \end{lstlisting}
-        Every symbol is nonterminal, except for symbols defined in the \{.voca} file. Terminals are defined as a word category. The category is defined through \newline \lstinline{% <<name>>}
-        In the \{.voca} file the word and the phonetic representation are separated by a space.
+        Every symbol is nonterminal, except for symbols defined in the \textit{.voca} file. Terminals are defined as a word category. The category is defined through \newline
+        In the \textit{.voca} file the word and the phonetic representation are separated by a space.
         \begin{lstlisting}
 % and
 and ae n d
@@ -108,15 +108,15 @@ Cookies k uh k ix
 Oreos ao r iy ow s
         \end{lstlisting}
         
-        Grammars have to be compiled to run. To compile run \{rosrun tmc\_julius mkdfa.pl <<grammar\_name>>} e.g. \{rosrun tmc\_julius mkdfa.pl grammar}. Both the \{.grammar} and \{.voca} file have to be named identical. E.g. \{grammar.grammar} and \{grammar.voca}. The compiler creates the \{.dfa}, \{dict} and \{.term} files.	
+        Grammars have to be compiled to run. To compile run \textit{rosrun tmc\_julius mkdfa.pl <<grammar\_name>>} e.g. \textit{rosrun tmc\_julius mkdfa.pl grammar}. Both the \textit{.grammar} and \textit{.voca} file have to be named identical. E.g. \textit{grammar.grammar} and \textit{grammar.voca}. The compiler creates the \textit{.dfa}, \textit{dict} and \textit{.term} files.	
     
     \subsection{The Suturo Dictionaries}
         The suturo\_julius package contains 3 different grammar-based dictionaries. hard\_commands contains sentences telling the robot to start, stop or continue the task.
         soft\_commands describes commands the robot may execute in the RoboCup. This dictionary contains sentences like: Fetch the cup from the table.Or: Find me some chocolate.
     \subsection{Configuration files}
-        The \{julius\_conf} folder contains one \{.jconf} file. The context of this file has been taken from the \{tmc\_julius} package. This part of the package has been created to possibly handle configurations for different computers and if possible experiment with the configuration to increase recognition accuracy.
+        The \textit{julius\_conf} folder contains one \textit{.jconf} file. The context of this file has been taken from the \textit{tmc\_julius} package. This part of the package has been created to possibly handle configurations for different computers and if possible experiment with the configuration to increase recognition accuracy.
     \subsection{Launchfiles}
-        The \{suturo\_julius} package provides four different launch files.\\
+        The \textit{suturo\_julius} package provides four different launch files.\\
         \begin{itemize}
             \item julius\_qa\_system.launch:
             \subitem Launching Julius just with the grammar for the QA-system.
@@ -133,16 +133,16 @@ Oreos ao r iy ow s
     \subsection{textparser.py}
         The textparser node is designed to take in the output from Julius and check if the output is a hard command or send it to the Sling-Parser.
         \subsubsection{callback(data)}
-            The \{callback} function is called with the data published by Julius. Julius publishes its output in the \{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \{callback} function calls the \{find\_first} function to get a String representing the recognized sentence. It is then checked if the String is a static command. To do that the \{is\_static} command is called. If the recognized sentence is not a static command the sentence is published on the \{/to\_slingparser} topic to be analysed by SLING.
+            The \textit{callback} function is called with the data published by Julius. Julius publishes its output in the \textit{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \textit{callback} function calls the \textit{find\_first} function to get a String representing the recognized sentence. It is then checked if the String is a static command. To do that the \textit{is\_static} command is called. If the recognized sentence is not a static command the sentence is published on the \textit{/to\_slingparser} topic to be analysed by SLING.
     
         \subsubsection{find\_first(data)}
-            The \{find\_first} function takes the data published by Julius and checks weather the recognition confidence is high enough. If so it returns the recognized sentence as String, if the confidence is not high enough the function returns an empty string.\\
+            The \textit{find\_first} function takes the data published by Julius and checks weather the recognition confidence is high enough. If so it returns the recognized sentence as String, if the confidence is not high enough the function returns an empty string.\\
     
         \subsubsection{is\_static(sentence)}
-            The \{is\_static} command calls the \{is\_stop}, \{is\_start} and \{is\_continue} functions. If the sentence is one of these hard command types the function publishes the command type on the \{'hard\_commands'} topic.
+            The \textit{is\_static} command calls the \textit{is\_stop}, \textit{is\_start} and \textit{is\_continue} functions. If the sentence is one of these hard command types the function publishes the command type on the \textit{'hard\_commands'} topic.
     
         \subsubsection{is\_stop, is\_start and is\_continue}
-            These functions check weather a string is a hard command of the type \{STOP, START or CONTINUE} respectively. To perform this check the \{is\_in\_file} function is called. The text files containing the hard commands can be found in the \{commands} folder.
+            These functions check weather a string is a hard command of the type \textit{STOP, START or CONTINUE} respectively. To perform this check the \textit{is\_in\_file} function is called. The text files containing the hard commands can be found in the \textit{commands} folder.
     
         \subsubsection{is\_in\_file}
             This function checks if a string is identical to a single line in a text file.
@@ -153,7 +153,7 @@ Oreos ao r iy ow s
             Frame semantics are used to give the parser a sense of structure. The way the group approached this was by framing about 100 commands by hand and then used those annotated sentences as examples of how the parser should interprete sentences that might be similar but are not in the list of commands. 
             Here is an example of an annotated sentence: 
     
-            \{ [bring]$_{action}$  [me]$_{beneficiary}$ [the pills]$_{item}$ from [the shelf]$_{source}.$}
+            \textit{ [bring]$_{action}$  [me]$_{beneficiary}$ [the pills]$_{item}$ from [the shelf]$_{source}.$}
         \subsubsection{Parsing \small{\textit{Merete Bommarius}}}     
             As mentioned previously, shallow semantic parsing is used to parse and frame the commands that the robot will receive. The one that the group initially wanted to used is named open-sesame but is currently unavailable since it is being updated and rewritten to work with Python3. Instead we use a parser called Sling. It is not as good as open-sesame would have been, which is why it needs training.\\ 
             In the first Milestone, the parsing for the sentence looks like this:
@@ -173,7 +173,7 @@ Oreos ao r iy ow s
             The grammar that was written looks for example like this:
             
             
-\{MovementOnly\\
+\textit{MovementOnly\\
                 MovementOnly $\rightarrow$ take ITEM [from SOURCE] [to DESTINATION] [MANNER]\\
                 MovementOnly $\rightarrow$ bring [BENEFICIARY] ITEM [from SOURCE]}
                 
@@ -187,21 +187,21 @@ Oreos ao r iy ow s
         \subsubsection{About TinyRPC}
              remote procedure calls (RPC) are a way for one program to call functions provided by a different program. (In the background ROS is based on RPC technology as well.) tinyrpc is a framework for constructing remote procedure call RPC services in Python. Tiny-RPC implements the JSON-RPC protocol.\\
              TinyRPC is used to bridge the problem, that two powerful and necessary libraries, Sling and SimpleNLG (See The Suturo\_nlg Package) are only available for Python3.\\
-             To solve this problem, the \{slingparserRosInterface.py} starts \{slingparser.py3} as a subprocess. The slingparser.py3 upon startup initializes the tinyRPC server and provides the \{semantic\_parse()} function.
+             To solve this problem, the \textit{slingparserRosInterface.py} starts \textit{slingparser.py3} as a subprocess. The slingparser.py3 upon startup initializes the tinyRPC server and provides the \textit{semantic\_parse()} function.
         \subsubsection[slingparserros]{slingparserRosInterface.py}
-            The \{slingparserRosInterface.py} subscribes to a topic on which \{String} messages are published. It then calls the the semantic parse function provided by the \{slingparser.py} script. This functions returns the annotated semantic frames in a python dictionary. This dictionary is then translated into a \{MeaningRepresentation} message. This message definition contains an array of \{KeyValuePair} messages. Each of these messages contains the frame as a key and the contents of the frame as the associated value.
+            The \textit{slingparserRosInterface.py} subscribes to a topic on which \textit{String} messages are published. It then calls the the semantic parse function provided by the \textit{slingparser.py} script. This functions returns the annotated semantic frames in a python dictionary. This dictionary is then translated into a \textit{MeaningRepresentation} message. This message definition contains an array of \textit{KeyValuePair} messages. Each of these messages contains the frame as a key and the contents of the frame as the associated value.
         \subsubsection{slingparser.py3}
-            The slingparser.py3 script wraps the Sling Semantic Parser. It currently loads a hard coded \{flow} file.
-            The \{semantic\_parse} function actually calls the sling parser and takes its output and writes it into a dictionary to return.
+            The slingparser.py3 script wraps the Sling Semantic Parser. It currently loads a hard coded \textit{flow} file.
+            The \textit{semantic\_parse} function actually calls the sling parser and takes its output and writes it into a dictionary to return.
     
 \section{The suturo\_nlg Package}
 \chapterauthor{Paul Schnipper}
-    The \{suturo\_nlg} package handles speech generation. But also contains the \{knowledge\_interface} node, designed to answer simple questions by querying KnowRob through ROSProlog.
+    The \textit{suturo\_nlg} package handles speech generation. But also contains the \textit{knowledge\_interface} node, designed to answer simple questions by querying KnowRob through ROSProlog.
     \subsection{knowledge\_interface.py}
         The knowledge interface is designed to answer three different kinds of questions. Where is ITEM X supposed to go? What is on SURFACE? Is there a ITEM X on SURFACE?\\
-        The \{knowledge\_interface} subscribes to a topic using the \{MeaningRepresentation} message. (See \hyperref[slingparserros]{slingparserRosInterface}) When there is a message published on this topic the \{callback} function is called.
+        The \textit{knowledge\_interface} subscribes to a topic using the \textit{MeaningRepresentation} message. (See \hyperref[slingparserros]{slingparserRosInterface}) When there is a message published on this topic the \textit{callback} function is called.
         \subsubsection{callback}
-            The callback function takes the \{MeaningRepresentation} message and converts it into a dictionary.
+            The callback function takes the \textit{MeaningRepresentation} message and converts it into a dictionary.
             Depending of what the predicate is one of the following functions is called.
             \begin{itemize}
                 \item what\_is\_on
@@ -215,17 +215,17 @@ Oreos ao r iy ow s
     \chapterauthor{Paul Schnipper}
     This package contains three launchfiles created to launch nodes spreading the four previous packages.\\
     \begin{itemize}
-        \item \{hard\_commands\_only.launch}
+        \item \textbf{hard\_commands\_only.launch}
             \subitem Starts Julius just with the dictionary for hard commands.
             \subitem And start a textparser node.
-        \item \{qa\_system.launch}
+        \item \textbf{qa\_system.launch}
             \subitem Starts Julius with the dictionary for the QA-System.
             \subitem Starts a textparser node.
             \subitem Starts a slingparser node.
             \subitem Starts a knowledge\_interface node.
             \subitem And starts a demo\_answers node.        
-        \item \{speechparser.launch}
-            \subitem Placeholder for a later system similar to \{qa\_system.launch}. This is supposed to be used for complex commands given to the robot.  
+        \item \textbf{speechparser.launch}
+            \subitem Placeholder for a later system similar to \texttt{qa\_system.launch}. This is supposed to be used for complex commands given to the robot.  
         
     \end{itemize}
      
