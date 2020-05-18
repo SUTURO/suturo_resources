@@ -125,18 +125,18 @@
 	    \subsection{navigation-functions.lisp}
 	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
 	    \begin{itemize}
-	    	\item \textbf{points-around-point} \\
-	    	This function returns a given number of positions with a given 	distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
-	    	\item \textbf{pose-with-distance-to-points} \\
-	    	This function moves the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
-	    	\item \textbf{point-in-polygon} \\
-			This function checks if a point is inside a polygon.
+	    	\item \textbf{points-around-point} (distance point amountAlternatePositions turn) \\
+	    	This function returns a given number of positions with a given distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
+	    	\item \textbf{pose-with-distance-to-points (distance points amountAlternatePositions turn)} \\
+	    	This function navigates the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
+	    	\item \textbf{point-in-polygon (listOfEdges point)} \\
+			This function checks if a point is inside the given polygon.
 	    \end{itemize}
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
 	    \begin{itemize}
-	    	\item \textbf{get-confident-objects} \\
-	    	This function filters the objects detected by \textit{RoboSherlock} by their confidence (class, shape, color), the default threshold value is 0.5
+	    	\item \textbf{get-confident-objects (perception-msg \&optional (threshold 0.5))} \\
+	    	This function filters the objects contained in the given message detected by their confidence (class, shape, color), the default threshold value is 0.5
 	    \end{itemize}
 	    \subsection{safety-check.lisp}
 	    The plan is for the procedure in which the robot is inspected. 
@@ -259,10 +259,10 @@
 				\item \textbf{prolog-next-object ()} \\ Returns the next object to grasp choosen by knowledge.
 		    \item \textbf{prolog-object-dimensions (object-name)} \\ Returns the dimension for the given object (depth, width, height).
 				\item \textbf{prolog-object-pose (object-name)} \\ Returns the pose of the given object as list.
-				\item \textbf{prolog-table-pose} \\ Returns the pose of the table as list (x, y, z).
-				\item \textbf{prolog-shelf-pose} \\ Returns the pose of all shelfs as list of poses (x, y, z).
-				\item \textbf{prolog-shelf-pose} \\ Returns the pose of all targets as list of poses (x, y, z).
-				\item \textbf{prolog-bucket-pose} \\ Returns the pose of the bucket as list (x, y, z).
+				\item \textbf{prolog-table-pose ()} \\ Returns the pose of the table as list (x, y, z).
+				\item \textbf{prolog-shelf-pose ()} \\ Returns the pose of all shelfs as list of poses (x, y, z).
+				\item \textbf{prolog-shelf-pose ()} \\ Returns the pose of all targets as list of poses (x, y, z).
+				\item \textbf{prolog-bucket-pose ()} \\ Returns the pose of the bucket as list (x, y, z).
 				\item \textbf{prolog-object-in-gripper ()} \\ Returns the dimension of the object in gripper as list (depth, width, height).
 			\end{itemize} 
 		\subsection{knowledge-insertion-client.lisp}
@@ -290,18 +290,18 @@
 		 \end{itemize}
 		\subsection{obstacle-map-subscriber.lisp}
 	    \begin{itemize}
-	    	\item \textbf{obstacle-map-listener} \\
+	    	\item \textbf{obstacle-map-listener ()} \\
 	    	This function subscribes the obstacle map and stores the current map in a variable.
-	    	\item \textbf{save-obstacle-map} \\
+	    	\item \textbf{save-obstacle-map (mapMsg)} \\
 	    	Makes a copy of the given message and stores it in a variable.
-	    	\item \textbf{get-map-point} \\
+	    	\item \textbf{get-map-point (vect3)} \\
 	    	Returns the occupancy from a given position in the map.
 	    \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
-	    	\item \textbf{closest-poi} \\
+	    	\item \textbf{closest-poi (point)} \\
 	    	This function returns the next point of interest in relation to the passed point.
-	    	\item \textbf{sorted-poi-by-distance} \\
+	    	\item \textbf{sorted-poi-by-distance (point)} \\
 	    	This function returns all points of interest sorted in relation to the given point.
 	    	\item \textbf{point-listener} \\
 	    	This function subscribes the point of interests and stores them in a variable.
@@ -311,25 +311,25 @@
 		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.
 		\begin{itemize}
 			\item \textbf{init-robosherlock-object-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} object action server
+			This function initiates the connection to the \textit{RoboSherlock} object action server.
 			\item \textbf{get-robosherlock-client} \\
-			This function returns the \textit{RoboSherlock} action client
-			\item \textbf{make-action-goal} \\
-			This function makes and returns a action client goal
-			\item \textbf{call-robosherlock-object-pipeline(regions-value, viz)} \\
+			This function returns the \textit{RoboSherlock} action client.
+			\item \textbf{make-action-goal (in-regions in-visualize)} \\
+			This function makes and returns a action client goal with the given regions.
+			\item \textbf{call-robosherlock-object-pipeline (regions-value, viz)} \\
 			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
 		\end{itemize}
 		\subsection{robosherlock-client-plane.lisp}
 		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.
 		\begin{itemize}
 			\item \textbf{init-robosherlock-plane-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} plane action server
-			\item \textbf{get-robosherlock-client} \\
-			This function returns the \textit{RoboSherlock} action client
-			\item \textbf{make-action-goal} \\
-			This function makes and returns a action client goal
+			This function initiates the connection to the \textit{RoboSherlock} plane action server.
+			\item \textbf{get-robosherlock-plane-client} \\
+			This function returns the \textit{RoboSherlock} action client.
+			\item \textbf{make-action-goal (in-regions in-visualize)} \\
+			This function makes and returns a action client goal.
 			\item \textbf{call-robosherlock-plane-pipeline(regions-value, viz)} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result
+			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
 		\end{itemize}
 	\endgroup
 
