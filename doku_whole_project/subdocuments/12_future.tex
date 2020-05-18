@@ -12,33 +12,40 @@
 		
 		\section{In general}
 				\chapterauthor{}
-		Here comes a compact conclusion about what decisions were or were not good and should or should not be done the same way in the future.
+		This chapter is a conclusion about what decisions were or were not good and should or should not be done the same way in the future.
 		
 		\section{Specific features}
 		Here comes a list and an explanation of different features that would be nice to implement even though we didn't have the time to implement them ourselves in the end.
 		
 		% Planning:
+		\subsection{Planning: Place failure handling}
+		\chapterauthor{Torge Olliges}
+		Currently if the robot fails while placing an object it is not possible to recognize this failure properly and handle the situation. A possibility for future groups of the project would be to scan the designated goal position of the last placed object and check if the object is at that position. If the object would not be at that position the HSR could move away from the goal position and scan with a wider range in which it maybe would find the missing object to recover it and try placing again.
+		
+		\subsection{Planning: Door opening}
+		\chapterauthor{Torge Olliges}
+		A plan which determines if and how a door has to be open can be implemented by future groups.
 		
 		
 		% Perception:
 		\subsection{Perception: Compute grasp pose}
 		\chapterauthor{Evan Kapitzke}
-		The estimation of the grasping pose could be done with RoboSherlock. Based on the depth camera image we would calculate a few possible grasping points, which then could be used by Manipulation to optimize their grasping procedure. The depth camera images are only available while Perception processes them. The calculation should be implemented in an additional annotator and some modifications to the process manager.
+		The estimation of the grasping pose could be done with \textit{RoboSherlock}. Based on the depth camera image we would calculate a few possible grasping points, which then could be used by Manipulation to optimize their grasping procedure. The depth camera images are only available while Perception processes them. The calculation should be implemented in an additional annotator and some modifications to the process manager.
 		
 		\subsection{Perception: Comparing classifiers}
 		\chapterauthor{Jan-Frederik Stock}
-		With the clusterLabeling package, it is now possible to quantify classification performance and thus compare different classifiers. To achieve a 					representative result, a couple of different scenes with different objects should be recorded, with the objects not overlapping. It is crucial to get a
+		With the \textit{clusterLabeling} package, it is now possible to quantify classification performance and thus compare different classifiers. To achieve a 					representative result, a couple of different scenes with different objects should be recorded, with the objects not overlapping. It is crucial to get a
 		good clustering for the scenes, so point cloud filtering should be used to achieve this. Now, the scenes have to be labeled, the more frames the better. 
-		When this is done, the different classifiers can be tested with the classificationEvaluationAnnotator. It is very important to not change anything but 
+		When this is done, the different classifiers can be tested with the \textit{classificationEvaluationAnnotator}. It is very important to not change anything but 
 		the classifier in the pipeline, so the results do not get distorted.
 		
 		\subsection{Perception: HSR hand camera for feedback on object position}
 		\chapterauthor{Leonidas Paniago De Oliveira Neto}
 One of the problems we had with the HSR was that more so often he would grab wrong.
 To counter act the imprecision we wanted to use the HSR hand camera for some kind of feedback on the object position.
-Implemented is a phyton script using YOLO (You only look once) algorithms that uses the webcam and output how far the found objects are from the screen middle.
-Further more there is a Robosherlock Annotator that implements YOLO but due to version conflict with ROS the code is not full functional.
-The best way to proceed is to try another object detection algorithms from OpenCV or maybe if the color is known to look for it in the picture.
+Implemented is a python script using \textit{YOLO} (You only look once) algorithms that uses the webcam and output how far the found objects are from the screen middle.
+Further more there is a \textit{RoboSherlock} Annotator that implements \textit{YOLO} but due to version conflict with ROS the code is not full functional.
+The best way to proceed is to try another object detection algorithms from \texit{OpenCV} or maybe if the color is known to look for it in the picture.
 In my Opinion this should be a major focus for new groups in so far that the grasp problem is not resolved by any other means.
 
 		% Knowledge:
@@ -57,14 +64,14 @@ In my Opinion this should be a major focus for new groups in so far that the gra
 		
 		If there are significant differences, you could also make some tests and see which objects are easier to grasp so you can take them first. But in our test series there were no significant differences in that matter. 
 		
-		With all these criteria the real challenge is to make them work with each other without having to use a machine learning algorithm. A nice approach could be for example, to first look for the distance to the robot, define a threshold within wich the physical distance doesn't make a real difference, look for other objects with the same distance to the robot plus this threshold and sort them by one or two of the other criteria. 
+		With all these criteria the real challenge is to make them work with each other without having to use a machine learning algorithm. A nice approach could be for example, to first look for the distance to the robot, define a threshold within which the physical distance doesn't make a real difference, look for other objects with the same distance to the robot plus this threshold and sort them by one or two of the other criteria. 
 		
 		\subsection{Knowledge: Unit Tests}
 		\chapterauthor{Jeremias Thun}
 		Knowledge is not that easy to test in an integrated system. To really test all it's potential, you would need all the other groups to have fully functional versions of their code and you will need quite some time to watch the robot move itself and the objects just to know if the nth object is placed correctly.\\
 		That is why especially Knowledge can really profit from some Unit Testing.
 		
-		We already started working on some unit tests for our code, but sadly we never got to actually have tests at a level that they can help us find bugs. To write and execute those Tests, \texttt{rosprolog} thankfully provides a special ROS Script, documented in the readme of \texttt{rosprolog}.
+		We already started working on some unit tests for our code, but sadly we never got to actually have tests at a level that they can help us find bugs. To write and execute those Tests, \textit{rosprolog} thankfully provides a special ROS Script, documented in the README of \textit{rosprolog}.
 
 		% NLP
 
@@ -72,7 +79,7 @@ In my Opinion this should be a major focus for new groups in so far that the gra
 		% Manipulation
 		\subsection{Manipulation: Open Doors}
 		\chapterauthor{Jan Neumann}
-		The RoboCup challenges reward bonus points when the robot is able to open doors by itself. To accomplish that task, constraints in giskard can be used. The idea is to have the following constraints:\\
+		The RoboCup challenges reward bonus points when the robot is able to open doors by itself. To accomplish that task, constraints in \textit{Giskard} can be used. The idea is to have the following constraints:\\
 		One constraint maintains a set distance between the rotation axis(door hinges) and the point where the robot has grasped the door. That should result in a rotation on the xy plane in map around the rotation axis with radius = calculated distance.\\
 		One constraint maintains a constant height on the z axis in map.\\
 		To make sure that the orientation of the robots hand stays the same relative to the door, three constraints(x,y,z) make sure that one of the three axis in hand\_palm\_link points toward the doors rotation axis at all times, deriving from the method used in the Pointing constraint.\\
