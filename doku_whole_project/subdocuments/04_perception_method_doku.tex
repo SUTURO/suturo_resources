@@ -171,16 +171,16 @@ The class provides the following methods:
 \begin{itemize}
 \item 
 sendGoal(self)\\
-This method is used to send a goal to the ExtractObjectInfoServer and thus triggering the perceptionpipeline.
+This method is used to send a goal to the ExtractObjectInfoServer and thus triggering the pipeline.
 
 \item saveResult(self, result)\\
 This method saves the actionresult, which is the classification, in a field of the class.
 
 \item saveToMd(self, algorithm)\\
-This method saves the collected classifcationresults in a markdown table. If a markdown file with the name "evaluation.md" is found in the directory the script is executed in, the results are appended to it, otherwise the file is created.
+This method saves the collected results of the classification in a markdown table. If a markdown file with the name "evaluation.md" is found in the directory the script is executed in, the results are appended to it, otherwise the file is created.
 
 \item plotResult(self)\\
-The method plots the collected results using the scatterplotfunction from matplotlib.
+The method plots the collected results using the scatterplot function from matplotlib.
 \end{itemize}
 
 \subsection{Main method}
@@ -188,10 +188,10 @@ The main method tries to create an instance of the resultActionClient class, doe
 
 \section{Feature Extraction Tools}
  \chapterauthor{Jan-Frederik Stock}
-The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
+Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classifiy it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is Caffe, the trained network is the BVLC Reference Net. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
 
 \subsection{make\_split\_from\_directory.sh} 
-This bash script can be used to create a split yaml-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parentdirectory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the yaml-file will be created. It then creates the yaml-file using the directorynames of the imagedirectories as classnames.
+This bash script can be used to create a split yaml-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the yaml-file will be created. It then creates the yaml-file using the names of the directories in which the images are stored as classnames.
 
 \subsection{make\_list\_from\_directory.sh}
 This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a splitfile but a list of the classnames. This is required by the classifing annotator and has to be pasted into the annotators yaml-file. The comma after the last classname in the list has to be removed manually.
@@ -213,7 +213,7 @@ The clusterLabeling package is used to create labels for clusters in a scene. Th
 \subsection{Usage}
 
 \subsubsection{The clusterLabelingAnnotator}
-The clusterLabelingAnnotator is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is reached, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. It is very important that you do not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise it can not be guaranteed that the cluster numbering will change. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
+The clusterLabelingAnnotator is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. It is very important that you do not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
 
 To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the labelingAnnotator in the visualizer, which will display a number for every cluster. Now, you can note the class for every cluster in a labeling JSON-file, look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again an proceed labeling. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
 
