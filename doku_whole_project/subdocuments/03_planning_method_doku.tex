@@ -69,9 +69,10 @@
 			\item \textbf{point-of-interest-transport ()} \\
 			This function grasps objects found with point of interest search and drops them into the bucket. For this the function hsr-failure-handling-grasp is called.
 			\item \textbf{hsr-failure-handling-grasp ()} \\
-			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling it is retry and asking for the object to be placed in the hand because if an objects falls over we might not be  able to grasp it.
 			\item \textbf{grasp-handling ()}\\
-			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling itself is the same as in   
+\textbf{grasp-handling} in \textbf{execute-grocery}
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
@@ -95,9 +96,10 @@
 	    \item \textbf{move-hsr ()} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
 	    \item \textbf{grasp-hsr (object-id grasp-pose)} \\
-	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling
+	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to percieve again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
+	    It is also currently not in use in either of the plans.
 	    \item \textbf{place-hsr (object-id grasp-pose)} \\
-	    This function takes a object-id and a grasp-pose. Places the object in the gripper in the goal and includes failure handling.
+	    This function takes a object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordiantes from the we get from \nameref{Knowledge}
 	    \item \textbf{move-to-poi ()} \\
 	    This function lets the robot move to the next point of interest that should be investigated. 
 	    \item \textbf{move-to-poi-and-scan ()} \\
