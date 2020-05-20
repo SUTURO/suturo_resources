@@ -187,12 +187,12 @@
 			This function initiates the connection to the grasp action server
 			\item \textbf{get-grasp-action-client ()} \\
 			This function returns the grasp action client
-			\item \textbf{make-grasp-action-goal ()} \\
+			\item \textbf{make-grasp-action-goal (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-grasp-goal-reached ()} \\
+			\item \textbf{ensure-grasp-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z)} \\
             This function makes sure the goal was reached
-			\item \textbf{call-grasp-action ()} \\
-			This function takes the x,y,z coordinates, quaternion values, the x,y,z sizes, the object-id of the object that should be grasped and the grasp mode.
+			\item \textbf{call-grasp-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
+			This function takes the x,y,z coordinates where the object currently is, quaternion values, the x,y,z sizes of the object, the object-id of the object that should be grasped and the grasp mode.
 		\end{itemize}
 		\subsection{place-action-client.lisp}
 		This file is responsible for the low level communication with the
@@ -202,12 +202,12 @@
 			This function initiates the connection to the place action server
 			\item \textbf{get-place-action-client ()} \\
 			This function returns the place action client
-			\item \textbf{make-place-action-goal ()} \\
+			\item \textbf{make-place-action-goal (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-place-goal-reached ()} \\
+			\item \textbf{ensure-place-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4)} \\
             This function makes sure the goal was reached
-			\item \textbf{call-place-action ()} \\
-			This function takes the x,y,z coordinates, quaternion values  and the object-id of the object that is placed and the grasp mode.
+			\item \textbf{call-place-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
+			This function takes the x,y,z coordinates where the object should be placed, quaternion values  and the object-id of the object that is placed and the grasp mode.
 		\end{itemize}
 		\subsection{take-pose-action-server.lisp}
 		This file is responsible for the low level communication with the
@@ -217,11 +217,11 @@
 			This function initiates the connection to the take pose action server
 			\item \textbf{get-take-pose-action-client ()} \\
 			This function returns the take pose action client
-			\item \textbf{make-take-pose-action-goal ()} \\
+			\item \textbf{make-take-pose-action-goal (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
 			This function makes and returns a action client goal
-			\item \textbf{ensure-take-pose-goal-reached ()} \\
+			\item \textbf{ensure-take-pose-goal-reached (status pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
             This function makes sure the goal was reached
-			\item \textbf{call-take-pose-action (pose)} \\
+			\item \textbf{call-take-pose-action (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
 			This function takes a integer for a set pose or for a custom pose than needs ten more float values to set the joints.
 		\end{itemize}
 		\subsection{move-gripper-client.lisp}
