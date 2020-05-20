@@ -31,6 +31,8 @@ Due to specific circumstances, which will be explained later in the documentatio
 	\end{itemize}
 
 	\section{Previous Work}
+    \label{previous_work}
+    \chapterauthor{Torge Olliges, Paul Schnipper}
 		The SUTURO project is a reoccurring project hosted by the iai-office at the University of Bremen. Therefore, the current project could rely on previous work and insights in the form of legacy code and experience. Especially about the difficult conditions during the RoboCup and the challenges working with the HSR. In this section a brief overview of the legacy code will be given by every group:
 	\subsection{Planning}
 		Although most of the code was changed and tweaked to fit the new requirements the general structure of the previous group was used. Some of the Interfaces were reused for example the interface for the navigation client and the interface to \textit{RoboSherlock} (\ref{object-perceive}). Some of the mid level functionality like the designators (\ref{desig}) and process module code (\ref{pcm}) were reused and altered to fit the new means.
@@ -38,4 +40,7 @@ Due to specific circumstances, which will be explained later in the documentatio
 	\subsection{Manipulation}
 	\subsection{Perception}
 	\subsection{Knowledge}
+        The previous code base was designed around the storing groceries task. Because this years team decided to also try the Clean-Up task, the knowledge base had to be adapted. Even though basically every prolog predicate got changed, the code deciding the goal position of the object and the methodology of using ontologies to find similar objects, are still kept.
+    \subsection{NLP}
+        Previously no speech-to-text capabilities where part of the code base. Sentences were and still are hard coded in the planning and knowledge modules.
 \end{document}
