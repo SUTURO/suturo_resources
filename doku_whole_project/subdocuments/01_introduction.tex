@@ -38,6 +38,7 @@ Due to specific circumstances, which will be explained later in the documentatio
 	\subsection{Planning}
 		Although most of the code was changed and tweaked to fit the new requirements the general structure of the previous group was used. Some of the Interfaces were reused for example the interface for the navigation client and the interface to \textit{RoboSherlock} (\ref{object-perceive}). Some of the mid level functionality like the designators (\ref{desig}) and process module code (\ref{pcm}) were reused and altered to fit the new means.
 	\subsection{Navigation}
+		The HSR already comes with its own navigation setup. This includes a static and dynamic obstacle map, in addition to a path planner. During previous runs of the project snap\_map\_icp has been introduced improving localization. The static map is created with hector\_slam.
 	\subsection{Manipulation}
 		Even though there was existing legacy code for Manipulation, the decision was made to abandon that code and start from scratch. This was recommended by the tutors because the \textit{Giskard} framework had evolved significantly since then. As a result Manipulation only used the \textit{Giskard} framework and no legacy code.
 	\subsection{Perception}
