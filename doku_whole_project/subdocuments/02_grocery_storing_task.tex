@@ -79,7 +79,7 @@
 	Turn the HSR by $90^\circ$ so it looks straight at the table and can grasp an object.
 	
 	\subsection{Grasp Object}
-	
+	\label{grasp-object}
 	% Knowledge: next_object
 	The Knowledge base now determines which object should be grasped next, to place it in one of the shelves. This decision is purely based on the distance of the objects to the robot so that the nearest object standing on any of the tables will be taken first.
 	
@@ -145,7 +145,10 @@
 	
 	% 2x NLP
 	
+	Grasping the object is once again executed as described under \ref{grasp-object}.
+	
 	% Planning: Finish
+	If no objects have to be handled the robot stops.
 	
 	
 	\section{Conclusion}
