@@ -10,7 +10,7 @@
 
 	\chapter{Clean Up Task Overview}
 
-		\chapterauthor{Torge Olliges, Jan Schimpf, Jan Neumann}
+		\chapterauthor{Torge Olliges, Jan Schimpf}
 		
 		\section{Goal}
 		The goal of the Clean Up task is like the name indicates to clean a room. In the RoboCup several objects get distributed through out the room. The objects can be placed on the floor, tables or other furniture. Each of these objects is clearly visible and not hidden behind something. The task of the HSR is now to find these objects and place them into an designated basket. There exist multiple target positions and the HSR has to decide by itself the correct one based on the object. Like the Storing Grocery task the time limit is 5 minutes.
@@ -47,7 +47,7 @@
 	% NLP
 	Informing that the robot is perceiving the table now.
 	
-	% Manipulation: TakePoseAction
+	% Manipuilation: TakePoseAction
 	Manipulation gets the task to put the HSR into a pose to perceive an object depending on the height of the plane the object is on.
     That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
 	
@@ -142,8 +142,10 @@
     
     
 	\section{Conclusion}
-	The outcome of the Clean Up task can be declared as successful, the robot was in a executable and working state for the third milestone demo. During those runs it achieved it's tasks like grasping the objects of the table or from the floor, transporting the objects and placing them in the basket.
-	Even with the run being successfully completed the plan has similar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are to small to be picked up by the laser scanner won't be found by the robot.
+	The Clean Up task was still incomplete for the test robocup and wasn't executed due to having various problems getting the robot to run in the challenge room, but was in a executable and working state for the third milestone demo and successfully completed the demo run. During this run it showed that the tasks grasping the objects of the table or from the floor, transporting the objects and placing them in the basket were achieved in the simulation.\\
+	Even with the run being successfully completed the plan has similar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are to small to be picked up by the laser scanner won't be found by the robot.\\
+	Overall the Clean Up task can be considered as an success as all the necessary tasks that are part of the Clean Up challenge can be completed. 
+	
 	\endgroup
 
 \end{document}
