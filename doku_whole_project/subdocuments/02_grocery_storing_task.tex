@@ -16,7 +16,7 @@
 	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects in the shelf. Furthermore it needs to grasp and place one object after the other. It also needs to navigate between the shelf and table. For additional points the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
 
 	\section{Tasks}
-	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given.
+	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given. To make the written version more reader friendly, there is not every single call and answer mentiond, only the ones necessary to understand the sequence of this task.
 	
 		\begin{figure}[H]
 			\centering
@@ -46,7 +46,7 @@
 	
 	% NLP: Talk Request
 	\begin{nlp}
-	To inform the developer as well as the people following the robot or evaluating it's behavior about what the robot is about to do, the robot will talk about it's actions. These talk requests are also used for safety measures so the robot can warn when it is going to move so bystanders can step aside. \end{nlp}
+	To inform the developer as well as the people following the robot or evaluating its behavior about what the robot is about to do, the robot will talk about its actions. These talk requests are also used for safety measures so the robot can warn when it is going to move so bystanders can step aside. \end{nlp}
 	
 	% Knowledge: get table-poses
 	\begin{knowledge}
@@ -54,7 +54,7 @@
 	
 	% Navigation: moveBaseAction
 	\begin{navigation}
-	Planning determines a goal for the \texttt{move base action}. In this goal the HSR is turned $90^\circ$ to the nearest table, allowing it to look over it's shoulder having a clear view of the table without the arm in it's way. The default navigation client of the HSR then executes the action. \end{navigation}
+	Planning determines a goal for the \texttt{move base action}. In this goal the HSR is turned $90^\circ$ to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the HSR then executes the action. \end{navigation}
 	
 	% NLP
 	\begin{nlp}
@@ -78,7 +78,7 @@
 	
 	% Manipulation: Take pose
 	\begin{manipulation}
-	In order to grasp an object the HSR needs to look straight at the object with it's base. Therefore the HSR needs to be in it's default pose allowing safe movement.
+	In order to grasp an object the HSR needs to look straight at the object with its base. Therefore the HSR needs to be in its default pose allowing safe movement.
 	\end{manipulation}
 	% 2x NLP: Talk
 	
@@ -148,14 +148,9 @@
 	
 	\subsection{Place Object}
 	
-	% Planning: Loop this while some items are left
-	\begin{planning}
-	The following part is executed until either all objects are handled, the HSR can not find any other objects or the HSR is told via NLP commands to stop it's current behavior.
-	\end{planning}
-	
 	% Knowledge: shelf positions
 	\begin{knowledge}
-	Knowledge again provides a list of all the shelf surfaces, sorted by their distance to the robot and returns it to Planning.
+	Knowledge again provides Planning with the position of the shelf the robot is standing in front of.
 	\end{knowledge}
 	
 	% navigation: move to shelf
@@ -165,19 +160,19 @@
 	
 	% Knowledge: Object goal pose
 	\begin{knowledge}
-	Knowledge now determines the most suitable position for the object which is currently handled. The way this decision is made is explained in the Knowledge function documentation \ref{sec:kn_find_surf}. For now it is enough to know, that Knowledge finds a suitable surface for that object and the exact coordinates in the world frame based on the objects properties and all other known objects in the scene.
+	Knowledge now determines the most suitable position for the object which is currently handled. The way this decision is made is explained in the Knowledge function documentation \ref{sec:kn_find_surf}. For now it is enough to know, that Knowledge finds a suitable surface (i.e. shelf floor) as well as a suitable position on that surface for the object.
 	\end{knowledge}
 	
 	% Manipulation: PlaceAction
 	\begin{manipulation}
-	The procedure of placing an object is very similar to the grasping process. Different modes are available but only the grasp from front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a way point is determined to allow smooth in and  out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backwards movement. Afterwards collision for the object gets enabled again. The actual movement planning and execution is done by \textit{Giskard}.   	
+	The procedure of placing an object is very similar to the grasping process. Different modes are available but only the grasp from front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a way point is determined to allow smooth in and  out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backwards movement. Afterwards collision for the object gets enabled again. The actual movement planning and execution is done by \textit{Giskard}.   
 	\end{manipulation}
 	
 	% NLP
 	
 	% Manipulation: TakePoseAction
 	\begin{manipulation}
-	The robot is set to the default pose. To avoid collisions.
+	After that, the robot is set to the default pose to avoid collisions.
 	\end{manipulation}
 	% NLP
 	
@@ -193,11 +188,10 @@
 	Grasping the object is once again executed as described under \ref{grasp-object}.
 	\end{manipulation}
 	
-	% Planning: Finish
+	% Planning: Loop this while some items are left
 	\begin{planning}
-	If no objects have to be handled the robot stops.
-	\end{planning}
-	
+	Planning then loops this whole procedure from "Grasp Object" on, until either all objects are handled, the HSR can not find any other objects or the HSR is told via NLP commands to stop its current behavior.
+	\end{planning}	
 	
 	\section{Conclusion}
 
