@@ -68,23 +68,23 @@
 	
 	% Perception: Percieve and return data
 	\begin{perception}
-	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.\end{perception}
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results i.e. the data of the perceived objects are then published by the \textit{perception\_actionserver} so planning can find them.\end{perception}
 	
 	% Knowledge: Store Data
 	\begin{knowledge}
-	Knowledge checks the data of the objects, that are supposed to be stored. If the class of an object is unknown to Knowledge, it is set to other. If the data for the given object is valid, the object gets added to the Knowledge base. Should other objects be close to the new one, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
+	Knowledge verifies the data of the objects, that were perceived and are supposed to be stored. If the class of an object is unknown to Knowledge or if it could not have been perceived with a high enough confidence, it is set to the class \texttt{Other}, if the dimensions are too small to actually be an object, it is rejected and so on. If the data for the given object is valid, the object gets added to the Knowledge base. Should the objects stand close to one another, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
 	\end{knowledge}
 	% NLP: Talk Request
 	
 	% Manipulation: Take pose
 	\begin{manipulation}
-	In order to grasp a object the HSR needs to look straight at the object with its base. Therefore the HSR needs to be in its default pose allowing safe movement.
+	In order to grasp an object the HSR needs to look straight at the object with it's base. Therefore the HSR needs to be in it's default pose allowing safe movement.
 	\end{manipulation}
 	% 2x NLP: Talk
 	
 	% Knowledge: prolog_ table_pose
 	\begin{knowledge}
-	Once again query for the position of the table for the MoveBaseAction.
+	For Planning to give the orders to move the robot to the table with the object to grasp on it, Knowledge once again provides the position data of the nearest table.
 	\end{knowledge}
 	
 	% Navigation: MoveBaseAction
@@ -93,6 +93,7 @@
 	\end{navigation}
 	
 	\subsection{Grasp Object}
+	
 	\label{grasp-object}
 	% Knowledge: next_object
 	\begin{knowledge}
