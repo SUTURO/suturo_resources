@@ -42,7 +42,7 @@
 	\begin{manipulation}
 	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are then forwarded to \textit{Giskard}.\end{manipulation}
 	
-	\subsection{Scan Table}
+	\subsection{Scan table sequence}
 	
 	% NLP: Talk Request
 	\begin{nlp}
@@ -92,7 +92,7 @@
 	Turn the HSR by $90^\circ$ so it looks straight at the table and can grasp an object.
 	\end{navigation}
 	
-	\subsection{Grasp Object}
+	\subsection{Grasp sequence}
 	
 	\label{grasp-object}
 	% Knowledge: next_object
@@ -121,7 +121,7 @@
 	With the position of the nearest shelf, Navigation moves the robot right in front of this shelf so the next step can begin:
 	\end{navigation}
 	
-	\subsection{Scan shelf floors}
+	\subsection{Scan shelf floors sequence}
 	
 	% Planning: Loop through all shelf floors
 	\begin{planning}
@@ -146,7 +146,7 @@
 	Just like after perceiving the table, Knowledge looks into the data of the perceived objects, polishes them and stores them in the knowledge base.
 	\end{knowledge}
 	
-	\subsection{Place Object}
+	\subsection{Place sequence}
 	
 	% Knowledge: shelf positions
 	\begin{knowledge}
