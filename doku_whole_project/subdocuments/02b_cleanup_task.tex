@@ -30,17 +30,19 @@
 	First the interface to Knowledge is called to set the \textit{target} to basket. In addition, the floor and the table are set as \textit{sources}, since objects are picked up from both. 
 
 	\subsection{Scan table sequence}
-	% Manipulation: take pose action
-	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm.
 	
-	% NLP: Talk Request	
+	% Manipulation: take pose action
+	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are the forwarded to \textit{Giskard}.
+	
+	% NLP: Talk Request
+	
 	The talk requests are used to inform the developer as well as the people following the robot or evaluating its behavior about what the robot is about to do. They are also used for safety measures so the robot can warn when it is going to move so bystanders can step aside. 
 	
 	% Knowledge: get table-poses
-	Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so Planning can determine where to go next.
+	Knowledge finds all the tables available, sorts them by their distance to the robot and then returns the list of their position to Planning, so that Planning can determine where to go next.
 	
-	% Navigation: moveBaseAction	
-	The robot moves to the designated location in this case the table, it will be turned $90^\circ$ so it is in a pose where perceiving the table isn't hindered by the arm of the HSR. 
+	% Navigation: moveBaseAction
+	Planning determines a goal for the move base action. In this goal the HSR is turned $90^\circ$ to the table. Allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the HSR then executes the action. 
 	
 	% NLP
 	Informing that the robot is perceiving the table now.
@@ -50,26 +52,28 @@
     That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
 	
 	% Perception: Percieve and return data
-	The HSR takes a picture of the scene it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
-
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
 	
 	% Knowledge: Store Data
 	Knowledge checks the data of the objects, that are supposed to be stored. If the class of an object is unknown to Knowledge, it is set to other. If the data for the given object is valid, the object gets added to the Knowledge base. Should other objects be close to the new one, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
 	% NLP: Talk Request
 	
 	% Manipulation: Take pose
-	The robot is set to the default pose.
+	In order to grasp a object the HSR needs to look straight at the object with its base. Therefore the HSR needs to be in its default pose allowing safe movement.
 	
 	% 2x NLP: Talk
-		
+	
+	% Knowledge: prolog_ table_pose
+	Once again query for the position of the table for the MoveBaseAction.
+	
 	% Navigation: MoveBaseAction
-	Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from the pose he took to perceive the objects.
+	Turn the HSR by $90^\circ$ so it looks straight at the table and can grasp an object.
 	
 	\subsection{Grasp sequence}\label{clean_up_grasp_seq}
 	
 	%prolog-next-object
     The Knowledge base is queried for next Object that should be grasped.
-	What the next object should be is determined by \textbf{KNOWLEDGE LEUTE MÜSSEN DAS ERKLÄREN}.	
+	What the next object should be is purely based on the distance of the objects to the robot so that the nearest object standing on any of the tables will be taken first.
 	
 	%NLP Grasping object
 	Informing that the robot will now grasp an object
