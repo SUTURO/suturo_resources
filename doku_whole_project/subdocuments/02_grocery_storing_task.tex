@@ -38,11 +38,11 @@
 	% Knowledge: set-tables-source 
 	According to the task only one table serves as the \texttt{source} for objects. In Knowledge it is allowed to set multiple \texttt{sources} for objects in order to allow greater compatibility and easier adaption to other tasks. For the current task at hand only the corresponding table is set as \texttt{source}. The same principle applies to the shelf which is set as \texttt{target} surface. Every surface e.g. tables, shelf's or the floor can be set as \texttt{source} or \texttt{target}.
 	
-	\subsection{Scan Table}
-	
-	% Manipulation: take pose action
+		% Manipulation: take pose action
 	\begin{manipulation}
 	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are then forwarded to \textit{Giskard}.\end{manipulation}
+	
+	\subsection{Scan Table}
 	
 	% NLP: Talk Request
 	\begin{nlp}
@@ -54,7 +54,7 @@
 	
 	% Navigation: moveBaseAction
 	\begin{navigation}
-	Planning determines a goal for the \texttt{move base action}. In this goal the HSR is turned $90^\circ$ to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the HSR then executes the action. \end{navigation}
+	Planning determines a goal for the \texttt{move base action}. In this goal the robot is turned $90^\circ$ to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the robot then executes the action. \end{navigation}
 	
 	% NLP
 	\begin{nlp}
@@ -62,7 +62,7 @@
 	
 	% Manipuilation: TakePoseAction
 	\begin{manipulation}
-	Manipulation gets the task to put the HSR into a pose to perceive an object depending on the height of the plane the object is on.
+	Manipulation gets the task to put the robot into a pose to perceive an object depending on the height of the plane the object is on.
     That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
     \end{manipulation}
 	
