@@ -112,44 +112,38 @@
 	
 	\begin{knowledge}
 	Knowledge listens to these gripper movements and lables the grasped object as being in the gripper. The position of the object will always be the position of the gripper from now on.
-	\end{knowledge}
-	% NLP
 	
-%%%%%%%%%% CONTINUE HERE	
-	
-	% Knowledge: Shelf Positions
-	\begin{knowledge}
-	Knowledge finds all the shelves available and sorts them, just like the tables before, by their distance to the robot. This way, the Robot can navigate to all the shelves starting with the nearest one to scan the objects already in place.
+	Ordered by Planning, Knowledge now finds all the shelves available and sorts them, just like the tables before, by their distance to the robot. This way, the Robot can navigate to all the shelves starting with the nearest one to scan the objects already in place.
 	\end{knowledge}
 	
 	% Navigation: Move to Shelf
 	\begin{navigation}
-	% todo
+	With the position of the nearest shelf, Navigation moves the robot right in front of this shelf so the next step can begin:
 	\end{navigation}
 	
 	\subsection{Scan shelf floors}
 	
 	% Planning: Loop through all shelf floors
 	\begin{planning}
-	In the scan shelf floors function % todo
+	Planning goes through all the floors on this shelf and advises and coordinates everyone else to do the scanning procedure again for every floor:
 	\end{planning}
 	% NLP
 	\begin{nlp}
-	The robot informs which shelf he is currently looking at. The robot scans the shelf from the bottom up from shelf 0 to shelf 2.\end{nlp}
+	First, the robot talks about which shelf it is currently looking at. The robot scans the shelf from the bottom up from floor 0 to floor 2.\end{nlp}
 	
 	% Manipulation: go into percieve pose
 	\begin{manipulation}
-	Since the shelf floors are of different heights the HSR has to take multiple perceive poses.
+	Since the shelf floors are of different heights the HSR has to take a different perceive pose for every floor.
 	\end{manipulation}
 	
 	% Perception: Percieve shelf
 	\begin{perception}
-	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
+	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in a matter that all the image parts containing different floors are simply cut off in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
 	\end{perception}
 	
 	% Knowledge: Store new Objects
 	\begin{knowledge}
-	Knowledge checks the data of the objects, that are supposed to be stored. If the class of an object is unknown to Knowledge, it is set to other. If the data for the given object is valid, the object gets added to the Knowledge base. Should other objects be close to the new one, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
+	Just like after perceiving the table, Knowledge looks into the data of the perceived objects, polishes them and stores them in the knowledge base.
 	\end{knowledge}
 	
 	\subsection{Place Object}
