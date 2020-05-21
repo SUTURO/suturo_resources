@@ -111,56 +111,82 @@
     
 	\subsection{Place sequence}
 	%Navigation: moveBaseAction
+	\begin{navigation}
 	The robot moves to the designated location in this case the bucket.
 	The coordinates for the navigation call are queried from the Knowledge base and adjusted so the robot looks at the bucket and can place the object inside it. 
+	\end{navigation}
 	
 	%NLP placing the object
-	Informing that the robot is now placing the object
+	\begin{nlp}
+	The robot then informs everyone that it is now placing the object
+	\end{nlp}
+
+	\begin{knowledge}
+	To correctly place the object in the bucket, Knowledge just calculates some offsets to the middle of the bucket and completely ignores, whether there already are some objects in it or not. To Knowledge, the bucket surface is a black hole where an infinite number of objects can be placed in the exact same spot.
+	\end{knowledge}
 
 	%place-object
-	The object id is used to query the Knowledge base for the dimensions of the object and the goal of the object. The results are then used to call the manipulation place server to place the object. Manipulation then gets the task to place the previously grasped object in the given destination. To do that the Place Action Server has to calculate the correct orientations to place from the right direction and do collision avoidance with all other objects which is done by using \textit{Giskard}.
+	\begin{manipulation}
+	 Manipulation then gets the task to place the previously grasped object in the given destination. To do that the Place Action Server has to calculate the correct orientations to place from the right direction and do collision avoidance with all other objects which is done by using \textit{Giskard}.
+	 \end{manipulation}
 	 %Knowledge: prolog dimensions
 	 %Knowledge: prolog goal
 	 
 	%NLP placed the object
-	Informing that the robot has successfully placed the object
+	\begin{nlp}
+	This is where the robot informs everyone, that the object has been successfully places.
+	\end{nlp}
 
 	%Manipulation: Take pose
-	Returns the robot into the default pose.
+	\begin{manipulation}
+	To start again, the robot is put in the default pose again.
+	\end{manipulation}
 	
-	This is looped for two times.
-	The first one is for the table and stops if there are no more objects on it to be placed in the bucked. The sedon one is for the point of interest search and stops if there are not points of interest left.
+	\begin{planning}
+	This whole part restarts by asking Knowledge for the next object to grasp until there are no objects left on the table. After that, there is a second loop where the robot looks for points of interest and stops if there are not points of interest left.
+	\end{planning}
 	
 	\subsection{Point of interest search sequence}
-	The object finder node publishes a list of poses that may be an object. This list will from now on be called points of interests.
+	\begin{navigation}
+	The object finder node publishes based on the data of the laser scanner in the foot of the robot a list of poses that may be an object. This list will from now on be called points of interests.
+	\end{navigation}
 	
     %NLP found an point of interest to search
-    Informing that the robot has found a point of interest to search for objects
+    \begin{nlp}
+    The speech client starts this sequence by telling everyone that the robot has found a point of interest to search for objects.
+    \end{nlp}
     
     %move-to-poi
-    The first pose of the points of interest is taken. A target position is calculated that enables the HSR to perceive the position. This target pose is then send to navigation and executed.
-    
+    \begin{planning}
+    The first pose of the points of interest is taken. A target position is calculated that enables the HSR to perceive the position.
+    This target pose is then sent to navigation and executed.
+   \end{planning}
+   
     %call-take-pose-action
-    The HSR is brought into the perceive pose for the floor.
+    \begin{manipulation}
+    The HSR is then brought into the perceive pose for the floor.
+    \end{manipulation}
     
     %NLP perceiving the postition
-    Informing that the robot is now perceiving the position
+    \begin{nlp}
+    When the robot is ready to perceive, it says so via its speech client.
+    \end{nlp}
       
     %call-robosherlock-object-pipeline
-	The HSR takes a picture of the scene it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested region the input images are filtered. The results are then published by the \textit{perception\_actionserver}.
-
+    \begin{perception}
+	Looking at the floor at this point of interest, the robot makes a picture that Perception can again use to find the objects that are hopefully standing there. Once there are objects found, the data will be published.
+	\end{perception}
     
     %Knowledge:insert-knowledge-objects
-    Knowledge checks the data of the objects, that are supposed to be stored. If the class of an object is unknown to Knowledge, it is set to other. If the data for the given object is valid, the object gets added to the Knowledge base. Should other objects be close to the new one, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
+	\begin{knowledge}
+	These perceived object data will find their way to Knowledge where they are looked into and stored as they make any sense.
+	\end{knowledge}
     
-    %call-take-pose-action
-   	Returns the robot into the default pose to be able to grasp the object.
-
-    % Navigation: MoveBaseAction
-    Turn the HSR by $90^\circ$ so he can grasp objects which would not be possible from the pose he took to perceive the objects.
-
-    The plan continues from the \ref{clean_up_grasp_seq}.
-    
+	\begin{planning}
+	Now the objects that were found are one by one grasped and placed in the basket in the same way, the objects standing on the table were handled.
+	
+	This continues until there are no known objects and no points of interests left anymore.
+	\end{planning}
     
 	\section{Conclusion}
 	The Clean Up task was still incomplete for the test robocup and wasn't executed due to having various problems getting the robot to run in the challenge room, but was in a executable and working state for the third milestone demo and successfully completed the demo run. During this run it showed that the tasks grasping the objects of the table or from the floor, transporting the objects and placing them in the basket were achieved in the simulation.\\
