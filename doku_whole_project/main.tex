@@ -13,9 +13,77 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{color}
+\usepackage{mdframed}
 
 \definecolor{mygray}{rgb}{0.7,0.7,0.7}
 \definecolor{mygreen}{rgb}{0,0.35,0}
+
+\definecolor{colorknow}{RGB}{0, 127, 255}
+\definecolor{colornav}{RGB}{0, 204, 0}
+\definecolor{colorman}{RGB}{255, 102, 102}
+\definecolor{colorperc}{RGB}{255, 153, 51}
+\definecolor{colornlp}{RGB}{204, 204, 204}
+\definecolor{colorpl}{RGB}{255, 255, 0}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  linecolor=colorknow,
+  linewidth=3px
+]{knowledge}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  linecolor=colornav,
+  linewidth=3px
+]{navigation}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  linecolor=colorman,
+  linewidth=3px
+]{manipulation}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  linecolor=colorperc,
+  linewidth=3px
+]{perception}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  linecolor=colornlp,
+  linewidth=3px
+]{nlp}
+
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  linecolor=colorpl,
+  linewidth=3px
+]{planning}
 
 \lstset{ 
   backgroundcolor=\color{mygray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
