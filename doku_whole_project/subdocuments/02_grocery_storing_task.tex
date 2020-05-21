@@ -68,7 +68,7 @@
 	
 	% Perception: Percieve and return data
 	\begin{perception}
-	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. The results i.e. the data of the perceived objects are then published by the \textit{perception\_actionserver} so planning can find them.\end{perception}
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. As a result, Perception provides various data about the objects standing on the table, including their category (Pringles / Coke can / Apple / ...), their position and their dimensions. These results are then published by the \textit{perception\_actionserver} so planning can find them.\end{perception}
 	
 	% Knowledge: Store Data
 	\begin{knowledge}
@@ -97,7 +97,7 @@
 	\label{grasp-object}
 	% Knowledge: next_object
 	\begin{knowledge}
-	The Knowledge base now determines which object should be grasped next, to place it in one of the shelves. This decision is purely based on the distance of the objects to the robot so that the nearest object standing on any of the tables will be taken first.
+	Knowledge now determines which object should be grasped next, to place it in one of the shelves. This decision is purely based on the distance of the objects to the robot so that the nearest object standing on the table will be taken first. This is one of parts with a lot of ideas how it can be improved in the future, as will be discussed in section \ref{sec:nextObj}.
 	\end{knowledge}
 	
 	% 2x NLP: Talk Request
@@ -107,14 +107,12 @@
 	
 	% Manipulation: GraspAction
 	\begin{manipulation}
-	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the course of the project it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional way point is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successful the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
+	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the course of the project it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional way point is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successfull the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
 	\end{manipulation}
 	
-	% Planning: 
-	\begin{planning}
-	This whole thing is gonna be looped % todo
-	\end{planning}
-	
+	\begin{knowledge}
+	Knowledge listens to these gripper movements and lables the grasped object as being in the gripper. The position of the object will always be the position of the gripper from now on.
+	\end{knowledge}
 	% NLP
 	
 	% Knowledge: Shelf Positions

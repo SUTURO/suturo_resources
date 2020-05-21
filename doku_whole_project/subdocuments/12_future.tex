@@ -70,7 +70,7 @@ In my Opinion this should be a major focus for new groups in so far that the gra
 		\chapterauthor{Jeremias Thun}
 		The decision about where to put the object works for some scenarios very well but it can have some problems depending on the order in which the objects are grasped. One of the biggest problems is: As described in section \ref{sec:kn_pickup}, the objects  similar to one of the already placed objects are put into a list, which is then cut to only place those most similar to the reference object. If we were for example placing three bananas next to two apples where there only enough space for one more object, Knowledge would recognize that the bananas need to open a new group and cut the last two bananas out. But to keep it simple, we ignore those two bananas at the time - which leads to a situation in which Knowledge would place the first banana next to the two apples and only starting a new group for the bananas when it is looking for a place for the second and third banana.
 	  	
-	  	\subsection{Knowledge: Optimize next\_object/1}
+	  	\subsection{Knowledge: Optimize next\_object/1}\label{sec:nextObj}
 	  	\chapterauthor{Jeremias Thun}
 	  	The decision which object should be the next one to grasp is still very rudimentary. The responsible predicate \texttt{next\_object/1} in \texttt{pickup.pl} just looks for the nearest object right now (as described in section \ref{sec:kn_pickup}).\\
 	  	While that is a good start, it would be nice to mind some other criteria.
