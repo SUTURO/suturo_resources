@@ -11,7 +11,7 @@ This year the group chose to focus on the tasks “Storing Groceries“ and “C
 	Storing Grocery entails that the HSR has to store groceries into a pantry shelf, sorting them into appropriate groups determined by the items that are already placed on all shelf floors. The items that the HSR has to store are located on a table in the same room as the pantry shelf.
 Clean Up is a different task for which the HSR has to tidy up a room with assorted objects. The objects, have to be brought to their determined locations. Unidentified objects have to be placed in the garbage bin. In comparison to Storing Groceries, the objects from Clean Up can be located anywhere in the arena. This includes the floor, seats, and other furniture.
 Due to specific circumstances, which will be explained later in the documentation, the group was not able to work on the HSR itself during the third and final milestone and switched to a virtual substitute.
-	In the following sections, the challenges that were encountered will be described, each subgroup of the project will elaborate on their work, and in the end, there will be a section of ideas on how to make the project better for the next generation of SUTURO.
+	In the following sections, the challenges that were encountered will be described, each subgroup of the project will elaborate on their work, and in the end, there will be a section of ideas on how to improve the project for the next generation of SUTURO.
 	
 	\section{Challenges}
 	\label{challanges}
@@ -39,15 +39,15 @@ Due to specific circumstances, which will be explained later in the documentatio
 		Although most of the code was changed and tweaked to fit the new requirements the general structure of the previous group was used. Some of the Interfaces were reused for example the interface for the navigation client and the interface to \textit{RoboSherlock} (\ref{object-perceive}). Some of the mid level functionality like the designators (\ref{desig}) and process module code (\ref{pcm}) were reused and altered to fit the new means.
 	\subsection{Navigation}
 	\subsection{Manipulation}
-		Even though there was existing legacy code for Manipulation, the decision was made to abandon that code and start from scratch. This was recommended by the tutors because the Giskard framework had evolved significantly since then. As a result Manipulation only used the Giskard framework and no legacy code.
+		Even though there was existing legacy code for Manipulation, the decision was made to abandon that code and start from scratch. This was recommended by the tutors because the \textit{Giskard} framework had evolved significantly since then. As a result Manipulation only used the \textit{Giskard} framework and no legacy code.
 	\subsection{Perception}
-	The perception group used two two packages of previous SUTURO generations, being the rs\_hsrb\_perception package and the rs\_turn\_table package.
+	The perception group used two packages of previous SUTURO generations, namely the rs\_hsrb\_perception package and the rs\_turn\_table package.
 	
-	 The rs\_hsrb\_perception package contains a process manager for RoboSherlock and modified annotators, to annotate regions. It was used by the perception group to be able to load multiple pipelines simulataneously and it was adapted to work with the newest RoboSherlock version.
+	 The rs\_hsrb\_perception package contains a process manager for \textit{RoboSherlock} and modified annotators, to annotate regions. It was used by the perception group to be able to load multiple pipelines simulataneously and it was adapted to work with the newest \textit{RoboSherlock} version.
 	 
-	 The rs\_turn\_table package is a package which is used to record image data for classification. This was used by the perception group whithout any changes. 
+	 The rs\_turn\_table package is a package which is used to record image data for classification. This was used by the perception group without any changes. 
 	\subsection{Knowledge}
-        The previous code base was designed around the storing groceries task. Because this years team decided to also try the Clean-Up task, the knowledge base had to be adapted. Even though basically every prolog predicate got changed, the code deciding the goal position of the object and the methodology of using ontologies to find similar objects, are still kept.
+        The previous code base was designed around the storing groceries task. Because this years team decided to also try the Clean-Up task, the knowledge base had to be adapted. Even though basically every \textit{Prolog} predicate got changed, the code deciding the goal position of the object and the methodology of using ontologies to find similar objects, are still kept.
     \subsection{NLP}
         Previously no speech-to-text capabilities where part of the code base. Sentences were and still are hard coded in the planning and knowledge modules.
 \end{document}
