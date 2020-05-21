@@ -3,7 +3,8 @@
 
 \begin{document}
  \section{Perception}
- Create a new workspace or open the workspace where you want to install the perception part. Now run the following commands to download dependencies into your workspace.
+ \subsection{Main perception packages}
+ Create a new workspace or open the workspace where you want to install the perception part. If you are using this document to install all SUTURO packages, perception is meant to be install in the third workspace mentioned in \ref{workspace_management}. Now run the following commands to download dependencies into your workspace.
  
  \begin{lstlisting}
 cd src
@@ -23,8 +24,8 @@ sudo apt-get update
 sudo apt-get install rapidjson 
 \end{lstlisting}
  
- 
- Now install Caffe using the following commands.
+\subsection{Caffe}
+To install Caffe, use the following commands.
  \begin{lstlisting}
 sudo apt-get update
 sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-\dev libopencv-dev libhdf5-serial-dev protobuf-compiler
@@ -37,7 +38,7 @@ cd
 git clone %*\url{https://github.com/BVLC/caffe.git}*)
 \end{lstlisting}
  
- For GPU acceleration install CUDA, a graphics card driver update may be necessary.
+ For GPU acceleration install CUDA, a graphics card driver update may be necessary for this to work.
  
  Installation with CMake:\\
  
