@@ -16,7 +16,7 @@
 	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects in the shelf. Furthermore it needs to grasp and place one object after the other. It also needs to navigate between the shelf and table. For additional points the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
 
 	\section{Tasks}
-	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given. To make the written version more reader friendly, there is not every single call and answer mentiond, only the ones necessary to understand the sequence of this task.
+	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given. To make the written version more reader friendly, there is not every single call and answer mentioned, only the ones necessary to understand the sequence of this task.
 	
 		\begin{figure}[H]
 			\centering
@@ -30,7 +30,7 @@
 			\caption{Sequence diagram of the complete run of the grocery storing task \textit{(explanations below)}}
 			\label{grocery_seq_02}
 		\end{figure}
-		\textit{The sequence diagram in figure \ref{grocery_seq_01} and \ref{grocery_seq_01} does not depict when the action servers are running it rather displays the time they are actively used.}
+		\textit{The sequence diagram in figure \ref{grocery_seq_01} and \ref{grocery_seq_02} does not depict when the action servers are running it rather displays the time they are actively used.}
 	
 	\subsection{Setup}
 	
@@ -71,6 +71,11 @@
 	% Perception: Percieve and return data
 	\begin{perception}
 	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. As a result, Perception provides various data about the objects standing on the table, including their category (Pringles / Coke can / Apple / ...), their position and their dimensions. These results are then published by the \textit{perception\_actionserver} so planning can find them.\end{perception}
+	
+	% Planning confident check
+	\begin{planning}
+	Planning checks the confident values of detected objects and sorts out objects with too much uncertainty. The data is then transferred to Knowledge.
+	\end{planning}
 	
 	% Knowledge: Store Data
 	\begin{knowledge}
@@ -113,7 +118,7 @@
 	\end{manipulation}
 	
 	\begin{knowledge}
-	Knowledge listens to these gripper movements and lables the grasped object as being in the gripper. The position of the object will always be the position of the gripper from now on.
+	Knowledge listens to these gripper movements and labels the grasped object as being in the gripper. The position of the object will always be the position of the gripper from now on.
 	
 	Ordered by Planning, Knowledge now finds all the shelves available and sorts them, just like the tables before, by their distance to the robot. This way, the Robot can navigate to all the shelves starting with the nearest one to scan the objects already in place.
 	\end{knowledge}
@@ -142,6 +147,11 @@
 	\begin{perception}
 	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in a matter that all the image parts containing different floors are simply cut off in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
 	\end{perception}
+	
+	% Planning confident check
+	\begin{planning}
+	Planning checks the confident values of detected objects and sorts out objects with too much uncertainty. The data is then transferred to Knowledge.
+	\end{planning}
 	
 	% Knowledge: Store new Objects
 	\begin{knowledge}
