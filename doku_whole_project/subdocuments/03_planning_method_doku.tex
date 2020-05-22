@@ -317,7 +317,7 @@
 	    	Sort a list of stamped poses by the distance to the given point.
 	    	\item \textbf{add-stamped-poi (stamped)} \\
 	    	Add a stamped pose to the list of pois.
-	    	\item \textbf{point-listener} \\
+	    	\item \textbf{point-listener ()} \\
 	    	This function subscribes the point of interests and stores them in a variable.
 	    	\item \textbf{add-poi-from-topic (poseArrayMsg)} \\
 	    	Save the given points to the parameter *poi*.
@@ -326,9 +326,9 @@
 		\label{object-perceive}
 		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.
 		\begin{itemize}
-			\item \textbf{init-robosherlock-object-action-client} \\
+			\item \textbf{init-robosherlock-object-action-client ()} \\
 			This function initiates the connection to the \textit{RoboSherlock} object action server.
-			\item \textbf{get-robosherlock-client} \\
+			\item \textbf{get-robosherlock-client ()} \\
 			This function returns the \textit{RoboSherlock} action client.
 			\item \textbf{make-action-goal (in-regions in-visualize)} \\
 			This function makes and returns a action client goal with the given regions.
@@ -338,9 +338,9 @@
 		\subsection{robosherlock-client-plane.lisp}
 		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.
 		\begin{itemize}
-			\item \textbf{init-robosherlock-plane-action-client} \\
+			\item \textbf{init-robosherlock-plane-action-client ()} \\
 			This function initiates the connection to the \textit{RoboSherlock} plane action server.
-			\item \textbf{get-robosherlock-plane-client} \\
+			\item \textbf{get-robosherlock-plane-client ()} \\
 			This function returns the \textit{RoboSherlock} action client.
 			\item \textbf{make-action-goal (in-regions in-visualize)} \\
 			This function makes and returns a action client goal.
