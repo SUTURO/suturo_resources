@@ -15,8 +15,11 @@ Due to specific circumstances, which will be explained later in the documentatio
 	
 	\section{Challenges}
 	\label{challanges}
-	\chapterauthor{Torge Olliges, Marc Stelter, Jeremias Thun}
-	These tasks can be expressed as several challenges which the group had to face:
+	\chapterauthor{Torge Olliges, Marc Stelter,\\ Jeremias Thun}
+	Working with the robot, the human intuition about what sould be done, what can be reckognized, how should everything be ordered needs to be translated into a specific way to work with camera data, to automatically organize the data or to have stable movements that can always be repeated that way. In a world where humans can see a table, some objects standing on it and an empty shelf, the robot knows about some colored pixels and their distance to the robot.\\
+	Thankfully, there already are a lot of public algorithms for image data processing, to organize these data, for specific ways to move a robot or to make a computer able to talk and to listen. Based on a good set of data there are many ways to tell the robot how to store some groceries or how to clean up. But in robotics, it is not just about having a good code and some unit tests that can "prove" it, in robotics there is work to do in the real world, there is work to do in a nondeterminisic world. When the robot gets its data it diesn't just find a single object forever standing a some place, it finds a whole room of noise data where the object is just one part of it. When the robot moves and calculates its current position, it is not just the math of some moving circles, there is actually a wheel moving that can have some abnormalities, that can be stuck for a moment or move over some bumps on the ground. And even when the robot finally has some valid data about its environment, these data change. Maybe an object fell over when the robot accidentally touched it while grasping another or maybe a human took one the objects.
+	
+	For this SUTURO group, this resulted in several challenges which had to be faced:
 	\begin{itemize}
 		\item Navigation: In order to get from one position to another, e.g. to a table, shelf object. The robot has to be able to perform these navigation actions autonomously.
 		\item Localization: The robot needs to know where it is located. The robot has to handle the problem that the pose estimation is not perfect in a real life scenario.
@@ -33,7 +36,7 @@ Due to specific circumstances, which will be explained later in the documentatio
 
 	\section{Previous Work}
     \label{previous_work}
-    \chapterauthor{Torge Olliges, Paul Schnipper, Jan Neumann, Jan-Frederik Stock}
+    \chapterauthor{Torge Olliges, Paul Schnipper, \\Jan Neumann, Jan-Frederik Stock}
 		The SUTURO project is a reoccurring project hosted by the iai-office at the University of Bremen. Therefore, the current project could rely on previous work and insights in the form of legacy code and experience. Especially about the difficult conditions during the RoboCup and the challenges working with the HSR. In this section a brief overview of the legacy code will be given by every group:
 	\subsection{Planning}
 		Although most of the code was changed and tweaked to fit the new requirements the general structure of the previous group was used. Some of the Interfaces were reused for example the interface for the navigation client and the interface to \textit{RoboSherlock} (\ref{object-perceive}). Some of the mid level functionality like the designators (\ref{desig}) and process module code (\ref{pcm}) were reused and altered to fit the new means.
