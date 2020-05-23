@@ -15,6 +15,8 @@ git clone %*\url{https://github.com/RoboSherlock/robosherlock.git}*) --\recursiv
 git clone %*\url{https://github.com/RoboSherlock/rs_resources.git}*)
 git clone %*\url{https://github.com/Jastock/rs_addons.git}*)
 rosdep install --from-path . --ignore-src -r 
+cd ..
+catkin build
 \end{lstlisting}
  
  Then install the rs\_addons dependencies by running the following commands.
