@@ -46,17 +46,17 @@ git clone %*\url{https://github.com/BVLC/caffe.git}*)
  
  Change into your caffe directory and open up the CMakeLists.txt in your editor. After the comment labeled "Options" you can set options for your build. If you installed CUDA and want GPU acceleration set CPU\_ONLY to OFF, otherwise set it to on ON.
  
- Now enter your cmake directory and open up the Dependencies.cmake file. Got to the comment labeled "BLAS" and in the line under 
+ Now enter your cmake directory and open up the Dependencies.cmake file. Go to the comment labeled "BLAS" and in the line under 
  
  \begin{lstlisting}
  if(NOT APPLE)
- \end{lstlisting}
+\end{lstlisting}
  
  change it to 
  
  \begin{lstlisting}
  set(BLAS "Open" CACHE STRING "Selected BLAS library")
- \end{lstlisting}
+\end{lstlisting}
  
  Exit the file and from your cmake directory run the following commands:
  \begin{lstlisting}
@@ -64,7 +64,7 @@ git clone %*\url{https://github.com/BVLC/caffe.git}*)
  make all
  make install
  make runtest
- \end{lstlisting}
+\end{lstlisting}
  You should now have a functioning caffe installation.
 
 \newpage
@@ -76,18 +76,28 @@ Installation with make:
 
 The installation with cmake is highly recommended, but if this should not work, the following is the alternative.
 
- Make following changes to the Caffe directory : 
- \begin{itemize}
- \item Copy the Makefile.config.example with "cp Makefile.config.example Makefile.config"
- \item Make the following changes on the Makefile.config :
- 	\begin{itemize}
- 	\item If CUDA is not installed uncomment CPU\_ONLY := 1 to enable building for CPU only
- 	\item Change "BLAS := atlas" to "BLAS := open"
- 	\item If any hdf5 related erros appear in the next step, add "/usr/lib/x86\_64-linux-gnu/hdf5/serial" to LIBRARY\_DIRS and "/usr/include/hdf5/serial/" to INCLUDE\_DIRS
- 	\item Save and exit
- 	\end{itemize}
+ Make following changes to the Caffe directory : \\
+
+Copy the Makefile.config.example with 
+\begin{lstlisting}
+cp Makefile.config.example Makefile.config
+\end{lstlisting}
+Make the following changes on the Makefile.config :\\
+
+If CUDA is not installed uncomment CPU\_ONLY := 1 to enable building for CPU only.\\
+Change "BLAS := atlas" to "BLAS := open"\\
+If any hdf5 related erros appear in the next step, add 
+\begin{lstlisting}
+/usr/lib/x86\_64-linux-gnu/hdf5/serial
+\end{lstlisting}
+ to LIBRARY\_DIRS and
+\begin{lstlisting} 
+  /usr/include/hdf5/serial/ 
+\end{lstlisting} 
+  to INCLUDE\_DIRS.\\
+Now save and exit.
+
  	
- \end{itemize}
 Now you need to build caffe using the following commands.
 \begin{lstlisting}
 make all
