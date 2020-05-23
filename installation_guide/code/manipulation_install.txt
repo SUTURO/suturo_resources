@@ -4,6 +4,7 @@ git clone \ %*\url{https://github.com/code-iai/iai_naive_kinematics_sim.git}*)
 git clone %*\url{https://github.com/SUTURO/suturo_resources.git}*) 
 wstool init
 wstool merge %*\href{raw.githubusercontent.com/code-iai/iai_hsr_sim/master/rosinstall/catkin.rosinstall}{\nolinkurl{raw.githubusercontent.com/code-iai/iai_hsr\ _sim/master/rosinstall/catkin.rosinstall}}*)
+wstool merge %*\href{https://raw.githubusercontent.com/SemRoCo/giskardpy/master/rosinstall/catkin.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SemRoCo\ /giskardpy/master/rosinstall/catkin.rosinstall}}*)
 wstool update
 cd ..
 catkin build  
