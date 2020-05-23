@@ -11,7 +11,7 @@
 	\chapter{Manipulation Function Documentation}
 
 
-		\chapterauthor{\vspace{5mm}Marc Stelter, Jan Neuman \& Fabian Weihe}
+		\chapterauthor{\vspace{5mm}Marc Stelter, Jan Neumann, Fabian Weihe}
 		
 		\subsection{General}
 
@@ -20,10 +20,10 @@
 		The "take\_pose\_action\_server" moves the robot into perceiving position.\\
 		The "grasps\_object\_server" receives the size and position of an object and grasps it.\\
 		The "place\_server" places the attached object at the given pose.\\
-		Further Manipulation has a "suturo\_manipulation\_launch" package, which launches the action servers, rviz and giskard and a "object\_state\_listener" package.
+		Further Manipulation has a "suturo\_manipulation\_launch" package, which launches the action servers, \textit{rviz} and \textit{Giskard} and a "object\_state\_listener" package.
 
 		\subsection{Grasp Object} \chapterauthor{Fabian Weihe}
-			The script recives a string ("object\_frame\_id"), a PoseStamped ("goal\_pose"), a Vector3 ("object\_size") and an uint8 (grasp\_mode).
+			The script receives a string ("object\_frame\_id"), a PoseStamped ("goal\_pose"), a Vector3 ("object\_size") and an uint8 (grasp\_mode).
 			
 			\vspace{0,25 cm}
 			The "object\_frame\_id" relates to the object we want to grasp.
@@ -49,14 +49,14 @@
 			 
 			 \vspace{0,25 cm}
 			 In every other case "grasp\_to\_position" is called.\\
-			In the first step the method opens the gripper to the maximum. After that the arm is moved to the object. The "grasp\_mode" determines if the object should be grasped from the front, the top or a free given orientation. When the arm has moved to the given position "goal\_pose", the script closes the gripper. At the end the grasped object given by "object\_frame\_id" is added in giskard and attached to the robot. After that the method "move\_to\_transport\_pose" is called.\\
+			In the first step the method opens the gripper to the maximum. After that the arm is moved to the object. The "grasp\_mode" determines if the object should be grasped from the front, the top, or a free given orientation. When the arm has moved to the given position "goal\_pose", the script closes the gripper. In the end the grasped object given by "object\_frame\_id" is added in \textit{Giskard} and attached to the robot. After that the method "move\_to\_transport\_pose" is called.\\
 			Finally it checks if the object is in the gripper and returns whether the action has failed or succeeded.
 			
 			\vspace{0,25 cm}
-			The method "just\_grasp" move to the transport pose, opens the griper, wait 3 seconds and close the gripper. Finally it checks if the object is in the gripper.
+			The method "just\_grasp" move to the transport pose, opens the gripper, wait 3 seconds and close the gripper. Finally it checks if the object is in the gripper.
 			
 			\vspace{0,25 cm}
-			The method "move\_to\_transport\_pose" transform the robot in a position, where it can comfortably move arround.
+			The method "move\_to\_transport\_pose" transform the robot in a position, where it can comfortably move around.
 			
 			\vspace{0,25 cm}
 			The last method "object\_in\_gripper" checks if the robot hold something in the gripper and returns a boolean.\\
@@ -66,7 +66,7 @@
 			The Take\_Pose\_Server puts the HSR into a pose to perceive objects depending on the chosen pose\_mode. \\
 			In FREE mode the server puts the HSR into a pose given by the float joint goals in the message. This is used for testing and error handling in Planning. \\
 			In NEUTRAL mode the HSR is put into a predefined pose that is used when the HSR is transporting an object. \\
-			In LOOK\_LOW, LOOK\_HIGH and LOOK\_FLOOR mode the server puts the HSR into a predefined position that is specifically designed to perceive objects on the tables, shelves and floor in the HSR lab. The advantage is that this works independently from other parts of the suturo project. The disadvantage is that these modes are not suited to perceive objects on planes that have a different height than the ones specified. \\
+			In LOOK\_LOW, LOOK\_HIGH and LOOK\_FLOOR mode the server puts the HSR into a predefined position that is specifically designed to perceive objects on the tables, shelves, and floor in the HSR lab. The advantage is that this works independently from other parts of the suturo project. The disadvantage is that these modes are not suited to perceive objects on planes that have a different height than the ones specified. \\
 			In GAZE mode the server receives a Vector 3 gaze\_point which represents the coordinates of the middle of a plane that the HSR is supposed to perceive objects on. The server then calculates the height and direction for the camera to perceive objects on the given plane and puts the HSR into the resulting pose.
 			
 			\begin{itemize}
@@ -94,7 +94,7 @@
 			
 			
 			\section{place\_server.py}  \chapterauthor{Marc Stelter}
-			Places the object in the gripper at the given position. Depending on the place\_mode the orientation of the gripper is calculated. Giskard is then used to move the gripper to the given position. If giskard was successful and the gripper is at the correct position the object is released and robot returns into a neutral pose. In the case of an error the Object will not be released and the robot finishes in a neutral position. 
+			Places the object in the gripper at the given position. Depending on the place\_mode the orientation of the gripper is calculated. Giskard is then used to move the gripper to the given position. If \textit{Giskard} was successful and the gripper is at the correct position the object is released and the robot returns into a neutral pose. In the case of an error the Object will not be released and the robot finishes in a neutral position. 
 			
 			\begin{itemize}
 				\item Input: PlaceActionGoal 
@@ -106,7 +106,7 @@
 			\end{itemize}
 			
 			\section{object\_state\_listener.py} \chapterauthor{Marc Stelter}
-			Adds, modifies or removes objects from the giskard environment believe state.
+			Adds, modifies, or removes objects from the \textit{Giskard} environment believe state.
 			
 			\begin{itemize}
 				\item Topic: /object\_state
@@ -117,9 +117,9 @@
 				\subitem def object\_state\_callback(self, object\_state\_array): processes a new ObjectStateArray message
 			\end{itemize}
 			
-			\section{giskard\_load\_static\_objects.py} \chapterauthor{Marc Stelter}
-			Simple script meant to be run once at startup. Loads the environment from the parameter server and adds it to giskards believe state. 
-			The script can be run again in order to reload the environment. The old environment will automatically be removed.
+			\section{\textit{Giskard}\_load\_static\_objects.py} \chapterauthor{Marc Stelter}
+			The simple script meant to be run once at startup. It loads the environment from the parameter server and adds it to \textit{Giskards} believe state. 
+			The script can be run again to reload the environment. The old environment will automatically be removed.
 			
 			 
 
@@ -128,3 +128,4 @@
 	\endgroup
 
 \end{document}
+

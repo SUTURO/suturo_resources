@@ -4,40 +4,38 @@
 	\subsection{Knowledge}
 	\subsubsection{Knowledge}
 	To start knowledge you need to run the following command.
-	\begin{itemize}
-\item roslaunch knowledge knowledge.launch
-\end{itemize}
+	\begin{lstlisting}
+roslaunch knowledge knowledge.launch
+\end{lstlisting}
 If you want to manually interact with the knowledge base you can run 
-\begin{itemize}
-\item \begin{verbatim}rosrun rosprolog rosprolog_commandline.py \end{verbatim}
-\end{itemize}
+\begin{lstlisting}
+rosrun rosprolog rosprolog_commandline.py
+\end{lstlisting}
 to start a SWI-Prolog interface.
 	
 	\subsubsection{NLP}
 	
 	To start the hard commands recognition run the following.
 	
-	\begin{itemize}
-		\item \begin{verbatim}roslaunch suturo_spechparser hard_commands_only.launch \end{verbatim}
-	\end{itemize}
+	\begin{lstlisting}
+roslaunch suturo_spechparser hard_commands_only.launch
+\end{lstlisting}
 	
 	\subsection{Perception}
 
 	To start perception you first need to start the pipelines:
-	\begin{itemize}
-\item \begin{verbatim} roscd rs_perception \end{verbatim} 
-\item \begin{verbatim}
+	\begin{lstlisting}
+roscd rs_perception
 roslaunch rs_perception hsrb_perception.launch
-\end{verbatim}
-\end{itemize}	
+\end{lstlisting}	
 
 After that start the action clients:
-\begin{itemize}
-\item rosrun actionserver ExtractObjectInfoClient
-\item rosrun actionserver ExtractPlaneInfoClient
-\end{itemize}
+\begin{lstlisting}
+rosrun actionserver ExtractObjectInfoClient
+rosrun actionserver ExtractPlaneInfoClient
+\end{lstlisting}
 
-To Limit the perception of objects to a specific region you can use:
+To limit the perception of objects to a specific region you can use:
 \begin{itemize}
 \item \begin{verbatim} set_region:=region name \end{verbatim} 
 \end{itemize}
@@ -72,49 +70,49 @@ The action client is not necessary for the HSR demo.
 	\subsection{Manipulation}
 	\subsubsection{Manipulation}
 	To start the four Manipulation servers run the following command:
-	\begin{itemize}
-		\item \begin{verbatim} roslaunch suturo_manipulation_launch start_manipulation_servers.launch \end{verbatim}
-	\end{itemize}
+	\begin{lstlisting}
+roslaunch suturo_manipulation_launch start_manipulation_server\s.launch
+\end{lstlisting}
 	If the start succeded every server will return a message that it successfully started in the terminal.	
 	
 	\subsubsection{Navigation}
 	Run the following comman start navigation:
-	\begin{itemize}
-		\item \begin{verbatim} roslaunch suturo_navigation_launch start_suturo_navigation.launch \end{verbatim}
-	\end{itemize}
+	\begin{lstlisting}
+roslaunch suturo_navigation_launch start_suturo_navigation.\launch
+\end{lstlisting}
 	
 	\subsection{Planning}
 	Before you start planning the simulation environment, knowledge, perception and manipulation must be launched.\\
 	The first step to launching planning is the following command.
-	\begin{itemize}
-\item \begin{verbatim} roslisp_repl \end{verbatim} 
-\end{itemize}
+	\begin{lstlisting}
+roslisp_repl
+\end{lstlisting}
 	\subsubsection{Groceries}
 	To start the grocery plan you now need to load the package \begin{verbatim}
 	grocery_demo
 	\end{verbatim}
 	 using the following commands:
-	\begin{itemize}
-\item (swank:operate-on-system-for-emacs "grocery-demo" (quote load-op))
-\item (grocery::init-interfaces)
-\end{itemize}
+	\begin{lstlisting}
+(swank:operate-on-system-for-emacs "grocery-demo" (quote load-op))
+(grocery::init-interfaces)
+\end{lstlisting}
 This step takes some time. After that the task can be started:
-\begin{itemize}
-\item (grocery::execute-grocery)
-\end{itemize}
+\begin{lstlisting}
+(grocery::execute-grocery)
+\end{lstlisting}
 
 	\subsubsection{Cleanup}
 	To start the cleanup plan you now need to load the package \begin{verbatim}
 	cleanup_demo
 	\end{verbatim}
 	 using the following commands:
-	\begin{itemize}
-\item (swank:operate-on-system-for-emacs "cleanup-demo" (quote load-op))
-\item (clean::init-interfaces)
-\end{itemize}
+	\begin{lstlisting}
+(swank:operate-on-system-for-emacs "cleanup-demo" (quote load-op))
+(clean::init-interfaces)
+\end{lstlisting}
 This step takes some time. After that the task can be started:
-\begin{itemize}
-\item (clean::execute-cleanup)
-\end{itemize}
+\begin{lstlisting}
+(clean::execute-cleanup)
+\end{lstlisting}
 
 \end{document}

@@ -2,20 +2,21 @@
 
 \begin{document}
 \section{Manipulation}
+\label{sec:Manipulation}
 
 First do the installation steps from this github site:\\
 	\url{https://github.com/SemRoCo/giskardpy}.\\
 	
 	\subsection{Manipulation}
-Now create a new Workspace or open the workspace where you want to install the Manipulation part and run the following commands.	
-\begin{itemize}
-\item cd src
-\item git clone \url{https://github.com/SUTURO/suturo_manipulation.git}
-\item git clone \url{https://github.com/code-iai/iai_naive_kinematics_sim.git}
-\item git clone \url{https://github.com/code-iai/iai_hsr_sim.git}
-\item cd ..
-\item catkin build  
-\end{itemize}
+Now create a new workspace or open the workspace where you want to install the Manipulation part. Use the manipulation\_ws workspace, if you want to manage the workspaces like we do. Now run the following commands.	
+\begin{lstlisting}
+cd src
+git clone %*\url{https://github.com/SUTURO/suturo_manipulation.git}*)
+git clone \ %*\url{https://github.com/code-iai/iai_naive_kinematics_sim.git}*)
+git clone %*\url{https://github.com/code-iai/iai_hsr_sim.git}*)
+cd ..
+catkin build  
+\end{lstlisting}
 	
 	
 

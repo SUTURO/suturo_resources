@@ -1,0 +1,14 @@
+cd src
+mkdir knowledge_deps
+cd knowledge_deps
+wstool init
+wstool merge %*\href{https://raw.githubusercontent.com/SUTURO/suturo_knowledge/master/install.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SUTURO\ /suturo_knowledge/master/install.rosinstall}}*)
+wstool update
+rosdep install --ignore-src --from-paths dul/ knowrob/ \ ease_ontology/ genowl/ rosowl/ iai_common_msgs/
+cd ../..
+catkin build
+source devel/setup.bash
+cd src
+git clone %*\url{https://github.com/SUTURO/suturo_knowledge.git}*)
+cd ..
+catkin build

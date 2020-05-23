@@ -1,0 +1,82 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+	\begingroup
+
+	\renewcommand{\cleardoublepage}{}
+
+	\renewcommand{\clearpage}{}
+
+	\chapter{Conlusion}
+		\chapterauthor{Jan-Frederik Stock}
+		In the following chapter, the achievements and additions to previously available features and frameworks of the six subgroups of the SUTURO project will be described.
+		
+		\section{Planning}
+		The task of the planning group was to write plans for the two RoboCup tasks Clean Up and Storing Groceries which use the components of the other groups to reach the goals specified in these tasks.
+		
+		Planning successfully implemented interfaces for all other groups to be able to call them if needed. These interfaces include integrating and handling hard commands like "start" and "stop" into their plans, which are voice commands received by NLP, managing Manipulation actions like grasping placing, managing the robot position with the navigation component, and detecting/recognizing objects with the perception component.
+		
+		To sum up, the planning group accomplished writing functioning plans for both tasks. This includes failure handling and interfacing with other components.
+		
+		\section{Perception}
+		The perception group's objective was to use the available image data of the HSR to extract as much information as possible, for the other groups to use.
+				
+		Firstly the perception group made their \textit{RoboSherlock} pipeline available through action servers, so that it can easily be used by other parts of the system. Several annotators were added to perform new tasks, or improve upon previously available features. 
+		
+		Secondly, the \textit{SuturoShapeAnnotator} was implemented, which offers improved shape detection over the annotator included in \textit{RoboSherlock}. 
+		
+		Third, the \textit{clusterLabeling} package was added, including the \textit{clusterLabelingAnnotator}, which displays numbers for every cluster in a given frame, and the \textit{classificationEvaluatationAnnotator} which calculates the accuracy of a classifier on a given scene, based on labeling data created with the help of the \textit{classificationEvaluationAnnotator}. 
+		
+		Additionally, the \textit{rs\_hsrb\_perception} package provided by previous SUTURO projects were adapted to work with the newest version of \textit{RoboSherlock}. Also some changes were made to the package, including a change to the classification, and it was made possible to visualize the current pipeline.
+		
+		Another addition by the perception group was a classifier on 2D images, which uses Deep Learning. This could for example be used to recognize specific persons.
+		
+		Furthermore, a python pure embedding annotator was added, to be able to work on the images received by \textit{RoboSherlock} via a python script.
+		
+		Perception also worked on hand camera tracking, which could be used to correct the movement while grasping an object. A prototype implementation for this is available, but it could not be integrated due to version conflicts. 
+		
+		An essential part of perception was also to record images to train classifiers on, a problem the group worked on in this context was the recording of transparent objects.
+		
+		Another package implemented by the perception group was the \textit{classificationEvaluation} package, which can be used to save classification results in a markdown table and plot them.
+		
+		
+		
+		
+		\section{Knowledge}
+		The knowledge group's objective was to store information given to it by other groups, mainly Perception, in an organized manner and making specific, needed information available.
+		
+		Knowledge reworked the underlying ontologies on a fundamental level and introduced the new concept of surfaces, which are now part of the ontologies.
+		
+		Furthermore, they can handle more features of objects they get into their Knowledgebase, specifically, they can handle every feature they are given by Perception.
+		
+		They managed to reduce the amount of URDF-files for the entire project to one, making the URDF more easily manageable.  Also they introduced a new URDF xacro script to not only make it easier to adjust the associated YAML-file to new environments and scenes, but also make the resulting TF-Tree more intuitive.
+		
+		The surfaces are now generic and are organized according to their role and not their physics, which makes them more intuitively accessible. Knowledge is also able to handle any number of surfaces.
+		
+		Lastly, Knowledge improved on the placing of objects, which now adapts better to the environment.
+		 		
+		\section{NLP}
+		The NLP group's task was to both generate speech so that the robot can give a vocal output, and process speech as an input, enabling it to react to vocal commands.
+		
+		The NLP group managed to generate sentences, making the robot describe vocally what it's doing at a given moment.
+		
+		Also, spoken commands like "start" and "stop" can be understood, so that they can be used by planning to start and stop the robot at any time.
+		
+		\section{Manipulation}
+		The Manipulation group's assignment was to interact with the environment by picking up and placing objects. They were responsible for moving the joints of the robot to perform specific tasks.
+		
+		Manipulation provided several action servers to perform different tasks. Firstly they developed an action server that moves the robot into a position, from which the perception module can perceive objects. The second action server allows the user to move the gripper of the robot to a specific position. Furthermore, the provided an action server with which the user can grasp a specific object. The last action server can be used to place a previously grasped object.
+		
+		\section{Navigation}	  	
+		The Navigation group's objective was to navigate the robot from one point to another in the world, without hitting any obstacles.
+		
+		To achieve their task, the navigation group recorded maps of the robotics lab, which were then provided to the robot's navigation module. With this information, the robot can navigate through the lab without hitting obstacles.
+		
+		Furthermore, the navigation group developed a software that uses the robots laser scanner to detect possible objects standing on the ground and marks them as points of interest, which can then be further explored.
+
+		
+	\endgroup
+
+\end{document}
+
