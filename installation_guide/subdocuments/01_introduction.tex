@@ -49,7 +49,22 @@ source devel/setup.bash
 	The first workspace contains the \nameref{sec:Manipulation} part (without Navigation).\\
 	In the second workspace we installed the \nameref{sec:Planning} part.\\
 	Everything else can be installed in the third workspace.\\
-	\\
+	To create the workspaces we use, run:
+	\begin{lstlisting}
+source /opt/ros/kinetic/setup.bash
+mkdir -p manipulation_ws/src
+cd manipulation_ws/
+catkin build 
+cd ..
+mkdir -p planning_ws/src
+cd planning_ws/
+catkin build 
+cd ..
+mkdir -p suturo_ws/src
+cd suturo_ws/
+catkin build 
+\end{lstlisting}
+	
 	Before starting a part of our system we run 
 	\begin{lstlisting}
 source devel/setup.bash
