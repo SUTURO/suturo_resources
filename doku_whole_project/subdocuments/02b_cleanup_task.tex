@@ -13,7 +13,7 @@
 		\chapterauthor{~\\Torge Olliges,\\ Jan Schimpf, Jeremias Thun}
 		
 		\section{Goal}
-		The goal of the Clean Up task is like the name indicates to clean a room. In the RoboCup several objects get distributed through out the room. The objects can be placed on the floor, tables or other furniture. Each of these objects is clearly visible and not hidden behind something. The task of the HSR is now to find these objects and place them into an designated basket. There exist multiple target positions and the HSR has to decide by itself the correct one based on the object. Like the Storing Grocery task the time limit is 5 minutes.
+		The goal of the Clean Up task is like the name indicates to clean a room. In the RoboCup several objects get distributed throughout the room. The objects can be placed on the floor, tables, or other furniture. Each of these objects is visible and not hidden behind something. The task of the HSR is now to find these objects and place them into a designated basket. There exist multiple target positions and the HSR has to decide by itself the correct one based on the object. Like the Storing Grocery task the time limit is 5 minutes.
 
 	  	\section{Tasks}
 	  	The figure \ref{clean_up_seq_01} shows the procedure of Clean Up. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. As well as for the Grocery Storing task, there will be a description of the most important sequences below.
@@ -50,7 +50,7 @@
 	
 	% NLP
 	\begin{nlp}
-	Before the robot can actually start to perceive, the user will be informed by the computer voice, that the robot is now perceiving the table.
+	Before the robot can start to perceive, the user will be informed by the computer voice, that the robot is now perceiving the table.
 	\end{nlp}
 	
 	% Manipuilation: TakePoseAction
@@ -60,7 +60,7 @@
 	
 	% Perception: Percieve and return data
 	\begin{perception}
-	In this position the table will be scanned an Percpetion again generates all necessary information about the objects standing on the table.
+	In this position the table will be scanned and Perception again generates all necessary information about the objects standing on the table.
 	\end{perception}
 	
 	% Knowledge: Store Data
@@ -91,7 +91,7 @@
 	
 	%NLP Grasping object
 	\begin{nlp}
-	The computer voice of the robot is now informing everyone that the robot will now grasp an object. Right after that it also sayswhich object the robot will grasp based on the object id.
+	The computer voice of the robot is now informing everyone that the robot will now grasp an object. Right after that it also says which object the robot will grasp based on the object id.
 	\end{nlp}
 	
 	%grasp-object
@@ -122,7 +122,7 @@
 	\end{nlp}
 
 	\begin{knowledge}
-	To correctly place the object in the bucket, Knowledge just calculates some offsets to the middle of the bucket and completely ignores, whether there already are some objects in it or not. To Knowledge, the bucket surface is a black hole where an infinite number of objects can be placed in the exact same spot.
+	To correctly place the object in the bucket, Knowledge just calculates some offsets to the middle of the bucket and completely ignores, whether there already are some objects in it or not. To Knowledge, the bucket surface is a black hole where an infinite number of objects can be placed in the same spot.
 	\end{knowledge}
 
 	%place-object
@@ -134,7 +134,7 @@
 	 
 	%NLP placed the object
 	\begin{nlp}
-	This is where the robot informs everyone, that the object has been successfully places.
+	This is where the robot informs everyone, that the object has been successfully placed.
 	\end{nlp}
 
 	%Manipulation: Take pose
@@ -148,7 +148,7 @@
 	
 	\subsection{Point of interest search sequence}
 	\begin{navigation}
-	The object finder node publishes based on the data of the laser scanner in the foot of the robot a list of poses that may be an object. This list will from now on be called points of interests.
+	The object finder node publishes based on the data of the laser scanner in the foot of the robot a list of poses that may be an object. This list will from now on be called points of interest.
 	\end{navigation}
 	
     %NLP found an point of interest to search
@@ -185,14 +185,15 @@
 	\begin{planning}
 	Now the objects that were found are one by one grasped and placed in the basket in the same way, the objects standing on the table were handled.
 	
-	This continues until there are no known objects and no points of interests left anymore.
+	This continues until there are no known objects and no points of interest left anymore.
 	\end{planning}
     
 	\section{Conclusion}
-	The Clean Up task was still incomplete for the simulated robocup at the end of the second milestone and wasn't executed due to having various problems getting the robot to run in the challenge room, but was in a executable and working state for the third milestone demo and successfully completed the demo run. During this run it showed that the tasks grasping the objects of the table or from the floor, transporting the objects and placing them in the basket were achieved in the simulation.\\
-	Even with the run being successfully completed the plan has similar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are to small to be picked up by the laser scanner won't be found by the robot.\\
-	Overall the Clean Up task can be considered as an success as all the necessary tasks that are part of the Clean Up challenge can be completed. 
+	The Clean Up task was still incomplete for the simulated RoboCup at the end of the second milestone and wasn't executed due to having various problems getting the robot to run in the challenge room, but was in an executable and working state for the third milestone demo and completed the demo run. During this run, it showed that the tasks grasping the objects of the table or from the floor, transporting the objects and placing them in the basket were achieved in the simulation.\\
+	Even with the run being completed the plan has similar problems to the Grocery Storing task with the magnet sensors and there are still potential issues as the way items on the floor are currently searched for involves the laser scanner so items that are too small to be picked up by the laser scanner won't be found by the robot.\\
+	Overall the Clean Up task can be considered as a success as all the necessary tasks that are part of the Clean Up challenge can be completed. 
 	
 	\endgroup
 
 \end{document}
+

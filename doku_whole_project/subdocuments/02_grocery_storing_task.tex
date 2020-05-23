@@ -13,10 +13,10 @@
 	\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl, \\Evan Kapitzke, Jeremias Thun, Jan Neumann}
 
 	\section{Goal}
-	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects in the shelf. Furthermore it needs to grasp and place one object after the other. It also needs to navigate between the shelf and table. For additional points the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
+	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form, or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects on the shelf. Furthermore it needs to grasp and place one object after the other. It also needs to navigate between the shelf and the table. For additional points the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
 
 	\section{Tasks}
-	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in depth explanation of some of the challenges will be given. To make the written version more reader friendly, there is not every single call and answer mentioned, only the ones necessary to understand the sequence of this task.
+	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in-depth explanation of some of the challenges will be given. To make the written version more reader-friendly, there is not every single call and answer mentioned, only the ones necessary to understand the sequence of this task.
 	
 		\begin{figure}[H]
 			\centering
@@ -37,12 +37,12 @@
 
 	% Knowledge: set-tables-source 
 	\begin{knowledge}
-	According to the task only one table serves as the \texttt{source} for objects. In Knowledge it is allowed to set multiple \texttt{sources} for objects in order to allow greater compatibility and easier adaption to other tasks. For the current task at hand only the corresponding table is set as \texttt{source}. The same principle applies to the shelf which is set as \texttt{target} surface. Every surface e.g. tables, shelf's or the floor can be set as \texttt{source} or \texttt{target}.
+	According to the task only one table serves as the \texttt{source} for objects. In Knowledge it is allowed to set multiple \texttt{sources} for objects to allow greater compatibility and easier adaption to other tasks. For the current task at hand only the corresponding table is set as \texttt{source}. The same principle applies to the shelf which is set as \texttt{target} surface. Every surface e.g. tables, shelf's or the floor can be set as \texttt{source} or \texttt{target}.
 	\end{knowledge}
 	
 		% Manipulation: take pose action
 	\begin{manipulation}
-	The robot is set to the default pose to make sure it is in a neutral state. This is important in order to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are then forwarded to \textit{Giskard}.\end{manipulation}
+	The robot is set to the default pose to make sure it is in a neutral state. This is important to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are then forwarded to \textit{Giskard}.\end{manipulation}
 	
 	\subsection{Scan table sequence}
 	
@@ -65,12 +65,12 @@
 	% Manipuilation: TakePoseAction
 	\begin{manipulation}
 	Manipulation gets the task to put the robot into a pose to perceive an object depending on the height of the plane the object is on.
-    That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the cameras view.
+    That is necessary for Perception to get a good angle and distance to the object and to avoid having the robots arm block the camera's view.
     \end{manipulation}
 	
 	% Perception: Percieve and return data
 	\begin{perception}
-	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. As a result, Perception provides various data about the objects standing on the table, including their category (Pringles / Coke can / Apple / ...), their position and their dimensions. These results are then published by the \textit{perception\_actionserver} so planning can find them.\end{perception}
+	The HSR takes a picture of the scene it is currently looking at and processes it with RoboSherlock. Based on the requested region the input images are filtered. As a result, Perception provides various data about the objects standing on the table, including their category (Pringles / Coke can / Apple / ...), their position, and their dimensions. These results are then published by the \textit{perception\_actionserver} so planning can find them.\end{perception}
 	
 	% Planning confident check
 	\begin{planning}
@@ -79,13 +79,13 @@
 	
 	% Knowledge: Store Data
 	\begin{knowledge}
-	Knowledge verifies the data of the objects, that were perceived and are supposed to be stored. If the class of an object is unknown to Knowledge or if it could not have been perceived with a high enough confidence, it is set to the class \texttt{Other}, if the dimensions are too small to actually be an object, it is rejected and so on. If the data for the given object is valid, the object gets added to the Knowledge base. Should the objects stand close to one another, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
+	Knowledge verifies the data of the objects, that were perceived and are supposed to be stored. If the class of an object is unknown to Knowledge or if it could not have been perceived with a high enough confidence, it is set to the class \texttt{Other}, if the dimensions are too small to be an object, it is rejected and so on. If the data for the given object is valid, the object gets added to the Knowledge base. Should the objects stand close to one another, they get organized in a group. Groups are used to sort objects and can be used to determine if an object is hard to grasp.
 	\end{knowledge}
 	% NLP: Talk Request
 	
 	% Manipulation: Take pose
 	\begin{manipulation}
-	In order to grasp an object the HSR needs to look straight at the object with its base. Therefore the HSR needs to be in its default pose allowing safe movement.
+	To grasp an object the HSR needs to look straight at the object with its base. Therefore the HSR needs to be in its default pose allowing safe movement.
 	\end{manipulation}
 	% 2x NLP: Talk
 	
@@ -104,7 +104,7 @@
 	\label{grasp-object}
 	% Knowledge: next_object
 	\begin{knowledge}
-	Knowledge now determines which object should be grasped next, to place it in one of the shelves. This decision is purely based on the distance of the objects to the robot so that the nearest object standing on the table will be taken first. This is one of parts with a lot of ideas how it can be improved in the future, as will be discussed in section \ref{sec:nextObj}.
+	Knowledge now determines which object should be grasped next, to place it in one of the shelves. This decision is purely based on the distance of the objects to the robot so that the nearest object standing on the table will be taken first. This is one of the parts with a lot of ideas on how it can be improved in the future, as will be discussed in section \ref{sec:nextObj}.
 	\end{knowledge}
 	
 	% 2x NLP: Talk Request
@@ -114,7 +114,7 @@
 	
 	% Manipulation: GraspAction
 	\begin{manipulation}
-	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the course of the project it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional way point is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successfull the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
+	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the project it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional waypoint is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successful, the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
 	\end{manipulation}
 	
 	\begin{knowledge}
@@ -145,7 +145,7 @@
 	
 	% Perception: Percieve shelf
 	\begin{perception}
-	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in a matter that all the image parts containing different floors are simply cut off in order to perceive only objects in one specific level. The results are then published by the \textit{perception\_actionserver}.
+	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in a matter that all the image parts containing different floors are simply cut off to perceive only objects at one specific level. The results are then published by the \textit{perception\_actionserver}.
 	\end{perception}
 	
 	% Planning confident check
@@ -155,7 +155,7 @@
 	
 	% Knowledge: Store new Objects
 	\begin{knowledge}
-	Just like after perceiving the table, Knowledge looks into the data of the perceived objects, polishes them and stores them in the knowledge base.
+	Just like after perceiving the table, Knowledge looks into the data of the perceived objects, polishes them, and stores them in the knowledge base.
 	\end{knowledge}
 	
 	\subsection{Place sequence}
@@ -177,7 +177,7 @@
 	
 	% Manipulation: PlaceAction
 	\begin{manipulation}
-	The procedure of placing an object is very similar to the grasping process. Different modes are available but only the grasp from front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a way point is determined to allow smooth in and  out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backwards movement. Afterwards collision for the object gets enabled again. The actual movement planning and execution is done by \textit{Giskard}.   
+	The procedure for placing an object is very similar to the grasping process. Different modes are available but only the grasp from front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a waypoint is determined to allow smooth in and out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backward movement. Afterward collision for the object gets enabled again. The actual movement planning and execution are done by \textit{Giskard}.   
 	\end{manipulation}
 	
 	% NLP
@@ -202,17 +202,18 @@
 	
 	% Planning: Loop this while some items are left
 	\begin{planning}
-	Planning then loops this whole procedure from "Grasp Object" on, until either all objects are handled, the HSR can not find any other objects or the HSR is told via NLP commands to stop its current behavior.
+	Planning then loops this whole procedure from "Grasp Object" on, until either all objects are handled, the HSR can not find any other objects, or the HSR is told via NLP commands to stop its current behavior.
 	\end{planning}	
 	
 	\section{Conclusion}
 
-	The outcome of Storing Groceries can be declared as successful. It has been tested on multiple occasions; like the simulated RoboCup, the demonstrations of the second and the third milestone. 
-	Even though there have been minor setbacks like failing to grasp objects on the first try this lead to showcasing the failure handling capabilities.
-	There have also been problems which were caused by hardware issues like the movement of the robot which failed because of the magnet sensors or the problem of \textit{Giskard} avoiding collision with the shelf in the simulation which was seen in the third milestone demo.
-	These Problems do not implicate that the plan wasn't working it just had some low level problems and would have performed the tasks successfully otherwise.
-	Since this plan was not stable enough at the time we could still use the real robot, it is hard to say to what extend it would violate the 5 minutes rule. Probably one of the most important next steps would be to look into ways to make the whole process go faster.
+	The outcome of Storing Groceries can be declared as successful. It has been tested on multiple occasions; like the simulated RoboCup, the demonstrations of the second, and the third milestone. 
+	Even though there have been minor setbacks like failing to grasp objects on the first try this leads to showcasing the failure handling capabilities.
+	There have also been problems that were caused by hardware issues like the movement of the robot which failed because of the magnet sensors or the problem of \textit{Giskard} avoiding collision with the shelf in the simulation which was seen in the third milestone demo.
+	These Problems do not implicate that the plan wasn't working it just had some low-level problems and would have performed the tasks successfully otherwise.
+	Since this plan was not stable enough at the time we could still use the real robot, it is hard to say to what extent it would violate the 5 minutes rule. Probably one of the most important next steps would be to look into ways to make the whole process go faster.
 	
 	\endgroup
 	
 \end{document}
+
