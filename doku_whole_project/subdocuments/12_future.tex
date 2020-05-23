@@ -10,81 +10,70 @@
 
 	\chapter{Ideas and recommendations for the future}
 		
-		\section{In general}
-				\chapterauthor{}
-		This chapter is a conclusion about what decisions were or were not good and should or should not be done the same way in the future.
-		
-		\section{Specific features}
 		Here comes a list and an explanation of different features that would be nice to implement even though we didn't have the time to implement them ourselves in the end.
 		
 		% Planning:
-		\subsection{Planning: Place failure handling}
-		\chapterauthor{Torge Olliges}
-		Currently if the robot fails while placing an object it is not possible to recognize this failure properly and handle the situation. A possibility for future groups of the project would be to scan the designated goal position of the last placed object and check if the object is at that position. If the object would not be at that position the HSR could move away from the goal position and scan with a wider range in which it maybe would find the missing object to recover it and try placing again.
+		\section{Planning: Place failure handling}
+		\chapterauthor{~\\~\\~\\Torge Olliges}
+		Currently if the robot fails while placing an object it is not possible to recognize this failure properly and handle the situation. A possibility for future groups of the project would be to scan the designated goal position of the last-placed object and check if the object is at that position. If the object would not be at that position the HSR could move away from the goal position and scan with a wider range in which it maybe would find the missing object to recover it and try placing again.
 		
-		\subsection{Planning: Door opening}
-		\chapterauthor{Torge Olliges}
+		\section{Planning: Door opening}
+		\chapterauthor{~\\~\\Torge Olliges}
 		A plan which determines if and how a door has to be open can be implemented by future groups.
 		
-		\subsection{Planning: Automatic position determination for targets}
-		\chapterauthor{Tom-Eric Lehmkuhl}	
-		For new targets to be navigated to, a position should be determined automatically from which the robot can operate. On the one hand, this should reduce the effort to use the robot in a new environment and on the other hand, it should make working with several tables and shelves easier. It is important to determine from which position a table/shelf has to be approached and to check that nothing stands/lies in the way. In addition, the distance must be selected such that the robot can perceive, grip and place objects.
+		\section{Planning: Automatic position determination for targets}
+		\chapterauthor{~\\~\\Tom-Eric Lehmkuhl}	
+		For new targets to be navigated to, a position should be determined automatically from which the robot can operate. On the one hand, this should reduce the effort to use the robot in a new environment and on the other hand, it should make working with several tables and shelves easier. It is important to determine from which position a table/shelf has to be approached and to check that nothing stands/lies in the way. In addition, the distance must be selected such that the robot can perceive, grip, and place objects.	
 		
-		\vspace{0.4cm}
+		\section{Planning: Continue plan where it was stopped}
+		\chapterauthor{~\\~\\Tom-Eric Lehmkuhl}
+		If a plan is interrupted by the stop command of NLP, it should be possible to continue it with the continue command at the point where it was stopped. For this purpose, a macro has already been experimented with on the branch NLP-test. However, this has not yet worked. Alternatively, it would be easier to work with fluents and create several breakpoints. Then there would only be a few specific points where the robot could be stopped.
 		
-		\subsection{Planning: Continue plan where it was stopped}
-		\chapterauthor{Tom-Eric Lehmkuhl}
-		If a plan is interrupted by the stop command of NLP, it should be possible to continue it with the continue command at the point where it was stopped. For this purpose, a macro has already been experimented with on the branch nlp-test. However, this has not yet worked. Alternatively, it would be easier to work with fluents and create several breakpoints.Then there would only be a few specific points where the robot could be stop.
-		
-		\vspace{0.4cm}
-		
-		\subsection{Planning: NLP dynamic commands}
-		\chapterauthor{Tom-Eric Lehmkuhl}
+		\section{Planning: NLP dynamic commands}
+		\chapterauthor{~\\~\\~\\Tom-Eric Lehmkuhl}
 		Plans are required for all dynamic commands to be supported. The idea is that Knowledge provides a set of information, such as object, action, and location, which is used to start a corresponding plan. For example, from the values (\textit{pringles, grasping, table}), a plan to grasp the pringles from the table would be started.
 		
-		\vspace{0.4cm}
-		
 		% Perception:
-		\subsection{Perception: Compute grasp pose}
-		\chapterauthor{Evan Kapitzke}
+		\section{Perception: Compute grasp pose}
+		\chapterauthor{~\\~\\~\\Evan Kapitzke}
 		The estimation of the grasping pose could be done with \textit{RoboSherlock}. Based on the depth camera image we would calculate a few possible grasping points, which then could be used by Manipulation to optimize their grasping procedure. The depth camera images are only available while Perception processes them. The calculation should be implemented in an additional annotator and some modifications to the process manager.
 		
-		\subsection{Perception: Comparing classifiers}
-		\chapterauthor{Jan-Frederik Stock}
+		\section{Perception: Comparing classifiers}
+		\chapterauthor{~\\~\\~\\Jan-Frederik Stock}
 		With the \textit{clusterLabeling} package, it is now possible to quantify classification performance and thus compare different classifiers. To achieve a 					representative result, a couple of different scenes with different objects should be recorded, with the objects not overlapping. It is crucial to get a
 		good clustering for the scenes, so point cloud filtering should be used to achieve this. Now, the scenes have to be labeled, the more frames the better. 
 		When this is done, the different classifiers can be tested with the \textit{classificationEvaluationAnnotator}. It is very important to not change anything but 
 		the classifier in the pipeline, so the results do not get distorted.
 		
-		\subsection{Perception: HSR hand camera for feedback on object position}
-		\chapterauthor{Leonidas Paniago De Oliveira Neto}
+		\section{Perception: HSR hand camera for feedback on object position}
+		\chapterauthor{~\\~\\~\\Leonidas Paniago De Oliveira Neto}
 One of the problems we had with the HSR was that more so often he would grab wrong.
-To counter act the imprecision we wanted to use the HSR hand camera for some kind of feedback on the object position.
-Implemented is a python script using \textit{YOLO} (You only look once) algorithms that uses the webcam and output how far the found objects are from the screen middle.
-Further more there is a \textit{RoboSherlock} Annotator that implements \textit{YOLO} but due to version conflict with ROS the code is not full functional.
+To counteract the imprecision we wanted to use the HSR hand camera for some kind of feedback on the object position.
+Implemented is a python script using \textit{YOLO} (You only look once) algorithms that use the webcam and output how far the found objects are from the screen middle.
+Furthermore there is a \textit{RoboSherlock} Annotator that implements \textit{YOLO} but due to version conflict with ROS the code is not fully functional.
 The best way to proceed is to try another object detection algorithms from \textit{OpenCV} or maybe if the color is known to look for it in the picture.
-In my Opinion this should be a major focus for new groups in so far that the grasp problem is not resolved by any other means.
+In my opinion this should be a major focus for new groups so far that the grasping problem is not resolved by any other means.
 
 		% Knowledge:
-		\subsection{Knowledge: Continue optimizing the object goal pose}
-		\chapterauthor{Jeremias Thun}
-		The decision about where to put the object works for some scenarios very well but it can have some problems depending on the order in which the objects are grasped. One of the biggest problems is: As described in section \ref{sec:kn_pickup}, the objects  similar to one of the already placed objects are put into a list, which is then cut to only place those most similar to the reference object. If we were for example placing three bananas next to two apples where there only enough space for one more object, Knowledge would recognize that the bananas need to open a new group and cut the last two bananas out. But to keep it simple, we ignore those two bananas at the time - which leads to a situation in which Knowledge would place the first banana next to the two apples and only starting a new group for the bananas when it is looking for a place for the second and third banana.
+		\section{Knowledge: Continue optimizing the object goal pose}
+		\chapterauthor{~\\~\\Jeremias Thun}
+		The decision about where to put the object works for some scenarios very well but it can have some problems depending on the order in which the objects are grasped. One of the biggest problems is: As described in section \ref{sec:kn_pickup}, the objects similar to one of the already placed objects are put into a list, which is then cut to only place those most similar to the reference object. If we were for example placing three bananas next to two apples where there is only enough space for one more object, Knowledge would recognize that the bananas need to open a new group and cut the last two bananas out. But to keep it simple, we ignore those two bananas at the time - which leads to a situation in which Knowledge would place the first banana next to the two apples and only starting a new group for the bananas when it is looking for a place for the second and third banana.
 	  	
-	  	\subsection{Knowledge: Optimize next\_object/1}\label{sec:nextObj}
-	  	\chapterauthor{Jeremias Thun}
+	  	\section{Knowledge: Optimize next\_object/1}\label{sec:nextObj}
+	  	\chapterauthor{~\\~\\~\\Jeremias Thun}
 	  	The decision which object should be the next one to grasp is still very rudimentary. The responsible predicate \texttt{next\_object/1} in \texttt{pickup.pl} just looks for the nearest object right now (as described in section \ref{sec:kn_pickup}).\\
 	  	While that is a good start, it would be nice to mind some other criteria.
 	  	
-	  	Based on the new object placing strategy it would be pretty nice to weigh in which object fits the best to it's reference object. Especially when you expect to get more information during your run it can significantly improve the resulting order of the objects if the ones that will more likely be put next to their reference object would be taken earlier.
+	  	Based on the new object placing strategy it would be pretty nice to weigh in which object fits the best to its reference object. Especially when you expect to get more information during your run it can significantly improve the resulting order of the objects if the ones that will more likely be put next to their reference object would be taken earlier.
 	  	
-		On the other hand if the time is limited and your most important goal is to get at least some of the recognized objects in their final place (this is pretty much the RoboCup scenario), it can be a good idea to take those objects first, that perception was most confident about. This way, if you fail to place all the objects before the time runs out, you will have at least placed the ones you did with a higher confidence. This is a scenario, in which the idea to take the most similar objects first can be a good idea, too: That way, the few actually placed objects would be in an intuitively good order.
+		On the other hand, if the time is limited and your most important goal is to get at least some of the recognized objects in their final place (this is pretty much the RoboCup scenario), it can be a good idea to take those objects first, that perception was most confident about. This way, if you fail to place all the objects before the time runs out, you will have at least placed the ones you did with higher confidence. This is a scenario, in which the idea to take the most similar objects first can be a good idea, too: That way, the few actually placed objects would be in intuitively good order.
 		
 		If there are significant differences, you could also make some tests and see which objects are easier to grasp so you can take them first. But in our test series there were no significant differences in that matter. 
 		
-		With all these criteria the real challenge is to make them work with each other without having to use a machine learning algorithm. A nice approach could be for example, to first look for the distance to the robot, define a threshold within which the physical distance doesn't make a real difference, look for other objects with the same distance to the robot plus this threshold and sort them by one or two of the other criteria. 
+		With all these criteria the real challenge is to make them work with each other without having to use a machine-learning algorithm. A nice approach could be, for example, to first look for the distance to the robot, define a threshold within which the physical distance doesn't make a real difference, look for other objects with the same distance to the robot plus this threshold and sort them by one or two of the other criteria. 
 		
-		\subsection{Knowledge: Unit Tests}
-		\chapterauthor{Jeremias Thun}
+		\section{Knowledge: Unit Tests}
+		\chapterauthor{~\\~\\Jeremias Thun}
 		Knowledge is not that easy to test in an integrated system. To really test all it's potential, you would need all the other groups to have fully functional versions of their code and you will need quite some time to watch the robot move itself and the objects just to know if the nth object is placed correctly.\\
 		That is why especially Knowledge can really profit from some Unit Testing.
 		
@@ -94,13 +83,13 @@ In my Opinion this should be a major focus for new groups in so far that the gra
 
 		
 		% Manipulation
-		\subsection{Manipulation: Open Doors}
-		\chapterauthor{Jan Neumann}
+		\section{Manipulation: Open Doors}
+		\chapterauthor{~\\~\\Jan Neumann}
 		The RoboCup challenges reward bonus points when the robot is able to open doors by itself. To accomplish that task, constraints in \textit{Giskard} can be used. The idea is to have the following constraints:\\
 		One constraint maintains a set distance between the rotation axis(door hinges) and the point where the robot has grasped the door. That should result in a rotation on the xy plane in map around the rotation axis with radius = calculated distance.\\
-		One constraint maintains a constant height on the z axis in map.\\
-		To make sure that the orientation of the robots hand stays the same relative to the door, three constraints(x,y,z) make sure that one of the three axis in hand\_palm\_link points toward the doors rotation axis at all times, deriving from the method used in the Pointing constraint.\\
-		Finally two constraints represent the distance on the xy plane in map to a goal point to which the hand should move. This goal point is calculated by rotating the initial grasp point around the rotation axis by a given angle(usually 90 degrees).
+		One constraint maintains a constant height on the z-axis in map.\\
+		To make sure that the orientation of the robot's hand stays the same relative to the door, three constraints(x,y,z) make sure that one of the three axes in hand\_palm\_link points toward the doors rotation axis at all times, deriving from the method used in the Pointing constraint.\\
+		Finally two constraints represent the distance on the xy plane in the map to a goal point to which the hand should move. This goal point is calculated by rotating the initial grasp point around the rotation axis by a given angle(usually 90 degrees).
 		
 		% Navigation
 		
@@ -108,3 +97,4 @@ In my Opinion this should be a major focus for new groups in so far that the gra
 	\endgroup
 
 \end{document}
+

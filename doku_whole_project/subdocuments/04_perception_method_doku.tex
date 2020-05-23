@@ -35,7 +35,7 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
 	\item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
 \end{itemize}
 
-Each annotator contains changeable parameter that enable customization to the given tasks.
+Each annotator contains a changeable parameter that enables customization to the given tasks.
 A \textit{RoboSherlock} pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
 The following pictures are an example of the hsrb\_1ms pipeline output in exact order:  \\
 %Bild Hinzufügen 
@@ -103,7 +103,7 @@ The following pictures are an example of the hsrb\_1ms pipeline output in exact 
 \end{figure}
 
 			\subsection{Pipeline: hsrb\_planes} 
-This pipeline is used to detect a shelf door. We try to find a plane that is parallel to the cameras z-axis.
+This pipeline is used to detect a shelf door. We try to find a plane that is parallel to the z-axis of the camera.
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
 	\item ImagePreprocessor : Implements image filters  
@@ -127,20 +127,20 @@ Pipeline for storing camera images in MongoDB, all saved scenes can be replayed 
 Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. 
 
 			\subsection{ExtractObjectInfoServer}
-Receives a goal from ExtractObjectInfoClient and then SuturoProcessManager, checks for result and publishes it under perception\_actionserver/result. 
+Receives a goal from ExtractObjectInfoClient and then SuturoProcessManager, checks for results and publishes them under perception\_actionserver/result. 
 
 			\subsection{ExtractPlaneInfoClient}
 Call ExtractPlaneInfoServer and wait until the result arrives or the time out runs out. This client has no additional parameters.
 
 			\subsection{ExtractPlaneInfoServer}
-Receives a goal from ExtractPlaneInfoClient and pass on to SuturoProcessManager, checks for result and publishes it under perception\_actionserver\_plane/result.
+Receives a goal from ExtractPlaneInfoClient and pass on to SuturoProcessManager, checks for result and publishes it under \texttt{perception\_actionserver\_plane/result}.
 
 			\subsection{perception\_server}
-Launches the ExtractObjectInfoServer and ExtractPlaneInfoServer and has no other functionality.
+Launches the \texttt{ExtractObjectInfoServer} and \texttt{ExtractPlaneInfoServer} and has no other functionality.
 
 		\section{rs\_turn\_table}
 		\chapterauthor{Leonidas Paniago}
-rs\_turn\_table is package from the last Suturo group.There were no big changes to the core code, only small situational changes not implemented on the master. 
+rs\_turn\_table is a package from the last Suturo group. There were no big changes to the core code, only small situational changes not implemented on the master. 
 This package is mainly for image recording, all recorded images will then be used for object recognition.  
 			\subsection{Pipeline: estimate\_plane}
 \begin{itemize}
@@ -149,7 +149,7 @@ This package is mainly for image recording, all recorded images will then be use
 	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
 	\item PlaneAnnotator : Finds a plane and saves it to a file 
 \end{itemize}
-This Pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on PointCloudFilter by hand. It is desirable that only one plane is visible. 
+This Pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on PointCloudFilter by hand. Only one plane should be visible. 
 
 			\subsection{Pipeline: save\_images}
 \begin{itemize}
@@ -166,7 +166,7 @@ Uses the saved plane and takes periodic images from objects on the plane, if the
 \section{classificationEvaluation Package}
 \chapterauthor{Jan-Frederik Stock}
 
-The classificationEvaluation package is used to save and display the classificationresults of the perceptionpipeline. The results can be saved in a markdown table and/or be displayed as a scatterplot. It consists mainly of the rsClassificationEvaluator.py pythonscript. Here, the class ResultActionClient is implemented, which serves as an actionclient for the perception object info actionserver.\\
+The classificationEvaluation package is used to save and display the classificationresults of the perception pipeline. The results can be saved in a markdown table and/or be displayed as a scatterplot. It consists mainly of the rsClassificationEvaluator.py python script. Here, the class ResultActionClient is implemented, which serves as an action client for the perception object info actionserver.\\
 
 \subsection{The ResultActionClient class}
 The class provides the following methods:
@@ -180,24 +180,24 @@ This method is used to send a goal to the ExtractObjectInfoServer and thus trigg
 This method saves the actionresult, which is the classification, in a field of the class.
 
 \item saveToMd(self, algorithm)\\
-This method saves the collected results of the classification in a markdown table. If a markdown file with the name "evaluation.md" is found in the directory the script is executed in, the results are appended to it, otherwise the file is created.
+This method saves the collected results of the classification in a markdown table. If a markdown file with the name "evaluation.md" is found in the directory the script is executed in, the results are appended to it, otherwise, the file is created.
 
 \item plotResult(self)\\
 The method plots the collected results using the scatterplot function from matplotlib.
 \end{itemize}
 
 \subsection{Main method}
-The main method tries to create an instance of the resultActionClient class, does some i/o with the user, sets the parameters for the resultActionClass and then triggers the action. It also uses the provided methods to save the results to a markdown file and plot them.
+The main method tries to create an instance of the resultActionClient class, does some i/o with the user, sets the parameters for the resultActionClass, and then triggers the action. It also uses the provided methods to save the results to a markdown file and plot them.
 
 \section{Feature Extraction Tools}
  \chapterauthor{Jan-Frederik Stock}
-Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classifiy it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is Caffe, the trained network is the BVLC Reference Net. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
+Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classify it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is Caffe, the trained network is the BVLC Reference Net. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
 
 \subsection{make\_split\_from\_directory.sh} 
-This bash script can be used to create a split yaml-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the yaml-file will be created. It then creates the yaml-file using the names of the directories in which the images are stored as classnames.
+This bash script can be used to create a split YAML-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the YAML-file will be created. It then creates the YAML-file using the names of the directories in which the images are stored as class names.
 
 \subsection{make\_list\_from\_directory.sh}
-This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a splitfile but a list of the classnames. This is required by the classifing annotator and has to be pasted into the annotators yaml-file. The comma after the last classname in the list has to be removed manually.
+This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a split file but a list of the class names. This is required by the classifying annotator and has to be pasted into the annotators YAML-file. The comma after the last class name in the list has to be removed manually.
 
 \section{calculateConfidence in RSKNN.cpp}
 \chapterauthor{Jan-Frederik Stock}
@@ -207,7 +207,7 @@ In the RSKNN.cpp, implementing KNN-classification in the rs\_addons package, the
 double RSKNN::calculateConfidence(double classificationResult, cv::Mat neighborResponses)
 \end{lstlisting}
 
-It calculates the classification confidence for the KNN-classification by dividing the number of neighbours belonging to the result class, by the total number of visited neighbours. 
+It calculates the classification confidence for the KNN-classification by dividing the number of neighbors belonging to the result class, by the total number of visited neighbors. 
 
 \section{The clusterLabeling Package}
 \chapterauthor{Jan-Frederik Stock}
@@ -216,19 +216,19 @@ The clusterLabeling package is used to create labels for clusters in a scene. Th
 \subsection{Usage}
 
 \subsubsection{The clusterLabelingAnnotator}
-The clusterLabelingAnnotator is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. It is very important that you do not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
+The clusterLabelingAnnotator is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You mustn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
 
-To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the labelingAnnotator in the visualizer, which will display a number for every cluster. Now, you can note the class for every cluster in a labeling JSON-file, look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again an proceed labeling. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
+To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the labelingAnnotator in the visualizer, which will display a number for every cluster. Now, you can note the class for every cluster in a labeling JSON-file, look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again and proceed to label. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
 
 \subsubsection{classificationEvalutationAnnotator}
-The classifcationEvaluationAnntator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor yaml-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. 
+The classifcationEvaluationAnntator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor YAML-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. 
 
 \subsection{Documentation}
 \subsubsection{clusterLabelingAnnotator}
 \begin{lstlisting}
 TyErrorId processWithLock(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
-This is the main processing method of the annotator. It gets the detected clusters, draws a rectangle around their position, writes the number corresponding to their position in the clusters vector next to the rectangle and then displays the new picture in the viewer.
+This is the main processing method of the annotator. It gets the detected clusters, draws a rectangle around their position, writes the number corresponding to their position in the clusters vector next to the rectangle, and then displays the new picture in the viewer.
 
 
 \subsubsection{classificationEvaluationAnnotator}
@@ -236,7 +236,7 @@ This is the main processing method of the annotator. It gets the detected cluste
 TyErrorId initialize(AnnotatorContext \&ctx)
 \end{lstlisting}
 
-This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the yaml description and reads in the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class.
+This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the YAML description and reads the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class.
 
 \begin{lstlisting}
 TyErrorId process(CAS \&tcas, ResultSpecification const \&res_spec)
@@ -254,8 +254,8 @@ The \texttt{rs\_hsrb\_perception} package was created in the Suturo Master-proje
 \subsection{RegionAnnotator}
 \begin{itemize}
 \item TyErrorId process(tcas, res\_spec)\\
-Iterates through the clusters that are currently saved in the CAS and annotates the region in which they are present based on the cluster pose.
-This method only got changed in order to work with the RoboSherlock master.
+Iterates through the clusters that are currently saved in the CAS and annotates the region in which they are presently based on the cluster pose.
+This method only got changed to work with the \textit{RoboSherlock} master.
 \end{itemize}
 
 \subsection{SaveClusterCloudsAndImages}
@@ -271,12 +271,12 @@ Creates the ressource manager and instantiates the region vector.
 
 \item init(pipeline)\\
 Initializes the given pipeline (aggregate analysis engine YAML descriptor) and starts the visualizer.
-This method got changed in order to allow the visualization of the pipeline.
+This method got changed to allow the visualization of the pipeline.
 
 \item run(args, detectionData)\\
 Executes the initialized pipeline once with the given arguments and saves the result in detectionData.
 This method now checks for the region "robocup\_default" and disables the region filter to perceive objects that can not be found
-in a region. For example, a pringles can that is placed on the ground.
+in a region. For example, a Pringles can that is placed on the ground.
 
 \item has\_vertical\_plane()\\
 Returns true if the current CAS contains a vertical plane.
@@ -312,14 +312,14 @@ Combines the given parameters to an ObjectDetectionData message.
 
 			\section{rs\_Athene}
 			\chapterauthor{Leonidas Paniago De Oliveira Neto}
-Handcamera\_tracking is the github sub branch containing rs\_Athene and all following featured annotators. 
+Handcamera\_tracking is the GitHub sub-branch containing rs\_Athene and all following featured annotators. 
 None of them made it to the main branch because they were not finished or were not suitable for any current task.
 
 				\subsection{TwoDAnnotator}
-The TwoDAnnotator is responsible for shape recognition that should replace the old ShapeAnnotator by improving the accuracy, reducing processing time and expanding the usability. 
-Since the old annotator only process RGB-D images (color and dense depth images) which makes the head-camera the only usable camera for the task. The task also takes a very long time with less than desirable results.
-To fix this issues, the TwoDAnnotator use only RGB (color images) images, that makes the processing less demanding than there's fewer data to process. Furthermore all the HSR cameras are usable for shape recognition because each one are capable of outputing RGB images.
-The TwoDAnnotator works by : converting the RGB image to grayscale then smoothing the grayscale output for better results and afterwards running the canny-algorithm (openCV implementation). This provides all edges in the image which are used for the contour search, all found contours get examined for geometric shapes. 
+The TwoDAnnotator is responsible for shape recognition that should replace the old ShapeAnnotator by improving the accuracy, reducing processing time, and expanding the usability. 
+Since the old annotator only processes RGB-D images (color and dense depth images) which makes the head-camera the only usable camera for the task. The task also takes a very long time with less than desirable results.
+To fix these issues, the TwoDAnnotator uses only RGB (color images) images, which makes the processing less demanding than there's less data to process. Furthermore all the HSR cameras are usable for shape recognition because each one is capable of outputting RGB images.
+The TwoDAnnotator works by converting the RGB image to grayscale then smoothing the grayscale output for better results and afterward running the canny-algorithm (openCV implementation). This provides all edges in the image which are used for the contour search, all found contours get examined for geometric shapes. 
 During testing, it turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment. It did not bring any improvement over the old ShapeAnnotator and need further work to be usable. 
 In the end, this approach was no longer needed and was discarded. 
 
@@ -329,9 +329,9 @@ In the end, this approach was no longer needed and was discarded.
 \caption{TwoDAnnotator output example}
 \end{figure}
 				\subsection{YOLO}
-The YOLO annotator is as the name suggests, a implementation for the You Only Look Once network. It contains all needed code for the network to work.
-But due to ROS not supporting openCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the supported version of ROS gets updated. Then a similar approach was utilized in the GoogLeNet annotator which successed and the created YOLO prototype worked like intended.
-The approach is based on a python example and works by loading a pretrained network and feeding it with RGB images. The output consists of all found classes and their bounding boxes that are over a set threshold.
+The YOLO annotator is as the name suggests, an implementation for the You Only Look Once network. It contains all the needed code for the network to work.
+But due to ROS not supporting openCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the supported version of ROS gets updated. Then a similar approach was utilized in the GoogLeNet annotator which succeeded and the created YOLO prototype worked like intended.
+The approach is based on a python example and works by loading a pre-trained network and feeding it with RGB images. The output consists of all found classes and their bounding boxes that are over a set threshold.
 In addition to classification the annotator calculated the distance from each bounding box center to the image center. Then the main focus for this annotator was, getting feedback on the current object position in relation to the camera center.
 
 \begin{figure}[H]
@@ -341,14 +341,15 @@ In addition to classification the annotator calculated the distance from each bo
 \end{figure}
 
 				\subsection{GoogLeNet}
-GoogLeNet is an annotator wich a similar approach to the YOLO annotator. Both network uses RGB images with the advantage that GoogLeNet runs on an older openCV version compatible with ROS.
-The Robosherlock implementation uses the trained network to classify objects.The whole class structure is very similar to the YOLO annotator, than openCV uses the same framework for all supported network architectures.
-GoogLeNet differs from YOLO by only outputting the classes probability so there is no information about where the classes are in the image. This makes the annotator useless for tracking objects, but can still be used for classification by extracting the classes with high probability.
+GoogLeNet is an annotator wich a similar approach to the YOLO annotator. Both networks use RGB images with the advantage that GoogLeNet runs on an older OpenCV version compatible with ROS.
+The Robosherlock implementation uses the trained network to classify objects. The whole class structure is very similar to the YOLO annotator that OpenCV uses the same framework for all supported network architectures.
+GoogLeNet differs from YOLO by only outputting the class probability so there is no information about where the classes are in the image. This makes the annotator useless for tracking objects, but can still be used for classification by extracting the classes with high probability.
 Due to the output there is no visualization for this annotator.
 
 				\subsection{PythonEmbedding}
-PythonEmbedding annotator is an example of how a Python pure embedding (calling python script during runtime in c++) can be implemented in Robosherlock. The annotator converts the basic image container Mat to NumPy array. The script “Hello\_World.py” will then open and calls the only existing function “start”  using the image array as input, resulting in a new window with the send image.
-The current version of Robosherlock do not support Python annotators, Python pure embedding could represent an interim solution to this problem.
+PythonEmbedding annotator is an example of how a Python pure embedding (calling python script during runtime in c++) can be implemented in Robosherlock. The annotator converts the basic image container Mat to NumPy array. The script “Hello\_World.py” will then open and calls the only existing function “start”  using the image array as input, resulting in a new window with the sent image.
+The current version of Robosherlock does not support Python annotators, Python pure embedding could represent an interim solution to this problem.
 
 \endgroup
 \end{document}
+

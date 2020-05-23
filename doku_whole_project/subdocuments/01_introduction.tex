@@ -5,7 +5,7 @@
 	\label{introduction}
 	
 	This is the documentation for the SUTURO project of 2019/2020. The goal of the SUTURO project was the successful participation in the RoboCup@Home with the Human Service Robot. \\
-	The Human Service Robot also referred to as HSR is a robot designed by Toyota. Its purpose is to help humans in their daily life and perform simple tasks like cleaning, tidying up et cetera. The RoboCup is a yearly tournament dedicated to robots which have to accomplish specific tasks. Participants come from all over the world and are required to bring their own robot.
+	The Human Service Robot also referred to as HSR is a robot designed by Toyota. Its purpose is to help humans in their daily life and perform simple tasks like cleaning, tidying up et cetera. The RoboCup is a yearly tournament dedicated to robots that have to accomplish specific tasks. Participants come from all over the world and are required to bring their own robot.
 During the RoboCup, the HSR had to perform different tasks autonomously.
 This year the group chose to focus on the tasks “Storing Groceries“ and “Clean Up“, as found in the Rulebook of 2019, which can be found on the \href{http://www.robocupathome.org/rules}{RoboCup@Home website}. 
 	Storing Grocery entails that the HSR has to store groceries into a pantry shelf, sorting them into appropriate groups determined by the items that are already placed on all shelf floors. The items that the HSR has to store are located on a table in the same room as the pantry shelf.
@@ -15,40 +15,45 @@ Due to specific circumstances, which will be explained later in the documentatio
 	
 	\section{Challenges}
 	\label{challanges}
-	\chapterauthor{Torge Olliges, Marc Stelter, Jeremias Thun}
-	These tasks can be expressed as several challenges which the group had to face:
+	\chapterauthor{Torge Olliges, Marc Stelter,\\ Jeremias Thun}
+	Working with the robot, the human intuition about what should be done, what can be recognized, how should everything be ordered needs to be translated into a specific way to work with camera data, to automatically organize the data or to have stable movements that can always be repeated that way.\\
+	Thankfully, there already are a lot of public algorithms for image data processing, to organize these data, for specific ways to move a robot, or to make a computer able to talk and to listen. Based on a good set of data there are many ways to tell the robot how to store some groceries or how to clean up. But in robotics, it is not just about having a good code and some unit tests that can "prove" it, in robotics, there is work to do in the real world, there is work to do in a non-deterministic world. When the robot gets its data it doesn't just find a single object forever standing a someplace, it finds a whole room of noise data where the object is just one part of it. When the robot moves and calculates its current position, it is not just the math of some moving circles, there is a wheel moving that can have some abnormalities, that can be stuck for a moment or move over some bumps on the ground. And even when the robot finally has some valid data about its environment, these data change. Maybe an object fell over when the robot accidentally touched it while grasping another or maybe a human took one the objects.
+	
+	For this SUTURO group, this resulted in several challenges which had to be faced:
 	\begin{itemize}
-		\item Navigation: In order to get from one position to another, e.g. to a table, shelf object. The robot has to be able to perform these navigation actions autonomously.
-		\item Localization: The robot needs to know where it is located. The robot has to handle the problem that the pose estimation is not perfect in a real life scenario.
+		\item Navigation: To get from one position to another, e.g. to a table, shelf object. The robot has to be able to perform these navigation actions autonomously.
+		\item Localization: The robot needs to know where it is located. The robot has to handle the problem that the pose estimation is not perfect in a real-life scenario.
 		\item Detection: The robot has to be able to find objects without prior knowledge of their position.
 		\item Recognition: The robot has to be able to recognize objects, work with bad lighting conditions, and noise in images.
 		\item Classification: The robot has to be able to classify objects depending on their size, color, shape and type. The robot has to be able to handle unknown objects.
 		\item Sorting: When placing the objects, the robot has to sort them in a way, that humans can intuitively agree on.
-		\item Manipulation: The robot has to be able to place and grasp objects. The robot has to be able to move it's head.
+		\item Manipulation: The robot has to be able to place and grasp objects. The robot has to be able to move its head.
 		\item Communication: To communicate what the robot does and which decisions it makes, it needs to be able to have voice output.
-		\item Running stable: The robot has to be able to adapt to changes in it's environment.
+		\item Running stable: The robot has to be able to adapt to changes in its environment.
 		\item Decision making: Decisions have to be made according to the current environment, they can not be predefined. 
 		\item Timing: During the RoboCup each task has a limited time frame.
 	\end{itemize}
 
 	\section{Previous Work}
     \label{previous_work}
-    \chapterauthor{Torge Olliges, Paul Schnipper, Jan Neumann, Jan-Frederik Stock}
+    \chapterauthor{Torge Olliges, Paul Schnipper, \\Jan Neumann, Jan-Frederik Stock}
 		The SUTURO project is a reoccurring project hosted by the iai-office at the University of Bremen. Therefore, the current project could rely on previous work and insights in the form of legacy code and experience. Especially about the difficult conditions during the RoboCup and the challenges working with the HSR. In this section a brief overview of the legacy code will be given by every group:
 	\subsection{Planning}
-		Although most of the code was changed and tweaked to fit the new requirements the general structure of the previous group was used. Some of the Interfaces were reused for example the interface for the navigation client and the interface to \textit{RoboSherlock} (\ref{object-perceive}). Some of the mid level functionality like the designators (\ref{desig}) and process module code (\ref{pcm}) were reused and altered to fit the new means.
+		Although most of the code was changed and tweaked to fit the new requirements the general structure of the previous group was used. Some of the Interfaces were reused for example the interface for the navigation client and the interface to \textit{RoboSherlock} (\ref{object-perceive}). Some of the mid-level functionality like the designators (\ref{desig}) and process module code (\ref{pcm}) were reused and altered to fit the new means.
 	\subsection{Navigation}
 		The HSR already comes with its own navigation setup. This includes a static and dynamic obstacle map, in addition to a path planner. During previous runs of the project snap\_map\_icp has been introduced improving localization. The static map is created with hector\_slam.
 	\subsection{Manipulation}
-		Even though there was existing legacy code for Manipulation, the decision was made to abandon that code and start from scratch. This was recommended by the tutors because the \textit{Giskard} framework had evolved significantly since then. As a result Manipulation only used the \textit{Giskard} framework and no legacy code.
+		Even though there was an existing legacy code for Manipulation, the decision was made to abandon that code and start from scratch. This was recommended by the tutors because the \textit{Giskard} framework had evolved significantly since then. As a result Manipulation only used the \textit{Giskard} framework and no legacy code.
 	\subsection{Perception}
 	The perception group used two packages of previous SUTURO generations, namely the rs\_hsrb\_perception package and the rs\_turn\_table package.
 	
-	 The rs\_hsrb\_perception package contains a process manager for \textit{RoboSherlock} and modified annotators, to annotate regions. It was used by the perception group to be able to load multiple pipelines simulataneously and it was adapted to work with the newest \textit{RoboSherlock} version.
+	 The rs\_hsrb\_perception package contains a process manager for \textit{RoboSherlock} and modified annotators, to annotate regions. It was used by the perception group to be able to load multiple pipelines simultaneously and it was adapted to work with the newest \textit{RoboSherlock} version.
 	 
 	 The rs\_turn\_table package is a package which is used to record image data for classification. This was used by the perception group without any changes. 
 	\subsection{Knowledge}
-        The previous code base was designed around the storing groceries task. Because this years team decided to also try the Clean-Up task, the knowledge base had to be adapted. Even though basically every \textit{Prolog} predicate got changed, the code deciding the goal position of the object and the methodology of using ontologies to find similar objects, are still kept.
+        The previous codebase was designed around the storing groceries task. Because this year's team decided to also try the Clean-Up task, the knowledge base had to be adapted. Even though every \textit{Prolog} predicate got changed, the code deciding the goal position of the object and the methodology of using ontologies to find similar objects, are still kept.
     \subsection{NLP}
-        Previously no speech-to-text capabilities where part of the code base. Sentences were and still are hard coded in the planning and knowledge modules.
+        Previously no speech-to-text capabilities where part of the codebase. Sentences were and still are hardcoded in the planning and knowledge modules.
 \end{document}
+
+
