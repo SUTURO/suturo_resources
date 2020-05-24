@@ -1,5 +1,5 @@
 cd src
-git clone %*\url{https://github.com/SUTURO/suturo_manipulation.git}*)
+git clone\ %*\url{https://github.com/SUTURO/suturo_manipulation.git}*) -b\ gazebo
 git clone \ %*\url{https://github.com/code-iai/iai_naive_kinematics_sim.git}*)
 git clone %*\url{https://github.com/SUTURO/suturo_resources.git}*) 
 wstool init
