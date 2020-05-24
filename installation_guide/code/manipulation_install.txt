@@ -6,5 +6,6 @@ wstool init
 wstool merge %*\href{https://raw.githubusercontent.com/code-iai/iai_hsr_sim/master/rosinstall/catkin.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/code-iai\ /iai_hsr_sim/master/rosinstall/catkin.rosinstall}}*)
 wstool merge %*\href{https://raw.githubusercontent.com/SemRoCo/giskardpy/master/rosinstall/catkin.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SemRoCo\ /giskardpy/master/rosinstall/catkin.rosinstall}}*)
 wstool update
+rosdep install --from-path . --ignore-src -r
 cd ..
 catkin build  
