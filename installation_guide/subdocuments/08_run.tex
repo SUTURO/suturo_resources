@@ -1,6 +1,20 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 	\section{Run}
+	\subsection{Simulation}
+	To start the simulation source the workspace where you installed manipulation.
+	\subsubsection{Groceries}
+	Now run:
+	\begin{lstlisting}
+roslaunch suturo_manipulation_launch hsrb_megaweb2015_world.launch
+\end{lstlisting}
+
+	\subsubsection{Cleanup}
+	Now run:
+	\begin{lstlisting}
+roslaunch suturo_manipulation_launch cleanup.launch
+\end{lstlisting}
+
 	\subsection{Knowledge}
 	\subsubsection{Knowledge}
 	To start knowledge you need to run the following command.
@@ -87,6 +101,7 @@ roslaunch suturo_navigation_launch start_suturo_navigation.\launch
 	\begin{lstlisting}
 roslisp_repl
 \end{lstlisting}
+
 	\subsubsection{Groceries}
 	To start the grocery plan you now need to load the package \begin{verbatim}
 	grocery_demo
