@@ -1,7 +1,15 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 	\section{Known problems}
+
+	\subsection{Workspaces}
+	\subsubsection{Manipulation}
+	It is known, that some messages can cause problems between Manipulation and Knowledge. Because of this we installed Manipulation in a different workspace.
 	
+	\subsubsection{Planning}
+	If you want to install Planning in the same workspace as the other parts, the hsr\_description package should cause problems. To solve this issue we use a separate workspace for Planning.
+	
+
 	\subsection{Knowledge}
 	\subsubsection{Gradle}
 	Sometimes while building Knowledge, gradle does cause problems.
