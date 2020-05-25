@@ -15,7 +15,57 @@ sudo pip install pandas
 \end{lstlisting}
 	
 	\subsection{Manipulation}
-Now create a new workspace or open the workspace where you want to install the Manipulation part. Use the manipulation\_ws workspace, if you want to manage the workspaces like we do. Now run the following commands.	
+Now create a new workspace if you want to use different workspaces than we do. Use the manipulation\_ws workspace, if you want to manage the workspaces like we do.
+It is advised to install knowledge first, because you will need a knowrob package to build manipulation.
+If you have knowledge already installed, open the workspace, where you installed it and copy the knowrob\_objects folder from the directory src/knowledge\_deps/knowrob into the src folder of your manipulation workspace. If you dont want to install the knowledge part clone knowrob outside of the workspace using the following command
+\begin{lstlisting}
+git clone %*\url{https://github.com/JeremiasThun/knowrob.git}*)
+\end{lstlisting}
+and copy the knowrob\_objects folder from there.
+ Now open the knowrob\_objects folder and delete everything but  the msg folder and the files CMakeLists.txt, package.xml and README.md.
+Now open the file CMakeLists.txt with a text editor and delete everything except this:
+\begin{lstlisting}
+cmake_minimum_required(VERSION 2.8.3)
+project(knowrob_objects)
+
+find_package(catkin REQUIRED COMPONENTS geometry_msgs message_generation roscpp roslib)
+
+
+add_message_files(FILES ObjectState.msg ObjectStateArray.msg)
+generate_messages(DEPENDENCIES geometry_msgs)
+
+catkin_package(CATKIN_DEPENDS roscpp roslib)
+\end{lstlisting}
+In the next step open package.xml with your text editor and delete everything but this:
+\begin{lstlisting}
+<package>
+  <name>knowrob_objects</name>
+  <version>1.0.0</version>
+  <description>Reasoning about perceived objects.</description>
+  <maintainer email="danielb@cs.uni-bremen.de">Daniel Be%*ß*)ler</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/knowrob_objects</url>
+  <url type="bugtracker">https://github.com/knowrob/knowrob/issues</url>
+
+  <author>Moritz Tenorth</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  
+  <run_depend>message_runtime</run_depend>
+  <run_depend>roslib</run_depend>
+  <run_depend>roscpp</run_depend>
+
+</package>
+\end{lstlisting}
+
+Now run the following commands.	
 
 \begin{mdframed}[backgroundcolor=mygray, rightline=false]
 \lstinputlisting[frame={}]{code/manipulation_install.txt}
