@@ -13,7 +13,16 @@
 	
 	\subsection{Prerequisites}
 	
-	Because of different dependencies our system only runs on \textbf{Ubuntu 16.04}.\\
+	Because of different dependencies our system only runs on \textbf{Ubuntu 16.04 64-bit}.\\
+	To install dependencies we use pip. Run the following commands to install pip:
+	\begin{lstlisting}
+sudo apt install python-pip
+sudo apt install python3-venv python3-pip
+\end{lstlisting}
+Because sometimes problems with different python-scipy versions occure, we recommend to run:
+\begin{lstlisting}
+sudo pip install scipy==1.2.2
+\end{lstlisting}
 	The system runs with ROS-Kinetic. Instructions on how to install ROS can be found \href{http://wiki.ros.org/kinetic/Installation/Ubuntu}{here}. We recommend to install the Desktop-Full version.\\
 	Since we work with the HSR you have to setup your PC for that.
 	A description on how to do that can be found \href{https://docs.hsr.io/manual_en/howto/pc_install.html}{here}.\\
@@ -24,11 +33,7 @@
 	\begin{lstlisting}
 sudo apt-get install python-rosinstall python-wstool
 \end{lstlisting}
-	To install pip run
-	\begin{lstlisting}
-sudo apt install python-pip
-sudo apt install python3-venv python3-pip
-\end{lstlisting}
+
 If you had ROS already installed, it is advised to run:
 \begin{lstlisting}
 rosdep update
