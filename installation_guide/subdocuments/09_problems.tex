@@ -1,17 +1,48 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 	\section{Known problems}
+
+	\subsection{Workspaces}
+	\subsubsection{Manipulation}
+	It is known, that some messages can cause problems between Manipulation and Knowledge. Because of this we installed Manipulation in a different workspace.
 	
+	\subsubsection{Planning}
+	If you want to install Planning in the same workspace as the other parts, the hsr\_description package should cause problems. To solve this issue we use a separate workspace for Planning.
+	
+
 	\subsection{Knowledge}
 	\subsubsection{Gradle}
 	Sometimes while building Knowledge, gradle does cause problems.
 	If that happens it usually can be fixed by deleting the .gradle folder in your home folder.
 	
+	\subsubsection{Ros-mongodb\_log}
+	Running the 
+	\begin{lstlisting}
+rosdep install
+\end{lstlisting}
+command in a workspace with Knowledge can cause problems with the package ros-mongodb\_log. To solve this you can use the option -r of the 
+\begin{lstlisting}
+rosdep install
+\end{lstlisting}
+command.\\
+Should you encounter further problems it is possible, that you need to install the  python packages rrdtool and pymongo. You can install these by running
+\begin{lstlisting}
+sudo apt-get install python-rrdtool python-pymongo
+\end{lstlisting}
+
+	\subsection{NLP}
+	\subsubsection{Sling}
+	While installing sling, it is possible that an error occurs, that says the file requirements.txt is missing. In that case you can try downloading sling \href{https://pypi.org/project/sling/#files}{here}. After downloading it extract the files, open sling-0.1.0/sling.egg-info and copy the requires.txt file into sling-0.1.0. Rename requires.txt into requirements.txt and open the folder, where you extracted the files. Then run 
+	\begin{lstlisting}
+sudo -H pip install sling-0.1.0/
+sudo -H pip3 install simplenlg tinyrpc==0.9.4 zmq
+\end{lstlisting}
+	
 	\subsection{Manipulation}
 	\subsubsection{Python dependencies}
 	If you encounter problems, while installing the python packages you can try to update pip by running:
 	\begin{lstlisting}
-sudo -H pip install --upgrade pip
+sudo pip install --upgrade pip
 \end{lstlisting}	
 	
 \end{document}
