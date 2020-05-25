@@ -22,7 +22,7 @@
 			\item Planning: Decision making, execution of plans and error handling
 		\end{itemize}
 		
-		\section{Diagram}
+		\section{Basic Architecture}
 		
 		\begin{figure}[h]
 			\centering
@@ -31,8 +31,9 @@
 			\label{architecture}
 		\end{figure}
 		
-		\section{Description}
+
 			In the diagram \(\ref{architecture}\) the components each group was responsible for are visualized. The Perception component consists mainly of the \textit{SuturoProcessManager} module which implements a process manager to execute the \textit{RoboSherlock} pipeline. The \textit{RoboSherlock} pipeline then handles the classification and annotation. The results are collected and converted by the \textit{SuturoProcessManager}.  The Knowledge component consists of the Knowledge base, which is a wrapped information storage (database) for the HSR. It handles position data as well as some logic for goal position determination. The Manipulation component is responsible for gripper, head, body movement and grasp, place operations. For this Manipulation is using \textit{Giskard}. The Navigation component is only used for moving the HSR and for collision avoidance during movement and uses the basic movement interface of the HSR. The Planning component uses \textit{Cram} to implement multi layered plans for executing the tasks. It is split into different hierarchical levels; cleanup \ref{clean} and grocery \ref{grocery} being on the highest level (execution level). These packages contain plans which call functions from the mid level (common functions) \ref{comf}. The lowest level used for communication with other groups low level interfacing \ref{llif}.
+			
 			\begin{itemize}
 				\item{\textbf{Cram}} \\
 					 \textit{Cram} (Cognitive Robot Abstract Machine) is a software toolbox for the design, the implementation, and the deployment of cognition-enabled autonomous robots performing everyday manipulation activities.
@@ -47,6 +48,26 @@
 				\item{\textbf{Caffe}} \\
 					\textit{Caffe} is a deep learning framework made with expression, speed, and modularity in mind. It is developed by Berkeley AI Research (BAIR) and by community contributors.
 			\end{itemize}
+
+		\section{Interfaces (noch in arbeit)}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1.0\textwidth]{pictures/diagramms/rosgraph}
+			\caption{Interfaces}
+			\label{interfaces}
+		\end{figure}
+
+		In figure \ref{interfaces} the action servers and some other communication can be seen. As the main node is the \textit{planning\_node} which requests actions from other servers like the \textit{place\_server} it is involved in all out communication. The sequence in which these calls are made will be explained in detail in chapter \ref{grocery-sequence} Storing Groceries Task Overview and chapter \ref{cleanup-sequence} Clean Up Task Overview.
+
+		\subsection{Actionservers vs Topics}
+
+		For our interfaces shown in \ref{interfaces} we chose to mainly use actionservers becasue they provide a simple synchronized form of communication where we can perform a task and then evaluate possible reactions to the new circumstances. This would not have been possible if we mainly used listener/subscriber structures with topic communication because that model would only provide assynchron communication where we can not be sure if the message were received and what the outcome of the requested action was.
+
+		\subsection{Messages}
+
+
+		
 	  		 
 
 	\endgroup
