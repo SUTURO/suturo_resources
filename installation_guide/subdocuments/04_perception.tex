@@ -4,7 +4,16 @@
 \begin{document}
  \section{Perception}
  \subsection{Main perception packages}
- Create a new workspace or open the workspace where you want to install the perception part. If you are using the same workspaces we do, use the suturo\_ws workspace. Now run the following commands to download dependencies into your workspace.
+ Create a new workspace or open the workspace where you want to install the Perception part. If you are using the same workspaces we do, use the suturo\_ws workspace.
+
+ Now install the rs\_addons dependencies by running the following commands.
+ \begin{lstlisting}
+sudo add-apt-repository ppa:robosherlock/ppa
+sudo apt-get update
+sudo apt-get install rapidjson 
+\end{lstlisting} 
+ 
+  Then run the following commands to download dependencies and the Perception part into your workspace.
  
  \begin{lstlisting}
 cd src
@@ -12,6 +21,9 @@ git clone %*\url{https://github.com/SUTURO/suturo_perception.git}*)
 git clone %*\url{https://github.com/SUTURO/suturo_resources.git}*) 
 git clone %*\url{https://github.com/evankapi/rs_hsrb_perception.git}*) -\b suturo20
 git clone %*\url{https://github.com/RoboSherlock/robosherlock.git}*) --\recursive
+cd robosherlock
+git checkout eda6b38ecc6df7dbe9c12cb02af314729a66a9ef
+cd ..
 git clone %*\url{https://github.com/RoboSherlock/rs_resources.git}*)
 git clone %*\url{https://github.com/Jastock/rs_addons.git}*)
 rosdep install --from-path . --ignore-src -r 
@@ -19,12 +31,6 @@ cd ..
 catkin build
 \end{lstlisting}
  
- Then install the rs\_addons dependencies by running the following commands.
- \begin{lstlisting}
-sudo add-apt-repository ppa:robosherlock/ppa
-sudo apt-get update
-sudo apt-get install rapidjson 
-\end{lstlisting}
  
 \subsection{Caffe}
 To install Caffe, use the following commands.
