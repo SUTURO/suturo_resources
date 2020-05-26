@@ -15,6 +15,12 @@
 \chapterauthor{Jan-Frederik Stock}
 The task of the perception group was to use the available image data to gather as much information as possible about the perceived scene. In the following chapter the tools and software used and created by the perception group will be described. These include descriptions of the pipelines and annotators used in RoboSherlock, the image processing framework used by the perception group, as well as tools for classification.
 
+\section{RoboSherlock}
+		\chapterauthor{Jan-Frederik Stock}
+The main framework the perception group is working with is RoboSherlock \footnote{\url{http://www.robosherlock.org/}}. RoboSherlock is a software, that uses multiple expert systems called annotators on input image data. Each annotator performs a specific task, for example searching for objects in a given picture. All annotators write their results to a public data structure.\\
+		
+RoboSherlock works by executing all of these annotators in a predefined order. This order is called a pipeline. There can be pipelines for different purposes, in the perception groups case for detecting objects and detecting surfaces. Each pipeline can have different annotators. Thus, RoboSherlock can be customized to achieve many different image processing tasks.
+
 		\section{rs\_perception}
 		\chapterauthor{Leonidas Paniago}
 			\subsection{Pipeline: hsrb\_1ms}
