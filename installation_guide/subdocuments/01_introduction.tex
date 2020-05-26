@@ -14,16 +14,21 @@
 	\subsection{Prerequisites}
 	
 	Because of different dependencies our system only runs on \textbf{Ubuntu 16.04 64-bit}.\\
-	To install dependencies we use pip. Run the following commands to install pip:
+	If you dont already have git, install it using the following command:\\
+	\begin{lstlisting}
+sudo apt-get install git
+\end{lstlisting}
+	The system runs with ROS-Kinetic. Instructions on how to install ROS can be found \href{http://wiki.ros.org/kinetic/Installation/Ubuntu}{here}. We recommend to install the Desktop-Full version.\\
+	To install dependencies we use pip. Run the following commands to install pip:\\
 	\begin{lstlisting}
 sudo apt install python-pip
 sudo apt install python3-venv python3-pip
 \end{lstlisting}
-Because sometimes problems with different python-scipy versions occure, we recommend to run:
+Because sometimes problems with different python-scipy versions occure, we recommend to run:\\
 \begin{lstlisting}
 sudo pip install scipy==1.2.2
 \end{lstlisting}
-	The system runs with ROS-Kinetic. Instructions on how to install ROS can be found \href{http://wiki.ros.org/kinetic/Installation/Ubuntu}{here}. We recommend to install the Desktop-Full version.\\
+If you dont want to run this command now, run it when you install the python packages for giskard, that is needed by Manipulation.\\
 	Since we work with the HSR you have to setup your PC for that.
 	A description on how to do that can be found \href{https://docs.hsr.io/manual_en/howto/pc_install.html}{here}.\\
 	We furthermore use some tools for the installation. These need to be installed before you install our system.\\
