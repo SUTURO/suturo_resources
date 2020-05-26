@@ -6,6 +6,12 @@
 
 		\section{General}
 		The main changes and improvements upon the status presented at milestone 1 are the following: Perception now runs inside an actionserver, in contrast to 				plain robosherlock. Additionally, Caffe is now used for feature extraction, and KNN is used for the classification of detected objects. Also, image data of 		available objects was recorded, which was then used for classification purposes.
+		
+		\section{RoboSherlock}
+		\chapterauthor{Jan-Frederik Stock}
+		The main framework the perception group is working with is RoboSherlock \footnote{\url{http://www.robosherlock.org/}}. RoboSherlock is a software, that uses multiple expert systems called annotators on input image data. Each annotator performs a specific task, for example searching for objects in a given picture. All annotators write their results to a public data structure.\\
+		
+RoboSherlock works by executing all of these annotators in a predefined order. This order is called a pipeline. There can be pipelines for different purposes, in the perception groups case for detecting objects and detecting surfaces. Each pipeline can have different annotators. Thus, RoboSherlock can be customized to achieve many different image processing tasks.
 
 		\section{Actionserver and process manager}
 			\subsection{Interfaces}
