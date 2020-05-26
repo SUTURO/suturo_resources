@@ -23,90 +23,107 @@ RoboSherlock works by executing all of these annotators in a predefined order. T
 
 		\section{rs\_perception}
 		\chapterauthor{Leonidas Paniago}
+To further understand this chapter, the term pipeline needs to be defined. The term pipeline in the informatik often refers to sequential processing of information.
+In RoboSherlock, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
+Each task in the pipeline is called Annotator and it has a own purpose, here is a list of some tasks : 
+		\begin{itemize}
+			\item Annotation
+			\item Detection
+			\item Filter
+			\item Flowcontrol
+			\item Queryanswering
+			\item Recognition 
+			\item Segmentation
+			\item Tracking
+		\end{itemize}		
+The pipeline order is determined by the already processed information and the needed information for the next step.
+
 			\subsection{Pipeline: hsrb\_1ms}
 
-The main pipeline for detecting and identifying objects with RoboSherlock consists of the following annotators:  
+The main pipeline for detecting and identifying objects with RoboSherlock consists of the following annotators in order:  
 \begin{itemize}
 	\item CollectionReader : Takes care of the Camera  Input
 	\item ImagePreprocessor : Create missing Images and implement Image Filters  
+		\begin{figure}[H]
+   			 \centering
+    			\includegraphics[width=0.5\linewidth]{pictures/2d/ImagePreProcessor.png}
+   			 \caption{ImagePreprocessor}
+  		\end{figure}
 	\item SuturoRegionFilter : Remove all points that are not in the defined Regions 
+		\begin{figure}[H]
+   			 \centering
+    			\includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
+   			 \caption{SuturoRegionFilter}
+  		\end{figure}
 	\item NormalEstimator : Estimate Surface Normals in a PointCloud 
+		\begin{figure}[H]
+   			 \centering
+    			 \subfigure[NormalEstimator]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
+			 }%
+       			 \subfigure[NormalEstimator]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
+       			 }
+   			 \caption{NormalEstimator}
+  		\end{figure}
 	\item PlaneAnnotator : Search for Horizontal Planes in which the search location for Objects is set
+		\begin{figure}[H]
+   			 \centering
+    			 \subfigure[PlaneAnnotator]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
+        			 }%
+       			 \subfigure[PlaneAnnotator]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
+        			 }
+   			 \caption{PlaneAnnotator}
+  		\end{figure}
 	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
+		\begin{figure}[H]
+   			 \centering
+    			 \subfigure[PointCloudClusterExtractor]{%
+            		\includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
+        			}%
+        			\subfigure[PointCloudClusterExtractor]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
+        			}
+   			 \caption{PointCloudClusterExtractor}
+  		\end{figure}
 	\item ClusterColorHistogramCalculator : Calculate the individual color quantity in relation to all colors on the cluster   
+		\begin{figure}[H]
+   			 \centering
+    			\includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
+   			 \caption{ClusterColorHistogramCalculator}
+  		\end{figure}
 	\item Cluster3DGeometryAnnotator : Extracts basic attributes of cluster like initial pose, semantic size and 3D bounding box 
+		\begin{figure}[H]
+   			 \centering
+    			 \subfigure[Cluster3DGeometryAnnotator]{%
+            		\includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
+        			}%
+        			\subfigure[Cluster3DGeometryAnnotator]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
+        			}
+    			 
+   			 \caption{Cluster3DGeometryAnnotator}
+  		\end{figure}
 	\item SuturoShapeAnnotator : Detects the shape of the object (cylinder, sphere, box)
+		\begin{figure}[H]
+   			 \centering
+    			 \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
+   			 \caption{SuturoShapeAnnotator}
+  		\end{figure}
 	\item RegionAnnotator : Further restriction on which areas will be used based on defined Regions 
 	\item CaffeAnnotator : Deep learning method for Object recognition based on prerecorded Images 
 	\item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
+		\begin{figure}[H]
+   			 \centering
+    			 \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
+   			 \caption{KnnAnnotator}
+  		\end{figure}
 \end{itemize}
 
 Each annotator contains a changeable parameter that enables customization to the given tasks.
 A \textit{RoboSherlock} pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
-The following pictures are an example of the hsrb\_1ms pipeline output in exact order:  \\
-%Bild Hinzufügen 
-
-\begin{figure}[H]
-\centering
-%
-        \subfigure[ImagePreProcessor]{%
-            \includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
-        }%
-        \subfigure[SuturoRegionFilter]{%
-           \includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
-        }\\ %  ------- End of the first row ----------------------%
-        \subfigure[NormalEstimator]{%
-            \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
-        }%
-        \subfigure[NormalEstimator]{%
-           \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
-        }\\ %---End row----
-        \subfigure[PlaneAnnotator]{%
-            \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
-        }%
-        \subfigure[PlaneAnnotator]{%
-           \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
-        }
-\caption{hsrb\_1ms pipeline (1)}
-
-\end{figure}
-\newpage
-\begin{figure}[H]
-\centering
-        \subfigure[PointCloudClusterExtractor]{%
-            \includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
-        }%
-        \subfigure[PointCloudClusterExtractor]{%
-            \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
-        }\\%----------end row---------
-        \subfigure[ClusterColorHistogramAnnotator]{%
-            \includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
-        }%
-        \subfigure[Cluster3DGeometryAnnotator]{%
-          \includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
-        }\\ %  ------- End of the first row ----------------------%
-        \subfigure[Cluster3DGeometryAnnotator]{%
-            \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
-        }%
-         \subfigure[PrimitiveShapeAnnotator]{%
-           \includegraphics[width=0.5\textwidth]{pictures/2d/PrimitiveShapeAnnotator.png}
-        }%
-\caption{hsrb\_1ms pipeline (2)}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-	\subfigure[PrimitiveShapeAnnotator]{%
-            \includegraphics[width=0.5\textwidth]{pictures/pcl/PrimitiveShapeAnnotator.png}
-        }%  ------- End of the first row ----------------------%
-         \subfigure[SuturoShapeAnnotator]{%
-           \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
-        }\\%
-        \subfigure[KnnAnnotator]{%
-            \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
-        }%
-\caption{hsrb\_1ms pipeline (3)}
-\end{figure}
 
 			\subsection{Pipeline: hsrb\_planes} 
 This pipeline is used to detect a shelf door. We try to find a plane that is parallel to the z-axis of the camera.
@@ -129,20 +146,54 @@ Pipeline for storing camera images in MongoDB, all saved scenes can be replayed 
 
 		\section{actionserver}
 		\chapterauthor{Leonidas Paniago}
+The actionserver contains the server responsible for the pipeline execution they are based on the \href{http://wiki.ros.org/actionlib}{ROS Client-Server Interaction} and it works by providing three callable actions types:
+\begin{itemize}
+	\item Goal : A specific defined task 
+	\item Feedback : Information about the goal execution  
+	\item Result : The goal final result 
+\end{itemize}
+This approach facilitate the communication with perception by offering a clear interface.
+Each server provides the same actions with different results based on their functionality.
+The implemented clients are not needed for the HSR execution than knowledge has its own implementation, they are mainly used for testing and troubleshooting. 
+Both servers give the same message output \href{https://github.com/SUTURO/suturo_resources/blob/master/messages/suturo_perception_msgs/msg/ObjectDetectionData.msg}{ObjectDetectionData.msg} consisting of : 
+
+	\begin{itemize}
+	\item Class
+	\item Shape
+	\item Colour
+	\item Position
+	\item Height
+	\item Depth
+	\item Width
+	\item Orientation
+	\end{itemize}
+
 			\subsection{ExtractObjectInfoClient}
-Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. 
+Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. The client can be started by calling : \texttt{rosrun actionserver ExtractObjectInfoClient}
 
 			\subsection{ExtractObjectInfoServer}
-Receives a goal from ExtractObjectInfoClient and then SuturoProcessManager, checks for results and publishes them under perception\_actionserver/result. 
+Receives a goal from Client and pass on to SuturoProcessManager, checks for results and publishes them under \texttt{perception\_actionserver/result}. 
+			\begin{figure}[H]
+   			 \centering
+    			 \includegraphics[width=1\textwidth]{pictures/perception/suturo_ExtractObjectInfoServer.png}
+   			 \caption{ExtractObjectInfoServer}
+  			\end{figure}
 
 			\subsection{ExtractPlaneInfoClient}
 Call ExtractPlaneInfoServer and wait until the result arrives or the time out runs out. This client has no additional parameters.
+The client can be started by calling : \texttt{rosrun actionserver ExtractPlaneInfoClient}.
 
 			\subsection{ExtractPlaneInfoServer}
-Receives a goal from ExtractPlaneInfoClient and pass on to SuturoProcessManager, checks for result and publishes it under \texttt{perception\_actionserver\_plane/result}.
+Receives a goal from Client and pass on to SuturoProcessManager, checks for result and publishes it under \texttt{perception\_actionserver\_plane/result}.
+			\begin{figure}[H]
+   			 \centering
+    			 \includegraphics[width=1\textwidth]{pictures/perception/suturo_ExtractPlaneInfoServer.png}
+   			 \caption{ExtractPlaneInfoServer}
+  			\end{figure}
 
 			\subsection{perception\_server}
-Launches the \texttt{ExtractObjectInfoServer} and \texttt{ExtractPlaneInfoServer} and has no other functionality.
+perception\_server is the only way to launch \texttt{ExtractObjectInfoServer} and \texttt{ExtractPlaneInfoServer} they cannot be used separated. 
+It works by calling :\texttt{ roslaunch rs\_perception hsrb\_perception.launch} in the rs\_perception directory.
 
 		\section{rs\_turn\_table}
 		\chapterauthor{Leonidas Paniago}
