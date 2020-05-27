@@ -39,7 +39,7 @@
 			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
 			\item \textbf{grasp-handling ()} \\
 			This function is a subroutine for grasping objects with primitive failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
-			\item \textbf{grasp-with-failure-handling} \\
+			\item \textbf{grasp-with-failure-handling ()} \\
 			This function is a subroutine for grasping objects with more sophisticated failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
 			\item \textbf{place-handling ()}
 			This function is a subroutine for placing objects. It uses the functions from \nameref{manipulation}.
@@ -141,10 +141,11 @@
 	    	This function filters the objects contained in the given message detected by their confidence (class, shape, color), the default threshold value is 0.5
 	    \end{itemize}
 	    \subsection{safety-check.lisp}
-	    The plan is for the procedure in which the robot is inspected. 
+	    The plan is for the procedure in which the robot is inspected. The robot must pass through an entrance door once it has been opened. It must then drive through the room to the exit door. A person will step in the way to test the collision detection.  The robot must stop and then drive around the person or continue driving once the way is clear. The robot will also have to say a few sentences to test the voice output. \\
+			Since the robot is not yet able to detect whether a door is open, collision detection is also used here. The idea is that the robot can only reach the navigation target when the door is open. Until the target is reached, the navigation instruction is repeated in a loop.
 	    \begin{itemize}
 	    	\item \textbf{execute-safety-check ()} \\
-	    	Start the plan. The robot navigates through the entrance door as soon as it is open. For this the function move-hsr from \nameref{high-level} is used. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
+	    	Starts the plan. The robot navigates through the entrance door as soon as it is open. For this the function move-hsr from \nameref{high-level} is used. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
 	    	\item \textbf{check-goal-reached (nav-goal-pose-stamped)}\\
 	    	Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
 	    \end{itemize}
