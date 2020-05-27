@@ -27,7 +27,7 @@
 		\section{Grocery}
 		\label{grocery}
 		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
-		This package contains the main function for this task and some subroutines.
+		This package contains the main plan for Storing Groceries this entails the main functions and some subroutines which were introduced for modularisation. 
 		\subsection{execute-grocery.lisp}
 		This file contains the main function for this task and some subroutines.
 		\begin{itemize}
@@ -46,10 +46,10 @@
 		\end{itemize}
 		
 		\subsection{grocery-bw.lisp}
-		This file contains functions used in combination with the bulletworld simulation.
+		This file contains functions used in combination with the \textit{Bulletworld} simulation.
 		\begin{itemize}
 			\item \textbf{spawn-btr-objects (perception-msg)}
-			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the objects \textit{RoboSherlock} perceived.  
+			This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceived.  
 		\end{itemize}
 	  	
 	  	\section{Clean Up}
@@ -65,7 +65,7 @@
 			\item \textbf{transport ()} \\
             This function is a subroutine for transporting all objects after another found on the table to the bucket and drops these in there. For this the function grasp-handling is called.
 			\item \textbf{point-of-interest-search ()} \\
-			This function navigates to a point of interest and calls the functions from \nameref{object-perceive} to erceive it. 
+			This function navigates to a point of interest and calls the functions from \nameref{object-perceive} to perceive it. 
 			\item \textbf{point-of-interest-transport ()} \\
 			This function grasps objects found with point of interest search and drops them into the bucket. For this the function hsr-failure-handling-grasp is called.
 			\item \textbf{hsr-failure-handling-grasp ()} \\
@@ -76,10 +76,10 @@
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
-        This file contains functions used in combination with the bulletworld simulation.
+        This file contains functions used in combination with the \textit{Bulletworld} simulation.
 		\begin{itemize}
 			\item \textbf{spawn-btr-objects (perception-msg)}
-			This function spawns given objects as primitive objects in the bulletworld simulation at the corresponding position of the objects \textit{RoboSherlock} perceives as real.
+			This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceives as real.
 		\end{itemize}
 	  	
 	  	\section{Common functions}
@@ -92,14 +92,14 @@
 	    This file contains all high level plans.(high level plans are below execute level)
 	    \begin{itemize}
 		\item \textbf{try-movement-stampedList (stamped-list)} \\
-		Tries to move the robot to poses from a given list of stamped poses in the bulletworld if one succeeds it returns the succeeding pose 
+		Tries to move the robot to poses from a given list of stamped poses in the \textit{Bulletworld} if one succeeds it returns the succeeding pose 
 	    \item \textbf{move-hsr ()} \\
 	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
 	    \item \textbf{grasp-hsr (object-id grasp-pose)} \\
-	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to percieve again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
+	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
 	    It is also currently not in use in either of the plans.
 	    \item \textbf{place-hsr (object-id grasp-pose)} \\
-	    This function takes a object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordiantes from the we get from \nameref{Knowledge}
+	    This function takes a object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates from the we get from \nameref{Knowledge}
 	    \item \textbf{move-to-poi ()} \\
 	    This function lets the robot move to the next point of interest that should be investigated. 
 	    \item \textbf{move-to-poi-and-scan ()} \\
@@ -240,7 +240,7 @@
 			This function takes x,y,z coordinates and four quaternion values to move the gripper to that position. 
 		\end{itemize}
 		\subsection{knowledge-client.lisp}
-		The knowledge-client is an interface to knowledge, which is responsible for the request to KnowRob. For every request exists a function, which calls the prolog-query and returns the result. Implemented requests are:
+		The knowledge-client is an interface to knowledge, which is responsible for the request to \textit{KnowRob}. For every request exists a function, which calls the \textit{Prolog} query and returns the result. Implemented requests are:
 			\begin{itemize}
 			\label{knowledge-client}
 			  \item \textbf{with-safe-prolog ()} \\
@@ -258,7 +258,7 @@
 				\item \textbf{prolog-object-goal (object-name)} \\ Returns the goal surface for the given object.
 			  \item \textbf{prolog-object-goal-pose (object-name)} \\ Returns the goal pose for the given object.
 				\item \textbf{prolog-all-objects-in-shelf ()} \\ Returns all objects in the shelf.
-				\item \textbf{prolog-next-object ()} \\ Returns the next object to grasp choosen by knowledge.
+				\item \textbf{prolog-next-object ()} \\ Returns the next object to grasp chosen by Knowledge.
 		    \item \textbf{prolog-object-dimensions (object-name)} \\ Returns the dimension for the given object (depth, width, height).
 				\item \textbf{prolog-object-pose (object-name)} \\ Returns the pose of the given object as list.
 				\item \textbf{prolog-table-pose ()} \\ Returns the pose of the table as list (x, y, z).
@@ -269,7 +269,7 @@
 			\end{itemize} 
 		\subsection{knowledge-insertion-client.lisp}
 		\label{knowledge-insertion}
-		The client is used to insert objects recognized by perception into the knowledgebase. To do this, the message from perception is passed to the action server of knowledge, which is responsible for inserting the objects.
+		The client is used to insert objects recognized by perception into the knowledge base. To do this, the message from perception is passed to the action server of knowledge, which is responsible for inserting the objects.
 		\begin{itemize}
 		  \item \textbf{init-knowledge-action-client ()} \\
 		  This function initiates the connection to the store object info server from knowledge.
@@ -324,10 +324,16 @@
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
 		\label{object-perceive}
-		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.
+		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} object action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} object pipeline and returns objects which were found. The action is a \textit{ExtractObjectInfoAction} which consists of the objects and their parameters namely: position, class, size and color.
 		\begin{itemize}
 			\item \textbf{init-robosherlock-object-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} object action server.
+			This function initiates the connection to the \textit{RoboSherlock} object action server. It loops until the connection is established. It has a timout after which it stops to wait for a connection and shuts down the default value for this timeout is 30 seconds and can be set via the \texttt{*robosherlock-action-timeout*} parameter.
+			\begin{lstlisting}
+				(loop until 
+					(actionlib:wait-for-server 
+						*robosherlock-object-action-client*
+						*robosherlock-action-timeout*)
+			\end{lstlisting}
 			\item \textbf{get-robosherlock-client} \\
 			This function returns the \textit{RoboSherlock} action client.
 			\item \textbf{make-action-goal (in-regions in-visualize)} \\
@@ -336,7 +342,7 @@
 			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
 		\end{itemize}
 		\subsection{robosherlock-client-plane.lisp}
-		This file is responsible for the low level communication with the robosherlock pipeline which is responsible for planes e.g. doors.
+		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for planes e.g. doors. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} plane action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} plane pipeline and returns the door or plane of interest which was found. The message is a \textit{ExtractDoorInfoAction} which consists of the position and size of the planes.
 		\begin{itemize}
 			\item \textbf{init-robosherlock-plane-action-client} \\
 			This function initiates the connection to the \textit{RoboSherlock} plane action server.
