@@ -47,6 +47,70 @@ sudo -H pip3 install simplenlg tinyrpc==0.9.4 zmq
 	If you encounter problems, while installing the python packages you can try to update pip by running:\\
 	\begin{lstlisting}
 sudo pip install --upgrade pip
-\end{lstlisting}	
-	
+\end{lstlisting}
+
+	\subsubsection{Object\_state\_listener}	
+	Should you encounter the following error, while building the Manipulation package object\_state\_listener:
+	\begin{lstlisting}
+Could not find a package configuration file provided by "knowrob_objects"
+\end{lstlisting}
+you can fix it by executing the following steps.\\
+\\	
+
+If you dont have the Knowledge part installed and dont want to install it, clone KnowRob outside of the workspace using the following command:\\
+\begin{lstlisting}
+git clone %*\url{https://github.com/JeremiasThun/knowrob.git}*)
+\end{lstlisting}
+and copy the knowrob\_objects folder into the src folder of your Manipulation workspace.\\
+Otherwise you should install Knowledge first and open the workspace, where you installed it.\\
+Now you can copy the knowrob\_objects folder from the directory \\
+src/knowledge\_deps/knowrob into the src folder of your Manipulation workspace.\\
+\\
+ After that is done, open the knowrob\_objects folder in your Manipulation workspace and delete everything but the msg folder and the files CMakeLists.txt, package.xml and README.md.\\
+Open the file CMakeLists.txt with a text editor and delete everything except this:\\
+\begin{lstlisting}
+cmake_minimum_required(VERSION 2.8.3)
+project(knowrob_objects)
+
+find_package(catkin REQUIRED COMPONENTS geometry_msgs message_generation roscpp roslib)
+
+
+add_message_files(FILES ObjectState.msg ObjectStateArray.msg)
+generate_messages(DEPENDENCIES geometry_msgs)
+
+catkin_package(CATKIN_DEPENDS roscpp roslib)
+\end{lstlisting}
+In the next step open package.xml with your text editor and delete everything but this:\\
+\begin{lstlisting}
+<package>
+  <name>knowrob_objects</name>
+  <version>1.0.0</version>
+  <description>Reasoning about perceived objects.</description>
+  <maintainer email="danielb@cs.uni-bremen.de">Daniel Be%*ß*)ler</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/knowrob_objects</url>
+  <url type="bugtracker">https://github.com/knowrob/knowrob/issues</url>
+
+  <author>Moritz Tenorth</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  
+  <run_depend>message_runtime</run_depend>
+  <run_depend>roslib</run_depend>
+  <run_depend>roscpp</run_depend>
+
+</package>
+\end{lstlisting}
+This should fix the problem, so you can try to run
+\begin{lstlisting}
+catkin build
+\end{lstlisting}
+in your workspace again.
 \end{document}
