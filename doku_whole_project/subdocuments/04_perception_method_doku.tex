@@ -23,9 +23,9 @@ RoboSherlock works by executing all of these annotators in a predefined order. T
 
 		\section{rs\_perception}
 		\chapterauthor{Leonidas Paniago}
-To further understand this chapter, the term pipeline needs to be defined. The term pipeline in the informatik often refers to sequential processing of information.
+To further understand this chapter, the term pipeline needs to be further defined. The term pipeline in the informatics often refers to sequential processing of information.
 In RoboSherlock, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
-Each task in the pipeline is called Annotator and it has a own purpose, here is a list of some tasks : 
+Each task in the pipeline is called Annotator and it has an own purpose, here is a list of some tasks : 
 		\begin{itemize}
 			\item Annotation
 			\item Detection
@@ -37,6 +37,8 @@ Each task in the pipeline is called Annotator and it has a own purpose, here is 
 			\item Tracking
 		\end{itemize}		
 The pipeline order is determined by the already processed information and the needed information for the next step.
+Each annotator contains changeable parameter that enables customization to the given tasks.
+\href{https://github.com/SUTURO/suturo_perception/tree/master/rs_perception}{rs\_perception} includes all main pipelines. 
 
 			\subsection{Pipeline: hsrb\_1ms}
 
@@ -122,11 +124,10 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
   		\end{figure}
 \end{itemize}
 
-Each annotator contains a changeable parameter that enables customization to the given tasks.
-A \textit{RoboSherlock} pipeline works sequentially meaning any change to the order of the annotators can change the result. Some of the annotators are essential for the pipeline to work, like the CollectionReader or PlaneAnnotator, which must be executed before the other annotators. 
+
 
 			\subsection{Pipeline: hsrb\_planes} 
-This pipeline is used to detect a shelf door. We try to find a plane that is parallel to the z-axis of the camera.
+This pipeline is used to detect a shelf door. It is used to find a plane that is parallel to the z-axis of the camera.
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
 	\item ImagePreprocessor : Implements image filters  
@@ -146,13 +147,13 @@ Pipeline for storing camera images in MongoDB, all saved scenes can be replayed 
 
 		\section{actionserver}
 		\chapterauthor{Leonidas Paniago}
-The actionserver contains the server responsible for the pipeline execution they are based on the \href{http://wiki.ros.org/actionlib}{ROS Client-Server Interaction} and it works by providing three callable actions types:
+The \href{https://github.com/SUTURO/suturo_perception/tree/master/actionserver}{actionserver} contains the server responsible for the pipeline execution they are based on the \href{http://wiki.ros.org/actionlib}{ROS Client-Server Interaction} and it works by providing three callable actions types:
 \begin{itemize}
 	\item Goal : A specific defined task 
 	\item Feedback : Information about the goal execution  
 	\item Result : The goal final result 
 \end{itemize}
-This approach facilitate the communication with perception by offering a clear interface.
+This approach facilitates the communication with perception by offering a clear interface.
 Each server provides the same actions with different results based on their functionality.
 The implemented clients are not needed for the HSR execution than knowledge has its own implementation, they are mainly used for testing and troubleshooting. 
 Both servers give the same message output \href{https://github.com/SUTURO/suturo_resources/blob/master/messages/suturo_perception_msgs/msg/ObjectDetectionData.msg}{ObjectDetectionData.msg} consisting of : 
@@ -197,8 +198,12 @@ It works by calling :\texttt{ roslaunch rs\_perception hsrb\_perception.launch} 
 
 		\section{rs\_turn\_table}
 		\chapterauthor{Leonidas Paniago}
-rs\_turn\_table is a package from the last Suturo group. There were no big changes to the core code, only small situational changes not implemented on the master. 
+\href{https://github.com/Vanessa-rin/rs_turn_table}{rs\_turn\_table} is a package from the last Suturo group. There were no big changes to the core code, only small situational changes not implemented on the master. 
 This package is mainly for image recording, all recorded images will then be used for object recognition.  
+rs\_turn\_table heavily depends on Openni2 as driver for the kinect camera. HSR could be used for the image recording but in reality it turns out to be really impractical. 
+The kinect camera offers more flexibility and frees the robot for other groups. Openni2 installation was a major problem in the project due to a lack of documentation. For this purpose there is a 
+\href{https://github.com/SUTURO/suturo_perception/blob/Openni2/Openni2/Openni2_Install}{script} that will install all necessary dependencies and automatically enable depth\_registration in the Openni2 launch file. \\ Note: Openni2 did not work on Virtual machine with Ubuntu-16.04.6. The camera goes on but no output are sent to the camera topic. 
+
 			\subsection{Pipeline: estimate\_plane}
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
@@ -219,6 +224,30 @@ This Pipeline will save all visible planes, they are callable again. The best wa
 	\item SaveClusterCloudsAndImages : Save Information about the Cluster to a file 
 \end{itemize}
 Uses the saved plane and takes periodic images from objects on the plane, if there is more than one cluster visible the annotator will not trigger the saving process.
+
+		\begin{figure}[H]
+   			 \centering
+    			 \subfigure[Original]{%
+            		\includegraphics[width=0.5\textwidth]{pictures/perception/turn_table_2.png}
+        			}%
+        			\subfigure[Pointcloud representation]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/perception/turn_table_1.png}
+        			}
+   			 \caption{Turn table setup}
+			  \label{turnTableOriginal}
+  		\end{figure}
+In the pictures shown above the RGB texture and the pointcloud representation do not match fully. This occurs if the unregistered image topic is used for the pipeline. 
+
+		\begin{figure}[H]
+   			 \centering
+    			 \subfigure[RGB]{%
+            		\includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_4_crop.png}
+        			}%
+        			\subfigure[Pointcloud representation]{%
+           		 \includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_3_mask.png}
+        			}
+   			 \caption{save\_image output}
+  		\end{figure}
 
 \section{classificationEvaluation Package}
 \chapterauthor{Jan-Frederik Stock}
