@@ -268,53 +268,135 @@ It calculates the classification confidence for the KNN-classification by dividi
 
 \section{The clusterLabeling Package}
 \chapterauthor{Jan-Frederik Stock}
-This package fixes a fundamental problem: Before its existence it was not possible to compare the performance of classifiers objectively. A very common procedure in machine learning is the evaluation of an algorithm by splitting the available data into a test set and a training set. The available data contains a class label for every sample.\\
+\subsection{Motivation}
+The clusterLabeling package fixes a fundamental problem: Before its existence it was not possible to compare the performance of classifiers objectively. A user could only look at a given classification and decide if the algorithm was working good or bad overall, but not decide on a quantitative mesurement. The ability to do this is not just important to evaluate the perfomance of a single algorithm, but even more to compare the performance of different algorithms and select the best one for a specific use case.\\
 
-The algorithm is trained on the training set and the test set is held back to test the performance. This is done by introducing samples from the test set into the algorithm and then checking if the algorithm produces the correct label. By dividing the number of correctly classified samples by the total number of tested samples, the accuracy is calculated. This is a very common measure of classification performance and it is suitable for a multi class problem like this.\\
+A very common procedure to do this in machine learning is the evaluation of an algorithm by splitting the available data into a test set and a training set. The available data contains a class label for every sample. The algorithm is trained on the training set and the test set is held back to test the performance. This is done by introducing samples from the test set into the algorithm and then checking if the algorithm produces the correct label. By dividing the number of correctly classified samples by the total number of tested samples, the accuracy is calculated. This is a very common measure of classification performance and it is suitable for a multi class problem like this.\\
 
-The classification 
+In the particular case of the SUTURO project, it was not practical to split a test set from our training data, because we recorded the objects by taking pictures all around. Taking some of these pictures away for testing would mean testing the classification on perspectives that are not represented in the training data, leading to worse classification performance. Also, in the real life application on the robot, the classification has to work on different scenes than the setting of the recording, so it makes sense to test the classfication on similar, more realisitic scenes. The ability to do this is implemented in the clusterLabeling package. The user is able to test their classification algorithm on scenes recorded on the actual robot they are working with.  
 
 \subsection{Usage}
 
-\subsubsection{The clusterLabelingAnnotator}
-The clusterLabelingAnnotator is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You mustn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
+\subsubsection{The clusterLabeler}
+The clusterLabeler is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You mustn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
 
-To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the labelingAnnotator in the visualizer, which will display a number for every cluster.
-\begin{center}
-%Insert image
-  %\includegraphics[width=\linewidth]{boat.jpg}
-  %\caption{A boat.}
-  %\label{fig:boat1}
-\end{center}
+To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the clusterLabeler in the visualizer, which will display a number for every cluster. You can see an example of how this looks in figure \ref{fig:clusterLabeler visualization}.
+\begin{figure}
+  \includegraphics[width=\linewidth]{pictures/perception/cluster_numbering.png}
+  \caption{The visual output of the clusterLabeler.}
+  \label{fig:clusterLabeler visualization}
+\end{figure}
+
+\newpage
 
 
-Now, you can note the class for every cluster in a labeling JSON-file, look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again and proceed to label. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
+Now, you can note the class for every cluster in a labeling JSON-file, which has to look like figure \ref{fig:labeling file}. You can also have look at the file already present in the labeling directory in the custerLabeling package for the correct syntax. Now call the trigger service again and proceed to label. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The classificationEvaluationAnnotator will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the clusterLabeling package.
 
-\subsubsection{classificationEvalutationAnnotator}
-The classifcationEvaluationAnntator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor YAML-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. 
-
-\subsection{Documentation}
-\subsubsection{clusterLabelingAnnotator}
-\begin{lstlisting}
-TyErrorId processWithLock(CAS \&tcas, ResultSpecification const \&res_spec)
-\end{lstlisting}
-This is the main processing method of the annotator. It gets the detected clusters, draws a rectangle around their position, writes the number corresponding to their position in the clusters vector next to the rectangle, and then displays the new picture in the viewer.
+\begin{figure}
+  \includegraphics[width=\linewidth]{pictures/perception/labeling_file.png}
+  \caption{The JSON-file containing the labels.}
+  \label{fig:labeling file}
+\end{figure}
 
 
 \subsubsection{classificationEvaluationAnnotator}
+The classifcationEvaluationAnnotator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor YAML-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. This is shown in figure \ref{fig:classificationEvaluationAnnotator output}.
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{pictures/perception/accuracy.png}
+  \caption{The output of the classificationEvaluationAnnotator.}
+  \label{fig:classificationEvaluationAnnotator output}
+\end{figure}
+
+\subsection{Documentation}
+\subsubsection{clusterLabeler}
+\begin{lstlisting}
+TyErrorId processWithLock(CAS \&tcas, ResultSpecification const \&res_spec)
+\end{lstlisting}
+This is the main processing method of the annotator.\\
+
+Firstly, it gets the detected clusters from RoboSherlocks central data structure like this: \label{getting the detected clusters.}
+
+\begin{lstlisting}
+//Get the clusters in the image found by previous annotators
+std::vector<rs::ObjectHypothesis> clusters;
+scene.identifiables.filter(clusters);
+\end{lstlisting}
+
+It then iterates over the found clusters and draws a rectangle around every found cluster with a number next to it, corresponding to its position in the clusters vector. If the filtering settings are not changed for the pipeline, this order does not change.
+
+\begin{lstlisting}
+//set region of interest for the cluster
+rs::ImageROI cluster_roi = cluster->rois.get();
+//create Rectangle
+cv::Rect rectangle;
+rs::conversion::from(cluster_roi.roi.get(), rectangle);
+//Draw the numbering for the cluster
+drawCluster(current_image, rectangle, std::to_string((cluster - clusters.begin())));
+\end{lstlisting}
+
+\begin{lstlisting}
+static void drawCluster(cv::Mat input, cv::Rect rectangle, const std::string &label)
+\end{lstlisting}
+
+This is a helper function that creates the rectangle for the picture and inserts it into the matrix holding the picture of the scene, as well as the number:
+
+\begin{lstlisting}
+cv::putText(input, text, cv::Point(rectangle.x + rectangle.width, rectangle.y - offset - textSize.height), cv::FONT_HERSHEY_PLAIN, 1.5, CV_RGB(0, 0, 0), 2.0);
+\end{lstlisting}
+
+This will then be displayed in RoboSherlocks viewer.
+
+
+
+\subsubsection{classificationEvaluationAnnotator}
+The annotator class contains fields holding the path to the labeling file, a rapidjson document, which will later contain the object representation of the parsed JSON-file and fields used to calculate the accuracy.
+
 \begin{lstlisting}
 TyErrorId initialize(AnnotatorContext \&ctx)
 \end{lstlisting}
 
-This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the YAML description and reads the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class.
+This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the YAML description and reads the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class, like so:
+
+\begin{lstlisting}
+document.Parse(content.c_str());
+\end{lstlisting}
 
 \begin{lstlisting}
 TyErrorId process(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
 
-This method loops through the identified clusters in a frame and compares the classification with the corresponding labels in the JSON-file for the frame. It then calculates the accuracy based on the comparison.
+This is the main processing method of the annotator. It gets the identified clusters from the central RoboSherlock data structure like the clusterLabeler \ref{getting the detected clusters.}. It then checks, if the JSON-file has an entry for the current frame: 
 
+\begin{lstlisting}
+if (!document["clusterLabeling"][framecounter]["clusters"].Empty())
+\end{lstlisting}
 
+This allows for frames that have bad clustering to be skipped for the evaluation, as a good clustering is a prerequisite for the classification. If the JSON-file contains a labeling for the current frame, the method loops through the found clusters. In the loop, it first gets the classification from the algorithm under evaluation from RoboSherlocks central data strucutre:
+
+\begin{lstlisting}
+std::vector<rs::Classification> classResult;
+clusters[i].annotations.filter(classResult);
+\end{lstlisting}
+
+If this result is not empty, the method compares it to the label from the JSON-file:
+
+\begin{lstlisting}
+if (classResult[0].classname.get().compare(
+                          document["clusterLabeling"][framecounter]["clusters"][i]["label"].GetString()) == 0)
+\end{lstlisting}
+
+The classification result can be empty, if the classification algorithm filters out results not passing a certain confidence threshold. This is counted as an incorrect classification.\\
+
+If the classes match, the number of correctly classified samples is incremented, as well as the total number of samples. If not, just the total number of samples is incremented.\\
+
+After the loop, the accuracy at the current point of the calculation is calculated by dividing the number of correctly classified samples by the total number of samples:
+
+\begin{lstlisting}
+accuracy = ((float) correct_samples) / ((float) total_samples);
+\end{lstlisting}
+
+At the end, the framecounter is incremented and the calculation starts again for the next frame.
 
 \section{rs\_hsrb\_perception Package}
 \chapterauthor{Evan Kapitzke}
