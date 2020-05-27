@@ -15,9 +15,9 @@ sudo pip install pandas
 \end{lstlisting}
 	
 	\subsection{Manipulation}
-Now create a new workspace if you want to use different workspaces than we do. Use the manipulation\_ws workspace, if you want to manage the workspaces like we do.
-It is advised to install knowledge first, because you will need a knowrob package to build manipulation.
-If you have knowledge already installed, open the workspace, where you installed it and copy the knowrob\_objects folder from the directory src/knowledge\_deps/knowrob into the src folder of your manipulation workspace. If you dont want to install the knowledge part clone knowrob outside of the workspace using the following command\\
+Now create a new workspace or open the workspace where you want to install the Manipulation part. Use the manipulation\_ws workspace, if you want to manage the workspaces like we do.
+It is advised to install Knowledge first, because you will need a knowrob package to build Manipulation.
+If you have knowledge already installed, open the workspace, where you installed it and copy the knowrob\_objects folder from the directory src/knowledge\_deps/knowrob into the src folder of your Manipulation workspace. If you dont want to install the Knowledge part clone knowrob outside of the workspace using the following command\\
 \begin{lstlisting}
 git clone %*\url{https://github.com/JeremiasThun/knowrob.git}*)
 \end{lstlisting}
@@ -65,7 +65,7 @@ In the next step open package.xml with your text editor and delete everything bu
 </package>
 \end{lstlisting}
 
-Now run the following commands to install Manipulation and its dependencies.\\	
+Now run the following commands in your workspace to install Manipulation and its dependencies.\\	
 
 \begin{mdframed}[backgroundcolor=mygray, rightline=false]
 \lstinputlisting[frame={}]{code/manipulation_install.txt}

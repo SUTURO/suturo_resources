@@ -3,8 +3,17 @@
 
 \begin{document}
  \section{Perception}
- \subsection{Main perception packages}
- Create a new workspace or open the workspace where you want to install the perception part. If you are using the same workspaces we do, use the suturo\_ws workspace. Now run the following commands to download dependencies into your workspace.
+ \subsection{Main Perception packages}
+ Create a new workspace or open the workspace where you want to install the Perception part. If you are using the same workspaces we do, use the suturo\_ws workspace.
+
+ Now install the rs\_addons dependencies by running the following commands.
+ \begin{lstlisting}
+sudo add-apt-repository ppa:robosherlock/ppa
+sudo apt-get update
+sudo apt-get install rapidjson 
+\end{lstlisting} 
+ 
+  Then run the following commands to download dependencies and the Perception part into your workspace. If you want to install Caffe, it is important to run "catkin build" \textbf{after} Caffe was successfully installed.
  
  \begin{lstlisting}
 cd src
@@ -12,6 +21,9 @@ git clone %*\url{https://github.com/SUTURO/suturo_perception.git}*)
 git clone %*\url{https://github.com/SUTURO/suturo_resources.git}*) 
 git clone %*\url{https://github.com/evankapi/rs_hsrb_perception.git}*) -\b suturo20
 git clone %*\url{https://github.com/RoboSherlock/robosherlock.git}*) --\recursive
+cd robosherlock
+git checkout eda6b38ecc6df7dbe9c12cb02af314729a66a9ef
+cd ..
 git clone %*\url{https://github.com/RoboSherlock/rs_resources.git}*)
 git clone %*\url{https://github.com/Jastock/rs_addons.git}*)
 rosdep install --from-path . --ignore-src -r 
@@ -19,12 +31,6 @@ cd ..
 catkin build
 \end{lstlisting}
  
- Then install the rs\_addons dependencies by running the following commands.
- \begin{lstlisting}
-sudo add-apt-repository ppa:robosherlock/ppa
-sudo apt-get update
-sudo apt-get install rapidjson 
-\end{lstlisting}
  
 \subsection{Caffe}
 To install Caffe, use the following commands.
@@ -65,7 +71,6 @@ git clone %*\url{https://github.com/BVLC/caffe.git}*)
  make install
  make runtest
 \end{lstlisting}
- You should now have a functioning caffe installation.
 
 \newpage
  
@@ -88,7 +93,7 @@ If CUDA is not installed uncomment CPU\_ONLY := 1 to enable building for CPU onl
 Change "BLAS := atlas" to "BLAS := open"\\
 If any hdf5 related erros appear in the next step, add 
 \begin{lstlisting}
-/usr/lib/x86\_64-linux-gnu/hdf5/serial
+/usr/lib/x86_64-linux-gnu/hdf5/serial
 \end{lstlisting}
  to LIBRARY\_DIRS and
 \begin{lstlisting} 
@@ -105,5 +110,43 @@ make test
 make runtest  
 \end{lstlisting}
 
+\subsection{Further steps after downloading the packages, dependecies and installing Caffe}
+
+
+If all the tests are successfull, you can now build your workspace using
+\begin{lstlisting}
+catkin build
+\end{lstlisting}
+
+To be able to use Caffe, you now need to download a trained model file, or train your own network. To download the "bvlc\_reference\_caffenet", which was used in the SUTURO project, change to the "scripts" directory in your caffe directory. You can now download the trained model by executing
+
+\begin{lstlisting}
+./download\_model\_binary.py ../models/bvlc\_reference\_caffenet/
+\end{lstlisting}
+
+If you encounter the following problem while using your Caffe installation, you can fix it with the following commands:
+
+Problem:
+
+\begin{lstlisting}
+fatal error: caffe/proto/caffe.pb.h: No such file or directory
+\end{lstlisting}
+
+Fix, this must be executed in your caffe directory:
+
+
+\begin{lstlisting}
+protoc src/caffe/proto/caffe.proto --cpp_out=.
+mkdir include/caffe/proto
+mv src/caffe/proto/caffe.pb.h include/caffe/proto
+\end{lstlisting}
+
+
+
+For information on how to do feature extraction with Caffe see \ref{feature_extraction}, information on how to classify with the rs\_addons package and Caffe can be found at \ref{classifying}. 
+
+\subsection{Feature Extraction} \label{feature_extraction}
+
+\subsection{Classifying} \label{classifying}
  
 \end{document}
