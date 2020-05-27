@@ -20,7 +20,7 @@
 *.run.xml
 *.synctex(busy)
 *.synctex.gz
-*.pdf
+*main.pdf
 *.idx
 
 
