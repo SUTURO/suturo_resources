@@ -101,7 +101,7 @@
 	    \item \textbf{place-hsr (object-id grasp-pose)} \\
 	    This function takes a object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates from the we get from \nameref{Knowledge}
 	    \item \textbf{move-to-poi ()} \\
-	    This function lets the robot move to the next point of interest that should be investigated. 
+	    This function lets the robot move to the next point of interest that should be investigated. the function \textit{pose-with-distance-to-points} is used to calculate the point. the points of interest are received by navigation via the interface poi-client and the position to be approached is checked by the obstacle-map-subscriber interface if it is approachable.
 	    \item \textbf{move-to-poi-and-scan ()} \\
 	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
 	    \item \textbf{move-to-table (turn)} \\
@@ -127,12 +127,12 @@
 	    \subsection{navigation-functions.lisp}
 	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
 	    \begin{itemize}
-	    	\item \textbf{points-around-point} (distance point amountAlternatePositions turn) \\
-	    	This function returns a given number of positions with a given distance to a point. The positions are either rotated 90 degrees to the point, or point directly to the object.
+	    	\item \textbf{points-around-point (distance point amountAlternatePositions turn)} \\
+	    	This function returns a given number of positions (\textit{amountAlternatePositions}) with a given \textit{distance} to a \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the object (\textit{turn}).
 	    	\item \textbf{pose-with-distance-to-points (distance points amountAlternatePositions turn)} \\
-	    	This function navigates the robot with a given distance to a given point. The positions are either rotated 90 degrees to the point, or point directly to the object. It will only move to positions that are not in the obstacle map and are accessible in the simulator.
+	    	This function navigates the robot with a given \textit{distance} to a given \textit{point(s)}. The positions are either rotated 90 degrees to the point, or point directly to the object (\textit{turn}). It will only move to positions that are not in the obstacle map and are accessible in the simulator.
 	    	\item \textbf{point-in-polygon (listOfEdges point)} \\
-			This function checks if a point is inside the given polygon.
+			This function checks if a \textit{point} is inside the given polygon(\textit{listOfEdges}) .
 	    \end{itemize}
 	    \subsection{perception-functions.lisp}
 	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
