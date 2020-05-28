@@ -129,6 +129,42 @@ To be able to use Caffe, you now need to download a trained model file, or train
 For information on how to do feature extraction with Caffe see \ref{feature_extraction}, information on how to classify with the rs\_addons package and Caffe can be found at \ref{classifying}. 
 
 \subsection{Feature Extraction} \label{feature_extraction}
+\subsubsection{Setup}
+To set everything up for feature extraction with the BVLC Reference Caffenet, you have to perform the following steps:
+
+Copy the the bvlc\_reference\_caffenet.caffemodel modelfile from 
+\begin{lstlisting}
+your_caffe_directory}/models/bvlc_reference_caffenet
+\end{lstlisting}
+
+ to
+ 
+\begin{lstlisting}
+your_rs_resources_directory/caffe/models/bvlc_reference_caffenet
+\end{lstlisting}
+
+Copy the folders with your training data to 
+
+\begin{lstlisting}
+your_rs_resources_directory}/objects_dataset/object_data
+\end{lstlisting}
+As training data you could for example use images from the odu\_iai repository\footnote{\url{https://github.com/bbferka/odu_iai}}. As a minimal example you could take two directories out of the \linebreak odu\_iai/object/data/partial\_views directory.\\
+
+Now, use the bash scripts described in the \textit{Feature Extraction Tools} chapter of the SUTURO projects final report to generate a split file and a classlist file. This gives the feature extractor the information to map the extracted features of your images to their classes.
+After that, create a directory to hold your extracted features.
+
+\subsubsection{Extraction}
+Now you can just run in a terminal, with the workspace in which you installed the perception packages sourced:
+
+\begin{lstlisting}
+rosrun rs_addons featureExtractor -s your_split_file -f BVLC_REF -o your_extracted_features_directory
+\end{lstlisting}
+
+This will extract the features in your specified directory. If you want some information about the featureExtractor you can run
+
+\begin{lstlisting}
+rosrun rs_addons featureExtractor -h
+\end{lstlisting}
 
 \subsection{Classifying} \label{classifying}
  
