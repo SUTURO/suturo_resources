@@ -3,6 +3,7 @@
 	\section{Run}
 	\subsection{Simulation}
 	To start the simulation source the workspace where you installed Manipulation.
+	If you use the same workspaces we do, that is manipulation\_ws.
 	\subsubsection{Groceries}
 	Now run:\\
 	\begin{lstlisting}
@@ -16,6 +17,8 @@ roslaunch suturo_manipulation_launch cleanup.launch
 \end{lstlisting}
 
 	\subsection{Knowledge}
+	Remember to source the workspace where you installed Knowledge.
+	If you use the same workspaces we do, that is suturo\_ws.
 	\subsubsection{Knowledge}
 	To start Knowledge you need to run the following command.\\
 	\begin{lstlisting}
@@ -36,7 +39,8 @@ roslaunch suturo_spechparser hard_commands_only.launch
 \end{lstlisting}
 	
 	\subsection{Perception}
-
+	Remember to source the workspace, that contains Perception.
+	If you use the same workspaces we do, that is suturo\_ws.
 	To start Perception you first need to start the pipelines:\\
 	\begin{lstlisting}
 roscd rs_perception
@@ -92,6 +96,8 @@ perception_actionserver_plane/result
 	
 	\subsection{Manipulation}
 	\subsubsection{Manipulation}
+	Remember to source the workspace, that contains Manipulation.
+	If you use the same workspaces we do, that is manipulation\_ws.
 	To start the four Manipulation servers run the following command:\\
 	\begin{lstlisting}
 roslaunch suturo_manipulation_launch start_manipulation_server\s.launch
@@ -99,12 +105,16 @@ roslaunch suturo_manipulation_launch start_manipulation_server\s.launch
 	If the start succeded every server will return a message that it successfully started in the terminal.	
 	
 	\subsubsection{Navigation}
-	Run the following comman start navigation:\\
+	Remember to source the workspace, that contains Navigation.
+	If you use the same workspaces we do, that is suturo\_ws.
+	Run the following command to start navigation:\\
 	\begin{lstlisting}
 roslaunch suturo_navigation_launch start_suturo_navigation.\launch
 \end{lstlisting}
 	
 	\subsection{Planning}
+	Remember to source the workspace, that contains Planning.
+	If you use the same workspaces we do, that is planning\_ws.
 	Before you start Planning the simulation environment, Knowledge, Perception and Manipulation must be launched.\\
 	The first step to launching Planning is the following command.\\
 	\begin{lstlisting}
