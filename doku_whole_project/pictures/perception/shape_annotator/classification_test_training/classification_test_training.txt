@@ -1,0 +1,1216 @@
+[32m[DEBUG] [1590676412.794450901]: [34mSWIPLInterface.cpp[0m([36m351[0m)[[33massertQueryLanguage[0m] [0mAssertion successfull: assert(rs_type_for_predicate(shape,'http://knowrob.org/kb/rs_components.owl#RsAnnotationShape'))[0m[0m
+[32m[DEBUG] [1590676412.795571289]: [34mSWIPLInterface.cpp[0m([36m94[0m)[[33mprintQueryKeys[0m] [0mshape http://knowrob.org/kb/rs_components.owl#RsAnnotationShape[0m[0m
+[32m[DEBUG] [1590676413.330129674]: [34mVisualizable.cpp[0m([36m7[0m)[[33mVisualizable[0m] [0mAdded: PrimitiveShapeAnnotator[0m[0m
+[0m[ INFO] [1590676413.330162432]: [32mPrimitiveShapeAnnotator.cpp[0m([36m67[0m)[[33minitialize[0m] [0minitialize[0m[0m
+[32m[DEBUG] [1590676413.388116441]: [34mVisualizable.cpp[0m([36m7[0m)[[33mVisualizable[0m] [0mAdded: SuturoShapeAnnotator[0m[0m
+[0m[ INFO] [1590676413.388167560]: [32mSuturoShapeAnnotator.cpp[0m([36m198[0m)[[33minitialize[0m] [0minitialize[0m[0m
+[32m[DEBUG] [1590676413.402174149]: [34mKnowledgeEngine.h[0m([36m169[0m)[[33massertAnnotators[0m] [0m'http://knowrob.org/kb/rs_components.owl#PrimitiveShapeAnnotator_XZOETYSQ'[0m[0m
+[32m[DEBUG] [1590676413.402612707]: [34mKnowledgeEngine.h[0m([36m236[0m)[[33massertAnnotators[0m] [0mrs.annotation.Shape:RsAnnotationShape[0m[0m
+[32m[DEBUG] [1590676413.402763119]: [34mSWIPLInterface.cpp[0m([36m381[0m)[[33massertOutputTypeRestriction[0m] [0mQuery: rs_query_reasoning:set_annotator_output_type_domain('http://knowrob.org/kb/rs_components.owl#PrimitiveShapeAnnotator_XZOETYSQ',['http://knowrob.org/kb/rs_components.owl#Box','http://knowrob.org/kb/rs_components.owl#Round','http://knowrob.org/kb/rs_components.owl#Flat'], 'http://knowrob.org/kb/rs_components.owl#RsAnnotationShape').[0m[0m
+[0m[ INFO] [1590676414.036115833]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676414.059693359]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676414.597219043]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 48 data point[0m[0m
+[32m[DEBUG] [1590676414.597243299]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 48[0m[0m
+[32m[DEBUG] [1590676414.597251466]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 39[0m[0m
+[32m[DEBUG] [1590676414.787746857]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 222 data point[0m[0m
+[32m[DEBUG] [1590676414.787770964]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 202[0m[0m
+[32m[DEBUG] [1590676414.787779343]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 133[0m[0m
+[0m[ INFO] [1590676414.787817135]: [32mPrimitiveShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mCircle Model Coefficients:[0m[0m
+[0m[ INFO] [1590676414.787839038]: [32mPrimitiveShapeAnnotator.cpp[0m([36m241[0m)[[33mprocessWithLock[0m] [0mx= -0.131385 y= 0.227237 z= 0.227237 R= 0.0333514[0m[0m
+[32m[DEBUG] [1590676414.918755077]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 39 data point[0m[0m
+[32m[DEBUG] [1590676414.918783324]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 39[0m[0m
+[32m[DEBUG] [1590676414.918792004]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 33[0m[0m
+[32m[DEBUG] [1590676414.942791747]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 114 data point[0m[0m
+[32m[DEBUG] [1590676414.942839800]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 73[0m[0m
+[32m[DEBUG] [1590676414.942850277]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 84[0m[0m
+[0m[ INFO] [1590676414.946110171]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m909.912 ms.[0m
+[0m[ INFO] [1590676414.946269723]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676414.963055501]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676414.963103767]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676414.964561238]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676414.964584657]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 279[0m[0m
+[0m[ INFO] [1590676414.967680770]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676414.967727663]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 108[0m[0m
+[0m[ INFO] [1590676414.968661223]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676414.968710376]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 536[0m[0m
+[0m[ INFO] [1590676414.971104760]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676414.971143171]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 401[0m[0m
+[0m[ INFO] [1590676414.971337716]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.526938)[0m[0m
+[0m[ INFO] [1590676414.972456269]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676414.972500044]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 894[0m[0m
+[0m[ INFO] [1590676414.973057624]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676414.973080615]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2331[0m[0m
+[0m[ INFO] [1590676414.975977968]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676414.976013576]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 816[0m[0m
+[0m[ INFO] [1590676414.976120255]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.691415)[0m[0m
+[0m[ INFO] [1590676414.976818306]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676414.976837506]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 713[0m[0m
+[0m[ INFO] [1590676414.983954654]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676414.983987601]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1263[0m[0m
+[0m[ INFO] [1590676414.985723327]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676414.985742717]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3716[0m[0m
+[0m[ INFO] [1590676414.999677017]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676414.999708488]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1030[0m[0m
+[0m[ INFO] [1590676414.999849967]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.554921)[0m[0m
+[0m[ INFO] [1590676415.003936468]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676415.004052047]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676415.004359499]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.814198)[0m[0m
+[0m[ INFO] [1590676415.004488470]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 58.1919 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676415.350921381]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676415.371367787]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676415.905573025]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 45 data point[0m[0m
+[32m[DEBUG] [1590676415.905611928]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 42[0m[0m
+[32m[DEBUG] [1590676415.905620925]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 38[0m[0m
+[32m[DEBUG] [1590676416.069261423]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 56 data point[0m[0m
+[32m[DEBUG] [1590676416.069285286]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 44[0m[0m
+[32m[DEBUG] [1590676416.069293373]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 41[0m[0m
+[32m[DEBUG] [1590676416.200255453]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 41 data point[0m[0m
+[32m[DEBUG] [1590676416.200279605]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 40[0m[0m
+[32m[DEBUG] [1590676416.200287908]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 32[0m[0m
+[32m[DEBUG] [1590676416.219323335]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 108 data point[0m[0m
+[32m[DEBUG] [1590676416.219347300]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 84[0m[0m
+[32m[DEBUG] [1590676416.219355861]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 85[0m[0m
+[0m[ INFO] [1590676416.222495720]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m871.562 ms.[0m
+[0m[ INFO] [1590676416.222540757]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676416.241222898]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676416.241280788]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676416.246891606]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676416.246957345]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 513[0m[0m
+[0m[ INFO] [1590676416.247158002]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676416.247181935]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 219[0m[0m
+[0m[ INFO] [1590676416.249609442]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676416.249653161]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 657[0m[0m
+[0m[ INFO] [1590676416.250747848]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676416.250792802]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 877[0m[0m
+[0m[ INFO] [1590676416.251087107]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676416.251107801]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 58[0m[0m
+[0m[ INFO] [1590676416.253388455]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676416.253410044]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2212[0m[0m
+[0m[ INFO] [1590676416.253810736]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676416.253850618]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1168[0m[0m
+[0m[ INFO] [1590676416.254145880]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676416.254184774]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 777[0m[0m
+[0m[ INFO] [1590676416.254332136]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.701039)[0m[0m
+[0m[ INFO] [1590676416.257241915]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676416.257265258]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 325[0m[0m
+[0m[ INFO] [1590676416.257364932]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.487256)[0m[0m
+[0m[ INFO] [1590676416.259175999]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676416.259193296]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 980[0m[0m
+[0m[ INFO] [1590676416.259339386]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.641054)[0m[0m
+[0m[ INFO] [1590676416.265162927]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676416.265175966]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3684[0m[0m
+[0m[ INFO] [1590676416.279307252]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676416.279332813]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676416.279497623]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.816851)[0m[0m
+[0m[ INFO] [1590676416.279601291]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 57.0365 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676416.611687330]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676416.630966255]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676417.069905758]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 157 data point[0m[0m
+[32m[DEBUG] [1590676417.069935307]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 157[0m[0m
+[32m[DEBUG] [1590676417.069944665]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 121[0m[0m
+[32m[DEBUG] [1590676417.238058827]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 176 data point[0m[0m
+[32m[DEBUG] [1590676417.238117632]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 165[0m[0m
+[32m[DEBUG] [1590676417.238127041]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 134[0m[0m
+[32m[DEBUG] [1590676417.384408255]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 34 data point[0m[0m
+[32m[DEBUG] [1590676417.384430577]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 34[0m[0m
+[32m[DEBUG] [1590676417.384438422]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 34[0m[0m
+[32m[DEBUG] [1590676417.421306886]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 120 data point[0m[0m
+[32m[DEBUG] [1590676417.421329387]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 92[0m[0m
+[32m[DEBUG] [1590676417.421337248]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 95[0m[0m
+[0m[ INFO] [1590676417.424364694]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m812.67 ms.[0m
+[0m[ INFO] [1590676417.424408148]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676417.443522251]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676417.443611585]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676417.444927320]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676417.444954313]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 394[0m[0m
+[0m[ INFO] [1590676417.448736708]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676417.448827160]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 93[0m[0m
+[0m[ INFO] [1590676417.450158719]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676417.450180311]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2252[0m[0m
+[0m[ INFO] [1590676417.450808247]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676417.450831220]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 496[0m[0m
+[0m[ INFO] [1590676417.451837302]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676417.451863051]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 504[0m[0m
+[0m[ INFO] [1590676417.452085340]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.535032)[0m[0m
+[0m[ INFO] [1590676417.459805667]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676417.459821616]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 663[0m[0m
+[0m[ INFO] [1590676417.460642171]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676417.460661470]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3345[0m[0m
+[0m[ INFO] [1590676417.464011549]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676417.464028265]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1196[0m[0m
+[0m[ INFO] [1590676417.468959380]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676417.468983926]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 945[0m[0m
+[0m[ INFO] [1590676417.469250649]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676417.469271490]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676417.469413324]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.88821)[0m[0m
+[0m[ INFO] [1590676417.471315739]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676417.471380571]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1025[0m[0m
+[0m[ INFO] [1590676417.472152861]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.626834)[0m[0m
+[0m[ INFO] [1590676417.473537263]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676417.473552867]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 817[0m[0m
+[0m[ INFO] [1590676417.473665735]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.679856)[0m[0m
+[0m[ INFO] [1590676417.473720152]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 49.2867 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676417.787443121]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676417.807869834]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676418.281356037]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 147 data point[0m[0m
+[32m[DEBUG] [1590676418.281384998]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 147[0m[0m
+[32m[DEBUG] [1590676418.281396991]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 125[0m[0m
+[32m[DEBUG] [1590676418.448293068]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 180 data point[0m[0m
+[32m[DEBUG] [1590676418.448319656]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 170[0m[0m
+[32m[DEBUG] [1590676418.448338591]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 128[0m[0m
+[32m[DEBUG] [1590676418.595843338]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 37 data point[0m[0m
+[32m[DEBUG] [1590676418.595873872]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 36[0m[0m
+[32m[DEBUG] [1590676418.595886853]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 33[0m[0m
+[32m[DEBUG] [1590676418.640952356]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 140 data point[0m[0m
+[32m[DEBUG] [1590676418.641028444]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 93[0m[0m
+[32m[DEBUG] [1590676418.641048301]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 95[0m[0m
+[0m[ INFO] [1590676418.644814700]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m857.344 ms.[0m
+[0m[ INFO] [1590676418.644874984]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676418.661613850]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676418.661665143]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676418.662726216]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676418.662771235]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 425[0m[0m
+[0m[ INFO] [1590676418.665686178]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676418.665719471]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 101[0m[0m
+[0m[ INFO] [1590676418.666192111]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676418.666232880]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 570[0m[0m
+[0m[ INFO] [1590676418.668263271]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676418.668280471]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2225[0m[0m
+[0m[ INFO] [1590676418.670204529]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676418.670236537]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676418.670306793]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676418.670325170]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 665[0m[0m
+[0m[ INFO] [1590676418.670353694]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.418719)[0m[0m
+[0m[ INFO] [1590676418.670876136]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676418.670909047]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 924[0m[0m
+[0m[ INFO] [1590676418.673698003]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676418.673714381]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1132[0m[0m
+[0m[ INFO] [1590676418.674873063]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676418.674903637]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 797[0m[0m
+[0m[ INFO] [1590676418.675009080]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.674945)[0m[0m
+[0m[ INFO] [1590676418.676165399]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676418.676183874]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3479[0m[0m
+[0m[ INFO] [1590676418.681212863]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676418.681240390]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 938[0m[0m
+[0m[ INFO] [1590676418.681382489]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.614216)[0m[0m
+[0m[ INFO] [1590676418.685691774]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676418.685716003]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676418.685851706]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.888633)[0m[0m
+[0m[ INFO] [1590676418.685939551]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 41.0449 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676419.021829875]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676419.041838704]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676419.556697632]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 45 data point[0m[0m
+[32m[DEBUG] [1590676419.556723776]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 45[0m[0m
+[32m[DEBUG] [1590676419.556731751]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 37[0m[0m
+[32m[DEBUG] [1590676419.719928534]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 58 data point[0m[0m
+[32m[DEBUG] [1590676419.719953102]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 55[0m[0m
+[32m[DEBUG] [1590676419.719968207]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 38[0m[0m
+[32m[DEBUG] [1590676419.857246637]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 40 data point[0m[0m
+[32m[DEBUG] [1590676419.857270689]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 40[0m[0m
+[32m[DEBUG] [1590676419.857278649]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 34[0m[0m
+[32m[DEBUG] [1590676419.881274689]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 125 data point[0m[0m
+[32m[DEBUG] [1590676419.881298567]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 100[0m[0m
+[32m[DEBUG] [1590676419.881306653]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 88[0m[0m
+[0m[ INFO] [1590676419.884256614]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m862.417 ms.[0m
+[0m[ INFO] [1590676419.884289256]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676419.901297000]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676419.901338046]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676419.902460138]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676419.905372649]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 344[0m[0m
+[0m[ INFO] [1590676419.907056313]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676419.907297933]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 548[0m[0m
+[0m[ INFO] [1590676419.908608435]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676419.908639553]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 77[0m[0m
+[0m[ INFO] [1590676419.910410952]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676419.910460139]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 727[0m[0m
+[0m[ INFO] [1590676419.911340055]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676419.911362716]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 397[0m[0m
+[0m[ INFO] [1590676419.911536245]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.530749)[0m[0m
+[0m[ INFO] [1590676419.911885045]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676419.911905730]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2365[0m[0m
+[0m[ INFO] [1590676419.913118923]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676419.913181323]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 854[0m[0m
+[0m[ INFO] [1590676419.915517509]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676419.915575448]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1219[0m[0m
+[0m[ INFO] [1590676419.917058873]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676419.917230685]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 807[0m[0m
+[0m[ INFO] [1590676419.917418130]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.636364)[0m[0m
+[0m[ INFO] [1590676419.921936790]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676419.921954410]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3698[0m[0m
+[0m[ INFO] [1590676419.925116963]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676419.925132317]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 923[0m[0m
+[0m[ INFO] [1590676419.925221453]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.654321)[0m[0m
+[0m[ INFO] [1590676419.937006316]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676419.937021981]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676419.937153311]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.814358)[0m[0m
+[0m[ INFO] [1590676419.937252910]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 52.9463 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676420.255584592]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676420.275576012]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676420.791175891]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 48 data point[0m[0m
+[32m[DEBUG] [1590676420.791201404]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 48[0m[0m
+[32m[DEBUG] [1590676420.791209696]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 32[0m[0m
+[32m[DEBUG] [1590676420.946460123]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 58 data point[0m[0m
+[32m[DEBUG] [1590676420.946484096]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 57[0m[0m
+[32m[DEBUG] [1590676420.946491999]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 42[0m[0m
+[32m[DEBUG] [1590676421.076399619]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 39 data point[0m[0m
+[32m[DEBUG] [1590676421.076487497]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 38[0m[0m
+[32m[DEBUG] [1590676421.076495882]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 31[0m[0m
+[32m[DEBUG] [1590676421.094656288]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 108 data point[0m[0m
+[32m[DEBUG] [1590676421.094679671]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 73[0m[0m
+[32m[DEBUG] [1590676421.094687437]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 79[0m[0m
+[0m[ INFO] [1590676421.097660738]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m842.069 ms.[0m
+[0m[ INFO] [1590676421.097697449]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676421.117939052]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676421.118001577]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676421.119410098]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676421.119486884]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 186[0m[0m
+[0m[ INFO] [1590676421.122274706]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676421.122337237]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 47[0m[0m
+[0m[ INFO] [1590676421.123344296]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676421.123408398]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 531[0m[0m
+[0m[ INFO] [1590676421.125639877]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676421.125656248]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676421.125784750]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.290172)[0m[0m
+[0m[ INFO] [1590676421.126975647]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676421.127014844]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 873[0m[0m
+[0m[ INFO] [1590676421.128683976]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676421.128701780]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2392[0m[0m
+[0m[ INFO] [1590676421.130584532]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676421.130628255]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 749[0m[0m
+[0m[ INFO] [1590676421.130763185]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.690665)[0m[0m
+[0m[ INFO] [1590676421.131993685]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676421.132013001]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 655[0m[0m
+[0m[ INFO] [1590676421.135880079]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676421.135895368]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1126[0m[0m
+[0m[ INFO] [1590676421.139912435]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676421.140039485]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3639[0m[0m
+[0m[ INFO] [1590676421.143972009]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676421.144034608]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 913[0m[0m
+[0m[ INFO] [1590676421.144402606]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.63796)[0m[0m
+[0m[ INFO] [1590676421.157167603]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676421.157192596]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 2447[0m[0m
+[0m[ INFO] [1590676421.157361542]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.817385)[0m[0m
+[0m[ INFO] [1590676421.157451143]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 59.7383 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676421.475548063]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676421.495222795]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676421.969191468]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 141 data point[0m[0m
+[32m[DEBUG] [1590676421.969225365]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 130[0m[0m
+[32m[DEBUG] [1590676421.969248846]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 124[0m[0m
+[32m[DEBUG] [1590676422.146427868]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 61 data point[0m[0m
+[32m[DEBUG] [1590676422.146455951]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 60[0m[0m
+[32m[DEBUG] [1590676422.146467656]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 43[0m[0m
+[32m[DEBUG] [1590676422.299507522]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 35 data point[0m[0m
+[32m[DEBUG] [1590676422.299542421]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 34[0m[0m
+[32m[DEBUG] [1590676422.299557314]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 29[0m[0m
+[32m[DEBUG] [1590676422.350524055]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 129 data point[0m[0m
+[32m[DEBUG] [1590676422.350549705]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 89[0m[0m
+[32m[DEBUG] [1590676422.350564595]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 86[0m[0m
+[0m[ INFO] [1590676422.353620414]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m878.064 ms.[0m
+[0m[ INFO] [1590676422.353661463]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676422.372647472]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676422.372720507]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676422.375086698]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676422.375129448]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 421[0m[0m
+[0m[ INFO] [1590676422.379244118]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676422.379262965]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 0[0m[0m
+[0m[ INFO] [1590676422.379749753]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676422.379793798]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 542[0m[0m
+[0m[ INFO] [1590676422.380137256]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676422.380154777]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2400[0m[0m
+[0m[ INFO] [1590676422.380740948]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676422.380780093]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 756[0m[0m
+[0m[ INFO] [1590676422.383630880]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676422.383670153]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 976[0m[0m
+[0m[ INFO] [1590676422.383932698]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676422.383951633]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676422.384066428]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.380307)[0m[0m
+[0m[ INFO] [1590676422.385447871]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676422.385482805]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1293[0m[0m
+[0m[ INFO] [1590676422.387954630]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676422.387972813]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 834[0m[0m
+[0m[ INFO] [1590676422.388105086]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.6759)[0m[0m
+[0m[ INFO] [1590676422.388583950]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676422.388599764]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3580[0m[0m
+[0m[ INFO] [1590676422.392142730]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676422.392208456]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1049[0m[0m
+[0m[ INFO] [1590676422.392614821]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.673788)[0m[0m
+[0m[ INFO] [1590676422.398605860]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676422.398624126]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676422.398744640]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.882643)[0m[0m
+[0m[ INFO] [1590676422.398818464]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 45.1408 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676422.714198824]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676422.733500474]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676423.177676354]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 159 data point[0m[0m
+[32m[DEBUG] [1590676423.177701894]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 159[0m[0m
+[32m[DEBUG] [1590676423.177714879]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 128[0m[0m
+[32m[DEBUG] [1590676423.358685770]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 61 data point[0m[0m
+[32m[DEBUG] [1590676423.358773515]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 59[0m[0m
+[32m[DEBUG] [1590676423.358785227]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 37[0m[0m
+[32m[DEBUG] [1590676423.514732403]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 33 data point[0m[0m
+[32m[DEBUG] [1590676423.514754687]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 30[0m[0m
+[32m[DEBUG] [1590676423.514762811]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 28[0m[0m
+[32m[DEBUG] [1590676423.564947212]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 121 data point[0m[0m
+[32m[DEBUG] [1590676423.564970971]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 85[0m[0m
+[32m[DEBUG] [1590676423.564983424]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 89[0m[0m
+[0m[ INFO] [1590676423.567953980]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m853.746 ms.[0m
+[0m[ INFO] [1590676423.567985055]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676423.585573448]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676423.585621786]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676423.587135479]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676423.587158359]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 465[0m[0m
+[0m[ INFO] [1590676423.590336965]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676423.590433812]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 106[0m[0m
+[0m[ INFO] [1590676423.591227782]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676423.593055791]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 594[0m[0m
+[0m[ INFO] [1590676423.593153014]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676423.593205363]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2240[0m[0m
+[0m[ INFO] [1590676423.593744931]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676423.593776071]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 624[0m[0m
+[0m[ INFO] [1590676423.594153773]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.57885)[0m[0m
+[0m[ INFO] [1590676423.595272639]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1979[0m[0m
+[0m[ INFO] [1590676423.595295359]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 714[0m[0m
+[0m[ INFO] [1590676423.596768816]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676423.596785561]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1009[0m[0m
+[0m[ INFO] [1590676423.599701754]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1979[0m[0m
+[0m[ INFO] [1590676423.599718308]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1314[0m[0m
+[0m[ INFO] [1590676423.600527715]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676423.600542269]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 869[0m[0m
+[0m[ INFO] [1590676423.600657364]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.691096)[0m[0m
+[0m[ INFO] [1590676423.602383515]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676423.602400252]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3397[0m[0m
+[0m[ INFO] [1590676423.608972538]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1979[0m[0m
+[0m[ INFO] [1590676423.609019848]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1025[0m[0m
+[0m[ INFO] [1590676423.609173951]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.663972)[0m[0m
+[0m[ INFO] [1590676423.612256763]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676423.612269444]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676423.612352701]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.893007)[0m[0m
+[0m[ INFO] [1590676423.612420842]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 44.4217 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676423.948530420]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676423.969082278]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676424.497048924]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 48 data point[0m[0m
+[32m[DEBUG] [1590676424.497075128]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 48[0m[0m
+[32m[DEBUG] [1590676424.497087540]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 39[0m[0m
+[32m[DEBUG] [1590676424.686325674]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 222 data point[0m[0m
+[32m[DEBUG] [1590676424.686357157]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 202[0m[0m
+[32m[DEBUG] [1590676424.686368720]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 133[0m[0m
+[0m[ INFO] [1590676424.686429857]: [32mPrimitiveShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mCircle Model Coefficients:[0m[0m
+[0m[ INFO] [1590676424.686456315]: [32mPrimitiveShapeAnnotator.cpp[0m([36m241[0m)[[33mprocessWithLock[0m] [0mx= -0.131385 y= 0.227237 z= 0.227237 R= 0.0333514[0m[0m
+[32m[DEBUG] [1590676424.819563977]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 39 data point[0m[0m
+[32m[DEBUG] [1590676424.819605761]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 39[0m[0m
+[32m[DEBUG] [1590676424.819617762]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 33[0m[0m
+[32m[DEBUG] [1590676424.844416902]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 114 data point[0m[0m
+[32m[DEBUG] [1590676424.844445789]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 73[0m[0m
+[32m[DEBUG] [1590676424.844457218]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 84[0m[0m
+[0m[ INFO] [1590676424.847423159]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m898.884 ms.[0m
+[0m[ INFO] [1590676424.847460691]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676424.867195128]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676424.867255541]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676424.868803327]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676424.868829479]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 279[0m[0m
+[0m[ INFO] [1590676424.872201740]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676424.872223937]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 108[0m[0m
+[0m[ INFO] [1590676424.872482063]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676424.872503451]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 536[0m[0m
+[0m[ INFO] [1590676424.875747793]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676424.875769019]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 401[0m[0m
+[0m[ INFO] [1590676424.875912245]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.526938)[0m[0m
+[0m[ INFO] [1590676424.876011942]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676424.876051904]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 894[0m[0m
+[0m[ INFO] [1590676424.876628548]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676424.876649089]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2331[0m[0m
+[0m[ INFO] [1590676424.879514681]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676424.879546020]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 816[0m[0m
+[0m[ INFO] [1590676424.879786863]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.691415)[0m[0m
+[0m[ INFO] [1590676424.883703917]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676424.883832402]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 713[0m[0m
+[0m[ INFO] [1590676424.889180967]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676424.889213370]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3716[0m[0m
+[0m[ INFO] [1590676424.890698580]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676424.890755780]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1263[0m[0m
+[0m[ INFO] [1590676424.905262731]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676424.905288392]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1030[0m[0m
+[0m[ INFO] [1590676424.905453114]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.554921)[0m[0m
+[0m[ INFO] [1590676424.906790791]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676424.906862117]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676424.907645697]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.814198)[0m[0m
+[0m[ INFO] [1590676424.907946671]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 60.4646 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676425.216996147]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676425.236045619]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676425.749714544]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 45 data point[0m[0m
+[32m[DEBUG] [1590676425.749742665]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 42[0m[0m
+[32m[DEBUG] [1590676425.749751086]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 38[0m[0m
+[32m[DEBUG] [1590676425.911483158]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 56 data point[0m[0m
+[32m[DEBUG] [1590676425.911507999]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 44[0m[0m
+[32m[DEBUG] [1590676425.911515923]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 41[0m[0m
+[32m[DEBUG] [1590676426.039995362]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 41 data point[0m[0m
+[32m[DEBUG] [1590676426.040081371]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 40[0m[0m
+[32m[DEBUG] [1590676426.040096466]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 32[0m[0m
+[32m[DEBUG] [1590676426.060118604]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 108 data point[0m[0m
+[32m[DEBUG] [1590676426.060144589]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 84[0m[0m
+[32m[DEBUG] [1590676426.060153193]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 85[0m[0m
+[0m[ INFO] [1590676426.063237866]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m846.235 ms.[0m
+[0m[ INFO] [1590676426.063270963]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676426.081415388]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676426.081468994]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676426.082758072]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676426.082783875]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 219[0m[0m
+[0m[ INFO] [1590676426.086799742]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676426.086868276]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 513[0m[0m
+[0m[ INFO] [1590676426.090408618]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676426.092008743]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 58[0m[0m
+[0m[ INFO] [1590676426.092625887]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676426.092756102]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 877[0m[0m
+[0m[ INFO] [1590676426.092925798]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676426.092963175]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2212[0m[0m
+[0m[ INFO] [1590676426.093706545]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676426.093755799]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 657[0m[0m
+[0m[ INFO] [1590676426.095586597]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676426.095609535]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 325[0m[0m
+[0m[ INFO] [1590676426.095739467]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.487256)[0m[0m
+[0m[ INFO] [1590676426.096363957]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676426.096421439]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 777[0m[0m
+[0m[ INFO] [1590676426.096565936]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.701039)[0m[0m
+[0m[ INFO] [1590676426.098122183]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676426.098140421]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1168[0m[0m
+[0m[ INFO] [1590676426.103277819]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676426.103292493]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 980[0m[0m
+[0m[ INFO] [1590676426.103374243]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.641054)[0m[0m
+[0m[ INFO] [1590676426.104725712]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676426.104741393]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3684[0m[0m
+[0m[ INFO] [1590676426.118324123]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676426.118349953]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676426.118541116]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.816851)[0m[0m
+[0m[ INFO] [1590676426.118627935]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 55.3423 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676426.433476865]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676426.453690250]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676426.893869311]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 157 data point[0m[0m
+[32m[DEBUG] [1590676426.893891828]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 157[0m[0m
+[32m[DEBUG] [1590676426.893899814]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 121[0m[0m
+[32m[DEBUG] [1590676427.064113811]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 176 data point[0m[0m
+[32m[DEBUG] [1590676427.064137568]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 165[0m[0m
+[32m[DEBUG] [1590676427.064145804]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 134[0m[0m
+[32m[DEBUG] [1590676427.213384780]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 34 data point[0m[0m
+[32m[DEBUG] [1590676427.213409883]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 34[0m[0m
+[32m[DEBUG] [1590676427.213418100]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 34[0m[0m
+[32m[DEBUG] [1590676427.250945184]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 120 data point[0m[0m
+[32m[DEBUG] [1590676427.250968933]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 92[0m[0m
+[32m[DEBUG] [1590676427.250977383]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 95[0m[0m
+[0m[ INFO] [1590676427.254304306]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m820.761 ms.[0m
+[0m[ INFO] [1590676427.254401993]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676427.272376251]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676427.272431502]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676427.273852234]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676427.273969938]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 394[0m[0m
+[0m[ INFO] [1590676427.277219384]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676427.277315524]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 93[0m[0m
+[0m[ INFO] [1590676427.279107952]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676427.279129541]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2252[0m[0m
+[0m[ INFO] [1590676427.279288724]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676427.279342957]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 496[0m[0m
+[0m[ INFO] [1590676427.280102547]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676427.280157329]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 504[0m[0m
+[0m[ INFO] [1590676427.280327549]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.535032)[0m[0m
+[0m[ INFO] [1590676427.282288389]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676427.282340337]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 663[0m[0m
+[0m[ INFO] [1590676427.287196293]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676427.287870612]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1196[0m[0m
+[0m[ INFO] [1590676427.290922825]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676427.290983943]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3345[0m[0m
+[0m[ INFO] [1590676427.291873581]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676427.291896118]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 945[0m[0m
+[0m[ INFO] [1590676427.295265066]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676427.295281466]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1025[0m[0m
+[0m[ INFO] [1590676427.295401958]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.626834)[0m[0m
+[0m[ INFO] [1590676427.295686891]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676427.295704867]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 817[0m[0m
+[0m[ INFO] [1590676427.295796113]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.679856)[0m[0m
+[0m[ INFO] [1590676427.299517502]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676427.299532394]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676427.299615705]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.88821)[0m[0m
+[0m[ INFO] [1590676427.299679491]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 45.2606 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676427.610158244]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676427.632641181]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676428.088486588]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 147 data point[0m[0m
+[32m[DEBUG] [1590676428.088515834]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 147[0m[0m
+[32m[DEBUG] [1590676428.088524118]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 125[0m[0m
+[32m[DEBUG] [1590676428.249561571]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 180 data point[0m[0m
+[32m[DEBUG] [1590676428.249584364]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 170[0m[0m
+[32m[DEBUG] [1590676428.249592399]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 128[0m[0m
+[32m[DEBUG] [1590676428.394180591]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 37 data point[0m[0m
+[32m[DEBUG] [1590676428.394205729]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 36[0m[0m
+[32m[DEBUG] [1590676428.394213760]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 33[0m[0m
+[32m[DEBUG] [1590676428.436072958]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 140 data point[0m[0m
+[32m[DEBUG] [1590676428.436099270]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 93[0m[0m
+[32m[DEBUG] [1590676428.436106878]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 95[0m[0m
+[0m[ INFO] [1590676428.439119660]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m828.927 ms.[0m
+[0m[ INFO] [1590676428.439398959]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676428.458472035]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676428.458525086]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676428.461684930]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676428.461706412]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 425[0m[0m
+[0m[ INFO] [1590676428.463177476]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676428.463194085]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 570[0m[0m
+[0m[ INFO] [1590676428.464673230]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676428.464685305]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 101[0m[0m
+[0m[ INFO] [1590676428.465585902]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676428.465599906]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2225[0m[0m
+[0m[ INFO] [1590676428.467550918]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676428.467565107]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 665[0m[0m
+[0m[ INFO] [1590676428.468064547]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676428.468076827]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 924[0m[0m
+[0m[ INFO] [1590676428.469286957]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676428.469303441]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676428.469385136]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.418719)[0m[0m
+[0m[ INFO] [1590676428.471097911]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676428.471151306]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1132[0m[0m
+[0m[ INFO] [1590676428.472077856]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676428.472094899]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 797[0m[0m
+[0m[ INFO] [1590676428.472211719]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.674945)[0m[0m
+[0m[ INFO] [1590676428.473514561]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676428.473532199]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3479[0m[0m
+[0m[ INFO] [1590676428.478661092]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676428.478688598]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 938[0m[0m
+[0m[ INFO] [1590676428.478842455]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.614216)[0m[0m
+[0m[ INFO] [1590676428.482242952]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676428.482261550]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676428.482356561]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.888633)[0m[0m
+[0m[ INFO] [1590676428.482429427]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 42.9913 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676428.815309922]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676428.834741741]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676429.368609507]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 45 data point[0m[0m
+[32m[DEBUG] [1590676429.368634782]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 45[0m[0m
+[32m[DEBUG] [1590676429.368642520]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 37[0m[0m
+[32m[DEBUG] [1590676429.537204665]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 58 data point[0m[0m
+[32m[DEBUG] [1590676429.537230748]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 55[0m[0m
+[32m[DEBUG] [1590676429.537239018]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 38[0m[0m
+[32m[DEBUG] [1590676429.680494727]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 40 data point[0m[0m
+[32m[DEBUG] [1590676429.680519281]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 40[0m[0m
+[32m[DEBUG] [1590676429.680526920]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 34[0m[0m
+[32m[DEBUG] [1590676429.704928363]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 125 data point[0m[0m
+[32m[DEBUG] [1590676429.704953837]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 100[0m[0m
+[32m[DEBUG] [1590676429.704961975]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 88[0m[0m
+[0m[ INFO] [1590676429.708199493]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m892.859 ms.[0m
+[0m[ INFO] [1590676429.708255069]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676429.725665752]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676429.725717107]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676429.726763630]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676429.726785988]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 344[0m[0m
+[0m[ INFO] [1590676429.729521304]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676429.729606072]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 77[0m[0m
+[0m[ INFO] [1590676429.730784221]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676429.730823778]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 548[0m[0m
+[0m[ INFO] [1590676429.732250215]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676429.732310365]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 397[0m[0m
+[0m[ INFO] [1590676429.732480314]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.530749)[0m[0m
+[0m[ INFO] [1590676429.735857665]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676429.735877472]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2365[0m[0m
+[0m[ INFO] [1590676429.735896165]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676429.735909323]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 854[0m[0m
+[0m[ INFO] [1590676429.739718436]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676429.739934927]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 727[0m[0m
+[0m[ INFO] [1590676429.740553646]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676429.740683892]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 807[0m[0m
+[0m[ INFO] [1590676429.741377552]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.636364)[0m[0m
+[0m[ INFO] [1590676429.745079919]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676429.745105076]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1219[0m[0m
+[0m[ INFO] [1590676429.746589103]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676429.746605973]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3698[0m[0m
+[0m[ INFO] [1590676429.754785263]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676429.754898676]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 923[0m[0m
+[0m[ INFO] [1590676429.755330417]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.654321)[0m[0m
+[0m[ INFO] [1590676429.762448845]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676429.762470622]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676429.762609201]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.814358)[0m[0m
+[0m[ INFO] [1590676429.762695374]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 54.4216 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676430.079983122]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676430.099200944]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676430.623029670]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 48 data point[0m[0m
+[32m[DEBUG] [1590676430.623055907]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 48[0m[0m
+[32m[DEBUG] [1590676430.623064559]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 32[0m[0m
+[32m[DEBUG] [1590676430.779865834]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 58 data point[0m[0m
+[32m[DEBUG] [1590676430.779888536]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 57[0m[0m
+[32m[DEBUG] [1590676430.779897746]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 42[0m[0m
+[32m[DEBUG] [1590676430.912827844]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 39 data point[0m[0m
+[32m[DEBUG] [1590676430.912850990]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 38[0m[0m
+[32m[DEBUG] [1590676430.912859115]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 31[0m[0m
+[32m[DEBUG] [1590676430.930922307]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 108 data point[0m[0m
+[32m[DEBUG] [1590676430.930945603]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 73[0m[0m
+[32m[DEBUG] [1590676430.930953574]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 79[0m[0m
+[0m[ INFO] [1590676430.934076333]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m854.08 ms.[0m
+[0m[ INFO] [1590676430.934114112]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676430.951819627]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676430.951948721]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676430.957419273]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676430.957499605]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 531[0m[0m
+[0m[ INFO] [1590676430.957834737]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676430.957854374]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 186[0m[0m
+[0m[ INFO] [1590676430.960086678]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676430.960106823]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 655[0m[0m
+[0m[ INFO] [1590676430.960966389]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676430.961067079]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 873[0m[0m
+[0m[ INFO] [1590676430.962462305]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676430.962483653]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 47[0m[0m
+[0m[ INFO] [1590676430.962789267]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676430.962811808]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2392[0m[0m
+[0m[ INFO] [1590676430.964401279]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676430.964459766]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1126[0m[0m
+[0m[ INFO] [1590676430.964736095]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676430.964774412]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 749[0m[0m
+[0m[ INFO] [1590676430.964951510]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.690665)[0m[0m
+[0m[ INFO] [1590676430.965738434]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676430.965759333]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676430.965837355]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.290172)[0m[0m
+[0m[ INFO] [1590676430.971885136]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676430.971906411]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 913[0m[0m
+[0m[ INFO] [1590676430.972027808]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.63796)[0m[0m
+[0m[ INFO] [1590676430.976252594]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676430.976278566]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3639[0m[0m
+[0m[ INFO] [1590676430.992851417]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676430.992875752]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 2447[0m[0m
+[0m[ INFO] [1590676430.993015843]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.817385)[0m[0m
+[0m[ INFO] [1590676430.993100471]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 58.9719 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676431.306487571]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676431.326235847]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676431.813149718]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 141 data point[0m[0m
+[32m[DEBUG] [1590676431.813176353]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 130[0m[0m
+[32m[DEBUG] [1590676431.813185428]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 124[0m[0m
+[32m[DEBUG] [1590676431.996031884]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 61 data point[0m[0m
+[32m[DEBUG] [1590676431.996056162]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 60[0m[0m
+[32m[DEBUG] [1590676431.996064406]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 43[0m[0m
+[32m[DEBUG] [1590676432.155985250]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 35 data point[0m[0m
+[32m[DEBUG] [1590676432.156009495]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 34[0m[0m
+[32m[DEBUG] [1590676432.156017869]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 29[0m[0m
+[32m[DEBUG] [1590676432.209032805]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 129 data point[0m[0m
+[32m[DEBUG] [1590676432.209065864]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 89[0m[0m
+[32m[DEBUG] [1590676432.209073947]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 86[0m[0m
+[0m[ INFO] [1590676432.212168263]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m905.672 ms.[0m
+[0m[ INFO] [1590676432.212202069]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676432.230930838]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676432.230980298]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676432.232719297]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676432.232745030]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 421[0m[0m
+[0m[ INFO] [1590676432.236680345]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676432.236697137]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 0[0m[0m
+[0m[ INFO] [1590676432.237510331]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676432.237550718]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 542[0m[0m
+[0m[ INFO] [1590676432.237779925]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676432.237808791]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2400[0m[0m
+[0m[ INFO] [1590676432.241053644]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676432.241115749]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 756[0m[0m
+[0m[ INFO] [1590676432.241194812]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676432.241231432]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676432.241330741]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.380307)[0m[0m
+[0m[ INFO] [1590676432.241417652]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676432.241452249]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 976[0m[0m
+[0m[ INFO] [1590676432.245778613]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676432.245812451]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 834[0m[0m
+[0m[ INFO] [1590676432.245931201]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.6759)[0m[0m
+[0m[ INFO] [1590676432.246340369]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676432.246361275]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1293[0m[0m
+[0m[ INFO] [1590676432.246999637]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676432.247021965]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3580[0m[0m
+[0m[ INFO] [1590676432.254023652]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676432.254100137]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1049[0m[0m
+[0m[ INFO] [1590676432.254389925]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.673788)[0m[0m
+[0m[ INFO] [1590676432.257931544]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676432.257949758]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676432.258047581]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.882643)[0m[0m
+[0m[ INFO] [1590676432.258130036]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 45.906 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676432.580783287]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676432.599390559]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676433.060323382]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 159 data point[0m[0m
+[32m[DEBUG] [1590676433.060349026]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 159[0m[0m
+[32m[DEBUG] [1590676433.060366232]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 128[0m[0m
+[32m[DEBUG] [1590676433.251413611]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 61 data point[0m[0m
+[32m[DEBUG] [1590676433.251446550]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 59[0m[0m
+[32m[DEBUG] [1590676433.251460716]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 37[0m[0m
+[32m[DEBUG] [1590676433.415770706]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 33 data point[0m[0m
+[32m[DEBUG] [1590676433.415795909]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 30[0m[0m
+[32m[DEBUG] [1590676433.415804094]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 28[0m[0m
+[32m[DEBUG] [1590676433.468694651]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 121 data point[0m[0m
+[32m[DEBUG] [1590676433.468718825]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 85[0m[0m
+[32m[DEBUG] [1590676433.468726710]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 89[0m[0m
+[0m[ INFO] [1590676433.471907139]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m891.111 ms.[0m
+[0m[ INFO] [1590676433.471947892]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676433.490918197]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676433.490970044]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676433.492360828]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676433.492382994]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 465[0m[0m
+[0m[ INFO] [1590676433.495472482]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676433.495530043]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 106[0m[0m
+[0m[ INFO] [1590676433.497035333]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676433.497057343]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 594[0m[0m
+[0m[ INFO] [1590676433.497334596]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676433.497351278]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2240[0m[0m
+[0m[ INFO] [1590676433.498603575]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676433.498618712]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 624[0m[0m
+[0m[ INFO] [1590676433.498792455]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.57885)[0m[0m
+[0m[ INFO] [1590676433.500618072]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1979[0m[0m
+[0m[ INFO] [1590676433.500644034]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 714[0m[0m
+[0m[ INFO] [1590676433.500686768]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676433.500724881]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1009[0m[0m
+[0m[ INFO] [1590676433.504726093]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676433.504766365]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 869[0m[0m
+[0m[ INFO] [1590676433.504895437]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.691096)[0m[0m
+[0m[ INFO] [1590676433.505382976]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1979[0m[0m
+[0m[ INFO] [1590676433.505419073]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1314[0m[0m
+[0m[ INFO] [1590676433.506527157]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676433.506669718]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3397[0m[0m
+[0m[ INFO] [1590676433.514662780]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1979[0m[0m
+[0m[ INFO] [1590676433.514688553]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1025[0m[0m
+[0m[ INFO] [1590676433.514845084]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.663972)[0m[0m
+[0m[ INFO] [1590676433.516208757]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676433.516224810]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676433.516337230]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.893007)[0m[0m
+[0m[ INFO] [1590676433.516432360]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 44.465 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676433.828280512]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676433.850649229]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676434.372657504]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 48 data point[0m[0m
+[32m[DEBUG] [1590676434.372754745]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 48[0m[0m
+[32m[DEBUG] [1590676434.372775147]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 39[0m[0m
+[32m[DEBUG] [1590676434.564671317]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 222 data point[0m[0m
+[32m[DEBUG] [1590676434.564694545]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 202[0m[0m
+[32m[DEBUG] [1590676434.564702808]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 133[0m[0m
+[0m[ INFO] [1590676434.564740834]: [32mPrimitiveShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mCircle Model Coefficients:[0m[0m
+[0m[ INFO] [1590676434.564758002]: [32mPrimitiveShapeAnnotator.cpp[0m([36m241[0m)[[33mprocessWithLock[0m] [0mx= -0.131385 y= 0.227237 z= 0.227237 R= 0.0333514[0m[0m
+[32m[DEBUG] [1590676434.698279661]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 39 data point[0m[0m
+[32m[DEBUG] [1590676434.698303365]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 39[0m[0m
+[32m[DEBUG] [1590676434.698311151]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 33[0m[0m
+[32m[DEBUG] [1590676434.723564943]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 114 data point[0m[0m
+[32m[DEBUG] [1590676434.723589682]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 73[0m[0m
+[32m[DEBUG] [1590676434.723597813]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 84[0m[0m
+[0m[ INFO] [1590676434.726626213]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m898.34 ms.[0m
+[0m[ INFO] [1590676434.726658325]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676434.745194738]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676434.745247642]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676434.746666751]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676434.746689276]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 279[0m[0m
+[0m[ INFO] [1590676434.749979468]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676434.750110998]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 108[0m[0m
+[0m[ INFO] [1590676434.750980736]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676434.751032235]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 536[0m[0m
+[0m[ INFO] [1590676434.753507020]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 761[0m[0m
+[0m[ INFO] [1590676434.753525457]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 401[0m[0m
+[0m[ INFO] [1590676434.753669571]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.526938)[0m[0m
+[0m[ INFO] [1590676434.754819669]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676434.754860781]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 894[0m[0m
+[0m[ INFO] [1590676434.755484767]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676434.755508912]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2331[0m[0m
+[0m[ INFO] [1590676434.758671941]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1293[0m[0m
+[0m[ INFO] [1590676434.758722030]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 816[0m[0m
+[0m[ INFO] [1590676434.758883461]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.691415)[0m[0m
+[0m[ INFO] [1590676434.760373051]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676434.760432183]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 713[0m[0m
+[0m[ INFO] [1590676434.766188071]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676434.766204252]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1263[0m[0m
+[0m[ INFO] [1590676434.766748952]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676434.766765611]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3716[0m[0m
+[0m[ INFO] [1590676434.781043357]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 2276[0m[0m
+[0m[ INFO] [1590676434.781068020]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1030[0m[0m
+[0m[ INFO] [1590676434.781219980]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.554921)[0m[0m
+[0m[ INFO] [1590676434.784067939]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4564[0m[0m
+[0m[ INFO] [1590676434.784090923]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676434.784242227]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.814198)[0m[0m
+[0m[ INFO] [1590676434.784336569]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 57.6588 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676435.096839567]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676435.118315932]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676435.632915774]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 45 data point[0m[0m
+[32m[DEBUG] [1590676435.632940651]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 42[0m[0m
+[32m[DEBUG] [1590676435.632954836]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 38[0m[0m
+[32m[DEBUG] [1590676435.795202475]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 56 data point[0m[0m
+[32m[DEBUG] [1590676435.795226903]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 44[0m[0m
+[32m[DEBUG] [1590676435.795235446]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 41[0m[0m
+[32m[DEBUG] [1590676435.923221218]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 41 data point[0m[0m
+[32m[DEBUG] [1590676435.923246737]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 40[0m[0m
+[32m[DEBUG] [1590676435.923255187]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 32[0m[0m
+[32m[DEBUG] [1590676435.941913939]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 108 data point[0m[0m
+[32m[DEBUG] [1590676435.941957130]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 84[0m[0m
+[32m[DEBUG] [1590676435.941965594]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 85[0m[0m
+[0m[ INFO] [1590676435.944945996]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m848.098 ms.[0m
+[0m[ INFO] [1590676435.944984484]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676435.962681085]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676435.962728054]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676435.963845209]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676435.963866675]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 219[0m[0m
+[0m[ INFO] [1590676435.967357883]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676435.967433823]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 58[0m[0m
+[0m[ INFO] [1590676435.967722981]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676435.967763176]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 513[0m[0m
+[0m[ INFO] [1590676435.970104316]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 667[0m[0m
+[0m[ INFO] [1590676435.970163962]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 325[0m[0m
+[0m[ INFO] [1590676435.970289996]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.487256)[0m[0m
+[0m[ INFO] [1590676435.971323945]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676435.971389351]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 877[0m[0m
+[0m[ INFO] [1590676435.973993974]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676435.974084557]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2212[0m[0m
+[0m[ INFO] [1590676435.974967331]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1251[0m[0m
+[0m[ INFO] [1590676435.975035483]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 777[0m[0m
+[0m[ INFO] [1590676435.975202487]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.701039)[0m[0m
+[0m[ INFO] [1590676435.975464087]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676435.975481846]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 657[0m[0m
+[0m[ INFO] [1590676435.979100296]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676435.979117261]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1168[0m[0m
+[0m[ INFO] [1590676435.984443248]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1822[0m[0m
+[0m[ INFO] [1590676435.984524855]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 980[0m[0m
+[0m[ INFO] [1590676435.984912717]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.641054)[0m[0m
+[0m[ INFO] [1590676435.986579684]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676435.986601143]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3684[0m[0m
+[0m[ INFO] [1590676435.999259519]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4510[0m[0m
+[0m[ INFO] [1590676435.999273050]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676435.999400073]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.816851)[0m[0m
+[0m[ INFO] [1590676435.999478419]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 54.4796 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676436.315928711]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676436.337169910]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676436.775162833]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 157 data point[0m[0m
+[32m[DEBUG] [1590676436.775190573]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 157[0m[0m
+[32m[DEBUG] [1590676436.775198694]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 121[0m[0m
+[32m[DEBUG] [1590676436.941570195]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 176 data point[0m[0m
+[32m[DEBUG] [1590676436.941606785]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 165[0m[0m
+[32m[DEBUG] [1590676436.941615106]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 134[0m[0m
+[32m[DEBUG] [1590676437.086863213]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 34 data point[0m[0m
+[32m[DEBUG] [1590676437.086888164]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 34[0m[0m
+[32m[DEBUG] [1590676437.086896777]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 34[0m[0m
+[32m[DEBUG] [1590676437.123963686]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 120 data point[0m[0m
+[32m[DEBUG] [1590676437.123988114]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 92[0m[0m
+[32m[DEBUG] [1590676437.123996140]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 95[0m[0m
+[0m[ INFO] [1590676437.127035587]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m811.098 ms.[0m
+[0m[ INFO] [1590676437.127068744]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676437.145294916]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676437.145348308]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676437.146600770]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676437.146655017]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 394[0m[0m
+[0m[ INFO] [1590676437.150092094]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676437.150135684]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 93[0m[0m
+[0m[ INFO] [1590676437.152056216]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676437.152078159]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2252[0m[0m
+[0m[ INFO] [1590676437.152307707]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676437.152367200]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 496[0m[0m
+[0m[ INFO] [1590676437.152898605]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 942[0m[0m
+[0m[ INFO] [1590676437.152937902]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 504[0m[0m
+[0m[ INFO] [1590676437.153087917]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.535032)[0m[0m
+[0m[ INFO] [1590676437.157201236]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676437.157385607]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 663[0m[0m
+[0m[ INFO] [1590676437.161958616]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676437.161979164]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1196[0m[0m
+[0m[ INFO] [1590676437.163388836]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676437.163407177]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3345[0m[0m
+[0m[ INFO] [1590676437.164915056]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676437.164934369]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 945[0m[0m
+[0m[ INFO] [1590676437.168718386]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1390[0m[0m
+[0m[ INFO] [1590676437.168735879]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 817[0m[0m
+[0m[ INFO] [1590676437.168830096]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1908[0m[0m
+[0m[ INFO] [1590676437.168848392]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1025[0m[0m
+[0m[ INFO] [1590676437.168894591]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.679856)[0m[0m
+[0m[ INFO] [1590676437.168944513]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.626834)[0m[0m
+[0m[ INFO] [1590676437.171642785]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3766[0m[0m
+[0m[ INFO] [1590676437.171661612]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676437.171758502]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.88821)[0m[0m
+[0m[ INFO] [1590676437.171830660]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 44.7471 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676437.486836386]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676437.505671698]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676437.965588544]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 147 data point[0m[0m
+[32m[DEBUG] [1590676437.965613978]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 147[0m[0m
+[32m[DEBUG] [1590676437.965622392]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 125[0m[0m
+[32m[DEBUG] [1590676438.127295785]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 180 data point[0m[0m
+[32m[DEBUG] [1590676438.127326231]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 170[0m[0m
+[32m[DEBUG] [1590676438.127334772]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 128[0m[0m
+[32m[DEBUG] [1590676438.270153299]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 37 data point[0m[0m
+[32m[DEBUG] [1590676438.270178194]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 36[0m[0m
+[32m[DEBUG] [1590676438.270186280]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 33[0m[0m
+[32m[DEBUG] [1590676438.313156787]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 140 data point[0m[0m
+[32m[DEBUG] [1590676438.313180734]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 93[0m[0m
+[32m[DEBUG] [1590676438.313189048]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 95[0m[0m
+[0m[ INFO] [1590676438.316461924]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m829.521 ms.[0m
+[0m[ INFO] [1590676438.316638009]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676438.333525485]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676438.333570374]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676438.338017522]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676438.338041543]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 425[0m[0m
+[0m[ INFO] [1590676438.340203739]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676438.340241817]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2225[0m[0m
+[0m[ INFO] [1590676438.341563688]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676438.342781979]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 570[0m[0m
+[0m[ INFO] [1590676438.342856296]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676438.342908142]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 665[0m[0m
+[0m[ INFO] [1590676438.342936976]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676438.343004218]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 101[0m[0m
+[0m[ INFO] [1590676438.346810795]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676438.346963198]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1132[0m[0m
+[0m[ INFO] [1590676438.348740725]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676438.348765531]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3479[0m[0m
+[0m[ INFO] [1590676438.349130505]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1015[0m[0m
+[0m[ INFO] [1590676438.349150909]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676438.349281035]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.418719)[0m[0m
+[0m[ INFO] [1590676438.352904080]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676438.352933795]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 924[0m[0m
+[0m[ INFO] [1590676438.354574499]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1843[0m[0m
+[0m[ INFO] [1590676438.354593936]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 938[0m[0m
+[0m[ INFO] [1590676438.354734561]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.614216)[0m[0m
+[0m[ INFO] [1590676438.356938515]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1369[0m[0m
+[0m[ INFO] [1590676438.356954037]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 797[0m[0m
+[0m[ INFO] [1590676438.357022385]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 3915[0m[0m
+[0m[ INFO] [1590676438.357048631]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.674945)[0m[0m
+[0m[ INFO] [1590676438.357118224]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676438.357217947]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.888633)[0m[0m
+[0m[ INFO] [1590676438.357290043]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 40.6307 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676438.681696519]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676438.702394331]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676439.236711859]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 45 data point[0m[0m
+[32m[DEBUG] [1590676439.236735515]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 45[0m[0m
+[32m[DEBUG] [1590676439.236743836]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 37[0m[0m
+[32m[DEBUG] [1590676439.408655825]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 58 data point[0m[0m
+[32m[DEBUG] [1590676439.408688678]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 55[0m[0m
+[32m[DEBUG] [1590676439.408697047]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 38[0m[0m
+[32m[DEBUG] [1590676439.552161135]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 40 data point[0m[0m
+[32m[DEBUG] [1590676439.552187736]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 40[0m[0m
+[32m[DEBUG] [1590676439.552196445]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 34[0m[0m
+[32m[DEBUG] [1590676439.576757605]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 125 data point[0m[0m
+[32m[DEBUG] [1590676439.576781846]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 100[0m[0m
+[32m[DEBUG] [1590676439.576789975]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 88[0m[0m
+[0m[ INFO] [1590676439.579915031]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m898.186 ms.[0m
+[0m[ INFO] [1590676439.579976373]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676439.597412836]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676439.597490176]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676439.598438288]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676439.598460208]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 344[0m[0m
+[0m[ INFO] [1590676439.601034957]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676439.601052792]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 77[0m[0m
+[0m[ INFO] [1590676439.602679237]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676439.602694600]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 548[0m[0m
+[0m[ INFO] [1590676439.603601750]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 748[0m[0m
+[0m[ INFO] [1590676439.603613849]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 397[0m[0m
+[0m[ INFO] [1590676439.603719123]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: sphere (confidence: 0.530749)[0m[0m
+[0m[ INFO] [1590676439.605968586]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676439.605994125]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 727[0m[0m
+[0m[ INFO] [1590676439.608331945]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676439.608358454]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2365[0m[0m
+[0m[ INFO] [1590676439.608688473]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676439.608704839]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 854[0m[0m
+[0m[ INFO] [1590676439.611177105]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676439.611192397]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1219[0m[0m
+[0m[ INFO] [1590676439.612207905]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1342[0m[0m
+[0m[ INFO] [1590676439.612220710]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 807[0m[0m
+[0m[ INFO] [1590676439.612355792]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.636364)[0m[0m
+[0m[ INFO] [1590676439.618871511]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676439.618901778]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3698[0m[0m
+[0m[ INFO] [1590676439.621346000]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1863[0m[0m
+[0m[ INFO] [1590676439.621367740]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 923[0m[0m
+[0m[ INFO] [1590676439.621519233]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.654321)[0m[0m
+[0m[ INFO] [1590676439.634390689]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4541[0m[0m
+[0m[ INFO] [1590676439.634412008]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676439.634498149]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.814358)[0m[0m
+[0m[ INFO] [1590676439.634577511]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 54.585 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676439.954462264]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676439.975236612]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676440.493240543]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 48 data point[0m[0m
+[32m[DEBUG] [1590676440.493263235]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 48[0m[0m
+[32m[DEBUG] [1590676440.493271708]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 32[0m[0m
+[32m[DEBUG] [1590676440.653184883]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 58 data point[0m[0m
+[32m[DEBUG] [1590676440.653209984]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 57[0m[0m
+[32m[DEBUG] [1590676440.653218379]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 42[0m[0m
+[32m[DEBUG] [1590676440.787497491]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 39 data point[0m[0m
+[32m[DEBUG] [1590676440.787522674]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 38[0m[0m
+[32m[DEBUG] [1590676440.787531177]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 31[0m[0m
+[32m[DEBUG] [1590676440.805047167]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 108 data point[0m[0m
+[32m[DEBUG] [1590676440.805065687]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 73[0m[0m
+[32m[DEBUG] [1590676440.805073802]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 79[0m[0m
+[0m[ INFO] [1590676440.808359756]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m853.855 ms.[0m
+[0m[ INFO] [1590676440.808431205]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676440.826470476]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676440.826537906]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676440.830205570]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676440.830225230]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 186[0m[0m
+[0m[ INFO] [1590676440.831207105]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676440.831222290]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 531[0m[0m
+[0m[ INFO] [1590676440.832711101]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676440.832723358]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 47[0m[0m
+[0m[ INFO] [1590676440.833647290]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676440.833662341]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 655[0m[0m
+[0m[ INFO] [1590676440.834436063]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676440.834455364]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 873[0m[0m
+[0m[ INFO] [1590676440.835689158]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 641[0m[0m
+[0m[ INFO] [1590676440.835704516]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676440.835787867]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.290172)[0m[0m
+[0m[ INFO] [1590676440.835975452]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676440.836035760]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2392[0m[0m
+[0m[ INFO] [1590676440.837626853]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676440.837644124]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1126[0m[0m
+[0m[ INFO] [1590676440.837912933]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1264[0m[0m
+[0m[ INFO] [1590676440.837931885]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 749[0m[0m
+[0m[ INFO] [1590676440.838041913]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.690665)[0m[0m
+[0m[ INFO] [1590676440.845323826]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1765[0m[0m
+[0m[ INFO] [1590676440.845348488]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 913[0m[0m
+[0m[ INFO] [1590676440.845522378]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.63796)[0m[0m
+[0m[ INFO] [1590676440.848943135]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676440.849046140]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3639[0m[0m
+[0m[ INFO] [1590676440.865455308]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4452[0m[0m
+[0m[ INFO] [1590676440.865474924]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 2447[0m[0m
+[0m[ INFO] [1590676440.865616549]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.817385)[0m[0m
+[0m[ INFO] [1590676440.865698665]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 57.2528 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676441.183461734]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676441.203179588]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676441.701152932]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 141 data point[0m[0m
+[32m[DEBUG] [1590676441.701177512]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 130[0m[0m
+[32m[DEBUG] [1590676441.701185829]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 124[0m[0m
+[32m[DEBUG] [1590676441.885465859]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 61 data point[0m[0m
+[32m[DEBUG] [1590676441.885488232]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 60[0m[0m
+[32m[DEBUG] [1590676441.885496358]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 43[0m[0m
+[32m[DEBUG] [1590676442.047271288]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 35 data point[0m[0m
+[32m[DEBUG] [1590676442.047306331]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 34[0m[0m
+[32m[DEBUG] [1590676442.047315161]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 29[0m[0m
+[32m[DEBUG] [1590676442.100964489]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 129 data point[0m[0m
+[32m[DEBUG] [1590676442.100993818]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 89[0m[0m
+[32m[DEBUG] [1590676442.101002546]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 86[0m[0m
+[0m[ INFO] [1590676442.104181620]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m920.708 ms.[0m
+[0m[ INFO] [1590676442.104219499]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676442.124052154]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676442.124102917]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676442.125972721]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676442.126088691]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 421[0m[0m
+[0m[ INFO] [1590676442.130326171]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676442.130394455]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 0[0m[0m
+[0m[ INFO] [1590676442.130518964]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676442.130539513]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 542[0m[0m
+[0m[ INFO] [1590676442.131223557]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676442.131245902]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2400[0m[0m
+[0m[ INFO] [1590676442.131603216]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676442.131643143]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 756[0m[0m
+[0m[ INFO] [1590676442.134498103]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676442.134567012]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 976[0m[0m
+[0m[ INFO] [1590676442.135419467]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1107[0m[0m
+[0m[ INFO] [1590676442.135478924]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676442.135612528]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: box (confidence: 0.380307)[0m[0m
+[0m[ INFO] [1590676442.136439984]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676442.136472921]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 1293[0m[0m
+[0m[ INFO] [1590676442.138906311]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1444[0m[0m
+[0m[ INFO] [1590676442.138940722]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 834[0m[0m
+[0m[ INFO] [1590676442.139071522]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.6759)[0m[0m
+[0m[ INFO] [1590676442.140385258]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676442.140458620]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 3580[0m[0m
+[0m[ INFO] [1590676442.143712771]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1919[0m[0m
+[0m[ INFO] [1590676442.143746629]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 1049[0m[0m
+[0m[ INFO] [1590676442.143921052]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.673788)[0m[0m
+[0m[ INFO] [1590676442.151038235]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 4056[0m[0m
+[0m[ INFO] [1590676442.151059110]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0m)[[33mannotateSphere[0m] [0mNumber of SPHERE inliers: 0[0m[0m
+[0m[ INFO] [1590676442.151192669]: [32mSuturoShapeAnnotator.cpp[0m([36m327[0m)[[33mprocessWithLock[0m] [0mSelected shape: cylinder (confidence: 0.882643)[0m[0m
+[0m[ INFO] [1590676442.151271798]: [32mSuturoShapeAnnotator.cpp[0m([36m333[0m)[[33mprocessWithLock[0m] [0mtook: 47.038 ms.[0m[0m
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+    "rs.annotation.Shape": [{
+[0m[ INFO] [1590676442.462773696]: [32mPrimitiveShapeAnnotator.cpp[0m([36m83[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676442.484055180]: [32mPrimitiveShapeAnnotator.cpp[0m([36m112[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[32m[DEBUG] [1590676442.977556039]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 159 data point[0m[0m
+[32m[DEBUG] [1590676442.977582746]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 159[0m[0m
+[32m[DEBUG] [1590676442.977591669]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 128[0m[0m
+[32m[DEBUG] [1590676443.176003577]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 61 data point[0m[0m
+[32m[DEBUG] [1590676443.176027000]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 59[0m[0m
+[32m[DEBUG] [1590676443.176035676]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 37[0m[0m
+[32m[DEBUG] [1590676443.345121025]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 33 data point[0m[0m
+[32m[DEBUG] [1590676443.345152463]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 30[0m[0m
+[32m[DEBUG] [1590676443.345160936]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 28[0m[0m
+[32m[DEBUG] [1590676443.400252701]: [34mPrimitiveShapeAnnotator.cpp[0m([36m216[0m)[[33mprocessWithLock[0m] [0mProjected Cloud has 121 data point[0m[0m
+[32m[DEBUG] [1590676443.400279689]: [34mPrimitiveShapeAnnotator.cpp[0m([36m217[0m)[[33mprocessWithLock[0m] [0mNumber of CIRCLE inliers found 85[0m[0m
+[32m[DEBUG] [1590676443.400288711]: [34mPrimitiveShapeAnnotator.cpp[0m([36m218[0m)[[33mprocessWithLock[0m] [0mNumber of line inliers found 89[0m[0m
+[0m[ INFO] [1590676443.403593239]: [32mPrimitiveShapeAnnotator.cpp[34m(81)[35m[processWithLock][97m940.819 ms.[0m
+[0m[ INFO] [1590676443.403625246]: [32mSuturoShapeAnnotator.cpp[0m([36m220[0m)[[33mprocessWithLock[0m] [0mprocess start[0m[0m
+[0m[ INFO] [1590676443.424256346]: [32mSuturoShapeAnnotator.cpp[0m([36m239[0m)[[33mprocessWithLock[0m] [0mParameters:
+[0m[ INFO] [1590676443.424309592]: [32mSuturoShapeAnnotator.cpp[0m([36m244[0m)[[33mprocessWithLock[0m] [0mProcessing 4 point clusters[0m[0m
+[0m[ INFO] [1590676443.425763669]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676443.425846587]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 465[0m[0m
+[0m[ INFO] [1590676443.429429833]: [32mSuturoShapeAnnotator.cpp[0m([36m138[0m)[[33mannotateCylinder[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676443.429640327]: [32mSuturoShapeAnnotator.cpp[0m([36m139[0m)[[33mannotateCylinder[0m] [0mNumber of CYLINDER inliers: 106[0m[0m
+[0m[ INFO] [1590676443.430832252]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 1460[0m[0m
+[0m[ INFO] [1590676443.430915324]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 594[0m[0m
+[0m[ INFO] [1590676443.431687926]: [32mSuturoShapeAnnotator.cpp[0m([36m98[0m)[[33mannotateBox[0m] [0mSize of cluster: 3804[0m[0m
+[0m[ INFO] [1590676443.431710560]: [32mSuturoShapeAnnotator.cpp[0m([36m99[0m)[[33mannotateBox[0m] [0mNumber of BOX inliers: 2240[0m[0m
+[0m[ INFO] [1590676443.434770037]: [32mSuturoShapeAnnotator.cpp[0m([36m179[0m)[[33mannotateSphere[0m] [0mSize of cluster: 1078[0m[0m
+[0m[ INFO] [1590676443.434835513]: [32mSuturoShapeAnnotator.cpp[0m([36m180[0

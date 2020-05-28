@@ -485,10 +485,115 @@ accuracy = ((float) correct_samples) / ((float) total_samples);
 
 At the end, the framecounter is incremented and the calculation starts again for the next frame.
 
+\section{SuturoShapeAnnotator}
+\chapterauthor{Evan Kapitzke}
+
+\subsection{Motivation}
+The implementation of an additional annotator to classify basic shapes was motivated from the fact that a huge amount of our processing time
+was used by the \textit{PrimitiveShapeAnnotator}. Object shapes are used to determine which type of basic model is used to spawn it in the Planning and Knowledge world representation.
+
+\subsection{Implementation}
+The \textit{SuturoShapeAnnotator} uses three different types of SAC models to determine the shape of an object.
+The point clouds are processed parallel in order to minimize the amount of time that is needed to process all clouds in our current scene.
+For each object the functions \textit{annotateBox(..), annotateCylinder(..)} and \textit{annotateSphere(..)} are called and the result with the highest confidence
+will be selected as result. \textit{annotateBox(..)} tries to find a plane that is orientated in an particular angle to the camera. 
+The other two function fit their corresponding SAC model.
+
+\begin{itemize}
+\item drawResult(rect, result\_name, confidence, color)\\
+Draws the result for a cluster in the given rectangle.
+
+\item annotateBox(tcas, clusterCloud, clusterNormals)\\
+Segments planes that are in an given angle to the camera. The confidence describes how many inliers are found. Returns the confidence as result.
+
+\item annotateCylinder(tcas, clusterCloud, clusterNormals)\\
+Segments cylinder models. The confidence describes how many inliers are found. Returns the confidence as result.
+
+\item annotateSphere(tcas, clusterCloud, clusterNormals)\\
+Segments sphere models. The confidence describes how many inliers are found. Returns the confidence as result.
+
+\item initialize(ctx)\\
+Initializes the drawing annotator.
+
+\item processWithLock(tcas, res\_spec)\\
+Iterates over all clusters and executes the segmentation on them. The result with the highest confidence will be annotated if
+the confidence is over the minimum threshold. The threshold can be set in the according YAML descriptor.
+\end{itemize}
+
+\subsection{Performance}
+The main goal was to increase the performance. The comparison of the annotators focuses on execution time.
+Three scenes are used to evaluate the results of both annotators and their execution time.
+
+\subsubsection{Scene: Shelve}
+The first scene consists of multiple objects which are placed in a shelve.
+\begin{figure}
+  \center
+  \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_shelve/primitive.png}
+  \caption{PrimitiveShapeAnnotator}
+  \label{fig:shapeAnnotatorShelvePrimitive}
+\end{figure}
+\begin{figure}
+  \center
+  \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_shelve/suturo.png}
+  \caption{SuturoShapeAnnotator}
+  \label{fig:shapeAnnotatorShelveSuturo}
+\end{figure}
+
+The following graph shows how long it takes to process one frame for each annotator.
+{\center
+  \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_shelve/chart.png}
+}
+\newpage
+
+\subsubsection{Scene: Table}
+In the second scene multiple objects are placed on a table.
+\begin{figure}
+  \center
+  \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_table/primitive.png}
+  \caption{PrimitiveShapeAnnotator}
+  \label{fig:shapeAnnotatorShelvePrimitive}
+\end{figure}
+\begin{figure}
+  \center
+  \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_table/suturo.png}
+  \caption{SuturoShapeAnnotator}
+  \label{fig:shapeAnnotatorShelveSuturo}
+\end{figure}
+
+The following graph shows how long it takes to process one frame for each annotator.
+{\center
+  \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_table/chart.png}
+}
+\newpage
+
+\subsubsection{Scene: Training}
+Again multiple objects are placed on a table.
+\begin{figure}
+  \center
+  \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_training/primitive.png}
+  \caption{PrimitiveShapeAnnotator}
+  \label{fig:shapeAnnotatorShelvePrimitive}
+\end{figure}
+\begin{figure}
+  \center
+  \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_training/suturo.png}
+  \caption{SuturoShapeAnnotator}
+  \label{fig:shapeAnnotatorShelveSuturo}
+\end{figure}
+
+The following graph shows how long it takes to process one frame for each annotator.
+{\center
+  \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_training/chart.png}
+}
+
+\subsubsection{Conclusion}
+The \textit{SuturoShapeAnnotator} processes cluster way faster than the \textit{PrimitiveShapeAnnotator}. In addition, the results are more accurate.
+On average the \textit{SuturoShapeAnnotator} is about fifth-teen times faster than the \textit{PrimitiveShapeAnnotator}.
+
 \section{rs\_hsrb\_perception Package}
 \chapterauthor{Evan Kapitzke}
 
-The \texttt{rs\_hsrb\_perception} package was created in the Suturo Master-project. The package implements a RoboSherlock process manager, called the \texttt{SuturoProcessManager}. Additionally, it contains modified annotators to annotate regions.
+The \texttt{rs\_hsrb\_perception} package was created in the Suturo Master-project. The package implements a RoboSherlock process manager, called the\\ \texttt{SuturoProcessManager}. Additionally, it contains modified annotators to annotate regions.
 
 \subsection{RegionAnnotator}
 \begin{itemize}
@@ -497,13 +602,12 @@ Iterates through the clusters that are currently saved in the CAS and annotates 
 This method only got changed to work with the \textit{RoboSherlock} master.
 \end{itemize}
 
-\subsection{SaveClusterCloudsAndImages}
-Currently not used.
-
-\subsection{SuturoClassifier}
-Currently not used.
-
 \subsection{SuturoProcessManager}
+In order to reconfigure annotators and to properly convert the information where it was generated a new process manager was necessary.
+The \textit{SuturoProcessManager} already existed because the last SUTURO group created it to detect whether or not a shelf door is open.
+The process manager organizes the results of the perception pipeline and returns them as \textit{ObjectDetectionData} messages.
+The standard \textit{RSProcessManager} is unable to create custom messages.
+
 \begin{itemize}
 \item setup()\\
 Creates the ressource manager and instantiates the region vector.
@@ -530,7 +634,24 @@ Callback for navigation through the different annotation previews in the visuali
 \end{itemize}
 
 \subsection{SuturoRegionFilter}
-Adapted region filter from RoboSherlock.
+\subsubsection{Prerequisites}
+The robot must be orientated correctly and the correct semantic map needs to be set.
+The names of the default regions must be the same as in the semantic map definition.
+RViz is able to update the robot orientation by executing a 2D-Pose-Estimate. The robot must be orientated manually.
+
+The \textit{SuturoRegionFilter} uses the information from suturo\_semantic\_map.yaml to create the regions. 
+The \textit{suturo\_semantic\_map.yaml} is created by the \textit{region\_filter\_setup.py}. 
+This script translates all information about regions position and orientation from knowledge in to a usable YAML file. 
+This is necessary because this data is defined differently for each group.
+
+\subsubsection{Implementation}
+Adapted region filter from RoboSherlock. In order to perceive objects on the ground it is necessary to disable
+the region filtering as long as no ground region is defined. To allow the perception of objects on every surface
+without restarting the perception pipeline, the method \textit{reconfigure()} got implemented in our own copy of the 
+\textit{RegionFilter}. The reconfiguration function updates all parameters based on the current annotator context.
+To enable or disable the region filter the \textit{SuturoProcessManager} overwrites an parameter in the \textit{SuturoRegionFilter}
+and calls \textit{reconfigure()} on it. 
+This allows the process manager to temporarily disable the functionality of the annotator without restarting the pipeline if the need arises.
 
 \begin{itemize}
 \item reconfigure()\\
@@ -548,6 +669,35 @@ Converts the result of the PrimitiveShapeAnnotator to match the required shape f
 \item makeObjectDetectionData(pose, geometry, shape, objClass, confidence, c, odd)\\
 Combines the given parameters to an ObjectDetectionData message.
 \end{itemize}
+
+\subsubsection{ObjectDetectionData}
+The \textit{ObjectDetectionData} message will be used to send the results of the perception pipeline to Planning and Knowledge.
+
+\begin{lstlisting}
+# Communicated via actionserver at topic /perception_actionserver/result
+string name
+string obj_class
+float64 confidence_class
+
+uint8 shape # and the shape (please, if possible, as fallback if confidence is low). 
+float64 confidence_shape
+
+geometry_msgs/PoseStamped pose
+float64 width
+float64 height
+float64 depth
+
+std_msgs/ColorRGBA color
+float64 confidence_color
+
+string region
+
+# Shape values
+uint8 ARROW=0 # Not used
+uint8 CUBE=1
+uint8 SPHERE=2
+uint8 CYLINDER=3
+\end{lstlisting}
 
 			\section{rs\_Athene}
 			\chapterauthor{Leonidas Paniago De Oliveira Neto}
