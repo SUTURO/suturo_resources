@@ -1,4 +1,9 @@
 \documentclass[main.tex]{subfiles}
+\definecolor{mygray}{rgb}{0.8,0.8,0.8}
+\lstset{
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{mygray},
+}
 
 \begin{document}
 \renewcommand{\cleardoublepage}{}   
@@ -11,10 +16,10 @@
 
 \section{About Natural Language Processing}
 \chapterauthor{Merete Bommarius}
-    Natural language processing, short; NLP, describes the application of computational techniques to the analysis and synthesis of natural language and speech. Challenges with natural language processing involve the speech recognition itself, natural language processing and the natural language generation, all of which are imported in the context of the RoboCup@Home competition.\\ 
-    The first challenge was to figure out whether shallow or deep semantic parsing should be used. Shallow semantic parsing is solely used for identifying entities in an utterance and labeling them with the roles they play. Therefore it is sometimes also referred to as slot-filling or frame semantic parsing. Roles are the identifying label that is put on a word or phrase to determine it‘s purpose in the sentence. If there for example is a command like: “Put the cup on the table“, the phrase “the table“ would have the role of the goal, since it is the place that the cup ends up in.
+    Natural language processing(NLP), describes the application of computational techniques to the analysis and synthesis of natural language and speech. Challenges of NLP include speech recognition, natural language processing and the natural language generation, all of which are imported in the context of the RoboCup@Home competition.\\ 
+    The first challenge was to figure out whether shallow or deep semantic parsing should be used. Shallow semantic parsing is solely used for identifying entities in an utterance and labeling them with the roles they play. Therefore it is sometimes also referred to as slot-filling or frame semantic parsing. A Role is the identifying label that is put on a word or phrase to determine it‘s purpose in the sentence. If there for example is a command like: “Put the cup on the table“, the phrase “the table“ would have the role of the goal, since it is the place that the cup ends up in.
 Deep semantic parsing on the other hand is concerned with producing precise representations of utterances that can contain significant compositionality. It is because of that, that it is also known as compositional semantic parsing.\\ 
-  As the name suggests, deep semantic parsing goes a lot more into detail when it comes to the parsing itself, but for our situation it would make the result a lot more unreliable. It would add a lot of information that isn‘t needed and therefore becomes unnecessary. So, it was decided to use shallow semantic parsing.\\
+  As the name suggests, deep semantic parsing goes a lot more into detail when it comes to the parsing itself, but for our situation it would make the result a lot more unreliable. It would add a lot of information that isn't needed and therefore becomes unnecessary. So, it was decided to use shallow semantic parsing.\\
     
     To perform NLP related actions the SUTURO group created four different ROS-packages.
 
@@ -24,7 +29,7 @@ Deep semantic parsing on the other hand is concerned with producing precise repr
         \hline
         suturo\_julius & Provides speech recognition features. Uses HSR included julius speech recognizer. \\
         \hline 
-        suturo\_textparser & Parses input created by julius. Does static and dynamic, sling based, text analysis. \\
+        suturo\_textparser & Parses input created by JULIUS. Does static and dynamic, SLING based, text analysis. \\
         \hline
         suturo\_nlg & Performs natural language generation. Also contains the knowledge interface. \\
         \hline 
@@ -37,14 +42,14 @@ Deep semantic parsing on the other hand is concerned with producing precise repr
 \chapterauthor{Paul Schnipper}
 
     \subsection{About Julius}
-      Julius is a continuous speech recognition software. It is released under BSD-3 license by Kyoto University. Toyota created a ROS-wrapper for Julius, it is published a part of the \{ros-kinetic-hsrb-full\} apt-get-Package.\\
-      In theory, the Julius engine supports a lot of different languages, but currently, there are only two speech models
-     Julius works on dictionaries. Dictionaries are a customizable way of providing the speech recognizer with words or sentences to recognize.
-    \subsection{how dictionaries work}
-      Dictionaries can be either word-based or grammar-based. Dew to word-based dictionaries only producing single-word output and grammar-based dictionaries being capable of whole-sentence recognition, the SUTURO-Project uses grammar-based dictionaries.
+      Julius is a continuous speech recognition software. It is released under BSD-3 license by Kyoto University. Toyota created a ROS-wrapper for Julius, published a part of the \{ros-kinetic-hsrb-full\} apt-get-Package.\\
+      In theory, the Julius engine supports a lot of different languages, but currently, there are only two speech models.\\
+      Julius works on dictionaries. Dictionaries are a customizable way of providing the speech recognizer with words or sentences to recognize.
+    \subsection{How dictionaries work}
+      Dictionaries can be either word-based or grammar-based. Due to word-based dictionaries only producing single-word output and grammar-based dictionaries being capable of whole-sentence recognition, the SUTURO-Project uses grammar-based dictionaries.
     
         \subsubsection{word-based dictionary}
-            For testing purposes we created one word-based dictionaries. It can be found in \lstinline|/suturo_julius/dictionaries/examples/word|.\\
+            For testing purposes we created one word-based dictionary. It can be found in \lstinline[language=TeX]|/suturo_julius/dictionaries/examples/word|.\\
             This contains the \{word\_sample\} file.\\
             \begin{lstlisting}
 shelf sh eh l f
@@ -60,7 +65,7 @@ vase	w ah z
             
     \subsubsection{grammar-based dictionaries}
         Grammar-based dictionaries consist of two editable files. The \{.grammar\} and \{.voca\} file.\\
-        The \{.grammar\} file describes how sentences are built. Sentences are built in a Backus–Naur form grammar.\\
+        The \{.grammar\} file describes how sentences are builtusing in a Backus–Naur form grammar.\\
         \begin{lstlisting}
 S : NS_B COMMANDS NS_E
 COMMANDS : COMMAND
@@ -75,7 +80,7 @@ ITEM : Coke
 ITEM : Marmelade
 ITEM : Cookies
         \end{lstlisting}
-        Every symbol is nonterminal, except for symbols defined in the \textit{.voca} file. Terminals are defined as a word category. The category is defined through \newline
+        Every symbol is nonterminal, except for symbols defined in the \textit{.voca} file. Terminals are defined as a word category. The category is defined using\\ \lstinline[language=TeX]|% name|. \newline
         In the \textit{.voca} file the word and the phonetic representation are separated by a space.
         \begin{lstlisting}
 % and
@@ -108,11 +113,13 @@ Cookies k uh k ix
 Oreos ao r iy ow s
         \end{lstlisting}
         
-        Grammars have to be compiled to run. To compile run \textit{rosrun tmc\_julius mkdfa.pl <<grammar\_name>>} e.g. \textit{rosrun tmc\_julius mkdfa.pl grammar}. Both the \textit{.grammar} and \textit{.voca} file have to be named identical. E.g. \textit{grammar.grammar} and \textit{grammar.voca}. The compiler creates the \textit{.dfa}, \textit{dict} and \textit{.term} files.	
+        Grammars have to be compiled to run. To compile run\\
+        \lstinline[language=TeX]|rosrun tmc\_julius mkdfa.pl <<grammar\_name>>| e.g.\\ \lstinline[language=TeX]|rosrun tmc\_julius mkdfa.pl grammar|.\\
+        Both the \textit{.grammar} and \textit{.voca} file have to be named identical. E.g. \textit{grammar.grammar} and \textit{grammar.voca}. The compiler creates the \textit{.dfa}, \textit{dict} and \textit{.term} files.	
     
     \subsection{The Suturo Dictionaries}
-        The suturo\_julius package contains 3 different grammar-based dictionaries. hard\_commands contain sentences telling the robot to start, stop, or continue the task.
-        soft\_commands describes commands the robot may execute in the RoboCup. This dictionary contains sentences like: Fetch the cup from the table. Or: Find me some chocolate.
+        The \textit{suturo\_julius} package contains 3 different grammar-based dictionaries. \textit{hard\_commands} contain sentences telling the robot to start, stop, or continue the task.
+        \textit{soft\_commands} describes commands the robot may execute in the RoboCup. This dictionary contains sentences like: Fetch the cup from the table. Or: Find me some chocolate.
     \subsection{Configuration files}
         The \textit{julius\_conf} folder contains one \textit{.jconf} file. The context of this file has been taken from the \textit{tmc\_julius} package. This part of the package has been created to possibly handle configurations for different computers and, if possible, experiment with the configuration to increase recognition accuracy.
     \subsection{Launchfiles}
@@ -131,12 +138,12 @@ Oreos ao r iy ow s
 \section{The suturo\_textparser Package}
 \chapterauthor{Paul Schnipper}
     \subsection{textparser.py}
-        The textparser node is designed to take in the output from Julius and check if the output is a hard command or send it to the Sling-Parser.
+        The textparser node is designed to take in the output from Julius and check whether the output is a hard command or send it to the SLING parser.
         \subsubsection{callback(data)}
             The \textit{callback} function is called with the data published by Julius. Julius publishes its output in the \textit{tmc\_rosjulius\_msgs.msg.RecognitionResult} message type. The \textit{callback} function calls the \textit{find\_first} function to get a String representing the recognized sentence. It is then checked if the String is a static command. To do that the \textit{is\_static} command is called. If the recognized sentence is not a static command the sentence is published on the \textit{/to\_slingparser} topic to be analysed by SLING.
     
         \subsubsection{find\_first(data)}
-            The \textit{find\_first} function takes the data published by Julius and checks whether the recognition confidence is high enough. If so it returns the recognized sentence as String, if the confidence is not high enough the function returns an empty string.\\
+            The \textit{find\_first} function takes the data published by Julius and checks whether the recognition confidence is high enough. If so it returns the recognized sentence as String. If the confidence is not high enough the function returns an empty string.\\
     
         \subsubsection{is\_static(sentence)}
             The \textit{is\_static} command calls the \textit{is\_stop}, \textit{is\_start} and \textit{is\_continue} functions. If the sentence is one of these hard command types the function publishes the command type on the \textit{'hard\_commands'} topic.
@@ -149,8 +156,8 @@ Oreos ao r iy ow s
     
     \subsection{slingparserRosInterface.py \& slingparser.py3}     	
         \subsubsection{Basics of Frame Semantics \small{\textit{Merete Bommarius}}}        
-            Frame semantics is a theory of linguistic meaning, developed by Charles J. Fillmore. It extends his earlier case, grammar and relates linguistic semantics to encyclopedic knowledge. The theory applies the notion of a semantic frame, which is also used in AI. A semantic frame can also be defined as a coherent structure of related concepts. The frames themselves are based on recurring human experiences.\\
-            Frame semantics are used to give the parser a sense of structure. The way the group approached this was by framing about 100 commands by hand and then used those annotated sentences as examples of how the parser should interpret sentences that might be similar but are not in the list of commands. 
+            Frame semantics is a theory of linguistic meaning, developed by Charles J. Fillmore. It extends his earlier case grammar and relates linguistic semantics to encyclopedic knowledge. The theory applies the notion of a semantic frame, which is also used in AI. A semantic frame can also be defined as a coherent structure of related concepts. The frames themselves are based on recurring human experiences.\\
+            Frame semantics are used to give the parser a sense of structure. The way the group approached this was by framing about 100 commands by hand and then using those annotated sentences as examples of how the parser should interpret sentences that might be similar but are not in the list of commands. 
             Here is an example of an annotated sentence: 
     
             \textit{ [bring]$_{action}$  [me]$_{beneficiary}$ [the pills]$_{item}$ from [the shelf]$_{source}.$}
@@ -173,20 +180,19 @@ Oreos ao r iy ow s
             The grammar that was written looks for example like this:
             
             
-\textit{MovementOnly\\
-                MovementOnly $\rightarrow$ take ITEM [from SOURCE] [to DESTINATION] [MANNER]\\
+\textit{MovementOnly $\rightarrow$ take ITEM [from SOURCE] [to DESTINATION] [MANNER]\\
                 MovementOnly $\rightarrow$ bring [BENEFICIARY] ITEM [from SOURCE]}
                 
-            \textit{This describes the 'MovementOnly' action.
-                With this action, they primarily use their motion rather than their visual sense. This action contains simple movements like moving from a source to a\\ destination or simply into a given direction.}            
+            This describes the 'MovementOnly' action.
+            With this action, they primarily use their motion rather than their visual sense. This action contains simple movements like moving from a source to a\\ destination or simply into a given direction.            
             As you can see, the grammar starts with a term which is then explained in further detail. It also provides a structure that is to be used for the sentence, which is later being randomly generated.\\ 
-            Depending on how thoroughly the training of the parser is supposed to be, it might take a few days up till a few weeks, and the parser needs to be retrained if new information or commands are added.
+            Depending on how thoroughly the training of the parser is supposed to be, it might take a few days up to a few weeks, and the parser needs to be retrained if new commands are added.
         
         \subsubsection{About SLING}
             SLING is a natural language frame semantic parser developed by Google. It is published under the Apache License 2.0.
         \subsubsection{About TinyRPC}
-             remote procedure calls (RPC) are a way for one program to call functions provided by a different program. (In the background ROS is based on RPC technology as well.) tinyrpc is a framework for constructing remote procedure call RPC services in Python. Tiny-RPC implements the JSON-RPC protocol.\\
-             TinyRPC is used to bridge the problem, that two powerful and necessary libraries, Sling and SimpleNLG (See The Suturo\_nlg Package) are only available for Python3.\\
+             Remote procedure calls (RPC) are a way for one program to call functions provided by a different program. (In the background ROS is based on RPC technology as well.) tinyrpc is a framework for constructing remote procedure call RPC services in Python. Tiny-RPC implements the JSON-RPC protocol.\\
+             TinyRPC is used to bridge the problem, that two powerful and necessary libraries, Sling and SimpleNLG (See The Suturo\_nlg Package) are only available for Python3. Whereas ROS currently only supports Python2.\\
              To solve this problem, the \textit{slingparserRosInterface.py} starts \textit{slingparser.py3} as a subprocess. The slingparser.py3 upon startup initializes the tinyRPC server and provides the \textit{semantic\_parse()} function.
         \subsubsection[slingparserros]{slingparserRosInterface.py}
             The \textit{slingparserRosInterface.py} subscribes to a topic on which \textit{String} messages are published. It then calls the semantic parse function provided by the \textit{slingparser.py} script. This function returns the annotated semantic frames in a python dictionary. This dictionary is then translated into a \textit{MeaningRepresentation} message. This message definition contains an array of \textit{KeyValuePair} messages. Each of these messages contains the frame as a key and the contents of the frame as the associated value.
@@ -196,9 +202,9 @@ Oreos ao r iy ow s
     
 \section{The suturo\_nlg Package}
 \chapterauthor{Paul Schnipper}
-    The \textit{suturo\_nlg} package handles speech generation. But also contains the \textit{knowledge\_interface} node, designed to answer simple questions by querying KnowRob through ROSProlog.
+    The \textit{suturo\_nlg} package handles speech generation, and also contains the \textit{knowledge\_interface} node, designed to answer simple questions by querying KnowRob through ROSProlog.
     \subsection{knowledge\_interface.py}
-        The knowledge interface is designed to answer three different kinds of questions. Where is ITEM X supposed to go? What is on SURFACE? Is there a ITEM X on SURFACE?\\
+        The knowledge interface is designed to answer three different kinds of questions: Where is ITEM X supposed to go? What is on SURFACE? Is there a ITEM X on SURFACE?\\
         The \textit{knowledge\_interface} subscribes to a topic using the \textit{MeaningRepresentation} message. (See \hyperref[slingparserros]{slingparserRosInterface}) When there is a message published on this topic the \textit{callback} function is called.
         \subsubsection{callback}
             The callback function takes the \textit{MeaningRepresentation} message and converts it into a dictionary.
@@ -217,7 +223,7 @@ Oreos ao r iy ow s
     \begin{itemize}
         \item \textbf{hard\_commands\_only.launch}
             \subitem Starts Julius just with the dictionary for hard commands.
-            \subitem And start a textparser node.
+            \subitem Starts a textparser node.
         \item \textbf{qa\_system.launch}
             \subitem Starts Julius with the dictionary for the QA-System.
             \subitem Starts a textparser node.
@@ -228,7 +234,7 @@ Oreos ao r iy ow s
             \subitem Placeholder for a later system similar to \texttt{qa\_system.launch}. This is supposed to be used for complex commands given to the robot.  
         
     \end{itemize}
-     
+     \newpage
     	
 \end{document}
 
