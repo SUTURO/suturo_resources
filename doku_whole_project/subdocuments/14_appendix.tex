@@ -10,7 +10,15 @@
 		\section{Communication}
 			\subsection{Messages}
 			\label{msgs}
-				\subsubsection{Object In Gripper}
+				\subsubsection{Object In Gripper}\label{msg_obj_in_gripper}
+				\subsubsection{Object In Gripper Info}
+				This message is sent, when manipulation grasps or places a object.
+				\begin{itemize}
+					\item object\_frame\_id - frame id of the object
+					\item goal\_pose - new pose of the object if placed
+					\item mode - GRASPED or PLACED
+					\item
+				\end{itemize}
 					\begin{lstlisting}
 					uint8 GRASPED=0
 					uint8 PLACED=1
@@ -75,6 +83,23 @@
 					string feedback
 					\end{lstlisting}
 					\subsubsection{Take Pose}
+					\subsubsection{Take Pose Info}
+						This action is called to move the HSR into a certain pose.
+						\begin{itemize}
+							\item pose\_mode - determines the pose
+							\item gaze\_point - point to look at in GAZE mode
+							\item head\_pan\_joint - joint value in FREE mode
+							\item head\_tilt\_joint - joint value in FREE mode
+							\item arm\_lift\_joint - joint value in FREE mode
+							\item arm\_flex\_joint - joint value in FREE mode
+							\item arm\_roll\_joint - joint value in FREE mode
+							\item wrist\_flex\_joint - joint value in FREE mode
+							\item wrist\_roll\_joint - joint value in FREE mode
+							\item \
+							\item error\_code - result: SUCCESS or FAILED
+							\item \
+							\item torso\_joint\_state - feedback: not implemented
+						\end{itemize}
 					\begin{lstlisting}
 					uint8 FREE=0
 					uint8 NEUTRAL=1
