@@ -95,9 +95,9 @@
 							\item arm\_roll\_joint - joint value in FREE mode
 							\item wrist\_flex\_joint - joint value in FREE mode
 							\item wrist\_roll\_joint - joint value in FREE mode
-							\item \
+							\item --------------------------------------------
 							\item error\_code - result: SUCCESS or FAILED
-							\item \
+							\item --------------------------------------------
 							\item torso\_joint\_state - feedback: not implemented
 						\end{itemize}
 					\begin{lstlisting}
@@ -126,6 +126,15 @@
 					float64 torso_joint_state
 					\end{lstlisting}
 				\subsubsection{Move Gripper}
+				\subsubsection{Move Gripper Info}
+				This action is called to move the gripper of the HSR into a certain pose.
+				\begin{itemize}
+					\item goal\_pose - traget pose for the gripper
+					\item --------------------------------------------
+					\item error\_code - result: SUCCESS or FAILED
+					\item --------------------------------------------
+					\item tf\_gripper\_to\_goal - feedback: not implemented
+				\end{itemize}
 					\begin{lstlisting}
 					geometry_msgs/PoseStamped goal_pose
 					---
@@ -133,9 +142,22 @@
 					uint8 FAILED = 1
 					uint8 error_code
 					---
-					geometry_msgs/TransformStamped tf_gripper_to_goal goal frame
+					geometry_msgs/TransformStamped tf_gripper_to_goal #goal frame
 					\end{lstlisting}
 				\subsubsection{Grasp}
+				\subsubsection{Grasp Info}
+				This action is called to grasp an object.
+				\begin{itemize}
+					\item object\_frame\_id - name of the object
+					\item goal\_pose - target pose for the gripper to grasp
+					\item object\_size - size of the object
+					\item grasp\_mode - grasp object from FRONT, TOP or FREE (orientation of gripper defined in pose)
+					\item --------------------------------------------
+					\item error\_code - result: SUCCESS or FAILED
+					\item --------------------------------------------
+					\item tf\_gripper\_to\_goal - feedback: not implemented
+					\item gripper\_joint\_state - feedback not implemented
+				\end{itemize}
 					\begin{lstlisting}
 					uint8 FREE=0
 					uint8 FRONT=1
@@ -155,6 +177,18 @@
 					float64 gripper_joint_state
 					\end{lstlisting}
 				\subsubsection{Place}
+				\subsubsection{Place Info}
+				This action is called to place an object.
+				\begin{itemize}
+					\item object\_frame\_id - name of the object
+					\item goal\_pose - target pose for the object
+					\item place\_mode - grasp object from FRONT, TOP or FREE (orientation of gripper defined in pose)
+					\item --------------------------------------------
+					\item error\_code - result: SUCCESS or FAILED
+					\item --------------------------------------------
+					\item tf\_gripper\_to\_goal - feedback: not implemented
+					\item gripper\_joint\_state - feedback not implemented
+				\end{itemize}
 					\begin{lstlisting}
 					uint8 FREE=0
 					uint8 FRONT=1
