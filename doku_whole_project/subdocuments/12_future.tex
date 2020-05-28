@@ -49,14 +49,14 @@
 		When this is done, the different classifiers can be tested with the \textit{classificationEvaluationAnnotator}. It is very important to not change anything but 
 		the classifier in the pipeline, so the results do not get distorted.
 		
-		\section{Perception: HSR hand camera for feedback on object position}
+		\section{Perception: HSR hand camera for feedback on object position}\label{fut_hsr_hand_camera_feedback}
 		\chapterauthor{~\\~\\~\\Leonidas Paniago De Oliveira Neto}
-One of the problems we had with the HSR was that more so often he would grab wrong.
-To counteract the imprecision we wanted to use the HSR hand camera for some kind of feedback on the object position.
-Implemented is a python script using \textit{YOLO} (You only look once) algorithms that use the webcam and output how far the found objects are from the screen middle.
-Furthermore there is a \textit{RoboSherlock} Annotator that implements \textit{YOLO} but due to version conflict with ROS the code is not fully functional.
-The best way to proceed is to try another object detection algorithms from \textit{OpenCV} or maybe if the color is known to look for it in the picture.
-In my opinion this should be a major focus for new groups so far that the grasping problem is not resolved by any other means.
+		One of the problems we had with the HSR was that more so often he would grab wrong.
+		To counteract the imprecision we wanted to use the HSR hand camera for some kind of feedback on the object position.
+		Implemented is a python script using \textit{YOLO} (You only look once) algorithms that use the webcam and output how far the found objects are from the screen middle.
+		Furthermore there is a \textit{RoboSherlock} Annotator that implements \textit{YOLO} but due to version conflict with ROS the code is not fully functional.
+		The best way to proceed is to try another object detection algorithms from \textit{OpenCV} or maybe if the color is known to look for it in the picture.
+		In my opinion this should be a major focus for new groups so far that the grasping problem is not resolved by any other means.
 
 		% Knowledge:
 		\section{Knowledge: Continue optimizing the object goal pose}
@@ -95,6 +95,9 @@ In my opinion this should be a major focus for new groups so far that the graspi
 		To make sure that the orientation of the robot's hand stays the same relative to the door, three constraints(x,y,z) make sure that one of the three axes in hand\_palm\_link points toward the doors rotation axis at all times, deriving from the method used in the Pointing constraint.\\
 		Finally two constraints represent the distance on the xy plane in the map to a goal point to which the hand should move. This goal point is calculated by rotating the initial grasp point around the rotation axis by a given angle(usually 90 degrees).
 		
+		\section{Manipulation: Use Hand Camera Feedback}
+		As a counterpart to \ref{fut_hsr_hand_camera_feedback} manipulation needs to implement a way to process the feedback. At the moment \textit{Giskard} does not offer the ability to feed it live data. Therefore either an extension or a standalone variation is needed correcting the gripper position during the grasping process.
+				
 		% Navigation
 		
 		
