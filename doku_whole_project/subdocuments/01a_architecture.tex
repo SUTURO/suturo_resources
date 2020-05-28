@@ -26,7 +26,7 @@
 		
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=1.0\textwidth]{pictures/diagramms/overview.pdf}
+			\includegraphics[width=1.1\textwidth]{pictures/diagramms/overview.pdf}
 			\caption{Architecture overview}
 			\label{architecture}
 		\end{figure}
@@ -48,19 +48,28 @@
 				\item{\textbf{Caffe}} \\
 					\textit{Caffe} is a deep learning framework made with expression, speed, and modularity in mind. It is developed by Berkeley AI Research (BAIR) and by community contributors.
 			\end{itemize}
-
-		\section{Interfaces (noch in arbeit)}
+		
+		\section{Interfaces}
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=1.0\textwidth]{pictures/diagramms/rosgraph}
+			\includegraphics[width=1.5\textwidth]{pictures/diagramms/rosgraph}
 			\caption{Interfaces}
 			\label{interfaces}
 		\end{figure}
 
-		In figure \ref{interfaces} the action servers and some other communication can be seen. As the main node is the \textit{planning\_node} which requests actions from other servers like the \textit{place\_server} it is involved in all out communication. The sequence in which these calls are made will be explained in detail in chapter \ref{grocery-sequence} Storing Groceries Task Overview and chapter \ref{cleanup-sequence} Clean Up Task Overview.
+		In figure \ref{interfaces} the action servers and some other communication can be seen. As the main node is the \textit{planning\_node} which requests actions from other servers like the \textit{place\_server}, \textit{grasp\_server} or \textit{perception\_server} it is involved in all our communication. The sequence in which these calls are made will be explained in detail in chapter \ref{grocery-sequence} Storing Groceries Task Overview and chapter \ref{cleanup-sequence} Clean Up Task Overview. This section will give a short introduction to communication in ros and what messages were created for this project.
 
-		\subsection{Actionservers vs Topics}
+		\subsection{Form Of Communication}
+		
+			\subsubsection{Action Server}
+			
+			Action servers provide a synchronized form of communication integrated into the ROS environment. As this is a server based communication the connection between client and server has to be made. This connection can not fail during runtime so a connection leads most of the time to a failed execution. In this project action servers were mainly used because of the synchonisity, this way if an action fails the server will send a corresponding result which can be caught and handled by the high level plans.
+			
+			\subsubsection{Topic Based}
+			
+			ROS also provides topic based communication which follows the listener/subscriber design pattern. It is a asynchronous way of communication where the result of the triggered action or request is not guaranteed. It is also not guaranteed that the subscriber received the message which was sent via a given topic. In this project topic based communication was used a few times in situations where it is not crucial to get an immediate result.  
+		
 
 		For our interfaces shown in \ref{interfaces} we chose to mainly use actionservers becasue they provide a simple synchronized form of communication where we can perform a task and then evaluate possible reactions to the new circumstances. This would not have been possible if we mainly used listener/subscriber structures with topic communication because that model would only provide assynchron communication where we can not be sure if the message were received and what the outcome of the requested action was.
 

@@ -502,7 +502,8 @@ Each annotator can be executed by enabling the corresponding annotator in the de
 The \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/TwoDAnnotator.cpp}{TwoDAnnotator} is responsible for shape recognition that should replace the old ShapeAnnotator by improving the accuracy, reducing processing time, and expanding the usability. 
 Since the old annotator only processes RGB-D images (color and dense depth images) which makes the head-camera the only usable camera for the task. The task also takes a very long time with less than desirable results. \\
 To fix these issues, the TwoDAnnotator uses only RGB (color images) images, which makes the processing less demanding than there's fewer data to process. Furthermore, all the HSR cameras are usable for shape recognition because each one is capable of outputting RGB images. \\
-The TwoDAnnotator works by converting the RGB image to grayscale :
+The TwoDAnnotator works by converting the RGB image to grayscale:
+
 \begin{lstlisting}
 ..
 // Get RGB image and copy it to src
@@ -536,7 +537,9 @@ All found edges are then used for the contour analysis :
 cv.findContours(canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 ..
 \end{lstlisting}
-Each contour get check for the numbers of edges. By three edges it is assumed that it is a triangle, four edges implies that it is a square. In addition, each contour needs to reach a certain area threshold. The triangle area get checked using the Hero´s formula, squares using Bretschneider formula. \\
+
+Each contour gets check for the numbers of edges. By three edges it is assumed that it is a triangle, four edges implies that it is a square. In addition, each contour needs to reach a certain area threshold. The triangle area get checked using the Heros formula, squares using Bretschneider formula. 
+
 \begin{lstlisting}
 ..
 //triangle area
