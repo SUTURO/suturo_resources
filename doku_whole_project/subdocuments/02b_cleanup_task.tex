@@ -43,6 +43,10 @@
 	Just as described in the task Grocery Storing, Manipulation needs to set the robot to the default pose.
 	\end{manipulation}
 
+	\begin{navigation}
+		In contrast to Storing Groceries objects can also be placed on the ground. In order to find these objects the laser scanner of the HSR is used. For this purpose the obstacle\_finder \ref{met_obstacle_finder} needs to be started. It bundles scans together forming clusters. Each of these clusters is then projected on the map filtering known objects that are static and therefore not movable. The remaining clusters are seen as \textit{points of interest}. 
+	\end{navigation}
+
 	\subsection{Scan table sequence}
 	
 	% Knowledge: get table-poses
