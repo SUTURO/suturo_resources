@@ -172,6 +172,17 @@
 	    	\item \textbf{check-goal-reached (nav-goal-pose-stamped)}\\
 	    	Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
 	    \end{itemize}
+			\begin{lstlisting}[language={elisp}]
+(roslisp::with-fields (translation) 
+  (cl-tf::lookup-transform cram-tf::*transformer* 
+                           "map" "base_footprint")
+(setf *distance* (+ (abs (cl-tf:x translation))
+                   (+ (abs (cl-tf:y translation))
+                     (+ (abs (cl-tf:x nav-goal-pose-stamped))
+                       (abs (cl-tf:y nav-goal-pose-stamped))))))
+  (if (> *distance* 0.2) 
+      (setf (cram-language:value *reached-goal*) T)))
+		  \end{lstlisting}
 	    \subsection{process-modules.lisp}
 	     \begin{itemize}
 		\label{pcm}
