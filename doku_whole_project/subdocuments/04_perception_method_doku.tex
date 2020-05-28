@@ -252,7 +252,36 @@ In the pictures shown above the RGB texture and the pointcloud representation do
 \section{classificationEvaluation Package}
 \chapterauthor{Jan-Frederik Stock}
 
+\subsection{Introduction}
 The classificationEvaluation package is used to save and display the classificationresults of the perception pipeline. The results can be saved in a markdown table and/or be displayed as a scatterplot. It consists mainly of the rsClassificationEvaluator.py python script. Here, the class ResultActionClient is implemented, which serves as an action client for the perception object info actionserver.\\
+
+\subsection{Motivation}
+The classificationEvaluation package was created to access and save the classification results, which was not easily possible at the time. It was also meant as a way to compare classification performance based on the confidence measurements of different algorithms. It became evident in the process that this was not useful, the reason for this will be outlined in the following.\\
+
+After implementing the classificationEvaluation package, it was used to create the plot \ref{fig:k comparison plot}. This plot was meant to compare the performance of a k-nearest-neighbor classifier, with different selections of the paramter k. The value of the k is shown on the x-axis, the confidence is on the y-axis, with zero being the lowest and one being the highest possible confidence. Each point in the plot represents a sample, that was classified.\\
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{pictures/perception/k_comparison.png}
+	\caption{Plot showing the confidence for different values of k}
+	\label{fig:k comparison plot}
+\end{figure}
+
+The plot shows that the confidence does not change with different values of k, which is surprising due to the details of the KNN algorithm. The reason for this is the way the confidence was implemented in the KNN classifier:
+
+\begin{lstlisting}
+cv::Mat results, neighborResponses, dists;
+double res = knncalld->findNearest(test_mat, k_max, results, neighborResponses, dists);
+double confidence = (2 - dists.at<float>(0))/2);
+\end{lstlisting}
+
+This implementation of the KNN algorithm returns a onedimensional matrix with the distances of each of the k neighbors to the sample. Yet the calculation of the confidence only takes the distance of the first neighbor into consideration. This is why the confidence does not change with the altering of the k. The calculation of the confidence was later changed for the SUTURO project, more details can be found in \ref{KNN confidence}.\\
+
+Regarding the results, evaluating KNN classification performance based on the confidence is very dependent on the implementation of the confidence. The confidence does not necesserily provide a good measurement of the real performance of the algorithm. Comparing based on a confidence might be acceptable for evaluating the best parameters for a specific algorithm, but it is not at all useful to compare different classification algorithms.\\
+
+This is due to the fact that the common classification algorithms work very differently, which makes the implementation of a confidence unique for each algorithm. Because of that, algorithms are not comparable based on confidence. A better and more objective way to compare them was implemented in the SUTURO project and it is described in section \ref{clusterLabeling}.
+
+
+ 
 
 \subsection{The ResultActionClient class}
 The class provides the following methods:
@@ -277,7 +306,7 @@ The main method tries to create an instance of the resultActionClient class, doe
 
 \section{Feature Extraction Tools}
  \chapterauthor{Jan-Frederik Stock}
-Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classify it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is Caffe, the trained network is the BVLC Reference Net. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
+Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classify it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is Caffe, the trained network is the BVLC Reference Net. If you want to install Caffe, you can find instructions in the SUTURO projects installation guide, in sections 3.2 and 3.3. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
 
 \subsection{make\_split\_from\_directory.sh} 
 This bash script can be used to create a split YAML-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the YAML-file will be created. It then creates the YAML-file using the names of the directories in which the images are stored as class names.
@@ -285,7 +314,7 @@ This bash script can be used to create a split YAML-file which is required to pe
 \subsection{make\_list\_from\_directory.sh}
 This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a split file but a list of the class names. This is required by the classifying annotator and has to be pasted into the annotators YAML-file. The comma after the last class name in the list has to be removed manually.
 
-\section{calculateConfidence in RSKNN.cpp}
+\section{calculateConfidence in RSKNN.cpp}\label{KNN confidence}
 \chapterauthor{Jan-Frederik Stock}
 In the RSKNN.cpp, implementing KNN-classification in the rs\_addons package, the following method was added:
 
@@ -295,7 +324,7 @@ double RSKNN::calculateConfidence(double classificationResult, cv::Mat neighborR
 
 It calculates the classification confidence for the KNN-classification by dividing the number of neighbors belonging to the result class, by the total number of visited neighbors. 
 
-\section{The clusterLabeling Package}
+\section{The clusterLabeling Package}\label{clusterLabeling}
 \chapterauthor{Jan-Frederik Stock}
 \subsection{Motivation}
 The clusterLabeling package fixes a fundamental problem: Before its existence it was not possible to compare the performance of classifiers objectively. A user could only look at a given classification and decide if the algorithm was working good or bad overall, but not decide on a quantitative mesurement. The ability to do this is not just important to evaluate the perfomance of a single algorithm, but even more to compare the performance of different algorithms and select the best one for a specific use case.\\
