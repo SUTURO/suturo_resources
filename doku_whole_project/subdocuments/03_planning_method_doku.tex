@@ -15,11 +15,13 @@
 		\chapterauthor{Torge Olliges, Phillip Klein,\\ Tom-Eric Lehmkuhl, Jan Schimpf}
 		
 		The Planning Group is responsible for the integration and connection of the results of the other groups. Planning has also created a sophisticated sequence diagram that explains the process and the interaction of all groups.
-	    Furthermore, Planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bug fixing and adaptation of the current code.
+	    Furthermore, Planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bug fixing and adaptation of the current code. \\
+			
+			The Planning Code is split into four packages. The package \nameref{llif} (llif), which provides the interfaces to the other subgroups, is used as the basis. Functions that are relevant for all tasks are contained in the package \nameref{comf} (comf). The last two packages are for the individual tasks. For storing grocery the package \nameref{grocery} and for clean up the package \nameref{clean}. On the one hand, these contain the initialization functions to establish the connection to the other subgroups, and on the other hand, the main plans, which are based on the functions from comf and llif. This division allows different tasks to work on a common basis and keeps the individual packages well organized. Functions can be clearly assigned and quickly found again. The diagram \ref{planning-overview} shows once again the connections between the packages.
 
-		\begin{figure}[h]
+		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.85\textwidth]{pictures/diagramms/planning.png}
+			\includegraphics[width=\textwidth]{pictures/diagramms/planning.pdf}
 			\caption{Planning architecture overview}
 			\label{planning-overview}
 		\end{figure}
@@ -75,7 +77,7 @@
 			(prolog:prolog '(and (btr:bullet-world ?world)
 			(btr:simulate ?world 10))))
 		\end{lstlisting}
-	  	\section{Clean Up}
+	  	\section{Clean}
 	  	\label{clean}
 	  	\chapterauthor{Phillip Klein, Jan Schimpf, \\Torge Olliges, Tom-Eric Lehmkuhl}
 	  	This package contains the main function for this task and some subroutines.
