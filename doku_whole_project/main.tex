@@ -14,6 +14,7 @@
 \usepackage{float}
 \usepackage{color}
 \usepackage{mdframed}
+\usepackage{pdflscape}
 
 \definecolor{mygray}{rgb}{0.7,0.7,0.7}
 \definecolor{mygreen}{rgb}{0,0.35,0}
@@ -32,6 +33,10 @@
 	filecolor=magenta,      
 	urlcolor=cyan,
 }
+
+\newenvironment{rotatepage}%
+{\clearpage\pagebreak[4]\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}}%
+{\clearpage\pagebreak[4]\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 0}}%
 
 \newmdenv[
   topline=false,
@@ -174,12 +179,12 @@
 \subfile{subdocuments/11_organisational.tex}
 \subfile{subdocuments/12_future.tex}
 \subfile{subdocuments/13_conclusion.tex}
-
 \subfile{subdocuments/03_planning_method_doku.tex}
 \subfile{subdocuments/04_perception_method_doku.tex}
 \subfile{subdocuments/05_knowledge_method_doku.tex}
 \subfile{subdocuments/06_nlp_method_doku.tex}
 \subfile{subdocuments/07_manipulation_method_doku.tex}
 \subfile{subdocuments/08_navigation_method_doku.tex}
+\subfile{subdocuments/14_appendix.tex}
 
 \end{document}
