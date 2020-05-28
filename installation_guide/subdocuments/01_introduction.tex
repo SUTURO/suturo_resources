@@ -3,6 +3,7 @@
 \newpage
 	\section{Introduction}
 	This document describes how to install and run the different parts of our system.\\
+	Should you encounter a problem you can check the section \ref{problems} for possible solutions.
 	In figure \ref{fig:architecture} you can see the architecture of our system.
 	\begin{figure}[h]
 \centering
@@ -19,7 +20,7 @@
 sudo apt-get install git
 \end{lstlisting}
 	The system runs with ROS-Kinetic. Instructions on how to install ROS can be found \href{http://wiki.ros.org/kinetic/Installation/Ubuntu}{here}. We recommend to install the Desktop-Full version.\\
-	To install dependencies we use pip. Run the following commands to install pip:\\
+	To install dependencies we use pip. Run the following commands to install pip:
 	\begin{lstlisting}
 sudo apt install python-pip
 sudo apt install python3-venv python3-pip
@@ -39,7 +40,7 @@ If you dont want to run this command now, run it when you install the python pac
 sudo apt-get install python-rosinstall python-wstool
 \end{lstlisting}
 
-If you had ROS already installed, it is advised to run:
+If you had ROS already installed, we recommend to run:
 \begin{lstlisting}
 rosdep update
 \end{lstlisting}
@@ -64,7 +65,7 @@ source devel/setup.bash
 	
 	\subsubsection{How we manage our Workspaces} \label{workspace_management}
 	
-	We use three workspaces for our system, since using just one causes some problems.\\
+	We use three workspaces for our system, because some packages cause problems, when they are in the same workspace.\\
 	The first workspace contains the \nameref{sec:Manipulation} part (without Navigation).\\
 	In the second workspace we installed the \nameref{sec:Planning} part.\\
 	Everything else can be installed in the third workspace.\\

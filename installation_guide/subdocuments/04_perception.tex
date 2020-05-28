@@ -124,23 +124,6 @@ To be able to use Caffe, you now need to download a trained model file, or train
 ./download_model_binary.py ../models/bvlc_reference_caffenet/
 \end{lstlisting}
 
-If you encounter the following problem while using your Caffe installation, you can fix it with the following commands:
-
-Problem:
-
-\begin{lstlisting}
-fatal error: caffe/proto/caffe.pb.h: No such file or directory
-\end{lstlisting}
-
-Fix, this must be executed in your caffe directory:
-
-
-\begin{lstlisting}
-protoc src/caffe/proto/caffe.proto --cpp_out=.
-mkdir include/caffe/proto
-mv src/caffe/proto/caffe.pb.h include/caffe/proto
-\end{lstlisting}
-
 
 
 For information on how to do feature extraction with Caffe see \ref{feature_extraction}, information on how to classify with the rs\_addons package and Caffe can be found at \ref{classifying}. 

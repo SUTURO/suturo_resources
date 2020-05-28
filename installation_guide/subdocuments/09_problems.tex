@@ -1,13 +1,13 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 	\section{Known problems}
-
+	\label{problems}
 	\subsection{Workspaces}
-	\subsubsection{Manipulation}
+	\subsubsection{Manipulation and Knowledge}
 	It is known, that some messages can cause problems between Manipulation and Knowledge. Because of this we installed Manipulation in a different workspace.
 	
 	\subsubsection{Planning}
-	If you want to install Planning in the same workspace as the other parts, the hsr\_description package should cause problems. To solve this issue we use a separate workspace for Planning.
+	If you want to install Planning in the same workspace as the other parts, the hsr\_description package should cause problems. Because of this issue we use a separate workspace for Planning.
 	
 
 	\subsection{Knowledge}
@@ -40,6 +40,24 @@ sudo apt-get install python-rrdtool python-pymongo
 	\begin{lstlisting}
 sudo -H pip3 install sling-0.1.0/
 sudo -H pip3 install simplenlg tinyrpc==0.9.4 zmq
+\end{lstlisting}
+
+	\subsection{Perception}
+	\subsubsection{Caffe}
+	
+	If you encounter the following problem while using your Caffe installation:
+
+\begin{lstlisting}
+fatal error: caffe/proto/caffe.pb.h: No such file or directory
+\end{lstlisting}
+
+you can fix it by executing the following commands in your caffe directory:
+
+
+\begin{lstlisting}
+protoc src/caffe/proto/caffe.proto --cpp_out=.
+mkdir include/caffe/proto
+mv src/caffe/proto/caffe.pb.h include/caffe/proto
 \end{lstlisting}
 	
 	\subsection{Manipulation}
