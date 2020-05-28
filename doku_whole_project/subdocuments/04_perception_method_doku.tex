@@ -590,7 +590,7 @@ All found edges are then used for the contour analysis :
 cv.findContours(canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 ..
 \end{lstlisting}
-Each contour get check for the numbers of edges. By three edges it is assumed that it is a triangle, four edges implies that it is a square. In addition, each contour needs to reach a certain area threshold. The triangle area get checked using the Hero´s formula, squares using Bretschneider formula. \\
+Each contour gets checked for the number of edges. For three edges it is assumed as triangle, four edges implies a square. In addition, each contour needs to reach a certain area threshold. The triangle areas get checked using the Hero's formula, squares using Bretschneider formula. \\
 \begin{lstlisting}
 ..
 double area = sqrt((a + b + c)*(a + b - c)*(b + c - a)*( c+ a - b))/4;
