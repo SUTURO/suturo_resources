@@ -64,19 +64,164 @@
 		
 			\subsubsection{Action Server}
 			
-			Action servers provide a synchronized form of communication integrated into the ROS environment. As this is a server based communication the connection between client and server has to be made. This connection can not fail during runtime so a connection leads most of the time to a failed execution. In this project action servers were mainly used because of the synchonisity, this way if an action fails the server will send a corresponding result which can be caught and handled by the high level plans.
+			Action servers provide a synchronized form of communication integrated into the ROS environment. As this is a server based communication the connection between client and server has to be made. This connection can not fail during runtime so a connection leads most of the time to a failed execution. In this project action servers were mainly used because of the synchronism, this way if an action fails the server will send a corresponding result which can be caught and handled by the high level plans.
 			
 			\subsubsection{Topic Based}
 			
 			ROS also provides topic based communication which follows the listener/subscriber design pattern. It is a asynchronous way of communication where the result of the triggered action or request is not guaranteed. It is also not guaranteed that the subscriber received the message which was sent via a given topic. In this project topic based communication was used a few times in situations where it is not crucial to get an immediate result.  
 		
 
-		For our interfaces shown in \ref{interfaces} we chose to mainly use actionservers becasue they provide a simple synchronized form of communication where we can perform a task and then evaluate possible reactions to the new circumstances. This would not have been possible if we mainly used listener/subscriber structures with topic communication because that model would only provide assynchron communication where we can not be sure if the message were received and what the outcome of the requested action was.
+		For our interfaces shown in \ref{interfaces} . 
 
 		\subsection{Messages}
-
-
+		\subsubsection{Object In Gripper}
+		\begin{lstlisting}
+		uint8 GRASPED=0
+		uint8 PLACED=1
 		
+		string object_frame_id
+		geometry_msgs/PoseStamped goal_pose
+		uint8 mode
+		\end{lstlisting}
+		\subsubsection{Speech Generation}
+		\begin{lstlisting}
+		uint8 MOVE=0
+		uint8 GRABING=1
+		uint8 MOVEOBJECT=2
+		uint8 PLACING=3
+		
+		uint8 FUTURE=50
+		uint8 PRESENT=51
+		uint8 PAST=52
+		
+		uint8 Type
+		
+		uint8 Tense
+		
+		SpeechgenerationAttribute[] Attributes
+		\end{lstlisting}
+		\subsubsection{Speech Generation Attribute}
+		\begin{lstlisting}
+		uint8 OBJECTNAME=0
+		uint8 OBJECTID=1 # Use either Name or ID the name will be said directly, while the ID will be the representation from knowledge and processed later
+		uint8 STARTSURFACE=2
+		uint8 GOALSURFACE=3
+		
+		
+		uint8 Type
+		string Conntent
+		\end{lstlisting}
+		\subsubsection{Static Command}
+		\begin{lstlisting}
+		uint8 START=0
+		uint8 STOP=1
+		uint8 CONTINUE=2
+		
+		uint8 command
+		
+		\end{lstlisting}
+		\subsection{Actions}
+			\subsubsection{Move Base}
+			\href{http://wiki.ros.org/move_base_msgs/MoveBaseAction}{ROS Reference}
+			\subsubsection{Extract Object Info}
+			This action is send when the \textit{RoboSherlock} should be triggered and when \textit{RoboSherlock} is done perceiving and returning its results.
+			\begin{itemize}
+				\item visualize - more visual output from \textit{RoboSherlock}
+				\item regions - the regions which should be processed by \textit{RoboSherlock}
+				\item detectionData - contains the objects detected by the \textit{RoboSherlock} pipeline
+				\item
+			\end{itemize}
+			\begin{lstlisting}
+			bool visualize
+			string[] regions
+			---
+			ObjectDetectionData[] detectionData
+			---
+			string feedback
+			\end{lstlisting}
+			\subsubsection{Take Pose}
+			\begin{lstlisting}
+			uint8 FREE=0
+			uint8 NEUTRAL=1
+			uint8 LOOK_LOW=2
+			uint8 LOOK_HIGH=3
+			uint8 LOOK_FLOOR = 4
+			uint8 GAZE=5
+			
+			uint8 pose_mode
+			geometry_msgs/Vector3 gaze_point
+			
+			float32 head_pan_joint
+			float32 head_tilt_joint
+			float32 arm_lift_joint
+			float32 arm_flex_joint
+			float32 arm_roll_joint
+			float32 wrist_flex_joint
+			float32 wrist_roll_joint
+			---
+			uint8 SUCCESS=0
+			uint8 FAILED=1
+			uint8 error_code
+			---
+			float64 torso_joint_state
+			\end{lstlisting}
+			\subsubsection{Move Gripper}
+			\begin{lstlisting}
+			geometry_msgs/PoseStamped goal_pose
+			---
+			uint8 SUCCESS = 0
+			uint8 FAILED = 1
+			
+			uint8 error_code
+			---
+			geometry_msgs/TransformStamped tf_gripper_to_goal goal frame
+			\end{lstlisting}
+			\subsubsection{Grasp}
+			\begin{lstlisting}
+			uint8 FREE=0
+			uint8 FRONT=1
+			uint8 TOP=2
+			
+			string object_frame_id
+			geometry_msgs/PoseStamped goal_pose 
+			geometry_msgs/Vector3 object_size
+			uint8 grasp_mode
+			---
+			uint8 SUCCESS=0
+			uint8 FAILED=1
+			
+			uint8 error_code
+			---
+			geometry_msgs/TransformStamped tf_gripper_to_object
+			float64 gripper_joint_state
+			\end{lstlisting}
+			\subsubsection{Place}
+			\begin{lstlisting}
+			uint8 FREE=0
+			uint8 FRONT=1
+			uint8 TOP=2
+	
+			string object_frame_id
+			geometry_msgs/PoseStamped goal_pose
+			uint8 place_mode
+			---
+			uint8 SUCCESS=0
+			uint8 FAILED=1
+			uint8 error_code
+			---
+			geometry_msgs/TransformStamped tf_object_to_goal
+			float64 gripper_joint_state
+			\end{lstlisting}
+			\subsubsection{Store Object Info}
+			\begin{lstlisting}
+			suturo_perception_msgs/ObjectDetectionData[] detectionData
+			---
+			bool succeeded
+			---
+			string feedback
+			\end{lstlisting}
+		
+
 	  		 
 
 	\endgroup
