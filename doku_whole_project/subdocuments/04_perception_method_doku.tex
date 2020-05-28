@@ -23,9 +23,9 @@ RoboSherlock works by executing all of these annotators in a predefined order. T
 
 		\section{rs\_perception}
 		\chapterauthor{Leonidas Paniago}
-To understand this chapter, the term pipeline needs to be further defined. The term pipeline in the informatics often refers to sequential processing of information.
+To understand this chapter, the term pipeline needs to be further defined.The term pipeline is often used in computer science for the successive execution of processes
 In RoboSherlock, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
-Each task in the pipeline is called Annotator and it has an own purpose, here is a list of some tasks : 
+Each task in the pipeline is called Annotator and it has an own purpose, here is a list of some tasks: 
 		\begin{itemize}
 			\item Annotation
 			\item Detection
@@ -37,26 +37,33 @@ Each task in the pipeline is called Annotator and it has an own purpose, here is
 			\item Tracking
 		\end{itemize}		
 The pipeline order is determined by the already processed information and the needed information for the next step.
-Each annotator contains changeable parameter that enables customization to the given tasks.
-\href{https://github.com/SUTURO/suturo_perception/tree/master/rs_perception}{rs\_perception} includes all main pipelines. 
+Each annotator contains changeable parameter that enables customization to the given tasks. All main pipelines are included in \href{https://github.com/SUTURO/suturo_perception/tree/master/rs_perception}{rs\_perception}
 
 			\subsection{Pipeline: hsrb\_1ms}
 
 The main pipeline for detecting and identifying objects with RoboSherlock consists of the following annotators in order:  
 \begin{itemize}
 	\item CollectionReader : Takes care of the Camera  Input
-	\item ImagePreprocessor : Create missing Images and implement Image Filters  
+
+	\begin{minipage}[t]{\textwidth}
+	\item ImagePreprocessor : Prepares image for further processing and implement image filters
 		\begin{figure}[H]
    			 \centering
-    			\includegraphics[width=0.5\linewidth]{pictures/2d/ImagePreProcessor.png}
+    			\includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
    			 \caption{ImagePreprocessor}
   		\end{figure}
+	\end{minipage}
+
+	\begin{minipage}[t]{\textwidth}
 	\item SuturoRegionFilter : Remove all points that are not in the defined Regions 
 		\begin{figure}[H]
    			 \centering
     			\includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
    			 \caption{SuturoRegionFilter}
   		\end{figure}
+	\end{minipage}
+
+	\begin{minipage}[t]{\textwidth}
 	\item NormalEstimator : Estimate Surface Normals in a PointCloud 
 		\begin{figure}[H]
    			 \centering
@@ -68,6 +75,9 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
        			 }
    			 \caption{NormalEstimator}
   		\end{figure}
+	\end{minipage}
+
+	\begin{minipage}[t]{\textwidth}
 	\item PlaneAnnotator : Search for Horizontal Planes in which the search location for Objects is set
 		\begin{figure}[H]
    			 \centering
@@ -79,6 +89,9 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
         			 }
    			 \caption{PlaneAnnotator}
   		\end{figure}
+	\end{minipage}
+	
+	\begin{minipage}[t]{\textwidth}
 	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
 		\begin{figure}[H]
    			 \centering
@@ -90,12 +103,18 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
         			}
    			 \caption{PointCloudClusterExtractor}
   		\end{figure}
+	\end{minipage}
+
+	\begin{minipage}[t]{\textwidth}
 	\item ClusterColorHistogramCalculator : Calculate the individual color quantity in relation to all colors on the cluster   
 		\begin{figure}[H]
    			 \centering
     			\includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
    			 \caption{ClusterColorHistogramCalculator}
   		\end{figure}
+	\end{minipage}
+
+	\begin{minipage}[t]{\textwidth}
 	\item Cluster3DGeometryAnnotator : Extracts basic attributes of cluster like initial pose, semantic size and 3D bounding box 
 		\begin{figure}[H]
    			 \centering
@@ -108,20 +127,28 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
     			 
    			 \caption{Cluster3DGeometryAnnotator}
   		\end{figure}
+	\end{minipage}
+
+	\begin{minipage}[t]{\textwidth}
 	\item SuturoShapeAnnotator : Detects the shape of the object (cylinder, sphere, box)
 		\begin{figure}[H]
    			 \centering
     			 \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
    			 \caption{SuturoShapeAnnotator}
   		\end{figure}
+	\end{minipage}
+
 	\item RegionAnnotator : Further restriction on which areas will be used based on defined Regions 
 	\item CaffeAnnotator : Deep learning method for Object recognition based on prerecorded Images 
+
+	\begin{minipage}[t]{\textwidth}
 	\item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
 		\begin{figure}[H]
    			 \centering
     			 \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
    			 \caption{KnnAnnotator}
   		\end{figure}
+	\end{minipage}
 \end{itemize}
 
 
@@ -130,7 +157,7 @@ The main pipeline for detecting and identifying objects with RoboSherlock consis
 This pipeline is used to detect a shelf door. It is used to find a plane that is parallel to the z-axis of the camera.
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Implements image filters  
+	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
 	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
 	\item NormalEstimator : Estimate surface normal's in a PointCloud 
 	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS.
@@ -141,7 +168,7 @@ This pipeline is used to detect a shelf door. It is used to find a plane that is
 Pipeline for storing camera images in MongoDB, all saved scenes can be replayed for testing without the HSR and have the same functionality. 
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Implements image filters 
+	\item ImagePreprocessor : Prepares image for further processing and implement image filters 
 	\item StorageWriterSuturo :  Records defined camera topics into the MongoDB
 \end{itemize}
 
@@ -160,7 +187,7 @@ Both servers give the same message output \href{https://github.com/SUTURO/suturo
 
 	\begin{itemize}
 	\item Class
-	\item Shape
+	\item Shape (Cylinder, Sphere, Box)
 	\item Colour
 	\item Position
 	\item Height
@@ -193,38 +220,39 @@ Receives a goal from Client and pass on to SuturoProcessManager, checks for resu
   			\end{figure}
 
 			\subsection{perception\_server}
-perception\_server is the only way to launch \texttt{ExtractObjectInfoServer} and \texttt{ExtractPlaneInfoServer} they cannot be used separated. 
-It works by calling :\texttt{ roslaunch rs\_perception hsrb\_perception.launch} in the rs\_perception directory.
+perception\_server is the only way to launch \texttt{ExtractObjectInfoServer} and \texttt{ExtractPlaneInfoServer} they cannot be used separated. \\
+It works by calling : \texttt{roslaunch rs\_perception hsrb\_perception.launch} in the rs\_perception directory.
 
 		\section{rs\_turn\_table}
 		\chapterauthor{Leonidas Paniago}
-\href{https://github.com/Vanessa-rin/rs_turn_table}{rs\_turn\_table} is a package from the last Suturo group. There were no big changes to the core code, only small situational changes not implemented on the master. 
+The package \href{https://github.com/Vanessa-rin/rs_turn_table}{rs\_turn\_table} belongs to the last Suturo group. There were no big changes to the core code, only small situational changes not implemented on the master. 
 This package is mainly for image recording, all recorded images will then be used for object recognition.  
 rs\_turn\_table heavily depends on Openni2 as driver for the kinect camera. HSR could be used for the image recording but in reality it turns out to be really impractical. 
-The kinect camera offers more flexibility and frees the robot for other groups. Openni2 installation was a major problem in the project due to a lack of documentation. For this purpose there is a 
-\href{https://github.com/SUTURO/suturo_perception/blob/Openni2/Openni2/Openni2_Install}{script} that will install all necessary dependencies and automatically enable depth\_registration in the Openni2 launch file. \\ Note: Openni2 did not work on Virtual machine with Ubuntu-16.04.6. The camera goes on but no output are sent to the camera topic. 
+The kinect camera offers more flexibility and gives other groups more time with the robot. Openni2 installation was a major problem in the project due to a lack of documentation. For this purpose there is a 
+\href{https://github.com/SUTURO/suturo_perception/blob/Openni2/Openni2/Openni2_Install}{script} that will install all necessary dependencies and automatically enable depth\_registration in the Openni2 launch file. The camera can be started by calling : \texttt{roslaunch openni2\_launch openni2.launch}
+ \\ Note: Openni2 did not work on Virtual machine with Ubuntu-16.04.6. The camera goes on but no output are sent to the camera topic. 
 
 			\subsection{Pipeline: estimate\_plane}
+This pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on PointCloudFilter by hand. Only one plane should be visible. To start the pipeline run : \texttt{rosrun robosherlock run \_ae:=estimate\_plane \_vis:=true} 
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Implements image filters  
+	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
 	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
 	\item PlaneAnnotator : Finds a plane and saves it to a file 
 \end{itemize}
-This Pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on PointCloudFilter by hand. Only one plane should be visible. 
+
 
 			\subsection{Pipeline: save\_images}
+This pipeline uses the saved plane from estimate\_plane as base for the image processing and takes periodic images from objects on the plane, if there is more than one cluster visible the annotator will not trigger the saving process. To start the pipeline run : \texttt{rosrun robosherlock run \_ae:=save\_images \_vis:=true} 
 \begin{itemize}
 	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Implements image filters  
+	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
 	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
 	\item NormalEstimator : Estimate surface normal's in a PointCloud 
 	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS
 	\item PointCloudClusterExtractor : Extracts all points that are found in the PointCloud that are perpendicular to the plane 
 	\item SaveClusterCloudsAndImages : Save Information about the Cluster to a file 
 \end{itemize}
-Uses the saved plane and takes periodic images from objects on the plane, if there is more than one cluster visible the annotator will not trigger the saving process.
-
 		\begin{figure}[H]
    			 \centering
     			 \subfigure[Original]{%
@@ -236,8 +264,7 @@ Uses the saved plane and takes periodic images from objects on the plane, if the
    			 \caption{Turn table setup}
 			  \label{turnTableOriginal}
   		\end{figure}
-In the pictures shown above the RGB texture and the pointcloud representation do not match fully. This occurs if the unregistered image topic is used for the pipeline. 
-
+In picture \ref{turnTableOriginal} the RGB texture and the pointcloud representation do not match fully. This occurs if the unregistered image topic is used for the pipeline. 
 		\begin{figure}[H]
    			 \centering
     			 \subfigure[RGB]{%
@@ -247,7 +274,9 @@ In the pictures shown above the RGB texture and the pointcloud representation do
            		 \includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_3_mask.png}
         			}
    			 \caption{save\_image output}
+			 \label{FeurichChips}
   		\end{figure}
+The picture \ref{FeurichChips} shows a standard output for the save\_images pipeline.
 
 \section{classificationEvaluation Package}
 \chapterauthor{Jan-Frederik Stock}
@@ -522,23 +551,20 @@ Combines the given parameters to an ObjectDetectionData message.
 
 			\section{rs\_Athene}
 			\chapterauthor{Leonidas Paniago De Oliveira Neto}
-\href{https://github.com/SUTURO/suturo_perception/tree/Handcamera_tracking}{Handcamera\_tracking} is the GitHub sub-branch containing rs\_Athene and all following featured annotators. 
+There is a sub-branch of our Github named \href{https://github.com/SUTURO/suturo_perception/tree/Handcamera_tracking}{Handcamera\_tracking}
+its including rs\_Athene and all following featured annotators. 
 None of them made it to the main branch because they were not finished or were not suitable for any current task. \\
-Each annotator can be executed by enabling the corresponding annotator in the descriptor athene.yaml and running : \\
-\texttt{rosrun robosherlock run \_ae:=athene}. 
+Each annotator can be executed by enabling the corresponding annotator in the descriptor athene.yaml and running : \texttt{rosrun robosherlock run \_ae:=athene}. 
 
 				\subsection{TwoDAnnotator}
 The \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/TwoDAnnotator.cpp}{TwoDAnnotator} is responsible for shape recognition that should replace the old ShapeAnnotator by improving the accuracy, reducing processing time, and expanding the usability. 
-Since the old annotator only processes RGB-D images (color and dense depth images) which makes the head-camera the only usable camera for the task. The task also takes a very long time with less than desirable results. \\
+There are two main concerns with the old annotator. First, the annotator needs a long time to process the data and the results are not ideal. Second, the annotator only process RGB-D images (color and dense depth images). The only camera capable of RGB-D images is the Head-camera, all other cameras can not be used. \\
 To fix these issues, the TwoDAnnotator uses only RGB (color images) images, which makes the processing less demanding than there's fewer data to process. Furthermore, all the HSR cameras are usable for shape recognition because each one is capable of outputting RGB images. \\
-The TwoDAnnotator works by converting the RGB image to grayscale:
-
+The TwoDAnnotator works by converting the RGB image to grayscale :
 \begin{lstlisting}
 ..
-// Get RGB image and copy it to src
 cas.get(VIEW_COLOR_IMAGE, src); 
 ..
-//converting the original image into grayscale
 cv.cvtColor(src, src_gray, CV_BGR2GRAY);
 ..
 \end{lstlisting}
@@ -555,26 +581,20 @@ cv.GaussianBlur(src_gray, src_gray, Size(9, 9), 0);
 The output is used for edge detection by running the canny-algorithm : 
 \begin{lstlisting}
 ..
-// Detect edges using canny
 cv.Canny(src_gray, canny_output, thresh, thresh * 2, 3);
 ..
 \end{lstlisting}
 All found edges are then used for the contour analysis : 
 \begin{lstlisting}
 ..
-//finding all contours in the image
 cv.findContours(canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 ..
 \end{lstlisting}
-
-Each contour gets check for the numbers of edges. By three edges it is assumed that it is a triangle, four edges implies that it is a square. In addition, each contour needs to reach a certain area threshold. The triangle area get checked using the Heros formula, squares using Bretschneider formula. 
-
+Each contour get check for the numbers of edges. By three edges it is assumed that it is a triangle, four edges implies that it is a square. In addition, each contour needs to reach a certain area threshold. The triangle area get checked using the Hero´s formula, squares using Bretschneider formula. \\
 \begin{lstlisting}
 ..
-//triangle area
-double area = sqrt((a+b+c)*(a+b-c)*(b+c-a)*(c+a-b))/4;
+double area = sqrt((a + b + c)*(a + b - c)*(b + c - a)*( c+ a - b))/4;
 ..
-// square area
 double area = sqrt((4*pow(e,2)*pow(f,2)) - pow((pow(b,2) + pow(d,2) - pow(a,2) - pow(c,2)),2))/4;
 ..
 \end{lstlisting}
@@ -583,14 +603,12 @@ Circles are are treated separately using Hough Circle Transform on the grayscale
 
 \begin{lstlisting}
 ..
-//Circles Detection with Hough Circle Transform
-vector<Vec3f> circles;
 cv.HoughCircles( src_gray, circles, CV_HOUGH_GRADIENT, 1, src_gray.rows/8, 200, 100, 0, 0 );
 ..
 \end{lstlisting}
 
 The TwoDAnnotator utilize many functions from the openCV library, they can be recognized by the cv. prefix. \\ \\
-During testing, it turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment. It did not bring any improvement over the old ShapeAnnotator and need further work to be usable. Some form of edge smoothing and a better way to classify triangles and squares could bring better result but in the end, this approach was no longer needed and was discarded.
+During functionality testing, it turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment. It did not bring any improvement over the old ShapeAnnotator and need further work to be usable. Some form of edge smoothing and a better way to classify triangles and squares could bring better result but in the end, this approach was no longer needed and was discarded.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{pictures/perception/TwoDAnnotator.png}
@@ -670,8 +688,7 @@ net.setInput(blob);
 result = net.forward();
 ..
 \end{lstlisting}
-GoogLeNet differs from YOLO by only outputting the class probability so there is no information about where the classes are in the image. This makes the annotator useless for tracking objects, but can still be used for classification by extracting the classes with high probability.
-Due to the output there is no visualization for this annotator.
+GoogLeNet differs from YOLO by only outputting the class probability so there is no information about where the classes are in the image. The lack of information about the object position makes the annotator useless for tracking. It is nevertheless a powerful tool for the classification of objects. 
 
 				\subsection{PythonEmbedding}
 \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/PythonEmbedding.cpp}{PythonEmbedding} annotator is an example of how a "Python pure embedding" (calling python script during runtime in c++) can be implemented in Robosherlock. The annotator converts the basic image container \texttt{Mat} to NumPy array : 
@@ -696,7 +713,6 @@ The script “Hello\_World.py” will be loaded :
 
 \begin{lstlisting}
 ..
-//Load Script
 pModule = PyImport_Import(pName);
 ..
 \end{lstlisting}
