@@ -352,7 +352,7 @@ For the description of objects different regions are defined. Classes that repre
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_region}
+\includegraphics[width=1.0\textwidth]{pictures/ontology/Ontologie_region}
 \caption{Regions}
 \label{fig:region_ont}
 \end{figure}
@@ -361,7 +361,7 @@ For those characteristics subclasses of \textit{PhysicalQuality} have been added
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_quality}
+\includegraphics[width=1.0\textwidth]{pictures/ontology/Ontologie_quality}
 \caption{Qualitys}
 \label{fig:quality_ont}
 \end{figure}
@@ -373,7 +373,7 @@ One of these subclasses is \textit{PhysicalPlace}. The subclasses of \textit{Phy
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_place}
+\includegraphics[width=1.0\textwidth]{pictures/ontology/Ontologie_place}
 \caption{Physical places}
 \label{fig:place_ont}
 \end{figure}
@@ -384,12 +384,14 @@ Here you can find every item, that is created following a certain design.
 Examples for this are \textit{DesignedFurniture} like a table and \textit{DesignedTools} like a knife.\\
 A huge part of the known items is different kinds of food or drinks. Most of these are categorised as \textit{ProcessedFood} or \textit{Drink}. Both of these are a subclass of \textit{DesignedSubstance}. The exception to this is things like tomatoes since these are not designed and therefore don't fit in the \textit{DesignedArtifact} class. Those objects are categorised as \textit{NaturalFood}, a subclass of \textit{BiologicalObject}. This class is a subclass of \textit{PhysicalBody}. The figure \ref{fig:object_ont} gives an overview over the \textit{PhysicalObject} class.
 
-\begin{figure}
+\begin{rotatepage}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{pictures/ontology/Ontologie_objects}
+\includegraphics[width=1.5\linewidth, angle=90]{pictures/ontology/Ontologie_objects}
 \caption{Physical objects}
 \label{fig:object_ont}
 \end{figure}
+\end{rotatepage}
 
 The object properties \textit{hassurface} and \textit{issurfaceof} are used to connect a surface and the dedicated object.\\
 Since these surfaces can fullfill different roles the properties \textit{hasLocationRole} and \textit{isLocationRoleOf} are defined to connect the \textit{Source} and \textit{Target} roles to surfaces.\\
