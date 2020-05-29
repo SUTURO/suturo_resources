@@ -30,7 +30,7 @@
 		\section{Grocery}
 		\label{grocery}
 		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
-		This package contains the main plan for Storing Groceries this entails the main functions and some subroutines which were introduced for modularisation. 
+		This package contains the main plan for Storing Groceries this entails the main functions and some subroutines which were introduced for modularization. 
 		\subsection{execute-grocery.lisp}
 		\label{execute_grocery_planning_doku}
 		This file contains the main function for this task and some subroutines.
@@ -38,7 +38,7 @@
 			\item \textbf{execute-grocery ()} \\
 			This is the main function for the grocery storing task. When this function is called, it starts all necessary subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
 			\item \textbf{perceive-shelf (shelf-region)} \\
-			This function is a subroutine for perceiving shelfs. It uses the functions from \nameref{object-perceive} to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+			This function is a subroutine for perceiving shelves. It uses the functions from \nameref{object-perceive} to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
 			\item \textbf{perceive-table ()} \\
 			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
 			\item \textbf{grasp-handling ()} \\
@@ -94,11 +94,11 @@
 	  	\section{Clean}
 	  	\label{clean}
 	  	\chapterauthor{Phillip Klein, Jan Schimpf, \\Torge Olliges, Tom-Eric Lehmkuhl}
-	  	This package contains the main function for this task and some subroutines. The main functions contains the sequence of calls which lead the HSR to complete the task.
+	  	This package contains the main function for this task and some subroutines. The main functions contain the sequence of calls which lead the HSR to complete the task.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup ()} \\
-			This is the main function for the clean up task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
+			This is the main function for the Clean Pp task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
 			\item \textbf{perceive-table ()} \\
 			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
 			\item \textbf{transport ()} \\
@@ -106,9 +106,9 @@
 			\item \textbf{point-of-interest-search ()} \\
 			This function navigates to a point of interest and calls the functions from \nameref{object-perceive} to perceive it. 
 			\item \textbf{point-of-interest-transport ()} \\
-			This function grasps objects found with point of interest search and drops them into the bucket. For this the function hsr-failure-handling-grasp is called.
+			This function grasps objects found with point of interest search and drops them into the bucket. For this the function \textbf{hsr-failure-handling-grasp} is called.
 			\item \textbf{hsr-failure-handling-grasp ()} \\
-			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling it is retry and asking for the object to be placed in the hand because if an objects falls over we might not be  able to grasp it.
+			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling it is retry and asking for the object to be placed in the hand because if an object falls over we might not be  able to grasp it.
 			\item \textbf{grasp-handling ()}\\
 			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling itself is the same as in   
 \textbf{grasp-handling} in \textbf{execute-grocery} \ref{execute_grocery_planning_doku}
@@ -128,17 +128,17 @@
 		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
 	    \label{high-level}
-	    This file contains all high level plans (high level plans are hierarchically under execute level). High level plans are basically subroutines which call call all lower level functions which have to be called to achieve a given task (e.g. moving to the table which results in a call to knowledge for the table position and a call to navigation to execute the requested behavior).
+	    This file contains all high level plans (high level plans are hierarchically under execute level). High level plans are basically subroutines which call all lower level functions which have to be called to achieve a given task (e.g. moving to the table which results in a call to knowledge for the table position and a call to navigation to execute the requested behavior).
 	    \begin{itemize}
 		\item \textbf{try-movement-stampedList (stamped-list)} \\
 		Tries to move the robot to poses from a given list of stamped poses in the \textit{Bulletworld} if one succeeds it returns the succeeding pose 
 	    \item \textbf{grasp-hsr (object-id grasp-pose)} \\
-	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
+	    This function takes an object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
 	    It is also currently not in use in either of the plans.
 	    \item \textbf{place-hsr (object-id grasp-pose)} \\
-	    This function takes a object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates from the we get from \nameref{Knowledge}. The an alternative solution of rescaning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the robocub and that the exact coordinates where the object are placed are not directly used in either task. 
+	    This function takes an object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates which we get from \nameref{Knowledge}. An alternative solution of rescaning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the robocub and that the exact coordinates where the object are placed are not directly used in either task. 
 	    \item \textbf{move-to-poi ()} \\
-	    This function lets the robot move to the next point of interest that should be investigated. the function \textit{pose-with-distance-to-points} is used to calculate the point. the points of interest are received by navigation via the interface poi-client and the position to be approached is checked by the obstacle-map-subscriber interface if it is approachable.
+	    This function lets the robot move to the next point of interest that should be investigated. The function \textit{pose-with-distance-to-points} is used to calculate the point. The points of interest are received by navigation via the interface poi-client and the position to be approached is checked by the obstacle-map-subscriber interface if it is approachable.
 	    \item \textbf{move-to-poi-and-scan ()} \\
 	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
 	    \item \textbf{move-to-table (turn)} \\
@@ -235,65 +235,63 @@
 	  	\chapterauthor{Torge Olliges, Phillip Klein, \\Tom-Eric Lehmkuhl,\\ Jan Schimpf}
 		The Low Level Interfacing package (LLIF) contains all action clients which communicate with the action servers of the other groups.
 		\subsection{grasp-action-client.lisp}
-		This file is responsible for the low level communication with the
-		grasp action server which is responsible for grasping objects. The main function of this file is to provide an action client which connecets to the \textbf{grasp action server}. It builts the action-goal for the server with the given parameters and gets a 0 in return if grasping was succesful or a 1  or an error code if it failed.
-		\begin{itemize}
-			\item \textbf{init-grasp-action-client ()} \\
-			This function initiates the connection to the \textbf{grasp action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
-			\item \textbf{get-grasp-action-client ()} \\
-			This function returns the \textbf{grasp action client}
-			\item \textbf{make-grasp-action-goal (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
-			This function makes and returns a action client goal. It turns the point-x,point-y, point-z and the quaternions into an \textbf{stamped pose} and size-x,size-y and size-z into an \textbf{vector3}.
-			\item \textbf{ensure-grasp-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z)} \\
-            This function makes sure the goal was reached
-			\item \textbf{call-grasp-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
-			This function takes the x,y,z coordinates where the object currently is, quaternion values, the x,y,z sizes of the object, the object-id of the object that should be grasped and the grasp mode.
-		\end{itemize}
+		This file is responsible for the low level communication with the \textbf{grasp action server} which is responsible for grasping objects. The main function of this file is to provide an action client which connects to the \textbf{grasp action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if grasping was successful or a 1  or an error code if it failed.
+        \begin{itemize}
+            \item \textbf{init-grasp-action-client ()} \\
+            This function initiates the connection to the \textbf{grasp action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
+            \item \textbf{get-grasp-action-client ()} \\
+            This function returns the \textbf{grasp action client}
+            \item \textbf{make-grasp-action-goal (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
+            This function makes and returns an action client goal. It turns the point-x, point-y, point-z and the quaternions into an \textbf{stamped pose} and size-x, size-y and size-z into an \textbf{vector3}.
+            \item \textbf{ensure-grasp-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z)} \\
+            This function makes sure the goal was reached.
+            \item \textbf{call-grasp-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
+            This function takes the x, y, z coordinates where the object currently is, quaternion values, the x, y, z sizes of the object, the object-id of the object that should be grasped and the grasp mode.
+        \end{itemize}
 		\subsection{place-action-client.lisp}
-		This file is responsible for the low level communication with the
-		place action server which is responsible for placing objects. The main function of this file is to provide an action client which connecets to the \textbf{place action server}.It builts the action-goal for the server with the given parameters and gets a 0 in return if placing was succesful or a 1  or an error code if it failed. 
-	    \begin{itemize}
-			\item \textbf{init-place-action-client ()} \\
-			This function initiates the connection to the \textbf{place action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
-			\item \textbf{get-place-action-client ()} \\
-			This function returns the \textbf{place action client}
-			\item \textbf{make-place-action-goal (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
-			This function makes and returns a action client goal. It turns the point-x,point-y, point-z and the quaternions into a \textbf{stamped pose}.				
-			\item \textbf{ensure-place-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4)} \\
+        This file is responsible for the low level communication with the \textbf{place action server} which is responsible for placing objects. The main function of this file is to provide an action client which connects to the \textbf{place action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if placing was successful or a 1  or an error code if it failed. 
+        \begin{itemize}
+            \item \textbf{init-place-action-client ()} \\
+            This function initiates the connection to the \textbf{place action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
+            \item \textbf{get-place-action-client ()} \\
+            This function returns the \textbf{place action client}
+            \item \textbf{make-place-action-goal (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
+            This function makes and returns an action client goal. It turns the point-x, point-y, point-z and the quaternions into a \textbf{stamped pose}.                
+            \item \textbf{ensure-place-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4)} \\
             This function makes sure the goal was reached
-			\item \textbf{call-place-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
-			This function takes the x,y,z coordinates where the object should be placed, quaternion values  and the object-id of the object that is placed and the grasp mode.
-		\end{itemize}
-		\subsection{take-pose-action-server.lisp}
-		This file is responsible for the low level communication with the
-		take pose action server which is responsible taking different poses. The main function of this file is to provide an action client which connecets to the \textbf{take pose action server}. It builts the action-goal for the server with the given parameters and gets a 0 in return if taking the pose was succesful or a 1  or an error code if it failed.
-		\begin{itemize}
-			\item \textbf{init-take-pose-action-client ()} \\
-			This function initiates the connection to the \textbf{take pose action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
-			\item \textbf{get-take-pose-action-client ()} \\
-			This function returns the take \textbf{pose action client}
-			\item \textbf{make-take-pose-action-goal (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
-			This function makes and returns a action client goal. It turns the size-x,size-y and size-z into a \textbf{vector3}.
-			\item \textbf{ensure-take-pose-goal-reached (status pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
+            \item \textbf{call-place-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
+            This function takes the x, y, z coordinates where the object should be placed, quaternion values  and the object-id of the object that is placed and the grasp mode.
+        \end{itemize}
+        \subsection{take-pose-action-server.lisp}
+        This file is responsible for the low level communication with the
+        \textbf{take pose action server} which is responsible taking different poses. The main function of this file is to provide an action client which connects to the \textbf{take pose action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if taking the pose was successful or a 1  or an error code if it failed.
+        \begin{itemize}
+            \item \textbf{init-take-pose-action-client ()} \\
+            This function initiates the connection to the \textbf{take pose action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
+            \item \textbf{get-take-pose-action-client ()} \\
+            This function returns the take \textbf{pose action client}
+            \item \textbf{make-take-pose-action-goal (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
+            This function makes and returns an action client goal. It turns the size-x, size-y and size-z into a \textbf{vector3}.
+            \item \textbf{ensure-take-pose-goal-reached (status pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
             This function makes sure the goal was reached
-			\item \textbf{call-take-pose-action (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
-			This function takes a integer for a set pose or for a custom pose than needs ten more float values to set the joints.
-		\end{itemize}
+            \item \textbf{call-take-pose-action (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
+            This function takes an integer for a set pose or for a custom pose than needs ten more float values to set the joints.
+        \end{itemize}
 		\subsection{move-gripper-client.lisp}
-		This file is responsible for the low level communication with the
-		move gripper action client which is responsible for the moving the gripper.
-		\begin{itemize}
-			\item \textbf{init-move-gripper-action-client ()} \\
-			This function initiates the connection to the move gripper action server
-			\item \textbf{get-move-gripper-action-client ()} \\
-			This function returns the move gripper action client
-			\item \textbf{make-move-gripper-action-goal ()} \\
-			This function makes and returns a action client goal
-			\item \textbf{ensure-take-pose-goal-reached ()} \\
+        This file is responsible for the low level communication with the
+        \textbf{move gripper action server} which is responsible for the moving the gripper.
+        \begin{itemize}
+            \item \textbf{init-move-gripper-action-client ()} \\
+            This function initiates the connection to the move gripper action server
+            \item \textbf{get-move-gripper-action-client ()} \\
+            This function returns the move gripper action client
+            \item \textbf{make-move-gripper-action-goal ()} \\
+            This function makes and returns an action client goal
+            \item \textbf{ensure-take-pose-goal-reached ()} \\
             This function makes sure the goal was reached
-			\item \textbf{call-move-gripper-action ()} \\
-			This function takes x,y,z coordinates and four quaternion values to move the gripper to that position. 
-		\end{itemize}
+            \item \textbf{call-move-gripper-action ()} \\
+            This function takes x, y, z coordinates and four quaternion values to move the gripper to that position. 
+        \end{itemize}
 		\subsection{knowledge-client.lisp}
 		The knowledge-client is an interface to knowledge, which is responsible for the request to \textit{KnowRob}. For every request exists a function, which calls the \textit{Prolog} query and returns the result. Implemented requests are:
 			\begin{itemize}
@@ -345,21 +343,21 @@
 		   \item \textbf{set-state-fluent(msg)} \\
 		   Set fluents variables according to the msg for reacting to the hard commands. This function is used by the static-command-listener.
 		 \end{itemize}
-		\subsection{obstacle-map-subscriber.lisp}
-	    \begin{itemize}
-	    	\item \textbf{obstacle-map-listener ()} \\
-	    	This function subscribes the obstacle map and stores the current map in a variable.
-	    	\item \textbf{save-obstacle-map (mapMsg)} \\
-	    	Makes a copy of the given message and stores it in a variable.
-	    	\item \textbf{get-map-point (vect3)} \\
-	    	Returns the occupancy from a given position in the map.
-	    	\item \textbf{robot-in-obstacle-stamped (point)} \\
-	    	Wrapper for the robot-in-obstacle function to use a stamped pose.
-	    	\item \textbf{robot-in-obstacle (point)} \\
-	    	Returns if the obstacle value for the given point is lower then 66.
-	    	\item \textbf{circle-is-in-obstacle (point)} \\
-	    	Returns if the obstacle value for the given point is lower then 66.
-	    \end{itemize}
+        \subsection{obstacle-map-subscriber.lisp}
+        \begin{itemize}
+            \item \textbf{obstacle-map-listener ()} \\
+            This function subscribes the obstacle map and stores the current map in a variable.
+            \item \textbf{save-obstacle-map (mapMsg)} \\
+            Makes a copy of the given message and stores it in a variable.
+            \item \textbf{get-map-point (vect3)} \\
+            Returns the occupancy from a given position in the map.
+            \item \textbf{robot-in-obstacle-stamped (point)} \\
+            Wrapper for the robot-in-obstacle function to use a stamped pose.
+            \item \textbf{robot-in-obstacle (point)} \\
+            Returns if the obstacle value for the given point is lower than 66.
+            \item \textbf{circle-is-in-obstacle (point)} \\
+            Returns if the obstacle value for the given point is lower than 66.
+        \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
 	    	\item \textbf{closest-poi (point)} \\
@@ -378,37 +376,37 @@
 	    	Save the given points to the parameter *poi*.
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
-		\label{object-perceive}
-		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} object action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} object pipeline and returns objects which were found. The action is a \textit{ExtractObjectInfoAction} which consists of the objects and their parameters namely: position, class, size and color.
-		\begin{itemize}
-			\item \textbf{init-robosherlock-object-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} object action server. It loops until the connection is established. It has a timout after which it stops to wait for a connection and shuts down the default value for this timeout is 30 seconds and can be set via the \texttt{*robosherlock-action-timeout*} parameter.
-			\begin{lstlisting}[language=lisp]
-				(loop until 
-					(actionlib:wait-for-server 
-						*robosherlock-object-action-client*
-						*robosherlock-action-timeout*)
-			\end{lstlisting}
-			\item \textbf{get-robosherlock-client} \\
-			This function returns the \textit{RoboSherlock} action client.
-			\item \textbf{make-action-goal (in-regions in-visualize)} \\
-			This function makes and returns a action client goal with the given regions.
-			\item \textbf{call-robosherlock-object-pipeline (regions-value, viz)} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
-		\end{itemize}
+        \label{object-perceive}
+        This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} object action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} object pipeline and returns objects which were found. The action is a \textit{ExtractObjectInfoAction} which consists of the objects and their parameters namely: position, class, size and color.
+        \begin{itemize}
+            \item \textbf{init-robosherlock-object-action-client} \\
+            This function initiates the connection to the \textit{RoboSherlock} object action server. It loops until the connection is established. It has a timout after which it stops to wait for a connection and shuts down the default value for this timeout is 30 seconds and can be set via the \texttt{*robosherlock-action-timeout*} parameter.
+            \begin{lstlisting}[language=lisp]
+                (loop until 
+                    (actionlib:wait-for-server 
+                        *robosherlock-object-action-client*
+                        *robosherlock-action-timeout*)
+            \end{lstlisting}
+            \item \textbf{get-robosherlock-client} \\
+            This function returns the \textit{RoboSherlock} action client.
+            \item \textbf{make-action-goal (in-regions in-visualize)} \\
+            This function makes and returns an action client goal with the given regions.
+            \item \textbf{call-robosherlock-object-pipeline (regions-value, viz)} \\
+            This function takes an array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
+        \end{itemize}
 		\subsection{robosherlock-client-plane.lisp}
-		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for planes e.g. doors. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} plane action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} plane pipeline and returns the door or plane of interest which was found. The message is a \textit{ExtractDoorInfoAction} which consists of the position and size of the planes.
-		\begin{itemize}
-			\item \textbf{init-robosherlock-plane-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} plane action server.
-			\item \textbf{get-robosherlock-plane-client} \\
-			This function returns the \textit{RoboSherlock} action client.
-			\item \textbf{make-action-goal (in-regions in-visualize)} \\
-			This function makes and returns a action client goal.
-			\item \textbf{call-robosherlock-plane-pipeline(regions-value, viz)} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
-		\end{itemize}
-	\endgroup
+        This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for planes e.g. doors. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} plane action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} plane pipeline and returns the door or plane of interest which was found. The message is a \textit{ExtractDoorInfoAction} which consists of the position and size of the planes.
+        \begin{itemize}
+            \item \textbf{init-robosherlock-plane-action-client} \\
+            This function initiates the connection to the \textit{RoboSherlock} plane action server.
+            \item \textbf{get-robosherlock-plane-client} \\
+            This function returns the \textit{RoboSherlock} action client.
+            \item \textbf{make-action-goal (in-regions in-visualize)} \\
+            This function makes and returns an action client goal.
+            \item \textbf{call-robosherlock-plane-pipeline(regions-value, viz)} \\
+            This function takes an array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
+        \end{itemize}
+    \endgroup
 
 \end{document}
 
