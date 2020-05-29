@@ -14,11 +14,11 @@
 	\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl, \\Evan Kapitzke, Jeremias Thun, Jan Neumann}
 
 	\section{Goal}
-	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form, or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects on the shelf. Furthermore it needs to grasp and place one object after the other. It also needs to navigate between the shelf and the table. For additional points the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
+	The goal of the Storing Groceries task is, like the name indicates, to store several groceries at their designated position. For the RoboCup, this task has been simplified. The objects are all on a table and need to be sorted into a predefined shelf. The sorting has to be done by categories which need to be comprehensible by a human. This can be based on color, form, or other categories. To fulfill this task the HSR has to identify the objects on the table and existing objects on the shelf. Furthermore, it needs to grasp and place one object after the other. It also needs to navigate between the shelf and the table. For additional points, the HSR has to open doors. Overall the HSR has only 5 minutes to complete the task. 
 
 	\section{Tasks}
-	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally a more in-depth explanation of some of the challenges will be given. To make the written version more reader-friendly, there is not every single call and answer mentioned, only the ones necessary to understand the sequence of this task.\\
-	To make it visible which task is accomplished by which group, the tasks are labeled with colors as following legend  shows:\\
+	The figures \ref{grocery_seq_01} and \ref{grocery_seq_02} show the procedure of Storing Groceries. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. Additionally, a more in-depth explanation of some of the challenges will be given. To make the written version more reader-friendly, there is not every single call and answer mentioned, only the ones necessary to understand the sequence of this task.\\
+	To make it visible which task is accomplished by which group, the tasks are labeled with colors as the following legend shows:\\
 	~\\
 	
 	\begin{planning}
@@ -59,7 +59,7 @@
 
 	% Knowledge: set-tables-source 
 	\begin{knowledge}
-	According to the task only one table serves as the \texttt{source} for objects. In Knowledge it is allowed to set multiple \texttt{sources} for objects to allow greater compatibility and easier adaption to other tasks. For the current task at hand only the corresponding table is set as \texttt{source}. The same principle applies to the shelf which is set as \texttt{target} surface. Every surface e.g. tables, shelf's or the floor can be set as \texttt{source} or \texttt{target}.
+	According to the task, only one table serves as the \texttt{source} for objects. In Knowledge, it is allowed to set multiple \texttt{sources} for objects to allow greater compatibility and easier adaption to other tasks. For the current task at hand, only the corresponding table is set as \texttt{source}. The same principle applies to the shelf which is set as \texttt{target} surface. Every surface e.g. tables, shelf's or the floor can be set as \texttt{source} or \texttt{target}.
 	\end{knowledge}
 	
 		% Manipulation: take pose action
@@ -78,7 +78,7 @@
 	
 	% Navigation: moveBaseAction
 	\begin{navigation}
-	Planning determines a goal for the \nameref{msg_move_base} action. For this specific goal the robot is turned $90^\circ$ and moved to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the HSR executes the action. \end{navigation}
+	Planning determines a goal for the \nameref{msg_move_base} action. For this specific goal, the robot is turned $90^\circ$ and moved to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the HSR executes the action. \end{navigation}
 	
 	% NLP
 	\begin{nlp}
@@ -136,7 +136,7 @@
 	
 	% Manipulation: GraspAction
 	\begin{manipulation}
-	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first the orientation of the gripper is calculated based on the HSR's rotation. Additionally the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the project it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional waypoint is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successful, the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
+	Manipulation gets the task to grasp the given object. Different modes of grasping are possible but at the moment only frontal grasping is used actively. At first, the orientation of the gripper is calculated based on the HSR's rotation. Additionally, the collision for the object to grasp gets deactivated. This is important since otherwise \textit{Giskard} would stop the gripper in front of the object. During the project, it became apparent that \textit{Giskard} had some difficulties planning the movement of the gripper inside of shelves. Therefore an additional waypoint is calculated which ensures the gripper can move in a straight line in and out of a shelf. After the gripper is closed around the object a check is started to probe whether the object is in the gripper. If successful, the object gets attached to the gripper to ensure it's taken into account for future motion planning.   
 	\end{manipulation}
 	
 	\begin{knowledge}
@@ -200,12 +200,12 @@
 	
 	% Knowledge: Object goal pose
 	\begin{knowledge}
-	Knowledge now determines the most suitable position for the object which is currently handled. The way this decision is made is explained in the Knowledge function documentation \ref{sec:kn_find_surf}. For now it is enough to know, that Knowledge finds a suitable surface (i.e. shelf floor) as well as a suitable position on that surface for the object.
+	Knowledge now determines the most suitable position for the object which is currently handled. The way this decision is made is explained in the Knowledge function documentation \ref{sec:kn_find_surf}. For now, it is enough to know, that Knowledge finds a suitable surface (i.e. shelf floor) as well as a suitable position on that surface for the object.
 	\end{knowledge}
 	
 	% Manipulation: PlaceAction
 	\begin{manipulation}
-	The procedure for placing an object is very similar to the grasping process. Different modes are available but only the grasp from front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a waypoint is determined to allow smooth in and out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backward movement. Afterward collision for the object gets enabled again. The actual movement planning and execution are done by \textit{Giskard}.   
+	The procedure for placing an object is very similar to the grasping process. Different modes are available but only the grasp from front mode is actively used. The orientation of the gripper is calculated based on the HSR's rotation and a waypoint is determined to allow smooth in and out movement for shelves. After the object gets released from the gripper its collision is deactivated to avoid problems with the collision box of the gripper during the backward movement. Afterward, collision for the object gets enabled again. The actual movement planning and execution are done by \textit{Giskard}.   
 	\end{manipulation}
 	
 	% NLP
@@ -244,4 +244,5 @@
 	\endgroup
 	
 \end{document}
+
 

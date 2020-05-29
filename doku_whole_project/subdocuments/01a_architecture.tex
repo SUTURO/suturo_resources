@@ -35,7 +35,7 @@
 		
 		\section{Basic Architecture}
 
-			In the diagram \(\ref{architecture}\) the components each group was responsible for are visualized. The Perception component consists mainly of the \textit{SuturoProcessManager} module which implements a process manager to execute the \textit{RoboSherlock} pipeline. The \textit{RoboSherlock} pipeline then handles the classification and annotation. The results are collected and converted by the \textit{SuturoProcessManager}.  The Knowledge component consists of the Knowledge base, which is a wrapped information storage (database) for the HSR. It handles position data as well as some logic for goal position determination. The Manipulation component is responsible for gripper, head, body movement and grasp, place operations. For this Manipulation is using \textit{Giskard}. The Navigation component is only used for moving the HSR and for collision avoidance during movement and uses the basic movement interface of the HSR. The Planning component uses \textit{Cram} to implement multi layered plans for executing the tasks. It is split into different hierarchical levels; cleanup \ref{clean} and grocery \ref{grocery} being on the highest level (execution level). These packages contain plans which call functions from the mid level (common functions) \ref{comf}. The lowest level used for communication with other groups low level interfacing \ref{llif}.
+			In the diagram \(\ref{architecture}\) the components each group was responsible for are visualized. The Perception component consists mainly of the \textit{SuturoProcessManager} module which implements a process manager to execute the \textit{RoboSherlock} pipeline. The \textit{RoboSherlock} pipeline then handles the classification and annotation. The results are collected and converted by the \textit{SuturoProcessManager}.  The Knowledge component consists of the Knowledge base, which is a wrapped information storage (database) for the HSR. It handles position data as well as some logic for goal position determination. The Manipulation component is responsible for the gripper, head, body movement, and grasp, place operations. For this Manipulation is using \textit{Giskard}. The Navigation component is only used for moving the HSR and for collision avoidance during movement and uses the basic movement interface of the HSR. The Planning component uses \textit{Cram} to implement multi-layered plans for executing the tasks. It is split into different hierarchical levels; cleanup \ref{clean} and grocery \ref{grocery} being on the highest level (execution level). These packages contain plans which call functions from the mid-level (common functions) \ref{comf}. The lowest level used for communication with other groups low-level interfacing \ref{llif}.
 			
 			\begin{itemize}
 				\item{\textbf{Cram}} \\
@@ -70,14 +70,15 @@
 		
 			\subsubsection{Action Server}
 			
-			Action servers provide a synchronized form of communication integrated into the ROS environment. As this is a server based communication the connection between client and server has to be made. This connection can not fail during runtime so a connection leads most of the time to a failed execution. In this project action servers were mainly used because of the synchronism, this way if an action fails the server will send a corresponding result which can be caught and handled by the high level plans.
+			Action servers provide a synchronized form of communication integrated into the ROS environment. As this is a server-based communication the connection between client and server has to be made. This connection can not fail during runtime so a connection leads most of the time to a failed execution. In this project, action servers were mainly used because of the synchronism, this way if an action fails the server will send a corresponding result that can be caught and handled by the high-level plans.
 			
 			\subsubsection{Topic Based}
 			
-			ROS also provides topic based communication which follows the listener/subscriber design pattern. It is a asynchronous way of communication where the result of the triggered action or request is not guaranteed. It is also not guaranteed that the subscriber received the message which was sent via a given topic. In this project topic based communication was used a few times in situations where it is not crucial to get an immediate result.  
+			ROS also provides topic-based communication which follows the listener/subscriber design pattern. It is an asynchronous way of communication where the result of the triggered action or request is not guaranteed. It is also not guaranteed that the subscriber received the message which was sent via a given topic. In this project topic-based communication was used a few times in situations where it is not crucial to get an immediate result.  
 		 
 
 
 	\endgroup
 
 \end{document}
+
