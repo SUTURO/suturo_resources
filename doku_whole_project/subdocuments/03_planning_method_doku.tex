@@ -123,7 +123,7 @@
 	  	
 	  	\section{Common functions}
 	  	\label{comf}
-	  	\chapterauthor{Torge Olliges, \\Phillip Klein, Tom-Eric Lehmkuhl, Jan Schimpf}
+	  	\chapterauthor{Torge Olliges, Phillip Klein, \\Tom-Eric Lehmkuhl, Jan Schimpf}
 	  	
 		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
@@ -138,7 +138,7 @@
 	    \item \textbf{place-hsr (object-id grasp-pose)} \\
 	    This function takes an object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates which we get from \nameref{Knowledge}. An alternative solution of rescaning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the robocub and that the exact coordinates where the object are placed are not directly used in either task. 
 	    \item \textbf{move-to-poi ()} \\
-	    This function lets the robot move to the next point of interest that should be investigated. The function \textit{pose-with-distance-to-points} is used to calculate the point. The points of interest are received by navigation via the interface poi-client and the position to be approached is checked by the obstacle-map-subscriber interface if it is approachable.
+	    This function lets the robot move to the next point of interest that should be investigated. The function \textit{pose-with-distance-to-points} is used to calculate the points. The points of interest are received by navigation via the interface poi-client using the function \textit{sorted-poi-by-distance} and the position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it.
 	    \item \textbf{move-to-poi-and-scan ()} \\
 	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
 	    \item \textbf{move-to-table (turn)} \\
@@ -167,7 +167,7 @@
 	    	\item \textbf{points-around-point (distance point amountAlternatePositions turn)} \\
 	    	This function returns a given number of positions (\textit{amountAlternatePositions}) with a given \textit{distance} to a \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the object (\textit{turn}).
 	    	\item \textbf{pose-with-distance-to-points (distance points amountAlternatePositions turn)} \\
-	    	This function navigates the robot with a given \textit{distance} to a given \textit{point(s)}. The positions are either rotated 90 degrees to the point, or point directly to the object (\textit{turn}). It will only move to positions that are not in the obstacle map and are accessible in the simulator.
+	    	This function navigates the robot with a given \textit{distance} to a given \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the point (\textit{turn}). The position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it. \textit{amountAlternatePositions} many alternative points are calculated and used as alternative points for error handling. 
 	    	\item \textbf{point-in-polygon (listOfEdges point)} \\
 			This function checks if a \textit{point} is inside the given polygon(\textit{listOfEdges}) .
 	    \end{itemize}
@@ -343,37 +343,37 @@
 		   \item \textbf{set-state-fluent(msg)} \\
 		   Set fluents variables according to the msg for reacting to the hard commands. This function is used by the static-command-listener.
 		 \end{itemize}
-        \subsection{obstacle-map-subscriber.lisp}
-        \begin{itemize}
-            \item \textbf{obstacle-map-listener ()} \\
-            This function subscribes the obstacle map and stores the current map in a variable.
-            \item \textbf{save-obstacle-map (mapMsg)} \\
-            Makes a copy of the given message and stores it in a variable.
-            \item \textbf{get-map-point (vect3)} \\
-            Returns the occupancy from a given position in the map.
-            \item \textbf{robot-in-obstacle-stamped (point)} \\
-            Wrapper for the robot-in-obstacle function to use a stamped pose.
-            \item \textbf{robot-in-obstacle (point)} \\
-            Returns if the obstacle value for the given point is lower than 66.
-            \item \textbf{circle-is-in-obstacle (point)} \\
-            Returns if the obstacle value for the given point is lower than 66.
-        \end{itemize}
+		\subsection{obstacle-map-subscriber.lisp}
+	    \begin{itemize}
+	    	\item \textbf{obstacle-map-listener ()} \\
+	    	This function subscribes the obstacle map and stores the current map in a variable.
+	    	\item \textbf{save-obstacle-map (mapMsg)} \\
+	    	Makes a copy of the given message(\textit{mapMsg}) and stores it in a variable.
+	    	\item \textbf{get-map-point (vect3)} \\
+	    	Returns the occupancy from a given position(\textit{vect3}) in the map.
+	    	\item \textbf{robot-in-obstacle-stamped (point)} \\
+	    	Wrapper for the robot-in-obstacle function to use a stamped pose.
+	    	\item \textbf{robot-in-obstacle (point)} \\
+	    	Returns if the obstacle value for the given \textit{point} is lower then 66.
+	    	\item \textbf{circle-is-in-obstacle (point)} \\
+	    	Returns if the obstacle value for the given \textit{point} is lower then 66.
+	    \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
 	    	\item \textbf{closest-poi (point)} \\
-	    	This function returns the next point of interest in relation to the passed point.
+	    	This function returns the next point of interest in relation to the passed \textit{point}.
 	    	\item \textbf{closest-point-in-list (point stampedList)} \\
-	    	Returns the closest point in relation of the given point.
+	    	Returns the closest point in relation of the given \textit{point}.
 	    	\item \textbf{sorted-poi-by-distance (point)} \\
-	    	This function returns all points of interest sorted in relation to the given point.
+	    	This function returns all points of interest sorted in relation to the given \textit{point}.
 	    	\item \textbf{sorted-stamped-by-distance (point list)} \\
-	    	Sort a list of stamped poses by the distance to the given point.
+	    	Sort a \textit{list} of stamped poses by the distance to the given \textit{point}.
 	    	\item \textbf{add-stamped-poi (stamped)} \\
-	    	Add a stamped pose to the list of pois.
+	    	Add a stamped-pose(\textit{stamped}) to the list of pois.
 	    	\item \textbf{point-listener} \\
 	    	This function subscribes the point of interests and stores them in a variable.
 	    	\item \textbf{add-poi-from-topic (poseArrayMsg)} \\
-	    	Save the given points to the parameter *poi*.
+	    	Save the given points(\textit{poseArrayMsg}) to the parameter *poi*.
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
         \label{object-perceive}

@@ -12,14 +12,14 @@
 
 		\chapterauthor{Jeremias Thun}
 
-All the Information about the existing surfaces and the objects are managed in our Knowledgebase. Every question about the relationship between these Objects as well as which ones should be taken next and where it should be put is answered by this Knowledgebase.  The Knowledgebase is built as part of KnowRob. All data is stored as RDF triple, organized by an OWL ontology. This is where the logical relationship between the category of objects and surfaces is implemented.
+All the Information about the existing surfaces and the objects are managed in our Knowledgebase. Every question about the relationship between these Objects as well as which ones should be taken next and where it should be put is answered by this Knowledgebase.  The Knowledgebase is built as part of \textit{KnowRob}. All data is stored as \textit{RDF triple}, organized by an OWL ontology. This is where the logical relationship between the category of objects and surfaces is implemented.
 
-Most of the Knowledge part is based on the knowledge processing system KnowRob (www.knowrob.org), which provides us with the fundamental opportunity to not only work with \textit{Prolog} in ROS and organize our Knowledge in RDF triples based on ontologies that themselves are also based on KnowRob, it also provides a lot of fundamental and utility functions to make storing and processing all the knowledge easier. 
+Most of the Knowledge part is based on the knowledge processing system \textit{KnowRob} (www.knowrob.org), which provides us with the fundamental opportunity to not only work with \textit{Prolog} in ROS and organize our Knowledge in \textit{RDF triples} based on ontologies that themselves are also based on \textit{KnowRob}, it also provides a lot of fundamental and utility functions to make storing and processing all the knowledge easier. 
 		
 \section{Knowledge base}
 \chapterauthor{Jeremias Thun}
 
-The Knowledgebase as well as KnowRob is written in Prolog. To interact manually with the Knowledgebase, you can (after you started Knowledge) run
+The Knowledgebase as well as \textit{KnowRob} is written in \textit{Prolog}. To interact manually with the Knowledgebase, you can (after you started Knowledge) run
 \begin{lstlisting}
 rosrun rosprolog rosprolog_commandline.py
 \end{lstlisting}
@@ -85,7 +85,7 @@ The second part of our beliefstate decides, what surface Knowledge beliefs to be
 \label{fig:kn_obj_placement}
 \end{figure}
 
-Based on all the known objects, we want to find a suitable grouping on the shelf floors for them. This grouping needs to be more detailed if the known objects are more similar and it needs to be less specific if we have a wider range of very different objects (as you can see in figure \ref{fig:kn_obj_placement}). On the other hand we need to stay flexible in case we haven't scanned the whole scene at this point or if the scene changes behind our back. For example if the second scene in figure \ref{fig:kn_obj_placement} finds another Apple and a Banana later, Knowledge should reconsider the earlier grouping and maybe open a third floor.
+Based on all the known objects, we want to find a suitable grouping on the shelf floors for them. This grouping needs to be more detailed if the known objects are more similar and it needs to be less specific if we have a wider range of very different objects (as you can see in figure \ref{fig:kn_obj_placement}). On the other hand, we need to stay flexible in case we haven't scanned the whole scene at this point or if the scene changes behind our back. For example, if the second scene in figure \ref{fig:kn_obj_placement} finds another Apple and a Banana later, Knowledge should reconsider the earlier grouping and maybe open a third floor.
 
 This is achieved by first taking the one object we want to place right now and finding the object that is most similar to it, standing on a target surface. The predicate
 \begin{lstlisting}
@@ -137,7 +137,7 @@ It looks for the \textit{object\_goal\_surface/4} (see section \ref{fig:kn_obj_p
 \subsection{surfaces.pl}
 
 The biggest module is the \textit{surfaces} module. This is where you can find everything you need to know about surfaces.\\
-The surfaces are, just like objects, stored as an atom, which represents an instance of an OWL-Class and look like this:
+The surfaces are, just like objects, stored as an atom, which represents an instance of an OWL-Class and looks like this:
 \begin{lstlisting}
 ?- is_surface('http://ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject_UHOJSVEC')
 true.
@@ -341,14 +341,14 @@ An Ontology is a knowledge representation. To fulfill this task ontologies defin
 
 
 \subsection{RoboCup}
-The RoboCup ontology defines concepts used to describe the RoboCup and concepts needed for the URDFs. To do that it imports the \textit{srdl2-comp} ontology that is part of KnowRob. Furthermore the \textit{objects} ontology gets imported.\\
+The RoboCup ontology defines concepts used to describe the RoboCup and concepts needed for the URDFs. To do that it imports the \textit{srdl2-comp} ontology that is part of \textit{KnowRob}. Furthermore the \textit{objects} ontology gets imported.\\
 Since the concept of the RoboCup is not fully implemented yet, this ontology does not contain much apart from a class for the RoboCup, the tasks Clean-up and Grocery Storing, and a \textit{supports} property, that connects an object to the objects it supports.
 
 \subsection{Objects}
 
-This ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example to find similar objects. The Ontology furthermore defines different properties objects can have. \\
-The \textit{objects} ontology imports the \textit{KnowRob} and the \textit{urdf} ontology provided by KnowRob.\\
-For the description of objects different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \textit{ColorRegion} and different materials are defined in subclasses of \textit{MaterialRegion}. Different shapes are represented by subclasses of \textit{ShapeRegion}. An overview over the regions is given in figure \ref{fig:region_ont}.
+This ontology describes and categorizes different physical objects according to their properties or common uses. These categories help to reason over objects, for example, to find similar objects. The Ontology furthermore defines different properties objects can have. \\
+The \textit{objects} ontology imports the \textit{KnowRob} and the URDF ontology provided by \textit{KnowRob}.\\
+For the description of objects, different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \textit{ColorRegion} and different materials are defined in subclasses of \textit{MaterialRegion}. Different shapes are represented by subclasses of \textit{ShapeRegion}. An overview over the regions is given in figure \ref{fig:region_ont}.
 
 \begin{figure}
 \centering
@@ -395,7 +395,7 @@ A huge part of the known items is different kinds of food or drinks. Most of the
 
 The object properties \textit{hassurface} and \textit{issurfaceof} are used to connect a surface and the dedicated object.\\
 Since these surfaces can fullfill different roles the properties \textit{hasLocationRole} and \textit{isLocationRoleOf} are defined to connect the \textit{Source} and \textit{Target} roles to surfaces.\\
-For the grouping of objects the property \textit{inGroup} is responsible. This property connects an object to a group.\\
+For the grouping of objects, the property \textit{inGroup} is responsible. This property connects an object to a group.\\
 The \textit{supportedBy} property connects an object to the object (most likely surface) it is standing on.\\
 To store the confidence for the different characteristics, sub-properties of the property \textit{hasRegionDataValue} have been added.\\
 The \textit{size} property is responsible for storing the size of an object.\\
@@ -407,9 +407,10 @@ To distinguish objects the robot can move from others the \textit{supportable} p
 \chapterauthor{Fabian Rosenstock}	  	
 \subsection{store\_object\_info\_server.py}
 This script stores the send data in the Knowledge base.
-To do that it first checks if the class name is empty. Furthermore the script changes the name of the class if it is not empty, since Perception uses different naming conventions. After that it tests whether the class exists in the \textit{objects} ontology. If the class name is empty or if the class does not exist in the \textit{objects} ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the \textit{ObjectDetectionData} message. If the object has a legal position it gets added to the Knowledgebase and the objects at that position are put into one group.
+To do that it first checks if the class name is empty. Furthermore, the script changes the name of the class if it is not empty since Perception uses different naming conventions. After that, it tests whether the class exists in the \textit{objects} ontology. If the class name is empty or if the class does not exist in the \textit{objects} ontology the class gets changed to the generic other class. Then all the information on the object get extracted out of the \textit{ObjectDetectionData} message. If the object has a legal position it gets added to the Knowledgebase and the objects at that position are put into one group.
 
 	\endgroup
 
 \end{document}
+
 
