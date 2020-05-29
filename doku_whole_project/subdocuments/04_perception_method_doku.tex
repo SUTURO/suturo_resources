@@ -21,7 +21,7 @@ The main framework the perception group is working with is \textit{RoboSherlock}
 		
 \textit{RoboSherlock} works by executing all of these annotators in a predefined order. This order is called a pipeline. There can be pipelines for different purposes, in the perception groups case for detecting objects and detecting surfaces. Each pipeline can have different annotators. Thus, \textit{RoboSherlock} can be customized to achieve many different image processing tasks.
 
-		\section{rs\_perception}
+		\section{rs\_perception}\label{rs_perception}
 		\chapterauthor{Leonidas Paniago}
 To understand this chapter, the term pipeline needs to be further defined.The term pipeline is often used in computer science for the successive execution of processes
 In \textit{RoboSherlock}, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
@@ -337,11 +337,24 @@ The main method tries to create an instance of the \texttt{resultActionClient} c
  \chapterauthor{Jan-Frederik Stock}
 Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classify it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is \textit{Caffe}, the trained network is the \textit{BVLC Reference Net}. If you want to install \textit{Caffe}, you can find instructions in the SUTURO projects installation guide, in sections 3.2 and 3.3. The tools directory in the \texttt{featureExtraction} package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
 
-\subsection{make\_split\_from\_directory.sh} 
-This bash script can be used to create a split YAML-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the YAML-file will be created. It then creates the YAML-file using the names of the directories in which the images are stored as class names.
+\subsection{make\_split\_from\_directory.sh} \label{make_split_from_directory}
+This bash script can be used to create a split \textit{YAML}-file which is required to perform feature extraction with the rs\_addons package. To use it, the user has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the \textit{YAML}-file will be created. It then creates the \textit{YAML}-file using the names of the directories in which the images are stored as class names.
 
 \subsection{make\_list\_from\_directory.sh}
-This bash script does nearly the same thing as the make\_split\_from\_directory.sh, except that it does not create a split file but a list of the class names. This is required by the classifying annotator and has to be pasted into the annotators YAML-file. The comma after the last class name in the list has to be removed manually.
+This bash script does nearly the same thing as the make\_split\_from\_directory.sh \ref{make_split_from_directory}, except that it does not create a split file but a list of the class names. This is required by the classifying annotator and has to be pasted into the annotators \textit{YAML}-file. The comma after the last class name in the list has to be removed manually.
+
+\section{Classification - Splits}
+\chapterauthor{Jan-Frederik Stock}
+In order to be able to classify images with rs\_addons and \textit{Caffe}, a split file has to be created, in which the output classes have to be listed. This is essential for the classifier to work. In the beginning of the SUTURO project, the question came up if every recorded object should be represented as its own class for the classfication, or if similiar objects should be consolidated into superclasses, for example into fruits or dishes.\\
+
+The perception group decided to represent every recorded object in its own class. This has numerous advantages:\\
+
+Firsly, the classfication works better done this way, because the classes are more distinct. A superclass holding fruits would contain many differently looking objects, like bananas and apples. These fruits have different colors and shapes, which would mean that the probability of similiar looking items which are not fruits being also labeled as fruit would be higher.
+
+Secondly, more information is available for other processing steps after the perception group. For example, if an object is labeled as a snack, the knowledge group has much less information than if it was labeled as a Pringles can. Representing the Pringles as its own class gives the knowledge group the opportunity to group objects based on their own criteria, for example shape, color, or even the amount of calories a certain type food contains. This would not be possible if objects are just labeled as superclasses.
+ 
+
+
 
 \section{calculateConfidence in RSKNN.cpp}\label{KNN confidence}
 \chapterauthor{Jan-Frederik Stock}
@@ -358,14 +371,14 @@ It calculates the classification confidence for the KNN-classification by dividi
 \subsection{Motivation}
 The \texttt{clusterLabeling} package fixes a fundamental problem: Before its existence, it was not possible to compare the performance of classifiers objectively. A user could only look at a given classification and decide if the algorithm was working good or bad overall, but not decide on quantitative measurement. The ability to do this is not just important to evaluate the performance of a single algorithm, but even more to compare the performance of different algorithms and select the best one for a specific use case.\\
 
-A very common procedure to do this in machine learning is the evaluation of an algorithm by splitting the available data into a test set and a training set. The available data contains a class label for every sample. The algorithm is trained on the training set and the test set is held back to test the performance. This is done by introducing samples from the test set into the algorithm and then checking if the algorithm produces the correct label. By dividing the number of correctly classified samples by the total number of tested samples, the accuracy is calculated. This is a very common measure of classification performance and it is suitable for a multi-class problem like this.\\
+A very common procedure to do this in machine learning is the evaluation of an algorithm by splitting the available data into a test set and a training set. The available data contains a class label for every sample. The algorithm is trained on the training set and the test set is held back to test the performance. This is done by introducing samples from the test set into the algorithm and then checking if the algorithm produces the correct label. By dividing the number of correctly classified samples by the total number of tested samples, the accuracy is calculated. This is a very common measure of classification performance and it is suitable for a multi class problem like the perception groups task.\\
 
-In the particular case of the SUTURO project, it was not practical to split a test set from our training data, because we recorded the objects by taking pictures all around. Taking some of these pictures away for testing would mean testing the classification of perspectives that are not represented in the training data, leading to worse classification performance. Also, in the real-life application on the robot, the classification has to work on different scenes than the setting of the recording, so it makes sense to test the classification on similar, more realistic scenes. The ability to do this is implemented in the \texttt{clusterLabeling} package. The user is able to test their classification algorithm on scenes recorded on the actual robot they are working with.  
+In the particular case of the SUTURO project, it was not practical to split a test set from our training data, because we recorded the objects by taking pictures in a circle around it. Taking some of these pictures away for testing would mean testing the classification on perspectives that are not represented in the training data, leading to worse classification performance. Also, in the real life application on the robot, the classification has to work on different scenes than the setting of the recording, so it makes sense to test the classification on similar, more realistic scenes. The ability to do this is implemented in the \texttt{clusterLabeling} package. The user is able to test their classification algorithm on scenes recorded on the actual robot they are working with.  
 
 \subsection{Usage}
 
 \subsubsection{The clusterLabeler}
-The \texttt{clusterLabeler} is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the \texttt{PointCloudFilter} or other filters you may have to ensure this. You must not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the \texttt{classificationEval} pipeline in the \texttt{rs\_perception} package to start.\\
+The \texttt{clusterLabeler} is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the \texttt{PointCloudFilter} or other filters you may have to ensure this. You must not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the \texttt{classificationEval} pipeline in the \texttt{rs\_perception} package (\ref{rs_perception}) to start.\\
 
 To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the \texttt{clusterLabeler} in the visualizer, which will display a number for every cluster. You can see an example of how this looks in figure \ref{fig:clusterLabeler visualization}.
 \begin{figure}
@@ -376,18 +389,17 @@ To label a scene, you start your labeling pipeline and call the trigger service 
 
 \newpage
 
-
-Now, you can note the class for every cluster in a labeling JSON-file, which has to look like figure \ref{fig:labeling file}. You can also have look at the file already present in the labeling directory in the \texttt{custerLabeling} package for the correct syntax. Now call the trigger service again and proceed to label. If you do not want to create labels for a frame, for example, if the clustering is bad, you can just leave the clusters array in the JSON-file empty. The \texttt{classificationEvaluationAnnotator} will leave this frame out of the calculation. Currently, one has to create the labeling JSON-file by hand, but there is a started implementation for a GUI for this task in the \texttt{clusterLabeling} package.
+Now, you can note the class for every cluster in a labeling \textit{JSON}-file, which has to look like figure \ref{fig:labeling file}. You can also have look at the file already present in the labeling directory in the \texttt{custerLabeling} package for the correct syntax. Now call the trigger service again and proceed to label. If you do not want to create labels for a frame, for example if the clustering is bad, you can just leave the clusters array in the \textit{JSON}-file empty. The \texttt{classificationEvaluationAnnotator} will leave this frame out of the calculation. Currently, one has to create the labeling \textit{JSON}-file by hand, but there is a started implementation for a GUI for this task in the \texttt{clusterLabeling} package.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{pictures/perception/labeling_file.png}
-  \caption{The JSON-file containing the labels.}
+  \caption{The \textit{JSON}-file containing the labels.}
   \label{fig:labeling file}
 \end{figure}
 
 
 \subsubsection{classificationEvaluationAnnotator}
-The \texttt{classifcationEvaluationAnnotator} can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the \texttt{classificationEvaluationAnnotator} with the \texttt{clusterLabelingAnnotator} and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor YAML-file of the \texttt{classificationEvaluationAnnotator} and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your JSON-File. The \texttt{classificationEvaluationAnnotator} will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. This is shown in figure \ref{fig:classificationEvaluationAnnotator output}.
+The \texttt{classifcationEvaluationAnnotator} can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the \texttt{classificationEvaluationAnnotator} with the \texttt{clusterLabelingAnnotator} and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor \textit{YAML}-file of the \texttt{classificationEvaluationAnnotator} and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your \textit{JSON}-File. The \texttt{classificationEvaluationAnnotator} will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. This is shown in figure \ref{fig:classificationEvaluationAnnotator output}.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{pictures/perception/accuracy.png}
@@ -437,13 +449,13 @@ This will then be displayed in \textit{RoboSherlocks} viewer.
 
 
 \subsubsection{classificationEvaluationAnnotator}
-The annotator class contains fields holding the path to the labeling file, a rapidjson document, which will later contain the object representation of the parsed JSON-file and fields used to calculate the accuracy.
+The annotator class contains fields holding the path to the labeling file, a rapid\textit{JSON} document, which will later contain the object representation of the parsed \textit{JSON}-file and fields used to calculate the accuracy.
 
 \begin{lstlisting}
 TyErrorId initialize(AnnotatorContext \&ctx)
 \end{lstlisting}
 
-This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the YAML description and reads the file. The file is then parsed into a JSON object representation by rapidjson and saved in a field of the class, like so:
+This method is executed at the startup of the pipeline.  It gets the path to the labeling file from the \textit{YAML} description and reads the file. The file is then parsed into a \textit{JSON} object representation by rapid\textit{JSON} and saved in a field of the class, like so:
 
 \begin{lstlisting}
 document.Parse(content.c_str());
@@ -453,20 +465,20 @@ document.Parse(content.c_str());
 TyErrorId process(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
 
-This is the main processing method of the annotator. It gets the identified clusters from the central \textit{RoboSherlock} data structure like the clusterLabeler \ref{getting the detected clusters.}. It then checks, if the JSON-file has an entry for the current frame: 
+This is the main processing method of the annotator. It gets the identified clusters from the central \textit{RoboSherlock} data structure like the clusterLabeler \ref{getting the detected clusters.}. It then checks, if the \textit{JSON}-file has an entry for the current frame: 
 
 \begin{lstlisting}
 if (!document["clusterLabeling"][framecounter]["clusters"].Empty())
 \end{lstlisting}
 
-This allows for frames that have bad clustering to be skipped for the evaluation, as a good clustering is a prerequisite for the classification. If the JSON-file contains a labeling for the current frame, the method loops through the found clusters. In the loop, it first gets the classification from the algorithm under evaluation from RoboSherlocks central data strucutre:
+This allows for frames that have bad clustering to be skipped for the evaluation, as a good clustering is a prerequisite for the classification. If the \textit{JSON}-file contains a labeling for the current frame, the method loops through the found clusters. In the loop, it first gets the classification from the algorithm under evaluation from RoboSherlocks central data strucutre:
 
 \begin{lstlisting}
 std::vector<rs::Classification> classResult;
 clusters[i].annotations.filter(classResult);
 \end{lstlisting}
 
-If this result is not empty, the method compares it to the label from the JSON-file:
+If this result is not empty, the method compares it to the label from the \textit{JSON}-file:
 
 \begin{lstlisting}
 if (classResult[0].classname.get().compare(
@@ -517,7 +529,7 @@ Initializes the drawing annotator.
 
 \item processWithLock(tcas, res\_spec)\\
 Iterates over all clusters and executes the segmentation on them. The result with the highest confidence will be annotated if
-the confidence is over the minimum threshold. The threshold can be set in the according YAML descriptor.
+the confidence is over the minimum threshold. The threshold can be set in the according \textit{YAML} descriptor.
 \end{itemize}
 
 \subsection{Performance}
@@ -613,7 +625,7 @@ The standard \textit{RSProcessManager} is unable to create custom messages.
 Creates the ressource manager and instantiates the region vector.
 
 \item init(pipeline)\\
-Initializes the given pipeline (aggregate analysis engine YAML descriptor) and starts the visualizer.
+Initializes the given pipeline (aggregate analysis engine \textit{YAML} descriptor) and starts the visualizer.
 This method got changed to allow the visualization of the pipeline.
 
 \item run(args, detectionData)\\
@@ -640,8 +652,8 @@ The names of the default regions must be the same as in the semantic map definit
 RVIZ is able to update the robot orientation by executing a 2D-Pose-Estimate. The robot must be orientated manually.
 
 The \texttt{SuturoRegionFilter} uses the information from \texttt{suturo\_semantic\_map.yaml} to create the regions. 
-The \texttt{suturo\_semantic\_map.yaml} is created by the \texttt{region\_filter\_setup.py}. 
-This script translates all information about regions position and orientation from knowledge in to a usable YAML file. 
+The \texttt{suturo\_semantic\_map.\textit{YAML}} is created by the \texttt{region\_filter\_setup.py}. 
+This script translates all information about regions position and orientation from knowledge in to a usable \textit{YAML} file. 
 This is necessary because this data is defined differently for each group.
 
 \subsubsection{Implementation}
@@ -704,7 +716,7 @@ uint8 CYLINDER=3
 There is a sub-branch of our GitHub named \href{https://github.com/SUTURO/suturo_perception/tree/Handcamera_tracking}{Handcamera\_tracking}
 which includes \texttt{rs\_Athene} and all following featured annotators. 
 None of them made it to the main branch because they were not finished or were not suitable for any current task. \\
-Each annotator can be executed by enabling the corresponding annotator in the descriptor \texttt{athene.yaml} and running: \texttt{rosrun robosherlock run \_ae:=athene}. 
+Each annotator can be executed by enabling the corresponding annotator in the descriptor \texttt{athene.yaml} and running : \texttt{rosrun robosherlock run \_ae:=athene}. 
 
 				\subsection{TwoDAnnotator}
 The \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/TwoDAnnotator.cpp}{TwoDAnnotator} is responsible for shape recognition that should replace the old \texttt{ShapeAnnotator} by improving the accuracy, reducing processing time, and expanding the usability. 
