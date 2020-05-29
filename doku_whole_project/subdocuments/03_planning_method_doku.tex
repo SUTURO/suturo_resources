@@ -2,191 +2,191 @@
 
 \begin{document}
 
-	\begingroup
+    \begingroup
 
-	\renewcommand{\cleardoublepage}{}
+    \renewcommand{\cleardoublepage}{}
 
-	\renewcommand{\clearpage}{}
-	
-	\newpage
+    \renewcommand{\clearpage}{}
+    
+    \newpage
 
-	\chapter{Planning Function Documentation}
+    \chapter{Planning Function Documentation}
 
-		\chapterauthor{Torge Olliges, Phillip Klein,\\ Tom-Eric Lehmkuhl, Jan Schimpf}
-		
-		The Planning Group is responsible for the integration and connection of the results of the other groups. Planning has also created a sophisticated sequence diagram that explains the process and the interaction of all groups.
-	    Furthermore, Planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bug fixing and adaptation of the current code. \\
-			
-			The Planning Code is split into four packages. The package \nameref{llif} (llif), which provides the interfaces to the other subgroups, is used as the basis. Functions that are relevant for all tasks are contained in the package \nameref{comf} (comf). The last two packages are for the individual tasks. For storing grocery the package \nameref{grocery} and for clean up the package \nameref{clean}. On the one hand, these contain the initialization functions to establish the connection to the other subgroups, and on the other hand, the main plans, which are based on the functions from comf and llif. \\
-			This distribution allows different tasks to work on a common basis and keeps the individual packages well organized. Functions can be clearly assigned and quickly found again. The diagram \ref{planning-overview} shows once again the connections between the packages.
+        \chapterauthor{Torge Olliges, Phillip Klein,\\ Tom-Eric Lehmkuhl, Jan Schimpf}
+        
+        The Planning Group is responsible for the integration and connection of the results of the other groups. Planning has also created a sophisticated sequence diagram that explains the process and the interaction of all groups.
+        Furthermore, Planning was also responsible for the planning and execution of the final demo. This includes the integration of the HSR on the simulator, as well as bug fixing and adaptation of the current code. \\
+            
+            The Planning Code is split into four packages. The package \nameref{llif} (\texttt{LLIF}), which provides the interfaces to the other subgroups, is used as the basis. Functions that are relevant for all tasks are contained in the package \nameref{comf} (comf). The last two packages are for individual tasks. For storing grocery the package \nameref{grocery} and for clean up the package \nameref{clean}. On the one hand, these contain the initialization functions to establish the connection to the other subgroups, and on the other hand, the main plans, which are based on the functions fromtexttt{comf}and \texttt{LLIF}. \\
+            This distribution allows different tasks to work on a common basis and keeps the individual packages well organized. Functions can be clearly assigned and quickly found again. The diagram \ref{planning-overview} shows once again the connections between the packages.
 
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=\textwidth]{pictures/diagramms/planning.pdf}
-			\caption{Planning architecture overview}
-			\label{planning-overview}
-		\end{figure}
-		
-		\section{Grocery}
-		\label{grocery}
-		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
-		This package contains the main plan for Storing Groceries this entails the main functions and some subroutines which were introduced for modularization. 
-		\subsection{execute-grocery.lisp}
-		\label{execute_grocery_planning_doku}
-		This file contains the main function for this task and some subroutines.
-		\begin{itemize}
-			\item \textbf{execute-grocery ()} \\
-			This is the main function for the grocery storing task. When this function is called, it starts all necessary subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
-			\item \textbf{perceive-shelf (shelf-region)} \\
-			This function is a subroutine for perceiving shelves. It uses the functions from \nameref{object-perceive} to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
-			\item \textbf{perceive-table ()} \\
-			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
-			\item \textbf{grasp-handling ()} \\
-			This function is a subroutine for grasping objects with primitive failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
-			\item \textbf{grasp-with-failure-handling ()} \\
-			This function is a subroutine for grasping objects with more sophisticated failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
-			\item \textbf{place-handling ()}
-			This function is a subroutine for placing objects. It uses the functions from \nameref{manipulation}.
-		\end{itemize}
-		Failure handling is done in by cram designated retry loops like the following:
-		\begin{lstlisting}[language=lisp]
-		(cpl:with-retry-counters ((grasping-retry 3))
-		(cpl:with-failure-handling
-		(((or common-fail:low-level-failure 
-		cl::simple-error
-		cl::simple-type-error)
-		(e)
-		...
-		(cpl:do-retry grasping-retry
-		(cpl:retry))
-		\end{lstlisting}
-		
-		\subsection{grocery-bw.lisp}
-		This file contains functions used in combination with the \textit{Bulletworld} simulation.
-		\begin{itemize}
-			\item \textbf{spawn-btr-objects (perception-msg)}
-			This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceived.  
-		\end{itemize}
-		\begin{lstlisting}[language=lisp]
-			(defun spawn-btr-objects (perception-msg)
-				(roslisp:with-fields (detectiondata) perception-msg
-					(loop for elem across detectiondata do
-						(roslisp::with-fields (width height depth shape pose) 
-							elem
-							(roslisp::with-fields (pose) pose
-								(roslisp::with-fields (position) pose
-								(roslisp::with-fields (x y z) position 
-									(case shape
-										(0 (print "spawn cylinder 0")
-											(print position)
-											(btr:add-object btr:*current-bullet-world* 
-												:primit-cylinder 'cylinder-0 
-											(cl-tf::make-pose 
-												(cl-tf::make-3d-vector x y z)
-													(cl-tf::make-identity-rotation))
-													:mass 0.5 :size (cl-tf:make-3d-vector 
-														(/ width 2) (/ depth 2) (/ height 2))))
-			...
-			)))))))
-			(prolog:prolog '(and (btr:bullet-world ?world)
-			(btr:simulate ?world 10))))
-		\end{lstlisting}
-	  	\section{Clean}
-	  	\label{clean}
-	  	\chapterauthor{Phillip Klein, Jan Schimpf, \\Torge Olliges, Tom-Eric Lehmkuhl}
-	  	This package contains the main function for this task and some subroutines. The main functions contain the sequence of calls which lead the HSR to complete the task.
-	  	\subsection{execute-cleanup.lisp}
-	  	\begin{itemize}
-			\item \textbf{execute-cleanup ()} \\
-			This is the main function for the Clean Pp task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
-			\item \textbf{perceive-table ()} \\
-			This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
-			\item \textbf{transport ()} \\
-            This function is a subroutine for transporting all objects after another found on the table to the bucket and drops these in there. For this the function grasp-handling is called.
-			\item \textbf{point-of-interest-search ()} \\
-			This function navigates to a point of interest and calls the functions from \nameref{object-perceive} to perceive it. 
-			\item \textbf{point-of-interest-transport ()} \\
-			This function grasps objects found with point of interest search and drops them into the bucket. For this the function \textbf{hsr-failure-handling-grasp} is called.
-			\item \textbf{hsr-failure-handling-grasp ()} \\
-			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling it is retry and asking for the object to be placed in the hand because if an object falls over we might not be  able to grasp it.
-			\item \textbf{grasp-handling ()}\\
-			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling itself is the same as in   
-\textbf{grasp-handling} in \textbf{execute-grocery} \ref{execute_grocery_planning_doku}
-		\end{itemize}
-
-	    \subsection{cleanup-bw.lisp}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{pictures/diagramms/planning.pdf}
+            \caption{Planning architecture overview}
+            \label{planning-overview}
+        \end{figure}
+        
+        \section{Grocery}
+        \label{grocery}
+        \chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
+        This package contains the main plan for Storing Groceries this entails the main functions and some subroutines which were introduced for modularization. 
+        \subsection{execute-grocery.lisp}
+        \label{execute_grocery_planning_doku}
+        This file contains the main function for this task and some subroutines.
+        \begin{itemize}
+            \item \textbf{execute-grocery ()} \\
+            This is the main function for the grocery storing task. When this function is called, it starts all necessary subroutines to perform the planned behavior for this task as illustrated in the associated diagram, including failure handling.
+            \item \textbf{perceive-shelf (shelf-region)} \\
+            This function is a subroutine for perceiving shelves. It uses the functions from \nameref{object-perceive} to trigger perception to perceive a shelf depending on the region passed. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+            \item \textbf{perceive-table ()} \\
+            This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+            \item \textbf{grasp-handling ()} \\
+            This function is a subroutine for grasping objects with primitive failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+            \item \textbf{grasp-with-failure-handling ()} \\
+            This function is a subroutine for grasping objects with more sophisticated failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}.
+            \item \textbf{place-handling ()}
+            This function is a subroutine for placing objects. It uses the functions from \nameref{manipulation}.
+        \end{itemize}
+        Failure handling is done in by cram designated retry loops like the following:
+        \begin{lstlisting}[language=lisp]
+        (cpl:with-retry-counters ((grasping-retry 3))
+        (cpl:with-failure-handling
+        (((or common-fail:low-level-failure 
+        cl::simple-error
+        cl::simple-type-error)
+        (e)
+        ...
+        (cpl:do-retry grasping-retry
+        (cpl:retry))
+        \end{lstlisting}
+        
+        \subsection{grocery-bw.lisp}
         This file contains functions used in combination with the \textit{Bulletworld} simulation.
-		\begin{itemize}
-			\item \textbf{spawn-btr-objects (perception-msg)}
-			This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceives as real.
-		\end{itemize}
-	  	
-	  	\section{Common functions}
-	  	\label{comf}
-	  	\chapterauthor{Torge Olliges, Phillip Klein, \\Tom-Eric Lehmkuhl, Jan Schimpf}
-	  	
-		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
-	    \subsection{high-level-plans.lisp}
-	    \label{high-level}
-	    This file contains all high level plans (high level plans are hierarchically under execute level). High level plans are basically subroutines which call all lower level functions which have to be called to achieve a given task (e.g. moving to the table which results in a call to knowledge for the table position and a call to navigation to execute the requested behavior).
-	    \begin{itemize}
-		\item \textbf{try-movement-stampedList (stamped-list)} \\
-		Tries to move the robot to poses from a given list of stamped poses in the \textit{Bulletworld} if one succeeds it returns the succeeding pose 
-	    \item \textbf{grasp-hsr (object-id grasp-pose)} \\
-	    This function takes an object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
-	    It is also currently not in use in either of the plans.
-	    \item \textbf{place-hsr (object-id grasp-pose)} \\
-	    This function takes an object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates which we get from \nameref{Knowledge}. An alternative solution of rescaning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the robocub and that the exact coordinates where the object are placed are not directly used in either task. 
-	    \item \textbf{move-to-poi ()} \\
-	    This function lets the robot move to the next point of interest that should be investigated. The function \textit{pose-with-distance-to-points} is used to calculate the points. The points of interest are received by navigation via the interface poi-client using the function \textit{sorted-poi-by-distance} and the position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it.
-	    \item \textbf{move-to-poi-and-scan ()} \\
-	    This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
-	    \item \textbf{move-to-table (turn)} \\
-	    This function navigates the robot to the table position which is determined in \nameref{knowledge-client}. It takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving). 
-	    \item \textbf{move-to-shelf (turn)} \\
-	    This function navigates the robot to the shelf position which is determined in \nameref{knowledge-client}. It takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving).
-	    \item \textbf{move-to-bucket ()} \\
-	    This function navigates the robot to the bucket position which is determined in \nameref{knowledge-client}.  
-		\end{itemize}
-	    \subsection{manipulation-functions.lisp}
-	    \label{manipulation}
-	    The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
-	    \begin{itemize}
-	    \item \textbf{place-object (object-id grasp-pose)} \\
-	    This function gets the object id and the grasp position and uses that to create a place designator  
-		\item \textbf{place-object-list (place-list)} \\
-		This function gets a list and uses that to create a place designator 
-	    \item \textbf{grasp-object (object-id grasp-pose)} \\
-	    This function gets the object id and what grasp position should be used to grasp the object and uses that to create a grasp designator
-	    \item \textbf{create-place-list (object-id grasp-pose)} \\
-	    This function gets the object id and grasp position to create a list with positions to place the object
-		\end{itemize}
-	    \subsection{navigation-functions.lisp}
-	    The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
-	    \begin{itemize}
-	    	\item \textbf{points-around-point (distance point amountAlternatePositions turn)} \\
-	    	This function returns a given number of positions (\textit{amountAlternatePositions}) with a given \textit{distance} to a \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the object (\textit{turn}).
-	    	\item \textbf{pose-with-distance-to-points (distance points amountAlternatePositions turn)} \\
-	    	This function navigates the robot with a given \textit{distance} to a given \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the point (\textit{turn}). The position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it. \textit{amountAlternatePositions} many alternative points are calculated and used as alternative points for error handling. 
-	    	\item \textbf{point-in-polygon (listOfEdges point)} \\
-			This function checks if a \textit{point} is inside the given polygon(\textit{listOfEdges}) .
-	    \end{itemize}
-	    \subsection{perception-functions.lisp}
-	    The perception function file contains all functions common to both tasks which are used in the connection with the perception part
-	    \begin{itemize}
-	    	\item \textbf{get-confident-objects (perception-msg \&optional (threshold 0.5))} \\
-	    	This function filters the objects contained in the given message detected by their confidence (class, shape, color), the default threshold value is 0.5
-	    \end{itemize}
-	    \subsection{safety-check.lisp}
-	    The plan is for the procedure in which the robot is inspected. The robot must pass through an entrance door once it has been opened. It must then drive through the room to the exit door. A person will step in the way to test the collision detection.  The robot must stop and then drive around the person or continue driving once the way is clear. The robot will also have to say a few sentences to test the voice output. \\
-			Since the robot is not yet able to detect whether a door is open, collision detection is also used here. The idea is that the robot can only reach the navigation target when the door is open. Until the target is reached, the navigation instruction is repeated in a loop.
-	    \begin{itemize}
-	    	\item \textbf{execute-safety-check ()} \\
-	    	Starts the plan. The robot navigates through the entrance door as soon as it is open. For this the function move-hsr from \nameref{high-level} is used. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
-	    	\item \textbf{check-goal-reached (nav-goal-pose-stamped)}\\
-	    	Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
-	    \end{itemize}
-			\begin{lstlisting}[language=lisp]
+        \begin{itemize}
+            \item \textbf{spawn-btr-objects (perception-msg)}
+            This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceived.  
+        \end{itemize}
+        \begin{lstlisting}[language=lisp]
+            (defun spawn-btr-objects (perception-msg)
+                (roslisp:with-fields (detectiondata) perception-msg
+                    (loop for elem across detectiondata do
+                        (roslisp::with-fields (width height depth shape pose) 
+                            elem
+                            (roslisp::with-fields (pose) pose
+                                (roslisp::with-fields (position) pose
+                                (roslisp::with-fields (x y z) position 
+                                    (case shape
+                                        (0 (print "spawn cylinder 0")
+                                            (print position)
+                                            (btr:add-object btr:*current-bullet-world* 
+                                                :primit-cylinder 'cylinder-0 
+                                            (cl-tf::make-pose 
+                                                (cl-tf::make-3d-vector x y z)
+                                                    (cl-tf::make-identity-rotation))
+                                                    :mass 0.5 :size (cl-tf:make-3d-vector 
+                                                        (/ width 2) (/ depth 2) (/ height 2))))
+            ...
+            )))))))
+            (prolog:prolog '(and (btr:bullet-world ?world)
+            (btr:simulate ?world 10))))
+        \end{lstlisting}
+          \section{Clean}
+          \label{clean}
+          \chapterauthor{Phillip Klein, Jan Schimpf, \\Torge Olliges, Tom-Eric Lehmkuhl}
+          This package contains the main function for this task and some subroutines. The main functions contain the sequence of calls which lead the HSR to complete the task.
+          \subsection{execute-cleanup.lisp}
+          \begin{itemize}
+            \item \textbf{execute-cleanup ()} \\
+            This is the main function for the Clean Pp task. When this function is called, it starts all subroutines to perform the planned behavior for this task as illustrated in the associated diagram.
+            \item \textbf{perceive-table ()} \\
+            This function is a subroutine for perceiving the table. It uses the functions from \nameref{object-perceive} to trigger perception to perceive the table depending. The detected objects are passed to knowledge via the \nameref{knowledge-insertion}.
+            \item \textbf{transport ()} \\
+            This function is a subroutine for transporting all objects after another found on the table to the bucket and drops these in there. For this the function grasp-handling is called.
+            \item \textbf{point-of-interest-search ()} \\
+            This function navigates to a point of interest and calls the functions from \nameref{object-perceive} to perceive it. 
+            \item \textbf{point-of-interest-transport ()} \\
+            This function grasps objects found with point of interest search and drops them into the bucket. For this the function \textbf{hsr-failure-handling-grasp} is called.
+            \item \textbf{hsr-failure-handling-grasp ()} \\
+            This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling it is retry and asking for the object to be placed in the hand because if an object falls over we might not be  able to grasp it.
+            \item \textbf{grasp-handling ()}\\
+            This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling itself is the same as in   
+\textbf{grasp-handling} in \textbf{execute-grocery} \ref{execute_grocery_planning_doku}
+        \end{itemize}
+
+        \subsection{cleanup-bw.lisp}
+        This file contains functions used in combination with the \textit{Bulletworld} simulation.
+        \begin{itemize}
+            \item \textbf{spawn-btr-objects (perception-msg)}
+            This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceives as real.
+        \end{itemize}
+          
+          \section{Common functions}
+          \label{comf}
+          \chapterauthor{Torge Olliges, Phillip Klein, \\Tom-Eric Lehmkuhl, Jan Schimpf}
+          
+        The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the \texttt{LLIF} package.
+        \subsection{high-level-plans.lisp}
+        \label{high-level}
+        This file contains all high-level plans (high-level plans are hierarchically under the execution level). High-level plans are basically subroutines which call all lower-level functions which have to be called to achieve a given task (e.g. moving to the table which results in a call to knowledge for the table position and a call to navigation to execute the requested behavior).
+        \begin{itemize}
+        \item \textbf{try-movement-stampedList (stamped-list)} \\
+        Tries to move the robot to poses from a given list of stamped poses in the \textit{Bulletworld} if one succeeds it returns the succeeding pose 
+        \item \textbf{grasp-hsr (object-id grasp-pose)} \\
+        This function takes an object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
+        It is also currently not in use in either of the plans.
+        \item \textbf{place-hsr (object-id grasp-pose)} \\
+        This function takes an object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates which we get from \nameref{Knowledge}. An alternative solution of rescaning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the robocub and that the exact coordinates where the object are placed are not directly used in either task. 
+        \item \textbf{move-to-poi ()} \\
+        This function lets the robot move to the next point of interest that should be investigated. The function \textit{pose-with-distance-to-points} is used to calculate the points. The points of interest are received by navigation via the interface poi-client using the function \textit{sorted-poi-by-distance} and the position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it.
+        \item \textbf{move-to-poi-and-scan ()} \\
+        This function moves the robot to the next point of interest that can be approached, scans all objects on the ground and then turns back towards the object.
+        \item \textbf{move-to-table (turn)} \\
+        This function navigates the robot to the table position which is determined in \nameref{knowledge-client}. It takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving). 
+        \item \textbf{move-to-shelf (turn)} \\
+        This function navigates the robot to the shelf position which is determined in \nameref{knowledge-client}. It takes a boolean value which defines if the robot should be in perceiving or placing/grasping base pose at the goal position (nil = grasping/placing, T = perceiving).
+        \item \textbf{move-to-bucket ()} \\
+        This function navigates the robot to the bucket position which is determined in \nameref{knowledge-client}.  
+        \end{itemize}
+        \subsection{manipulation-functions.lisp}
+        \label{manipulation}
+        The manipulation function file contains all functions common to both tasks which are used in the connection with the manipulation part
+        \begin{itemize}
+        \item \textbf{place-object (object-id grasp-pose)} \\
+        This function gets the object id and the grasp position and uses that to create a place designator  
+        \item \textbf{place-object-list (place-list)} \\
+        This function gets a list and uses that to create a place designator 
+        \item \textbf{grasp-object (object-id grasp-pose)} \\
+        This function gets the object id and what grasp position should be used to grasp the object and uses that to create a grasp designator
+        \item \textbf{create-place-list (object-id grasp-pose)} \\
+        This function gets the object id and grasp position to create a list with positions to place the object
+        \end{itemize}
+        \subsection{navigation-functions.lisp}
+        The navigation function file contains all functions common to both tasks which are used in the connection with the navigation part
+        \begin{itemize}
+            \item \textbf{points-around-point (distance point amountAlternatePositions turn)} \\
+            This function returns a given number of positions (\textit{amountAlternatePositions}) with a given \textit{distance} to a \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the object (\textit{turn}).
+            \item \textbf{pose-with-distance-to-points (distance points amountAlternatePositions turn)} \\
+            This function navigates the robot with a given \textit{distance} to a given \textit{point}. The positions are either rotated 90 degrees to the point, or point directly to the point (\textit{turn}). The position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it. \textit{amountAlternatePositions} many alternative points are calculated and used as alternative points for error handling. 
+            \item \textbf{point-in-polygon (listOfEdges point)} \\
+            This function checks if a \textit{point} is inside the given polygon(\textit{listOfEdges}) .
+        \end{itemize}
+        \subsection{perception-functions.lisp}
+        The perception function file contains all functions common to both tasks which are used in the connection with the perception part
+        \begin{itemize}
+            \item \textbf{get-confident-objects (perception-msg \&optional (threshold 0.5))} \\
+            This function filters the objects contained in the given message detected by their confidence (class, shape, color), the default threshold value is 0.5
+        \end{itemize}
+        \subsection{safety-check.lisp}
+        The plan is for the procedure in which the robot is inspected. The robot must pass through an entrance door once it has been opened. It must then drive through the room to the exit door. A person will step in the way to test the collision detection.  The robot must stop and then drive around the person or continue driving once the way is clear. The robot will also have to say a few sentences to test the voice output. \\
+            Since the robot is not yet able to detect whether a door is open, collision detection is also used here. The idea is that the robot can only reach the navigation target when the door is open. Until the target is reached, the navigation instruction is repeated in a loop.
+        \begin{itemize}
+            \item \textbf{execute-safety-check ()} \\
+            Starts the plan. The robot navigates through the entrance door as soon as it is open. For this the function move-hsr from \nameref{high-level} is used. Then it drives through the room to the exit door. The collision detection is checked. In addition, some voice outputs are given out to test that the robot can be heard clearly.
+            \item \textbf{check-goal-reached (nav-goal-pose-stamped)}\\
+            Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
+        \end{itemize}
+            \begin{lstlisting}[language=lisp]
 (roslisp::with-fields (translation) 
   (cl-tf::lookup-transform cram-tf::*transformer* 
                            "map" "base_footprint")
@@ -196,46 +196,46 @@
                        (abs (cl-tf:y nav-goal-pose-stamped))))))
   (if (> *distance* 0.2) 
       (setf (cram-language:value *reached-goal*) T)))
-		  \end{lstlisting}
-	    \subsection{process-modules.lisp}
-	    Process modules are basically the parts of a CRAM system that directly communicate with the outer world, i.e. that trigger the navigation process (e.g. move\_base \ref{msg_move_base}), knowledge, manipulation or perception. For the high-level components of the system, these process modules must be black boxes in order to keep them general.
-	     \begin{itemize}
-		\label{pcm}
-	    	\item \textbf{hsr-navigation process module} \\
-		A process module which gets a motion-designator as input and calls the low level interface to execute navigation commands with the \texttt{move\_base}.
-		\item \textbf{hsr-text-to-speech process module} \\
-		A process module which receives a motion-designator and calls the low level interface to execute speech actions.
-		\item \textbf{hsr-perceive process module} \\
-		A process module which receives a motion-designator and calls the low level interface to execute perception actions.
-		\item\textbf{hsr-arm process module} \\
-		A process module which receives a motion-designator and performs grasping or placing actions by calling the low level interfaces to execute those manipulation commands 
-	    \end{itemize}
-	    \subsection{designators.lisp}
-	    Contains motion-designators for of the following type. Designators are Common Lisp objects for describing various parameters in CRAM. To the user, designators are objects containing sequences of key-value pairs of symbols.
-	  
-	    \begin{itemize}
-		\label{desig}
-	    	\item \textbf{going} \\
-		Used for navigation purposes.
-		\item \textbf{moving-torso} \\
-		Used for moving the torso.
-		\item \textbf{looking} \\
-		Used for neck movement and general looking purposes.
-	    \end{itemize}
-	    Example of a motion designator from the \texttt{designator.lisp} file:
-	    \begin{lstlisting}
-		    (cram-prolog:<- 
-			    (desig:motion-grounding ?designator (going ?pose))
-				    (desig:desig-prop ?designator (:type :going))
-				    (desig:desig-prop ?designator (:target ?pose)))
-	    \end{lstlisting}
+          \end{lstlisting}
+        \subsection{process-modules.lisp}
+        Process modules are basically the parts of a CRAM system that directly communicate with the outer world, i.e. that trigger the navigation process (e.g. move\_base \ref{msg_move_base}), knowledge, manipulation or perception. For the high-level components of the system, these process modules must be black boxes in order to keep them general.
+         \begin{itemize}
+        \label{pcm}
+            \item \textbf{hsr-navigation process module} \\
+        A process module which gets a motion-designator as input and calls the low level interface to execute navigation commands with the \texttt{move\_base}.
+        \item \textbf{hsr-text-to-speech process module} \\
+        A process module which receives a motion-designator and calls the low level interface to execute speech actions.
+        \item \textbf{hsr-perceive process module} \\
+        A process module which receives a motion-designator and calls the low level interface to execute perception actions.
+        \item\textbf{hsr-arm process module} \\
+        A process module which receives a motion-designator and performs grasping or placing actions by calling the low level interfaces to execute those manipulation commands 
+        \end{itemize}
+        \subsection{designators.lisp}
+        Contains motion-designators for of the following type. Designators are Common Lisp objects for describing various parameters in CRAM. To the user, designators are objects containing sequences of key-value pairs of symbols.
+      
+        \begin{itemize}
+        \label{desig}
+            \item \textbf{going} \\
+        Used for navigation purposes.
+        \item \textbf{moving-torso} \\
+        Used for moving the torso.
+        \item \textbf{looking} \\
+        Used for neck movement and general looking purposes.
+        \end{itemize}
+        Example of a motion designator from the \texttt{designator.lisp} file:
+        \begin{lstlisting}
+            (cram-prolog:<- 
+                (desig:motion-grounding ?designator (going ?pose))
+                    (desig:desig-prop ?designator (:type :going))
+                    (desig:desig-prop ?designator (:target ?pose)))
+        \end{lstlisting}
 
-	  	\section{Low level interfacing}
-	  	\label{llif}
-	  	\chapterauthor{Torge Olliges, Phillip Klein, \\Tom-Eric Lehmkuhl,\\ Jan Schimpf}
-		The Low Level Interfacing package (LLIF) contains all action clients which communicate with the action servers of the other groups.
-		\subsection{grasp-action-client.lisp}
-		This file is responsible for the low level communication with the \textbf{grasp action server} which is responsible for grasping objects. The main function of this file is to provide an action client which connects to the \textbf{grasp action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if grasping was successful or a 1  or an error code if it failed.
+          \section{Low level interfacing}
+          \label{llif}
+          \chapterauthor{Torge Olliges, Phillip Klein, \\Tom-Eric Lehmkuhl,\\ Jan Schimpf}
+        The Low Level Interfacing package (LLIF) contains all action clients which communicate with the action servers of the other groups.
+        \subsection{grasp-action-client.lisp}
+        This file is responsible for the low level communication with the \textbf{grasp action server} which is responsible for grasping objects. The main function of this file is to provide an action client which connects to the \textbf{grasp action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if grasping was successful or a 1  or an error code if it failed.
         \begin{itemize}
             \item \textbf{init-grasp-action-client ()} \\
             This function initiates the connection to the \textbf{grasp action server}. It waits until the connection is established, but will time out after 30 seconds where it will stop waiting and shut down. 
@@ -248,7 +248,7 @@
             \item \textbf{call-grasp-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
             This function takes the x, y, z coordinates where the object currently is, quaternion values, the x, y, z sizes of the object, the object-id of the object that should be grasped and the grasp mode.
         \end{itemize}
-		\subsection{place-action-client.lisp}
+        \subsection{place-action-client.lisp}
         This file is responsible for the low level communication with the \textbf{place action server} which is responsible for placing objects. The main function of this file is to provide an action client which connects to the \textbf{place action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if placing was successful or a 1  or an error code if it failed. 
         \begin{itemize}
             \item \textbf{init-place-action-client ()} \\
@@ -277,7 +277,7 @@
             \item \textbf{call-take-pose-action (pose-mode optional head-pan head-tilt arm-lift arm-flex arm-roll wrist-flex wrist-roll px py pz)} \\
             This function takes an integer for a set pose or for a custom pose than needs ten more float values to set the joints.
         \end{itemize}
-		\subsection{move-gripper-client.lisp}
+        \subsection{move-gripper-client.lisp}
         This file is responsible for the low level communication with the
         \textbf{move gripper action server} which is responsible for the moving the gripper.
         \begin{itemize}
@@ -292,90 +292,90 @@
             \item \textbf{call-move-gripper-action ()} \\
             This function takes x, y, z coordinates and four quaternion values to move the gripper to that position. 
         \end{itemize}
-		\subsection{knowledge-client.lisp}
-		The knowledge-client is an interface to knowledge, which is responsible for the request to \textit{KnowRob}. For every request exists a function, which calls the \textit{Prolog} query and returns the result. Implemented requests are:
-			\begin{itemize}
-			\label{knowledge-client}
-			  \item \textbf{with-safe-prolog ()} \\
-			  Makro for executing the queries. Catches errors caused by connection problems.
-			  \item \textbf{knowrob-symbol-$>$string (knowrob-symbol)} \\
-			  Converts the given \textit{KnowRob} symbol into a string.
-			  \item \textbf{object-name-$>$class (object-name)} \\
-			  Returns the class of the given object.
-				\item \textbf{knowledge-set-tables-source ()} \\ Sets all tables as source.
-				\item \textbf{knowledge-set-ground-source ()} \\ Sets the ground as source.
-				\item \textbf{knowledge-set-target-surfaces ()} \\ Sets all shelves as target surfaces.
-				\item \textbf{knowledge-set-buckets-targets ()} \\ Sets all buckets as target surfaces.
-			  \item \textbf{prolog-add-test-objects ()} \\ Adds test objects on the tables.
-				\item \textbf{prolog-table-objects ()} \\ Returns all objects on the table.
-				\item \textbf{prolog-object-goal (object-name)} \\ Returns the goal surface for the given object.
-			  \item \textbf{prolog-object-goal-pose (object-name)} \\ Returns the goal pose for the given object.
-				\item \textbf{prolog-all-objects-in-shelf ()} \\ Returns all objects in the shelf.
-				\item \textbf{prolog-next-object ()} \\ Returns the next object to grasp chosen by Knowledge.
-		    \item \textbf{prolog-object-dimensions (object-name)} \\ Returns the dimension for the given object (depth, width, height).
-				\item \textbf{prolog-object-pose (object-name)} \\ Returns the pose of the given object as list.
-				\item \textbf{prolog-table-pose ()} \\ Returns the pose of the table as list (x, y, z).
-				\item \textbf{prolog-shelf-pose ()} \\ Returns the pose of all shelfs as list of poses (x, y, z).
-				\item \textbf{prolog-shelf-pose ()} \\ Returns the pose of all targets as list of poses (x, y, z).
-				\item \textbf{prolog-bucket-pose ()} \\ Returns the pose of the bucket as list (x, y, z).
-				\item \textbf{prolog-object-in-gripper ()} \\ Returns the dimension of the object in gripper as list (depth, width, height).
-			\end{itemize} 
-		\subsection{knowledge-insertion-client.lisp}
-		\label{knowledge-insertion}
-		The client is used to insert objects recognized by perception into the knowledge base. To do this, the message from perception is passed to the action server of knowledge, which is responsible for inserting the objects.
-		\begin{itemize}
-		  \item \textbf{init-knowledge-action-client ()} \\
-		  This function initiates the connection to the store object info server from knowledge.
-		  \item \textbf{get-knowledge-client ()}  \\
-		  This function returns the take knowledge insertion client.
-		  \item \textbf{insert-knowledge-objects(objectArrayMsg)} \\
-		  Calls the action with the passed message to insert the contained objects into the knowledge base.
-		  \item \textbf{knowledge-insertion-test ()} \\
-		  Creates a dummy message with which the action is called. Used to test the connection. Not working yet. Probably the wrong message type is used.
-		\end{itemize}
-		\subsection{nlp-subscriber.lisp}
-		The nlp-subscriber provides functions subscribing to the topics from nlp.
-		\begin{itemize}
-		   \item \textbf{static-command-listener ()} \\
-		   Subscribes to the topic \textit{suturo\_speech\_recognition\/hard\_commands} there the "start", "stop" and "continue" commands are published.
-		   \item \textbf{dynamic-command-listener ()} \\
-		   Subscribes to the topic \textit{suturo\_speech\_recognition\/dynamic\_commands} there the dynamic commands are published. The message type for dynamic-commands is not defined yet.
-		   \item \textbf{set-state-fluent(msg)} \\
-		   Set fluents variables according to the msg for reacting to the hard commands. This function is used by the static-command-listener.
-		 \end{itemize}
-		\subsection{obstacle-map-subscriber.lisp}
-	    \begin{itemize}
-	    	\item \textbf{obstacle-map-listener ()} \\
-	    	This function subscribes the obstacle map and stores the current map in a variable.
-	    	\item \textbf{save-obstacle-map (mapMsg)} \\
-	    	Makes a copy of the given message(\textit{mapMsg}) and stores it in a variable.
-	    	\item \textbf{get-map-point (vect3)} \\
-	    	Returns the occupancy from a given position(\textit{vect3}) in the map.
-	    	\item \textbf{robot-in-obstacle-stamped (point)} \\
-	    	Wrapper for the robot-in-obstacle function to use a stamped pose.
-	    	\item \textbf{robot-in-obstacle (point)} \\
-	    	Returns if the obstacle value for the given \textit{point} is lower then 66.
-	    	\item \textbf{circle-is-in-obstacle (point)} \\
-	    	Returns if the obstacle value for the given \textit{point} is lower then 66.
-	    \end{itemize}
-		\subsection{poi-client.lisp}
- 		\begin{itemize}
-	    	\item \textbf{closest-poi (point)} \\
-	    	This function returns the next point of interest in relation to the passed \textit{point}.
-	    	\item \textbf{closest-point-in-list (point stampedList)} \\
-	    	Returns the closest point in relation of the given \textit{point}.
-	    	\item \textbf{sorted-poi-by-distance (point)} \\
-	    	This function returns all points of interest sorted in relation to the given \textit{point}.
-	    	\item \textbf{sorted-stamped-by-distance (point list)} \\
-	    	Sort a \textit{list} of stamped poses by the distance to the given \textit{point}.
-	    	\item \textbf{add-stamped-poi (stamped)} \\
-	    	Add a stamped-pose(\textit{stamped}) to the list of pois.
-	    	\item \textbf{point-listener} \\
-	    	This function subscribes the point of interests and stores them in a variable.
-	    	\item \textbf{add-poi-from-topic (poseArrayMsg)} \\
-	    	Save the given points(\textit{poseArrayMsg}) to the parameter *poi*.
-	    \end{itemize}
-		\subsection{robosherlock-client-object.lisp}
+        \subsection{knowledge-client.lisp}
+        The knowledge-client is an interface to knowledge, which is responsible for the request to \textit{KnowRob}. For every request exists a function, which calls the \textit{Prolog} query and returns the result. Implemented requests are:
+            \begin{itemize}
+            \label{knowledge-client}
+              \item \textbf{with-safe-prolog ()} \\
+              Makro for executing the queries. Catches errors caused by connection problems.
+              \item \textbf{knowrob-symbol-$>$string (knowrob-symbol)} \\
+              Converts the given \textit{KnowRob} symbol into a string.
+              \item \textbf{object-name-$>$class (object-name)} \\
+              Returns the class of the given object.
+                \item \textbf{knowledge-set-tables-source ()} \\ Sets all tables as source.
+                \item \textbf{knowledge-set-ground-source ()} \\ Sets the ground as source.
+                \item \textbf{knowledge-set-target-surfaces ()} \\ Sets all shelves as target surfaces.
+                \item \textbf{knowledge-set-buckets-targets ()} \\ Sets all buckets as target surfaces.
+              \item \textbf{prolog-add-test-objects ()} \\ Adds test objects on the tables.
+                \item \textbf{prolog-table-objects ()} \\ Returns all objects on the table.
+                \item \textbf{prolog-object-goal (object-name)} \\ Returns the goal surface for the given object.
+              \item \textbf{prolog-object-goal-pose (object-name)} \\ Returns the goal pose for the given object.
+                \item \textbf{prolog-all-objects-in-shelf ()} \\ Returns all objects in the shelf.
+                \item \textbf{prolog-next-object ()} \\ Returns the next object to grasp chosen by Knowledge.
+            \item \textbf{prolog-object-dimensions (object-name)} \\ Returns the dimension for the given object (depth, width, height).
+                \item \textbf{prolog-object-pose (object-name)} \\ Returns the pose of the given object as list.
+                \item \textbf{prolog-table-pose ()} \\ Returns the pose of the table as list (x, y, z).
+                \item \textbf{prolog-shelf-pose ()} \\ Returns the pose of all shelfs as list of poses (x, y, z).
+                \item \textbf{prolog-shelf-pose ()} \\ Returns the pose of all targets as list of poses (x, y, z).
+                \item \textbf{prolog-bucket-pose ()} \\ Returns the pose of the bucket as list (x, y, z).
+                \item \textbf{prolog-object-in-gripper ()} \\ Returns the dimension of the object in gripper as list (depth, width, height).
+            \end{itemize} 
+        \subsection{knowledge-insertion-client.lisp}
+        \label{knowledge-insertion}
+        The client is used to insert objects recognized by perception into the knowledge base. To do this, the message from perception is passed to the action server of knowledge, which is responsible for inserting the objects.
+        \begin{itemize}
+          \item \textbf{init-knowledge-action-client ()} \\
+          This function initiates the connection to the store object info server from knowledge.
+          \item \textbf{get-knowledge-client ()}  \\
+          This function returns the take knowledge insertion client.
+          \item \textbf{insert-knowledge-objects(objectArrayMsg)} \\
+          Calls the action with the passed message to insert the contained objects into the knowledge base.
+          \item \textbf{knowledge-insertion-test ()} \\
+          Creates a dummy message with which the action is called. Used to test the connection. Not working yet. Probably the wrong message type is used.
+        \end{itemize}
+        \subsection{nlp-subscriber.lisp}
+        The nlp-subscriber provides functions subscribing to the topics from nlp.
+        \begin{itemize}
+           \item \textbf{static-command-listener ()} \\
+           Subscribes to the topic \textit{suturo\_speech\_recognition\/hard\_commands} there the "start", "stop" and "continue" commands are published.
+           \item \textbf{dynamic-command-listener ()} \\
+           Subscribes to the topic \textit{suturo\_speech\_recognition\/dynamic\_commands} there the dynamic commands are published. The message type for dynamic-commands is not defined yet.
+           \item \textbf{set-state-fluent(msg)} \\
+           Set fluents variables according to the msg for reacting to the hard commands. This function is used by the static-command-listener.
+         \end{itemize}
+        \subsection{obstacle-map-subscriber.lisp}
+        \begin{itemize}
+            \item \textbf{obstacle-map-listener ()} \\
+            This function subscribes the obstacle map and stores the current map in a variable.
+            \item \textbf{save-obstacle-map (mapMsg)} \\
+            Makes a copy of the given message(\textit{mapMsg}) and stores it in a variable.
+            \item \textbf{get-map-point (vect3)} \\
+            Returns the occupancy from a given position(\textit{vect3}) in the map.
+            \item \textbf{robot-in-obstacle-stamped (point)} \\
+            Wrapper for the robot-in-obstacle function to use a stamped pose.
+            \item \textbf{robot-in-obstacle (point)} \\
+            Returns if the obstacle value for the given \textit{point} is lower then 66.
+            \item \textbf{circle-is-in-obstacle (point)} \\
+            Returns if the obstacle value for the given \textit{point} is lower then 66.
+        \end{itemize}
+        \subsection{poi-client.lisp}
+         \begin{itemize}
+            \item \textbf{closest-poi (point)} \\
+            This function returns the next point of interest in relation to the passed \textit{point}.
+            \item \textbf{closest-point-in-list (point stampedList)} \\
+            Returns the closest point in relation of the given \textit{point}.
+            \item \textbf{sorted-poi-by-distance (point)} \\
+            This function returns all points of interest sorted in relation to the given \textit{point}.
+            \item \textbf{sorted-stamped-by-distance (point list)} \\
+            Sort a \textit{list} of stamped poses by the distance to the given \textit{point}.
+            \item \textbf{add-stamped-poi (stamped)} \\
+            Add a stamped-pose(\textit{stamped}) to the list of pois.
+            \item \textbf{point-listener} \\
+            This function subscribes the point of interests and stores them in a variable.
+            \item \textbf{add-poi-from-topic (poseArrayMsg)} \\
+            Save the given points(\textit{poseArrayMsg}) to the parameter *poi*.
+        \end{itemize}
+        \subsection{robosherlock-client-object.lisp}
         \label{object-perceive}
         This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} object action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} object pipeline and returns objects which were found. The action is a \textit{ExtractObjectInfoAction} which consists of the objects and their parameters namely: position, class, size and color.
         \begin{itemize}
@@ -394,7 +394,7 @@
             \item \textbf{call-robosherlock-object-pipeline (regions-value, viz)} \\
             This function takes an array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
         \end{itemize}
-		\subsection{robosherlock-client-plane.lisp}
+        \subsection{robosherlock-client-plane.lisp}
         This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for planes e.g. doors. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} plane action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} plane pipeline and returns the door or plane of interest which was found. The message is a \textit{ExtractDoorInfoAction} which consists of the position and size of the planes.
         \begin{itemize}
             \item \textbf{init-robosherlock-plane-action-client} \\
@@ -409,4 +409,5 @@
     \endgroup
 
 \end{document}
+
 
