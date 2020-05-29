@@ -45,15 +45,15 @@
 			 The first method "get\_current\_joint\_state"  sets the value of every slider to its corresponding current joint state.
 			 
 			 \vspace{0,25 cm}
-			 "execute\_cb" is the first method which is called, when the server receives a new goal. Based on which "grasp\_mode" is chosen the method either call "grasp\_to\_position" or "just\_grasp". The only case where "just\_grasp" is called is in "grasp\_mode" 3 ("JUST").
+			 "execute\_cb" is the first method which is called, when the server receives a new goal. Based on which "grasp\_mode" is chosen the method either calls "grasp\_to\_position" or "just\_grasp". The only case where "just\_grasp" is called is in "grasp\_mode" 3 ("JUST").
 			 
 			 \vspace{0,25 cm}
 			 In every other case "grasp\_to\_position" is called.\\
-			In the first step the method opens the gripper to the maximum. After that the arm is moved to the object. The "grasp\_mode" determines if the object should be grasped from the front, the top, or a free given orientation. When the arm has moved to the given position "goal\_pose", the script closes the gripper. In the end the grasped object given by "object\_frame\_id" is added in \textit{Giskard} and attached to the robot. After that the method "move\_to\_transport\_pose" is called.\\
-			Finally it checks if the object is in the gripper and returns whether the action has failed or succeeded.
+			In the first step, the method opens the gripper to the maximum. After that, the arm is moved to the object. The "grasp\_mode" determines if the object should be grasped from the front, the top, or a free given orientation. When the arm has moved to the given position "goal\_pose", the script closes the gripper. In the end, the grasped object given by "object\_frame\_id" is added in \textit{Giskard} and attached to the robot. After that the method "move\_to\_transport\_pose" is called.\\
+			Finally, it checks if the object is in the gripper and returns whether the action has failed or succeeded.
 			
 			\vspace{0,25 cm}
-			The method "just\_grasp" move to the transport pose, opens the gripper, wait 3 seconds and close the gripper. Finally it checks if the object is in the gripper.
+			The method "just\_grasp" move to the transport pose, opens the gripper, wait 3 seconds, and close the gripper. Finally, it checks if the object is in the gripper.
 			
 			\vspace{0,25 cm}
 			The method "move\_to\_transport\_pose" transform the robot in a position, where it can comfortably move around.
@@ -94,7 +94,7 @@
 			
 			
 			\section{place\_server.py}  \chapterauthor{Marc Stelter}
-			Places the object in the gripper at the given position. Depending on the place\_mode the orientation of the gripper is calculated. Giskard is then used to move the gripper to the given position. If \textit{Giskard} was successful and the gripper is at the correct position the object is released and the robot returns into a neutral pose. In the case of an error the Object will not be released and the robot finishes in a neutral position. 
+			Places the object in the gripper at the given position. Depending on the place\_mode the orientation of the gripper is calculated. Giskard is then used to move the gripper to the given position. If \textit{Giskard} was successful and the gripper is at the correct position the object is released and the robot returns into a neutral pose. In the case of an error, the Object will not be released and the robot finishes in a neutral position. 
 			
 			\begin{itemize}
 				\item Input: PlaceActionGoal 
@@ -123,7 +123,7 @@
 			
 			 
 			\section{int\_testmarker}
-			A small node creating an interactive marker allowing easy testing of manipulation in \textit{rviz}. The marker is simple box. The box can be dragged around in the 3D room. A right click on the marker opens a menu giving the option to take a pose, grasp or place at the position of the marker. The pose of the marker in the map is shown in the description of the marker. In order to show the update position the description needs to be disabled and enabled again.
+			A small node creating an interactive marker allowing easy testing of manipulation in \textit{rviz}. The marker is a simple box. The box can be dragged around in the 3D room. A right-click on the marker opens a menu giving the option to take a pose, grasp, or place at the position of the marker. The pose of the marker in the map is shown in the description of the marker. In order to show the updated position the description needs to be disabled and enabled again.
 			\begin{itemize}
 				\item Topic: int\_test\_marker\_manipulation
 			\end{itemize}
@@ -132,4 +132,5 @@
 	\endgroup
 
 \end{document}
+
 
