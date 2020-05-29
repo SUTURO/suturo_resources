@@ -14,7 +14,7 @@
 		\chapterauthor{~\\Torge Olliges,\\ Jan Schimpf, Jeremias Thun}
 		
 		\section{Goal}
-		The goal of the Clean Up task is like the name indicates to clean a room. In the RoboCup several objects get distributed throughout the room. The objects can be placed on the floor, tables, or other furniture. Each of these objects is visible and not hidden behind something. The task of the HSR is now to find these objects and place them into a designated basket. There exist multiple target positions and the HSR has to decide by itself the correct one based on the object. Like the Storing Grocery task the time limit is 5 minutes.
+		The goal of the Clean Up task is like the name indicates to clean a room. In the RoboCup several objects get distributed throughout the room. The objects can be placed on the floor, tables, or other furniture. Each of these objects is visible and not hidden behind something. The task of the HSR is now to find these objects and place them into a designated basket. There exist multiple target positions and the HSR has to decide by itself the correct one based on the object. Like the Storing Grocery task, the time limit is 5 minutes.
 
 	  	\section{Tasks}
 	  	The figure \ref{clean_up_seq_01} shows the procedure of Clean Up. The following subsections explain the execution and procedure in detail and give insights into the decisions made resulting in the exact plan depicted below. As well as for the Grocery Storing task, there will be a description of the most important sequences below.
@@ -44,7 +44,7 @@
 	\end{manipulation}
 
 	\begin{navigation}
-		In contrast to Storing Groceries objects can also be placed on the ground. In order to find these objects the laser scanner of the HSR is used. For this purpose the obstacle\_finder \ref{met_obstacle_finder} needs to be started. It bundles scans together forming clusters. Each of these clusters is then projected on the map filtering known objects that are static and therefore not movable. The remaining clusters are seen as \textit{points of interest}. 
+		In contrast to Storing Groceries objects can also be placed on the ground. In order to find these objects, the laser scanner of the HSR is used. For this purpose the obstacle\_finder \ref{met_obstacle_finder} needs to be started. It bundles scans together forming clusters. Each of these clusters is then projected on the map filtering known objects that are static and therefore not movable. The remaining clusters are seen as \textit{points of interest}. 
 	\end{navigation}
 
 	\subsection{Scan table sequence}
@@ -64,14 +64,14 @@
 	Before the robot can start to perceive, the user will be informed by the computer voice, that the robot is now perceiving the table.
 	\end{nlp}
 	
-	% Manipuilation: TakePoseAction
+	% Manipulation: TakePoseAction
 	\begin{manipulation}
 	With the robot standing at the right spot, it is the task of Manipulation to get it into a position where it can perceive the table.
    \end{manipulation} 
 	
-	% Perception: Percieve and return data
+	% Perception: Perceive and return data
 	\begin{perception}
-	In this position the table will be scanned and Perception again generates all necessary information about the objects standing on the table.
+	In this position, the table will be scanned and Perception again generates all necessary information about the objects standing on the table.
 	\end{perception}
 	
 	% Knowledge: Store Data
@@ -115,7 +115,7 @@
 	 Knowledge again realizes that the gripper now carries an object and attaches that object to the gripper in the Knowledge base.
 	 \end{knowledge}
 	 
-	%NLP succesfully grasped
+	%NLP successfully grasped
 	\begin{nlp}
 	Grasping the object is completed by the robot saying that it has successfully grasped the object.
 	\end{nlp}
@@ -183,7 +183,7 @@
     When the robot is ready to perceive, it says so via its speech client.
     \end{nlp}
       
-    %call-robosherlock-object-pipeline
+    %call- robosherlock-object-pipeline
     \begin{perception}
 	Looking at the floor at this point of interest, the robot makes a picture that Perception can again use to find the objects that are hopefully standing there. Once there are objects found, the data will be published.
 	\end{perception}
@@ -207,4 +207,5 @@
 	\endgroup
 
 \end{document}
+
 
