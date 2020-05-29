@@ -262,11 +262,8 @@
             \item \textbf{call-place-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
             This function takes the x, y, z coordinates where the object should be placed, quaternion values  and the object-id of the object that is placed and the grasp mode.
         \end{itemize}
-
         \subsection{take-pose-action-server.lisp}
-
         This file is responsible for the low level communication with the
-
         \textbf{take pose action server} which is responsible taking different poses. The main function of this file is to provide an action client which connects to the \textbf{take pose action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if taking the pose was successful or a 1  or an error code if it failed.
         \begin{itemize}
             \item \textbf{init-take-pose-action-client ()} \\
@@ -346,21 +343,21 @@
 		   \item \textbf{set-state-fluent(msg)} \\
 		   Set fluents variables according to the msg for reacting to the hard commands. This function is used by the static-command-listener.
 		 \end{itemize}
-		\subsection{obstacle-map-subscriber.lisp}
-	    \begin{itemize}
-	    	\item \textbf{obstacle-map-listener ()} \\
-	    	This function subscribes the obstacle map and stores the current map in a variable.
-	    	\item \textbf{save-obstacle-map (mapMsg)} \\
-	    	Makes a copy of the given message and stores it in a variable.
-	    	\item \textbf{get-map-point (vect3)} \\
-	    	Returns the occupancy from a given position in the map.
-	    	\item \textbf{robot-in-obstacle-stamped (point)} \\
-	    	Wrapper for the robot-in-obstacle function to use a stamped pose.
-	    	\item \textbf{robot-in-obstacle (point)} \\
-	    	Returns if the obstacle value for the given point is lower then 66.
-	    	\item \textbf{circle-is-in-obstacle (point)} \\
-	    	Returns if the obstacle value for the given point is lower then 66.
-	    \end{itemize}
+        \subsection{obstacle-map-subscriber.lisp}
+        \begin{itemize}
+            \item \textbf{obstacle-map-listener ()} \\
+            This function subscribes the obstacle map and stores the current map in a variable.
+            \item \textbf{save-obstacle-map (mapMsg)} \\
+            Makes a copy of the given message and stores it in a variable.
+            \item \textbf{get-map-point (vect3)} \\
+            Returns the occupancy from a given position in the map.
+            \item \textbf{robot-in-obstacle-stamped (point)} \\
+            Wrapper for the robot-in-obstacle function to use a stamped pose.
+            \item \textbf{robot-in-obstacle (point)} \\
+            Returns if the obstacle value for the given point is lower than 66.
+            \item \textbf{circle-is-in-obstacle (point)} \\
+            Returns if the obstacle value for the given point is lower than 66.
+        \end{itemize}
 		\subsection{poi-client.lisp}
  		\begin{itemize}
 	    	\item \textbf{closest-poi (point)} \\
@@ -379,37 +376,37 @@
 	    	Save the given points to the parameter *poi*.
 	    \end{itemize}
 		\subsection{robosherlock-client-object.lisp}
-		\label{object-perceive}
-		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects.The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} object action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} object pipeline and returns objects which were found. The action is a \textit{ExtractObjectInfoAction} which consists of the objects and their parameters namely: position, class, size and color.
-		\begin{itemize}
-			\item \textbf{init-robosherlock-object-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} object action server. It loops until the connection is established. It has a timout after which it stops to wait for a connection and shuts down the default value for this timeout is 30 seconds and can be set via the \texttt{*robosherlock-action-timeout*} parameter.
-			\begin{lstlisting}[language=lisp]
-				(loop until 
-					(actionlib:wait-for-server 
-						*robosherlock-object-action-client*
-						*robosherlock-action-timeout*)
-			\end{lstlisting}
-			\item \textbf{get-robosherlock-client} \\
-			This function returns the \textit{RoboSherlock} action client.
-			\item \textbf{make-action-goal (in-regions in-visualize)} \\
-			This function makes and returns a action client goal with the given regions.
-			\item \textbf{call-robosherlock-object-pipeline (regions-value, viz)} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
-		\end{itemize}
+        \label{object-perceive}
+        This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for objects. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} object action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} object pipeline and returns objects which were found. The action is a \textit{ExtractObjectInfoAction} which consists of the objects and their parameters namely: position, class, size and color.
+        \begin{itemize}
+            \item \textbf{init-robosherlock-object-action-client} \\
+            This function initiates the connection to the \textit{RoboSherlock} object action server. It loops until the connection is established. It has a timout after which it stops to wait for a connection and shuts down the default value for this timeout is 30 seconds and can be set via the \texttt{*robosherlock-action-timeout*} parameter.
+            \begin{lstlisting}[language=lisp]
+                (loop until 
+                    (actionlib:wait-for-server 
+                        *robosherlock-object-action-client*
+                        *robosherlock-action-timeout*)
+            \end{lstlisting}
+            \item \textbf{get-robosherlock-client} \\
+            This function returns the \textit{RoboSherlock} action client.
+            \item \textbf{make-action-goal (in-regions in-visualize)} \\
+            This function makes and returns an action client goal with the given regions.
+            \item \textbf{call-robosherlock-object-pipeline (regions-value, viz)} \\
+            This function takes an array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
+        \end{itemize}
 		\subsection{robosherlock-client-plane.lisp}
-		This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for planes e.g. doors. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} plane action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} plane pipeline and returns the door or plane of interest which was found. The message is a \textit{ExtractDoorInfoAction} which consists of the position and size of the planes.
-		\begin{itemize}
-			\item \textbf{init-robosherlock-plane-action-client} \\
-			This function initiates the connection to the \textit{RoboSherlock} plane action server.
-			\item \textbf{get-robosherlock-plane-client} \\
-			This function returns the \textit{RoboSherlock} action client.
-			\item \textbf{make-action-goal (in-regions in-visualize)} \\
-			This function makes and returns a action client goal.
-			\item \textbf{call-robosherlock-plane-pipeline(regions-value, viz)} \\
-			This function takes a array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
-		\end{itemize}
-	\endgroup
+        This file is responsible for the low level communication with the \textit{RoboSherlock} pipeline which is responsible for planes e.g. doors. The main function of this file is to provide an action client which connects itself to the \textit{RoboSherlock} plane action server when initiated. It then provides communication with the server which triggers the \textit{RoboSherlock} plane pipeline and returns the door or plane of interest which was found. The message is a \textit{ExtractDoorInfoAction} which consists of the position and size of the planes.
+        \begin{itemize}
+            \item \textbf{init-robosherlock-plane-action-client} \\
+            This function initiates the connection to the \textit{RoboSherlock} plane action server.
+            \item \textbf{get-robosherlock-plane-client} \\
+            This function returns the \textit{RoboSherlock} action client.
+            \item \textbf{make-action-goal (in-regions in-visualize)} \\
+            This function makes and returns an action client goal.
+            \item \textbf{call-robosherlock-plane-pipeline(regions-value, viz)} \\
+            This function takes an array of regions and a boolean value for visualization, this function calls the \textit{RoboSherlock} object pipeline with the input values and returns the result.
+        \end{itemize}
+    \endgroup
 
 \end{document}
 
