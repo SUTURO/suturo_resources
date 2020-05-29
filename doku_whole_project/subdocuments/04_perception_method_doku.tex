@@ -139,7 +139,7 @@ The main pipeline for detecting and identifying objects with \textit{RoboSherloc
 	\end{minipage}
 
 	\item RegionAnnotator : Further restriction on which areas will be used based on defined Regions 
-	\item CaffeAnnotator : Deep learning method for Object recognition based on prerecorded Images 
+	\item CaffeAnnotator : Interfaces with \textit{Caffe} neural networks and does feature extraction for the input image
 
 	\begin{minipage}[t]{\textwidth}
 	\item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
@@ -159,8 +159,8 @@ This pipeline is used to detect a shelf door. It is used to find a plane that is
 	\item CollectionReader : Takes care of the camera input
 	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
 	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
-	\item NormalEstimator : Estimate surface normal's in a PointCloud 
-	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS.
+	\item NormalEstimator : Estimate surface normals in a PointCloud 
+	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS
 	\item PointCloudClusterExtractor : Extracts all points that are found in the PointCloud that are perpendicular to the plane 
 \end{itemize}
 
@@ -170,6 +170,25 @@ Pipeline for storing camera images in MongoDB, all saved scenes can be replayed 
 	\item CollectionReader : Takes care of the camera input
 	\item ImagePreprocessor : Prepares image for further processing and implement image filters 
 	\item StorageWriterSuturo :  Records defined camera topics into the MongoDB
+\end{itemize}
+
+\subsection{Pipeline: classificationEval}\label{Pipeline: classificationEval}
+This pipeline can be used to evaluate classification performance with the clusterLabeling package. In \ref{clusterLabeling Usage}, the procedure of evaluating classification is described closely.
+
+\begin{itemize}
+	\item Trigger : makes the pipeline triggerable frame by frame as a service
+  	\item CollectionReader : Takes care of the camera input
+    \item ImagePreprocessor : Prepares image for further processing and implement image filters  
+    \item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
+    \item NormalEstimator : Estimate surface normals in a PointCloud 
+    \item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS
+  	\item PointCloudClusterExtractor :  Extracts all points that are found in the PointCloud that are perpendicular to the plane 
+	\item CaffeAnnotator : Interfaces with \textit{Caffe} neural networks and does feature extraction for the input image
+    \item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
+    \item clusterLabeler : Shows a number for each cluster. A more detailed description can be found in \ref{clusterLabeler}.
+    \item classificationEvaluationAnnotator : Evaluates the classfication performance based on labeling data. More information can be found in \ref{classificationEvaluationAnnotator}.
+    
+    The clusterLabeler and the classificationEvaluationAnnotator have to be interchanged as described in \ref{clusterLabeling Usage}.
 \end{itemize}
 
 		\section{actionserver}
@@ -375,10 +394,10 @@ A very common procedure to do this in machine learning is the evaluation of an a
 
 In the particular case of the SUTURO project, it was not practical to split a test set from our training data, because we recorded the objects by taking pictures in a circle around it. Taking some of these pictures away for testing would mean testing the classification on perspectives that are not represented in the training data, leading to worse classification performance. Also, in the real life application on the robot, the classification has to work on different scenes than the setting of the recording, so it makes sense to test the classification on similar, more realistic scenes. The ability to do this is implemented in the clusterLabeling package. The user is able to test their classification algorithm on scenes recorded on the actual robot they are working with.  
 
-\subsection{Usage}
+\subsection{Usage}\label{clusterLabeling Usage}
 
-\subsubsection{The clusterLabeler}
-The clusterLabeler is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You musn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package (\ref{rs_perception}) to start.\\
+\subsubsection{The clusterLabeler}\label{clusterLabeler}
+The clusterLabeler is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You musn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline (\ref{Pipeline: classificationEval}) in the rs\_perception package (\ref{rs_perception}) to start.\\
 
 To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the clusterLabeler in the visualizer, which will display a number for every cluster. You can see an example of how this looks in figure \ref{fig:clusterLabeler visualization}.
 \begin{figure}
@@ -399,7 +418,7 @@ Now, you can note the class for every cluster in a labeling \textit{JSON}-file, 
 \end{figure}
 
 
-\subsubsection{classificationEvaluationAnnotator}
+\subsubsection{classificationEvaluationAnnotator}\label{classificationEvaluationAnnotator}
 The classifcationEvaluationAnnotator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor \textit{YAML}-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your \textit{JSON}-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. This is shown in figure \ref{fig:classificationEvaluationAnnotator output}.
 
 \begin{figure}
