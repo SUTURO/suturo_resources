@@ -64,7 +64,7 @@
 			\label{interfaces}
 		\end{figure}
 
-		In figure \ref{interfaces} the action servers and some other communication can be seen. As the main node is the \textit{planning\_node} which requests actions from other servers like the \textit{place\_server}, \textit{grasp\_server} or \textit{perception\_server} it is involved in all our communication. The sequence in which these calls are made will be explained in detail in chapter \ref{grocery-sequence} Storing Groceries Task Overview and chapter \ref{cleanup-sequence} Clean Up Task Overview. This section will give a short introduction to communication in ros and what messages were created for this project.
+		In figure \ref{interfaces} for Storing Groceries and \ref{cleanup-interfaces} for Clean Up the action servers and some other communication can be seen. As the main node is the \textit{planning\_node} which requests actions from other servers like the \textit{place\_server}, \textit{grasp\_server} or \textit{perception\_server} it is involved in all our communication. The sequence in which these calls are made will be explained in detail in chapter \ref{grocery-sequence} Storing Groceries Task Overview and chapter \ref{cleanup-sequence} Clean Up Task Overview. This section will give a short introduction to communication in ROS and what messages were created for this project.
 
 		\subsection{Form Of Communication}
 		
@@ -75,9 +75,7 @@
 			\subsubsection{Topic Based}
 			
 			ROS also provides topic based communication which follows the listener/subscriber design pattern. It is a asynchronous way of communication where the result of the triggered action or request is not guaranteed. It is also not guaranteed that the subscriber received the message which was sent via a given topic. In this project topic based communication was used a few times in situations where it is not crucial to get an immediate result.  
-		
-
-		For our interfaces shown in \ref{interfaces} for Storing Groceries and \ref{cleanup-interfaces}. 
+		 
 
 
 	\endgroup
