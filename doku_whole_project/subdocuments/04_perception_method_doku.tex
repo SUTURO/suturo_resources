@@ -16,215 +16,215 @@
 The task of the perception group was to use the available image data to gather as much information as possible about the perceived scene. In the following chapter, the tools and software used and created by the perception group will be described. These include descriptions of the pipelines and annotators used in \textit{RoboSherlock}, the image processing framework used by the perception group, as well as tools for classification.
 
 \section{RoboSherlock}
-		\chapterauthor{Jan-Frederik Stock}
+        \chapterauthor{Jan-Frederik Stock}
 The main framework the perception group is working with is \textit{RoboSherlock} \footnote{\url{http://www.robosherlock.org/}}. RoboSherlock is a software, that uses multiple expert systems called annotators on input image data. Each annotator performs a specific task, for example searching for objects in a given picture. All annotators write their results to a public data structure.\\
-		
+        
 \textit{RoboSherlock} works by executing all of these annotators in a predefined order. This order is called a pipeline. There can be pipelines for different purposes, in the perception groups case for detecting objects and detecting surfaces. Each pipeline can have different annotators. Thus, \textit{RoboSherlock} can be customized to achieve many different image processing tasks.
 
-		\section{rs\_perception}\label{rs_perception}
-		\chapterauthor{Leonidas Paniago}
-To understand this chapter, the term pipeline needs to be further defined.The term pipeline is often used in computer science for the successive execution of processes
+        \section{rs\_perception}\label{rs_perception}
+        \chapterauthor{Leonidas Paniago}
+To understand this chapter, the term pipeline needs to be further defined. The term pipeline is often used in computer science for the successive execution of processes
 In \textit{RoboSherlock}, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
 Each task in the pipeline is called Annotator and it has an own purpose, here is a list of some tasks: 
-		\begin{itemize}
-			\item Annotation
-			\item Detection
-			\item Filter
-			\item Flow control
-			\item Query answering
-			\item Recognition 
-			\item Segmentation
-			\item Tracking
-		\end{itemize}		
+        \begin{itemize}
+            \item Annotation
+            \item Detection
+            \item Filter
+            \item Flow control
+            \item Query answering
+            \item Recognition 
+            \item Segmentation
+            \item Tracking
+        \end{itemize}        
 The pipeline order is determined by the already processed information and the needed information for the next step.
-Each annotator contains changeable parameter that enables customization to the given tasks. All main pipelines are included in \href{https://github.com/SUTURO/suturo_perception/tree/master/rs_perception}{rs\_perception}
+Each annotator contains changeable parameters that enable customization to the given tasks. All main pipelines are included in \href{https://github.com/SUTURO/suturo_perception/tree/master/rs_perception}{rs\_perception}
 
-			\subsection{Pipeline: hsrb\_1ms}
+            \subsection{Pipeline: hsrb\_1ms}
 
 The main pipeline for detecting and identifying objects with \textit{RoboSherlock} consists of the following annotators in order:  
 \begin{itemize}
-	\item CollectionReader : Takes care of the Camera  Input
+    \item CollectionReader : Takes care of the Camera  Input
 
-	\begin{minipage}[t]{\textwidth}
-	\item ImagePreprocessor : Prepares image for further processing and implement image filters
-		\begin{figure}[H]
-   			 \centering
-    			\includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
-   			 \caption{ImagePreprocessor}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item ImagePreprocessor : Prepares image for further processing and implement image filters
+        \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.5\textwidth]{pictures/2d/ImagePreProcessor.png}
+                \caption{ImagePreprocessor}
+          \end{figure}
+    \end{minipage}
 
-	\begin{minipage}[t]{\textwidth}
-	\item SuturoRegionFilter : Remove all points that are not in the defined Regions 
-		\begin{figure}[H]
-   			 \centering
-    			\includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
-   			 \caption{SuturoRegionFilter}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item SuturoRegionFilter : Remove all points that are not in the defined Regions 
+        \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.5\textwidth]{pictures/pcl/RegionFilter.png}
+                \caption{SuturoRegionFilter}
+          \end{figure}
+    \end{minipage}
 
-	\begin{minipage}[t]{\textwidth}
-	\item NormalEstimator : Estimate Surface Normals in a PointCloud 
-		\begin{figure}[H]
-   			 \centering
-    			 \subfigure[NormalEstimator]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
-			 }%
-       			 \subfigure[NormalEstimator]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
-       			 }
-   			 \caption{NormalEstimator}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item NormalEstimator : Estimate Surface Normals in a PointCloud 
+        \begin{figure}[H]
+                \centering
+                 \subfigure[NormalEstimator]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/2d/NormalEstimator.png}
+             }%
+                    \subfigure[NormalEstimator]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/pcl/NormalEstimator.png}
+                    }
+                \caption{NormalEstimator}
+          \end{figure}
+    \end{minipage}
 
-	\begin{minipage}[t]{\textwidth}
-	\item PlaneAnnotator : Search for Horizontal Planes in which the search location for Objects is set
-		\begin{figure}[H]
-   			 \centering
-    			 \subfigure[PlaneAnnotator]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
-        			 }%
-       			 \subfigure[PlaneAnnotator]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
-        			 }
-   			 \caption{PlaneAnnotator}
-  		\end{figure}
-	\end{minipage}
-	
-	\begin{minipage}[t]{\textwidth}
-	\item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
-		\begin{figure}[H]
-   			 \centering
-    			 \subfigure[PointCloudClusterExtractor]{%
-            		\includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
-        			}%
-        			\subfigure[PointCloudClusterExtractor]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
-        			}
-   			 \caption{PointCloudClusterExtractor}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item PlaneAnnotator : Search for Horizontal Planes in which the search location for Objects is set
+        \begin{figure}[H]
+                \centering
+                 \subfigure[PlaneAnnotator]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/2d/PlaneAnnotator.png}
+                     }%
+                    \subfigure[PlaneAnnotator]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/pcl/PlaneAnnotator.png}
+                     }
+                \caption{PlaneAnnotator}
+          \end{figure}
+    \end{minipage}
+    
+    \begin{minipage}[t]{\textwidth}
+    \item PointCloudClusterExtractor : Extract all Points found in the PointCloud that are perpendicular to the Plane 
+        \begin{figure}[H]
+                \centering
+                 \subfigure[PointCloudClusterExtractor]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/2d/PointCloudClusterExtractor.png}
+                    }%
+                    \subfigure[PointCloudClusterExtractor]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/pcl/PointCloudClusterExtractor.png}
+                    }
+                \caption{PointCloudClusterExtractor}
+          \end{figure}
+    \end{minipage}
 
-	\begin{minipage}[t]{\textwidth}
-	\item ClusterColorHistogramCalculator : Calculate the individual color quantity in relation to all colors on the cluster   
-		\begin{figure}[H]
-   			 \centering
-    			\includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
-   			 \caption{ClusterColorHistogramCalculator}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item ClusterColorHistogramCalculator : Calculate the individual color quantity in relation to all colors on the cluster   
+        \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.5\textwidth]{pictures/2d/ClusterColorHistogramAnnotator.png}
+                \caption{ClusterColorHistogramCalculator}
+          \end{figure}
+    \end{minipage}
 
-	\begin{minipage}[t]{\textwidth}
-	\item Cluster3DGeometryAnnotator : Extracts basic attributes of cluster like initial pose, semantic size and 3D bounding box 
-		\begin{figure}[H]
-   			 \centering
-    			 \subfigure[Cluster3DGeometryAnnotator]{%
-            		\includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
-        			}%
-        			\subfigure[Cluster3DGeometryAnnotator]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
-        			}
-    			 
-   			 \caption{Cluster3DGeometryAnnotator}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item Cluster3DGeometryAnnotator : Extracts basic attributes of cluster like initial pose, semantic size and 3D bounding box 
+        \begin{figure}[H]
+                \centering
+                 \subfigure[Cluster3DGeometryAnnotator]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/2d/Cluster3DGeometryAnnotator.png}
+                    }%
+                    \subfigure[Cluster3DGeometryAnnotator]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/pcl/Cluster3DGeometryAnnotator.png}
+                    }
+                 
+                \caption{Cluster3DGeometryAnnotator}
+          \end{figure}
+    \end{minipage}
 
-	\begin{minipage}[t]{\textwidth}
-	\item SuturoShapeAnnotator : Detects the shape of the object (cylinder, sphere, box)
-		\begin{figure}[H]
-   			 \centering
-    			 \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
-   			 \caption{SuturoShapeAnnotator}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item SuturoShapeAnnotator : Detects the shape of the object (cylinder, sphere, box)
+        \begin{figure}[H]
+                \centering
+                 \includegraphics[width=0.5\textwidth]{pictures/2d/SuturoShapeAnnotator.png}
+                \caption{SuturoShapeAnnotator}
+          \end{figure}
+    \end{minipage}
 
-	\item RegionAnnotator : Further restriction on which areas will be used based on defined Regions 
-	\item CaffeAnnotator : Deep learning method for Object recognition based on prerecorded Images 
+    \item RegionAnnotator : Further restriction on which areas will be used based on defined Regions 
+    \item CaffeAnnotator : Deep learning method for Object recognition based on prerecorded Images 
 
-	\begin{minipage}[t]{\textwidth}
-	\item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
-		\begin{figure}[H]
-   			 \centering
-    			 \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
-   			 \caption{KnnAnnotator}
-  		\end{figure}
-	\end{minipage}
+    \begin{minipage}[t]{\textwidth}
+    \item KnnAnnotator : Uses K-Nearest-Neighbor for classification of Objects 
+        \begin{figure}[H]
+                \centering
+                 \includegraphics[width=0.5\textwidth]{pictures/2d/KnnAnnotator.png}
+                \caption{KnnAnnotator}
+          \end{figure}
+    \end{minipage}
 \end{itemize}
 
 
 
-			\subsection{Pipeline: hsrb\_planes} 
+            \subsection{Pipeline: hsrb\_planes} 
 This pipeline is used to detect a shelf door. It is used to find a plane that is parallel to the z-axis of the camera.
 \begin{itemize}
-	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
-	\item PointCloudFilter : Filters points that are not in the range of the given parameters for X, Y and Z axes out of the cloud
-	\item NormalEstimator : Estimate surface normal's in a PointCloud 
-	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS.
-	\item PointCloudClusterExtractor : Extracts all points found in the PointCloud that are perpendicular to the plane 
+    \item CollectionReader : Takes care of the camera input
+    \item ImagePreprocessor : Prepares image for further processing and implement image filters  
+    \item PointCloudFilter : Filters points that are not in the range of the given parameters for X, Y and Z axes out of the cloud
+    \item NormalEstimator : Estimate surface normal's in a PointCloud 
+    \item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS.
+    \item PointCloudClusterExtractor : Extracts all points found in the PointCloud that are perpendicular to the plane 
 \end{itemize}
 
-			\subsection{Pipeline: storage\_suturo} 
+            \subsection{Pipeline: storage\_suturo} 
 Pipeline for storing camera images in MongoDB, all saved scenes can be replayed for testing without the HSR and have the same functionality. 
 \begin{itemize}
-	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Prepares image for further processing and implement image filters 
-	\item StorageWriterSuturo :  Records defined camera topics into the MongoDB
+    \item CollectionReader : Takes care of the camera input
+    \item ImagePreprocessor : Prepares image for further processing and implement image filters 
+    \item StorageWriterSuturo :  Records defined camera topics into the MongoDB
 \end{itemize}
 
-		\section{actionserver}
-		\chapterauthor{Leonidas Paniago}
+        \section{actionserver}
+        \chapterauthor{Leonidas Paniago}
 The \href{https://github.com/SUTURO/suturo_perception/tree/master/actionserver}{action server} contains the server responsible for the pipeline execution they are based on the \href{http://wiki.ros.org/actionlib}{ROS Client-Server Interaction} and it works by providing three callable actions types:
 \begin{itemize}
-	\item Goal : A specific defined task 
-	\item Feedback : Information about the goal execution  
-	\item Result : The goal final result 
+    \item Goal : A specific defined task 
+    \item Feedback : Information about the goal execution  
+    \item Result : The goal final result 
 \end{itemize}
 This approach facilitates the communication with perception by offering a clear interface.
 Each server provides the same actions with different results based on their functionality.
 The implemented clients are not needed for the HSR execution than knowledge has its own implementation, they are mainly used for testing and troubleshooting. 
 Both servers give the same message output \href{https://github.com/SUTURO/suturo_resources/blob/master/messages/suturo_perception_msgs/msg/ObjectDetectionData.msg}{ObjectDetectionData.msg} consisting of : 
 
-	\begin{itemize}
-	\item Class
-	\item Shape (Cylinder, Sphere, Box)
-	\item Colour
-	\item Position
-	\item Height
-	\item Depth
-	\item Width
-	\item Orientation
-	\end{itemize}
+    \begin{itemize}
+    \item Class
+    \item Shape (Cylinder, Sphere, Box)
+    \item Colour
+    \item Position
+    \item Height
+    \item Depth
+    \item Width
+    \item Orientation
+    \end{itemize}
 
-			\subsection{ExtractObjectInfoClient}
+            \subsection{ExtractObjectInfoClient}
 Call \texttt{ExtractObjectInfoServer} and wait until the result arrives or the time out runs out. \texttt{region} can be set to limit the perception of objects to a specific region, if \texttt{default} is set the region filter will be disabled. The client can be started by calling : \texttt{rosrun actionserver ExtractObjectInfoClient}
 
-			\subsection{ExtractObjectInfoServer}
+            \subsection{ExtractObjectInfoServer}
 Receives a goal from Client and passes on to \texttt{SuturoProcessManager}, checks for results, and publishes them under \texttt{perception\_actionserver/result}. 
-			\begin{figure}[H]
-   			 \centering
-    			 \includegraphics[width=1\textwidth]{pictures/perception/suturo_ExtractObjectInfoServer.png}
-   			 \caption{ExtractObjectInfoServer}
-  			\end{figure}
+            \begin{figure}[H]
+                \centering
+                 \includegraphics[width=1\textwidth]{pictures/perception/suturo_ExtractObjectInfoServer.png}
+                \caption{ExtractObjectInfoServer}
+              \end{figure}
 
-			\subsection{ExtractPlaneInfoClient}
+            \subsection{ExtractPlaneInfoClient}
 Call ExtractPlaneInfoServer and wait until the result arrives or the time out runs out. This client has no additional parameters.
 The client can be started by calling : \texttt{rosrun actionserver ExtractPlaneInfoClient}.
 
-			\subsection{ExtractPlaneInfoServer}
+            \subsection{ExtractPlaneInfoServer}
 Receives a goal from Client and pass on to SuturoProcessManager, checks for result and publishes it under \texttt{perception\_actionserver\_plane/result}.
-			\begin{figure}[H]
-   			 \centering
-    			 \includegraphics[width=1\textwidth]{pictures/perception/suturo_ExtractPlaneInfoServer.png}
-   			 \caption{ExtractPlaneInfoServer}
-  			\end{figure}
+            \begin{figure}[H]
+                \centering
+                 \includegraphics[width=1\textwidth]{pictures/perception/suturo_ExtractPlaneInfoServer.png}
+                \caption{ExtractPlaneInfoServer}
+              \end{figure}
 
-			\subsection{perception\_server}
+            \subsection{perception\_server}
 perception\_server is the only way to launch \texttt{ExtractObjectInfoServer} and \texttt{ExtractPlaneInfoServer} they cannot be used separated. \\
 It works by calling : \texttt{roslaunch rs\_perception hsrb\_perception.launch} in the rs\_perception directory.
 
-		\section{rs\_turn\_table}
-		\chapterauthor{Leonidas Paniago}
+        \section{rs\_turn\_table}
+        \chapterauthor{Leonidas Paniago}
 The package \href{https://github.com/Vanessa-rin/rs_turn_table}{rs\_turn\_table} belongs to the last SUTURO group. There were no big changes to the core code, only small situational changes not implemented on the master. 
 This package is mainly for image recording, all recorded images will then be used for object recognition.  
 rs\_turn\_table heavily depends on \textit{Openni2} as a driver for the Kinect camera. HSR could be used for the image recording but in reality, it turns out to be really impractical. 
@@ -232,50 +232,50 @@ The Kinect camera offers more flexibility and gives other groups more time with 
 \href{https://github.com/SUTURO/suturo_perception/blob/Openni2/Openni2/Openni2_Install}{script} that will install all necessary dependencies and automatically enable depth\_registration in the \textit{Openni2} launch file. The camera can be started by calling: \texttt{roslaunch openni2\_launch openni2.launch}
  \\ Note: \textit{Openni2} did not work on a Virtual machine with Ubuntu-16.04.6. The camera goes on but no output is sent to the camera topic. 
 
-			\subsection{Pipeline: estimate\_plane}
+            \subsection{Pipeline: estimate\_plane}
 This pipeline will save all visible planes, they are callable again. The best way to get a clean plane is to set the Limits on \texttt{PointCloudFilter} by hand. Only one plane should be visible. To start the pipeline run : \texttt{rosrun robosherlock run \_ae:=estimate\_plane \_vis:=true} 
 \begin{itemize}
-	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
-	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
-	\item PlaneAnnotator : Finds a plane and saves it to a file 
+    \item CollectionReader : Takes care of the camera input
+    \item ImagePreprocessor : Prepares image for further processing and implement image filters  
+    \item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
+    \item PlaneAnnotator : Finds a plane and saves it to a file 
 \end{itemize}
 
 
-			\subsection{Pipeline: save\_images}
+            \subsection{Pipeline: save\_images}
 This pipeline uses the saved plane from estimate\_plane as base for the image processing and takes periodic images from objects on the plane, if there is more than one cluster visible the annotator will not trigger the saving process. To start the pipeline run : \texttt{rosrun robosherlock run \_ae:=save\_images \_vis:=true} 
 \begin{itemize}
-	\item CollectionReader : Takes care of the camera input
-	\item ImagePreprocessor : Prepares image for further processing and implement image filters  
-	\item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
-	\item NormalEstimator : Estimate surface normal's in a PointCloud 
-	\item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS
-	\item PointCloudClusterExtractor : Extracts all points found in the PointCloud that are perpendicular to the plane 
-	\item SaveClusterCloudsAndImages : Save Information about the Cluster to a file 
+    \item CollectionReader : Takes care of the camera input
+    \item ImagePreprocessor : Prepares image for further processing and implement image filters  
+    \item PointCloudFilter : Filters points out of the cloud that are not in the range of the given parameters for X, Y and Z axes
+    \item NormalEstimator : Estimate surface normal's in a PointCloud 
+    \item PlaneAnnotator : Finds a plane in the current scene and saves it into the CAS
+    \item PointCloudClusterExtractor : Extracts all points found in the PointCloud that are perpendicular to the plane 
+    \item SaveClusterCloudsAndImages : Save Information about the Cluster to a file 
 \end{itemize}
-		\begin{figure}[H]
-   			 \centering
-    			 \subfigure[Original]{%
-            		\includegraphics[width=0.5\textwidth]{pictures/perception/turn_table_2.png}
-        			}%
-        			\subfigure[Pointcloud representation]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/perception/turn_table_1.png}
-        			}
-   			 \caption{Turn table setup}
-			  \label{turnTableOriginal}
-  		\end{figure}
+        \begin{figure}[H]
+                \centering
+                 \subfigure[Original]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/perception/turn_table_2.png}
+                    }%
+                    \subfigure[Pointcloud representation]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/perception/turn_table_1.png}
+                    }
+                \caption{Turn table setup}
+              \label{turnTableOriginal}
+          \end{figure}
 In picture \ref{turnTableOriginal} the RGB texture and the pointcloud representation do not match fully. This occurs if the unregistered image topic is used for the pipeline. 
-		\begin{figure}[H]
-   			 \centering
-    			 \subfigure[RGB]{%
-            		\includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_4_crop.png}
-        			}%
-        			\subfigure[Pointcloud representation]{%
-           		 \includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_3_mask.png}
-        			}
-   			 \caption{save\_image output}
-			 \label{FeurichChips}
-  		\end{figure}
+        \begin{figure}[H]
+                \centering
+                 \subfigure[RGB]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_4_crop.png}
+                    }%
+                    \subfigure[Pointcloud representation]{%
+                    \includegraphics[width=0.5\textwidth]{pictures/perception/Feurich_Stapel_Chips_Paprika_0_3_mask.png}
+                    }
+                \caption{save\_image output}
+             \label{FeurichChips}
+          \end{figure}
 The picture \ref{FeurichChips} shows a standard output for the save\_images pipeline.
 
 \section{classificationEvaluation Package}
@@ -290,9 +290,9 @@ The classificationEvaluation package was created to access and save the classifi
 After implementing the classificationEvaluation package, it was used to create the plot \ref{fig:k comparison plot}. This plot was meant to compare the performance of a k-nearest-neighbor classifier, with different selections of the parameter k. The value of the k is shown on the x-axis, the confidence is on the y-axis, with zero being the lowest and one being the highest possible confidence. Each point in the plot represents a sample, that was classified.\\
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{pictures/perception/k_comparison.png}
-	\caption{Plot showing the confidence for different values of k}
-	\label{fig:k comparison plot}
+    \includegraphics[width=\textwidth]{pictures/perception/k_comparison.png}
+    \caption{Plot showing the confidence for different values of k}
+    \label{fig:k comparison plot}
 \end{figure}
 
 The plot shows that the confidence does not change with different values of k, which is surprising due to the details of the KNN algorithm. The reason for this is the way the confidence was implemented in the KNN classifier:
@@ -345,13 +345,13 @@ This bash script does nearly the same thing as the make\_split\_from\_directory.
 
 \section{Classification - Splits}
 \chapterauthor{Jan-Frederik Stock}
-In order to be able to classify images with rs\_addons and \textit{Caffe}, a split file has to be created, in which the output classes have to be listed. This is essential for the classifier to work. In the beginning of the SUTURO project, the question came up if every recorded object should be represented as its own class for the classfication, or if similiar objects should be consolidated into superclasses, for example into fruits or dishes.\\
+In order to be able to classify images with rs\_addons and \textit{Caffe}, a split file has to be created, in which the output classes have to be listed. This is essential for the classifier to work. At the beginning of the SUTURO project, the question came up if every recorded object should be represented as its own class for the classification, or if similar objects should be consolidated into superclasses, for example into fruits or dishes.\\
 
 The perception group decided to represent every recorded object in its own class. This has numerous advantages:\\
 
-Firsly, the classfication works better done this way, because the classes are more distinct. A superclass holding fruits would contain many differently looking objects, like bananas and apples. These fruits have different colors and shapes, which would mean that the probability of similiar looking items which are not fruits being also labeled as fruit would be higher.
+Firstly, classfication works better done this way, because the classes are more distinct. A superclass holding fruits would contain many different looking objects, like bananas and apples. These fruits have different colors and shapes, which would mean that the probability of similar-looking items that are not fruits being also labeled as \texttt{fruit} would be higher.
 
-Secondly, more information is available for other processing steps after the perception group. For example, if an object is labeled as a snack, the knowledge group has much less information than if it was labeled as a Pringles can. Representing the Pringles as its own class gives the knowledge group the opportunity to group objects based on their own criteria, for example shape, color, or even the amount of calories a certain type food contains. This would not be possible if objects are just labeled as superclasses.
+Secondly, more information is available for other processing steps after the perception group. For example, if an object is labeled as a snack, the knowledge group has much less information than if it was labeled as a Pringles can. Representing the Pringles as its own class gives the knowledge group the opportunity to group objects based on their own criteria, for example, shape, color, or even the amount of calories a certain type of food contains. This would not be possible if objects are just labeled as superclasses.
  
 
 
@@ -626,7 +626,7 @@ Creates the ressource manager and instantiates the region vector.
 
 \item init(pipeline)\\
 Initializes the given pipeline (aggregate analysis engine \textit{YAML} descriptor) and starts the visualizer.
-This method got changed to allow the visualization of the pipeline.
+This method got changed to allow visualization of the pipeline.
 
 \item run(args, detectionData)\\
 Executes the initialized pipeline once with the given arguments and saves the result in detectionData.
@@ -691,7 +691,7 @@ string name
 string obj_class
 float64 confidence_class
 
-uint8 shape # and the shape (please, if possible, as fallback if confidence is low). 
+uint8 shape # and the shape (please, if possible, as a fallback if confidence is low). 
 float64 confidence_shape
 
 geometry_msgs/PoseStamped pose
@@ -711,17 +711,17 @@ uint8 SPHERE=2
 uint8 CYLINDER=3
 \end{lstlisting}
 
-			\section{rs\_Athene}
-			\chapterauthor{Leonidas Paniago De Oliveira Neto}
+            \section{rs\_Athene}
+            \chapterauthor{Leonidas Paniago De Oliveira Neto}
 There is a sub-branch of our GitHub named \href{https://github.com/SUTURO/suturo_perception/tree/Handcamera_tracking}{Handcamera\_tracking}
 which includes \texttt{rs\_Athene} and all following featured annotators. 
 None of them made it to the main branch because they were not finished or were not suitable for any current task. \\
 Each annotator can be executed by enabling the corresponding annotator in the descriptor \texttt{athene.yaml} and running : \texttt{rosrun robosherlock run \_ae:=athene}. 
 
-				\subsection{TwoDAnnotator}
+                \subsection{TwoDAnnotator}
 The \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/TwoDAnnotator.cpp}{TwoDAnnotator} is responsible for shape recognition that should replace the old \texttt{ShapeAnnotator} by improving the accuracy, reducing processing time, and expanding the usability. 
-There are two main concerns with the old annotator. First, the annotator needs a long time to process the data and the results are not ideal. Second, the annotator only process RGB-D images (color and dense depth images). The only camera capable of RGB-D images is the Head-camera, all other cameras can not be used. \\
-To fix these issues, the \texttt{TwoDAnnotator} uses only RGB (color images) images, which makes the processing less demanding than there's fewer data to process. Furthermore, all the HSR cameras are usable for shape recognition because each one is capable of outputting RGB images. \\
+There are two main concerns with the old annotator. First, the annotator needs a long time to process the data and the results are not ideal. Second, the annotator only processes RGB-D images (color and dense depth images). The only camera capable of RGB-D images is the Head-camera, all other cameras can not be used. \\
+To fix these issues, the \texttt{TwoDAnnotator} uses only RGB (color images) images, which makes the processing less demanding than there's less data to process. Furthermore, all the HSR cameras are usable for shape recognition because each one is capable of outputting RGB images. \\
 The TwoDAnnotator works by converting the RGB image to grayscale :
 \begin{lstlisting}
 ..
@@ -776,7 +776,7 @@ During functionality testing, it turns out that the Hough Circle Transform used 
 \includegraphics[width=1\textwidth]{pictures/perception/TwoDAnnotator.png}
 \caption{TwoDAnnotator output example}
 \end{figure}
-				\subsection{YOLO}
+                \subsection{YOLO}
 The \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/Yolo.cpp}{YOLO} annotator is as the name suggests, an implementation for the You Only Look Once network. It contains all the needed code for the network to work.
 But due to ROS not supporting \textit{OpenCV} latest version, there is no way to execute the annotator. It can be said that the algorithm will work if the supported version of ROS gets updated. Then a similar approach was utilized in the \textit{GoogLeNet} annotator which succeeded and the created YOLO prototype worked like intended.
 The approach is based on a python example and works by loading a pre-trained network : 
@@ -818,9 +818,9 @@ Then the main focus for this annotator was, getting feedback on the current obje
 \caption{\textit{Python} prototype output}
 \end{figure}
 
-				\subsection{GoogLeNet}
-\href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/GoogLeNet.cpp}{GoogLeNet} is an annotator with a similar approach to the YOLO annotator. Both networks use RGB images with the advantage that GoogLeNet runs on an older OpenCV version compatible with ROS.
-The \textit{RoboSherlock} implementation uses the trained network to classify objects. The whole class structure is very similar to the YOLO annotator then OpenCV uses the same framework for all supported network architectures. \\
+                \subsection{GoogLeNet}
+\href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/GoogLeNet.cpp}{GoogLeNet} is an annotator with a similar approach to the YOLO annotator. Both networks use RGB images with the advantage that GoogLeNet runs on an older \textit{OpenCV} version compatible with ROS.
+The \textit{RoboSherlock} implementation uses the trained network to classify objects. The whole class structure is very similar to the YOLO annotator then \textit{OpenCV} uses the same framework for all supported network architectures. \\
 First the pretrained network get loaded: 
 \begin{lstlisting}
 .. 
@@ -852,7 +852,7 @@ result = net.forward();
 \end{lstlisting}
 GoogLeNet differs from YOLO by only outputting the class probability so there is no information about where the classes are in the image. The lack of information about the object position makes the annotator useless for tracking. It is nevertheless a powerful tool for the classification of objects. 
 
-				\subsection{PythonEmbedding}
+                \subsection{PythonEmbedding}
 \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/PythonEmbedding.cpp}{PythonEmbedding} annotator is an example of how a "Python pure embedding" (calling python script during runtime in c++) can be implemented in \textit{RoboSherlock}. The annotator converts the basic image container \texttt{Mat} to NumPy array : 
 \begin{lstlisting}
 ..
