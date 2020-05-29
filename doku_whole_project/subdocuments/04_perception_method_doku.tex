@@ -13,25 +13,25 @@
 
 \section{Introduction}
 \chapterauthor{Jan-Frederik Stock}
-The task of the perception group was to use the available image data to gather as much information as possible about the perceived scene. In the following chapter the tools and software used and created by the perception group will be described. These include descriptions of the pipelines and annotators used in RoboSherlock, the image processing framework used by the perception group, as well as tools for classification.
+The task of the perception group was to use the available image data to gather as much information as possible about the perceived scene. In the following chapter the tools and software used and created by the perception group will be described. These include descriptions of the pipelines and annotators used in \textit{RoboSherlock}, the image processing framework used by the perception group, as well as tools for classification.
 
 \section{RoboSherlock}
 		\chapterauthor{Jan-Frederik Stock}
-The main framework the perception group is working with is RoboSherlock \footnote{\url{http://www.robosherlock.org/}}. RoboSherlock is a software, that uses multiple expert systems called annotators on input image data. Each annotator performs a specific task, for example searching for objects in a given picture. All annotators write their results to a public data structure.\\
+The main framework the perception group is working with is \textit{RoboSherlock} \footnote{\url{http://www.robosherlock.org/}}. RoboSherlock is a software, that uses multiple expert systems called annotators on input image data. Each annotator performs a specific task, for example searching for objects in a given picture. All annotators write their results to a public data structure.\\
 		
-RoboSherlock works by executing all of these annotators in a predefined order. This order is called a pipeline. There can be pipelines for different purposes, in the perception groups case for detecting objects and detecting surfaces. Each pipeline can have different annotators. Thus, RoboSherlock can be customized to achieve many different image processing tasks.
+\textit{RoboSherlock} works by executing all of these annotators in a predefined order. This order is called a pipeline. There can be pipelines for different purposes, in the perception groups case for detecting objects and detecting surfaces. Each pipeline can have different annotators. Thus, \textit{RoboSherlock} can be customized to achieve many different image processing tasks.
 
 		\section{rs\_perception}
 		\chapterauthor{Leonidas Paniago}
 To understand this chapter, the term pipeline needs to be further defined.The term pipeline is often used in computer science for the successive execution of processes
-In RoboSherlock, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
+In \textit{RoboSherlock}, the pipeline fulfills a similar task. The processing of camera output is divided into several tasks that have to be executed one after the other.
 Each task in the pipeline is called Annotator and it has an own purpose, here is a list of some tasks: 
 		\begin{itemize}
 			\item Annotation
 			\item Detection
 			\item Filter
-			\item Flowcontrol
-			\item Queryanswering
+			\item Flow control
+			\item Query answering
 			\item Recognition 
 			\item Segmentation
 			\item Tracking
@@ -41,7 +41,7 @@ Each annotator contains changeable parameter that enables customization to the g
 
 			\subsection{Pipeline: hsrb\_1ms}
 
-The main pipeline for detecting and identifying objects with RoboSherlock consists of the following annotators in order:  
+The main pipeline for detecting and identifying objects with \textit{RoboSherlock} consists of the following annotators in order:  
 \begin{itemize}
 	\item CollectionReader : Takes care of the Camera  Input
 
@@ -174,7 +174,7 @@ Pipeline for storing camera images in MongoDB, all saved scenes can be replayed 
 
 		\section{actionserver}
 		\chapterauthor{Leonidas Paniago}
-The \href{https://github.com/SUTURO/suturo_perception/tree/master/actionserver}{actionserver} contains the server responsible for the pipeline execution they are based on the \href{http://wiki.ros.org/actionlib}{ROS Client-Server Interaction} and it works by providing three callable actions types:
+The \href{https://github.com/SUTURO/suturo_perception/tree/master/actionserver}{action server} contains the server responsible for the pipeline execution they are based on the \href{http://wiki.ros.org/actionlib}{ROS Client-Server Interaction} and it works by providing three callable actions types:
 \begin{itemize}
 	\item Goal : A specific defined task 
 	\item Feedback : Information about the goal execution  
@@ -197,7 +197,7 @@ Both servers give the same message output \href{https://github.com/SUTURO/suturo
 	\end{itemize}
 
 			\subsection{ExtractObjectInfoClient}
-Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the RegionFilter will be disabled. The client can be started by calling : \texttt{rosrun actionserver ExtractObjectInfoClient}
+Call ExtractObjectInfoServer and wait until the result arrives or the time out runs out. Region can be set to limit the perception of objects to a specific region, if default is set the region filter will be disabled. The client can be started by calling : \texttt{rosrun actionserver ExtractObjectInfoClient}
 
 			\subsection{ExtractObjectInfoServer}
 Receives a goal from Client and pass on to SuturoProcessManager, checks for results and publishes them under \texttt{perception\_actionserver/result}. 
@@ -227,8 +227,8 @@ It works by calling : \texttt{roslaunch rs\_perception hsrb\_perception.launch} 
 		\chapterauthor{Leonidas Paniago}
 The package \href{https://github.com/Vanessa-rin/rs_turn_table}{rs\_turn\_table} belongs to the last Suturo group. There were no big changes to the core code, only small situational changes not implemented on the master. 
 This package is mainly for image recording, all recorded images will then be used for object recognition.  
-rs\_turn\_table heavily depends on Openni2 as driver for the kinect camera. HSR could be used for the image recording but in reality it turns out to be really impractical. 
-The kinect camera offers more flexibility and gives other groups more time with the robot. Openni2 installation was a major problem in the project due to a lack of documentation. For this purpose there is a 
+rs\_turn\_table heavily depends on Openni2 as driver for the Kinect camera. HSR could be used for the image recording but in reality it turns out to be really impractical. 
+The Kinect camera offers more flexibility and gives other groups more time with the robot. Openni2 installation was a major problem in the project due to a lack of documentation. For this purpose there is a 
 \href{https://github.com/SUTURO/suturo_perception/blob/Openni2/Openni2/Openni2_Install}{script} that will install all necessary dependencies and automatically enable depth\_registration in the Openni2 launch file. The camera can be started by calling : \texttt{roslaunch openni2\_launch openni2.launch}
  \\ Note: Openni2 did not work on Virtual machine with Ubuntu-16.04.6. The camera goes on but no output are sent to the camera topic. 
 
@@ -282,12 +282,12 @@ The picture \ref{FeurichChips} shows a standard output for the save\_images pipe
 \chapterauthor{Jan-Frederik Stock}
 
 \subsection{Introduction}
-The classificationEvaluation package is used to save and display the classificationresults of the perception pipeline. The results can be saved in a markdown table and/or be displayed as a scatterplot. It consists mainly of the rsClassificationEvaluator.py python script. Here, the class ResultActionClient is implemented, which serves as an action client for the perception object info actionserver.\\
+The classificationEvaluation package is used to save and display the classification results of the perception pipeline. The results can be saved in a markdown table and/or be displayed as a scatter plot. It consists mainly of the rsClassificationEvaluator.py python script. Here, the class ResultActionClient is implemented, which serves as an action client for the perception object info action server.\\
 
 \subsection{Motivation}
 The classificationEvaluation package was created to access and save the classification results, which was not easily possible at the time. It was also meant as a way to compare classification performance based on the confidence measurements of different algorithms. It became evident in the process that this was not useful, the reason for this will be outlined in the following.\\
 
-After implementing the classificationEvaluation package, it was used to create the plot \ref{fig:k comparison plot}. This plot was meant to compare the performance of a k-nearest-neighbor classifier, with different selections of the paramter k. The value of the k is shown on the x-axis, the confidence is on the y-axis, with zero being the lowest and one being the highest possible confidence. Each point in the plot represents a sample, that was classified.\\
+After implementing the classificationEvaluation package, it was used to create the plot \ref{fig:k comparison plot}. This plot was meant to compare the performance of a k-nearest-neighbor classifier, with different selections of the parameter k. The value of the k is shown on the x-axis, the confidence is on the y-axis, with zero being the lowest and one being the highest possible confidence. Each point in the plot represents a sample, that was classified.\\
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{pictures/perception/k_comparison.png}
@@ -303,9 +303,9 @@ double res = knncalld->findNearest(test_mat, k_max, results, neighborResponses, 
 double confidence = (2 - dists.at<float>(0))/2);
 \end{lstlisting}
 
-This implementation of the KNN algorithm returns a onedimensional matrix with the distances of each of the k neighbors to the sample. Yet the calculation of the confidence only takes the distance of the first neighbor into consideration. This is why the confidence does not change with the altering of the k. The calculation of the confidence was later changed for the SUTURO project, more details can be found in \ref{KNN confidence}.\\
+This implementation of the KNN algorithm returns a one dimensional matrix with the distances of each of the k neighbors to the sample. Yet the calculation of the confidence only takes the distance of the first neighbor into consideration. This is why the confidence does not change with the altering of the k. The calculation of the confidence was later changed for the SUTURO project, more details can be found in \ref{KNN confidence}.\\
 
-Regarding the results, evaluating KNN classification performance based on the confidence is very dependent on the implementation of the confidence. The confidence does not necesserily provide a good measurement of the real performance of the algorithm. Comparing based on a confidence might be acceptable for evaluating the best parameters for a specific algorithm, but it is not at all useful to compare different classification algorithms.\\
+Regarding the results, evaluating KNN classification performance based on the confidence is very dependent on the implementation of the confidence. The confidence does not necessarily provide a good measurement of the real performance of the algorithm. Comparing based on a confidence might be acceptable for evaluating the best parameters for a specific algorithm, but it is not at all useful to compare different classification algorithms.\\
 
 This is due to the fact that the common classification algorithms work very differently, which makes the implementation of a confidence unique for each algorithm. Because of that, algorithms are not comparable based on confidence. A better and more objective way to compare them was implemented in the SUTURO project and it is described in section \ref{clusterLabeling}.
 
@@ -321,13 +321,13 @@ sendGoal(self)\\
 This method is used to send a goal to the ExtractObjectInfoServer and thus triggering the pipeline.
 
 \item saveResult(self, result)\\
-This method saves the actionresult, which is the classification, in a field of the class.
+This method saves the action result, which is the classification, in a field of the class.
 
 \item saveToMd(self, algorithm)\\
 This method saves the collected results of the classification in a markdown table. If a markdown file with the name "evaluation.md" is found in the directory the script is executed in, the results are appended to it, otherwise, the file is created.
 
 \item plotResult(self)\\
-The method plots the collected results using the scatterplot function from matplotlib.
+The method plots the collected results using the scatter plot function from matplotlib.
 \end{itemize}
 
 \subsection{Main method}
@@ -335,7 +335,7 @@ The main method tries to create an instance of the resultActionClient class, doe
 
 \section{Feature Extraction Tools}
  \chapterauthor{Jan-Frederik Stock}
-Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classify it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is Caffe, the trained network is the BVLC Reference Net. If you want to install Caffe, you can find instructions in the SUTURO projects installation guide, in sections 3.2 and 3.3. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
+Perception uses feature extraction to get quantifiable data from the perceived images. On this data, the classification algorithms can then be trained. Every time a new image is perceived, its features are extracted, which are then used to classify it. Perception uses a neural network without the output layer to extract features, the output of this network are the features. The neural networking framework used for this is \textit{Caffe}, the trained network is the BVLC Reference Net. If you want to install \textit{Caffe}, you can find instructions in the SUTURO projects installation guide, in sections 3.2 and 3.3. The tools directory in the featureExtraction package contains the two bash scripts make\_split\_from\_directory.sh and make\_split\_list\_from\_directory.sh.
 
 \subsection{make\_split\_from\_directory.sh} 
 This bash script can be used to create a split YAML-file which is required to perform feature extraction with the rs\_addons package. To use it, one has to place the file in the parent directory of the directory, in which the folders with the recorded images are stored. When being executed, the script asks for a filename and the name of the directory out of which the YAML-file will be created. It then creates the YAML-file using the names of the directories in which the images are stored as class names.
@@ -356,16 +356,16 @@ It calculates the classification confidence for the KNN-classification by dividi
 \section{The clusterLabeling Package}\label{clusterLabeling}
 \chapterauthor{Jan-Frederik Stock}
 \subsection{Motivation}
-The clusterLabeling package fixes a fundamental problem: Before its existence it was not possible to compare the performance of classifiers objectively. A user could only look at a given classification and decide if the algorithm was working good or bad overall, but not decide on a quantitative mesurement. The ability to do this is not just important to evaluate the perfomance of a single algorithm, but even more to compare the performance of different algorithms and select the best one for a specific use case.\\
+The clusterLabeling package fixes a fundamental problem: Before its existence it was not possible to compare the performance of classifiers objectively. A user could only look at a given classification and decide if the algorithm was working good or bad overall, but not decide on a quantitative measurement. The ability to do this is not just important to evaluate the performance of a single algorithm, but even more to compare the performance of different algorithms and select the best one for a specific use case.\\
 
 A very common procedure to do this in machine learning is the evaluation of an algorithm by splitting the available data into a test set and a training set. The available data contains a class label for every sample. The algorithm is trained on the training set and the test set is held back to test the performance. This is done by introducing samples from the test set into the algorithm and then checking if the algorithm produces the correct label. By dividing the number of correctly classified samples by the total number of tested samples, the accuracy is calculated. This is a very common measure of classification performance and it is suitable for a multi class problem like this.\\
 
-In the particular case of the SUTURO project, it was not practical to split a test set from our training data, because we recorded the objects by taking pictures all around. Taking some of these pictures away for testing would mean testing the classification on perspectives that are not represented in the training data, leading to worse classification performance. Also, in the real life application on the robot, the classification has to work on different scenes than the setting of the recording, so it makes sense to test the classfication on similar, more realisitic scenes. The ability to do this is implemented in the clusterLabeling package. The user is able to test their classification algorithm on scenes recorded on the actual robot they are working with.  
+In the particular case of the SUTURO project, it was not practical to split a test set from our training data, because we recorded the objects by taking pictures all around. Taking some of these pictures away for testing would mean testing the classification on perspectives that are not represented in the training data, leading to worse classification performance. Also, in the real life application on the robot, the classification has to work on different scenes than the setting of the recording, so it makes sense to test the classification on similar, more realistic scenes. The ability to do this is implemented in the clusterLabeling package. The user is able to test their classification algorithm on scenes recorded on the actual robot they are working with.  
 
 \subsection{Usage}
 
 \subsubsection{The clusterLabeler}
-The clusterLabeler is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You mustn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
+The clusterLabeler is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You musn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline in the rs\_perception package to start.\\
 
 To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the clusterLabeler in the visualizer, which will display a number for every cluster. You can see an example of how this looks in figure \ref{fig:clusterLabeler visualization}.
 \begin{figure}
@@ -402,7 +402,7 @@ TyErrorId processWithLock(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
 This is the main processing method of the annotator.\\
 
-Firstly, it gets the detected clusters from RoboSherlocks central data structure like this: \label{getting the detected clusters.}
+Firstly, it gets the detected clusters from \textit{RoboSherlocks} central data structure like this: \label{getting the detected clusters.}
 
 \begin{lstlisting}
 //Get the clusters in the image found by previous annotators
@@ -432,7 +432,7 @@ This is a helper function that creates the rectangle for the picture and inserts
 cv::putText(input, text, cv::Point(rectangle.x + rectangle.width, rectangle.y - offset - textSize.height), cv::FONT_HERSHEY_PLAIN, 1.5, CV_RGB(0, 0, 0), 2.0);
 \end{lstlisting}
 
-This will then be displayed in RoboSherlocks viewer.
+This will then be displayed in \textit{RoboSherlocks} viewer.
 
 
 
@@ -453,7 +453,7 @@ document.Parse(content.c_str());
 TyErrorId process(CAS \&tcas, ResultSpecification const \&res_spec)
 \end{lstlisting}
 
-This is the main processing method of the annotator. It gets the identified clusters from the central RoboSherlock data structure like the clusterLabeler \ref{getting the detected clusters.}. It then checks, if the JSON-file has an entry for the current frame: 
+This is the main processing method of the annotator. It gets the identified clusters from the central \textit{RoboSherlock} data structure like the clusterLabeler \ref{getting the detected clusters.}. It then checks, if the JSON-file has an entry for the current frame: 
 
 \begin{lstlisting}
 if (!document["clusterLabeling"][framecounter]["clusters"].Empty())
@@ -593,7 +593,7 @@ On average the \textit{SuturoShapeAnnotator} is about fifth-teen times faster th
 \section{rs\_hsrb\_perception Package}
 \chapterauthor{Evan Kapitzke}
 
-The \texttt{rs\_hsrb\_perception} package was created in the Suturo Master-project. The package implements a RoboSherlock process manager, called the\\ \texttt{SuturoProcessManager}. Additionally, it contains modified annotators to annotate regions.
+The \texttt{rs\_hsrb\_perception} package was created in the Suturo Master-project. The package implements a \textit{RoboSherlock} process manager, called the\\ \texttt{SuturoProcessManager}. Additionally, it contains modified annotators to annotate regions.
 
 \subsection{RegionAnnotator}
 \begin{itemize}
@@ -757,7 +757,7 @@ cv.HoughCircles( src_gray, circles, CV_HOUGH_GRADIENT, 1, src_gray.rows/8, 200, 
 ..
 \end{lstlisting}
 
-The TwoDAnnotator utilize many functions from the openCV library, they can be recognized by the cv. prefix. \\ \\
+The TwoDAnnotator utilize many functions from the OpenCV library, they can be recognized by the cv. prefix. \\ \\
 During functionality testing, it turns out that the Hough Circle Transform used to find circles is in the current form to slow. The whole annotator is way too unstable to be used in a real environment. It did not bring any improvement over the old ShapeAnnotator and need further work to be usable. Some form of edge smoothing and a better way to classify triangles and squares could bring better result but in the end, this approach was no longer needed and was discarded.
 \begin{figure}[H]
 \centering
@@ -766,7 +766,7 @@ During functionality testing, it turns out that the Hough Circle Transform used 
 \end{figure}
 				\subsection{YOLO}
 The \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/Yolo.cpp}{YOLO} annotator is as the name suggests, an implementation for the You Only Look Once network. It contains all the needed code for the network to work.
-But due to ROS not supporting openCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the supported version of ROS gets updated. Then a similar approach was utilized in the GoogLeNet annotator which succeeded and the created YOLO prototype worked like intended.
+But due to ROS not supporting OpenCV latest version there is no way to execute the annotator. It can be said that the algorithm will work if the supported version of ROS gets updated. Then a similar approach was utilized in the GoogLeNet annotator which succeeded and the created YOLO prototype worked like intended.
 The approach is based on a python example and works by loading a pre-trained network : 
 \begin{lstlisting}
 ..
@@ -803,13 +803,13 @@ Then the main focus for this annotator was, getting feedback on the current obje
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{pictures/perception/YOLO.png}
-\caption{Python prototype output}
+\caption{\textit{Python} prototype output}
 \end{figure}
 
 				\subsection{GoogLeNet}
 \href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/GoogLeNet.cpp}{GoogLeNet} is an annotator with a similar approach to the YOLO annotator. Both networks use RGB images with the advantage that GoogLeNet runs on an older OpenCV version compatible with ROS.
-The Robosherlock implementation uses the trained network to classify objects. The whole class structure is very similar to the YOLO annotator then OpenCV uses the same framework for all supported network architectures. \\
-First the pre-trained network get loaded: 
+The \textit{RoboSherlock} implementation uses the trained network to classify objects. The whole class structure is very similar to the YOLO annotator then OpenCV uses the same framework for all supported network architectures. \\
+First the pretrained network get loaded: 
 \begin{lstlisting}
 .. 
 // Load serialized model from disk
@@ -841,7 +841,7 @@ result = net.forward();
 GoogLeNet differs from YOLO by only outputting the class probability so there is no information about where the classes are in the image. The lack of information about the object position makes the annotator useless for tracking. It is nevertheless a powerful tool for the classification of objects. 
 
 				\subsection{PythonEmbedding}
-\href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/PythonEmbedding.cpp}{PythonEmbedding} annotator is an example of how a "Python pure embedding" (calling python script during runtime in c++) can be implemented in Robosherlock. The annotator converts the basic image container \texttt{Mat} to NumPy array : 
+\href{https://github.com/SUTURO/suturo_perception/blob/Handcamera_tracking/rs_Athene/src/PythonEmbedding.cpp}{PythonEmbedding} annotator is an example of how a "Python pure embedding" (calling python script during runtime in c++) can be implemented in \textit{RoboSherlock}. The annotator converts the basic image container \texttt{Mat} to NumPy array : 
 \begin{lstlisting}
 ..
 //Get image
@@ -879,7 +879,7 @@ pValue = PyObject_CallObject(pFunc, args);
 ..
 \end{lstlisting}
 The python script will then open a new window with the send image.\\
-The current version of Robosherlock does not support Python annotators, Python pure embedding could represent an interim solution to this problem.
+The current version of \textit{RoboSherlock} does not support \textit{Python} annotators, \textit{Python} pure embedding could represent an interim solution to this problem.
 
 \endgroup
 \end{document}

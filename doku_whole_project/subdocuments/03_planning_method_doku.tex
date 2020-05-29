@@ -32,6 +32,7 @@
 		\chapterauthor{Torge Olliges, Tom-Eric Lehmkuhl}
 		This package contains the main plan for Storing Groceries this entails the main functions and some subroutines which were introduced for modularisation. 
 		\subsection{execute-grocery.lisp}
+		\label{execute_grocery_planning_doku}
 		This file contains the main function for this task and some subroutines.
 		\begin{itemize}
 			\item \textbf{execute-grocery ()} \\
@@ -47,6 +48,18 @@
 			\item \textbf{place-handling ()}
 			This function is a subroutine for placing objects. It uses the functions from \nameref{manipulation}.
 		\end{itemize}
+		Failure handling is done in by cram designated retry loops like the following:
+		\begin{lstlisting}[language=lisp]
+		(cpl:with-retry-counters ((grasping-retry 3))
+		(cpl:with-failure-handling
+		(((or common-fail:low-level-failure 
+		cl::simple-error
+		cl::simple-type-error)
+		(e)
+		...
+		(cpl:do-retry grasping-retry
+		(cpl:retry))
+		\end{lstlisting}
 		
 		\subsection{grocery-bw.lisp}
 		This file contains functions used in combination with the \textit{Bulletworld} simulation.
@@ -81,7 +94,7 @@
 	  	\section{Clean}
 	  	\label{clean}
 	  	\chapterauthor{Phillip Klein, Jan Schimpf, \\Torge Olliges, Tom-Eric Lehmkuhl}
-	  	This package contains the main function for this task and some subroutines.
+	  	This package contains the main function for this task and some subroutines. The main functions contains the sequence of calls which lead the HSR to complete the task.
 	  	\subsection{execute-cleanup.lisp}
 	  	\begin{itemize}
 			\item \textbf{execute-cleanup ()} \\
@@ -98,7 +111,7 @@
 			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling it is retry and asking for the object to be placed in the hand because if an objects falls over we might not be  able to grasp it.
 			\item \textbf{grasp-handling ()}\\
 			This function is a subroutine for grasping objects with failure handling. It uses the functions from \nameref{manipulation} for grasping. Which object will be grasped is determined in \nameref{knowledge-client}. The failure handling itself is the same as in   
-\textbf{grasp-handling} in \textbf{execute-grocery}
+\textbf{grasp-handling} in \textbf{execute-grocery} \ref{execute_grocery_planning_doku}
 		\end{itemize}
 
 	    \subsection{cleanup-bw.lisp}
@@ -115,12 +128,10 @@
 		The common functions package contains all function which are common to both tasks and which are not as low level as the functions in the LLIF package.
 	    \subsection{high-level-plans.lisp}
 	    \label{high-level}
-	    This file contains all high level plans.(high level plans are below execute level)
+	    This file contains all high level plans (high level plans are hierarchically under execute level). High level plans are basically subroutines which call call all lower level functions which have to be called to achieve a given task (e.g. moving to the table which results in a call to knowledge for the table position and a call to navigation to execute the requested behavior).
 	    \begin{itemize}
 		\item \textbf{try-movement-stampedList (stamped-list)} \\
 		Tries to move the robot to poses from a given list of stamped poses in the \textit{Bulletworld} if one succeeds it returns the succeeding pose 
-	    \item \textbf{move-hsr ()} \\
-	    This function takes a stamped pose as input and moves the robot to the given position if the position can be reached
 	    \item \textbf{grasp-hsr (object-id grasp-pose)} \\
 	    This function takes a object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
 	    It is also currently not in use in either of the plans.
@@ -187,10 +198,11 @@
       (setf (cram-language:value *reached-goal*) T)))
 		  \end{lstlisting}
 	    \subsection{process-modules.lisp}
+	    Process modules are basically the parts of a CRAM system that directly communicate with the outer world, i.e. that trigger the navigation process (e.g. move\_base \ref{msg_move_base}), knowledge, manipulation or perception. For the high-level components of the system, these process modules must be black boxes in order to keep them general.
 	     \begin{itemize}
 		\label{pcm}
 	    	\item \textbf{hsr-navigation process module} \\
-		A process module which gets a motion-designator as input and calls the low level interface to execute navigation commands.
+		A process module which gets a motion-designator as input and calls the low level interface to execute navigation commands with the \texttt{move\_base}.
 		\item \textbf{hsr-text-to-speech process module} \\
 		A process module which receives a motion-designator and calls the low level interface to execute speech actions.
 		\item \textbf{hsr-perceive process module} \\
@@ -199,7 +211,8 @@
 		A process module which receives a motion-designator and performs grasping or placing actions by calling the low level interfaces to execute those manipulation commands 
 	    \end{itemize}
 	    \subsection{designators.lisp}
-	    Contains motion-designators for of the following type
+	    Contains motion-designators for of the following type. Designators are Common Lisp objects for describing various parameters in CRAM. To the user, designators are objects containing sequences of key-value pairs of symbols.
+	  
 	    \begin{itemize}
 		\label{desig}
 	    	\item \textbf{going} \\
@@ -208,10 +221,14 @@
 		Used for moving the torso.
 		\item \textbf{looking} \\
 		Used for neck movement and general looking purposes.
-		\item \textbf{opening} \\
-		
-		\item \textbf{closing} \\
 	    \end{itemize}
+	    Example of a motion designator from the \texttt{designator.lisp} file:
+	    \begin{lstlisting}
+		    (cram-prolog:<- 
+			    (desig:motion-grounding ?designator (going ?pose))
+				    (desig:desig-prop ?designator (:type :going))
+				    (desig:desig-prop ?designator (:target ?pose)))
+	    \end{lstlisting}
 
 	  	\section{Low level interfacing}
 	  	\label{llif}

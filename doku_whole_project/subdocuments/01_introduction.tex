@@ -17,7 +17,12 @@ Due to specific circumstances, which will be explained later in the documentatio
 	\label{challanges}
 	\chapterauthor{Torge Olliges, Marc Stelter,\\ Jeremias Thun}
 	Working with the robot, the human intuition about what should be done, what can be recognized, how should everything be ordered needs to be translated into a specific way to work with camera data, to automatically organize the data or to have stable movements that can always be repeated that way.\\
-	Thankfully, there already are a lot of public algorithms for image data processing, to organize these data, for specific ways to move a robot, or to make a computer able to talk and to listen. Based on a good set of data there are many ways to tell the robot how to store some groceries or how to clean up. But in robotics, it is not just about having a good code and some unit tests that can "prove" it, in robotics, there is work to do in the real world, there is work to do in a non-deterministic world. When the robot gets its data it doesn't just find a single object forever standing a someplace, it finds a whole room of noise data where the object is just one part of it. When the robot moves and calculates its current position, it is not just the math of some moving circles, there is a wheel moving that can have some abnormalities, that can be stuck for a moment or move over some bumps on the ground. And even when the robot finally has some valid data about its environment, these data change. Maybe an object fell over when the robot accidentally touched it while grasping another or maybe a human took one the objects.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.375]{pictures/front_page_hsr}
+		\caption{Source: \href{www.hsr.io}{hsr.io}}
+	\end{figure}
 	
 	For this SUTURO group, this resulted in several challenges which had to be faced:
 	\begin{itemize}

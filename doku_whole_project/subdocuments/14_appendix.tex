@@ -5,8 +5,18 @@
 \renewcommand{\cleardoublepage}{}
 
 \renewcommand{\clearpage}{}
-
+	\newpage
 	\chapter{Appendix}
+		\section{Abbreviations}
+		ROS - Robot Operating System
+		HSR - Human Service Robot
+		SUTURO - Sudo Tidy Up My Room
+		NLP - Natural Language Processing
+		CRAM - Cognitive Robot Abstract Machine
+		CAS - 
+		KNN - 
+		RDF - 
+		GUI - General User Interface
 		\section{Communication}
 			\subsection{Messages}
 			\label{msgs}
@@ -17,7 +27,6 @@
 					\item object\_frame\_id - frame id of the object
 					\item goal\_pose - new pose of the object if placed
 					\item mode - GRASPED or PLACED
-					\item
 				\end{itemize}
 					\begin{lstlisting}
 					uint8 GRASPED=0
@@ -28,6 +37,19 @@
 					uint8 mode
 					\end{lstlisting}
 				\subsubsection{Speech Generation}
+				\label{msg_speech_generation}
+				\begin{itemize}
+					\item MOVE -
+					\item GRABING -
+					\item MOVEOBJECT - 
+					\item PLACING -
+					\item FUTURE -
+					\item PRESENT -
+					\item PAST -
+					\item Type -
+					\item Tense -
+					\item Attributes -
+				\end{itemize}
 					\begin{lstlisting}
 					uint8 MOVE=0
 					uint8 GRABING=1
@@ -45,6 +67,15 @@
 					SpeechgenerationAttribute[] Attributes
 					\end{lstlisting}
 				\subsubsection{Speech Generation Attribute}
+				\label{msg_speech_generation_attribute}
+				\begin{itemize}
+					\item OBJECTNAME -
+					\item OBJECTID -
+					\item STARTSURFACE - 
+					\item GOALSURFACE -
+					\item Type -
+					\item Conntent -
+				\end{itemize}
 					\begin{lstlisting}
 					uint8 OBJECTNAME=0
 					uint8 OBJECTID=1
@@ -55,6 +86,13 @@
 					string Conntent
 					\end{lstlisting}
 				\subsubsection{Static Command}
+				\label{msg_static_command}
+				\begin{itemize}
+					\item START -
+					\item STOP -
+					\item CONTINUE - 
+					\item command -
+				\end{itemize}
 					\begin{lstlisting}
 					uint8 START=0
 					uint8 STOP=1
@@ -65,8 +103,10 @@
 				\subsection{Actions}
 				\label{actions}
 					\subsubsection{Move Base}
+					\label{msg_move_base}
 						\href{http://wiki.ros.org/move_base_msgs/MoveBaseAction}{ROS Reference}
 					\subsubsection{Extract Object Info}
+					\label{msg_extract_object_info}
 						This action is send when the \textit{RoboSherlock} should be triggered and when \textit{RoboSherlock} is done perceiving and returning its results.
 					\begin{itemize}
 						\item visualize - more visual output from \textit{RoboSherlock}
@@ -83,6 +123,7 @@
 					string feedback
 					\end{lstlisting}
 					\subsubsection{Take Pose}
+					\label{msg_take_pose}
 					\subsubsection{Take Pose Info}
 						This action is called to move the HSR into a certain pose.
 						\begin{itemize}
@@ -126,6 +167,7 @@
 					float64 torso_joint_state
 					\end{lstlisting}
 				\subsubsection{Move Gripper}
+				\label{msg_move_gripper}
 				\subsubsection{Move Gripper Info}
 				This action is called to move the gripper of the HSR into a certain pose.
 				\begin{itemize}
@@ -145,6 +187,7 @@
 					geometry_msgs/TransformStamped tf_gripper_to_goal #goal frame
 					\end{lstlisting}
 				\subsubsection{Grasp}
+				\label{msg_grasp}
 				\subsubsection{Grasp Info}
 				This action is called to grasp an object.
 				\begin{itemize}
@@ -177,6 +220,7 @@
 					float64 gripper_joint_state
 					\end{lstlisting}
 				\subsubsection{Place}
+				\label{msg_place}
 				\subsubsection{Place Info}
 				This action is called to place an object.
 				\begin{itemize}
@@ -206,6 +250,12 @@
 					float64 gripper_joint_state
 					\end{lstlisting}
 				\subsubsection{Store Object Info}
+				\label{msg_store_object_info}
+				\begin{itemize}
+					\item detectionData - contains the objects found by the \textit{RoboSherlock} pipeline, already filtered for useful objects
+					\item succeed - was the action successfull or not
+					\item feedback - feedback of the action 
+				\end{itemize}
 					\begin{lstlisting}
 					suturo_perception_msgs/ObjectDetectionData[] detectionData
 					---
@@ -213,5 +263,12 @@
 					---
 					string feedback
 					\end{lstlisting}
+		\section{Diagrams}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1.5\textwidth]{pictures/diagramms/rqt_interfaces_cleanup_vertical}
+			\caption{rqt\_graph during the execution of Clean Up}
+			\label{interfaces}
+		\end{figure}
 		\endgroup
 \end{document}

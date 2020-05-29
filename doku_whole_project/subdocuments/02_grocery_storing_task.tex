@@ -43,7 +43,7 @@
 	
 		% Manipulation: take pose action
 	\begin{manipulation}
-	The robot is set to the default pose to make sure it is in a neutral state. This is important to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states. These joint states are then forwarded to \textit{Giskard}.\end{manipulation}
+	The robot is set to the default pose to make sure it is in a neutral state. This is important to avoid moving the robot for example with an extended arm. Manipulation allows the use of predefined poses as well as setting a pose by defining the joint states these informations are sent via th \nameref{msg_take_pose} action. These joint states are then forwarded to \textit{Giskard}.\end{manipulation}
 	
 	\subsection{Scan table sequence}
 	
@@ -57,7 +57,7 @@
 	
 	% Navigation: moveBaseAction
 	\begin{navigation}
-	Planning determines a goal for the \texttt{move base action}. In this goal the robot is turned $90^\circ$ to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the robot then executes the action. \end{navigation}
+	Planning determines a goal for the \nameref{msg_move_base} action. For this specific goal the robot is turned $90^\circ$ and moved to the nearest table, allowing it to look over its shoulder having a clear view of the table without the arm in its way. The default navigation client of the HSR executes the action. \end{navigation}
 	
 	% NLP
 	\begin{nlp}
@@ -148,6 +148,12 @@
 	\begin{perception}
 	The HSR takes a picture of the shelf it is currently looking at and processes it with \textit{RoboSherlock}. Based on the requested shelf level the input images are filtered in a matter that all the image parts containing different floors are simply cut off to perceive only objects at one specific level. The results are then published by the \textit{perception\_actionserver}.
 	\end{perception}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{pictures/shelf_scan}
+		\caption{HSR scanning the shelf}
+	\end{figure}
 	
 	% Planning confident check
 	\begin{planning}
