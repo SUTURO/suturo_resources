@@ -13,11 +13,11 @@
 
 		\chapterauthor{\vspace{5mm}Marc Stelter, Jan Neumann, Fabian Weihe}
 		
-		\subsection{General}
+		\section{General}
 
 		Manipulation has four action servers.\\
-		The "move\_gripper\_action\_server" moves the gripper to the given position.\\
-		The "take\_pose\_action\_server" moves the robot into perceiving position.\\
+		The "move\_gripper\_server" moves the gripper to the given position.\\
+		The "take\_pose\_server" moves the robot into perceiving position.\\
 		The "grasps\_object\_server" receives the size and position of an object and grasps it.\\
 		The "place\_server" places the attached object at the given pose.\\
 		Further Manipulation has a "suturo\_manipulation\_launch" package, which launches the action servers, \textit{rviz} and \textit{Giskard} and a "object\_state\_listener" package.
@@ -25,7 +25,7 @@
 		\newpage
 
 
-		\subsection{move\_gripper\_action\_server} \chapterauthor{Fabian Weihe}
+		\section{move\_gripper\_server.py} \chapterauthor{Fabian Weihe}
 		The Motivation behind the "move\_gripper\_server" was creating a script which can move the Gripper to any position. In contrast to "grasp\_object" the script only moves the gripper without grasping or any orientation.
 		Thats the reason why we decided to use the "grasp\_object\_server" for this task instead. So we don't use the "move\_gripper\_server" anymore
 		
@@ -53,9 +53,9 @@
 		With using \textit{Giskard} the script moves the gripper to the "goal\_pose". After that it checks if the transformation has succeeded and return success or failure as feedback.
 		
 		\newpage
-		\subsection{grasp\_object\_server} \chapterauthor{Fabian Weihe}
+		\section{grasps\_object\_server.py} \chapterauthor{Fabian Weihe}
 		
-			The Motivation behind the "grasp\_object\_server" was creating a script which can grasp an object in diverse positions. We made a few tests with the HSR and discover that we can nearly grasp any object either from the top or front. So we decided to differentiate between these two cases. Although we think that it is a good idea to check if the HSR grasped the object and move to a position at the end, where we can comfortable move around.
+			The Motivation behind the "grasps\_object\_server" was creating a script which can grasp an object in diverse positions. We made a few tests with the HSR and discover that we can nearly grasp any object either from the top or front. So we decided to differentiate between these two cases. Although we think that it is a good idea to check if the HSR grasped the object and move to a position at the end, where we can comfortable move around.
 			
 			The script receives: 
 			\begin{itemize}
@@ -117,6 +117,7 @@
 			\vspace{0,25 cm}
 			The last method "object\_in\_gripper" checks if the robot hold something in the gripper and returns a boolean.\\
 			
+			\newpage
 			\section{take\_pose\_server.py} \chapterauthor{Jan Neumann}
 			
 			The Take\_Pose\_Server puts the HSR into a pose to perceive objects depending on the chosen pose\_mode. \\
@@ -124,6 +125,27 @@
 			In NEUTRAL mode the HSR is put into a predefined pose that is used when the HSR is transporting an object. \\
 			In LOOK\_LOW, LOOK\_HIGH and LOOK\_FLOOR mode the server puts the HSR into a predefined position that is specifically designed to perceive objects on the tables, shelves, and floor in the HSR lab. The advantage is that this works independently from other parts of the suturo project. The disadvantage is that these modes are not suited to perceive objects on planes that have a different height than the ones specified. \\
 			In GAZE mode the server receives a Vector 3 gaze\_point which represents the coordinates of the middle of a plane that the HSR is supposed to perceive objects on. The server then calculates the height and direction for the camera to perceive objects on the given plane and puts the HSR into the resulting pose.
+			
+				\begin{lstlisting}
+	elif goal.pose_mode == goal.GAZE:
+    camera_height = goal.gaze_point.z - 0.4 
+    if camera_height < 0.0:
+        camera_height = 0.0
+    elif camera_height > 0.69:
+        camera_height = 0.69
+    self._giskard_wrapper.set_joint_goal({
+     u'head_pan_joint': -1.54,
+     u'head_tilt_joint': 0.0,
+     u'arm_lift_joint': camera_height, #must be between 0 and 0.69
+     u'arm_flex_joint': -0.5,
+     u'arm_roll_joint': -1.8,
+     u'wrist_flex_joint': -1.57,
+     u'wrist_roll_joint': 0.0
+    })
+    self._giskard_wrapper.plan_and_execute(wait=True)
+    v3 = hsrb_interface.geometry.Vector3(x=goal.gaze_point.x, y=goal.gaze_point.y, z=goal.gaze_point.z)
+    self._whole_body.gaze_point(point = v3, ref_frame_id='map')
+	\end{lstlisting}
 			
 			\begin{itemize}
 				\item Input: TakePoseGoal 
@@ -188,5 +210,3 @@
 	\endgroup
 
 \end{document}
-
-
