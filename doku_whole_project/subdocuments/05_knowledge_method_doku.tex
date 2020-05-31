@@ -7,7 +7,7 @@
 	\renewcommand{\cleardoublepage}{}
 
 	\renewcommand{\clearpage}{}
-
+	\newpage
 	\chapter{Knowledge Function Documentation}
 
 		\chapterauthor{Jeremias Thun}
@@ -350,7 +350,7 @@ This ontology describes and categorizes different physical objects according to 
 The \textit{objects} ontology imports the \textit{KnowRob} and the URDF ontology provided by \textit{KnowRob}.\\
 For the description of objects, different regions are defined. Classes that represent different colors are added in the objects ontology as subclasses of \textit{ColorRegion} and different materials are defined in subclasses of \textit{MaterialRegion}. Different shapes are represented by subclasses of \textit{ShapeRegion}. An overview over the regions is given in figure \ref{fig:region_ont}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{pictures/ontology/Ontologie_region}
 \caption{Regions}
@@ -359,7 +359,7 @@ For the description of objects, different regions are defined. Classes that repr
 
 For those characteristics subclasses of \textit{PhysicalQuality} have been added, as seen in figure \ref{fig:quality_ont}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{pictures/ontology/Ontologie_quality}
 \caption{Qualitys}
@@ -371,7 +371,7 @@ To represent the confidence with which the robot perceived a characteristic of a
 Physical objects are represented by the subclasses of \textit{PhysicalObject}.
 One of these subclasses is \textit{PhysicalPlace}. The subclasses of \textit{PhysicalPlace} represent places, like the shelf. The surfaces are represented by subclasses of \textit{PhysicalPlace} as well. To represent this \textit{PhysicalPlace} has the subclass \textit{Surface}, where different kinds of surfaces are defined. This can be seen in figure \ref{fig:place_ont}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{pictures/ontology/Ontologie_place}
 \caption{Physical places}
