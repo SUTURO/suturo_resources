@@ -50,11 +50,11 @@
         \end{itemize}
         Failure handling is done in by cram designated retry loops like the following:
         \begin{lstlisting}[language=lisp]
-        (cpl:with-retry-counters ((grasping-retry 3))
-        (cpl:with-failure-handling
-        (((or common-fail:low-level-failure 
-        cl::simple-error
-        cl::simple-type-error)
+        (with-retry-counters ((grasping-retry 3))
+        (with-failure-handling
+        (((or low-level-failure 
+        simple-error
+        simple-type-error)
         (e)
         ...
         (cpl:do-retry grasping-retry
@@ -68,28 +68,28 @@
             This function spawns given objects as primitive objects in the \textit{Bulletworld} simulation at the corresponding position of the objects \textit{RoboSherlock} perceived.  
         \end{itemize}
         \begin{lstlisting}[language=lisp]
-            (defun spawn-btr-objects (perception-msg)
-                (roslisp:with-fields (detectiondata) perception-msg
-                    (loop for elem across detectiondata do
-                        (roslisp::with-fields (width height depth shape pose) 
-                            elem
-                            (roslisp::with-fields (pose) pose
-                                (roslisp::with-fields (position) pose
-                                (roslisp::with-fields (x y z) position 
-                                    (case shape
-                                        (0 (print "spawn cylinder 0")
-                                            (print position)
-                                            (btr:add-object btr:*current-bullet-world* 
-                                                :primit-cylinder 'cylinder-0 
-                                            (cl-tf::make-pose 
-                                                (cl-tf::make-3d-vector x y z)
-                                                    (cl-tf::make-identity-rotation))
-                                                    :mass 0.5 :size (cl-tf:make-3d-vector 
-                                                        (/ width 2) (/ depth 2) (/ height 2))))
-            ...
-            )))))))
-            (prolog:prolog '(and (btr:bullet-world ?world)
-            (btr:simulate ?world 10))))
+(defun spawn-btr-objects (perception-msg)
+	(with-fields (detectiondata) perception-msg
+		(loop for elem across detectiondata do
+			(with-fields (width height depth shape pose) 
+			elem
+			(with-fields (pose) pose
+				(with-fields (position) pose
+					(with-fields (x y z) position 
+						(case shape
+							(0 (print "spawn cylinder 0")
+								(print position)
+								(add-object btr:*current-bullet-world* 
+									:primit-cylinder 'cylinder-0 
+									(make-pose 
+										(make-3d-vector x y z)
+											(make-identity-rotation))
+												:mass 0.5 :size (cl-tf:make-3d-vector 
+												(/ width 2) (/ depth 2) (/ height 2))))
+												...
+)))))))
+(prolog '(and (btr:bullet-world ?world)
+(simulate ?world 10))))
         \end{lstlisting}
           \section{Clean}
           \label{clean}
@@ -136,7 +136,7 @@
         This function takes an object-id and a grasp-pose and grasps the object corresponding to the object-id and includes failure handling. The failure handling is currently just a to perceive again and then retry with the new position and should be refactored with the failure handling \textbf{grasp-handling} in \textbf{execute-grocery}.
         It is also currently not in use in either of the plans.
         \item \textbf{place-hsr (object-id grasp-pose)} \\
-        This function takes an object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates which we get from \nameref{Knowledge}. An alternative solution of rescaning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the robocub and that the exact coordinates where the object are placed are not directly used in either task. 
+        This function takes an object-id, a grasp-pose and places the object in the gripper in the goal and includes failure handling. This function is currently not used and untested. The failure handling consists of creating a list of alternative place coordinates which we get from \nameref{Knowledge}. An alternative solution of rescanning the shelf where the object should have been placed on a failure for new coordinates was discarded because of the time constrains in the RoboCup and that the exact coordinates where the object are placed are not directly used in either task. 
         \item \textbf{move-to-poi ()} \\
         This function lets the robot move to the next point of interest that should be investigated. The function \textit{pose-with-distance-to-points} is used to calculate the points. The points of interest are received by navigation via the interface poi-client using the function \textit{sorted-poi-by-distance} and the position to be approached is checked by the obstacle-map-subscriber interface whether it can be reached. For this purpose the \textit{robot-in-obstacle-stamped} function is used to filter out the points that cannot be approached. After that, an attempt is made to move to the euclidean next point. If this does not work, the error handling function will find the next best point and try to approach it.
         \item \textbf{move-to-poi-and-scan ()} \\
@@ -187,15 +187,15 @@
             Checks if the robot has arrived at the target point. This is used as a workaround because the robot cannot yet detect whether a door has been opened.
         \end{itemize}
             \begin{lstlisting}[language=lisp]
-(roslisp::with-fields (translation) 
-  (cl-tf::lookup-transform cram-tf::*transformer* 
-                           "map" "base_footprint")
-(setf *distance* (+ (abs (cl-tf:x translation))
-                   (+ (abs (cl-tf:y translation))
-                     (+ (abs (cl-tf:x nav-goal-pose-stamped))
-                       (abs (cl-tf:y nav-goal-pose-stamped))))))
-  (if (> *distance* 0.2) 
-      (setf (cram-language:value *reached-goal*) T)))
+(with-fields (translation) 
+	(lookup-transform *transformer* 
+	    "map" "base_footprint")
+	(setf *distance* (+ (abs (x translation))
+	                 (+ (abs (y translation))
+                     (+ (abs (x nav-goal-pose-stamped))
+                        (abs (y nav-goal-pose-stamped))))))
+	(if (> *distance* 0.2) 
+      (setf (value *reached-goal*) T)))
           \end{lstlisting}
         \subsection{process-modules.lisp}
         Process modules are basically the parts of a CRAM system that directly communicate with the outer world, i.e. that trigger the navigation process (e.g. move\_base \ref{msg_move_base}), knowledge, manipulation or perception. For the high-level components of the system, these process modules must be black boxes in order to keep them general.
@@ -224,10 +224,10 @@
         \end{itemize}
         Example of a motion designator from the \texttt{designator.lisp} file:
         \begin{lstlisting}
-            (cram-prolog:<- 
-                (desig:motion-grounding ?designator (going ?pose))
-                    (desig:desig-prop ?designator (:type :going))
-                    (desig:desig-prop ?designator (:target ?pose)))
+(cram-prolog:<- 
+	(motion-grounding ?designator (going ?pose))
+	    (desig:desig-prop ?designator (:type :going))
+        (desig:desig-prop ?designator (:target ?pose)))
         \end{lstlisting}
 
           \section{Low level interfacing}
