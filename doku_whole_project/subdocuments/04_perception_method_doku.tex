@@ -40,7 +40,7 @@ The pipeline order is determined by the already processed information and the ne
 Each annotator contains changeable parameters that enable customization to the given tasks. All main pipelines are included in \href{https://github.com/SUTURO/suturo_perception/tree/master/rs_perception}{rs\_perception}
 
             \subsection{Pipeline: hsrb\_1ms}
-
+hsrb\_1ms stands for first milestone and is still in use.
 The main pipeline for detecting and identifying objects with \textit{RoboSherlock} consists of the following annotators in order:  
 \begin{itemize}
     \item CollectionReader : Takes care of the Camera  Input
@@ -521,7 +521,7 @@ In the end, the frame counter is incremented and the calculation starts again fo
 
 \subsection{Motivation}
 The implementation of an additional annotator to classify basic shapes was motivated by the fact that a huge amount of our processing time
-was used by the \textit{PrimitiveShapeAnnotator}. Object shapes are used to determine which type of basic model is used to spawn it in the Planning and Knowledge world representation.
+was used by the \textit{PrimitiveShapeAnnotator}. Object shapes (cylinder, sphere, box) are used to determine which type of basic model is used to spawn it in the Planning and Knowledge world representation.
 
 \subsection{Implementation}
 The \textit{SuturoShapeAnnotator} uses three different types of SAC models to determine the shape of an object.
@@ -556,7 +556,9 @@ The main goal was to increase performance. The comparison of the annotators focu
 Three scenes are used to evaluate the results of both annotators and their execution time.
 
 \subsubsection{Scene: Shelve}
-The first scene consists of multiple objects which are placed in a shelve.
+The first scene consists of multiple objects which are placed in a shelve. 
+The outputs of the \textit{PrimitiveShapeAnnotator} and \textit{SuturoShapeAnnotator} are shown in the figures \ref{fig:shapeAnnotatorShelvePrimitive} and \ref{fig:shapeAnnotatorShelveSuturo}.
+
 \begin{figure}
   \center
   \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_shelve/primitive.png}
@@ -570,52 +572,69 @@ The first scene consists of multiple objects which are placed in a shelve.
   \label{fig:shapeAnnotatorShelveSuturo}
 \end{figure}
 
-The following graph shows how long it takes to process one frame for each annotator.
-{\center
+The graph \ref{fig:shapeAnnotatorShelveGraph} shows how long it takes to process one frame for each annotator.
+\begin{figure}
+  \center
   \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_shelve/chart.png}
-}
+  \caption{Execution time}
+  \label{fig:shapeAnnotatorShelveGraph}
+\end{figure}
+
+
 \newpage
 
 \subsubsection{Scene: Table}
 In the second scene multiple objects are placed on a table.
+The outputs of the \textit{PrimitiveShapeAnnotator} and \textit{SuturoShapeAnnotator} are shown in the figures \ref{fig:shapeAnnotatorTablePrimitive} and \ref{fig:shapeAnnotatorTableSuturo}.
+
 \begin{figure}
   \center
   \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_table/primitive.png}
   \caption{PrimitiveShapeAnnotator}
-  \label{fig:shapeAnnotatorShelvePrimitive}
+  \label{fig:shapeAnnotatorTablePrimitive}
 \end{figure}
 \begin{figure}
   \center
   \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_table/suturo.png}
   \caption{SuturoShapeAnnotator}
-  \label{fig:shapeAnnotatorShelveSuturo}
+  \label{fig:shapeAnnotatorTableSuturo}
 \end{figure}
 
-The following graph shows how long it takes to process one frame for each annotator.
-{\center
-  \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_table/chart.png}
-}
+The graph \ref{fig:shapeAnnotatorTableGraph} shows how long it takes to process one frame for each annotator.
+
+\begin{figure}
+ \center
+  \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_table/chart.png} 
+  \caption{Execution time}
+  \label{fig:shapeAnnotatorTableGraph}
+\end{figure}
+
 \newpage
 
 \subsubsection{Scene: Training}
 Again multiple objects are placed on a table.
+The outputs of the \textit{PrimitiveShapeAnnotator} and \textit{SuturoShapeAnnotator} are shown in the figures \ref{fig:shapeAnnotatorTrainingPrimitive} and \ref{fig:shapeAnnotatorTrainingSuturo}.
+
 \begin{figure}
   \center
   \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_training/primitive.png}
   \caption{PrimitiveShapeAnnotator}
-  \label{fig:shapeAnnotatorShelvePrimitive}
+  \label{fig:shapeAnnotatorTrainingPrimitive}
 \end{figure}
 \begin{figure}
   \center
   \includegraphics[width=0.5\textwidth]{pictures/perception/shape_annotator/classification_test_training/suturo.png}
   \caption{SuturoShapeAnnotator}
-  \label{fig:shapeAnnotatorShelveSuturo}
+  \label{fig:shapeAnnotatorTrainingSuturo}
 \end{figure}
 
-The following graph shows how long it takes to process one frame for each annotator.
-{\center
+The graph \ref{fig:shapeAnnotatorTrainingGraph} shows how long it takes to process one frame for each annotator.
+\begin{figure}
+  \center
   \includegraphics[width=1.2\textwidth]{pictures/perception/shape_annotator/classification_test_training/chart.png}
-}
+  \caption{Execution time}
+  \label{fig:shapeAnnotatorTrainingGraph}
+\end{figure}
 
 \subsubsection{Conclusion}
 The \textit{SuturoShapeAnnotator} processes cluster way faster than the \textit{PrimitiveShapeAnnotator}. In addition, the results are more accurate.
