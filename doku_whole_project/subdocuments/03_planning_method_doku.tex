@@ -246,7 +246,7 @@
             \item \textbf{ensure-grasp-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z)} \\
             This function makes sure the goal was reached.
             \item \textbf{call-grasp-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, size-x, size-y, size-z, object-id, grasp-mode)} \\
-            This function takes the x, y, z coordinates where the object currently is, quaternion values, the x, y, z sizes of the object, the object-id of the object that should be grasped and the grasp mode.
+            This function takes the x, y, z coordinates where the object currently is, quaternion values which show how the object is oriented, the x, y, z sizes of the object, the object-id of the object that should be grasped and the grasp mode. 
         \end{itemize}
         \subsection{place-action-client.lisp}
         This file is responsible for the low level communication with the \textbf{place action server} which is responsible for placing objects. The main function of this file is to provide an action client which connects to the \textbf{place action server}. It builds the action-goal for the server with the given parameters and gets a 0 in return if placing was successful or a 1  or an error code if it failed. 
@@ -260,7 +260,7 @@
             \item \textbf{ensure-place-goal-reached (status, point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4)} \\
             This function makes sure the goal was reached
             \item \textbf{call-place-action (point-x, point-y, point-z, quaternion 1, quaternion 2, quaternion 3, quaternion 4, object-id, grasp-mode)} \\
-            This function takes the x, y, z coordinates where the object should be placed, quaternion values  and the object-id of the object that is placed and the grasp mode.
+            This function takes the x, y, z coordinates where the object should be placed, quaternion values which show how the object is oriented and the object-id of the object that is placed and the grasp mode.
         \end{itemize}
         \subsection{take-pose-action-server.lisp}
         This file is responsible for the low level communication with the
