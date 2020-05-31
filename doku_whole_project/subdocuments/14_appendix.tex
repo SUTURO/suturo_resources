@@ -41,21 +41,14 @@ uint8 mode
 \end{lstlisting}
 				\subsubsection{Speech Generation}
 				\label{msg_speech_generation}
-				\begin{itemize}
-					\item MOVE -
-					\item GRABING -
-					\item MOVEOBJECT - 
-					\item PLACING -
-					\item FUTURE -
-					\item PRESENT -
-					\item PAST -
-					\item Type -
-					\item Tense -
-					\item Attributes -
-				\end{itemize}
+                
+                This message is only a could have been, for how Planning could have called the SpeechGeneration node.\\
+                The message contains three elements on witch a sentence is build. \textit{Type} describes the task the robot has done. These are: moving/driving to a location, grabbing something, moving a object or placing a object. The information whether the robot says it has done, is doing or will do something is contained in the \textit{Tense}. The \textit{Attributes} contain extra information for the sentence. See \hyperref[msg_speech_generation_attribute]{Speech Generation Attribute}.
+                
+				
 					\begin{lstlisting}
 uint8 MOVE=0
-uint8 GRABING=1
+uint8 GRABBING=1
 uint8 MOVEOBJECT=2
 uint8 PLACING=3
 		
@@ -71,14 +64,9 @@ SpeechgenerationAttribute[] Attributes
 \end{lstlisting}
 				\subsubsection{Speech Generation Attribute}
 				\label{msg_speech_generation_attribute}
-				\begin{itemize}
-					\item OBJECTNAME -
-					\item OBJECTID -
-					\item STARTSURFACE - 
-					\item GOALSURFACE -
-					\item Type -
-					\item Conntent -
-				\end{itemize}
+				The Speech Generation Attribute message is used inside the \hyperref[msg_speech_generation]{Speech Generation message}. This message contains one \textit{Type} and one \textit{Content} attribute.\\
+                For example the \hyperref[msg_speech_generation]{Speech Generation message} could contain the information the robot is going to move an object. In this case the \textit{Speech Generation Attribute} might contain the information, that the object is a red pringles can. (This would mean type = 0 and Content = "red pringles can"). Alternatively the objectID, used by KnowRob, could be used. When the message contains a surface, the content would be the name of the surface directly. (e.g. "big table")
+                
 					\begin{lstlisting}
 uint8 OBJECTNAME=0
 uint8 OBJECTID=1
@@ -86,16 +74,11 @@ uint8 STARTSURFACE=2
 uint8 GOALSURFACE=3
 					
 uint8 Type
-string Conntent
+string Content
 \end{lstlisting}
 				\subsubsection{Static Command}
 				\label{msg_static_command}
-				\begin{itemize}
-					\item START -
-					\item STOP -
-					\item CONTINUE - 
-					\item command -
-				\end{itemize}
+				The \textit{Static Command} is send from the \hyperref[textparser]{textparser} node to Planning. It is send when a sentence commanding the robot to start, stop or continue is actions, is recognized.
 					\begin{lstlisting}
 uint8 START=0
 uint8 STOP=1
