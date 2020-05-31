@@ -396,13 +396,8 @@ In the particular case of the SUTURO project, it was not practical to split a te
 
 \subsection{Usage}\label{clusterLabeling Usage}
 
-<<<<<<< HEAD
-\subsubsection{The clusterLabeler}\label{clusterLabeler}
-The clusterLabeler is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the PointCloudFilter or other filters you may have to ensure this. You musn't change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the classificationEval pipeline (\ref{Pipeline: classificationEval}) in the rs\_perception package (\ref{rs_perception}) to start.\\
-=======
 \subsubsection{The clusterLabeler}
 The \texttt{clusterLabeler} is the Annotator used for labeling. It is best placed at the end of your labeling pipeline, which also has to contain the annotators necessary for clustering. The labeling and the evaluation work best if a good clustering is achieved, so it is recommended to use the \texttt{PointCloudFilter} or other filters you may have to ensure this. You must not change the settings of any annotator in the pipeline while creating the labels and using them for the evaluation later, otherwise, it can not be guaranteed that the cluster numbering will stay the same. To be able to label a scene frame by frame, put the Trigger at the beginning of your pipeline. You can use the \texttt{classificationEval} pipeline in the \texttt{rs\_perception} package (\ref{rs_perception}) to start.\\
->>>>>>> eb32de96c96d5ef0b89c61da29161b8781c7cba3
 
 To label a scene, you start your labeling pipeline and call the trigger service once. You can then chose the \texttt{clusterLabeler} in the visualizer, which will display a number for every cluster. You can see an example of how this looks in figure \ref{fig:clusterLabeler visualization}.
 \begin{figure}
@@ -422,13 +417,8 @@ Now, you can note the class for every cluster in a labeling \textit{JSON}-file, 
 \end{figure}
 
 
-<<<<<<< HEAD
-\subsubsection{classificationEvaluationAnnotator}\label{classificationEvaluationAnnotator}
-The classifcationEvaluationAnnotator can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the classificationEvaluationAnnotator with the clusterLabelingAnnotator and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor \textit{YAML}-file of the classificationEvaluationAnnotator and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your \textit{JSON}-File. The classificationEvaluationAnnotator will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. This is shown in figure \ref{fig:classificationEvaluationAnnotator output}.
-=======
 \subsubsection{classificationEvaluationAnnotator}
 The \texttt{classifcationEvaluationAnnotator} can read a labeling file and will then compare the labels with the actual classification to calculate the accuracy. Swap the \texttt{classificationEvaluationAnnotator} with the \texttt{clusterLabelingAnnotator} and add you classifying annotators before it. Do not change anything else about the pipeline. Set the path to your labeling file in the descriptor \textit{YAML}-file of the \texttt{classificationEvaluationAnnotator} and start your pipeline. Trigger the pipeline as many times as you have labeled frames in your \textit{JSON}-File. The \texttt{classificationEvaluationAnnotator} will display the current accuracy in your step in \textit{RoboSherlocks} terminal output. This is shown in figure \ref{fig:classificationEvaluationAnnotator output}.
->>>>>>> eb32de96c96d5ef0b89c61da29161b8781c7cba3
 
 \begin{figure}
   \includegraphics[width=\linewidth]{pictures/perception/accuracy.png}
