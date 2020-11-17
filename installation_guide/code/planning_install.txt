@@ -1,8 +1,0 @@
-cd src
-wstool init
-wstool merge %*\href{https://raw.githubusercontent.com/SUTURO/suturo_planning/milestone_03/install.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SUTURO\ /suturo_planning/milestone_03/install.rosinstall}}*)
-wstool update
-cd ..
-rosdep install --ignore-src --from-paths src/ -r
-catkin build
-

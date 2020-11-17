@@ -1,9 +1,0 @@
-cd src
-git clone %*\url{https://github.com/SUTURO/suturo_navigation.git}*)
-wstool init
-wstool merge %*\href{https://raw.githubusercontent.com/SemRoCo/giskardpy/master/rosinstall/catkin.rosinstall}{\nolinkurl{https://raw.githubusercontent.com/SemRoCo\ /giskardpy/master/rosinstall/catkin.rosinstall}}*)
-wstool update
-git clone %*\url{https://github.com/code-iai/snap_map_icp.git}*)
-rosdep install --from-path . --ignore-src -r
-cd ..
-catkin build  
