@@ -1,9 +1,9 @@
 <package format="2">
-  <name>maps</name>
+  <name>suturo_resources</name>
   <version>0.1.0</version>
 
   <description>
-    Maps for the Sututro project
+    Resources for the Sututro project
   </description>
 
   <author email="stelter2@uni-bremen.de">Marc Stelter</author>
