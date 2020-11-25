@@ -10,6 +10,7 @@ project(knowledge_msgs)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   suturo_perception_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -46,11 +47,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+    FILES
+    ObjectState.msg
+    ObjectStateArray.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -68,7 +69,7 @@ add_action_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  suturo_perception_msgs actionlib_msgs std_msgs
+  suturo_perception_msgs actionlib_msgs std_msgs geometry_msgs
 )
 
 ################################################
@@ -103,7 +104,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES knowledge_msgs
-  CATKIN_DEPENDS suturo_perception_msgs actionlib_msgs std_msgs
+  CATKIN_DEPENDS suturo_perception_msgs actionlib_msgs std_msgs geometry_msgs
 #  DEPENDS system_lib
 )
 
