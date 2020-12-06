@@ -1,0 +1,51 @@
+tables:
+   amount: 2
+   0:
+      name: table
+      width:  0.8
+      height: 1.015
+      depth: 1.5
+      z_rot: 0
+      x_pos: 2.658070
+      y_pos: 4.664420
+   1:
+      name: table_0
+      width:  0.8
+      height: 1.015
+      depth: 1.5
+      z_rot: 0
+      x_pos: 5.495890
+      y_pos: 4.884340
+
+shelves:
+   amount: 2
+   0:
+      name: bookshelf
+      width: 0.9
+      height: 1.2
+      depth: 0.4
+      z_rot: 0
+      x_pos: 3.307970
+      y_pos: 8.679810
+      floors_height: [0.03, 0.43, 0.8]
+      number_of_floors: 3
+      door: no
+   1:
+      name: bookshelf_clone
+      width: 0.9
+      height: 1.2
+      depth: 0.4
+      z_rot: 0
+      x_pos: 4.955460
+      y_pos: 8.716740
+      floors_height: [0.03, 0.43, 0.8]
+      number_of_floors: 3
+      door: no
+
+walls:
+   amount: 0
+
+
+# adjust for the region filter
+surface_top_offset: 0.30 # 30cm above region surface
+surface_bottom_offset: 0.05 # 5cm into region surface

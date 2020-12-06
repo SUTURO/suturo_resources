@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<robot name="robocup_table" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="table_grey">
+    <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+
+  <macro name="robocup_table" params="name parent *origin size_x size_y size_z">
+    <!-- LINKS -->
+
+    <link name="${name}_center">
+      <visual>
+        <material name="table_grey"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link> 
+    
+
+    <link name="${name}_origin"/>
+
+    <!-- Additional tf-frames -->
+    <link name="${name}_surface_center"/>
+    <link name="${name}_front_edge_center"/>
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_origin"/>
+    </joint>
+
+    <joint name="${name}_center_joint" type="fixed">
+      <origin xyz="${size_x/2} ${size_y/2} ${size_z/2}" rpy="0 0 0" />
+      <parent link="${name}_origin"/>
+      <child link="${name}_center"/>
+    </joint> 
+
+    <joint name="${name}_surface_center_joint" type="fixed">
+      <origin xyz="${size_x/2} ${size_y/2} ${size_z}" rpy="0 0 0" />
+      <parent link="${name}_origin"/>
+      <child link="${name}_surface_center"/>
+    </joint>
+
+    <joint name="${name}_front_edge_center_joint" type="fixed">
+      <origin xyz="0 ${size_y/2} ${size_z}" rpy="0 0 0" />
+      <parent link="${name}_origin"/>
+      <child link="${name}_front_edge_center"/>
+    </joint> 
+  </macro>
+</robot>
