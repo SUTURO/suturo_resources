@@ -3,7 +3,7 @@
   <arg name="namespace" default="hsrb"/>
   <arg name="debug" default="false"/>
   <arg name="gui" default="true" />
-  <arg name="rviz" default="true"/>
+  <arg name="rviz" default="false"/>
   <arg name="gazebo_visualization" default="false" />
   <arg name="use_manipulation" default="true" />
   <arg name="use_navigation" default="true" />
@@ -85,6 +85,10 @@
     <param name="robot_description"
            command="$(find xacro)/xacro --inorder 
                     '$(find hsrb_description)/robots/hsrb4s.urdf.xacro'"/>
+  </group>
+
+  <group if="$(eval arg('suturo_rviz') == true)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz" />
   </group>
   
   <node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen" />
