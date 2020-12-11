@@ -17,7 +17,7 @@
 		<arg name="fast_physics" default="false" />
 		<arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" />
 
-		<arg name="world" default="suturo_sim_clean_up_v2.world" />
+		<arg name="world" default="suturo_sim_world_v2.world" />
 		<arg name="map_name" default="corona_sim/sim_v1.yaml" />
 		<arg name="gazebo" default="true" />
 
