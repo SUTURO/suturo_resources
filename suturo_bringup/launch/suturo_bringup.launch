@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="hsrb"/>
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true" />
+  <arg name="rviz" default="false"/>
+  <arg name="gazebo_visualization" default="false" />
+  <arg name="use_manipulation" default="true" />
+  <arg name="use_navigation" default="true" />
+  <arg name="use_perception" default="true" />
+  <arg name="use_task" default="true" />
+  <arg name="use_teleop" default="true" />
+  <arg name="use_web" default="false" />
+  <arg name="use_laser_odom" default="true" />
+  <arg name="paused" default="true" />
+  <arg name="fast_physics" default="false" />
+  <arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" />
+
+  <arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
+  <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/>
+
+  <arg name="world" default="empty.world" />
+  <arg name="map_name" default="empty/map.yaml" />
+  <arg name="gazebo" default="false" />
+
+  <arg name="map_server" default="true" />
+  <arg name="publish_planning_hsr" default="true" />
+
+  <arg name="publish_environment" default="true" />
+  <arg name="env_model" default="hsrb_sim_v1.urdf.xacro" />
+
+  <arg name="publish_robot_description" default="false" />
+
+  <group if="$(eval arg('gazebo') == true)">
+    <include file="$(find hsrb_gazebo_launch)/launch/include/hsrb_gazebo_common.xml" pass_all_args="true" >
+      <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)" />
+      <arg name="world_name" value="$(find suturo_resources)/gazebo_worlds/$(arg world)" />
+      <arg name="robot_pos" value="-x 0 -y 0 -z 0 -Y 0"/>
+      <arg name="ground_truth_xyz_offset" value="0.0\ 0.0\ 0.0" />
+      <arg name="ground_truth_rpy_offset" value="0.0\ 0.0\ 0.0" />
+    </include>
+  </group>
+
+  <group if="$(eval arg('gazebo') == false)">
+    <group if="$(eval arg('map_server') == true)">
+      <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/$(arg map_name)" />
+    </group>
+  </group>
+
+  <group if="$(eval arg('publish_planning_hsr') == true)">
+    <param name="hsr_description"
+           command="$(find xacro)/xacro.py
+                    '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
+  </group>
+
+  <group if="$(eval arg('publish_environment') == true)">
+    <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(find suturo_resources)/urdf/$(arg env_model)'" />
+    <param name="kitchen_description"
+         command="$(find xacro)/xacro.py '$(find suturo_resources)/urdf/$(arg env_model)'"/>
+    
+    <node pkg="joint_state_publisher" type="joint_state_publisher"
+        name="kitchen_joint_state_publisher" output="screen">
+      <remap from="robot_description" to="hsrb_lab"/>
+      <param name="rate" value="25"/>
+      <param name="use_gui" value="False"/>
+      <remap from="/joint_states" to="/kitchen/joint_states" />
+      <rosparam param="source_list">
+        - /kitchen/cram_joint_states
+      </rosparam>
+    </node>
+
+    <node pkg="tf" type="static_transform_publisher" name="kitchen_link_broadcaster" args="0 0 0 0 0 0 /map /iai_kitchen/world 25">
+    </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher"
+      name="kitchen_state_publisher" output="screen">
+      <param name="tf_prefix" value="/iai_kitchen"/>
+      <param name="publish_frequency" value="2"/>
+      <remap from="robot_description" to="hsrb_lab" />
+      <remap from="/joint_states" to="/kitchen/joint_states" />
+    </node>
+  </group>
+
+  <group if="$(eval arg('publish_robot_description') == true)">
+    <param name="robot_description"
+           command="$(find xacro)/xacro --inorder 
+                    '$(find hsrb_description)/robots/hsrb4s.urdf.xacro'"/>
+  </group>
+
+  <group if="$(eval arg('suturo_rviz') == true)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz" />
+  </group>
+  
+  <node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen" />
+
+</launch>
