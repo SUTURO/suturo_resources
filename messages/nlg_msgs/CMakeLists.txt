@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(nlp_msgs)
+project(nlg_msgs)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -18,7 +18,10 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    DIRECTORY msg
    FILES
-   StaticCommand.msg
+   KeyValuePair.msg
+   MeaningRepresentation.msg
+   SpeechgenerationAttribute.msg
+   Speechgeneration.msg
 )
 
 generate_messages(
