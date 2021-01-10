@@ -1,4 +1,4 @@
-suturo_nlg/KeyValuePair[] role_values
+nlg_msgs/KeyValuePair[] role_values
 
 #Filled with some key value pairs representing a sentence e.g.
 # [["action","place"],["object_id","redpringlescan_ABCDEF"],["surface_id","bookshelf_0_shelf_1"]]

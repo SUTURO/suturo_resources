@@ -20,8 +20,6 @@ add_message_files(
    FILES
    KeyValuePair.msg
    MeaningRepresentation.msg
-   SpeechgenerationAttribute.msg
-   Speechgeneration.msg
 )
 
 generate_messages(
