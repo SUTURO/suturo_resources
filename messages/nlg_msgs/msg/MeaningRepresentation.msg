@@ -8,7 +8,8 @@ nlg_msgs/KeyValuePair[] role_values
 # Results in a sentence like: "I cant move the red pringles can it is to small"
 
 
-# "move" can be used with goal_room, goal_surface AND goal_object
+# "move" can be used with goal_room, goal_surface AND object_id
+# [action, move][goal_surface, table][room_id, living room][objid,pringles can]
 # resulting in "I am moving to the red pringles can on the table in the living room"
 # but can be used with any number of goals
 
