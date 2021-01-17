@@ -9,7 +9,7 @@ string value
 # goal_surface_id   | surface_id used by Knowledge      | used for when the robot is moving to a table or placing an object on a shelffloor
 # start_surface_id  | surface_id used by Knowledge      | used for when the robot grapping an object from here
 # action            | "place", "grasp", "move",         | what is the robot doing / move without object_id results in "I'm moving to..." / with object_id "I'm moving pringles can to..." / object_id_2 can beused as a thing the robot moves to
-#                   | "look at"                         | needs goal_surface_id
+#                   | "percieve"                         | needs goal_surface_id
 # reason            | "free space", "similar type",     | used with place and when not free space object_id_2
 #                   |"similar color", "similar size"    |
 # cantmove          | "reach", "too small", "too big"   | when the robot cant move something (should not be used in combination with action)
