@@ -1,0 +1,9 @@
+#request
+geometry_msgs/PoseStamped start_pose
+GraspGoal grasp_action
+---
+#result
+uint8 SUCCESS=0
+uint8 FAILED=1
+
+uint8 error_code
