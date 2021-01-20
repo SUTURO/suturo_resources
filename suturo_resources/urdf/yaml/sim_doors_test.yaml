@@ -1,0 +1,20 @@
+names:
+   - robocup_table
+   - robocup_shelf
+hcr_shefl_2:
+   type: Shelf
+   width: 0.414
+   height: 1.196
+   depth: 0.266
+   z_rot: 3.1415926
+   x_pos: -2.96206
+   y_pos: -5.31539
+   floors_height: [0.32, 0.582, 0.884]
+   num_floors: 3
+movable_door:
+   width: 0.83
+   height: 2
+   depth: 0.055
+   z_rot: -0.000224
+   x_pos: 1.995590
+   y_pos: -0.514165

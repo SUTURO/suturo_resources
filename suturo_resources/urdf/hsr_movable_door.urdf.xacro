@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_movable_door" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="door_green">
+    <color rgba="0 0.31 0.22 1"/>
+  </material>
+
+  <material name="hinge_red">
+    <color rgba="0.74 0.25 0.25 1"/>
+  </material>
+
+  <macro name="suturo_movable_door" params="name parent height width depth x y z r p yr door_lower door_max">
+    <!-- LINKS -->
+
+
+    <link name="${name}_center">
+      <visual>
+        <material name="door_green"/>
+        <origin xyz="${width/2} ${depth/2} 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${width} ${depth} ${height}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="${width/2}$ ${depth/2} 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${width} ${depth} ${height}" />
+        </geometry>
+      </collision>
+    </link>
+      
+
+    <link name="${name}_hinge">
+      <visual>
+        <material name="hinge_red"/>
+        <origin xyz="0 ${depth/2} 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.05 0.05 ${height}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 ${depth/2} 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.05 0.05 ${height}" />
+        </geometry>
+      </collision>
+    </link>
+      
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}_origin_revolute_joint" type="revolute">
+      <axis xyz="0 0 1"/>
+      <limit effort="1" lower="${door_lower}" upper="${door_max}" velocity="1"/>
+      <origin xyz="${depth/2} 0 0" rpy="0 0 ${yr}" />
+      <parent link="${name}_hinge"/>
+      <child link="${name}_center"/>
+    </joint>
+
+    <joint name="${name}_hinge_joint" type="fixed">
+      <axis xyz="0 0 1"/>
+      <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
+      <origin xyz="${x} ${y - 0.415} ${z}" rpy="0 0 0" />
+      <parent link="${parent}"/>
+      <child link="${name}_hinge"/>
+    </joint>
+
+  </macro>
+</robot>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_movable_door.urdf.xacro"/>    
+
+    <xacro:property name="pi" value="3.1415926535897931" /> 
+    <xacro:property name="half_pi" value="1.570796327" /> 
+    <xacro:property name="simulated" value="true" />
+
+    <xacro:property name="data" 
+    value="${load_yaml('$(find suturo_urdf_publisher)/urdf/yaml/sim_doors_test.yaml')}" />
+
+    <xacro:property name="movable_door_x" 
+        value="${data['movable_door']['x_pos']}" />
+    <xacro:property name="movable_door_y" 
+        value="${data['movable_door']['y_pos']}" />
+    <xacro:property name="movable_door_z_rot" 
+        value="${data['movable_door']['z_rot']}" />
+    <xacro:property name="movable_door_depth" 
+        value="${data['movable_door']['depth']}" />
+    <xacro:property name="movable_door_width" 
+        value="${data['movable_door']['width']}" />
+    <xacro:property name="movable_door_height" 
+        value="${data['movable_door']['height']}" /> 
+
+
+    <xacro:if value="${simulated}">
+        <link name="world"/> 
+        <joint name="world_room_joint" type="fixed">
+            <origin xyz="0.0 0.0 0 " rpy="0 0 0" />
+            <parent link="world"/>
+            <child link="room_link"/>
+        </joint>         
+    </xacro:if>
+
+    <link name="room_link" />
+
+   
+    <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055">
+        <origin xyz="1.995590 -0.514165 1" rpy="0 0 ${half_pi}" />
+    </suturo_movable_door>
+    
+    <suturo_movable_door name="door_2" parent="room_link" height="2" width="0.83" depth="0.055">
+        <origin xyz="1.983010 1.022280 1" rpy="0 0 0" />
+    </suturo_movable_door>
+
+
+
+</robot>
