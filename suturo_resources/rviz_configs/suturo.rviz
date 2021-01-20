@@ -640,7 +640,9 @@ Visualization Manager:
           Marker Topic: /giskard/visualization_marker_array
           Name: Giskard Plan
           Namespaces:
-            {}
+            planning_visualization: true
+            pybullet_collisions: true
+            world/gripper_dummy: true
           Queue Size: 100
           Value: true
         - Class: rviz/InteractiveMarkers
@@ -682,25 +684,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 8.542280197143555
+      Distance: 7.535832405090332
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 3.166857957839966
-        Y: 4.150471210479736
-        Z: 4.446197509765625
+        X: -0.030456066131591797
+        Y: -0.028113365173339844
+        Z: 0.005213260650634766
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8403993844985962
+      Pitch: 0.5263933539390564
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.1199951171875
+      Yaw: 0.018148083239793777
     Saved: ~
 Window Geometry:
   Displays:
@@ -719,4 +721,4 @@ Window Geometry:
     collapsed: false
   Width: 1397
   X: 347
-  Y: 56
+  Y: 27
