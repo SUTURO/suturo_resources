@@ -29,6 +29,7 @@ add_action_files(
   MoveGripper.action
   TakePose.action
   Place.action
+  Open.action
 )
 
 add_service_files(
