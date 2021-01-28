@@ -31,6 +31,8 @@
 
   <arg name="publish_robot_description" default="false" />
 
+  <include file="$(find snap_map_icp)/launch/snap_map_icp.launch" />
+
   <group if="$(eval arg('gazebo') == true)">
     <include file="$(find hsrb_gazebo_launch)/launch/include/hsrb_gazebo_common.xml" pass_all_args="true" >
       <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)" />
