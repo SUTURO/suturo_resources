@@ -30,12 +30,7 @@ add_action_files(
   TakePose.action
   Place.action
   Open.action
-)
-
-add_service_files(
-  DIRECTORY srv
-  FILES
-  CanGrasp.srv
+  MakePlan.action
 )
 
 generate_messages(DEPENDENCIES
