@@ -51,6 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    ObjectDetectionData.msg
+   DoorDetectionData.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -64,7 +65,6 @@ add_message_files(
 add_action_files(
   FILES
   ExtractObjectInfo.action
-  ExtractObjectInfoInRegion.action
   ExtractPlaneInfo.action
 )
 

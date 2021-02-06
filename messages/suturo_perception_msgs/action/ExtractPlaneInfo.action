@@ -2,7 +2,7 @@
 bool visualize
 ---
 #result definition
-ObjectDetectionData[] detectionData
+DoorDetectionData detectionData
 ---
 #feedback
 string feedback
