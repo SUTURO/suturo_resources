@@ -60,13 +60,13 @@
 	<material name="handle_blue"/>
         <origin xyz="0 0 0" rpy="${half_pi} 0 ${pi}" />
         <geometry>-
-          <box size="0.15 0.1 0.03" />
+          <box size="0.15 0.03 0.03" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="${half_pi} 0 ${pi}" />
         <geometry>
-          <box size="0.15 0.1 0.03" />
+          <box size="0.15 0.03 0.03" />
         </geometry>
       </collision>
     </link>
@@ -78,13 +78,13 @@
 	<material name="handle_blue"/>
         <origin xyz="0 0 0" rpy="${half_pi} 0 ${pi}" />
         <geometry>-
-          <box size="0.15 0.1 0.03" />
+          <box size="0.15 0.03 0.03" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="${half_pi} 0 ${pi}" />
         <geometry>
-          <box size="0.15 0.1 0.03" />
+          <box size="0.15 0.03 0.03" />
         </geometry>
       </collision>
     </link>

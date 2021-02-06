@@ -37,11 +37,11 @@
     <link name="room_link" />
 
    
-    <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055" x="1.995590" y="-0.099165" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="0" door_max="${half_pi}" >
+    <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055" x="1.995590" y="-0.099165" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="${half_pi}" >
     </suturo_movable_door>
     
     <suturo_movable_door name="door_2" parent="room_link" height="2" width="0.83" depth="0.055"
-x="1.983010" y="1.43728" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="0">
+x="1.983010" y="1.43728" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="${half_pi}">
     </suturo_movable_door>
 
 
