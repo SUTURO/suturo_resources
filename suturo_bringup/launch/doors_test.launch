@@ -22,6 +22,7 @@
 
 		<arg name="map_server" default="false" />
 		<arg name="publish_planning_hsr" default="true" />
+		<arg name="run_snap_map" default="false" />
 
 		<arg name="publish_environment" default="true" />
 		<arg name="env_model" default="sim_doors_test.urdf.xacro" />

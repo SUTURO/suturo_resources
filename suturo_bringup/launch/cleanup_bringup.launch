@@ -23,6 +23,7 @@
 
 		<arg name="map_server" default="false" />
 		<arg name="publish_planning_hsr" default="true" />
+		<arg name="run_snap_map" default="true" />
 
 		<arg name="publish_environment" default="true" />
 		<arg name="env_model" default="hsrb_sim_v1.urdf.xacro" />
