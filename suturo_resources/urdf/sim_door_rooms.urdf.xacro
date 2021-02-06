@@ -1,27 +1,52 @@
 <?xml version="1.0"?>
 
-<robot name="hsr_lab_walls" xmlns:xacro="http://ros.org/wiki/xacro">
-	
-  <material name="hinge_red">
-    <color rgba="0.74 0.25 0.25 1"/>
-  </material>
+<robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <macro name="hsr_lab_walls" params="parent *origin">
+    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_movable_door.urdf.xacro"/>    
+    <xacro:property name="pi" value="3.1415926535897931" /> 
+    <xacro:property name="half_pi" value="1.570796327" /> 
+    <xacro:property name="simulated" value="true" />
 
-    <!-- LINKS -->
+    <xacro:property name="data" 
+    value="${load_yaml('$(find suturo_urdf_publisher)/urdf/yaml/sim_doors_test.yaml')}" />
+
+    <xacro:property name="movable_door_x" 
+        value="${data['movable_door']['x_pos']}" />
+    <xacro:property name="movable_door_y" 
+        value="${data['movable_door']['y_pos']}" />
+    <xacro:property name="movable_door_z_rot" 
+        value="${data['movable_door']['z_rot']}" />
+    <xacro:property name="movable_door_depth" 
+        value="${data['movable_door']['depth']}" />
+    <xacro:property name="movable_door_width" 
+        value="${data['movable_door']['width']}" />
+    <xacro:property name="movable_door_height" 
+        value="${data['movable_door']['height']}" /> 
+
+
+    <xacro:if value="${simulated}">
+        <link name="world"/> 
+        <joint name="world_room_joint" type="fixed">
+            <origin xyz="0.0 0.0 0 " rpy="0 0 0" />
+            <parent link="world"/>
+            <child link="room_link"/>
+        </joint>         
+    </xacro:if>
+
+    <link name="room_link" />
     <link name="hsr_lab_wall_1">
       <sphere_inertia radius="0" mass="0"/>
       <visual>
 	<material name="hinge_red"/>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="3 0.15 0.7" />
+            <box size="10.08 0.02 0.7" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="3 0.15 0.7" />
+            <box size="10.08 0.02 0.7" />
         </geometry>
       </collision>
     </link>
@@ -32,13 +57,13 @@
 	<material name="hinge_red"/>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="2.5 0.15 0.7" />
+            <box size="10.08 0.02 0.7" />
         </geometry>
      </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="2.5 0.15 0.7" />
+            <box size="10.08 0.02 0.7" />
         </geometry>
       </collision>
     </link>
@@ -50,13 +75,13 @@
 	<material name="hinge_red"/>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="6.2 0.15 0.7" />
+            <box size="13.18 0.02 0.7" />
         </geometry>
      </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="6.2 0.15 0.7" />
+            <box size="13.18 0.02 0.7" />
         </geometry>
       </collision>
     </link>
@@ -67,13 +92,13 @@
 	<material name="hinge_red"/>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="2.5 0.15 0.7" />
+            <box size="13.18 0.02 0.7" />
         </geometry>
      </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="2.5 0.15 0.7" />
+            <box size="13.18 0.02 0.7" />
         </geometry>
       </collision>
     </link>
@@ -84,13 +109,13 @@
 	<material name="hinge_red"/>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="3.25 0.15 0.7" />
+            <box size="5.78 0.02 0.7" />
         </geometry>
      </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="3.25 0.15 0.7" />
+            <box size="5.78 0.02 0.7" />
         </geometry>
       </collision>
     </link>
@@ -100,30 +125,13 @@
 	<material name="hinge_red"/>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="4.8 0.15 0.7" />
+            <box size="6.45 0.02 0.7" />
         </geometry>
      </visual>
       <collision>
         <origin xyz="0 0 0.35" rpy="0 0 0" />
         <geometry>
-            <box size="4.8 0.15 0.7" />
-        </geometry>
-      </collision>
-    </link>
-
-    <link name="hsr_lab_wall_9">
-      <sphere_inertia radius="0" mass="0"/>
-      <visual>
-	<material name="hinge_red"/>
-        <origin xyz="0 0 0.35" rpy="0 0 0" />
-        <geometry>
-            <box size="0.1 0.15 0.7" />
-        </geometry>
-     </visual>
-      <collision>
-        <origin xyz="0 0 0.35" rpy="0 0 0" />
-        <geometry>
-            <box size="0.1 0.15 0.7" />
+            <box size="6.45 0.02 0.7" />
         </geometry>
       </collision>
     </link>
@@ -133,52 +141,53 @@
     <link name="kitchen_walls"/>
         
     <joint name="walls_main_joint" type="fixed">
-      <xacro:insert_block name="origin" />
-      <parent link="${parent}"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="room_link"/>
       <child link="kitchen_walls"/>
     </joint>
     
     <joint name="wall_1_joint" type="fixed">
-      <origin xyz="1 -0.94 0" rpy="0 -0 0" />
+      <origin xyz="3.08 -7 0" rpy="0 -0 0" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_1"/>
     </joint>
     
     <joint name="wall_2_joint" type="fixed">
-        <origin xyz="-1.25 -0.94 0" rpy="0 -0 0" />
+        <origin xyz="3.08 6.2 0" rpy="0 -0 0" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_2"/>
     </joint>
     
     <joint name="wall_3_joint" type="fixed">
-        <origin xyz="2.5 2 0" rpy="0 -0 1.5798" />
+        <origin xyz="8.08 -0.38 0" rpy="0 -0 1.5707963" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_3"/>
     </joint>
     
     <joint name="wall_4_joint" type="fixed">
-        <origin xyz="-2.25 0.3 0" rpy="0 -0 1.5798" />
+        <origin xyz="-1.92 -0.38 0" rpy="0 -0 1.5707963" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_4"/>
     </joint>
   
     <joint name="wall_5_joint" type="fixed">
-        <origin xyz="-2.35 3 0" rpy="0 -0 1.5798" />
+        <origin xyz="2 3.3 0" rpy="0 -0 1.57" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_5"/>
     </joint>
 
     <joint name="wall_6_joint" type="fixed">
-        <origin xyz="0 5.15 0" rpy="0 -0 0" />
+        <origin xyz="2 -3.765 0" rpy="0 -0 1.57" />
       <parent link="kitchen_walls"/>
       <child link="hsr_lab_wall_6"/>
     </joint>
+	
 
-    <joint name="wall_9_joint" type="fixed">
-        <origin xyz="-2.35 1.5 0" rpy="0 -0 1.5798" />
-      <parent link="kitchen_walls"/>
-      <child link="hsr_lab_wall_9"/>
-    </joint>
+   
+    <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055" x="1.995590" y="-0.099165" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="${half_pi}" >
+    </suturo_movable_door>
+    
 
-  </macro>
+
+
 </robot>
