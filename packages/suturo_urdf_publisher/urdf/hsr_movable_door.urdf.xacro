@@ -23,13 +23,13 @@
     <link name="${name}_center">
       <visual>
         <material name="door_green"/>
-        <origin xyz="${width/2} ${depth/2} 0" rpy="0 0 0" />
+        <origin xyz="${width/2} 0 0" rpy="0 0 0" />
         <geometry>
           <box size="${width} ${depth} ${height}" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="${width/2} ${depth/2} 0" rpy="0 0 0" />
+        <origin xyz="${width/2} 0 0" rpy="0 0 0" />
         <geometry>
           <box size="${width} ${depth} ${height}" />
         </geometry>
@@ -40,13 +40,13 @@
     <link name="${name}_hinge">
       <visual>
         <material name="hinge_red"/>
-        <origin xyz="0 ${depth/2} 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.05 0.05 ${height}" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 ${depth/2} 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>-
           <box size="0.05 0.05 ${height}" />
         </geometry>
@@ -96,7 +96,7 @@
     <joint name="${name}_origin_revolute_joint" type="revolute">
       <axis xyz="0 0 1"/>
       <limit effort="100" lower="${door_lower}" upper="${door_max}" velocity="10"/>
-      <origin xyz="${depth/2} 0 0" rpy="0 0 ${yr}" />
+      <origin xyz="0 0 0" rpy="0 0 ${yr}" />
       <parent link="${name}_hinge"/>
       <child link="${name}_center"/>
     </joint>
@@ -104,7 +104,7 @@
     <joint name="${name}_hinge_joint" type="fixed">
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
-      <origin xyz="${x} ${y - 0.415} ${z}" rpy="0 0 0" />
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 0" />
       <parent link="${parent}"/>
       <child link="${name}_hinge"/>
     </joint>
@@ -112,7 +112,7 @@
     <joint name="${name}_handle_inside_joint" type="fixed">
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
-      <origin xyz="${0.9 * width} ${-0.5 * depth} -0.1" rpy="0 0 0" />
+      <origin xyz="${0.9 * width} ${-depth} -0.1" rpy="0 0 0" />
       <parent link="${name}_center"/>
       <child link="${name}_handle_inside"/>
     </joint>
@@ -120,7 +120,7 @@
     <joint name="${name}_handle_outside_joint" type="fixed">
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
-      <origin xyz="${0.9 * width} ${1.5 * depth} -0.1" rpy="0 0 0" />
+      <origin xyz="${0.9 * width} ${depth} -0.1" rpy="0 0 0" />
       <parent link="${name}_center"/>
       <child link="${name}_handle_outside"/>
     </joint>

@@ -3,7 +3,7 @@
 <robot name="hsrb_lab" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:include filename="$(find suturo_urdf_publisher)/urdf/hsr_movable_door.urdf.xacro"/>    
-
+    <xacro:include filename="$(find suturo_urdf_publisher)/urdf/robocup_sim_walls.urdf.xacro"/>
     <xacro:property name="pi" value="3.1415926535897931" /> 
     <xacro:property name="half_pi" value="1.570796327" /> 
     <xacro:property name="simulated" value="true" />
@@ -37,12 +37,13 @@
     <link name="room_link" />
 
    
-    <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055" x="1.995590" y="-0.5" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="${half_pi}" >
+    <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055" x="1.995590" y="-0.099165" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="${half_pi}" >
     </suturo_movable_door>
+
+    <hsr_lab_walls parent="room_link" >
+	<origin xyz="0 0 0" rpy="0 0 ${half_pi}" />
+    </hsr_lab_walls>
     
-    <suturo_movable_door name="door_2" parent="room_link" height="2" width="0.83" depth="0.055"
-x="1.983010" y="1.02228" z="1.045" r="0" p="0" yr="${half_pi}" door_lower="${-half_pi}" door_max="${half_pi}">
-    </suturo_movable_door>
 
 
 
