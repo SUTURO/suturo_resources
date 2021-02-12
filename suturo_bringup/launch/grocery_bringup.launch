@@ -21,6 +21,8 @@
 		<arg name="map_name" default="corona_sim/sim_v1.yaml" />
 		<arg name="gazebo" default="true" />
 
+		<arg name="run_snap_map" default="true" />
+
 		<arg name="map_server" default="false" />
 		<arg name="publish_planning_hsr" default="true" />
 

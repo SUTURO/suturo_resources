@@ -31,7 +31,11 @@
 
   <arg name="publish_robot_description" default="false" />
 
-  <include file="$(find snap_map_icp)/launch/snap_map_icp.launch" />
+  <arg name="run_snap_map" default="true" />
+
+  <group if="$(eval arg('run_snap_map') == true)">
+    <include file="$(find snap_map_icp)/launch/snap_map_icp.launch" />
+  </group>
 
   <group if="$(eval arg('gazebo') == true)">
     <include file="$(find hsrb_gazebo_launch)/launch/include/hsrb_gazebo_common.xml" pass_all_args="true" >

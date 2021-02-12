@@ -1,5 +1,8 @@
 <sdf version='1.6'>
   <world name='default'>
+    <gui>
+      <plugin name="suturo_gz_text_renderer" filename="libsuturo_gz_text_renderer.so"/>
+    </gui>
     <physics name='default_physics' default='0' type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>

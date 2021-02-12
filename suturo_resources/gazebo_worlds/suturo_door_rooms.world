@@ -1,5 +1,8 @@
 <sdf version='1.6'>
   <world name='default'>
+    <gui>
+      <plugin name="suturo_gz_text_renderer" filename="libsuturo_gz_text_renderer.so"/>
+    </gui>
     <light name='sun' type='directional'>
       <cast_shadows>1</cast_shadows>
       <pose frame=''>0 0 10 0 -0 0</pose>
