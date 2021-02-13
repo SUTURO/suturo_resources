@@ -1,0 +1,4 @@
+- git:
+    local-name: hsr_description
+    uri:  https://github.com/Plexiglas/hsr_description.git
+    version: master
