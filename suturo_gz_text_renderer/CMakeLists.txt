@@ -16,7 +16,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   gazebo_ros
-  this_package_does_not_exist
 )
 find_package(gazebo REQUIRED)
 find_package (Qt5Widgets REQUIRED)
