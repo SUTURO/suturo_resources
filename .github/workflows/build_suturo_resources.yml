@@ -1,8 +1,8 @@
 name: 'Catkin Build SUTURO_RESOURCES'
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ ci_test ]
 
 jobs:
   build:
