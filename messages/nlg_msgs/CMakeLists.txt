@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  actionlib
+  actionlib_msgs
 )
 
 
@@ -19,12 +21,17 @@ add_message_files(
    DIRECTORY msg
    FILES
    KeyValuePair.msg
-   MeaningRepresentation.msg
 )
 
 generate_messages(
   DEPENDENCIES
   std_msgs
+)
+
+
+add_action_files(
+  FILES
+  LanguageGeneration.action
 )
 
 
