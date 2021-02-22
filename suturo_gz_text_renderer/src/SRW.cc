@@ -8,6 +8,8 @@
 #include <ros/callback_queue.h>
 #include <ros/subscribe_options.h>
 #include <std_msgs/String.h>
+#include <tmc_msgs/TalkRequestActionGoal.h>
+#include <tmc_msgs/Voice.h>
 #include <rosgraph_msgs/Clock.h>
 #include <thread>
 #include <list>
@@ -45,7 +47,7 @@ StringRendererWidget::StringRendererWidget() : GUIPlugin()
     QHBoxLayout *frameLayout = new QHBoxLayout();
     QLabel *label = new QLabel(tr("Toya said:"));
     // Create a time label
-    QLabel *sentenceLabel = new QLabel(tr("Nothin Yet"));
+    QLabel *sentenceLabel = new QLabel(tr("Nothing Yet"));
     // Add the label to the frame's layout
     frameLayout->addWidget(label);
     frameLayout->addWidget(sentenceLabel);
@@ -66,10 +68,10 @@ StringRendererWidget::StringRendererWidget() : GUIPlugin()
 
     // Create a named topic, and subscribe to it.
     ros::SubscribeOptions so1 =
-            ros::SubscribeOptions::create<std_msgs::String>(
-                    "/textrenderer",
+            ros::SubscribeOptions::create<tmc_msgs::TalkRequestActionGoal>(
+                    "/talk_request_action/goal",
                     1,
-                    boost::bind(&StringRendererWidget::OnTextMsg, this, _1),
+                    boost::bind(&StringRendererWidget::OnVoiceMsg, this, _1),
                     ros::VoidPtr(), &this->rosQueue);
     ros::SubscribeOptions so2 =
             ros::SubscribeOptions::create<rosgraph_msgs::Clock>(
@@ -95,10 +97,10 @@ StringRendererWidget::~StringRendererWidget()
 
 
 /// Handle an incoming String message from ROS
-void StringRendererWidget::OnTextMsg(const std_msgs::StringConstPtr &_msg) {
+void StringRendererWidget::OnVoiceMsg(const tmc_msgs::TalkRequestActionGoalConstPtr &_msg) {
     unsigned int time = currentSimTime;
 
-    std::string sentence = _msg->data;
+    std::string sentence = _msg->goal.data.sentence;
 
     auto tuple = std::make_tuple(sentence, time);
 

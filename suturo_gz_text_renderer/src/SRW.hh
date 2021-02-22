@@ -8,6 +8,8 @@
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
 #include "std_msgs/String.h"
+#include <tmc_msgs/TalkRequestActionGoal.h>
+#include <tmc_msgs/Voice.h>
 #include "rosgraph_msgs/Clock.h"
 #include <thread>
 #include <list>
@@ -35,7 +37,7 @@ namespace gazebo
         signals: void SetSentence(QString _string);
 
         /// Handle an incoming String message from ROS
-        private: void OnTextMsg(const std_msgs::StringConstPtr &_msg);
+        private: void OnVoiceMsg(const tmc_msgs::TalkRequestActionGoalConstPtr &_msg);
         private: void onClock(const rosgraph_msgs::ClockConstPtr &_msg);
         /// \brief ROS helper function that processes messages
         private: void QueueThread();
