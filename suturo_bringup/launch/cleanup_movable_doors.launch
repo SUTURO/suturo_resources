@@ -18,7 +18,7 @@
 		<arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" />
 
 		<arg name="world" default="suturo_sim_clean_up_movable_door.world" />
-		<arg name="map_name" default="corona_sim/sim_v1.yaml" />
+		<arg name="map_name" default="corona_sim/sim_v1_opened.yaml" />
 		<arg name="gazebo" default="true" />
 
 		<arg name="map_server" default="false" />
