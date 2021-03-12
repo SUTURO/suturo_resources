@@ -93,10 +93,13 @@
                     '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
   </group>
 
+
+
+  <!-- URDF OF THE ENVIORNMENT -->
   <group if="$(eval arg('publish_environment') == true)">
     <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(find suturo_resources)/urdf/$(arg env_model)'" />
     <param name="kitchen_description"
-         command="$(find xacro)/xacro.py '$(find suturo_resources)/urdf/$(arg env_model)'"/>
+         command="$(find xacro)/xacro '$(find suturo_resources)/urdf/$(arg env_model)'"/>
     
     <node pkg="joint_state_publisher" type="joint_state_publisher"
         name="kitchen_joint_state_publisher" output="screen">
@@ -121,6 +124,7 @@
     </node>
   </group>
 
+  <!-- URDF OF THE ROBOT -->
   <group if="$(eval arg('publish_robot_description') == true)">
     <param name="robot_description"
            command="$(find xacro)/xacro --inorder 
