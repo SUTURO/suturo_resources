@@ -1,0 +1,8 @@
+#goal definition
+string cas_id
+---
+#result definition
+ObjectDetectionData[] detectionData
+---
+#feedback
+string feedback
