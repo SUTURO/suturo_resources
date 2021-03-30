@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="suturo_movable_door" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="suturo_door" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <material name="door_green">
     <color rgba="0 0.31 0.22 1"/>
@@ -13,14 +13,13 @@
   <material name="handle_blue">
     <color rgba="0.3 0.5 0.78 1"/>
   </material>
-  <xacro:property name="pi" value="3.1415926535897931" /> 
   <xacro:property name="half_pi" value="1.570796327" /> 
 
-  <macro name="suturo_movable_door" params="name parent height width depth x y z r p yr door_lower door_max">
+  <xacro:macro name="suturo_door" params="name parent height width depth x y z zrot door_turn_limit_lower door_turn_limit_max">
     <!-- LINKS -->
 
 
-    <link name="${name}_center">
+    <link name="${name}_door_center">
       <visual>
         <material name="door_green"/>
         <origin xyz="${width/2} 0 0" rpy="0 0 0" />
@@ -37,7 +36,7 @@
     </link>
       
 
-    <link name="${name}_hinge">
+    <link name="${name}_door_hinge">
       <visual>
         <material name="hinge_red"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -53,7 +52,7 @@
       </collision>
     </link>
 
-    <link name="${name}_handle_outside">
+    <link name="${name}_door_handle_outside">
 
       <sphere_inertia radius="0" mass="0"/>
       <visual>
@@ -71,7 +70,7 @@
       </collision>
     </link>
 
-    <link name="${name}_handle_inside">
+    <link name="${name}_door_handle_inside">
 
       <sphere_inertia radius="0" mass="0"/>
       <visual>
@@ -93,37 +92,37 @@
     
     <!-- JOINTS -->
 
-    <joint name="${name}_origin_revolute_joint" type="revolute">
+    <joint name="${name}_door_origin_revolute_joint" type="revolute">
       <axis xyz="0 0 1"/>
-      <limit effort="100" lower="${door_lower}" upper="${door_max}" velocity="10"/>
-      <origin xyz="0 0 0" rpy="0 0 ${yr}" />
-      <parent link="${name}_hinge"/>
-      <child link="${name}_center"/>
+      <limit effort="100" lower="${door_turn_limit_lower}" upper="${door_turn_limit_max}" velocity="10"/>
+      <origin xyz="0 0 0" rpy="0 0 ${zrot}" />
+      <parent link="${name}_door_hinge"/>
+      <child link="${name}_door_center"/>
     </joint>
 
-    <joint name="${name}_hinge_joint" type="fixed">
+    <joint name="${name}_door_hinge_joint" type="fixed">
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
       <origin xyz="${x} ${y} ${z}" rpy="0 0 0" />
       <parent link="${parent}"/>
-      <child link="${name}_hinge"/>
+      <child link="${name}_door_hinge"/>
     </joint>
 
-    <joint name="${name}_handle_inside_joint" type="fixed">
+    <joint name="${name}_door_handle_inside_joint" type="fixed">
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
       <origin xyz="${0.9 * width} ${-depth} -0.1" rpy="0 0 0" />
-      <parent link="${name}_center"/>
-      <child link="${name}_handle_inside"/>
+      <parent link="${name}_door_center"/>
+      <child link="${name}_door_handle_inside"/>
     </joint>
 	
-    <joint name="${name}_handle_outside_joint" type="fixed">
+    <joint name="${name}_door_handle_outside_joint" type="fixed">
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
       <origin xyz="${0.9 * width} ${depth} -0.1" rpy="0 0 0" />
-      <parent link="${name}_center"/>
-      <child link="${name}_handle_outside"/>
+      <parent link="${name}_door_center"/>
+      <child link="${name}_door_handle_outside"/>
     </joint>
 
-  </macro>
+  </xacro:macro>
 </robot>

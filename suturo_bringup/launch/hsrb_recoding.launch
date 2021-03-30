@@ -25,7 +25,7 @@
 		<arg name="run_snap_map" default="false" />
 
 		<arg name="publish_environment" default="false" />
-		<arg name="env_model" default="hsrb_sim_v1.urdf.xacro" />
+		<arg name="env_model_yaml" default="hsrb_sim_v1.urdf.xacro" />
 
 		<arg name="publish_robot_description" default="false" />
       	<arg name="suturo_rviz" default="false" />

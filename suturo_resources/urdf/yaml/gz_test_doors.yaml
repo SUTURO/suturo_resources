@@ -1,0 +1,94 @@
+tables:
+   amount: 0
+   0:
+      name: 
+      parent: 
+      width: 
+      height: 
+      depth: 
+      z_rot:
+      x_pos:
+      y_pos: 
+
+
+shelves:
+   amount: 0
+   0:
+      name: 
+      parent: 
+      width: 
+      height: 
+      depth: 
+      z_rot: 
+      x_pos: 
+      y_pos: 
+      floors_height: []
+      number_of_floors: 
+      door: no
+
+buckets:
+    amount: 0
+    0:
+        name: 
+        parent: 
+        width: 
+        height: 
+        depth: 
+        z_rot: 
+        x_pos: 
+        y_pos: 
+
+walls:
+   amount: 0
+   0:
+      name: 
+      parent: 
+      pos_1_x: 
+      pos_1_y: 
+      pos_2_x: 
+      pos_2_y: 
+
+
+rooms:
+    amount: 0
+    0:
+        name: kitchen
+        num_of_corners: 
+        corners_x_pos: 
+        corners_y_pos: 
+        center_x: 
+        center_y: 
+        color: 1 0.51 0.66 0.5
+
+doors:
+    amount: 2
+    0:
+        name: door_1
+        parent: urdf_offset
+        height: 2
+        width: 0.83
+        depth: 0.055
+        x: 1.995590
+        y: -0.5
+        z: 1.045
+        zrot: 1.57079632679
+        door_turn_limit_lower: -1.5708
+        door_turn_limit_max: 1.5708
+    1:
+        name: door_2
+        parent: urdf_offset
+        height: 2
+        width: 0.83
+        depth: 0.055
+        x: 1.983010
+        y: 1.02228
+        z: 1.045
+        zrot: 1.57079632679
+        door_turn_limit_lower: -1.5708
+        door_turn_limit_max: 1.5708
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0.0
+    Y: 0.0
+    zrot: 0

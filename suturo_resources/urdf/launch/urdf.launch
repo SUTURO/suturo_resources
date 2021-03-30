@@ -1,0 +1,39 @@
+<launch>
+
+  <arg name="model" default="$(find suturo_resources)/urdf/suturo_environment.urdf.xacro"/>
+  <arg name="world_urdf_yaml" default="rw_lab_1.yaml"/>
+
+  <arg name="loc_of_urdf_1" default="hsrb_lab"/>
+  <arg name="loc_of_urdf_2" default="kitchen_description"/>
+  <arg name="tf_prefix" default="iai_kitchen"/>
+  <arg name="joint_states_prefix" default="kitchen"/>
+    
+
+  <param name="$(arg loc_of_urdf_1)" command="$(find xacro)/xacro $(arg model) yaml_file:=$(find suturo_resources)/urdf/yaml/$(arg world_urdf_yaml)" />  
+  
+  <param name="$(arg loc_of_urdf_2)" command="$(find xacro)/xacro $(arg model) yaml_file:=$(find suturo_resources)/urdf/yaml/$(arg world_urdf_yaml)" />
+
+  <node pkg="joint_state_publisher" type="joint_state_publisher"
+        name="environment_joint_state_publisher" output="screen">
+    <remap from="robot_description" to="$(arg loc_of_urdf_1)"/>
+    <param name="rate" value="25"/>
+    <param name="use_gui" value="False"/>
+    <remap from="/joint_states" to="/$(arg joint_states_prefix)/joint_states" />
+    <rosparam param="source_list">
+      - /kitchen/cram_joint_states
+    </rosparam>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="environment_link_broadcaster"
+    args="0 0 0 0 0 0 /map /$(arg tf_prefix)/urdf_main 25">
+  </node>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"
+    name="environment_state_publisher" output="screen">
+    <param name="tf_prefix" value="/$(arg tf_prefix)"/>
+    <param name="publish_frequency" value="2"/>
+    <remap from="robot_description" to="$(arg loc_of_urdf_1)" />
+    <remap from="/joint_states" to="/$(arg joint_states_prefix)/joint_states" />
+  </node>
+
+</launch>

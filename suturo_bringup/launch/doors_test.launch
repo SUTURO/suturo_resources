@@ -26,7 +26,7 @@
 		<arg name="run_snap_map" default="false" />
 
 		<arg name="publish_environment" default="true" />
-		<arg name="env_model" default="sim_doors_test.urdf.xacro" />
+		<arg name="env_model" default="gz_sim_doors_test.yaml" />
 
 		<arg name="publish_robot_description" default="false" />
       	<arg name="suturo_rviz" default="true" />
