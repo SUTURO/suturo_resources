@@ -212,7 +212,7 @@
     <suturo_movable_door name="door_1" parent="room_link" height="2" width="0.83" depth="0.055" x="-1.4694" y="4.9966" z="1.045" r="0" p="0" yr="${pi}" door_lower="${-half_pi}" door_max="${half_pi}" >
     </suturo_movable_door>
 
-    <suturo_shelf name="openable_shelf_1" parent="room_link" size_x="0.5" size_y="1" size_z="0.7" floors_height="[0.2, 0.2, 0.2]" number_of_floors="3" door="no" >
+    <suturo_shelf name="openable_shelf_1" parent="room_link" size_x="0.5" size_y="1" size_z="0.7" floors_height="[0.055, 0.45]" number_of_floors="2" door="none" >
 	<origin xyz="1 1 0" rpy="0 0 ${pi}" />
     </suturo_shelf>
 
