@@ -2,8 +2,8 @@
 bool visualize
 string[] regions
 ---
-#result definition
-DoorDetectionData detectionData
+# picture id
+string cas_id
 ---
 #feedback
 string feedback

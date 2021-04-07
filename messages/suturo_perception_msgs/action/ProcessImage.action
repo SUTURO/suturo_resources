@@ -1,9 +1,8 @@
 #goal definition
-bool visualize
-string[] regions
+string cas_id
 ---
 #result definition
-DoorDetectionData detectionData
+ObjectDetectionData[] detectionData
 ---
 #feedback
 string feedback
