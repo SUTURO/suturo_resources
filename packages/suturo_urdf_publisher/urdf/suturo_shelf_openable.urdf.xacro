@@ -115,13 +115,13 @@
     <link name="${name}_link">
       <visual>
         <material name="shelf_door_green"/>
-        <origin xyz="0 ${size_y/2} 0" rpy="0 0 0" />
+        <origin xyz="0 ${size_y/2.15} 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 ${size_y/2} 0" rpy="0 0 0" />
+        <origin xyz="0 ${size_y/2.15} 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
@@ -133,7 +133,7 @@
         <material name="handle_red"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.04 0.01 0.07" />
+          <box size="0.025 0.01 0.07" />
         </geometry>
       </visual>
       <collision>
@@ -145,7 +145,7 @@
     </link>
 
     <joint name="${name}_link_handle_joint" type="fixed">
-      <origin xyz="-0.01 ${size_y - 0.02} ${size_z/3}" rpy="0 0 0"/>
+      <origin xyz="-0.01 ${size_y - 0.04} ${size_z/3}" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${name}_link"/>
       <child link="${name}_link_handle"/>
