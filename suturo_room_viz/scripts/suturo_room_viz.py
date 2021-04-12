@@ -45,8 +45,6 @@ class Room:
         self.pose = (s[0], s[1], s[2])
 
     def add_point(self, s):  # ${center_x} ${center_y} 0
-        # split = s.split(" ")
-        print("called ad point")
         self.points.append((s[0], s[1]))
 
     def to_marker(self, seq):
@@ -79,11 +77,7 @@ class Room:
 
         marker.lifetime = rospy.Duration.from_sec(1 / rospy.get_param('~pub_rate'))
         marker.frame_locked = False
-
-        print(self.name)
-        print("points: " + str(self.points) + "\n")
         self.triangled_points = pytess.triangulate(self.points)
-        print("triangled_points: " + str(self.triangled_points) + "\n")
 
         for triangle in self.triangled_points:
             for point in triangle:
@@ -115,9 +109,7 @@ def get_rooms(urdf):
         corner_parser = re.compile(room.name + '_room_joint_[0-9]+')  # {name}_room_joint_${loop_number}
         for corner_joint in joints:
             if corner_parser.match(corner_joint.name):
-                print(corner_joint.name)
                 room.add_point(corner_joint.origin.xyz)
-                print(corner_joint.origin.xyz)
                 # joints.remove(corner_joint)
         rooms.append(room)
     return rooms
@@ -137,7 +129,6 @@ def loop():
         for r in get_rooms(urdf):
             ma.markers.append(r.to_marker(seq))
             seq += 1
-        print(seq)
 
         pub.publish(ma)
         rate.sleep()
