@@ -56,10 +56,10 @@
     <link name="${name}_handle_outside">
 
       <sphere_inertia radius="0" mass="0"/>
-      <visual>--
+      <visual>
 	<material name="handle_blue"/>
         <origin xyz="0 0 0" rpy="${half_pi} 0 ${pi}" />
-        <geometry>-
+        <geometry>
           <box size="0.15 0.025 0.015" />
         </geometry>
       </visual>
