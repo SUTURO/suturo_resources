@@ -1,0 +1,18 @@
+<package format="2">
+  <name>suturo_room_viz</name>
+  <version>0.1.0</version>
+
+  <description>
+    Show the Room in RViz using marker_arrays
+  </description>
+
+  <author email="schnippa@uni-bremen.de">Paul Schnipper</author>
+
+
+  <maintainer email="schnippa@uni-bremen.de">Paul Schnipper</maintainer>
+  <license>ToDo</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+</package>

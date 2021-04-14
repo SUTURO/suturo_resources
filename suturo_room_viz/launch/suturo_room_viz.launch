@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="urdf_param" default="hsrb_lab"/>
+  <arg name="tf_namespace" default="iai_kitchen"/>
+  <arg name="pub_rate" default="0.2" />
+  
+  <node pkg="suturo_room_viz" type="suturo_room_viz.py" name="suturo_room_viz" output="screen" >
+    <param name="urdf_param" value="$(arg urdf_param)" />
+    <param name="tf_namespace" value="$(arg tf_namespace)" />
+    <param name="pub_rate" value="$(arg pub_rate)" />
+  </node>
+
+</launch>

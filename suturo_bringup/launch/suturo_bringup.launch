@@ -3,7 +3,7 @@
   <arg name="namespace" default="hsrb"/>
   <arg name="debug" default="false"/>
   <arg name="gui" default="true" />
-  <arg name="rviz" default="false"/>
+  <arg name="suturo_rviz" default="false"/>
   <arg name="gazebo_visualization" default="false" />
   <arg name="use_manipulation" default="true" />
   <arg name="use_navigation" default="true" />
@@ -27,7 +27,9 @@
   <arg name="publish_planning_hsr" default="true" />
 
   <arg name="publish_environment" default="true" />
-  <arg name="env_model" default="hsrb_sim_v1.urdf.xacro" />
+  <arg name="env_model_yaml" default="rw_lab_1.yaml" />
+
+  <arg name="show_rooms" default="true"/>
 
   <arg name="publish_robot_description" default="false" />
 
@@ -78,6 +80,7 @@
       <arg name="robot_pos" value="-x 0 -y 0 -z 0 -Y 0"/>
       <arg name="ground_truth_xyz_offset" value="0.0\ 0.0\ 0.0" />
       <arg name="ground_truth_rpy_offset" value="0.0\ 0.0\ 0.0" />
+      <arg name="rviz" value = "false" />
     </include>
   </group>
 
@@ -93,34 +96,21 @@
                     '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
   </group>
 
+  <!-- URDF OF THE ENVIORNMENT -->
   <group if="$(eval arg('publish_environment') == true)">
-    <param name="hsrb_lab" command="$(find xacro)/xacro --inorder '$(find suturo_resources)/urdf/$(arg env_model)'" />
-    <param name="kitchen_description"
-         command="$(find xacro)/xacro.py '$(find suturo_resources)/urdf/$(arg env_model)'"/>
-    
-    <node pkg="joint_state_publisher" type="joint_state_publisher"
-        name="kitchen_joint_state_publisher" output="screen">
-      <remap from="robot_description" to="hsrb_lab"/>
-      <param name="rate" value="25"/>
-      <param name="use_gui" value="False"/>
-      <remap from="/joint_states" to="/kitchen/joint_states" />
-      <rosparam param="source_list">
-        - /kitchen/cram_joint_states
-      </rosparam>
-    </node>
-
-    <node pkg="tf" type="static_transform_publisher" name="kitchen_link_broadcaster" args="0 0 0 0 0 0 /map /iai_kitchen/world 25">
-    </node>
-
-    <node pkg="robot_state_publisher" type="robot_state_publisher"
-      name="kitchen_state_publisher" output="screen">
-      <param name="tf_prefix" value="/iai_kitchen"/>
-      <param name="publish_frequency" value="2"/>
-      <remap from="robot_description" to="hsrb_lab" />
-      <remap from="/joint_states" to="/kitchen/joint_states" />
-    </node>
+    <include file="$(find suturo_resources)/urdf/launch/urdf.launch" pass_all_args="false" >
+      <arg name="world_urdf_yaml" value="$(arg env_model_yaml)"/>
+    </include>
   </group>
 
+  <!-- Show Rooms -->
+  <group if="$(eval arg('show_rooms') == true)">
+    <include file="$(find suturo_room_viz)/launch/suturo_room_viz.launch" pass_all_args="false" >      
+    </include>
+  </group>
+
+
+  <!-- URDF OF THE ROBOT -->
   <group if="$(eval arg('publish_robot_description') == true)">
     <param name="robot_description"
            command="$(find xacro)/xacro --inorder 
