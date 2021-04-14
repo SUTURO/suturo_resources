@@ -66,6 +66,8 @@ add_action_files(
   FILES
   ExtractObjectInfo.action
   ExtractPlaneInfo.action
+  ProcessImage.action
+  CaptureImage.action
 )
 
 ## Generate added messages and services with any dependencies listed here

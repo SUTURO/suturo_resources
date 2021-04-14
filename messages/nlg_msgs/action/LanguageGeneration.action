@@ -1,5 +1,7 @@
 # Triggers language generation for the given key value pairs contained in the meaning representation msg
 
+# See msgs KeyValuePair for more information
+
 #goal
 
 nlg_msgs/KeyValuePair[] key_value_pairs
