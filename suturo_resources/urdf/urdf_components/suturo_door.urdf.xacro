@@ -112,7 +112,7 @@
       <axis xyz="0 0 0"/>
       <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
       <origin xyz="${0.9 * width} ${-1.25 * depth} -0.13" rpy="0 0 0" />
-      <parent link="${name}_center"/>
+      <parent link="${name}_door_center"/>
       <child link="${name}_door_handle_inside"/>
     </joint>
 	
