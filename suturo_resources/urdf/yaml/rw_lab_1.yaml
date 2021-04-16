@@ -36,14 +36,6 @@ shelves:
 
 buckets:
     amount: 0
-      name: 
-      parent: 
-      width: 
-      height: 
-      depth: 
-      z_rot: 
-      x_pos: 
-      y_pos: 
 
 walls:
    amount: 4
