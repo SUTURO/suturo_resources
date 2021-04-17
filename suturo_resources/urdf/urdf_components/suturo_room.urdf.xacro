@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+
+<!-- Rooms are for Knowledge Information only-->
+<robot name="suturo_room" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="suturo_room" params="name parent num_of_corners corners_x_pos corners_y_pos center_x center_y color">
+
+
+    <!-- define a central joint to wich every corner is connected -->
+    <joint name="world_${name}_room_joint" type="fixed">
+        <origin xyz="${center_x} ${center_y} 0 " rpy="0 0 0" />
+        <parent link="${parent}"/>
+        <child link="${name}_room_center_link"/>        
+    </joint>
+
+    <link name="${name}_room_center_link">
+      <visual>
+        <geometry>
+          <cylinder length="0" radius="0"/>
+        </geometry>
+        <material name="color">
+          <color rgba="${color}"/>
+        </material>
+      </visual>
+    </link>
+
+    <!-- room loop to create every corner -->
+    <xacro:macro name="corner_loop" params="loop_number">
+      <joint name="${name}_room_joint_${loop_number}" type="fixed">
+          <origin xyz="${corners_x_pos[loop_number] - center_x} ${corners_y_pos[loop_number] - center_y} 0 " rpy="0 0 0" />
+          <parent link="${name}_room_center_link"/>
+          <child link="${name}_room_corner_${loop_number}_link"/>
+      </joint>
+
+      <link name="${name}_room_corner_${loop_number}_link" />
+
+      <xacro:if value="${(num_of_corners - 1) > loop_number}">
+        <xacro:corner_loop loop_number="${loop_number + 1}" />
+      </xacro:if>
+    </xacro:macro>    
+    
+    <!-- room call loop to create every corner -->
+    <xacro:corner_loop loop_number="0" />
+
+  </xacro:macro>
+
+</robot>
+

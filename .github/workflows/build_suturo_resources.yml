@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Docker and Build SUTURO Resources
-      run: docker pull ros:melodic-ros-core && mkdir resources && mv messages/ packages/ suturo_bringup/ suturo_gz_text_renderer/ suturo_resources/ resources &&  wget -q -O entrypoint.sh https://raw.githubusercontent.com/SUTURO/suturo_ci/master/entrypoints/build_suturo_resources.sh && wget -q -O Dockerfile https://raw.githubusercontent.com/SUTURO/suturo_ci/master/Dockerfiles/ResourcesDockerfile && docker build . --file Dockerfile --no-cache=True --tag my-image-name:$(date +%s)
+      run: docker pull ros:melodic-ros-core && mkdir resources && mv messages/ suturo_bringup/ suturo_gz_text_renderer/ suturo_resources/ resources &&  wget -q -O entrypoint.sh https://raw.githubusercontent.com/SUTURO/suturo_ci/master/entrypoints/build_suturo_resources.sh && wget -q -O Dockerfile https://raw.githubusercontent.com/SUTURO/suturo_ci/master/Dockerfiles/ResourcesDockerfile && docker build . --file Dockerfile --no-cache=True --tag my-image-name:$(date +%s)

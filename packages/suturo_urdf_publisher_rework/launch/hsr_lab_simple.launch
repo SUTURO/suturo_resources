@@ -1,7 +1,0 @@
-<launch>
-  
-  <include file="$(find suturo_urdf_publisher_rework)/launch/environment.launch" >
-          <arg name="yaml" default="hsr_lab_simple_manual_data.yaml" />
-  </include>
-
-</launch>

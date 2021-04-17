@@ -1,34 +1,36 @@
 <?xml version="1.0"?>
 <launch>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
-		<arg name="namespace" default="hsrb"/>
-		<arg name="debug" default="false"/>
-		<arg name="gui" default="true" />
-		<arg name="rviz" default="false"/>
-		<arg name="gazebo_visualization" default="false" />
-		<arg name="use_manipulation" default="true" />
-		<arg name="use_navigation" default="true" />
-		<arg name="use_perception" default="true" />
-		<arg name="use_task" default="true" />
-		<arg name="use_teleop" default="true" />
-		<arg name="use_web" default="false" />
-		<arg name="use_laser_odom" default="true" />
-		<arg name="paused" default="true" />
-		<arg name="fast_physics" default="false" />
-		<arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" />
+		<arg name="namespace" value="hsrb"/>
+		<arg name="debug" value="false"/>
+		<arg name="gui" value="true" />
+		<arg name="suturo_rviz" value="true"/>
+		<arg name="gazebo_visualization" value="false" />
+		<arg name="use_manipulation" value="true" />
+		<arg name="use_navigation" value="true" />
+		<arg name="use_perception" value="true" />
+		<arg name="use_task" value="true" />
+		<arg name="use_teleop" value="true" />
+		<arg name="use_web" value="false" />
+		<arg name="use_laser_odom" value="true" />
+		<arg name="paused" value="true" />
+		<arg name="fast_physics" value="false" />
+		<arg name="robot_name" value="$(optenv ROBOT_NAME hsrb)" />
 
-		<arg name="world" default="suturo_sim_clean_up_v2.world" />
-		<arg name="map_name" default="corona_sim/sim_v1.yaml" />
-		<arg name="gazebo" default="true" />
+		<arg name="world" value="suturo_sim_clean_up_v2.world" />
+		<arg name="map_name" value="corona_sim/sim_v1.yaml" />
+		<arg name="gazebo" value="true" />
 
-		<arg name="map_server" default="false" />
-		<arg name="publish_planning_hsr" default="true" />
-		<arg name="run_snap_map" default="true" />
+		<arg name="map_server" value="false" />
+		<arg name="publish_planning_hsr" value="true" />
 
-		<arg name="publish_environment" default="true" />
-		<arg name="env_model" default="hsrb_sim_v1.urdf.xacro" />
+		<arg name="publish_environment" value="true" />
+		<arg name="env_model_yaml" value="gz_sim_v1.yaml" />
 
-		<arg name="publish_robot_description" default="false" />
-      	<arg name="suturo_rviz" default="true" />
+        <arg name="show_rooms" value="true"/>
+
+		<arg name="publish_robot_description" value="false" />
+
+        <arg name="run_snap_map" value="true" />
     </include>
 </launch>
