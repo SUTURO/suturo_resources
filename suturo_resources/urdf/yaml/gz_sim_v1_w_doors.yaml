@@ -89,7 +89,7 @@ shelves_openable:
       width: 0.75
       height: 0.585
       depth: 0.44
-      z_rot: 3.14159
+      z_rot: 1.5707963
       x_pos: 0.75
       y_pos: 3.01
       floors_height: [0.32, 0.582, 0.884]
