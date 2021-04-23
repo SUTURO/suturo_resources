@@ -9,6 +9,7 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_wall.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_door.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bucket.urdf.xacro"/>
@@ -18,6 +19,7 @@
     <xacro:property name="number_of_tables" value="${data['tables']['amount']}" />
     <xacro:property name="number_of_buckets" value="${data['buckets']['amount']}" />
     <xacro:property name="number_of_shelves" value="${data['shelves']['amount']}" />
+    <xacro:property name="number_of_shelves_openable" value="${data['shelves_openable']['amount']}" />
     <xacro:property name="number_of_walls" value="${data['walls']['amount']}" />
     <xacro:property name="number_of_doors" value="${data['doors']['amount']}" />
     <xacro:property name="number_of_rooms" value="${data['rooms']['amount']}" />
@@ -70,6 +72,24 @@
         </xacro:suturo_shelf>
         <xacro:if value="${(number_of_shelves - 1) > shelf_number}">
             <xacro:shelf_loop shelf_number="${shelf_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Openable_Shelves~~  -->
+    <xacro:macro name="shelf_openable_loop" params="shelf_openable_number">
+        <xacro:suturo_shelf_openable name="${data['shelves_openable'][shelf_openable_number]['name']}"
+                          parent="${data['shelves_openable'][shelf_openable_number]['parent']}"
+                          size_x="${data['shelves_openable'][shelf_openable_number]['depth']}"
+                          size_y="${data['shelves_openable'][shelf_openable_number]['width']}"
+                          size_z="${data['shelves_openable'][shelf_openable_number]['height']}"
+                          floors_height="${data['shelves_openable'][shelf_openable_number]['floors_height']}"
+                          number_of_floors="${data['shelves_openable'][shelf_openable_number]['number_of_floors']}"
+                          door="${data['shelves_openable'][shelf_openable_number]['door']}">
+            <origin xyz="${data['shelves_openable'][shelf_openable_number]['x_pos']} ${data['shelves_openable'][shelf_openable_number]['y_pos']} 0"
+                            rpy="0 0 ${data['shelves_openable'][shelf_openable_number]['z_rot']}" />
+        </xacro:suturo_shelf_openable>
+        <xacro:if value="${(number_of_shelves_openable - 1) > shelf_openable_number}">
+            <xacro:shelf_openable_loop shelf_number="${shelf_openable_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -138,6 +158,9 @@
     </xacro:if>
     <xacro:if value="${number_of_shelves > 0}">
         <xacro:shelf_loop shelf_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_shelves_openable > 0}">
+        <xacro:shelf_openable_loop shelf_openable_number="0" />
     </xacro:if>
     <xacro:if value="${number_of_walls > 0}">
         <xacro:wall_loop wall_number="0" />

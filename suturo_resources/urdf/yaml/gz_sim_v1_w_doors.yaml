@@ -81,6 +81,22 @@ shelves:
       door: no
 
 
+shelves_openable:
+   amount: 1
+   0:
+      name: hsr_shelf_openable
+      parent: urdf_offset
+      width: 0.75
+      height: 0.585
+      depth: 0.44
+      z_rot: 1.5707963
+      x_pos: 0.75
+      y_pos: 3.01
+      floors_height: [0.12, 0.282, 0.384]
+      number_of_floors: 3
+      door: left
+
+
 buckets:
     amount: 1
     0:
