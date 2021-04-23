@@ -77,7 +77,7 @@
 
     <!--  ~~Openable_Shelves~~  -->
     <xacro:macro name="shelf_openable_loop" params="shelf_openable_number">
-        <xacro:suturo_shelf name="${data['shelves_openable'][shelf_openable_number]['name']}"
+        <xacro:suturo_shelf_openable name="${data['shelves_openable'][shelf_openable_number]['name']}"
                           parent="${data['shelves_openable'][shelf_openable_number]['parent']}"
                           size_x="${data['shelves_openable'][shelf_openable_number]['depth']}"
                           size_y="${data['shelves_openable'][shelf_openable_number]['width']}"
@@ -87,7 +87,7 @@
                           door="${data['shelves_openable'][shelf_openable_number]['door']}">
             <origin xyz="${data['shelves_openable'][shelf_openable_number]['x_pos']} ${data['shelves_openable'][shelf_openable_number]['y_pos']} 0"
                             rpy="0 0 ${data['shelves_openable'][shelf_openable_number]['z_rot']}" />
-        </xacro:suturo_shelf>
+        </xacro:suturo_shelf_openable>
         <xacro:if value="${(number_of_shelves_openable - 1) > shelf_openable_number}">
             <xacro:shelf_openable_loop shelf_number="${shelf_openable_number + 1}" />
         </xacro:if>
