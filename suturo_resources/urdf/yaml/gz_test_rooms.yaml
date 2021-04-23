@@ -1,0 +1,250 @@
+tables:
+   amount: 0
+   0:
+      name: 
+      parent: 
+      width: 
+      height: 
+      depth: 
+      z_rot:
+      x_pos:
+      y_pos: 
+
+
+shelves:
+   amount: 0
+   0:
+      name: 
+      parent: 
+      width: 
+      height: 
+      depth: 
+      z_rot: 
+      x_pos: 
+      y_pos: 
+      floors_height: []
+      number_of_floors: 
+      door: no
+
+buckets:
+    amount: 0
+    0:
+        name: 
+        parent: 
+        width: 
+        height: 
+        depth: 
+        z_rot: 
+        x_pos: 
+        y_pos: 
+        
+rooms:
+    amount: 5
+    0:
+        name: kitchen
+        num_of_corners: 4
+        corners_x_pos: [-3, 0, 0, -3]
+        corners_y_pos: [-4, -4, 0, 0]
+        center_x: -1.5
+        center_y: -2
+        color: 1 0.51 0.66 0.5
+    1:
+        name: livingroom
+        num_of_corners: 6
+        corners_x_pos: [0, 3, 3, -2, -2, 0]
+        corners_y_pos: [0, 0, 5, 5, 3, 3]
+        center_x: 1.5
+        center_y: 3
+        color: 0.57 1 0.1 0.5
+    2:
+        name: sleepingroom
+        num_of_corners: 4
+        corners_x_pos: [-3, 0, 0, -3]
+        corners_y_pos: [0, 0, 3, 3]
+        center_x: -1.5
+        center_y: 1.5
+        color: 0.57 1 0.1 0.5
+    3:
+        name: office
+        num_of_corners: 4
+        corners_x_pos: [0, 3, 3, 0]
+        corners_y_pos: [-4, -3, 0, 0]
+        center_x: 1.5
+        center_y: -1.5
+        color: 0.57 1 0.1 0.5
+    4:
+        name: hall
+        num_of_corners: 6
+        corners_x_pos: [-4.5, -3, -3, -2, -2, -4.5]
+        corners_y_pos: [-4, -4, 3, 3, 5, 5]
+        center_x: -3.75
+        center_y: 1
+        color: 0.57 1 0.1 0.5
+
+doors:
+    amount: 4
+    0:
+        name: door_hall_livingroom_1
+        parent: urdf_offset
+        height: 2
+        width: 1.0
+        depth: 0.055
+        x: -2
+        y: 3.5
+        z: 1.045
+        zrot: 1.57079632679
+        door_turn_limit_lower: 0
+        door_turn_limit_max: 1.5708
+
+    1:
+        name: door_hall_sleepingroom_1
+        parent: urdf_offset
+        height: 2
+        width: 1.0
+        depth: 0.055
+        x: -3
+        y: 1.0
+        z: 1.045
+        zrot: 1.57079632679
+        door_turn_limit_lower: 0
+        door_turn_limit_max: 1.5708
+
+    2:
+        name: door_hall_kitchen_1
+        parent: urdf_offset
+        height: 2
+        width: 1.0
+        depth: 0.055
+        x: -3
+        y: -2.5
+        z: 1.045
+        zrot: 1.57079632679
+        door_turn_limit_lower: 0
+        door_turn_limit_max: 1.5708
+    
+    3:
+        name: door_livingroom_sleepingroom_1
+        parent: urdf_offset
+        height: 2
+        width: 1.0
+        depth: 0.055
+        x: -1.5
+        y: 3
+        z: 1.045
+        zrot: 0
+        door_turn_limit_lower: 0
+        door_turn_limit_max: 1.5708
+
+walls:
+   amount: 15
+   0:
+      name: wall_0
+      parent: urdf_offset
+      pos_1_x: -4.5
+      pos_1_y: -4
+      pos_2_x: -4.5
+      pos_2_y: 5
+   1:
+      name: wall_1
+      parent: urdf_offset
+      pos_1_x: -3
+      pos_1_y: -1.5
+      pos_2_x: -3
+      pos_2_y: 3
+   2:
+      name: wall_2
+      parent: urdf_offset
+      pos_1_x: -3
+      pos_1_y: -1.5
+      pos_2_x: -3
+      pos_2_y: 1
+   3:
+      name: wall_3
+      parent: urdf_offset
+      pos_1_x: -3
+      pos_1_y: -4
+      pos_2_x: -3
+      pos_2_y: -2.5
+   4:
+      name: wall_4
+      parent: urdf_offset
+      pos_1_x: -2
+      pos_1_y: 4.5
+      pos_2_x: -2
+      pos_2_y: 5
+   5:
+      name: wall_5
+      parent: urdf_offset
+      pos_1_x: -2
+      pos_1_y: 3
+      pos_2_x: -2
+      pos_2_y: 3.5
+   6:  
+      name: wall_6
+      parent: urdf_offset
+      pos_1_x: 0
+      pos_1_y: -4
+      pos_2_x: 0
+      pos_2_y: -2.5
+   7:  
+      name: wall_7
+      parent: urdf_offset
+      pos_1_x: 0
+      pos_1_y: -1.5
+      pos_2_x: 0
+      pos_2_y: 3
+   8:  
+      name: wall_8
+      parent: urdf_offset
+      pos_1_x: 3
+      pos_1_y: -3
+      pos_2_x: 3
+      pos_2_y: 5
+   9:  
+      name: wall_9
+      parent: urdf_offset
+      pos_1_x: -4.5
+      pos_1_y: 5
+      pos_2_x: 3
+      pos_2_y: 5
+   10:  
+      name: wall_10
+      parent: urdf_offset
+      pos_1_x: -3
+      pos_1_y: 3
+      pos_2_x: -1.5
+      pos_2_y: 3
+   11:  
+      name: wall_11
+      parent: urdf_offset
+      pos_1_x: -0.5
+      pos_1_y: 3
+      pos_2_x: 0
+      pos_2_y: 3
+   12:  
+      name: wall_12
+      parent: urdf_offset
+      pos_1_x: -3
+      pos_1_y: 0
+      pos_2_x: 0
+      pos_2_y: 0
+   13:  
+      name: wall_13
+      parent: urdf_offset
+      pos_1_x: -4.5
+      pos_1_y: -4
+      pos_2_x: 0
+      pos_2_y: -4
+   14:  
+      name: wall_14
+      parent: urdf_offset
+      pos_1_x: 0
+      pos_1_y: -4
+      pos_2_x: 3
+      pos_2_y: -3
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0.0
+    Y: 0.0
+    zrot: 0
