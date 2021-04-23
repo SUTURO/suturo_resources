@@ -81,6 +81,10 @@ shelves:
       door: no
 
 
+shelves_openable:
+   amount: 0
+
+
 buckets:
     amount: 1
     0:
