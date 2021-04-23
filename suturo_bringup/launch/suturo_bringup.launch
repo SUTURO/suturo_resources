@@ -46,10 +46,10 @@
       <param name="base_laser_frame" value="/base_range_sensor_link"/>
 
       <!-- defines minimum fitness for candidates for pose publishing -->
-      <param name="icp_fitness_threshold" value="100"/>
+      <param name="icp_fitness_threshold" value="10"/>
    
       <!-- accept only scans one second old or younger -->
-      <param name="age_threshold" value="1"/>
+      <param name="age_threshold" value="20"/>
       <param name="update_age_threshold" value="1"/>
 
       <!-- thresholds over distance btw amcl icp pose to trigger pose publishing -->
@@ -61,15 +61,15 @@
 
       <!-- various icp parameters -->
       <!-- consult with icp algorithm from pcl for details -->
-      <param name="icp_inlier_threshold" value="0.88"/>
+      <param name="icp_inlier_threshold" value="0.1"/>
       <param name="icp_inlier_dist" value="0.1"/>
-      <param name="icp_num_iter" value="250"/>
+      <param name="icp_num_iter" value="500"/>
 
       <!-- who knows??? -->
       <param name="pose_covariance_trans" value="0.5"/>
 
       <!-- rate at which scans are taken -->
-      <param name="scan_rate" value="2"/>
+      <param name="scan_rate" value="4"/>
     </node>
   </group>
 
