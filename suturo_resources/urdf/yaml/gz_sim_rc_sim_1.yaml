@@ -4,8 +4,8 @@ tables:
       name: living_room_table
       parent: urdf_offset
       width:  1.5
-      height: 1
-      depth: 0.62
+      height: 0.62
+      depth: 0.8
       z_rot: -1.57079632679
       x_pos: -0.148709
       y_pos: -0.594323
