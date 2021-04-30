@@ -107,7 +107,7 @@
   <xacro:macro name="suturo_shelf_piece" params="name parent *origin box_z_offset=0.0 size_x size_y size_z">
 
     <!-- LINK -->
-    <link name="${name}_shelf_piece">
+    <link name="${name}">
       <visual>
         <material name="shelf_blue"/>
         <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
@@ -124,10 +124,10 @@
     </link>
 
     <!-- JOINT -->
-    <joint name="${name}_shelf_piece_joint" type="fixed">
+    <joint name="${name}_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${name}_shelf_piece"/>
+      <child link="${name}"/>
     </joint>
   </xacro:macro>
 
