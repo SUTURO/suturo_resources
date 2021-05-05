@@ -26,6 +26,9 @@ shelves:
       number_of_floors: 
       door: no
 
+shelves_openable:
+    amount: 0
+
 buckets:
     amount: 0
     0:
@@ -49,7 +52,7 @@ rooms:
         center_y: -2
         color: 1 0.51 0.66 0.5
     1:
-        name: livingroom
+        name: living-room
         num_of_corners: 6
         corners_x_pos: [0, 3, 3, -2, -2, 0]
         corners_y_pos: [0, 0, 5, 5, 3, 3]
@@ -57,7 +60,7 @@ rooms:
         center_y: 3
         color: 0.57 1 0.1 0.5
     2:
-        name: sleepingroom
+        name: sleeping-room
         num_of_corners: 4
         corners_x_pos: [-3, 0, 0, -3]
         corners_y_pos: [0, 0, 3, 3]

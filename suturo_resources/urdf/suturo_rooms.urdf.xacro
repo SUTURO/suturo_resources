@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 
 <robot name="suturo_rooms" xmlns:xacro="http://ros.org/wiki/xacro">
+    <!--<xacro:property name="data"
+    value="${load_yaml('$(arg yaml_file)')}" />-->
+
     <xacro:property name="data"
-    value="${load_yaml('$(arg yaml_file)')}" />
+    value="${load_yaml('$(find suturo_resources)/urdf/yaml/gz_test_rooms.yaml')}"/>
 
 
     <!--  Include the files containing the macros -->
