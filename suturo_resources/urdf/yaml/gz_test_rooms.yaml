@@ -87,7 +87,7 @@ rooms:
 doors:
     amount: 4
     0:
-        name: door_hall_livingroom_1
+        name: door_hall_living-room_1
         parent: urdf_offset
         height: 2
         width: 1.0
@@ -100,7 +100,7 @@ doors:
         door_turn_limit_max: 1.5708
 
     1:
-        name: door_hall_sleepingroom_1
+        name: door_hall_sleeping-room_1
         parent: urdf_offset
         height: 2
         width: 1.0
@@ -126,7 +126,7 @@ doors:
         door_turn_limit_max: 1.5708
     
     3:
-        name: door_livingroom_sleepingroom_1
+        name: door_living-room_sleeping-room_1
         parent: urdf_offset
         height: 2
         width: 1.0
