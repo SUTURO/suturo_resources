@@ -3,7 +3,8 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Knowledge1
       Splitter Ratio: 0.6426510214805603
     Tree Height: 584
   - Class: rviz/Selection
@@ -313,141 +314,141 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        bed_table_center:
+        bed_table_table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bed_table_front_edge_center:
+        bed_table_table_front_edge_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bed_table_origin:
+        bed_table_table_origin:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bookshelf_0_back_piece:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        bookshelf_0_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_0_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_0_floor_0_piece:
+        bookshelf_0_shelf_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_floor_1_piece:
+        bookshelf_0_shelf_base_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_0_shelf_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_0_shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_floor_2_piece:
+        bookshelf_0_shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_left_side_piece:
+        bookshelf_0_shelf_floor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_0_right_side_piece:
+        bookshelf_0_shelf_left_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_back_piece:
+        bookshelf_0_shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_0_shelf_right_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_1_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_1_floor_0_piece:
+        bookshelf_1_shelf_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_floor_1_piece:
+        bookshelf_1_shelf_base_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_1_shelf_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_1_shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_floor_2_piece:
+        bookshelf_1_shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_left_side_piece:
+        bookshelf_1_shelf_floor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_1_right_side_piece:
+        bookshelf_1_shelf_left_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_back_piece:
+        bookshelf_1_shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_1_shelf_right_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_2_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_2_floor_0_piece:
+        bookshelf_2_shelf_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_floor_1_piece:
+        bookshelf_2_shelf_base_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_2_shelf_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_2_shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_floor_2_piece:
+        bookshelf_2_shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_left_side_piece:
+        bookshelf_2_shelf_floor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_origin:
+        bookshelf_2_shelf_left_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bookshelf_2_right_side_piece:
+          Value: true
+        bookshelf_2_shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf_2_shelf_right_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -489,44 +490,96 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_back_piece:
+        hsr_shelf_openable_shelf_back_shelf_piece:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_base_center:
+        hsr_shelf_openable_shelf_base_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        hsr_shelf_center:
+        hsr_shelf_openable_shelf_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        hsr_shelf_floor_0_piece:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hsr_shelf_floor_1_piece:
+        hsr_shelf_openable_shelf_door_left_shelf_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_floor_2_piece:
+        hsr_shelf_openable_shelf_door_left_shelf_link_handle:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_left_side_piece:
+        hsr_shelf_openable_shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_origin:
+        hsr_shelf_openable_shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        hsr_shelf_right_side_piece:
+          Value: true
+        hsr_shelf_openable_shelf_floor_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_openable_shelf_left_side_shelf_piece:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_openable_shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        hsr_shelf_openable_shelf_right_side_shelf_piece:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_shelf_back:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_shelf_base_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        hsr_shelf_shelf_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        hsr_shelf_shelf_floor_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_shelf_floor_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_shelf_floor_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_shelf_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hsr_shelf_shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        hsr_shelf_shelf_right_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -552,29 +605,29 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        table_center:
+        table_clone_table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        table_clone_center:
+        table_clone_table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        table_clone_table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        table_table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        table_clone_front_edge_center:
+        table_table_front_edge_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        table_clone_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        table_front_edge_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        table_origin:
+        table_table_origin:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -673,14 +726,26 @@ Visualization Manager:
           Value: true
       Enabled: true
       Name: Manipulation
-    - Class: rviz/MarkerArray
-      Enabled: false
-      Marker Topic: /room_marker_array
-      Name: RoomVizMarker
-      Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /room_marker_array
+          Name: RoomVizMarker
+          Namespaces:
+            kitchen: true
+          Queue Size: 100
+          Value: true
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: visualization_marker_array
+          Name: ObjectMarkerArray
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: Knowledge
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

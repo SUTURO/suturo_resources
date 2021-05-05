@@ -1,4 +1,5 @@
 tables:
+   perception_postfix: _table_center
    amount: 0
    0:
       name: 
@@ -12,6 +13,7 @@ tables:
 
 
 shelves:
+   perception_postfix: _shelf_floor_X # replace X with floor number starting with 0
    amount: 0
    0:
       name: 
@@ -26,7 +28,24 @@ shelves:
       number_of_floors: 
       door: no
 
+shelves_openable:
+   perception_postfix: _shelf_floor_X
+   amount: 0
+   0:
+      name: hsr_shelf_openable
+      parent: urdf_offset
+      width: 0.75
+      height: 0.585
+      depth: 0.44
+      z_rot: 1.5707963
+      x_pos: 0.75
+      y_pos: 3.01
+      floors_height: [0.12, 0.282, 0.384]
+      number_of_floors: 3
+      door: left
+
 buckets:
+    perception_postfix: _bucket_center
     amount: 0
     0:
         name: 

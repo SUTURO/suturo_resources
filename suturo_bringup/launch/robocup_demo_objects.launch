@@ -17,15 +17,15 @@
 		<arg name="fast_physics" value="false" />
 		<arg name="robot_name" value="$(optenv ROBOT_NAME hsrb)" />
 
-		<arg name="world" value="suturo_sim_clean_up_v2.world" />
-		<arg name="map_name" value="corona_sim/sim_v1.yaml" />
+		<arg name="world" value="robocup_demo_objects.world" />
+		<arg name="map_name" value="robocup_sim_master/robocup_demo.yaml" />
 		<arg name="gazebo" value="true" />
 
 		<arg name="map_server" value="false" />
 		<arg name="publish_planning_hsr" value="true" />
 
 		<arg name="publish_environment" value="true" />
-		<arg name="env_model_yaml" value="gz_sim_v1.yaml" />
+		<arg name="env_model_yaml" value="gz_sim_rc_sim_1.yaml" />
 
         <arg name="show_rooms" value="true"/>
 
