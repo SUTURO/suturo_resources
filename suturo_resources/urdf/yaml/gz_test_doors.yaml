@@ -1,5 +1,5 @@
 tables:
-   perception_postfix: _table_center
+   perception_postfix: table_center
    amount: 0
    0:
       name: 
@@ -13,7 +13,7 @@ tables:
 
 
 shelves:
-   perception_postfix: _shelf_floor_X # replace X with floor number starting with 0
+   perception_postfix: shelf_floor_X # replace X with floor number starting with 0
    amount: 0
    0:
       name: 
@@ -29,7 +29,7 @@ shelves:
       door: no
 
 shelves_openable:
-   perception_postfix: _shelf_floor_X
+   perception_postfix: shelf_floor_X
    amount: 0
    0:
       name: hsr_shelf_openable
@@ -45,7 +45,7 @@ shelves_openable:
       door: left
 
 buckets:
-    perception_postfix: _bucket_center
+    perception_postfix: bucket_center
     amount: 0
     0:
         name: 
@@ -82,7 +82,8 @@ rooms:
 doors:
     amount: 2
     0:
-        name: door_1
+        room1: kitchen
+        room2: living_room
         parent: urdf_offset
         height: 2
         width: 0.83
@@ -94,7 +95,8 @@ doors:
         door_turn_limit_lower: -1.5708
         door_turn_limit_max: 1.5708
     1:
-        name: door_2
+        room1: kitchen
+        room2: living_room
         parent: urdf_offset
         height: 2
         width: 0.83
@@ -109,7 +111,8 @@ doors:
 paths:
     amount: 0
     0:
-        name: kitchen-living_room
+        room1: kitchen
+        room2: living_room
         parent: urdf_offset
         x_pos: 0
         y_pos: 0

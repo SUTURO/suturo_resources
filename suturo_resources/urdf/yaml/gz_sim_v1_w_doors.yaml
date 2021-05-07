@@ -1,5 +1,5 @@
 tables:
-   perception_postfix: _table_center
+   perception_postfix: table_center
    amount: 3
    0:
       name: table
@@ -34,7 +34,7 @@ tables:
 
 
 shelves:
-   perception_postfix: _shelf_floor_X # replace X with floor number starting with 0
+   perception_postfix: shelf_floor_X # replace X with floor number starting with 0
    amount: 4
    0:
       name: hsr_shelf
@@ -91,7 +91,7 @@ shelves:
 
 
 shelves_openable:
-   perception_postfix: _shelf_floor_X
+   perception_postfix: shelf_floor_X
    amount: 1
    0:
       name: hsr_shelf_openable
@@ -109,7 +109,7 @@ shelves_openable:
 
 
 buckets:
-    perception_postfix: _bucket_center
+    perception_postfix: bucket_center
     amount: 1
     0:
       name: bucket
