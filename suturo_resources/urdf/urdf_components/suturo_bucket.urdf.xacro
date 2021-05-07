@@ -9,7 +9,7 @@
   <xacro:macro name="suturo_bucket" params="name parent *origin size_x size_y size_z">
     <!-- LINKS -->
 
-    <link name="${name}_bucket_center">
+    <link name="${name}#bucket_center">
       <visual>
         <material name="bucket_grey"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -26,36 +26,36 @@
     </link> 
     
 
-    <link name="${name}_bucket_origin"/>
+    <link name="${name}#bucket_origin"/>
 
     <!-- Additional tf-frames -->
-    <link name="${name}_bucket_surface_center"/>
-    <link name="${name}_bucket_front_edge_center"/>
+    <link name="${name}#bucket_surface_center"/>
+    <link name="${name}#bucket_front_edge_center"/>
     
     <!-- JOINTS -->
 
-    <joint name="${name}_bucket_origin_joint" type="fixed">
+    <joint name="${name}#bucket_origin_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${name}_bucket_origin"/>
+      <child link="${name}#bucket_origin"/>
     </joint>
 
-    <joint name="${name}_bucket_center_joint" type="fixed">
+    <joint name="${name}#bucket_center_joint" type="fixed">
       <origin xyz="${size_x/2} ${size_y/2} ${size_z/2}" rpy="0 0 0" />
-      <parent link="${name}_bucket_origin"/>
-      <child link="${name}_bucket_center"/>
+      <parent link="${name}#bucket_origin"/>
+      <child link="${name}#bucket_center"/>
     </joint> 
 
-    <joint name="${name}_bucket_surface_center_joint" type="fixed">
+    <joint name="${name}#bucket_surface_center_joint" type="fixed">
       <origin xyz="${size_x/2} ${size_y/2} ${size_z}" rpy="0 0 0" />
-      <parent link="${name}_bucket_origin"/>
-      <child link="${name}_bucket_surface_center"/>
+      <parent link="${name}#bucket_origin"/>
+      <child link="${name}#bucket_surface_center"/>
     </joint>
 
-    <joint name="${name}_bucket_front_edge_center_joint" type="fixed">
+    <joint name="${name}#bucket_front_edge_center_joint" type="fixed">
       <origin xyz="0 ${size_y/2} ${size_z}" rpy="0 0 0" />
-      <parent link="${name}_bucket_origin"/>
-      <child link="${name}_bucket_front_edge_center"/>
+      <parent link="${name}#bucket_origin"/>
+      <child link="${name}#bucket_front_edge_center"/>
     </joint> 
   </xacro:macro>
 </robot>

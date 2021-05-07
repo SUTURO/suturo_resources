@@ -9,7 +9,7 @@
   <xacro:macro name="suturo_table" params="name parent *origin size_x size_y size_z">
     <!-- LINKS -->
 
-    <link name="${name}_table_center">
+    <link name="${name}#table_center">
       <visual>
         <material name="table_grey"/>
         <origin xyz="0 0 ${-(size_z)/2}" rpy="0 0 0" />
@@ -26,28 +26,28 @@
     </link> 
     
 
-    <link name="${name}_table_origin"/>
+    <link name="${name}#table_origin"/>
     
-     <link name="${name}_table_front_edge_center"/>
+     <link name="${name}#table_front_edge_center"/>
     
     <!-- JOINTS -->
 
-    <joint name="${name}_table_origin_joint" type="fixed">
+    <joint name="${name}#table_origin_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${name}_table_origin"/>
+      <child link="${name}#table_origin"/>
     </joint>
 
-    <joint name="${name}_center_joint" type="fixed">
+    <joint name="${name}#center_joint" type="fixed">
       <origin xyz="${size_x/2} ${size_y/2} ${size_z}" rpy="0 0 0" />
-      <parent link="${name}_table_origin"/>
-      <child link="${name}_table_center"/>
+      <parent link="${name}#table_origin"/>
+      <child link="${name}#table_center"/>
     </joint>
     
-    <joint name="${name}_table_front_edge_center_joint" type="fixed">
+    <joint name="${name}#table_front_edge_center_joint" type="fixed">
       <origin xyz="0 ${size_y/2} ${size_z}" rpy="0 0 0" />
-      <parent link="${name}_table_origin"/>
-      <child link="${name}_table_front_edge_center"/>
+      <parent link="${name}#table_origin"/>
+      <child link="${name}#table_front_edge_center"/>
     </joint> 
   </xacro:macro>
 </robot>

@@ -1,8 +1,9 @@
 tables:
-   perception_postfix: _table_center
+   perception_postfix: table_center
    amount: 1
    0:
       name: living_room_table
+      knowledge_role: table
       parent: urdf_offset
       width:  1.5
       height: 0.62
@@ -13,10 +14,11 @@ tables:
 
 
 shelves:
-   perception_postfix: _shelf_floor_X # replace X with floor number starting with 0
+   perception_postfix: shelf_floor_X # replace X with floor number starting with 0
    amount: 2
    0:
       name: bookshelf_1
+      knowledge_role: shelf
       parent: urdf_offset
       width: 0.88
       height: 1.19
@@ -29,6 +31,7 @@ shelves:
       door: no
    1:
       name: bookshelf_2
+      knowledge_role: shelf
       parent: urdf_offset
       width: 0.88
       height: 1.19
@@ -43,10 +46,11 @@ shelves:
 
 
 shelves_openable:
-   perception_postfix: _shelf_floor_X
+   perception_postfix: shelf_floor_X
    amount: 0
    0:
       name: hsr_shelf_openable
+      knowledge_role: shelf
       parent: urdf_offset
       width: 0.75
       height: 0.585
@@ -60,10 +64,11 @@ shelves_openable:
 
 
 buckets:
-    perception_postfix: _bucket_center
+    perception_postfix: bucket_center
     amount: 1
     0:
       name: bucket
+      knowledge_role: bucket
       parent: urdf_offset
       width:  1.0
       height: 0.3
@@ -125,7 +130,8 @@ rooms:
 doors:
     amount: 0
     0:
-        name: door_1
+        room1: kitchen
+        room2: living_room
         parent: urdf_offset
         height: 2
         width: 0.83
@@ -137,6 +143,14 @@ doors:
         door_turn_limit_lower: -1.57079
         door_turn_limit_max: 1.57079
 
+paths:
+    amount: 0
+    0:
+        room1: kitchen
+        room2: living_room
+        parent: urdf_offset
+        x_pos: 0
+        y_pos: 0
 
 # Moves everything in the URDF by the given distances
 world_offset:

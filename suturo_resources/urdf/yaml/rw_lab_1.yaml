@@ -113,6 +113,14 @@ doors:
         door_turn_limit_lower:
         door_turn_limit_max:
 
+paths:
+    amount: 0
+    0:
+        name: kitchen-living_room
+        parent: urdf_offset
+        x_pos: 0
+        y_pos: 0
+
 # Moves everything in the URDF by the given distances
 world_offset:
     X: 0.0
