@@ -19,7 +19,7 @@ tables:
       height: 0.4
       depth: 0.68
       z_rot: 1.5707963
-      x_pos: 2.971660
+      x_pos: 2.871660
       y_pos: 1.184270
    2:
       name: desk
@@ -38,9 +38,9 @@ tables:
       width:  0.45
       height: 0.45
       depth: 0.45
-      z_rot: 1.5707963
-      x_pos: 1.107550
-      y_pos: 2.449940
+      z_rot: 3.14159
+      x_pos: 1.332550
+      y_pos: 2.674940
    4:
       name: chair_1
       knowledge_role: table
@@ -48,9 +48,9 @@ tables:
       width:  0.45
       height: 0.45
       depth: 0.45
-      z_rot: 1.5707963
-      x_pos: 1.107550
-      y_pos: 3.636120
+      z_rot: 3.14159
+      x_pos: 1.332550
+      y_pos: 3.861120
 
 
 shelves:
@@ -64,8 +64,8 @@ shelves:
       height: 1.19
       depth: 0.4
       z_rot: 1.5707963
-      x_pos: 4.19016
-      y_pos: 4.260770
+      x_pos: 3.8
+      y_pos: 3.82077
       floors_height: [0.03, 0.43, 0.8, 1.19]
       number_of_floors: 4
       door: no
@@ -114,7 +114,7 @@ buckets:
       depth: 0.5
       z_rot: 1.5707963
       x_pos: 4.343320
-      y_pos: -1.016140
+      y_pos: -1.516140
 
 
 walls:
