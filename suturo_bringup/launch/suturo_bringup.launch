@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <launch>
+  <remap from="/hsrb/base_scan" to="/hsrb/base_scan_unlimited"/>
+
   <arg name="namespace" default="hsrb"/>
   <arg name="debug" default="false"/>
   <arg name="gui" default="true" />
@@ -38,7 +40,7 @@
   <group if="$(eval arg('run_snap_map') == true)">
     <node pkg="snap_map_icp" type="snap_map_icp" name="snap_map_icp" output="screen">
       <!-- remap topics for map and laser scans -->
-      <remap from="~base_scan" to="/hsrb/base_scan"/>
+      <remap from="~base_scan" to="/hsrb/base_scan_unlimited"/>
       <remap from="~map" to="/static_obstacle_map_ref"/>
 
       <!-- relevant scan frames -->
