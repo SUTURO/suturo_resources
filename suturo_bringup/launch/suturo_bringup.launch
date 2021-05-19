@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <remap from="/hsrb/base_scan" to="/hsrb/base_scan_unlimited"/>
+  <!--remap from="/hsrb/base_scan" to="/hsrb/base_scan_unlimited"/-->
 
   <arg name="namespace" default="hsrb"/>
   <arg name="debug" default="false"/>
