@@ -562,10 +562,30 @@
       <pose frame=''>3.00487 -1.52721 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1318 321000000</sim_time>
-      <real_time>0 0</real_time>
-      <wall_time>1619614597 274612918</wall_time>
-      <iterations>0</iterations>
+      <sim_time>1346 894000000</sim_time>
+      <real_time>17 960629995</real_time>
+      <wall_time>1619615193 93029281</wall_time>
+      <iterations>17920</iterations>
+      <model name='apple'>
+        <pose frame=''>0.706817 3.77096 0.045 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0.706817 3.77096 0.045 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='banana'>
+        <pose frame=''>0.729363 -0.69627 0.645485 0.018616 0.228503 0.503454</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0.729363 -0.69627 0.645485 0.018616 0.228503 0.503454</pose>
+          <velocity>0.000689 -0.000283 -0.002584 0.026971 0.065708 -0</velocity>
+          <acceleration>0 0 -9.8 0.000583 -0.000639 0.004648</acceleration>
+          <wrench>0 0 -1.372 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='bookshelf'>
         <pose frame=''>-0.7 4 0 0 -0 1.57</pose>
         <scale>1 1 1</scale>
@@ -746,6 +766,36 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+      <model name='hsr_orange'>
+        <pose frame=''>0.263941 -0.721782 0.69675 -2e-06 1.1e-05 0.000421</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0.263941 -0.721782 0.69675 -2e-06 1.1e-05 0.000421</pose>
+          <velocity>0 0 0 0 1e-06 0</velocity>
+          <acceleration>-2.1e-05 -4e-06 -9.79992 5.3e-05 -0.000336 7e-06</acceleration>
+          <wrench>-7e-06 -1e-06 -3.42997 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='hsr_pringles'>
+        <pose frame=''>-0.345417 1.42568 0.112498 0 -0 4.6e-05</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-0.345417 1.42568 0.112498 0 -0 4.6e-05</pose>
+          <velocity>9e-06 -0 -0.001756 0 7.8e-05 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -1.862 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='hsr_soda'>
+        <pose frame=''>2.46578 2.63983 0.033 1.5708 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>2.46578 2.63983 0.033 1.5708 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -0 0 -0 0</acceleration>
+          <wrench>0 0 -0 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='kitchen_chair'>
         <pose frame=''>-0.301555 -1.12794 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -810,22 +860,22 @@
         <pose frame=''>3.00464 -0.999814 5e-06 -1e-06 0 0</pose>
         <scale>1 1 1</scale>
         <link name='door'>
-          <pose frame=''>3.00464 -0.999814 -7e-06 7e-06 -0 0.002206</pose>
-          <velocity>-6e-06 0 3e-06 -2.2e-05 -0 -9.7e-05</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
+          <pose frame=''>3.00464 -0.999814 -7e-06 7e-06 -0 0.002218</pose>
+          <velocity>-6e-06 0 -4e-06 1.6e-05 -0 -0.000108</velocity>
+          <acceleration>-0.011724 0.000781 -0.007784 0.038494 -0.000431 -0.217676</acceleration>
+          <wrench>-0.586223 0.03904 -0.389187 0 -0 0</wrench>
         </link>
         <link name='frame'>
           <pose frame=''>3.00464 -0.549814 5e-06 -1e-06 0 0</pose>
-          <velocity>7.2e-05 0 -1.4e-05 5e-06 -0 -0.000155</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
+          <velocity>7.2e-05 -0 1e-05 -4e-06 -0 -0.000154</velocity>
+          <acceleration>0.14404 -0.000338 0.024673 -0.009131 0.000197 -0.30873</acceleration>
+          <wrench>0.14404 -0.000338 0.024673 0 -0 0</wrench>
         </link>
         <link name='handles'>
-          <pose frame=''>3.00287 -0.199823 0.929999 -3.14159 0.0016 -1.56938</pose>
-          <velocity>7.1e-05 2e-05 -1.5e-05 -7.7e-05 -0 -9.7e-05</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
+          <pose frame=''>3.00287 -0.199823 0.929999 -3.14159 0.0016 -1.56937</pose>
+          <velocity>8e-05 -1.4e-05 9e-06 5.6e-05 -0 -0.000108</velocity>
+          <acceleration>0.161665 -0.034216 0.023756 0.133136 -0.000284 -0.217656</acceleration>
+          <wrench>0.161665 -0.034216 0.023756 0 -0 0</wrench>
         </link>
       </model>
       <model name='sofa'>
@@ -854,7 +904,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>3.5736 0.592214 3.05812 0 0.857802 -2.67403</pose>
+        <pose frame=''>-5.10839 7.67592 19.8639 0 1.00579 -0.881996</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -5261,6 +5311,102 @@
       <pose frame=''>3.00464 -0.999814 0 0 -0 0</pose>
       <enable_wind>0</enable_wind>
     </model>
+    <model name='full_wall_55_900_2090_0'>
+      <link name='link'>
+        <inertial>
+          <mass>50</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <visual name='bottom_frame'>
+          <pose frame=''>0 0 0.05 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.055 1.04 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://base_materials/color/scripts</uri>
+              <name>hsr_color/white</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision_bottom_frame'>
+          <pose frame=''>0 0 0.05 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.055 1.04 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='wall'>
+          <pose frame=''>0 0 1.095 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.055 1.04 1.99</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://base_materials/wall/scripts</uri>
+              <uri>model://base_materials/wall/textures</uri>
+              <name>wall/white_noise</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision_wall'>
+          <pose frame=''>0 0 1.095 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.055 1.04 1.99</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>1</static>
+      <pose frame=''>-0.115716 1.40491 0 0 -0 0</pose>
+    </model>
     <model name='full_wall_55_900_2090_0_clone'>
       <link name='link'>
         <inertial>
@@ -5452,6 +5598,319 @@
       </link>
       <static>1</static>
       <pose frame=''>1.68586 1.35862 0 0 -0 0</pose>
+    </model>
+    <model name='hsr_pringles'>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.19</mass>
+          <inertia>
+            <ixx>0.004491</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.004491</iyy>
+            <iyz>0</iyz>
+            <izz>0.000103</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <visual name='hsr_pringles'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://hsr_pringles/meshes/hsr_pringles.dae</uri>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='hsr_pringles'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.033</radius>
+              <length>0.225</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <max_vel>10</max_vel>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>0</static>
+      <pose frame=''>-0.345416 1.42568 0 0 -0 0</pose>
+    </model>
+    <model name='hsr_orange'>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.35</mass>
+          <inertia>
+            <ixx>0.001481</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.001481</iyy>
+            <iyz>0</iyz>
+            <izz>0.000168</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <visual name='hsr_orange'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://hsr_orange/meshes/hsr_orange.dae</uri>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='hsr_orange'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.033</radius>
+              <length>0.1235</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <max_vel>10</max_vel>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>0</static>
+      <pose frame=''>0.263939 -0.780349 0 0 -0 0</pose>
+    </model>
+    <model name='apple'>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>0.000243</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000243</iyy>
+            <iyz>0</iyz>
+            <izz>0.000243</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <visual name='apple'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://apple/meshes/apple.dae</uri>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='apple'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.045</radius>
+            </sphere>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <max_vel>10</max_vel>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>0</static>
+      <pose frame=''>0.706817 3.77096 0 0 -0 0</pose>
+    </model>
+    <model name='banana'>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.14</mass>
+          <inertia>
+            <ixx>0.000203887</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.33333e-05</iyy>
+            <iyz>0</iyz>
+            <izz>0.000189887</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <visual name='banana'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://banana/meshes/banana.dae</uri>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='collision_banana'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://banana/meshes/banana.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <max_vel>10</max_vel>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>0</static>
+      <pose frame=''>2.11977 2.73306 0 0 -0 0</pose>
+    </model>
+    <model name='hsr_soda'>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.35</mass>
+          <inertia>
+            <ixx>0.001481</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.001481</iyy>
+            <iyz>0</iyz>
+            <izz>0.000168</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <visual name='hsr_soda'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://hsr_soda/meshes/hsr_soda.dae</uri>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='hsr_soda'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.033</radius>
+              <length>0.1235</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0</threshold>
+            </bounce>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <max_vel>10</max_vel>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>0</static>
+      <pose frame=''>2.46578 2.6439 0 0 -0 0</pose>
     </model>
   </world>
 </sdf>
