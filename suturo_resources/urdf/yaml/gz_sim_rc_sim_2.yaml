@@ -19,8 +19,8 @@ tables:
       height: 0.4
       depth: 0.68
       z_rot: 1.5707963
-      x_pos: 2.871660
-      y_pos: 1.184270
+      x_pos: 3
+      y_pos: 1
    2:
       name: desk
       knowledge_role: table
@@ -118,52 +118,59 @@ buckets:
 
 
 walls:
-    amount: 0
+    amount: 6
     0:
       name: wall_1
       parent: urdf_offset
-      pos_1_x: -0.8
-      pos_1_y: -2
-      pos_2_x: 3
-      pos_2_y: -2
+      pos_1_x: 0.6
+      pos_1_y: 0.5
+      pos_2_x: 0.6
+      pos_2_y: 4.3
     1:
       name: wall_2
       parent: urdf_offset
-      pos_1_x: 3
-      pos_1_y: 4.5
-      pos_2_x: 3
-      pos_2_y: -2
+      pos_1_x: 0.6
+      pos_1_y: 4.3
+      pos_2_x: 4.5
+      pos_2_y: 4.3
     2:
       name: wall_3
       parent: urdf_offset
-      pos_1_x: 3
-      pos_1_y: 4.5
-      pos_2_x: -0.8
-      pos_2_y: 4.5
+      pos_1_x: 4.5
+      pos_1_y: 4.3
+      pos_2_x: 4.5
+      pos_2_y: -1.55
     3:
       name: wall_4
       parent: urdf_offset
-      pos_1_x: -0.8
-      pos_1_y: 4.5
-      pos_2_x: -0.8
-      pos_2_y: -2
+      pos_1_x: 0.6
+      pos_1_y: -1.68
+      pos_2_x: 4.5
+      pos_2_y: -1.55
     4:
       name: wall_5
       parent: urdf_offset
-      pos_1_x: -0.8
-      pos_1_y: 1
-      pos_2_x: 2
-      pos_2_y: 1
+      pos_1_x: 0.6
+      pos_1_y: -0.55
+      pos_2_x: 0.6
+      pos_2_y: -1.68
+    5:
+      name: wall_6
+      parent: urdf_offset
+      pos_1_x: 0.6
+      pos_1_y: 1.85
+      pos_2_x: 3.4
+      pos_2_y: 1.85
 
 rooms:
     amount: 1
     0:
         name: kitchen
         num_of_corners: 4
-        corners_x_pos: [-0.8, 3, 3, -0.8]
-        corners_y_pos: [-2, -2, 4.5, 4.5]
-        center_x: 0
-        center_y: 1.45
+        corners_x_pos: [0.63, 4.45, 4.45, 0.63]
+        corners_y_pos: [-1.55, -1.55, 4.3, 4.3]
+        center_x: 2.5
+        center_y: 1.5
         color: 1 0.51 0.66 0.5
 
 doors:
