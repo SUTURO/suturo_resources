@@ -1,6 +1,6 @@
 tables:
    perception_postfix: table_center
-   amount: 5
+   amount: 6
    0:
       name: bed_table
       knowledge_role: table
@@ -51,6 +51,16 @@ tables:
       z_rot: 3.14159
       x_pos: 1.332550
       y_pos: 3.861120
+   5:
+      name: bucket
+      knowledge_role: bucket
+      parent: urdf_offset
+      width:  1.0
+      height: 0.3
+      depth: 0.5
+      z_rot: 1.5707963
+      x_pos: 4.343320
+      y_pos: -1.516140
 
 
 shelves:
@@ -104,7 +114,7 @@ shelves_openable:
 
 buckets:
     perception_postfix: bucket_center
-    amount: 1
+    amount: 0
     0:
       name: bucket
       knowledge_role: bucket
