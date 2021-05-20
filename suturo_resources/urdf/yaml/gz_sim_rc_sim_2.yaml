@@ -28,9 +28,9 @@ tables:
       width:  1.2
       height: 0.71
       depth: 0.6
-      z_rot: 1.5707963
-      x_pos: 3.161000
-      y_pos: -1.524390
+      z_rot: -1.5707963
+      x_pos: 1.961
+      y_pos: -0.924390
    3:
       name: chair_0
       knowledge_role: table
@@ -58,9 +58,9 @@ tables:
       width:  1.0
       height: 0.3
       depth: 0.5
-      z_rot: 1.5707963
-      x_pos: 4.343320
-      y_pos: -1.516140
+      z_rot: -1.5707963
+      x_pos: 3.343320
+      y_pos: -1.016140
 
 
 shelves:
