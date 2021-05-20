@@ -9,7 +9,7 @@ tables:
       height: 0.625
       depth: 0.898
       z_rot: 1.5707963
-      x_pos: 1.258020
+      x_pos: 1.458020
       y_pos: 0.876989
    1:
       name: kitchen_table
