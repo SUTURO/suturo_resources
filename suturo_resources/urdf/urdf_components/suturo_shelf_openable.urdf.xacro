@@ -91,7 +91,7 @@
   <xacro:macro name="suturo_shelf_piece_openable" params="name parent *origin box_z_offset=0.0 size_x size_y size_z">
 
     <!-- LINK -->
-    <link name="${name}#shelf_piece">
+    <link name="${name}:shelf_piece">
       <visual>
         <material name="shelf_blue"/>
         <origin xyz="0 0 ${box_z_offset}" rpy="0 0 0" />
