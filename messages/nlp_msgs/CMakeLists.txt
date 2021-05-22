@@ -19,6 +19,7 @@ add_message_files(
    DIRECTORY msg
    FILES
    StaticCommand.msg
+   FetchRequest.msg
 )
 
 generate_messages(
