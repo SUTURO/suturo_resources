@@ -1,36 +1,138 @@
 tables:
    perception_postfix: table_center
-   amount: 0
+   amount: 8
    0:
-      name: 
-      parent: 
-      width: 
-      height: 
-      depth: 
-      z_rot:
-      x_pos:
-      y_pos: 
+      name: couch_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.5
+      height: 0.619873
+      depth: 0.8
+      z_rot: 0.0
+      x_pos: 2.0
+      y_pos: 3.0
 
+   1:
+      name: kitchen_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.5
+      height: 0.619873
+      depth: 0.8
+      z_rot: 1.57079632679
+      x_pos: -1.0
+      y_pos: -1.0
+
+   2:
+      name: dishwasher
+      knowledge_role: dishwasher
+      parent: urdf_offset
+      width:  0.6
+      height: 0.619873
+      depth: 0.8
+      z_rot: 0.0
+      x_pos: -0.8
+      y_pos: -4.0
+
+   3:
+      name: sink
+      knowledge_role: sink
+      parent: urdf_offset
+      width:  0.6
+      height: 0.619873
+      depth: 0.8
+      z_rot: 0.0
+      x_pos: -0.8
+      y_pos: -3.4
+
+   4:
+      name: couch
+      knowledge_role: couch
+      parent: urdf_offset
+      width:  1.6
+      height: 0.619873
+      depth: 1.0
+      z_rot: 3.14159
+      x_pos: 1.0
+      y_pos: 2.0
+
+   5:
+      name: armchair
+      knowledge_role: armchair
+      parent: urdf_offset
+      width:  1.0
+      height: 0.619873
+      depth: 1.0
+      z_rot: 0.0
+      x_pos: 2.0
+      y_pos: 1.0
+
+   6:
+      name: sideboard
+      knowledge_role: sideboard
+      parent: urdf_offset
+      width:  1.6
+      height: 0.619873
+      depth: 0.6
+      z_rot: 0.0
+      x_pos: 2.4
+      y_pos: -3.0
+
+   7:
+      name: bed
+      knowledge_role: bed
+      parent: urdf_offset
+      width:  2.0
+      height: 0.5
+      depth: 1.0
+      z_rot: 0.0
+      x_pos: -1.0
+      y_pos: 0.0
+
+   8:
+      name: sidetable
+      knowledge_role: sidetable
+      parent: urdf_offset
+      width:  0.5
+      height: 0.4
+      depth: 0.5
+      z_rot: 0.0
+      x_pos: 2.5
+      y_pos: 2.5
 
 shelves:
    perception_postfix: shelf_floor_X
-   amount: 0
+   amount: 1
    0:
-      name: 
-      parent: 
-      width: 
-      height: 
-      depth: 
-      z_rot: 
-      x_pos: 
-      y_pos: 
-      floors_height: []
-      number_of_floors: 
+      name: bookshelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.88
+      height: 0.9
+      depth: 0.4
+      z_rot: -1.5707963
+      x_pos: -2.8
+      y_pos: -3.6
+      floors_height: [0.32, 0.582, 0.884]
+      number_of_floors: 3
       door: no
 
 shelves_openable:
-    perception_postfix: shelf_floor_X
-    amount: 0
+   perception_postfix: shelf_floor_X
+   amount: 1
+   0:
+      name: cabinet
+      knowledge_role: cabinet
+      parent: urdf_offset
+      width: 1.2
+      height: 0.585
+      depth: 0.5
+      z_rot: 1.5707963
+      x_pos: 0.0
+      y_pos: 4.5
+      floors_height: [0.12, 0.282, 0.384]
+      number_of_floors: 3
+      door: left
 
 buckets:
     perception_postfix: bucket_center
