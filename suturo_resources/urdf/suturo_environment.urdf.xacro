@@ -28,7 +28,7 @@
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
-        <xacro:suturo_table name="${data['tables'][table_number]['name']}#${data['tables'][table_number]['knowledge_role']}"
+        <xacro:suturo_table name="${data['tables'][table_number]['name']}:${data['tables'][table_number]['knowledge_role']}"
                           parent="${data['tables'][table_number]['parent']}"
                           size_x="${data['tables'][table_number]['depth']}"
                           size_y="${data['tables'][table_number]['width']}"
@@ -60,7 +60,7 @@
     
     <!--  ~~Shelves~~  -->
     <xacro:macro name="shelf_loop" params="shelf_number">
-        <xacro:suturo_shelf name="${data['shelves'][shelf_number]['name']}#${data['shelves'][shelf_number]['knowledge_role']}"
+        <xacro:suturo_shelf name="${data['shelves'][shelf_number]['name']}:${data['shelves'][shelf_number]['knowledge_role']}"
                           parent="${data['shelves'][shelf_number]['parent']}"
                           size_x="${data['shelves'][shelf_number]['depth']}"
                           size_y="${data['shelves'][shelf_number]['width']}"
@@ -78,7 +78,7 @@
 
     <!--  ~~Openable_Shelves~~  -->
     <xacro:macro name="shelf_openable_loop" params="shelf_openable_number">
-        <xacro:suturo_shelf_openable name="${data['shelves_openable'][shelf_openable_number]['name']}#${data['shelves_openable'][shelf_openable_number]['knowledge_role']}"
+        <xacro:suturo_shelf_openable name="${data['shelves_openable'][shelf_openable_number]['name']}:${data['shelves_openable'][shelf_openable_number]['knowledge_role']}"
                           parent="${data['shelves_openable'][shelf_openable_number]['parent']}"
                           size_x="${data['shelves_openable'][shelf_openable_number]['depth']}"
                           size_y="${data['shelves_openable'][shelf_openable_number]['width']}"
@@ -131,7 +131,7 @@
 
     <!--  ~~Doors~~  -->
     <xacro:macro name="door_loop" params="door_number">
-      <xacro:suturo_door name="${data['doors'][door_number]['room1']}#${data['doors'][door_number]['room2']}"
+      <xacro:suturo_door name="${data['doors'][door_number]['room1']}:${data['doors'][door_number]['room2']}"
                          parent="${data['doors'][door_number]['parent']}"
                          height="${data['doors'][door_number]['height']}"
                          width="${data['doors'][door_number]['width']}"
@@ -151,7 +151,7 @@
 
     <!--  ~~Paths~~  -->
     <xacro:macro name="path_loop" params="path_number">
-      <xacro:suturo_path name="${data['paths'][path_number]['room1']}#${data['paths'][path_number]['room2']}"
+      <xacro:suturo_path name="${data['paths'][path_number]['room1']}:${data['paths'][path_number]['room2']}"
                          parent="${data['paths'][path_number]['parent']}"
                          x_pos="${data['paths'][path_number]['x']}"
                          y_pos="${data['paths'][path_number]['y']}"

@@ -13,7 +13,7 @@ tables:
 
 
 shelves:
-   perception_postfix: shelf_floor_X # replace X with floor number starting with 0
+   perception_postfix: shelf_floor_X : replace X with floor number starting with 0
    amount: 0
    0:
       name: 

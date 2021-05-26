@@ -7,13 +7,13 @@
   <xacro:macro name="suturo_path" params="name parent x_pos y_pos">
 
 
-    <joint name="${name}#path_joint" type="fixed">
+    <joint name="${name}:path_joint" type="fixed">
         <origin xyz="${x_pos} ${y_pos} 0 " rpy="0 0 0" />
         <parent link="${parent}"/>
-        <child link="${name}#path_link"/>        
+        <child link="${name}:path_link"/>        
     </joint>
 
-    <link name="${name}#path_link">
+    <link name="${name}:path_link">
     </link>
 
 
