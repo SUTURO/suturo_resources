@@ -3,6 +3,7 @@
 
 string object_name #tf_frame of door == knowrob_object_id
 string object_link_name #tf_frame of handle == knowrob_object_id
+float angle_goal # the target anggle goal
 ---
 # result
 uint8 SUCCESS=0
