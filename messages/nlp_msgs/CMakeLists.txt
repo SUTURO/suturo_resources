@@ -20,6 +20,7 @@ add_message_files(
    FILES
    StaticCommand.msg
    FetchRequest.msg
+   GoAndGetIt.msg
 )
 
 generate_messages(
