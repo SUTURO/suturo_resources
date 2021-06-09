@@ -191,7 +191,7 @@ rooms:
         color: 0.57 1 0.1 0.5
 
 doors:
-    amount: 4
+    amount: 5
     0:
         room1: hall
         room2: living_room
@@ -248,14 +248,28 @@ doors:
         door_turn_limit_lower: 0
         door_turn_limit_max: 1.5708
 
+    4:
+        room1: outside
+        room2: hall
+        parent: urdf_offset
+        height: 2
+        width: 1.0
+        depth: 0.055
+        x: -4.5
+        y: 3.5
+        z: 1.045
+        zrot: 1.57079632679
+        door_turn_limit_lower: 0
+        door_turn_limit_max: 1.5708
+
 paths:
-    amount: 0
+    amount: 1
     0:
         room1: kitchen
-        room2: living_room
+        room2: office
         parent: urdf_offset
         x_pos: 0
-        y_pos: 0
+        y_pos: -2.0
 
 walls:
    amount: 15
