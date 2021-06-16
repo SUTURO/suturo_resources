@@ -38,6 +38,13 @@
 
   <arg name="run_snap_map" default="true" />
 
+  <!-- where to spawn the robot-->
+  <arg name="robot_spawn_pose_x" default="0" />
+  <arg name="robot_spawn_pose_y" default="0" />
+  <arg name="robot_spawn_pose_z" default="0" />
+  <arg name="robot_spawn_rotation" default="0" />
+
+
   <group if="$(eval arg('run_snap_map') == true)">
     <node pkg="snap_map_icp" type="snap_map_icp" name="snap_map_icp" output="screen">
       <!-- remap topics for map and laser scans -->
@@ -80,7 +87,7 @@
     <include file="$(find hsrb_gazebo_launch)/launch/include/hsrb_gazebo_common.xml" pass_all_args="true" >
       <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)" />
       <arg name="world_name" value="$(find suturo_resources)/gazebo_worlds/$(arg world)" />
-      <arg name="robot_pos" value="-x 0 -y 0 -z 0 -Y 0"/>
+      <arg name="robot_pos" value="-x $(arg robot_spawn_pose_x) -y $(arg robot_spawn_pose_y) -z $(arg robot_spawn_pose_z) -Y $(arg robot_spawn_rotation)"/>
       <arg name="ground_truth_xyz_offset" value="0.0\ 0.0\ 0.0" />
       <arg name="ground_truth_rpy_offset" value="0.0\ 0.0\ 0.0" />
       <arg name="rviz" value = "false" />

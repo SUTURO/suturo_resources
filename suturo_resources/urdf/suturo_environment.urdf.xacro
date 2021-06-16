@@ -24,6 +24,7 @@
     <xacro:property name="number_of_walls" value="${data['walls']['amount']}" />
     <xacro:property name="number_of_doors" value="${data['doors']['amount']}" />
     <xacro:property name="number_of_rooms" value="${data['rooms']['amount']}" />
+    <xacro:property name="number_of_paths" value="${data['paths']['amount']}" />
 
 
     <!--  ~~Tables~~  -->
@@ -153,8 +154,8 @@
     <xacro:macro name="path_loop" params="path_number">
       <xacro:suturo_path name="${data['paths'][path_number]['room1']}:${data['paths'][path_number]['room2']}"
                          parent="${data['paths'][path_number]['parent']}"
-                         x_pos="${data['paths'][path_number]['x']}"
-                         y_pos="${data['paths'][path_number]['y']}"
+                         x_pos="${data['paths'][path_number]['x_pos']}"
+                         y_pos="${data['paths'][path_number]['y_pos']}"
                          >
       </xacro:suturo_path>
       <xacro:if value="${(number_of_paths - 1) > path_number}">
@@ -184,6 +185,9 @@
     </xacro:if>
     <xacro:if value="${number_of_doors > 0}">
         <xacro:door_loop door_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_paths > 0}">
+	<xacro:path_loop path_number="0" />
     </xacro:if>
     
     <link name="urdf_main" />
