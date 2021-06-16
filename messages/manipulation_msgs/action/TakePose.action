@@ -8,6 +8,7 @@ uint8 LOOK_HIGH=3
 uint8 LOOK_FLOOR=4
 uint8 GAZE=5
 uint8 GIVE_TAKE=6
+uint8 NAVIGATION=7
 
 uint8 pose_mode
 geometry_msgs/Vector3 gaze_point
