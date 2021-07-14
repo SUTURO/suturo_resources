@@ -33,4 +33,7 @@
 
         <arg name="run_snap_map" default="true" />
     </include>
+
+	<param name="locations_ontology_file" type="str" value="robocup_demo_2_locations.owl"/>
+
 </launch>
