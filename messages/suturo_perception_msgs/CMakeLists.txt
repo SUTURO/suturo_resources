@@ -52,6 +52,7 @@ add_message_files(
    FILES
    ObjectDetectionData.msg
    DoorDetectionData.msg
+   ColorHSV.msg
 )
 
 ## Generate services in the 'srv' folder

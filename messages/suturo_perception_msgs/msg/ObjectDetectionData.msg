@@ -13,6 +13,7 @@ float64 height
 float64 depth
 
 std_msgs/ColorRGBA color
+ColorHSV color_hsv
 float64 confidence_color
 
 string region
