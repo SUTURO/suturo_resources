@@ -8,7 +8,7 @@
 #include <ros/callback_queue.h>
 #include <ros/subscribe_options.h>
 #include <std_msgs/String.h>
-#include <tmc_msgs/TalkRequestActionGoal.h>
+// #include <tmc_msgs/TalkRequestActionGoal.h>
 #include <tmc_msgs/Voice.h>
 #include <rosgraph_msgs/Clock.h>
 #include <thread>
@@ -46,8 +46,8 @@ StringRendererWidget::StringRendererWidget() : GUIPlugin()
     // Create the layout that sits inside the frame
     QHBoxLayout *frameLayout = new QHBoxLayout();
     QLabel *label = new QLabel(tr("Toya said:"));
-    // Create a time label
-    QLabel *sentenceLabel = new QLabel(tr("Nothing Yet"));
+    // Create a sentence label (where the senteces go
+    QLabel *sentenceLabel = new QLabel(tr("Simulator not started."));
     // Add the label to the frame's layout
     frameLayout->addWidget(label);
     frameLayout->addWidget(sentenceLabel);
@@ -66,10 +66,10 @@ StringRendererWidget::StringRendererWidget() : GUIPlugin()
     this->move(10, 10);
     this->adjustSize();
 
-    // Create a named topic, and subscribe to it.
+    // Subscribe to both /talk_request(get the sentence) and /clock (get the sim time)
     ros::SubscribeOptions so1 =
-            ros::SubscribeOptions::create<tmc_msgs::TalkRequestActionGoal>(
-                    "/talk_request_action/goal",
+            ros::SubscribeOptions::create<tmc_msgs::Voice>(
+                    "/talk_request",
                     1,
                     boost::bind(&StringRendererWidget::OnVoiceMsg, this, _1),
                     ros::VoidPtr(), &this->rosQueue);
@@ -97,39 +97,57 @@ StringRendererWidget::~StringRendererWidget()
 
 
 /// Handle an incoming String message from ROS
-void StringRendererWidget::OnVoiceMsg(const tmc_msgs::TalkRequestActionGoalConstPtr &_msg) {
+void StringRendererWidget::OnVoiceMsg(const tmc_msgs::VoiceConstPtr &_msg) {
     unsigned int time = currentSimTime;
 
-    std::string sentence = _msg->goal.data.sentence;
+    std::string sentence = _msg->sentence;
 
     auto tuple = std::make_tuple(sentence, time);
 
     sentencesWithTime.push_front(tuple);
 }
 
+/// handle an incoming Clock msg
 void StringRendererWidget::onClock(const rosgraph_msgs::ClockConstPtr &_msg) {
+
+    // every second
     if (this->currentSimTime < (_msg->clock.sec + displayTime)) {
         this->currentSimTime = _msg->clock.sec + displayTime;
         int i = 0;
         auto c = this->sentencesWithTime.begin();
-        std::string showedSentence = "";
+        std::list<std::string> showedSentenceList;
+
+        // determine wich sentences we  want to show
+        // we show the senteces from the last displayTime seconds
+        // but aleast one
 
         while ((this->currentSimTime - displayTime < std::get<1>(*c)) and (i < this->sentencesWithTime.size())) {
-            showedSentence = showedSentence + std::get<0>(*c).c_str() + "\n";
+            showedSentenceList.push_back(std::get<0>(*c).c_str());
             i++;
             c = std::next(c, 1);
         }
-        if (showedSentence.size() == 0 and sentencesWithTime.size() > 0) {
-            showedSentence = showedSentence + std::get<0>(*(this->sentencesWithTime.begin())).c_str();
-        } else {
-            showedSentence.pop_back();
+        // for the case that we had no sentence in the last displayTime seconds
+        if (showedSentenceList.size() == 0 and sentencesWithTime.size() > 0) {
+            showedSentenceList.push_back(std::get<0>(*(this->sentencesWithTime.begin())).c_str());
+        } 
+
+        showedSentenceList.reverse(); //now we have the sentences we want from oldest to newest
+
+        std::string showedSentence = ""; // The string we will be showing
+
+        for(const auto& sentence : showedSentenceList){ //Fill the string
+            showedSentence = showedSentence + "\n\n" + sentence;
+        }
+        if (showedSentence.size() > 0){
+            showedSentence.erase(showedSentence.begin());
+            showedSentence.erase(showedSentence.begin()); // Drop the first \n\n
         }
 
-        this->setUpdatesEnabled(false);
+        this->setUpdatesEnabled(false); // Dont update while changing the content
         this->SetSentence(QString::fromStdString(showedSentence));
         this->adjustSize();
         this->setUpdatesEnabled(true);
-        this->update();
+        this->update();//force  update
     }
 }
 

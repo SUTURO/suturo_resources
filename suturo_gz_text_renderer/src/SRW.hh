@@ -8,7 +8,7 @@
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
 #include "std_msgs/String.h"
-#include <tmc_msgs/TalkRequestActionGoal.h>
+// #include <tmc_msgs/TalkRequestActionGoal.h>
 #include <tmc_msgs/Voice.h>
 #include "rosgraph_msgs/Clock.h"
 #include <thread>
@@ -36,8 +36,8 @@ namespace gazebo
         /// \param[in] _string String representation of sim time.
         signals: void SetSentence(QString _string);
 
-        /// Handle an incoming String message from ROS
-        private: void OnVoiceMsg(const tmc_msgs::TalkRequestActionGoalConstPtr &_msg);
+        /// Handle an incoming message from ROS
+        private: void OnVoiceMsg(const tmc_msgs::VoiceConstPtr &_msg);
         private: void onClock(const rosgraph_msgs::ClockConstPtr &_msg);
         /// \brief ROS helper function that processes messages
         private: void QueueThread();
