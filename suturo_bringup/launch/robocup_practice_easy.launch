@@ -25,7 +25,7 @@
 		<arg name="publish_planning_hsr" value="true" />
 
 		<arg name="publish_environment" value="true" />
-		<arg name="env_model_yaml" value="gz_robocup_2021.yaml" />
+		<arg name="env_model_yaml" value="gz_robocup_2021_2.yaml" />
 
         <arg name="show_rooms" value="true"/>
 
