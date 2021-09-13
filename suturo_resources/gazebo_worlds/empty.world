@@ -5,6 +5,9 @@
 <!-- =================================================================================== -->
 <sdf version="1.4">
   <world name="default">
+    <gui>
+      <plugin name="suturo_gz_text_renderer" filename="libsuturo_gz_text_renderer.so"/>
+    </gui>
     <physics type="ode">
     </physics>
     <scene>
