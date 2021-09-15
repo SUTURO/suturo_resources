@@ -308,3 +308,7 @@ build/
 *.out
 *.a
 *.so
+
+# CMake
+cmake-build-*/
+cmake*/
