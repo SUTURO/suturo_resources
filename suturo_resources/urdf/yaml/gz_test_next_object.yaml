@@ -58,8 +58,8 @@ shelves:
       z_rot: 0.0
       x_pos: 1.5
       y_pos: -2.0
-      floors_height: [0.2, 0.4, 0.6, 0.8, 1.2, 1.6]
-      number_of_floors: 6
+      floors_height: [0.3, 0.6, 0.8, 1.2, 1.6]
+      number_of_floors: 5
       door: no
 
    1:
@@ -72,8 +72,8 @@ shelves:
       z_rot: 0.0
       x_pos: 1.2
       y_pos: 0.2
-      floors_height: [0.2, 0.4, 0.6, 0.8]
-      number_of_floors: 4
+      floors_height: [0.3, 0.6, 0.8]
+      number_of_floors: 3
       door: no
 
 shelves_openable:
@@ -89,7 +89,7 @@ shelves_openable:
       z_rot: 0.0
       x_pos: 1.2
       y_pos: 1.4
-      floors_height: [0.2, 0.6, 0.8, 1.0, 1.2, 1.4]
+      floors_height: [0.3, 0.6, 0.8, 1.0, 1.2, 1.4]
       number_of_floors: 6
       door: left
 
