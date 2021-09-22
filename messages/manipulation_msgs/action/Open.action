@@ -1,5 +1,5 @@
 # opens the object with the given object_frame_id.
-# goal
+# define the goal
 
 string object_name #tf_frame of door == knowrob_object_id
 string object_link_name #tf_frame of handle == knowrob_object_id
