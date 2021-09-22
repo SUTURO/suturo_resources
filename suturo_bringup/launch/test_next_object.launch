@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+	<param name="locations_ontology_file" type="str" value="robocup_practice_easy_locations.owl"/>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
 		<arg name="namespace" default="hsrb"/>
 		<arg name="debug" default="false"/>
@@ -25,7 +26,8 @@
 		<arg name="publish_planning_hsr" default="true" />
 
 		<arg name="publish_environment" default="true" />
-		<arg name="env_model_yaml" default="gz_test_next_object.yaml" />
+		<!--<arg name="env_model_yaml" default="gz_test_next_object.yaml" />-->
+		<arg name="env_model_yaml" default="gz_robocup_2021_2.yaml" />
 
         <arg name="show_rooms" default="true"/>
 
@@ -34,6 +36,5 @@
         <arg name="run_snap_map" default="true" />
     </include>
 
-	<param name="locations_ontology_file" type="str" value="test_next_object_locations.owl"/>
 
 </launch>

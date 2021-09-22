@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+	<param name="locations_ontology_file" type="str" value="robocup_practice_easy_locations.owl"/>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
 		<arg name="namespace" value="hsrb"/>
 		<arg name="debug" value="false"/>
@@ -38,7 +39,6 @@
         <arg name="robot_spawn_pose_z" default="0" />
         <arg name="robot_spawn_rotation" default="-1.57079632679" />
 
-	<param name="locations_ontology_file" type="str" value="robocup_practice_easy_locations.owl"/>
 
     </include>
 
