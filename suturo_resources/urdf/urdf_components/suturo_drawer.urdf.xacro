@@ -1,0 +1,473 @@
+<?xml version="1.0"?>
+<robot name="suturo_drawer" xmlns:xacro="http://ros.org/wiki/xacro">
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+    <material name="orange">
+        <color rgba="1 0.7 0 1"/>
+    </material>
+    <material name="handle_white">
+        <color rgba="1 1 1 1"/>
+    </material>
+    <xacro:property name="half_pi" value="1.570796327" />
+
+    <xacro:macro name="suturo_drawer" params="name parent *origin size_x size_y size_z ">
+
+
+        <!-- LINKS-->
+        <!-- LINK -->
+        <!--<link name="${name}:drawer_center">
+          <visual>
+            <material name="orange"/>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <geometry>
+              <mesh filename="package://suturo_resources/gazebo_models/trofast/meshes/trofast.stl" scale="1 1 1"/>
+            </geometry>
+          </visual>
+        </link>-->
+
+        <link name="${name}:drawer_center">
+          <visual name="trofast">
+            <material name="orange"/>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <geometry>
+              <mesh filename="package://suturo_resources/gazebo_models/trofast/meshes/trofast.stl" scale="1 1 1"/>
+            </geometry>
+          </visual>
+          <visual name="knob_base">
+            <origin xyz="0.205 0 0.28" rpy="0 1.56 0" />
+
+            <geometry>
+                <cylinder radius="0.034" length="0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <visual name="knob_pole">
+            <origin xyz="0.22 0 0.28" rpy="0 1.56 0" />
+            <geometry>
+                <cylinder radius="0.015" length="0.05"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <visual name="knob_handle">
+            <origin xyz="0.24 0 0.28" rpy="0 0 0" />
+            <geometry>
+                <box size= "0.01 0.066 0.03"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="collision_trofast">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+              <mesh filename="package://suturo_resources/gazebo_models/trofast_knob/meshes/trofast.stl" scale="1 1 1"/>
+            </geometry>
+            <max_contacts>10</max_contacts>
+            <surface>
+              <contact>
+                <ode>
+                  <kp>1e15</kp>
+                  <kd>1e13</kd>
+                </ode>
+              </contact>
+            </surface>
+          </collision>
+          <collision name="collision_knob_base">
+            <origin xyz="0.205 0 0.28" rpy="0 1.56 0" />
+            <geometry>
+                <cylinder radius="0.034" length="0.02"/>
+            </geometry>
+          </collision>
+          <collision name="collision_knob_pole">
+            <origin xyz="0.22 0 0.28" rpy="0 1.56 0" />
+            <geometry>
+                <cylinder radius="0.015" length="0.05"/>
+            </geometry>
+          </collision>
+          <collision name="collision_knob_handle">
+            <origin xyz="0.24 0 0.28" rpy="0 0 0" />
+            <geometry>
+                <box size= "0.01 0.066 0.03"/>
+            </geometry>
+          </collision>
+        </link>
+
+
+
+
+
+
+
+
+
+        <link name="${name}:wrc_stair_like_drawer">
+            <collision name="slit1">
+                <origin xyz="0 -0.495 0.21" rpy="0 0 0" />
+
+                <geometry>
+                  <box size= "0.44 0.02 0.42"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0 -0.495 0.21" rpy="0 0 0" />
+
+                <geometry>
+                  <box size= "0.44 0.02 0.42"/>
+                </geometry>
+                <material name ="white"/>
+            </visual>
+
+            <collision name="holder_slit1_1_left_low">
+                <origin xyz="0 -0.48 0.30" rpy="0 0 0" />
+
+                <geometry>
+                  <box size= "0.42 0.02 0.02"/>
+                </geometry>
+            </collision>
+              <visual name="holder_slit1_1_left_low_v">
+                <origin xyz="0 -0.48 0.30" rpy="0 0 0" />
+
+                <geometry>
+                  <box size= "0.42 0.02 0.02"/>
+                </geometry>
+                <material name ="white"/>
+              </visual>
+
+              <collision name="holder_slit1_1_left_high">
+                <origin xyz="0 -0.48 0.30" rpy="0 0 0" />
+
+                <geometry>
+                  <box size= "0.42 0.02 0.02"/>
+                </geometry>
+              </collision>
+              <visual name="holder_slit1_1_left_high_v">
+                <origin xyz="0 -0.48 0.34" rpy="0 0 0" />
+
+                <geometry>
+                  <box size= "0.42 0.02 0.02"/>
+                </geometry>
+                <material name ="white"/>
+              </visual>
+
+
+
+
+
+          <collision name="holder_slit1_1_right_low">
+            <origin xyz="0 -0.18 0.30" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit1_1_right_low_v">
+            <origin xyz="0 -0.18 0.30" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit1_1_right_high">
+            <origin xyz="0 -0.18 0.30" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit1_1_right_high_v">
+            <origin xyz="0 -0.18 0.30" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="slit2">
+            <origin xyz="0 -0.165 0.34" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.02 0.68"/>
+            </geometry>
+          </collision>
+          <visual name="slit2_v">
+            <origin xyz="0 -0.165 0.34" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.02 0.68"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_1_left_low">
+            <origin xyz="0 -0.15 0.30" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_1_left_low_v">
+            <origin xyz="0 -0.15 0.30" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_1_left_high">
+            <origin xyz="0 -0.15 0.30" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_1_left_high_v">
+            <origin xyz="0 -0.15 0.34" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_1_right_low">
+            <origin xyz="0 0.15 0.30" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_1_right_low_v">
+            <origin xyz="0 0.15 0.30" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_1_right_high">
+            <origin xyz="0 0.15 0.34" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_1_right_high_v">
+            <origin xyz="0 0.15 0.34" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_2_left_low">
+            <origin xyz="0 -0.15 0.56" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_2_left_low_v">
+            <origin xyz="0 -0.15 0.56" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_2_left_high">
+            <origin xyz="0 -0.15 0.60" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_2_left_high_v">
+            <origin xyz="0 -0.15 0.60" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_2_right_low">
+            <origin xyz="0 0.15 0.56" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_2_right_low_v">
+            <origin xyz="0 0.15 0.56" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="holder_slit2_2_right_high">
+            <origin xyz="0 0.15 0.60" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="holder_slit2_2_right_high_v">
+            <origin xyz="0 0.15 0.60" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.42 0.02 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="slit3">
+            <origin xyz="0 0.165 0.47" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.02 0.94"/>
+            </geometry>
+          </collision>
+          <visual name="slit3_v">
+            <origin xyz="0 0.165 0.47" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.02 0.94"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="slit4">
+            <origin xyz="0 0.495 0.47" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.02 0.94"/>
+            </geometry>
+          </collision>
+          <visual name="slit4_v">
+            <origin xyz="0 0.495 0.47" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.02 0.94"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="top1">
+            <origin xyz="0 -0.33 0.41" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.33 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="top1_v">
+            <origin xyz="0 -0.33 0.41" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.33 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="top1_front">
+            <origin xyz="0.21 -0.33 0.37" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.02 0.33 0.06"/>
+            </geometry>
+          </collision>
+          <visual name="top1_front_v">
+            <origin xyz="0.21 -0.33 0.37" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.02 0.33 0.06"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="top2">
+            <origin xyz="0 0 0.67" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.33 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="top2_v">
+            <origin xyz="0 0 0.67" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.33 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="top2_front">
+            <origin xyz="0.21 0 0.63" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.02 0.33 0.06"/>
+            </geometry>
+          </collision>
+          <visual name="top2_front_v">
+            <origin xyz="0.21 0 0.63" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.02 0.33 0.06"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="top3">
+            <origin xyz="0 0.33 0.93" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.33 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="top3_v">
+            <origin xyz="0 0.33 0.93" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.33 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="top3_front">
+            <origin xyz="0.21 0.33 0.89" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.02 0.33 0.06"/>
+            </geometry>
+          </collision>
+          <visual name="top3_front_v">
+            <origin xyz="0.21 0.33 0.89" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.02 0.33 0.06"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+          <collision name="bottom">
+            <origin xyz="0 0 0.06" rpy="0 0 0" />
+
+            <geometry>
+              <box size= "0.44 0.99 0.02"/>
+            </geometry>
+          </collision>
+          <visual name="bottom_v">
+
+            <origin xyz="0 0 0.06" rpy="0 0 0" />
+            <geometry>
+              <box size= "0.44 0.99 0.02"/>
+            </geometry>
+            <material name ="white"/>
+          </visual>
+        </link>
+
+
+        <link name="${name}:drawer_front_top"/>
+        <link name="${name}:drawer_knob"/>
+
+        <!-- JOINTS-->
+
+
+        <!--<joint name="${name}:drawer_center_joint" type="fixed">
+          <xacro:insert_block name="origin" />
+          <parent link="${parent}"/>
+          <child link="${name}:drawer_center"/>
+        </joint>-->
+
+        <joint name="${name}:drawer_center_joint" type="fixed">
+          <xacro:insert_block name="origin" />
+          <parent link="${parent}"/>
+          <child link="${name}:drawer_center"/>
+        </joint>
+
+        <joint name="${name}:drawer_front_joint" type="fixed">
+          <origin xyz="${size_x/2} 0 ${size_z/2+0.1}" rpy="0 0 0" />
+          <parent link="${name}:drawer_center"/>
+          <child link="${name}:drawer_front_top"/>
+        </joint>
+
+        <joint name="${name}:knob_joint" type="fixed">
+          <origin xyz="${size_x/2} 0 ${size_z/2+0.05}" rpy="0 0 0" />
+          <parent link="${name}:drawer_center"/>
+          <child link="${name}:drawer_knob"/>
+        </joint>
+
+
+        <joint name="${name}:stair_center_joint" type="fixed">
+          <xacro:insert_block name="origin" />
+          <parent link="${parent}"/>
+          <child link="${name}:wrc_stair_like_drawer"/>
+        </joint>
+  </xacro:macro>
+</robot>
