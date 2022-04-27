@@ -14,9 +14,10 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bucket.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_path.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_drawer.urdf.xacro"/>
 
     <!-- general data -->
-
+    <xacro:property name="number_of_drawers" value="${data['drawers']['amount']}" />
     <xacro:property name="number_of_tables" value="${data['tables']['amount']}" />
     <xacro:property name="number_of_buckets" value="${data['buckets']['amount']}" />
     <xacro:property name="number_of_shelves" value="${data['shelves']['amount']}" />
@@ -95,6 +96,21 @@
         </xacro:if>
     </xacro:macro>
 
+     <!--  ~~Drawers~~  -->
+    <xacro:macro name="drawer_loop" params="drawer_number">
+        <xacro:suturo_drawer name="${data['drawers'][drawer_number]['name']}:${data['drawers'][drawer_number]['knowledge_role']}"
+                          parent="${data['drawers'][drawer_number]['parent']}"
+                          size_x="${data['drawers'][drawer_number]['depth']}"
+                          size_y="${data['drawers'][drawer_number]['width']}"
+                          size_z="${data['drawers'][drawer_number]['height']}">
+            <origin xyz="${data['drawers'][drawer_number]['x_pos']} ${data['drawers'][drawer_number]['y_pos']} 0"
+                            rpy="0 0 ${data['drawers'][drawer_number]['z_rot']}" />
+        </xacro:suturo_drawer>
+        <!--<xacro:if value="${(number_of_drawers - 1) > drawer_number}">
+            <xacro:drawer_loop drawer_number="${drawer_number + 1}" />
+        </xacro:if>-->
+    </xacro:macro>
+
 
     <!--  ~~Walls~~  -->
     <xacro:macro name="wall_loop" params="wall_number">
@@ -165,6 +181,10 @@
 
 
     <!--Calling the loops-->
+    <xacro:if value="${number_of_drawers > 0}">
+        <xacro:drawer_loop drawer_number="0" />
+    </xacro:if>
+
     <xacro:if value="${number_of_tables > 0}">
         <xacro:table_loop table_number="0" />
     </xacro:if>

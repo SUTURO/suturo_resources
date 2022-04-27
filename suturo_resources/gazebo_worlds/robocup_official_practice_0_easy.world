@@ -4939,6 +4939,10 @@
       </link>
       <pose frame=''>-0.37922 1.03814 0.6 0 -0 0.2444</pose>
     </model>
+
+
+
+
     <model name='task1_tool_ycb_040_large_marker_10'>
       <link name='body'>
         <inertial>
@@ -4991,6 +4995,60 @@
       </link>
       <pose frame=''>-0.206822 1.16728 0.6 0 0 -0.128391</pose>
     </model>
+
+    <model name='task1_tool_ycb_026_sponge_11'>
+        <link name='body'>
+          <inertial>
+            <mass>0.0062</mass>
+            <pose frame=''>-0.0158423566007 0.0115205622132 2 0 -0 0</pose>
+            <inertia>
+              <ixx>5.47518237479e-06</ixx>
+              <ixy>-2.90135453564e-08</ixy>
+              <ixz>-3.80806608311e-08</ixz>
+              <iyy>2.70066917866e-06</iyy>
+              <iyz>-5.29960957204e-08</iyz>
+              <izz>7.92183322306e-06</izz>
+            </inertia>
+          </inertial>
+          <visual name='ycb_026_sponge_visual'>
+            <pose frame=''>0 0 0 0 -0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>model://ycb_026_sponge/meshes/textured.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+          <collision name='ycb_026_sponge_collision'>
+            <pose frame=''>0 0 0 0 -0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>model://ycb_026_sponge/meshes/nontextured.stl</uri>
+              </mesh>
+            </geometry>
+            <max_contacts>10</max_contacts>
+            <surface>
+            <contact>
+              <ode>
+                <kp>1e+15</kp>
+                <kd>1e+13</kd>
+              </ode>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+          </collision>
+          <self_collide>0</self_collide>
+          <enable_wind>0</enable_wind>
+          <kinematic>0</kinematic>
+        </link>
+        <pose frame=''>-0.3022 1.03814 0.6 0 -0 0.2444</pose>
+    </model>
+
     <model name='task2a_1'>
       <link name='body'>
         <inertial>
@@ -5407,6 +5465,58 @@
       </link>
       <pose frame=''>2.61799 -0.894216 0.5 0 -0 0</pose>
     </model>
+
+    <model name='ycb_026_sponge'>
+        <link name='body'>
+          <inertial>
+            <mass>0.0062</mass>
+            <pose>-0.0158423566007 0.0115205622132 2 0 0 0</pose>
+            <inertia>
+              <ixx>5.47518237479e-06</ixx>
+              <ixy>-2.90135453564e-08</ixy>
+              <ixz>-3.80806608311e-08</ixz>
+              <iyy>2.70066917866e-06</iyy>
+              <iyz>-5.29960957204e-08</iyz>
+              <izz>7.92183322306e-06</izz>
+            </inertia>
+          </inertial>
+          <visual name='ycb_026_sponge_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>model://ycb_026_sponge/meshes/textured.dae</uri>
+              </mesh>
+            </geometry>
+          </visual>
+          <collision name='ycb_026_sponge_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <mesh>
+                <uri>model://ycb_026_sponge/meshes/nontextured.stl</uri>
+              </mesh>
+            </geometry>
+            <max_contacts>10</max_contacts>
+            <surface>
+              <contact>
+                <ode>
+                  <kp>1e15</kp>
+                  <kd>1e13</kd>
+                </ode>
+              </contact>
+            </surface>
+          </collision>
+        </link>
+    </model>
+
+
+
+
+
+
+
+
+
+
     <model name='task2_7_ycb_015_peach'>
       <link name='body'>
         <inertial>
