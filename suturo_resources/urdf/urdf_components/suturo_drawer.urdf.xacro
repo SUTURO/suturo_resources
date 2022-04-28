@@ -29,7 +29,7 @@
         <link name="${name}:drawer_center">
           <visual name="trofast">
             <material name="orange"/>
-            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <origin xyz="0.01 0 0.11" rpy="0 0 0" />
             <geometry>
               <mesh filename="package://suturo_resources/gazebo_models/trofast/meshes/trofast.stl" scale="1 1 1"/>
             </geometry>
