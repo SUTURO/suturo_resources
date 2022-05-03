@@ -9,7 +9,7 @@
     <material name="handle_white">
         <color rgba="1 1 1 1"/>
     </material>
-    <xacro:property name="half_pi" value="1.570796327" />
+    <xacro:property name="half_pi" value="${pi/2}" />
 
     <xacro:macro name="suturo_drawer" params="name parent *origin size_x size_y size_z ">
 
@@ -29,13 +29,13 @@
         <link name="${name}:drawer_center">
           <visual name="trofast">
             <material name="orange"/>
-            <origin xyz="0.01 0 0.11" rpy="0 0 0" />
+            <origin xyz="0.01 0 0.01" rpy="0 0 0" />
             <geometry>
               <mesh filename="package://suturo_resources/gazebo_models/trofast/meshes/trofast.stl" scale="1 1 1"/>
             </geometry>
           </visual>
           <visual name="knob_base">
-            <origin xyz="0.205 0 0.28" rpy="0 1.56 0" />
+            <origin xyz="-0.205 0 0.18" rpy="0 1.56 ${pi}" />
 
             <geometry>
                 <cylinder radius="0.034" length="0.02"/>
@@ -43,14 +43,14 @@
             <material name ="white"/>
           </visual>
           <visual name="knob_pole">
-            <origin xyz="0.22 0 0.28" rpy="0 1.56 0" />
+            <origin xyz="-0.22 0 0.18" rpy="0 1.56 ${pi}" />
             <geometry>
                 <cylinder radius="0.015" length="0.05"/>
             </geometry>
             <material name ="white"/>
           </visual>
           <visual name="knob_handle">
-            <origin xyz="0.24 0 0.28" rpy="0 0 0" />
+            <origin xyz="-0.24 0 0.18" rpy="0 0 ${pi}" />
             <geometry>
                 <box size= "0.01 0.066 0.03"/>
             </geometry>
@@ -72,19 +72,19 @@
             </surface>
           </collision>
           <collision name="collision_knob_base">
-            <origin xyz="0.205 0 0.28" rpy="0 1.56 0" />
+            <origin xyz="-0.205 0 0.18" rpy="0 1.56 ${pi}" />
             <geometry>
                 <cylinder radius="0.034" length="0.02"/>
             </geometry>
           </collision>
           <collision name="collision_knob_pole">
-            <origin xyz="0.22 0 0.28" rpy="0 1.56 0" />
+            <origin xyz="-0.22 0 0.18" rpy="0 1.56 ${pi}" />
             <geometry>
                 <cylinder radius="0.015" length="0.05"/>
             </geometry>
           </collision>
           <collision name="collision_knob_handle">
-            <origin xyz="0.24 0 0.28" rpy="0 0 0" />
+            <origin xyz="-0.24 0 0.18" rpy="0 0 ${pi}" />
             <geometry>
                 <box size= "0.01 0.066 0.03"/>
             </geometry>
@@ -432,10 +432,10 @@
           </visual>
         </link>
 
-
-        <link name="${name}:drawer_front_top"/>
         <link name="${name}:drawer_knob"/>
-
+	
+	<link name="${name}:drawer_front_top"/>
+	
         <!-- JOINTS-->
 
 
@@ -446,19 +446,19 @@
         </joint>-->
 
         <joint name="${name}:drawer_center_joint" type="fixed">
-          <xacro:insert_block name="origin" />
-          <parent link="${parent}"/>
+          <origin xyz="0 0 0.1" rpy="0 0 ${pi}"/>
+          <parent link="${name}:wrc_stair_like_drawer"/>
           <child link="${name}:drawer_center"/>
         </joint>
 
         <joint name="${name}:drawer_front_joint" type="fixed">
-          <origin xyz="${size_x/2} 0 ${size_z/2+0.1}" rpy="0 0 0" />
+          <origin xyz="${-size_x/2} 0 ${size_z}" rpy="0 0 0" />
           <parent link="${name}:drawer_center"/>
           <child link="${name}:drawer_front_top"/>
         </joint>
 
         <joint name="${name}:knob_joint" type="fixed">
-          <origin xyz="${size_x/2} 0 ${size_z/2+0.05}" rpy="0 0 0" />
+          <origin xyz="${-size_x/2} 0 ${size_z*0.7}" rpy="0 0 0" />
           <parent link="${name}:drawer_center"/>
           <child link="${name}:drawer_knob"/>
         </joint>

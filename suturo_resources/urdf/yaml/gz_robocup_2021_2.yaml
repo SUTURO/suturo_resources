@@ -6,7 +6,7 @@ drawers:
       knowledge_role: drawer
       parent: urdf_offset
       width: 0.30
-      height: 0.46
+      height: 0.26
       depth: 0.42
       z_rot: 1.5707963
       x_pos: 0.18
