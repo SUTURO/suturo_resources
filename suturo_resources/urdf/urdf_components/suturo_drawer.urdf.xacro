@@ -35,7 +35,7 @@
             </geometry>
           </visual>
           <visual name="knob_base">
-            <origin xyz="-0.205 0 0.18" rpy="0 1.56 ${pi}" />
+            <origin xyz="0.205 0 0.18" rpy="0 1.56 ${pi}" />
 
             <geometry>
                 <cylinder radius="0.034" length="0.02"/>
@@ -43,14 +43,14 @@
             <material name ="white"/>
           </visual>
           <visual name="knob_pole">
-            <origin xyz="-0.22 0 0.18" rpy="0 1.56 ${pi}" />
+            <origin xyz="0.22 0 0.18" rpy="0 1.56 ${pi}" />
             <geometry>
                 <cylinder radius="0.015" length="0.05"/>
             </geometry>
             <material name ="white"/>
           </visual>
           <visual name="knob_handle">
-            <origin xyz="-0.24 0 0.18" rpy="0 0 ${pi}" />
+            <origin xyz="0.24 0 0.18" rpy="0 0 ${pi}" />
             <geometry>
                 <box size= "0.01 0.066 0.03"/>
             </geometry>
@@ -72,19 +72,19 @@
             </surface>
           </collision>
           <collision name="collision_knob_base">
-            <origin xyz="-0.205 0 0.18" rpy="0 1.56 ${pi}" />
+            <origin xyz="0.205 0 0.18" rpy="0 1.56 ${pi}" />
             <geometry>
                 <cylinder radius="0.034" length="0.02"/>
             </geometry>
           </collision>
           <collision name="collision_knob_pole">
-            <origin xyz="-0.22 0 0.18" rpy="0 1.56 ${pi}" />
+            <origin xyz="0.22 0 0.18" rpy="0 1.56 ${pi}" />
             <geometry>
                 <cylinder radius="0.015" length="0.05"/>
             </geometry>
           </collision>
           <collision name="collision_knob_handle">
-            <origin xyz="-0.24 0 0.18" rpy="0 0 ${pi}" />
+            <origin xyz="0.24 0 0.18" rpy="0 0 ${pi}" />
             <geometry>
                 <box size= "0.01 0.066 0.03"/>
             </geometry>
@@ -452,13 +452,13 @@
         </joint>
 
         <joint name="${name}:drawer_front_joint" type="fixed">
-          <origin xyz="${-size_x/2} 0 ${size_z}" rpy="0 0 0" />
+          <origin xyz="${size_x/2} 0 ${size_z}" rpy="0 0 0" />
           <parent link="${name}:drawer_center"/>
           <child link="${name}:drawer_front_top"/>
         </joint>
 
         <joint name="${name}:knob_joint" type="fixed">
-          <origin xyz="${-size_x/2} 0 ${size_z*0.7}" rpy="0 0 0" />
+          <origin xyz="${size_x/2} 0 ${size_z*0.7}" rpy="0 0 0" />
           <parent link="${name}:drawer_center"/>
           <child link="${name}:drawer_knob"/>
         </joint>
@@ -468,6 +468,13 @@
           <xacro:insert_block name="origin" />
           <parent link="${parent}"/>
           <child link="${name}:wrc_stair_like_drawer"/>
+        </joint>
+
+        <joint name="drawer_move" type="prismatic">
+          <parent link="${name}:wrc_stair_like_drawer"/>
+          <child link="${name}:drawer_center"/>
+          <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>
+          <origin xyz="0 0 0.1" rpy="0 0 0" />
         </joint>
   </xacro:macro>
 </robot>
