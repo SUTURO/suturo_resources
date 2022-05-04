@@ -469,7 +469,7 @@
         <joint name="drawer_move" type="prismatic">
           <parent link="${name}:wrc_stair_like_drawer"/>
           <child link="${name}:drawer_center"/>
-          <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>
+          <limit effort="100.0" lower="-1" upper="1" velocity="1"/>
           <origin xyz="0 0 0.1" rpy="0 0 ${pi}" />
         </joint>
   </xacro:macro>
