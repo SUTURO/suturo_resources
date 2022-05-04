@@ -470,6 +470,7 @@
           <parent link="${name}:wrc_stair_like_drawer"/>
           <child link="${name}:drawer_center"/>
           <limit effort="100.0" lower="-1" upper="1" velocity="1"/>
+          <axis xyz="1 0 0"/>
           <origin xyz="0 0 0.1" rpy="0 0 ${pi}" />
         </joint>
   </xacro:macro>
