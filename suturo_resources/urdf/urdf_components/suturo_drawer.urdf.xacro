@@ -445,11 +445,7 @@
           <child link="${name}:drawer_center"/>
         </joint>-->
 
-        <joint name="${name}:drawer_center_joint" type="fixed">
-          <origin xyz="0 0 0.1" rpy="0 0 ${pi}"/>
-          <parent link="${name}:wrc_stair_like_drawer"/>
-          <child link="${name}:drawer_center"/>
-        </joint>
+
 
         <joint name="${name}:drawer_front_joint" type="fixed">
           <origin xyz="${size_x/2} 0 ${size_z}" rpy="0 0 0" />
