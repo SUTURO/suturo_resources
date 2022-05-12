@@ -454,7 +454,7 @@
         </joint>
 
         <joint name="${name}:knob_joint" type="fixed">
-          <origin xyz="${-size_x/2} 0 ${size_z*0.7}" rpy="0 0 0" />
+          <origin xyz="${-size_x/2-0.03} 0 ${size_z*0.7}" rpy="0 0 0" />
           <parent link="${name}:drawer_center"/>
           <child link="${name}:drawer_knob"/>
         </joint>
@@ -469,7 +469,7 @@
         <joint name="drawer_move" type="prismatic">
           <parent link="${name}:wrc_stair_like_drawer"/>
           <child link="${name}:drawer_center"/>
-          <limit effort="100.0" lower="-1" upper="1" velocity="1"/>
+          <limit effort="100.0" lower="-0.36" upper="0.0" velocity="1"/>
           <axis xyz="1 0 0"/>
           <origin xyz="0 0 0.1" rpy="0 0 ${pi}" />
         </joint>

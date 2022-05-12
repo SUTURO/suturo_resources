@@ -33,15 +33,15 @@ class BaseScanLimiterServer:
         """
         if self.limit_area:
             sensor_ranges = np.array(msg.ranges)
-            sensor_middle = len(sensor_ranges) / 2
+            sensor_middle = len(sensor_ranges) // 2
             limit_right_length = 0
             limit_left_length = 0
             if self.limit_right_side:
                 limit_right_length = self.IGNORE_AREA * 3
-                limit_left_length = 120
+                limit_left_length = 127
             else:
                 limit_left_length = self.IGNORE_AREA * 3
-                limit_right_length = 120
+                limit_right_length = 127
             sensor_ranges[(sensor_middle - limit_left_length):(sensor_middle + limit_right_length)] =\
                 [float('inf')] * (limit_left_length + limit_right_length)
             msg.ranges = tuple(sensor_ranges)
