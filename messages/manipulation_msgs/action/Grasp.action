@@ -4,6 +4,7 @@
 uint8 FREE=0 # Given orientation is used
 uint8 FRONT=1 #Orientation is calculated from robot orientation
 uint8 TOP=2 #Orientation is calculated from robot orientation
+uint8 DRAWER=3 #Orientation is calculated from robot orientation
 
 string object_frame_id #tf_frame == knowrob_object_id
 geometry_msgs/PoseStamped goal_pose # in map
