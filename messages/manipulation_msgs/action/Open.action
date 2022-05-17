@@ -1,11 +1,10 @@
 # opens the object with the given object_frame_id.
 # define the goal
 
-string object_name #tf_frame of door == knowrob_object_id
-string object_link_name #tf_frame of handle == knowrob_object_id
-float32 angle_goal # the target anggle goal
+string object_name #tf_frame of drawer == knowrob_object_id
+string object_link_name #tf_frame of knob == knowrob_object_id
 float32 distance_goal # the target distance goal
-
+int32 openorclose #true = 1 and false = 0
 ---
 # result
 uint8 SUCCESS=0
