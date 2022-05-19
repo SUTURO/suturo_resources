@@ -1,6 +1,6 @@
 # opens the object with the given object_frame_id.
 # define the goal
-
+geometry_msgs/PoseStamped goal_pose #knob pose
 string object_name #tf_frame of drawer == knowrob_object_id
 string object_link_name #tf_frame of knob == knowrob_object_id
 float32 distance_goal # the target distance goal
