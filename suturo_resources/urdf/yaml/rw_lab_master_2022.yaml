@@ -55,33 +55,33 @@ shelves:
       name: shelf
       knowledge_role: shelf
       parent: urdf_offset
-      width: 0.8
-      height: 2.02
-      depth: 0.28
-      z_rot: 1.5707963
-      x_pos: 2.66747
-      y_pos: 4.66
-      floors_height: [0.5, 0.8, 1.05]
-      number_of_floors: 3
-      door: no
+      width: 0.75
+      height: 1.10
+      depth: 0.35
+      z_rot: 1.570796327
+      x_pos: 0.4
+      y_pos: 1.55
+      floors_height: [0.05, 0.50, 0.75]
+      number_of_floors: 3 
+      door: no # TODO make this both
 
 
 shelves_openable:
    perception_postfix: shelf_floor_X
    amount: 0
    0:
-      name: 
-      knowledge_role: 
-      parent: 
-      width: 
-      height: 
-      depth: 
-      z_rot: 
-      x_pos:
-      y_pos:
-      floors_height: 
-      number_of_floors: 
-      door:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.75
+      height: 1.10
+      depth: 0.35
+      z_rot: 1.570796327
+      x_pos: -0.3
+      y_pos: 1.5
+      floors_height: [0.05, 0.50, 0.75]
+      number_of_floors: 3 
+      door: left
 
 
 buckets:
@@ -91,12 +91,12 @@ buckets:
       name: bucket
       knowledge_role: bucket
       parent: urdf_offset
-      width:  1.0
-      height: 0.3
-      depth: 0.5
-      z_rot: 1.5707963
-      x_pos: 4.343320
-      y_pos: -1.516140
+      width:  0.3
+      height: 0.32
+      depth: 0.3
+      z_rot: 0.0
+      x_pos: -2.7
+      y_pos: 1.7
 
 
 walls:
