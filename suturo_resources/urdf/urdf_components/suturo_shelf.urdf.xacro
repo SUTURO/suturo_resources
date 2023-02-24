@@ -33,7 +33,14 @@
       <origin xyz="${size_x/2} ${size_y/2} 0.0" rpy="0 0 0" />
       <parent link="${name}:shelf_origin"/>
       <child link="${name}:shelf_base_center"/>
-    </joint> 
+    </joint>
+
+    <!-- <joint name="${name}:shelf_left_side" type="fixed" -->
+    <!--        size_x="${size_x}" size_y="0.01" size_z="${size_z}"> -->
+    <!--   <origin xyz="${size_x/2} ${size_y} ${size_z/2}" rpy="0 0 0"/> -->
+    <!--   <parent link="${name}:shelf_origin"/> -->
+    <!--   <child link="${name}:shelf_door_left"/> -->
+    <!-- </joint>  -->
 
 
     <!-- WALLS -->

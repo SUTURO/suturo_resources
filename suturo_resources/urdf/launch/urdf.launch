@@ -3,10 +3,10 @@
   <arg name="model" default="$(find suturo_resources)/urdf/suturo_environment.urdf.xacro"/>
   <arg name="world_urdf_yaml" default="rw_lab_master_2022.yaml"/>
 
-  <arg name="loc_of_urdf_1" default="hsrb_lab"/>
+  <arg name="loc_of_urdf_1" default="iai_kitchen"/>
   <arg name="loc_of_urdf_2" default="kitchen_description"/>
   <arg name="tf_prefix" default="iai_kitchen"/>
-  <arg name="joint_states_prefix" default="kitchen"/>
+  <arg name="joint_states_prefix" default="iai_kitchen"/>
     
 
   <param name="$(arg loc_of_urdf_1)" command="$(find xacro)/xacro $(arg model) yaml_file:=$(find suturo_resources)/urdf/yaml/$(arg world_urdf_yaml)" />  

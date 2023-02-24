@@ -15,7 +15,7 @@
   <arg name="use_teleop" default="true" />
   <arg name="use_web" default="false" />
   <arg name="use_laser_odom" default="true" />
-  <arg name="paused" default="true" />
+  <arg name="paused" default="false" />
   <arg name="fast_physics" default="false" />
   <arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" />
 
@@ -28,6 +28,7 @@
 
   <arg name="map_server" default="true" />
   <arg name="publish_planning_hsr" default="true" />
+  <arg name="publish_joint_state" default="false" />
 
   <arg name="publish_environment" default="true" />
   <arg name="env_model_yaml" default="rw_lab_master_2022.yaml" />
@@ -94,14 +95,14 @@
     </include>
   </group>
 
-  <group if="$(eval arg('gazebo') == false)">
+  <!--group if="$(eval arg('gazebo') == false)">
     <group if="$(eval arg('map_server') == true)">
       <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/$(arg map_name)" />
     </group>
-  </group>
+  </group-->
 
   <group if="$(eval arg('publish_planning_hsr') == true)">
-    <param name="hsr_description"
+    <param name="robot_description"
            command="$(find xacro)/xacro
                     '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
   </group>
@@ -126,6 +127,21 @@
            command="$(find xacro)/xacro --inorder 
                     '$(find hsrb_description)/robots/hsrb4s.urdf.xacro'"/>
   </group>
+
+
+
+  <group if="$(arg publish_joint_state)">
+    <node pkg="joint_state_publisher" type="joint_state_publisher"
+          name="robot_joint_state_publisher" output="screen">
+      <param name="rate" value="25"/>
+      <param name="use_gui" value="False"/>
+    </node>
+    <node pkg="robot_state_publisher" type="robot_state_publisher"
+          name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" value="25"/>
+    </node>
+  </group>
+
 
   <group if="$(eval arg('suturo_rviz') == true)">
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz" />

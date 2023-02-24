@@ -67,7 +67,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Global Map
-      Topic: /static_obstacle_map_ref
+      Topic: /map
       Unreliable: false
       Use Timestamp: false
       Value: true

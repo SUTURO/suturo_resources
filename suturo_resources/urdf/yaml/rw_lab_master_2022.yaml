@@ -1,16 +1,16 @@
 drawers:
     perception_postfix: drawer_center
     amount: 0
-#     0:
-#       name: drawer
-#       knowledge_role: drawer
-#       parent: urdf_offset
-#       width: 0.30
-#       height: 0.26
-#       depth: 0.42
-#       z_rot: 1.5707963
-#       x_pos: 0.18
-#       y_pos: -0.54
+     # 0:
+     #   name: drawer
+     #   knowledge_role: drawer
+     #   parent: urdf_offset
+     #   width: 0.30
+     #   height: 0.26
+     #   depth: 0.42
+     #   z_rot: 1.5707963
+     #   x_pos: 0.18
+     #   y_pos: -0.54
 
 
 tables:
@@ -26,6 +26,7 @@ tables:
       z_rot: 0.0
       x_pos: -2.9
       y_pos: 0.4
+      
 # right and left table as seen from the door
    1:
       name: right_table
@@ -36,7 +37,7 @@ tables:
       depth: 0.85
       z_rot: 0.0
       x_pos: -2.9
-      y_pos: -1.85
+      y_pos: -1.87
    2:
       name: left_table
       knowledge_role: table
@@ -49,44 +50,45 @@ tables:
       y_pos: -2.05
 
 shelves:
-   perception_postfix: shelf_floor_X # replace X with floor number starting with 0
+   perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
+   amount: 0
+   # 0:
+   #    name: shelf
+   #    knowledge_role: shelf
+   #    parent: urdf_offset
+   #    width: 0.71
+   #    height: 1.04
+   #    depth: 0.32
+   #    z_rot: 1.570796327
+   #    x_pos: 0.4
+   #    y_pos: 1.55
+   #    floors_height: [0.07, 0.32, 0.575, 1.04]
+   #    number_of_floors: 4 
+   #    door: left
+      
+
+
+shelves_openable:
+   perception_postfix: shelf_floor_X
    amount: 1
    0:
       name: shelf
       knowledge_role: shelf
       parent: urdf_offset
-      width: 0.75
-      height: 1.10
-      depth: 0.35
+      width: 0.71
+      height: 1.04
+      depth: 0.32
       z_rot: 1.570796327
-      x_pos: 0.4
-      y_pos: 1.55
-      floors_height: [0.05, 0.50, 0.75]
-      number_of_floors: 3 
-      door: no # TODO make this both
-
-
-shelves_openable:
-   perception_postfix: shelf_floor_X
-   amount: 0
-   0:
-      name: shelf
-      knowledge_role: shelf
-      parent: urdf_offset
-      width: 0.75
-      height: 1.10
-      depth: 0.35
-      z_rot: 1.570796327
-      x_pos: -0.3
-      y_pos: 1.5
-      floors_height: [0.05, 0.50, 0.75]
-      number_of_floors: 3 
-      door: left
+      x_pos: 0.35
+      y_pos: 1.57
+      floors_height: [0.07, 0.32, 0.575, 1.04]
+      number_of_floors: 4
+      door: both
 
 
 buckets:
     perception_postfix: bucket_center
-    amount: 0
+    amount: 1
     0:
       name: bucket
       knowledge_role: bucket
@@ -95,54 +97,113 @@ buckets:
       height: 0.32
       depth: 0.3
       z_rot: 0.0
-      x_pos: -2.7
-      y_pos: 1.7
+      x_pos: 1.8
+      y_pos: -2.76
 
 
 walls:
-    amount: 5
+    amount: 13
     0:
       name: wall_1
       parent: urdf_offset
-      pos_1_x: -0.95
-      pos_1_y: -0.8
-      pos_2_x: 3.15
-      pos_2_y: -0.8
+      pos_1_x: -0.64
+      pos_1_y: -3.21
+      pos_2_x: -2.96
+      pos_2_y: -3.21
     1:
       name: wall_2
       parent: urdf_offset
-      pos_1_x: -0.8
-      pos_1_y: 0.4
-      pos_2_x: -0.66
-      pos_2_y: 5.1
+      pos_1_x: -2.96
+      pos_1_y: -3.21
+      pos_2_x: -2.96
+      pos_2_y: 1.87
     2:
       name: wall_3
       parent: urdf_offset
-      pos_1_x: 3.2
-      pos_1_y: 5.1
-      pos_2_x: -0.66
-      pos_2_y: 5.1
+      pos_1_x: -2.96
+      pos_1_y: 1.87
+      pos_2_x: 0.44
+      pos_2_y: 1.92
     3:
       name: wall_4
       parent: urdf_offset
-      pos_1_x: 0.6
-      pos_1_y: -1.68
-      pos_2_x: 4.5
-      pos_2_y: -1.55
-    3:
+      pos_1_x: 0.433
+      pos_1_y: 1.92
+      pos_2_x: 0.433
+      pos_2_y: 1.32
+    4:
       name: wall_5
       parent: urdf_offset
-      pos_1_x: 3.15
-      pos_1_y: -0.8
-      pos_2_x: 3.2
-      pos_2_y: 5.1
-    4:
+      pos_1_x: 0.433
+      pos_1_y: 1.32
+      pos_2_x: 1.22
+      pos_2_y: 1.32
+    5:
       name: wall_6
       parent: urdf_offset
-      pos_1_x: 2
-      pos_1_y: 2.1
-      pos_2_x: -0.7
-      pos_2_y: 2.1
+      pos_1_x: 2.16
+      pos_1_y: 1.3
+      pos_2_x: 2.33
+      pos_2_y: 1.3
+
+    6:
+      name: wall_7
+      parent: urdf_offset
+      pos_1_x: 2.33
+      pos_1_y: 1.3
+      pos_2_x: 2.33
+      pos_2_y: -3.1
+
+    7:
+      name: wall_8
+      parent: urdf_offset
+      pos_1_x: 2.33
+      pos_1_y: -3.1
+      pos_2_x: 2.11
+      pos_2_y: -3.1
+
+
+    8:
+      name: wall_9
+      parent: urdf_offset
+      pos_1_x: 2.11
+      pos_1_y: -3.1
+      pos_2_x: 2.11
+      pos_2_y: -3.23
+
+    9:
+      name: wall_10
+      parent: urdf_offset
+      pos_1_x: 2.11
+      pos_1_y: -3.23
+      pos_2_x: -0.06
+      pos_2_y: -3.23
+
+    10:
+      name: wall_11
+      parent: urdf_offset
+      pos_1_x: -0.06
+      pos_1_y: -3.23
+      pos_2_x: -0.06
+      pos_2_y: -3.02
+
+    11:
+      name: wall_12
+      parent: urdf_offset
+      pos_1_x: -0.06
+      pos_1_y: -3.02
+      pos_2_x: -0.64
+      pos_2_y: -3.02
+
+    12:
+      name: wall_13
+      parent: urdf_offset
+      pos_1_x: -0.64
+      pos_1_y: -3.02
+      pos_2_x: -0.64
+      pos_2_y: -3.21
+      
+
 
 rooms:
     amount: 2
@@ -155,7 +216,7 @@ rooms:
         center_y: 1.0
         color: 1 0.51 0.66 0.5
     1:
-        name: kitchen
+        name: iai_kitchen
         num_of_corners: 4
         corners_x_pos: [-0.65, 3.2, 3.16, -0.7]
         corners_y_pos: [5.1, 5.1, 2.1, 2.1]
@@ -164,25 +225,25 @@ rooms:
         color: 1 0.51 0.66 0.5
 
 doors:
-    amount: 0
+    amount: 1
     0:
-        room1: kitchen
+        room1: iai_kitchen
         room2: living_room
         parent: urdf_offset
         height: 2
-        width: 0.83
+        width: 0.983
         depth: 0.055
-        x: -1.48708
-        y: 4.9803
-        z: 1.045
-        zrot: 3.14159
-        door_turn_limit_lower: -1.57079
-        door_turn_limit_max: 1.57079
+        x: 2.18
+        y: 1.28
+        z: 1.0
+        zrot: -1.75
+        door_turn_limit_lower: -1.4
+        door_turn_limit_max: 0
 
 paths:
     amount: 0
     0:
-        room1: kitchen
+        room1: iai_kitchen
         room2: living_room
         parent: urdf_offset
         x_pos: 2.6

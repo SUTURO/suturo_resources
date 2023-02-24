@@ -28,7 +28,7 @@
 
     <link name="${name}:table_origin"/>
     
-     <link name="${name}:table_front_edge_center"/>
+    <link name="${name}:table_front_edge_center"/>
     
     <!-- JOINTS -->
 

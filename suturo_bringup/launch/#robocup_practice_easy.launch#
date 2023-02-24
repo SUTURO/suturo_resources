@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-	<param name="locations_ontology_file" type="str" value="robocup_practice_easy_locations.owl"/>
-	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
-		<arg name="namespace" value="hsrb"/>
+  <param name="locations_ontology_file" type="str" value="robocup_practice_easy_locations.owl"/>
+  <include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
+    <arg name="namespace" value="hsrb"/>
 		<arg name="debug" value="false"/>
 		<arg name="gui" value="true" />
 		<arg name="suturo_rviz" value="true"/>
@@ -45,7 +45,7 @@
 
     <node name="map_server" pkg="map_server" type="map_server" args="/home/suturo/maps/map3-door-open-cleaned.yaml" />
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0 0 0 0 map base_footprint"/>
+   
 
 
   

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="urdf_param" default="hsrb_lab"/>
+  <arg name="urdf_param" default="iai_kitchen"/>
   <arg name="tf_namespace" default="iai_kitchen"/>
   <arg name="pub_rate" default="0.2" />
   
