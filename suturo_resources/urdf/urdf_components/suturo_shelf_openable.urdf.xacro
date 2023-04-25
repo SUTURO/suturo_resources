@@ -169,7 +169,7 @@
     </link>
 
     <joint name="${name}:handle_joint" type="fixed">
-      <origin xyz="${-wall_thickness-handle_depth/2} ${-handle_from_side} ${handle_from_bottom-size_z/2}" rpy="0 0 0"/>
+      <origin xyz="${-wall_thickness-handle_depth/2} ${-handle_from_side-handle_width/2} ${handle_from_bottom-size_z/2+handle_height/2}" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${name}"/>
       <child link="${name}:handle"/>
@@ -222,7 +222,7 @@
     </link>
 
     <joint name="${name}:handle_joint" type="fixed">
-      <origin xyz="${-wall_thickness-handle_depth/2} ${+handle_from_side} ${handle_from_bottom-size_z/2}" rpy="0 0 0"/>
+      <origin xyz="${-wall_thickness-handle_depth/2} ${+handle_from_side+handle_width/2} ${handle_from_bottom-size_z/2+handle_height/2}" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${name}"/>
       <child link="${name}:handle"/>
