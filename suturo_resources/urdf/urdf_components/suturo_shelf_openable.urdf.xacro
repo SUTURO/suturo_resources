@@ -6,7 +6,7 @@
   </material>
 
 
-  <xacro:macro name="suturo_shelf_openable" params="name parent *origin size_x size_y size_z floors_height number_of_floors door">
+  <xacro:macro name="suturo_shelf_openable" params="name parent *origin size_x size_y size_z floors_height number_of_floors door wall_thickness handle_from_bottom handle_from_side handle_height handle_width handle_depth">
     
     <!-- General conveinience links -->
     <link name="${name}:shelf_origin"/>
@@ -34,18 +34,18 @@
 
     <!-- WALLS -->
     <xacro:suturo_shelf_piece_openable name="${name}:shelf_back" parent="${name}:shelf_origin"
-      size_x="0.01" size_y="${size_y}" size_z="${size_z}">
+      size_x="${wall_thickness}" size_y="${size_y}" size_z="${size_z}">
       <origin xyz="${size_x} ${size_y/2} ${size_z/2}" rpy="0 0 0"/>
     </xacro:suturo_shelf_piece_openable>
 
     <xacro:suturo_shelf_piece_openable name="${name}:shelf_right_side" parent="${name}:shelf_origin"
-      size_x="${size_x}" size_y="0.01" size_z="${size_z}">
-      <origin xyz="${size_x/2} 0.0 ${size_z/2}" rpy="0 0 0"/>
+      size_x="${size_x}" size_y="${wall_thickness}" size_z="${size_z}">
+      <origin xyz="${size_x/2} ${+wall_thickness/2} ${size_z/2}" rpy="0 0 0"/>
     </xacro:suturo_shelf_piece_openable>
 
     <xacro:suturo_shelf_piece_openable name="${name}:shelf_left_side" parent="${name}:shelf_origin"
-      size_x="${size_x}" size_y="0.01" size_z="${size_z}">
-      <origin xyz="${size_x/2} ${size_y} ${size_z/2}" rpy="0 0 0"/>
+      size_x="${size_x}" size_y="${wall_thickness}" size_z="${size_z}">
+      <origin xyz="${size_x/2} ${size_y-wall_thickness/2} ${size_z/2}" rpy="0 0 0"/>
     </xacro:suturo_shelf_piece_openable>
 
    
@@ -62,12 +62,13 @@
     <xacro:shelf_floor_loop_openable floor_number="0" />
 
 
-
+    <xacro:property name="door_width" value="${(size_y-2*wall_thickness)/2}"/>
 
     <!-- door -->
     <xacro:if value="${door == 'left'}">
       <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
-        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" shelf_x_size="${size_x}">
+       wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+       handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
     </xacro:if>
@@ -75,19 +76,22 @@
 
     <xacro:if value="${door == 'right'}">
       <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" shelf_x_size="${size_x}">
+        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+       handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_right_door_openable>
     </xacro:if>
 
     <xacro:if value="${door == 'both'}">
        <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" shelf_x_size="${size_x}">
-        <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
+        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+       handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
+        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
        </xacro:suturo_shelf_right_door_openable>
 
          <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
-        size_x="0.01" size_y="${size_y/2}" size_z="${size_z}" shelf_x_size="${size_x}">
+          wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+	  handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
     </xacro:if>
@@ -128,18 +132,20 @@
   </xacro:macro>
 
 
-  <xacro:macro name="suturo_shelf_left_door_openable" params="name parent *origin size_x size_y size_z shelf_x_size">
+  <xacro:macro name="suturo_shelf_left_door_openable" params="name parent *origin wall_thickness size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_height handle_width handle_depth">
+
+    <xacro:property name="size_x" value="${wall_thickness}"/>
 
     <link name="${name}">
       <visual>
         <material name="shelf_door_green"/>
-        <origin xyz="0 ${size_y/2.02} 0" rpy="0 0 0" />
+        <origin xyz="0 ${-size_y/2+wall_thickness/2} 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 ${size_y/2.02} 0" rpy="0 0 0" />
+        <origin xyz="0 ${-size_y/2+wall_thickness/2} 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
@@ -151,26 +157,26 @@
         <material name="shelf_openable_handle_red"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.025 0.01 0.07" />
+          <box size="${handle_depth} ${handle_width} ${handle_height}" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.04 0.01 0.07" />
+          <box size="${handle_depth} ${handle_width} ${handle_height}" />
         </geometry>
       </collision>
     </link>
 
     <joint name="${name}:handle_joint" type="fixed">
-      <origin xyz="0.01 ${size_y - 0.04} ${size_z/3}" rpy="0 0 0"/>
+      <origin xyz="${-wall_thickness-handle_depth/2} ${-handle_from_side} ${handle_from_bottom-size_z/2}" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${name}"/>
       <child link="${name}:handle"/>
     </joint>
 
     <joint name="${name}:joint" type="revolute">
-      <origin xyz="${shelf_x_size/-2} 0 0" rpy="0 0 3.1416"/>
+      <origin xyz="${shelf_x_size/-2} ${-wall_thickness} 0" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${parent}"/>
       <child link="${name}"/>
@@ -179,18 +185,20 @@
   </xacro:macro>
 
 
-  <xacro:macro name="suturo_shelf_right_door_openable" params="name parent *origin size_x size_y size_z shelf_x_size">
+  <xacro:macro name="suturo_shelf_right_door_openable" params="name parent *origin wall_thickness size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_height handle_width handle_depth">
+
+    <xacro:property name="size_x" value="${wall_thickness}"/>
 
     <link name="${name}">
       <visual>
         <material name="shelf_door_green"/>
-        <origin xyz="0 ${size_y/2.02} 0" rpy="0 0 0" />
+        <origin xyz="0 ${size_y/2-wall_thickness/2} 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 ${size_y/2.02} 0" rpy="0 0 0" />
+        <origin xyz="0 ${size_y/2-wall_thickness/2} 0" rpy="0 0 0" />
         <geometry>
           <box size="${size_x} ${size_y} ${size_z}" />
         </geometry>
@@ -202,26 +210,26 @@
         <material name="shelf_openable_handle_red"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.025 0.01 0.07" />
+          <box size="${handle_depth} ${handle_width} ${handle_height}" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.04 0.01 0.07" />
+          <box size="${handle_depth} ${handle_width} ${handle_height}" />
         </geometry>
       </collision>
     </link>
 
     <joint name="${name}:handle_joint" type="fixed">
-      <origin xyz="-0.01 ${size_y - 0.04} ${size_z/3}" rpy="0 0 0"/>
+      <origin xyz="${-wall_thickness-handle_depth/2} ${+handle_from_side} ${handle_from_bottom-size_z/2}" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${name}"/>
       <child link="${name}:handle"/>
     </joint>
 
     <joint name="${name}:joint" type="revolute">
-      <origin xyz="${shelf_x_size/-2} 0 0" rpy="0 0 0"/>
+      <origin xyz="${shelf_x_size/-2} ${wall_thickness} 0" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${parent}"/>
       <child link="${name}"/>
