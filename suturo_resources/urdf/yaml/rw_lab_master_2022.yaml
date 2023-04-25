@@ -23,9 +23,9 @@ tables:
       width:  1.4
       height: 0.7
       depth: 0.85
-      z_rot: 0.0
-      x_pos: -2.9
-      y_pos: 0.4
+      z_rot: 3.141592653589793
+      x_pos: -2.05
+      y_pos: 1.8
       
 # right and left table as seen from the door
    1:
@@ -35,9 +35,9 @@ tables:
       width:  1.4
       height: 0.7
       depth: 0.85
-      z_rot: 0.0
-      x_pos: -2.9
-      y_pos: -1.87
+      z_rot: 3.141592653589793
+      x_pos: -2.05
+      y_pos: -0.47
    2:
       name: left_table
       knowledge_role: table
