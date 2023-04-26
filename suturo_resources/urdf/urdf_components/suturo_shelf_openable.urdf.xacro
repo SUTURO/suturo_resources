@@ -176,7 +176,7 @@
     </joint>
 
     <joint name="${name}:joint" type="revolute">
-      <origin xyz="${shelf_x_size/-2} ${-wall_thickness} 0" rpy="0 0 0"/>
+      <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} 0" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${parent}"/>
       <child link="${name}"/>
@@ -229,7 +229,7 @@
     </joint>
 
     <joint name="${name}:joint" type="revolute">
-      <origin xyz="${shelf_x_size/-2} ${wall_thickness} 0" rpy="0 0 0"/>
+      <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} 0" rpy="0 0 0"/>
       <axis xyz="0 0 1" />
       <parent link="${parent}"/>
       <child link="${name}"/>
