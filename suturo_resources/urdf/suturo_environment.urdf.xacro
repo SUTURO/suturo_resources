@@ -87,7 +87,13 @@
                           size_z="${data['shelves_openable'][shelf_openable_number]['height']}"
                           floors_height="${data['shelves_openable'][shelf_openable_number]['floors_height']}"
                           number_of_floors="${data['shelves_openable'][shelf_openable_number]['number_of_floors']}"
-                          door="${data['shelves_openable'][shelf_openable_number]['door']}">
+                          door="${data['shelves_openable'][shelf_openable_number]['door']}"
+			  wall_thickness="${data['shelves_openable'][shelf_openable_number]['wall_thickness']}"
+			  handle_from_bottom="${data['shelves_openable'][shelf_openable_number]['handle_from_bottom']}"
+			  handle_from_side="${data['shelves_openable'][shelf_openable_number]['handle_from_side']}"
+			  handle_height="${data['shelves_openable'][shelf_openable_number]['handle_height']}"
+			  handle_width="${data['shelves_openable'][shelf_openable_number]['handle_width']}"
+			  handle_depth="${data['shelves_openable'][shelf_openable_number]['handle_depth']}">
             <origin xyz="${data['shelves_openable'][shelf_openable_number]['x_pos']} ${data['shelves_openable'][shelf_openable_number]['y_pos']} 0"
                             rpy="0 0 ${data['shelves_openable'][shelf_openable_number]['z_rot']}" />
         </xacro:suturo_shelf_openable>
