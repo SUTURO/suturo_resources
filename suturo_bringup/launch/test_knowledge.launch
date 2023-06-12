@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Launch file to easily test Knowledge stuff -->
+<!-- Launch file to easily test Knowledge stuff with gazebo enabled. -->
 <launch>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
 
@@ -13,6 +13,7 @@
 		
 	    <arg name="map_name" value="hsr_lab_master_2022/map3-door-open-cleaned.yaml" />
 		<arg name="gazebo" value="true" />
+		<!-- This has to be deactivated with gazebo enabled! -->
 		<arg name="use_laser_odom" value="false" />
     </include>
 </launch>
