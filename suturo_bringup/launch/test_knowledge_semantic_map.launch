@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- This launch file just uploads the semantic map and starts rviz. Because of this, it is useful for knowledge and for quickly testing a semantic map. -->
+<launch>
+	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
+		<arg name="suturo_rviz" default="true"/>
+
+		<arg name="publish_environment" default="true" />
+		<!--<arg name="env_model_yaml" default="gz_test_next_object.yaml" />-->
+		<arg name="env_model_yaml" default="rw_lab_master_2022.yaml" />
+
+		<arg name="show_rooms" default="true"/>
+		<arg name="publish_robot_description" default="false" />
+		<arg name="run_snap_map" default="true" />
+    </include>
+
+
+</launch>
