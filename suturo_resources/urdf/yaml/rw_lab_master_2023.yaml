@@ -1,0 +1,252 @@
+drawers:
+    perception_postfix: drawer_center
+    amount: 0
+     # 0:
+     #   name: drawer
+     #   knowledge_role: drawer
+     #   parent: urdf_offset
+     #   width: 0.30
+     #   height: 0.26
+     #   depth: 0.42
+     #   z_rot: 1.5707963
+     #   x_pos: 0.18
+     #   y_pos: -0.54
+
+dishwashers:
+   perception_postfix: dishwasher_center
+   amount: 0
+   0:
+      name: imaginary_dishwasher
+      knowledge_role: dishwasher
+      parent: urdf_offset
+      z_rot: -1.570796327
+      x_pos: -0.8
+      y_pos: 1.6
+
+     
+tables:
+   perception_postfix: table_center
+   amount: 1
+   0:
+      name: left_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.4
+      height: 0.7
+      depth: 0.85
+      z_rot: 0.0
+      x_pos: 1.34
+      y_pos: 1.20
+
+shelves:
+   perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
+   amount: 0
+   # 0:
+   #    name: shelf
+   #    knowledge_role: shelf
+   #    parent: urdf_offset
+   #    width: 0.71
+   #    height: 1.04
+   #    depth: 0.32
+   #    z_rot: 1.570796327
+   #    x_pos: 0.4
+   #    y_pos: 1.55
+   #    floors_height: [0.07, 0.32, 0.575, 1.04]
+   #    number_of_floors: 4 
+   #    door: left
+      
+
+
+shelves_openable:
+   perception_postfix: shelf_floor_X
+   amount: 1
+   0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.71
+      height: 1.04
+      depth: 0.32
+      z_rot: 0.0
+      x_pos: 3.0
+      y_pos: -1.16
+      floors_height: [0.07, 0.46, 0.72, 1.04]
+      number_of_floors: 4
+      door: both
+      wall_thickness: 0.015
+      handle_from_bottom: 0.795
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.02
+
+
+buckets:
+    perception_postfix: bucket_center
+    amount: 0
+    0:
+      name: bucket
+      knowledge_role: bucket
+      parent: urdf_offset
+      width:  0.3
+      height: 0.32
+      depth: 0.3
+      z_rot: 0.0
+      x_pos: 1.8
+      y_pos: -2.76
+
+
+walls:
+    amount: 0
+    0:
+      name: wall_1
+      parent: urdf_offset
+      pos_1_x: -0.64
+      pos_1_y: -3.21
+      pos_2_x: -2.96
+      pos_2_y: -3.21
+    1:
+      name: wall_2
+      parent: urdf_offset
+      pos_1_x: -2.96
+      pos_1_y: -3.21
+      pos_2_x: -2.96
+      pos_2_y: 1.87
+    2:
+      name: wall_3
+      parent: urdf_offset
+      pos_1_x: -2.96
+      pos_1_y: 1.87
+      pos_2_x: 0.44
+      pos_2_y: 1.92
+    3:
+      name: wall_4
+      parent: urdf_offset
+      pos_1_x: 0.433
+      pos_1_y: 1.92
+      pos_2_x: 0.433
+      pos_2_y: 1.32
+    4:
+      name: wall_5
+      parent: urdf_offset
+      pos_1_x: 0.433
+      pos_1_y: 1.32
+      pos_2_x: 1.22
+      pos_2_y: 1.32
+    5:
+      name: wall_6
+      parent: urdf_offset
+      pos_1_x: 2.16
+      pos_1_y: 1.3
+      pos_2_x: 2.33
+      pos_2_y: 1.3
+
+    6:
+      name: wall_7
+      parent: urdf_offset
+      pos_1_x: 2.33
+      pos_1_y: 1.3
+      pos_2_x: 2.33
+      pos_2_y: -3.1
+
+    7:
+      name: wall_8
+      parent: urdf_offset
+      pos_1_x: 2.33
+      pos_1_y: -3.1
+      pos_2_x: 2.11
+      pos_2_y: -3.1
+
+
+    8:
+      name: wall_9
+      parent: urdf_offset
+      pos_1_x: 2.11
+      pos_1_y: -3.1
+      pos_2_x: 2.11
+      pos_2_y: -3.23
+
+    9:
+      name: wall_10
+      parent: urdf_offset
+      pos_1_x: 2.11
+      pos_1_y: -3.23
+      pos_2_x: -0.06
+      pos_2_y: -3.23
+
+    10:
+      name: wall_11
+      parent: urdf_offset
+      pos_1_x: -0.06
+      pos_1_y: -3.23
+      pos_2_x: -0.06
+      pos_2_y: -3.02
+
+    11:
+      name: wall_12
+      parent: urdf_offset
+      pos_1_x: -0.06
+      pos_1_y: -3.02
+      pos_2_x: -0.64
+      pos_2_y: -3.02
+
+    12:
+      name: wall_13
+      parent: urdf_offset
+      pos_1_x: -0.64
+      pos_1_y: -3.02
+      pos_2_x: -0.64
+      pos_2_y: -3.21
+      
+
+
+rooms:
+    amount: 0
+    0:
+        name: living_room
+        num_of_corners: 4
+        corners_x_pos: [-0.95, 3.15, 3.16, -0.7]
+        corners_y_pos: [-0.8, -0.8, 2.1, 2.1]
+        center_x: 0.7
+        center_y: 1.0
+        color: 1 0.51 0.66 0.5
+    1:
+        name: iai_kitchen
+        num_of_corners: 4
+        corners_x_pos: [-0.65, 3.2, 3.16, -0.7]
+        corners_y_pos: [5.1, 5.1, 2.1, 2.1]
+        center_x: 2.0
+        center_y: 3.6
+        color: 1 0.51 0.66 0.5
+
+doors:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        height: 2
+        width: 0.983
+        depth: 0.055
+        x: 2.18
+        y: 1.28
+        z: 1.0
+        zrot: -1.75
+        door_turn_limit_lower: -1.4
+        door_turn_limit_max: 0
+
+paths:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        x_pos: 2.6
+        y_pos: 2.1
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0
+
