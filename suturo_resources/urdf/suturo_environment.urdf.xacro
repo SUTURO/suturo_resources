@@ -2,7 +2,21 @@
 
 <robot name="iai-kitchen" xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="data"
-    value="${load_yaml('$(arg yaml_file)')}" />
+                    value="${load_yaml('$(arg yaml_file)')}" />
+
+    <xacro:property name="simulated" value="true" />
+  
+  <xacro:macro name="sphere_inertia" params="radius mass">
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+          <mass value="1"/>
+          <inertia 
+              ixx="1" ixy="0.0" ixz="0.0" 
+              iyy="1" iyz="0.0" 
+              izz="1"/>
+        </inertial>
+    
+  </xacro:macro>
 
 
     <!--  Include the files containing the macros -->
@@ -15,6 +29,7 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bucket.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_path.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_drawer.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro"/>
 
     <!-- general data -->
     <xacro:property name="number_of_drawers" value="${data['drawers']['amount']}" />
@@ -26,6 +41,7 @@
     <xacro:property name="number_of_doors" value="${data['doors']['amount']}" />
     <xacro:property name="number_of_rooms" value="${data['rooms']['amount']}" />
     <xacro:property name="number_of_paths" value="${data['paths']['amount']}" />
+    <xacro:property name="number_of_dishwashers" value="${data['dishwashers']['amount']}" />
 
 
     <!--  ~~Tables~~  -->
@@ -40,6 +56,18 @@
         </xacro:suturo_table>
         <xacro:if value="${(number_of_tables - 1) > table_number}">
             <xacro:table_loop table_number="${table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+     <!--  ~~Dishwashers~~  -->
+    <xacro:macro name="dishwasher_loop" params="dishwasher_number">
+        <xacro:suturo_dishwasher name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
+                          parent="${data['dishwashers'][dishwasher_number]['parent']}">
+            <origin xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.33475"
+                            rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
+        </xacro:suturo_dishwasher>
+        <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
+            <xacro:table_loop table_number="${dishwasher_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -214,6 +242,9 @@
     </xacro:if>
     <xacro:if value="${number_of_paths > 0}">
 	<xacro:path_loop path_number="0" />
+    </xacro:if>
+     <xacro:if value="${number_of_dishwashers > 0}">
+	<xacro:dishwasher_loop dishwasher_number="0" />
     </xacro:if>
     
     <link name="urdf_main" />

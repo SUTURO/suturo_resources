@@ -12,7 +12,18 @@ drawers:
      #   x_pos: 0.18
      #   y_pos: -0.54
 
+dishwashers:
+   perception_postfix: dishwasher_center
+   amount: 1
+   0:
+      name: imaginary_dishwasher
+      knowledge_role: dishwasher
+      parent: urdf_offset
+      z_rot: -1.570796327
+      x_pos: -0.8
+      y_pos: 1.6
 
+     
 tables:
    perception_postfix: table_center
    amount: 3
