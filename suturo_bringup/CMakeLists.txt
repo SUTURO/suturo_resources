@@ -4,7 +4,6 @@ project(suturo_bringup)
 find_package(catkin REQUIRED COMPONENTS
   suturo_resources
   hsr_description
-  hsrb_gazebo_launch
   map_server
   xacro
   tf2_ros
