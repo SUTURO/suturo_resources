@@ -9,7 +9,7 @@
 
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 ${pi}" />
         <geometry>
           <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.dae"/>
         </geometry>
@@ -42,13 +42,13 @@
     <link name="${name}_door_handle">
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 ${pi} 0" />
         <geometry>
           <mesh filename="package://iai_kitchen/meshes/handles/Handle60.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 ${pi} 0" />
         <geometry>
           <mesh filename="package://iai_kitchen/meshes/handles/Handle60.obj"/>
         </geometry>
@@ -80,20 +80,20 @@
     <xacro:unless value="${simulated}">
     -->
     <joint name="${name}_door_joint" type="revolute">
-      <origin xyz="0.27 0. -0.285" rpy="${-0.5*pi} 0 0" />
+      <origin xyz="-0.27 0. -0.285" rpy="${-0.5*pi} 0 0" />
       <parent link="${name}_main"/>
       <child link="${name}_door"/>
       <axis xyz="0 0 1"/>
       <!--
       <limit lower="0" upper="${0.5*pi}" effort="300" velocity="10"/>
       -->
-      <limit lower="0" upper="${0.5*pi}" effort="300" velocity="10"/>
+      <limit lower="${-0.5*pi}" upper="0" effort="300" velocity="10"/>
     </joint>
     <!--
     </xacro:unless>
   -->
     <joint name="${name}_door_handle_joint" type="fixed">
-      <origin xyz="0.085 -0.575 0.0" rpy="${-0.5*pi} 0 0" />
+      <origin xyz="-0.065 -0.575 0.0" rpy="${pi/2} 0 0" />
       <parent link="${name}_door"/>
       <child link="${name}_door_handle"/>
     </joint>
@@ -111,7 +111,7 @@
       <parent link="${parent}"/>
       <child link="${name}_bottom"/>
       <axis xyz="1 0 0"/>
-      <limit lower="0" upper="0.48" effort="300" velocity="10"/>
+      <limit lower="-0.33" upper="0" effort="300" velocity="10"/>
     </joint>
 
 
@@ -193,19 +193,19 @@
     </joint>
 
     <joint name="${name}_bottom_back" type="fixed">
-      <origin xyz="-0.16 0 0.075"/>
+      <origin xyz="0.16 0 0.075"/>
       <child link="${name}_back_side" />
       <parent link="${name}_bottom"/>
     </joint>
 
     <joint name="${name}_bottom_front" type="fixed">
-      <origin xyz="0.16 0 0.075"/>
+      <origin xyz="-0.16 0 0.075" rpy="0 0 0"/>
       <child link="${name}_front_side" />
       <parent link="${name}_bottom"/>
     </joint>
 
     <xacro:tray_handle name="${name}_handle" parent="${name}_front_side">
-      <origin xyz="0.06 -0.1 -0.02"/>
+      <origin xyz="-0.03 -0.1 -0.02"/>
     </xacro:tray_handle>
 
   </xacro:macro>
@@ -258,13 +258,13 @@
     </link>
 
     <joint name="${name}_front_left_joint" type="fixed">
-      <origin xyz="-0.01 -0.1 0"/>
+      <origin xyz="0.01 -0.1 0"/>
       <child link="${name}_left_side" />
       <parent link="${name}_front_side"/>
     </joint>
 
     <joint name="${name}_front_right_joint" type="fixed">
-      <origin xyz="-0.01 0.1 0"/>
+      <origin xyz="0.01 0.1 0"/>
       <child link="${name}_right_side" />
       <parent link="${name}_front_side"/>
     </joint>
