@@ -6,7 +6,7 @@
 
 		<arg name="publish_environment" default="true" />
 		<!--<arg name="env_model_yaml" default="gz_test_next_object.yaml" />-->
-		<arg name="env_model_yaml" default="rw_lab_master_2022.yaml" />
+		<arg name="env_model_yaml" default="rw_lab_master_2023.yaml" />
 
 		<arg name="show_rooms" default="true"/>
 		<arg name="publish_robot_description" default="false" />

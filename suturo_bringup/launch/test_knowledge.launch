@@ -5,13 +5,13 @@
 
 		<arg name="suturo_rviz" value="true"/>
 		<arg name="publish_environment" value="true" />
-		<arg name="env_model_yaml" value="rw_lab_master_2022.yaml" />
+		<arg name="env_model_yaml" value="rw_lab_master_2023.yaml" />
 
 		<arg name="show_rooms" value="true"/>
 		<arg name="publish_robot_description" value="true" />
 		<arg name="run_snap_map" value="false" />
 		
-	    <arg name="map_name" value="hsr_lab_master_2022/map3-door-open-cleaned.yaml" />
+	    <arg name="map_name" value="hsr_lab_master_2023/hsr_lab_master_2023.yaml" />
 		<arg name="gazebo" value="true" />
 		<!-- This has to be deactivated with gazebo enabled! -->
 		<arg name="use_laser_odom" value="false" />
