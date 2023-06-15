@@ -1,0 +1,3 @@
+[submodule "vizbox"]
+	path = suturo_vizbox
+	url = https://github.com/SUTURO/vizbox.git
