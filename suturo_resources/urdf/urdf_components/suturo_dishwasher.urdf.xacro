@@ -101,6 +101,10 @@
     <xacro:dishwasher_tray name="${name}_tray" parent="${name}_main">
       <origin xyz="-0.08 0 0.15"/>
     </xacro:dishwasher_tray>
+    
+    <xacro:dishwasher_tray name="${name}_tray_2" parent="${name}_main">
+      <origin xyz="-0.08 0 -0.15"/>
+    </xacro:dishwasher_tray>
 
   </xacro:macro>
 
@@ -205,6 +209,112 @@
     </joint>
 
     <xacro:tray_handle name="${name}_handle" parent="${name}_front_side">
+      <origin xyz="-0.03 -0.1 -0.02"/>
+    </xacro:tray_handle>
+
+  </xacro:macro>
+  
+    <xacro:macro name="dishwasher_tray_2" params="name parent *origin">
+
+    <joint name="${name}_main_2" type="prismatic">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="${name}_bottom_2"/>
+      <axis xyz="1 0 0"/>
+      <limit lower="-0.33" upper="0" effort="300" velocity="10"/>
+    </joint>
+
+
+    <link name="${name}_bottom_2">
+      <visual>
+        <geometry>
+          <box size="0.32 0.5 0.05"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.32 0.5 0.05"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${name}_left_side_2">
+      <visual>
+        <geometry>
+          <box size="0.32 0.005 0.17"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.32 0.005 0.17"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${name}_right_side_2">
+      <visual>
+        <geometry>
+          <box size="0.32 0.005 0.17"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.32 0.005 0.17"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${name}_back_side_2">
+      <visual>
+        <geometry>
+          <box size="0.005 0.5 0.17"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.005 0.5 0.17"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${name}_front_side_2">
+      <visual>
+        <geometry>
+          <box size="0.005 0.5 0.17"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.005 0.5 0.17"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_bottom_left_2" type="fixed">
+      <origin xyz="-0.0 -0.25 -0.075"/>
+      <child link="${name}_left_side_2" />
+      <parent link="${name}_bottom_2"/>
+    </joint>
+
+    <joint name="${name}_bottom_right_2" type="fixed">
+      <origin xyz="-0.0 0.25 -0.075"/>
+      <child link="${name}_right_side_2" />
+      <parent link="${name}_bottom_2"/>
+    </joint>
+
+    <joint name="${name}_bottom_back" type="fixed">
+      <origin xyz="0.16 0 -0.075"/>
+      <child link="${name}_back_side_2" />
+      <parent link="${name}_bottom_2"/>
+    </joint>
+
+    <joint name="${name}_bottom_front" type="fixed">
+      <origin xyz="-0.16 0 -0.075" rpy="0 0 0"/>
+      <child link="${name}_front_side_2" />
+      <parent link="${name}_bottom_2"/>
+    </joint>
+
+    <xacro:tray_handle name="${name}_handle_2" parent="${name}_front_side_2">
       <origin xyz="-0.03 -0.1 -0.02"/>
     </xacro:tray_handle>
 
