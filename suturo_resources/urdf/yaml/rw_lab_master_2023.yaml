@@ -33,10 +33,10 @@ tables:
       parent: urdf_offset
       width:  1.4
       height: 0.7
-      depth: 0.85
-      z_rot: -1.570796327
-      x_pos: 1.96
-      y_pos: 0.4
+      depth: 0.8
+      z_rot: -1.58
+      x_pos: 1.9
+      y_pos: 0.42
    1:
       name: kitchen_table
       knowledge_role: table
