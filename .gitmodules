@@ -1,3 +1,6 @@
 [submodule "messages/giskard_msgs"]
 	path = messages/giskard_msgs
 	url = git@github.com:SUTURO/giskard_msgs.git
+[submodule "messages/robokudo_msgs"]
+	path = messages/robokudo_msgs
+	url = https://gitlab.informatik.uni-bremen.de/robokudo/robokudo_msgs.git
