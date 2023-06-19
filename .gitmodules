@@ -1,0 +1,3 @@
+[submodule "messages/giskard_msgs"]
+	path = messages/giskard_msgs
+	url = git@github.com:SUTURO/giskard_msgs.git
