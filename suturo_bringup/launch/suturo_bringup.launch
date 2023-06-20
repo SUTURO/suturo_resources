@@ -72,7 +72,7 @@
            command="$(find xacro)/xacro
                     '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
   </group>
-
+  
   <!-- URDF OF THE ENVIORNMENT -->
   <group if="$(eval arg('publish_environment') == true)">
     <include file="$(find suturo_resources)/urdf/launch/urdf.launch" pass_all_args="true" >
