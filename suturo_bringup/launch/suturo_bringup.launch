@@ -3,39 +3,38 @@
   <node pkg="suturo_resources" name="base_scan_limiter" type="base_scan_opening_limiter.py" output="screen"/>
   <remap from="/hsrb/base_scan" to="/hsrb/base_scan_unlimited"/>
 
-  <arg name="namespace" default="hsrb"/>
-  <arg name="debug" default="false"/>
-  <arg name="gui" default="true" />
-  <arg name="suturo_rviz" default="false"/>
-  <arg name="gazebo_visualization" default="false" />
-  <arg name="use_manipulation" default="true" />
+  <!--arg name="namespace" default="hsrb" /-->
+  <!--arg name="debug" default="false"/-->
+  <!--arg name="gui" default="true" /-->
+  <arg name="use_rviz" default="false"/>
+  <!--arg name="gazebo_visualization" default="false" /-->
+  <!--arg name="use_manipulation" default="true" />
   <arg name="use_navigation" default="true" />
   <arg name="use_perception" default="true" />
   <arg name="use_task" default="true" />
   <arg name="use_teleop" default="true" />
   <arg name="use_web" default="false" />
-  <arg name="use_laser_odom" default="true" />
-  <arg name="paused" default="false" />
-  <arg name="fast_physics" default="false" />
-  <arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" />
+  <arg name="use_laser_odom" default="true" /-->
+  <!--arg name="paused" default="false" /-->
+  <!--arg name="fast_physics" default="false" /-->
+  <!--arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" /-->
 
-  <arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
-  <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/>
+  <!--arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
+  <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/-->
 
   <arg name="world" default="empty.world" />
   <arg name="map_name" default="empty/map.yaml" />
   <arg name="gazebo" default="false" />
 
-  <arg name="map_server" default="true" />
-  <arg name="publish_planning_hsr" default="true" />
+  <!--arg name="map_server" default="true" /-->
+  <arg name="upload_hsrb" default="false" /> <!-- Set true if robot has publishes faulty robot_description -->
   <arg name="publish_joint_state" default="false" />
 
+  <arg name="upload_map" default="true" />
   <arg name="publish_environment" default="true" />
-  <arg name="env_model_yaml" default="rw_lab_master_2022.yaml" />
+  <arg name="env_model_yaml" default="rw_lab_master_2023.yaml" />
 
-  <arg name="show_rooms" default="true"/>
-
-  <arg name="publish_robot_description" default="false" />
+  <arg name="show_rooms" default="false"/>
 
   <arg name="run_snap_map" default="true" />
 
@@ -47,41 +46,7 @@
 
 
   <group if="$(eval arg('run_snap_map') == true)">
-    <node pkg="snap_map_icp" type="snap_map_icp" name="snap_map_icp" output="screen">
-      <!-- remap topics for map and laser scans -->
-      <remap from="~base_scan" to="/hsrb/base_scan_unlimited"/>
-      <remap from="~map" to="/static_obstacle_map_ref"/>
-
-      <!-- relevant scan frames -->
-      <param name="odom_frame" value="/odom"/>
-      <param name="base_laser_frame" value="/base_range_sensor_link"/>
-
-      <!-- defines minimum fitness for candidates for pose publishing -->
-      <param name="icp_fitness_threshold" value="10"/>
-   
-      <!-- accept only scans one second old or younger -->
-      <param name="age_threshold" value="20"/>
-      <param name="update_age_threshold" value="1"/>
-
-      <!-- thresholds over distance btw amcl icp pose to trigger pose publishing -->
-      <!-- translation -->
-      <param name="dist_threshold" value="0.01"/>
-      <!-- rotation -->
-      <param name="angle_threshold" value="0.01"/>
-      <param name="angle_upper_threshold" value="1"/>
-
-      <!-- various icp parameters -->
-      <!-- consult with icp algorithm from pcl for details -->
-      <param name="icp_inlier_threshold" value="0.1"/>
-      <param name="icp_inlier_dist" value="0.1"/>
-      <param name="icp_num_iter" value="500"/>
-
-      <!-- who knows??? -->
-      <param name="pose_covariance_trans" value="0.5"/>
-
-      <!-- rate at which scans are taken -->
-      <param name="scan_rate" value="4"/>
-    </node>
+     <include file="$(find snap_map_icp)/launch/snap_map_icp.launch"/> 
   </group>
 
   <group if="$(eval arg('gazebo') == true)">
@@ -101,7 +66,8 @@
     </group>
   </group-->
 
-  <group if="$(eval arg('publish_planning_hsr') == true)">
+  <!-- HSRB URDF -->
+  <group if="$(arg upload_hsrb)">
     <param name="robot_description"
            command="$(find xacro)/xacro
                     '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
@@ -114,36 +80,22 @@
     </include>
   </group>
 
+  <group if="$(eval arg('upload_map') == true)">
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/hsr_lab_master_2023/hsr_lab_master_2023.yaml" /> <!-- map3-door-open-cleaned.yaml" /-->
+  </group>
+
   <!-- Show Rooms -->
   <group if="$(eval arg('show_rooms') == true)">
     <include file="$(find suturo_room_viz)/launch/suturo_room_viz.launch" pass_all_args="false" >      
     </include>
   </group>
 
-
-  <!-- URDF OF THE ROBOT -->
-  <group if="$(eval arg('publish_robot_description') == true)">
-    <param name="robot_description"
-           command="$(find xacro)/xacro --inorder 
-                    '$(find hsrb_description)/robots/hsrb4s.urdf.xacro'"/>
-  </group>
-
-
-
   <group if="$(arg publish_joint_state)">
-    <node pkg="joint_state_publisher" type="joint_state_publisher"
-          name="robot_joint_state_publisher" output="screen">
-      <param name="rate" value="25"/>
-      <param name="use_gui" value="False"/>
-    </node>
-    <node pkg="robot_state_publisher" type="robot_state_publisher"
-          name="robot_state_publisher" output="screen">
-      <param name="publish_frequency" value="25"/>
-    </node>
+    <node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
   </group>
 
 
-  <group if="$(eval arg('suturo_rviz') == true)">
+  <group if="$(eval arg('use_rviz') == true)">
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz" />
   </group>
   
