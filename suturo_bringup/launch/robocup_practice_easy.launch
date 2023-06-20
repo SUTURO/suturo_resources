@@ -30,6 +30,8 @@
 
 		<arg name="show_rooms" value="true"/>
 
+		<arg name="upload_map" value="false"/>
+
 		<!--arg name="publish_robot_description" value="false" /-->
 
 		<arg name="run_snap_map" value="true" />
