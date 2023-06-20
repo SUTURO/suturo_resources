@@ -1,27 +1,30 @@
+
 drawers:
-    perception_postfix: drawer_center
-    amount: 0
-     # 0:
-     #   name: drawer
-     #   knowledge_role: drawer
-     #   parent: urdf_offset
-     #   width: 0.30
-     #   height: 0.26
-     #   depth: 0.42
-     #   z_rot: 1.5707963
-     #   x_pos: 0.18
-     #   y_pos: -0.54
+  perception_postfix: drawer_center
+  amount: 0
+   # 0:
+    # name: drawer
+    # knowledge_role: drawer
+    # parent: urdf_offset
+    # width: 0.30
+    # height: 0.26
+    # depth: 0.42
+    # z_rot: 1.5707963
+    # x_pos: 0.18
+    # y_pos: -0.54
+
+
 
 dishwashers:
    perception_postfix: dishwasher_center
-   amount: 1
-   0:
-      name: imaginary_dishwasher
-      knowledge_role: dishwasher
-      parent: urdf_offset
-      z_rot: 3.1415926535897932
-      x_pos: 0.8
-      y_pos: 1.5
+   amount: 0
+   # 0:
+   #    name: imaginary_dishwasher
+   #    knowledge_role: dishwasher
+   #    parent: urdf_offset
+   #    z_rot: 3.1415926535897932
+   #    x_pos: 0.8
+   #    y_pos: 1.5
 
      
 tables:
@@ -48,6 +51,8 @@ tables:
       x_pos: 0.4
       y_pos: 2.37
 
+
+      
 shelves:
    perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
    amount: 1
