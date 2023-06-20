@@ -14,21 +14,21 @@
 		<arg name="use_teleop" value="true" />
 		<arg name="use_web" value="false" />
 		<arg name="use_laser_odom" value="true" />
-		<!--arg name="paused" value="true" /-->
+		<arg name="paused" value="true" />
 		<arg name="fast_physics" value="false" />
 		<arg name="robot_name" value="$(optenv ROBOT_NAME hsrb)" />
 
-		<!--arg name="world" value="robocup_official_practice_0_easy.world" /-->
-		<!--arg name="map_name" value="wrs2020/map.yaml" /-->
-		<arg name="gazebo" value="false" />
+		<arg name="world" value="robocup_official_practice_0_easy.world" />
+		<arg name="map_name" value="wrs2020/map.yaml" />
+		<arg name="gazebo" value="true" />
 
 		<arg name="map_server" value="false" />
 		<arg name="publish_planning_hsr" value="true" />
 
 		<arg name="publish_environment" value="true" />
-		<!--arg name="env_model_yaml" value="gz_robocup_2021_2.yaml" /-->
+		<arg name="env_model_yaml" value="gz_robocup_2021_2.yaml" />
 
-		<arg name="show_rooms" value="true"/>
+        <arg name="show_rooms" value="true"/>
 
 		<arg name="publish_robot_description" value="false" />
 
@@ -42,13 +42,6 @@
 
     </include>
 
-
-    <node name="map_server" pkg="map_server" type="map_server" args="/home/suturo/maps/map3-door-open-cleaned.yaml" />
-
-    <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0 0 0 0 map base_footprint"/>
-
-
-  
 <!-- pose fix -->
 
 <node pkg="rostopic" type="rostopic" name="rostopic" args="pub /laser_2d_correct_pose geometry_msgs/PoseWithCovarianceStamped '

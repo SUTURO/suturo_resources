@@ -12,6 +12,9 @@ drawers:
       x_pos: 0.18
       y_pos: -0.54
 
+dishwashers:
+   perception_postfix: dishwasher_center
+   amount: 0
 
 tables:
    perception_postfix: table_center
