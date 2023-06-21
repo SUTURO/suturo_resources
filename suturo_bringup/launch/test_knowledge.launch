@@ -3,7 +3,7 @@
 <launch>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
 
-		<arg name="suturo_rviz" value="true"/>
+		<arg name="use_rviz" value="true"/>
 		<arg name="publish_environment" value="true" />
 		<arg name="env_model_yaml" value="rw_lab_master_2023.yaml" />
 

@@ -2,7 +2,7 @@
 <!-- This launch file just uploads the semantic map and starts rviz. Because of this, it is useful for knowledge and for quickly testing a semantic map. -->
 <launch>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
-		<arg name="suturo_rviz" default="true"/>
+		<arg name="use_rviz" default="true"/>
 
 		<arg name="publish_environment" default="true" />
 		<!--<arg name="env_model_yaml" default="gz_test_next_object.yaml" />-->
