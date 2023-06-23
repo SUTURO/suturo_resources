@@ -14,6 +14,27 @@ drawers:
     # y_pos: -0.54
 
 
+simple_drawers:
+  perception_postfix: drawer_center
+  amount: 1
+  0:
+    name: fake_dishwasher_tray
+    knowledge_role: dishwasher
+    parent: urdf_offset
+    width: 0.41
+    height: 0.10
+    depth: 0.51
+    z_rot: 3.1415
+    x_pos: 0.326
+    y_pos: 1.21
+    z_pos: 0.51
+    handle_x: -0.03
+    handle_z: 0.055
+    handle_size_x: 0.01
+    handle_size_y: 0.02
+    handle_size_z: 0.12
+
+
 
 dishwashers:
    perception_postfix: dishwasher_center
@@ -26,7 +47,7 @@ dishwashers:
    #    x_pos: 0.8
    #    y_pos: 1.5
 
-     
+
 tables:
    perception_postfix: table_center
    amount: 2
@@ -47,9 +68,9 @@ tables:
       width:  1.75
       height: 0.71
       depth: 0.64
-      z_rot: 3.1
-      x_pos: 0.4
-      y_pos: 2.37
+      z_rot: 3.1415
+      x_pos: 0.35
+      y_pos: 2.40
 
 
       

@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!-- A simple, single rectangular drawer -->
+<!-- This models only a cuboid shape,
+	 since the exact shape is not that important -->
+<!-- The origin is on the bottom front right corner,
+	 just like it is for tables,
+	 since it is easier to measure the front than the back -->
+<!-- The thickness of each element is set to 1 cm (0.01m)
+	 this value should not be important, so it is not a parameter -->
+<!-- since handles can vary widely between drawers and the exact size is important for manipulation,
+	 the size and x and z position of the handle are parameters -->
+<robot name="suturo_simple_drawer" xmlns:xacro="http://ros.org/wiki/xacro">
+  <material name="bottom_white">
+	<color rgba="1 1 1 1"/>
+  </material>
+  <material name="frame_wood">
+	<color rgba="0.68 0.63 0.47 1"/>
+  </material>
+  <material name="handle_grey">
+	<color rgba="0.7 0.7 0.7 1"/>
+  </material>
+  <xacro:property name="half_pi" value="${pi/2}" />
+
+  <xacro:macro name="suturo_simple_drawer"
+			   params="name parent *origin size_x size_y size_z handle_x handle_z handle_size_x handle_size_y handle_size_z">
+
+
+	<!-- LINKS-->
+	<link name="${name}:origin"/>
+	<link name="${name}:origin_moved"/>
+
+	<link name="${name}:drawer_bottom">
+	  <visual>
+		<material name="bottom_white"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${size_x} ${size_y} 0.01" />
+		</geometry>
+	  </visual>
+	  <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${size_x} ${size_y} 0.01" />
+		</geometry>
+	  </collision>
+	</link>
+
+	<link name="${name}:drawer_back">
+	  <visual>
+		<material name="frame_wood"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="0.01 ${size_y} ${size_z}" />
+		</geometry>
+	  </visual>
+	  <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="0.01 ${size_y} ${size_z}" />
+		</geometry>
+	  </collision>
+	</link>
+
+	<link name="${name}:drawer_front">
+	  <visual>
+		<material name="frame_wood"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="0.01 ${size_y} ${size_z}" />
+		</geometry>
+	  </visual>
+	  <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="0.01 ${size_y} ${size_z}" />
+		</geometry>
+	  </collision>
+	</link>
+
+	<link name="${name}:drawer_right">
+	  <visual>
+		<material name="frame_wood"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${size_x} 0.01 ${size_z}" />
+		</geometry>
+	  </visual>
+	  <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${size_x} 0.01 ${size_z}" />
+		</geometry>
+	  </collision>
+	</link>
+
+	<link name="${name}:drawer_left">
+	  <visual>
+		<material name="frame_wood"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${size_x} 0.01 ${size_z}" />
+		</geometry>
+	  </visual>
+	  <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${size_x} 0.01 ${size_z}" />
+		</geometry>
+	  </collision>
+	</link>
+
+	<link name="${name}:drawer_handle">
+	  <visual>
+		<material name="handle_grey"/>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${handle_size_x} ${handle_size_y} ${handle_size_z}" />
+		</geometry>
+	  </visual>
+	  <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		  <box size="${handle_size_x} ${handle_size_y} ${handle_size_z}" />
+		</geometry>
+	  </collision>
+	</link>
+
+	<!-- JOINTS-->
+
+	<joint name="${name}:drawer_bottom" type="fixed">
+	  <parent link="${name}:origin_moved"/>
+	  <child link="${name}:drawer_bottom"/>
+	  <origin xyz="${size_x/2} ${size_y/2} 0" rpy="0 0 0" />
+	</joint>
+
+	<joint name="${name}:drawer_right" type="fixed">
+	  <parent link="${name}:origin_moved"/>
+	  <child link="${name}:drawer_right"/>
+	  <origin xyz="${size_x/2} 0 ${size_z/2}" rpy="0 0 0" />
+	</joint>
+
+	<joint name="${name}:drawer_left" type="fixed">
+	  <parent link="${name}:origin_moved"/>
+	  <child link="${name}:drawer_left"/>
+	  <origin xyz="${size_x/2} ${size_y} ${size_z/2}" rpy="0 0 0" />
+	</joint>
+
+	<joint name="${name}:drawer_front" type="fixed">
+	  <parent link="${name}:origin_moved"/>
+	  <child link="${name}:drawer_front"/>
+	  <origin xyz="0 ${size_y/2} ${size_z/2}" rpy="0 0 0" />
+	</joint>
+
+	<joint name="${name}:drawer_back" type="fixed">
+	  <parent link="${name}:origin_moved"/>
+	  <child link="${name}:drawer_back"/>
+	  <origin xyz="${size_x} ${size_y/2} ${size_z/2}" rpy="0 0 0" />
+	</joint>
+
+	<joint name="${name}:drawer_handle" type="fixed">
+	  <parent link="${name}:origin_moved"/>
+	  <child link="${name}:drawer_handle"/>
+	  <origin xyz="${handle_x} ${size_y/2} ${handle_z}" rpy="${half_pi} 0 0" />
+	</joint>
+
+	<joint name="${name}:origin" type="fixed">
+	  <xacro:insert_block name="origin" />
+	  <parent link="${parent}"/>
+	  <child link="${name}:origin"/>
+	</joint>
+
+	<joint name="${name}:origin_move" type="prismatic">
+	  <parent link="${name}:origin"/>
+	  <child link="${name}:origin_moved"/>
+	  <limit effort="100.0" lower="-${size_x/2}" upper="0.0" velocity="1"/>
+	  <axis xyz="1 0 0"/>
+	</joint>
+  </xacro:macro>
+</robot>
