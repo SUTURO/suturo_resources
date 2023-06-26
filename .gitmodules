@@ -3,4 +3,4 @@
 	url = https://github.com/SUTURO/vizbox.git
 [submodule "messages/robokudo_msgs"]
 	path = messages/robokudo_msgs
-	url = git@gitlab.informatik.uni-bremen.de:robokudo/robokudo_msgs.git
+	url = https://gitlab.informatik.uni-bremen.de/robokudo/robokudo_msgs.git
