@@ -145,23 +145,23 @@ walls:
 
 
 rooms:
-    amount: 0
+    amount: 2
     0:
         name: living_room
-        num_of_corners: 4
-        corners_x_pos: [-0.95, 3.15, 3.16, -0.7]
-        corners_y_pos: [-0.8, -0.8, 2.1, 2.1]
-        center_x: 0.7
-        center_y: 1.0
+        knowledge_role: living_room
+        center_x: 2.0
+        center_y: 1.2
+        size_x: 4.0
+        size_y: 3.0
         color: 1 0.51 0.66 0.5
     1:
         name: iai_kitchen
-        num_of_corners: 4
-        corners_x_pos: [-0.65, 3.2, 3.16, -0.7]
-        corners_y_pos: [5.1, 5.1, 2.1, 2.1]
+        knowledge_role: kitchen
         center_x: 2.0
-        center_y: 3.6
-        color: 1 0.51 0.66 0.5
+        center_y: -1.7
+        size_x: 4.0
+        size_y: 2.0
+        color: 0.66 0.51 1 0.5
 
 doors:
     amount: 0

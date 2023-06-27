@@ -187,13 +187,12 @@
 
     <!--  ~~Rooms~~  -->
     <xacro:macro name="room_loop" params="room_number">
-      <xacro:suturo_room name="${data['rooms'][room_number]['name']}"
+      <xacro:suturo_room name="${data['rooms'][room_number]['name']}:${data['rooms'][room_number]['knowledge_role']}"
                          parent="urdf_offset"
-                         num_of_corners="${data['rooms'][room_number]['num_of_corners']}"
-                         corners_x_pos="${data['rooms'][room_number]['corners_x_pos']}"
-                         corners_y_pos="${data['rooms'][room_number]['corners_y_pos']}"
                          center_x="${data['rooms'][room_number]['center_x']}"
                          center_y="${data['rooms'][room_number]['center_y']}"
+                         size_x="${data['rooms'][room_number]['size_x']}"
+                         size_y="${data['rooms'][room_number]['size_y']}"
                          color="${data['rooms'][room_number]['color']}">
       </xacro:suturo_room>
       <xacro:if value="${(number_of_rooms - 1) > room_number}">
