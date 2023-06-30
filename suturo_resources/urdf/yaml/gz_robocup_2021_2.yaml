@@ -211,6 +211,8 @@ rooms:
         center_x: 0.7
         center_y: 1.0
         color: 1 0.51 0.66 0.5
+        connections:
+          amount: 0
     1:
         name: kitchen
         num_of_corners: 4
@@ -219,6 +221,8 @@ rooms:
         center_x: 2.0
         center_y: 3.6
         color: 1 0.51 0.66 0.5
+        connections:
+          amount: 0
 
 doors:
     amount: 0
