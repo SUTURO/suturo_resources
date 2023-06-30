@@ -145,7 +145,7 @@ walls:
 
 
 rooms:
-    amount: 2
+    amount: 3
     0:
         name: living_room
         knowledge_role: living_room
@@ -176,6 +176,21 @@ rooms:
             knowledge_role: entry_exit
             center_x: 1.0
             center_y: -1.0
+    2:
+        name: arena
+        knowledge_role: arena
+        center_x: -0.1
+        center_y: 0.0
+        size_x: 0.01
+        size_y: 0.01
+        color: 0.66 0.51 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: arena_entry_exit
+            knowledge_role: entry_exit
+            center_x: -0.1
+            center_y: 0.0
 
 doors:
     amount: 0
