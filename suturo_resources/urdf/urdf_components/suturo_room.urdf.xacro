@@ -4,7 +4,18 @@
 <!-- Rooms are for Knowledge Information only-->
 <robot name="suturo_room" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:macro name="suturo_room" params="name parent center_x center_y color size_x size_y">
+  <!-- The parent needs to be the room this belongs to, otherwise knowledge won't find it. -->
+  <xacro:macro name="suturo_room_connection" params="name parent center_x center_y">
+    <joint name="room_${name}:connection_joint" type="fixed">
+      <origin xyz="${center_x} ${center_y} 0 " rpy="0 0 0" />
+      <parent link="${parent}"/>
+      <child link="${name}:link"/>
+    </joint>
+
+    <link name="${name}:link"/>
+  </xacro:macro>
+
+  <xacro:macro name="suturo_room" params="name parent center_x center_y color size_x size_y connections">
 
     <joint name="world_${name}:room_joint" type="fixed">
         <origin xyz="${center_x} ${center_y} -0.01 " rpy="0 0 0" />
@@ -27,6 +38,23 @@
         </geometry>
       </collision>
     </link>
+
+    <xacro:property name="number_of_connections" value="${connections['amount']}" />
+
+    <!--  ~~Rooms~~  -->
+    <xacro:macro name="room_connection_loop" params="room_connection_number">
+      <xacro:suturo_room_connection name="${connections[room_connection_number]['name']}:${connections[room_connection_number]['knowledge_role']}"
+									parent="${name}:room_center_link"
+									center_x="${connections[room_connection_number]['center_x']-center_x}"
+									center_y="${connections[room_connection_number]['center_y']-center_y}">
+      </xacro:suturo_room_connection>
+      <xacro:if value="${(number_of_connections - 1) > room_connection_number}">
+        <xacro:room_connection_loop room_connection_number="${room_connection_number + 1}" />
+      </xacro:if>
+    </xacro:macro>
+	<xacro:if value="${number_of_connections > 0}">
+      <xacro:room_connection_loop room_connection_number="0" />
+    </xacro:if>
 
   </xacro:macro>
 

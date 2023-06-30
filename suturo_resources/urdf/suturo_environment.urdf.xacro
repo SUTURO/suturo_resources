@@ -193,7 +193,8 @@
                          center_y="${data['rooms'][room_number]['center_y']}"
                          size_x="${data['rooms'][room_number]['size_x']}"
                          size_y="${data['rooms'][room_number]['size_y']}"
-                         color="${data['rooms'][room_number]['color']}">
+                         color="${data['rooms'][room_number]['color']}"
+						 connections="${data['rooms'][room_number]['connections']}">
       </xacro:suturo_room>
       <xacro:if value="${(number_of_rooms - 1) > room_number}">
         <xacro:room_loop room_number="${room_number + 1}" />

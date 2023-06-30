@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!-- Room connections are for Knowledge Information only-->
+<robot name="suturo_connection" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- The parent needs to be the room this belongs to, otherwise knowledge won't find it. -->
+  <xacro:macro name="suturo_connection" params="name parent center_x center_y">
+
+    <joint name="room_${name}:connection_joint" type="fixed">
+        <origin xyz="${center_x} ${center_y} 0 " rpy="0 0 0" />
+        <parent link="${parent}"/>
+        <child link="${name}:link"/>
+    </joint>
+
+    <link name="${name}:link"/>
+
+  </xacro:macro>
+
+</robot>
+
