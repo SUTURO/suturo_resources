@@ -23,7 +23,7 @@
   <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/-->
 
   <arg name="world" default="empty.world" />
-  <arg name="map_name" default="empty/map.yaml" />
+  <arg name="map_name" default="robocup_2023/robocup.yaml" />
   <arg name="gazebo" default="false" />
 
   <!--arg name="map_server" default="true" /-->
@@ -81,7 +81,7 @@
   </group>
 
   <group if="$(eval arg('upload_map') == true)">
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/hsr_lab_master_2023/hsr_lab_master_2023.yaml" /> <!-- map3-door-open-cleaned.yaml" /-->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/$(arg map_name)" /> <!-- map3-door-open-cleaned.yaml" /-->
   </group>
 
   <!-- Show Rooms -->
