@@ -52,7 +52,7 @@ dishwashers:
 
 tables:
    perception_postfix: table_center
-   amount: 10
+   amount: 11
    0: #A
       name: desk
       knowledge_role: table
@@ -62,17 +62,17 @@ tables:
       depth: 0.7
       z_rot: 0
       x_pos: 2.4
-      y_pos: -2.05
+      y_pos: -2
    1: #C
-      name: office_shelf
+      name: cabinet
       knowledge_role: table
       parent: urdf_offset
       width:  0.92
       height: 0.66
       depth: 0.46
-      z_rot: 1.571
-      x_pos: 4.7
-      y_pos: 0.55
+      z_rot: 0
+      x_pos: 4.5
+      y_pos: -1.8
    2: #J
       name: dishwasher
       knowledge_role: table
@@ -82,17 +82,17 @@ tables:
       depth: 0.595
       z_rot: 3.1415
       x_pos: 9.5
-      y_pos: 2.40  
+      y_pos: 3
    3: #B
-      name: table5
+      name: bedside_table
       knowledge_role: table
       parent: urdf_offset
       width:  0.5
       height: 0.575
       depth: 0.455
       z_rot: 3.1415
-      x_pos: 5
-      y_pos: -0.9
+      x_pos: 9
+      y_pos: 0
    4: #E
      name: sofa
      knowledge_role: table
@@ -104,7 +104,7 @@ tables:
      x_pos: 3.4
      y_pos: 5.5
    5: #F
-      name: couch_tish1
+      name: side_table1
       knowledge_role: shelf
       parent: urdf_offset
       width: 0.5
@@ -114,7 +114,7 @@ tables:
       x_pos: 2.5
       y_pos: 4.8
    6: #G
-      name: couch_tish2
+      name: side_table2
       knowledge_role: shelf
       parent: urdf_offset
       width: 0.5
@@ -124,26 +124,16 @@ tables:
       x_pos: 2
       y_pos: 4.8
    7: #J
-     name: fridge
-     knowledge_role: fridge
+     name: refrigerator
+     knowledge_role: refrigerator
      parent: urdf_offset
      width: 0.6
      height: 1.73
      depth: 0.56
      z_rot: 0.00
      x_pos: 5.3
-     y_pos: 1.8
-   8: 
-     name: microwave
-     knowledge_role: microwave
-     parent: urdf_offset
-     width: 0.465
-     height: 0.275
-     depth: 0.35
-     z_rot: 0.00
-     x_pos: 9
-     y_pos: 2.5
-   9: #N
+     y_pos: 1.65
+   8: #N
     name: bed
     knowledge_role: bed
     parent: urdf_offset
@@ -153,7 +143,26 @@ tables:
     z_rot: 0.0
     x_pos: 7.5
     y_pos: -2.5
-
+   9: 
+    name: tv_stand
+    knowledge_role: table
+    parent: urdf_offset
+    width: 0.7
+    height: 0.5
+    depth: 0.45
+    z_rot: 1.571
+    x_pos: 2.2
+    y_pos: 1.1
+   10: 
+    name: sink
+    knowledge_role: table
+    parent: urdf_offset
+    width: 0.52
+    height: 0.95
+    depth: 0.46
+    z_rot: 0
+    x_pos: 5.5
+    y_pos: 2.5
       
 
      
@@ -161,7 +170,7 @@ tables:
       
 shelves:
    perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
-   amount: 2
+   amount: 3
    0: #D
       name: open_shelf1
       knowledge_role: shelf
@@ -172,8 +181,8 @@ shelves:
       z_rot: -0.00
       x_pos: 4.5
       y_pos: 2.5
-      floors_height: [0.0, 0.4, 0.86, 1.32, 1.82]
-      number_of_floors: 5 
+      floors_height: [0.4, 0.86, 1.32, 1.82]
+      number_of_floors: 4
       door: none
    1: #E
       name: open_shelf2
@@ -185,10 +194,22 @@ shelves:
       z_rot: 3.14
       x_pos: 1.15
       y_pos: 5.5
-      floors_height: [0.0, 0.105, 0.63, 1.10, 1.59]
-      number_of_floors: 5 
+      floors_height: [0.105, 0.63, 1.10, 1.59]
+      number_of_floors: 4
       door: none
-
+   2: 
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.8
+      height: 2.02
+      depth: 0.28
+      z_rot: -1.570796327
+      x_pos: 5.5
+      y_pos: -2.2
+      floors_height: [0.1, 0.45, 0.74, 1.06, 1.41, 1.695, 2.02]
+      number_of_floors: 7
+      door: none
       
 
 
@@ -196,7 +217,7 @@ shelves_openable:
    perception_postfix: shelf_floor_X
    amount: 1
    0:
-      name: shelf
+      name: pantry
       knowledge_role: shelf
       parent: urdf_offset
       width: 0.8
@@ -205,8 +226,8 @@ shelves_openable:
       z_rot: 1.570796327
       x_pos: 7.25
       y_pos: 6.18
-      floors_height: [0.0, 0.1, 0.45, 0.74, 1.06, 1.41, 1.695, 2.02]
-      number_of_floors: 8
+      floors_height: [0.1, 0.45, 0.735, 1.06, 1.41, 1.70, 2.02]
+      number_of_floors: 7
       door: left
       wall_thickness: 0.015
       handle_from_bottom: 0.575
@@ -248,23 +269,67 @@ walls:
 
 
 rooms:
-    amount: 0
+    amount: 4
     0:
-        name: living_room
-        knowledge_role: living_room
-        center_x: 2.0
-        center_y: 1.2
-        size_x: 4.0
-        size_y: 3.0
+        name: bedroom
+        knowledge_role: bedroom
+        center_x: 7.25
+        center_y: -0.7
+        size_x: 4.47
+        size_y: 3.5
         color: 1 0.51 0.66 0.5
+        connections:
+          amount: 1
+          0:
+            name: bedroom_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
     1:
-        name: iai_kitchen
+        name: kitchen
         knowledge_role: kitchen
-        center_x: 2.0
-        center_y: -1.7
-        size_x: 4.0
-        size_y: 2.0
+        center_x: 7.25
+        center_y: 3.7
+        size_x: 4.6
+        size_y: 5.4
         color: 0.66 0.51 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: kitchen_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
+    2:
+        name: study
+        knowledge_role: kitchen
+        center_x: 2.8
+        center_y: -0.7
+        size_x: 4.47
+        size_y: 3.5
+        color: 0.66 0.51 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: study_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
+    3:
+        name: living_room
+        knowledge_role: kitchen
+        center_x: 2.7
+        center_y: 3.7
+        size_x: 4.55
+        size_y: 5.46
+        color: 0.66 0.51 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: living_room_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
 
 doors:
     amount: 0
