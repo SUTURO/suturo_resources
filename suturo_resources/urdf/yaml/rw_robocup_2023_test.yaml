@@ -50,17 +50,17 @@ dishwashers:
 
 tables:
    perception_postfix: table_center
-   amount: 0
+   amount: 1
    0:
       name: left_table
       knowledge_role: table
       parent: urdf_offset
-      width:  1.4
-      height: 0.7
-      depth: 0.8
-      z_rot: -1.58
-      x_pos: 1.9
-      y_pos: 0.42
+      width:  1
+      height: 0.74
+      depth: 0.15
+      z_rot: -1.0
+      x_pos: -0.3
+      y_pos: -0.742
    1:
       name: kitchen_table
       knowledge_role: table
