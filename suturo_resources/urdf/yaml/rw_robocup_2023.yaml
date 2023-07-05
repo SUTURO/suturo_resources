@@ -172,7 +172,7 @@ shelves:
    perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
    amount: 3
    0: #D
-      name: open_shelf1
+      name: storage_rack
       knowledge_role: shelf
       parent: urdf_offset
       width: 0.9
@@ -185,7 +185,7 @@ shelves:
       number_of_floors: 4
       door: none
    1: #E
-      name: open_shelf2
+      name: bookshelf
       knowledge_role: shelf
       parent: urdf_offset
       width: 0.9
