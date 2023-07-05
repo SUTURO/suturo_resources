@@ -283,7 +283,7 @@ walls:
 
 
 rooms:
-    amount: 4
+    amount: 5
     0:
         name: bedroom
         knowledge_role: bedroom
@@ -316,7 +316,7 @@ rooms:
             center_y: -1.0
     2:
         name: study
-        knowledge_role: kitchen
+        knowledge_role: study
         center_x: 2.8
         center_y: -0.7
         size_x: 4.47
@@ -331,7 +331,7 @@ rooms:
             center_y: -1.0
     3:
         name: living_room
-        knowledge_role: kitchen
+        knowledge_role: living_room
         center_x: 2.7
         center_y: 3.7
         size_x: 4.55
@@ -344,6 +344,26 @@ rooms:
             knowledge_role: entry_exit
             center_x: 1.0
             center_y: -1.0
+    4:
+        name: arena
+        knowledge_role: arena
+        center_x: 0.0
+        center_y: 0.0
+        size_x: 0.01
+        size_y: 0.01
+        color: 0.66 0.51 1 0.5
+        connections:
+          amount: 2
+          0:
+            name: arena_entry
+            knowledge_role: entry
+            center_x: 0.45
+            center_y: 4.0
+          1:
+            name: arena_exit
+            knowledge_role: exit
+            center_x: 0.55
+            center_y: 0.0
 
 doors:
     amount: 0
