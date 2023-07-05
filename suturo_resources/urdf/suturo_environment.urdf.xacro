@@ -21,6 +21,7 @@
 
     <!--  Include the files containing the macros -->
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro"/>
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_wall.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro"/>
@@ -32,10 +33,12 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro"/>
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro"/>
 
+
     <!-- general data -->
     <xacro:property name="number_of_drawers" value="${data['drawers']['amount']}" />
     <xacro:property name="number_of_simple_drawers" value="${data['simple_drawers']['amount']}" />
     <xacro:property name="number_of_tables" value="${data['tables']['amount']}" />
+    <xacro:property name="number_of_round_tables" value="${data['round_tables']['amount']}" />
     <xacro:property name="number_of_buckets" value="${data['buckets']['amount']}" />
     <xacro:property name="number_of_shelves" value="${data['shelves']['amount']}" />
     <xacro:property name="number_of_shelves_openable" value="${data['shelves_openable']['amount']}" />
@@ -61,6 +64,22 @@
         </xacro:if>
     </xacro:macro>
 
+
+    <!--  ~~Round_tables~~  -->
+    <xacro:macro name="round_table_loop" params="round_table_number">
+        <xacro:suturo_round_table name="${data['round_tables'][round_table_number]['name']}:${data['tables'][round_table_number]['knowledge_role']}"
+                          parent="${data['round_tables'][round_table_number]['parent']}"
+                          radius="${data['round_tables'][round_table_number]['radius']}"
+                          length="${data['round_tables'][round_table_number]['length']}">
+            <origin xyz="${data['round_tables'][round_table_number]['x_pos']} ${data['round_tables'][round_table_number]['y_pos']} 0"
+                            rpy="0 0 ${data['round_tables'][round_table_number]['z_rot']}" />
+        </xacro:suturo_round_table>
+        <xacro:if value="${(number_of_round_tables - 1) > round_table_number}">
+            <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+    
+    
      <!--  ~~Dishwashers~~  -->
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
@@ -248,6 +267,11 @@
     <xacro:if value="${number_of_tables > 0}">
         <xacro:table_loop table_number="0" />
     </xacro:if>
+    
+    <xacro:if value="${number_of_round_tables > 0}">
+        <xacro:round_table_loop round_table_number="0" />
+    </xacro:if>
+    
     <xacro:if value="${number_of_buckets > 0}">
         <xacro:bucket_loop bucket_number="0" />
     </xacro:if>

@@ -163,6 +163,20 @@ tables:
     z_rot: 0
     x_pos: 5.5
     y_pos: 2.5
+    
+    
+round_tables:
+   perception_postfix: table_center
+   amount: 1
+   0: 
+      name: kitchen_table
+      knowledge_role: table
+      parent: urdf_offset
+      radius: 0.4
+      length: 0.725
+      z_rot: 0
+      x_pos: 7.5
+      y_pos: 4.5
       
 
      
