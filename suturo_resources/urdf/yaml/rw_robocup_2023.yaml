@@ -108,7 +108,7 @@ tables:
       knowledge_role: side_table
       parent: urdf_offset
       width: 0.5
-      height: 0.41
+      height: 0.405
       depth: 0.5
       z_rot: -0.00
       x_pos: 2.5
@@ -118,7 +118,7 @@ tables:
       knowledge_role: side_table
       parent: urdf_offset
       width: 0.5
-      height: 0.41
+      height: 0.405
       depth: 0.5
       z_rot: -0.00
       x_pos: 2
@@ -178,7 +178,7 @@ tables:
     knowledge_role: storing_groceries_table
     parent: urdf_offset
     width: 0.7
-    height: 0.41
+    height: 0.405
     depth: 0.4
     z_rot: 3.1415
     x_pos: 6.16
