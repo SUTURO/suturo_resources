@@ -85,6 +85,8 @@ round_tables:
       x_pos: 7.5
       y_pos: 4.5
 
+round_tables:
+  amount: 0
 
       
 shelves:
