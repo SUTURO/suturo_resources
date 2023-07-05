@@ -5,13 +5,11 @@
 		<arg name="use_rviz" default="true"/>
 
 		<arg name="publish_environment" default="true" />
-		<!--<arg name="env_model_yaml" default="gz_test_next_object.yaml" />-->
-		<arg name="env_model_yaml" default="rw_robocup_2023.yaml" />
+		<!--<arg name="env_model_yaml" default="rw_robocup_2023.yaml" />-->
 
 		<arg name="show_rooms" default="true"/>
 		<arg name="publish_robot_description" default="false" />
-		<arg name="run_snap_map" default="true" />
-    </include>
+	</include>
 
 
 </launch>
