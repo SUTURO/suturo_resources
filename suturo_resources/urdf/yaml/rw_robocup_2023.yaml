@@ -182,7 +182,7 @@ tables:
     depth: 0.4
     z_rot: 3.1415
     x_pos: 6.16
-    y_pos: 5.51
+    y_pos: 5.83
     
 round_tables:
    perception_postfix: table_center
