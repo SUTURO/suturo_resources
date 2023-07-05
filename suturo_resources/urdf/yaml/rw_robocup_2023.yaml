@@ -170,7 +170,7 @@ round_tables:
    amount: 1
    0: 
       name: kitchen_table
-      knowledge_role: table
+      knowledge_role: kitchen_table
       parent: urdf_offset
       radius: 0.4
       length: 0.725

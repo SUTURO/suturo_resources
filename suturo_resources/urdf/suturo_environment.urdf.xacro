@@ -67,7 +67,7 @@
 
     <!--  ~~Round_tables~~  -->
     <xacro:macro name="round_table_loop" params="round_table_number">
-        <xacro:suturo_round_table name="${data['round_tables'][round_table_number]['name']}:${data['tables'][round_table_number]['knowledge_role']}"
+        <xacro:suturo_round_table name="${data['round_tables'][round_table_number]['name']}:${data['round_tables'][round_table_number]['knowledge_role']}"
                           parent="${data['round_tables'][round_table_number]['parent']}"
                           radius="${data['round_tables'][round_table_number]['radius']}"
                           length="${data['round_tables'][round_table_number]['length']}">
