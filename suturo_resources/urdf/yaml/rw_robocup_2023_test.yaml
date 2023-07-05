@@ -72,6 +72,8 @@ tables:
       x_pos: 0.35
       y_pos: 2.40
 
+round_tables:
+  amount: 0
 
       
 shelves:
