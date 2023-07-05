@@ -1,0 +1,299 @@
+
+drawers:
+  perception_postfix: drawer_center
+  amount: 0
+  0:
+     name: drawer
+     knowledge_role: drawer
+     parent: urdf_offset
+     width:  0
+     height: 0
+     depth: 0
+     z_rot: 1.5707963
+     x_pos: 2.1
+     y_pos: 2.1
+
+
+simple_drawers:
+  perception_postfix: drawer_center
+  amount: 0
+  0:
+    name: fake_dishwasher_tray
+    knowledge_role: dishwasher
+    parent: urdf_offset
+    width: 0.845
+    height: 0.595
+    depth: 0.59
+    z_rot: 3.1415
+    x_pos: 10.2
+    y_pos: 2.5
+    z_pos: 00
+    handle_x: -0.03
+    handle_z: 0.055
+    handle_size_x: 0.01
+    handle_size_y: 0.02
+    handle_size_z: 0.12
+    
+dishwashers:
+   perception_postfix: dishwasher_center
+   amount: 0
+   0:
+      name: dishwasher
+      knowledge_role: dishwasher
+      parent: urdf_offset
+      width: 0.59
+      height: 0.845
+      depth: 0.595
+      z_rot: 3.1415926535897932
+      x_pos: 10.2
+      y_pos: 2.5
+
+
+
+tables:
+   perception_postfix: table_center
+   amount: 10
+   0: #A
+      name: desk
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.88
+      height: 0.8
+      depth: 0.7
+      z_rot: 0
+      x_pos: 2.4
+      y_pos: -2.05
+   1: #C
+      name: office_shelf
+      knowledge_role: table
+      parent: urdf_offset
+      width:  0.92
+      height: 0.66
+      depth: 0.46
+      z_rot: 1.571
+      x_pos: 4.7
+      y_pos: 0.55
+   2: #J
+      name: dishwasher
+      knowledge_role: table
+      parent: urdf_offset
+      width: 0.59
+      height: 0.845
+      depth: 0.595
+      z_rot: 3.1415
+      x_pos: 9.5
+      y_pos: 2.40  
+   3: #B
+      name: table5
+      knowledge_role: table
+      parent: urdf_offset
+      width:  0.5
+      height: 0.575
+      depth: 0.455
+      z_rot: 3.1415
+      x_pos: 5
+      y_pos: -0.9
+   4: #E
+     name: sofa
+     knowledge_role: table
+     parent: urdf_offset
+     width: 1.8
+     height: 0.65
+     depth: 0.88
+     z_rot: 1.571 
+     x_pos: 3.4
+     y_pos: 5.5
+   5: #F
+      name: couch_tish1
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.5
+      height: 0.41
+      depth: 0.5
+      z_rot: -0.00
+      x_pos: 2.5
+      y_pos: 4.8
+   6: #G
+      name: couch_tish2
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.5
+      height: 0.41
+      depth: 0.5
+      z_rot: -0.00
+      x_pos: 2
+      y_pos: 4.8
+   7: #J
+     name: fridge
+     knowledge_role: fridge
+     parent: urdf_offset
+     width: 0.6
+     height: 1.73
+     depth: 0.56
+     z_rot: 0.00
+     x_pos: 5.3
+     y_pos: 1.8
+   8: 
+     name: microwave
+     knowledge_role: microwave
+     parent: urdf_offset
+     width: 0.465
+     height: 0.275
+     depth: 0.35
+     z_rot: 0.00
+     x_pos: 9
+     y_pos: 2.5
+   9: #N
+    name: bed
+    knowledge_role: bed
+    parent: urdf_offset
+    width: 0.91
+    height: 0.31
+    depth: 1.91
+    z_rot: 0.0
+    x_pos: 7.5
+    y_pos: -2.5
+
+      
+
+     
+
+      
+shelves:
+   perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
+   amount: 2
+   0: #D
+      name: open_shelf1
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.9
+      height: 1.885
+      depth: 0.445
+      z_rot: -0.00
+      x_pos: 4.5
+      y_pos: 2.5
+      floors_height: [0.0, 0.4, 0.86, 1.32, 1.82]
+      number_of_floors: 5 
+      door: none
+   1: #E
+      name: open_shelf2
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.9
+      height: 1.59
+      depth: 0.45
+      z_rot: 3.14
+      x_pos: 1.15
+      y_pos: 5.5
+      floors_height: [0.0, 0.105, 0.63, 1.10, 1.59]
+      number_of_floors: 5 
+      door: none
+
+      
+
+
+shelves_openable:
+   perception_postfix: shelf_floor_X
+   amount: 1
+   0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.8
+      height: 2.02
+      depth: 0.28
+      z_rot: 1.570796327
+      x_pos: 7.25
+      y_pos: 6.18
+      floors_height: [0.0, 0.1, 0.45, 0.74, 1.06, 1.41, 1.695, 2.02]
+      number_of_floors: 8
+      door: left
+      wall_thickness: 0.015
+      handle_from_bottom: 0.575
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.02
+      
+    
+
+    
+    
+   
+buckets:
+    perception_postfix: bucket_center
+    amount: 0
+    0:
+      name: bucket
+      knowledge_role: bucket
+      parent: urdf_offset
+      width:  0.3
+      height: 0.32
+      depth: 0.3
+      z_rot: 0.0
+      x_pos: 1.8
+      y_pos: -2.76
+
+
+walls:
+    amount: 0
+    0:
+      name: wall_1
+      parent: urdf_offset
+      pos_1_x: -0.64
+      pos_1_y: -3.21
+      pos_2_x: -2.96
+      pos_2_y: -3.21
+      
+
+
+rooms:
+    amount: 0
+    0:
+        name: living_room
+        knowledge_role: living_room
+        center_x: 2.0
+        center_y: 1.2
+        size_x: 4.0
+        size_y: 3.0
+        color: 1 0.51 0.66 0.5
+    1:
+        name: iai_kitchen
+        knowledge_role: kitchen
+        center_x: 2.0
+        center_y: -1.7
+        size_x: 4.0
+        size_y: 2.0
+        color: 0.66 0.51 1 0.5
+
+doors:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        height: 2
+        width: 0.983
+        depth: 0.055
+        x: 2.18
+        y: 1.28
+        z: 1.0
+        zrot: -1.75
+        door_turn_limit_lower: -1.4
+        door_turn_limit_max: 0
+
+paths:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        x_pos: 2.6
+        y_pos: 2.1
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: -0.25
+    Y: -4
+    zrot: 0.0
+

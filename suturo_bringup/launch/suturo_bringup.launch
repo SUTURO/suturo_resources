@@ -32,7 +32,7 @@
 
   <arg name="upload_map" default="true" />
   <arg name="publish_environment" default="true" />
-  <arg name="env_model_yaml" default="rw_lab_master_2023.yaml" />
+  <arg name="env_model_yaml" default="rw_robocup_2023.yaml" />
 
   <arg name="show_rooms" default="false"/>
 
