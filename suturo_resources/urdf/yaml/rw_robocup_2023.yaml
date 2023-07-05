@@ -52,7 +52,7 @@ dishwashers:
 
 tables:
    perception_postfix: table_center
-   amount: 12
+   amount: 13
    0: #A
       name: desk
       knowledge_role: desk
@@ -173,7 +173,16 @@ tables:
     z_rot: 0
     x_pos: 5.25
     y_pos: 4.7
-    
+   12:
+    name: storing_groceries_table
+    knowledge_role: storing_groceries_table
+    parent: urdf_offset
+    width: 0.7
+    height: 0.41
+    depth: 0.4
+    z_rot: 3.1415
+    x_pos: 6.16
+    y_pos: 5.51
     
 round_tables:
    perception_postfix: table_center
@@ -267,8 +276,8 @@ shelves_openable:
       z_rot: 1.570796327
       x_pos: 7.25
       y_pos: 6.18
-      floors_height: [0.1, 0.45, 0.735, 1.06, 1.41, 1.70, 2.02]
-      number_of_floors: 7
+      floors_height: [0.45, 0.735, 1.06]
+      number_of_floors: 3
       door: left
       wall_thickness: 0.015
       handle_from_bottom: 0.575
