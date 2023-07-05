@@ -1,4 +1,4 @@
-image: robocup_cleaned.pgm
+image: robocup.pgm
 resolution: 0.030000
 origin: [-30.734995, -30.734995, 0.000000]
 negate: 0
