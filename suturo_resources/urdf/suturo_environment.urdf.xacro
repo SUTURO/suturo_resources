@@ -88,7 +88,7 @@
                             rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
         </xacro:suturo_dishwasher>
         <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
-            <xacro:table_loop table_number="${dishwasher_number + 1}" />
+            <xacro:dishwasher_loop dishwasher_number="${dishwasher_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
