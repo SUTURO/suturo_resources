@@ -5,7 +5,7 @@
   <xacro:property name="pi" value="3.1415926535897931" />
 
   <xacro:macro name="suturo_dishwasher" params="name parent *origin">
-     <link name="${name}_main">
+     <link name="${name}:dishwasher_main">
 
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
@@ -22,7 +22,7 @@
       </collision>
     </link>
 
-    <link name="${name}_door">
+    <link name="${name}:dishwasher_door">
 
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
@@ -39,7 +39,7 @@
       </collision>
     </link>
 
-    <link name="${name}_door_handle">
+    <link name="${name}:dishwasher_door_handle">
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
         <origin xyz="0 0 0" rpy="0 ${pi} 0" />
@@ -57,18 +57,18 @@
     <!--
     <xacro:if value="simulated"/>
     -->
-    <joint name="${name}_main_joint" type="fixed">
+    <joint name="${name}:dishwasher_main_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${name}_main"/>
+      <child link="${name}:dishwasher_main"/>
     </joint>
 
     <!--
     <xacro:if value="${simulated}">
-    <joint name="${name}_door_joint" type="revolute">
+    <joint name="${name}:dishwasher_door_joint" type="revolute">
       <origin xyz="0.27 0. -0.325" rpy="${-0.5*pi} 0 0" />
-      <parent link="${name}_main"/>
-      <child link="${name}_door"/>
+      <parent link="${name}:dishwasher_main"/>
+      <child link="${name}:dishwasher_door"/>
       <axis xyz="0 0 1"/>
        FIXME make closed position stable instead of forbidding opening...
       <limit lower="0" upper="0" effort="300" velocity="10"/>
@@ -79,10 +79,10 @@
     <!--
     <xacro:unless value="${simulated}">
     -->
-    <joint name="${name}_door_joint" type="revolute">
+    <joint name="${name}:dishwasher_door_joint" type="revolute">
       <origin xyz="-0.27 0. -0.285" rpy="${-0.5*pi} 0 0" />
-      <parent link="${name}_main"/>
-      <child link="${name}_door"/>
+      <parent link="${name}:dishwasher_main"/>
+      <child link="${name}:dishwasher_door"/>
       <axis xyz="0 0 1"/>
       <!--
       <limit lower="0" upper="${0.5*pi}" effort="300" velocity="10"/>
@@ -92,17 +92,17 @@
     <!--
     </xacro:unless>
   -->
-    <joint name="${name}_door_handle_joint" type="fixed">
+    <joint name="${name}:dishwasher_door_handle_joint" type="fixed">
       <origin xyz="-0.065 -0.575 0.0" rpy="${pi/2} 0 0" />
-      <parent link="${name}_door"/>
-      <child link="${name}_door_handle"/>
+      <parent link="${name}:dishwasher_door"/>
+      <child link="${name}:dishwasher_door_handle"/>
     </joint>
 
-    <xacro:dishwasher_tray name="${name}_tray" parent="${name}_main">
+    <xacro:dishwasher_tray name="${name}:dishwasher_tray" parent="${name}:dishwasher_main">
       <origin xyz="-0.08 0 0.15"/>
     </xacro:dishwasher_tray>
     
-    <xacro:dishwasher_tray name="${name}_tray_2" parent="${name}_main">
+    <xacro:dishwasher_tray name="${name}:dishwasher_tray_2" parent="${name}:dishwasher_main">
       <origin xyz="-0.08 0 -0.15"/>
     </xacro:dishwasher_tray>
 

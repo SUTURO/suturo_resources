@@ -17,22 +17,6 @@ drawers:
 simple_drawers:
   perception_postfix: drawer_center
   amount: 0
-  0:
-    name: fake_dishwasher_tray
-    knowledge_role: dishwasher
-    parent: urdf_offset
-    width: 0.845
-    height: 0.595
-    depth: 0.59
-    z_rot: 0
-    x_pos: 9.61
-    y_pos: 1.655
-    z_pos: 00
-    handle_x: -0.03
-    handle_z: 0.055
-    handle_size_x: 0.01
-    handle_size_y: 0.02
-    handle_size_z: 0.12
     
 dishwashers:
    perception_postfix: dishwasher_center
@@ -49,10 +33,9 @@ dishwashers:
       y_pos: 2.8
 
 
-
 tables:
    perception_postfix: table_center
-   amount: 11
+   amount: 10
    0: #A
       name: desk
       knowledge_role: desk
@@ -153,17 +136,17 @@ tables:
     z_rot: 3.14159
     x_pos: 5.705
     y_pos: 5.525
-   10:
-    name: storing_groceries_table
-    knowledge_role: storing_groceries_table
-    parent: urdf_offset
-    width: 0.7
-    height: 0.405
-    depth: 0.4
-    z_rot: 3.1415
-    x_pos: 6.16
-    y_pos: 5.83
-    
+   # 11:
+   #  name: dishwasher
+   #  knowledge_role: dishwasher
+   #  parent: urdf_offset
+   #  width: 0.59
+   #  height: 0.845
+   #  depth: 0.595
+   #  z_rot: 0
+   #  x_pos: 8.905
+   #  y_pos: 2.41
+
 round_tables:
    perception_postfix: table_center
    amount: 3
