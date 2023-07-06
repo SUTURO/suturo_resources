@@ -72,7 +72,7 @@ tables:
       depth: 0.595
       z_rot: 0
       x_pos: 8.905
-      y_pos: 2.41
+      y_pos: 2.55
    2: #B
       name: bedside_table
       knowledge_role: bedside_table
@@ -232,7 +232,7 @@ shelves:
       height: 1.59
       depth: 0.45
       z_rot: 3.14
-      x_pos: 1.15
+      x_pos: 1
       y_pos: 5.5
       floors_height: [0.105, 0.63, 1.10, 1.59]
       number_of_floors: 4
@@ -283,7 +283,7 @@ shelves_openable:
       height: 0.66
       depth: 0.46
       z_rot: 0
-      x_pos: 4.5
+      x_pos: 4.6
       y_pos: -1.79
       floors_height: [34.5]
       number_of_floors: 1
