@@ -161,8 +161,8 @@ tables:
     height: 0.95
     depth: 0.46
     z_rot: 3.14159
-    x_pos: 5.96
-    y_pos: 3.02
+    x_pos: 5.82
+    y_pos: 2.79
    11: 
     name: cupboard
     knowledge_role: cupboard
