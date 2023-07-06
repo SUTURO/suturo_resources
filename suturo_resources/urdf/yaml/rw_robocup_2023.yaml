@@ -285,8 +285,8 @@ shelves_openable:
       z_rot: 0
       x_pos: 4.6
       y_pos: -1.79
-      floors_height: [34.5]
-      number_of_floors: 1
+      floors_height: [0.345, 0.66]
+      number_of_floors: 2
       door: left
       wall_thickness: 0.03
       handle_from_bottom: 0.575
