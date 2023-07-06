@@ -24,9 +24,9 @@ simple_drawers:
     width: 0.845
     height: 0.595
     depth: 0.59
-    z_rot: 3.1415
-    x_pos: 10.2
-    y_pos: 2.5
+    z_rot: 0
+    x_pos: 9.61
+    y_pos: 1.655
     z_pos: 00
     handle_x: -0.03
     handle_z: 0.055
@@ -44,9 +44,9 @@ dishwashers:
       width: 0.59
       height: 0.845
       depth: 0.595
-      z_rot: 3.1415926535897932
-      x_pos: 10.2
-      y_pos: 2.5
+      z_rot: 0
+      x_pos: 9.605
+      y_pos: 1.91
 
 
 
@@ -80,9 +80,9 @@ tables:
       width: 0.59
       height: 0.845
       depth: 0.595
-      z_rot: 3.1415
-      x_pos: 9.5
-      y_pos: 3
+      z_rot: 0
+      x_pos: 8.905
+      y_pos: 2.41
    3: #B
       name: bedside_table
       knowledge_role: bedside_table
@@ -110,8 +110,8 @@ tables:
       width: 0.5
       height: 0.405
       depth: 0.5
-      z_rot: -0.00
-      x_pos: 2.5
+      z_rot: 1.5708
+      x_pos: 3.0
       y_pos: 4.8
    6: #G
       name: side_table2
@@ -120,8 +120,8 @@ tables:
       width: 0.5
       height: 0.405
       depth: 0.5
-      z_rot: -0.00
-      x_pos: 2
+      z_rot: 1.5708
+      x_pos: 2.5
       y_pos: 4.8
    7: #J
      name: refrigerator
@@ -130,9 +130,9 @@ tables:
      width: 0.6
      height: 1.73
      depth: 0.56
-     z_rot: 0.00
-     x_pos: 5.3
-     y_pos: 1.65
+     z_rot: 3.14159
+     x_pos: 5.86
+     y_pos: 2.25
    8: #N
     name: bed
     knowledge_role: bed
@@ -150,9 +150,9 @@ tables:
     width: 0.7
     height: 0.5
     depth: 0.45
-    z_rot: 1.571
-    x_pos: 2.2
-    y_pos: 1.1
+    z_rot: 4.71259
+    x_pos: 1.5
+    y_pos: 1.55
    10: 
     name: sink
     knowledge_role: sink
@@ -160,9 +160,9 @@ tables:
     width: 0.52
     height: 0.95
     depth: 0.46
-    z_rot: 0
-    x_pos: 5.5
-    y_pos: 2.5
+    z_rot: 3.14159
+    x_pos: 5.82
+    y_pos: 2.79
    11: 
     name: cupboard
     knowledge_role: cupboard
@@ -170,9 +170,9 @@ tables:
     width: 0.825
     height: 0.855
     depth: 0.455
-    z_rot: 0
-    x_pos: 5.25
-    y_pos: 4.7
+    z_rot: 3.14159
+    x_pos: 5.705
+    y_pos: 5.525
    12:
     name: storing_groceries_table
     knowledge_role: storing_groceries_table
