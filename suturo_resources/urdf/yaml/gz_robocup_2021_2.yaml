@@ -104,6 +104,8 @@ tables:
       x_pos: 1.33
       y_pos: -0.51
 
+round_tables:
+  amount: 0
 
 shelves:
    perception_postfix: shelf_floor_X # replace X with floor number starting with 0
@@ -127,18 +129,18 @@ shelves_openable:
    perception_postfix: shelf_floor_X
    amount: 0
    0:
-      name: 
-      knowledge_role: 
-      parent: 
-      width: 
-      height: 
-      depth: 
-      z_rot: 
-      x_pos:
-      y_pos:
-      floors_height: 
-      number_of_floors: 
-      door:
+      name: openable
+      knowledge_role: shelf 
+      parent: urdf_offset
+      width: 0.8
+      height: 2.02
+      depth: 0.4
+      z_rot: 0.0
+      x_pos: 0.0
+      y_pos: 0.0
+      floors_height: [0.5, 0.8, 1.05] 
+      number_of_floors: 3
+      door: yes
 
 
 buckets:
@@ -202,7 +204,7 @@ walls:
       pos_2_y: 2.1
 
 rooms:
-    amount: 2
+    amount: 0
     0:
         name: living_room
         num_of_corners: 4
