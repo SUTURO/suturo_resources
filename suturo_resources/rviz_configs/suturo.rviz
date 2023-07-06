@@ -22,10 +22,9 @@ Panels:
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
-    Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: RangeSensor
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -81,223 +80,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        arm_flex_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_lift_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_roll_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_b_bumper_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_f_bumper_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_imu_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_l_drive_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_l_passive_wheel_x_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_l_passive_wheel_y_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_l_passive_wheel_z_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_r_drive_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_r_passive_wheel_x_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_r_passive_wheel_y_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_r_passive_wheel_z_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_range_sensor_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_roll_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_camera_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_camera_gazebo_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_l_distal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_l_finger_tip_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_l_finger_vacuum_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_l_mimic_distal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_l_proximal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_l_spring_proximal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_motor_dummy_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_palm_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_r_distal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hand_r_finger_tip_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_r_mimic_distal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_r_proximal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hand_r_spring_proximal_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        head_center_camera_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        head_center_camera_gazebo_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        head_l_stereo_camera_gazebo_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        head_l_stereo_camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        head_pan_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        head_r_stereo_camera_gazebo_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        head_r_stereo_camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        head_rgbd_sensor_gazebo_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        head_rgbd_sensor_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        head_tilt_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        torso_lift_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wrist_flex_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wrist_ft_sensor_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_ft_sensor_mount_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        wrist_roll_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -314,320 +96,455 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        bed_table_table_center:
+        arena:arena:room_center_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bed_table_table_front_edge_center:
+        arena_entry:entry:link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bed_table_table_origin:
+        arena_exit:exit:link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bookshelf_0_shelf_back:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        bookshelf_0_shelf_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_0_shelf_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_0_shelf_floor_0:
+        bed:bed:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_shelf_floor_1:
+        bed:bed:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bed:bed:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bedroom:bedroom:room_center_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_shelf_floor_2:
+        bedroom_entry_exit:entry_exit:link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bedside_table:bedside_table:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_shelf_left_side:
+        bedside_table:bedside_table:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bedside_table:bedside_table:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf:bookshelf:shelf_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_0_shelf_origin:
+        bookshelf:bookshelf:shelf_base_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bookshelf_0_shelf_right_side:
+        bookshelf:bookshelf:shelf_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        bookshelf_1_shelf_back:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        bookshelf_1_shelf_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_1_shelf_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_1_shelf_floor_0:
+        bookshelf:bookshelf:shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_shelf_floor_1:
+        bookshelf:bookshelf:shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_shelf_floor_2:
+        bookshelf:bookshelf:shelf_floor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_shelf_left_side:
+        bookshelf:bookshelf:shelf_floor_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_1_shelf_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_1_shelf_right_side:
+        bookshelf:bookshelf:shelf_left_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_shelf_back:
+        bookshelf:bookshelf:shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        bookshelf:bookshelf:shelf_right_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_shelf_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_2_shelf_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bookshelf_2_shelf_floor_0:
+        cabinet:cabinet:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_shelf_floor_1:
+        cabinet:cabinet:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cabinet:cabinet:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        coatrack:coatrack:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_shelf_floor_2:
+        coatrack:coatrack:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        coatrack:coatrack:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cupboard:cupboard:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_shelf_left_side:
+        cupboard:cupboard:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cupboard:cupboard:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        desk:desk:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bookshelf_2_shelf_origin:
+        desk:desk:table_front_edge_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bookshelf_2_shelf_right_side:
+        desk:desk:table_origin:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        bucket_bucket_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        bucket_bucket_front_edge_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bucket_bucket_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        bucket_bucket_surface_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        door_1_door_center:
+        dishwasher:dishwasher:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        door_1_door_handle_inside:
+        dishwasher:dishwasher:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        dishwasher:dishwasher:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        kitchen:kitchen:room_center_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        door_1_door_handle_outside:
+        kitchen_entry_exit:entry_exit:link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        kitchen_table:kitchen_table:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        door_1_door_hinge:
+        kitchen_table:kitchen_table:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        kitchen_table:kitchen_table:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        living_room:living_room:room_center_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_back_shelf_piece:
+        living_room_entry_exit:entry_exit:link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        pantry:pantry:shelf_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_base_center:
+        pantry:pantry:shelf_base_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        hsr_shelf_openable_shelf_center:
+        pantry:pantry:shelf_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        hsr_shelf_openable_shelf_door_left_shelf_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        hsr_shelf_openable_shelf_door_left_shelf_link_handle:
+        pantry:pantry:shelf_door_left:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_floor_0:
+        pantry:pantry:shelf_door_left:handle:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_floor_1:
+        pantry:pantry:shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_floor_2:
+        pantry:pantry:shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_left_side_shelf_piece:
+        pantry:pantry:shelf_floor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_openable_shelf_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hsr_shelf_openable_shelf_right_side_shelf_piece:
+        pantry:pantry:shelf_left_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_shelf_back:
+        pantry:pantry:shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        pantry:pantry:shelf_right_side:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_shelf_base_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hsr_shelf_shelf_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hsr_shelf_shelf_floor_0:
+        refrigerator:refrigerator:table_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_shelf_floor_1:
+        refrigerator:refrigerator:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        refrigerator:refrigerator:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        shelf:shelf:shelf_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_shelf_floor_2:
+        shelf:shelf:shelf_base_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        shelf:shelf:shelf_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        shelf:shelf:shelf_floor_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_shelf_left_side:
+        shelf:shelf:shelf_floor_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hsr_shelf_shelf_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hsr_shelf_shelf_right_side:
+        shelf:shelf:shelf_floor_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        kitchen_room_center_link:
+        shelf:shelf:shelf_floor_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        kitchen_room_corner_0_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        kitchen_room_corner_1_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        kitchen_room_corner_2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        kitchen_room_corner_3_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        table_clone_table_center:
+        shelf:shelf:shelf_floor_4:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        table_clone_table_front_edge_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        table_clone_table_origin:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        table_table_center:
+        shelf:shelf:shelf_floor_5:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        table_table_front_edge_center:
+        shelf:shelf:shelf_floor_6:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        table_table_origin:
+          Value: true
+        shelf:shelf:shelf_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        shelf:shelf:shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        shelf:shelf:shelf_right_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        side_table1:side_table:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        side_table1:side_table:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        side_table1:side_table:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        side_table2:side_table:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        side_table2:side_table:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        side_table2:side_table:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        sink:sink:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        sink:sink:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        sink:sink:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        sofa:sofa:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        sofa:sofa:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        sofa:sofa:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        storage_rack:storage_rack:shelf_back:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_rack:storage_rack:shelf_base_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        storage_rack:storage_rack:shelf_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        storage_rack:storage_rack:shelf_floor_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_rack:storage_rack:shelf_floor_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_rack:storage_rack:shelf_floor_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_rack:storage_rack:shelf_floor_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_rack:storage_rack:shelf_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storage_rack:storage_rack:shelf_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        storage_rack:storage_rack:shelf_right_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storing_groceries_table:storing_groceries_table:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        storing_groceries_table:storing_groceries_table:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        storing_groceries_table:storing_groceries_table:table_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        study:study:room_center_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        study_entry_exit:entry_exit:link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        tv_stand:tv_stand:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tv_stand:tv_stand:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        tv_stand:tv_stand:table_origin:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -636,6 +553,19 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         urdf_offset:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        waste_basket:waste_basket:table_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        waste_basket:waste_basket:table_front_edge_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        waste_basket:waste_basket:table_origin:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -660,9 +590,7 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: 0
       Name: RangeSensor
       Position Transformer: XYZ
       Queue Size: 10
@@ -680,7 +608,9 @@ Visualization Manager:
       Color: 25; 255; 0
       Enabled: true
       Name: GridCells (Path planning map with obstacles))
+      Queue Size: 10
       Topic: /base_path_planner/inflated_static_obstacle_map
+      Unreliable: false
       Value: true
     - Alpha: 1
       Buffer Length: 1
@@ -699,6 +629,7 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
+      Queue Size: 10
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
@@ -733,7 +664,7 @@ Visualization Manager:
           Marker Topic: /room_marker_array
           Name: RoomVizMarker
           Namespaces:
-            kitchen: true
+            {}
           Queue Size: 100
           Value: true
         - Class: rviz/MarkerArray
@@ -746,6 +677,410 @@ Visualization Manager:
           Value: true
       Enabled: true
       Name: Knowledge
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        iai_kitchen/arena:arena:room_center_link:
+          Value: true
+        iai_kitchen/arena_entry:entry:link:
+          Value: true
+        iai_kitchen/arena_exit:exit:link:
+          Value: true
+        iai_kitchen/bed:bed:table_center:
+          Value: true
+        iai_kitchen/bed:bed:table_front_edge_center:
+          Value: true
+        iai_kitchen/bed:bed:table_origin:
+          Value: true
+        iai_kitchen/bedroom:bedroom:room_center_link:
+          Value: true
+        iai_kitchen/bedroom_entry_exit:entry_exit:link:
+          Value: true
+        iai_kitchen/bedside_table:bedside_table:table_center:
+          Value: true
+        iai_kitchen/bedside_table:bedside_table:table_front_edge_center:
+          Value: true
+        iai_kitchen/bedside_table:bedside_table:table_origin:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_back:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_base_center:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_center:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_floor_0:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_floor_1:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_floor_2:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_floor_3:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_left_side:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_origin:
+          Value: true
+        iai_kitchen/bookshelf:bookshelf:shelf_right_side:
+          Value: true
+        iai_kitchen/cabinet:cabinet:table_center:
+          Value: true
+        iai_kitchen/cabinet:cabinet:table_front_edge_center:
+          Value: true
+        iai_kitchen/cabinet:cabinet:table_origin:
+          Value: true
+        iai_kitchen/coatrack:coatrack:table_center:
+          Value: true
+        iai_kitchen/coatrack:coatrack:table_front_edge_center:
+          Value: true
+        iai_kitchen/coatrack:coatrack:table_origin:
+          Value: true
+        iai_kitchen/cupboard:cupboard:table_center:
+          Value: true
+        iai_kitchen/cupboard:cupboard:table_front_edge_center:
+          Value: true
+        iai_kitchen/cupboard:cupboard:table_origin:
+          Value: true
+        iai_kitchen/desk:desk:table_center:
+          Value: true
+        iai_kitchen/desk:desk:table_front_edge_center:
+          Value: true
+        iai_kitchen/desk:desk:table_origin:
+          Value: true
+        iai_kitchen/dishwasher:dishwasher:table_center:
+          Value: true
+        iai_kitchen/dishwasher:dishwasher:table_front_edge_center:
+          Value: true
+        iai_kitchen/dishwasher:dishwasher:table_origin:
+          Value: true
+        iai_kitchen/kitchen:kitchen:room_center_link:
+          Value: true
+        iai_kitchen/kitchen_entry_exit:entry_exit:link:
+          Value: true
+        iai_kitchen/kitchen_table:kitchen_table:table_center:
+          Value: true
+        iai_kitchen/kitchen_table:kitchen_table:table_front_edge_center:
+          Value: true
+        iai_kitchen/kitchen_table:kitchen_table:table_origin:
+          Value: true
+        iai_kitchen/living_room:living_room:room_center_link:
+          Value: true
+        iai_kitchen/living_room_entry_exit:entry_exit:link:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_back:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_base_center:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_center:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_door_left:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_door_left:handle:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_floor_0:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_floor_1:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_floor_2:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_left_side:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_origin:
+          Value: true
+        iai_kitchen/pantry:pantry:shelf_right_side:
+          Value: true
+        iai_kitchen/refrigerator:refrigerator:table_center:
+          Value: true
+        iai_kitchen/refrigerator:refrigerator:table_front_edge_center:
+          Value: true
+        iai_kitchen/refrigerator:refrigerator:table_origin:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_back:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_base_center:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_center:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_0:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_1:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_2:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_3:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_4:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_5:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_floor_6:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_left_side:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_origin:
+          Value: true
+        iai_kitchen/shelf:shelf:shelf_right_side:
+          Value: true
+        iai_kitchen/side_table1:side_table:table_center:
+          Value: true
+        iai_kitchen/side_table1:side_table:table_front_edge_center:
+          Value: true
+        iai_kitchen/side_table1:side_table:table_origin:
+          Value: true
+        iai_kitchen/side_table2:side_table:table_center:
+          Value: true
+        iai_kitchen/side_table2:side_table:table_front_edge_center:
+          Value: true
+        iai_kitchen/side_table2:side_table:table_origin:
+          Value: true
+        iai_kitchen/sink:sink:table_center:
+          Value: true
+        iai_kitchen/sink:sink:table_front_edge_center:
+          Value: true
+        iai_kitchen/sink:sink:table_origin:
+          Value: true
+        iai_kitchen/sofa:sofa:table_center:
+          Value: true
+        iai_kitchen/sofa:sofa:table_front_edge_center:
+          Value: true
+        iai_kitchen/sofa:sofa:table_origin:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_back:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_base_center:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_center:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_floor_0:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_floor_1:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_floor_2:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_floor_3:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_left_side:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_origin:
+          Value: true
+        iai_kitchen/storage_rack:storage_rack:shelf_right_side:
+          Value: true
+        iai_kitchen/storing_groceries_table:storing_groceries_table:table_center:
+          Value: true
+        iai_kitchen/storing_groceries_table:storing_groceries_table:table_front_edge_center:
+          Value: true
+        iai_kitchen/storing_groceries_table:storing_groceries_table:table_origin:
+          Value: true
+        iai_kitchen/study:study:room_center_link:
+          Value: true
+        iai_kitchen/study_entry_exit:entry_exit:link:
+          Value: true
+        iai_kitchen/tv_stand:tv_stand:table_center:
+          Value: true
+        iai_kitchen/tv_stand:tv_stand:table_front_edge_center:
+          Value: true
+        iai_kitchen/tv_stand:tv_stand:table_origin:
+          Value: true
+        iai_kitchen/urdf_main:
+          Value: true
+        iai_kitchen/urdf_offset:
+          Value: true
+        iai_kitchen/waste_basket:waste_basket:table_center:
+          Value: true
+        iai_kitchen/waste_basket:waste_basket:table_front_edge_center:
+          Value: true
+        iai_kitchen/waste_basket:waste_basket:table_origin:
+          Value: true
+        map:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        map:
+          iai_kitchen/urdf_main:
+            iai_kitchen/urdf_offset:
+              iai_kitchen/arena:arena:room_center_link:
+                iai_kitchen/arena_entry:entry:link:
+                  {}
+                iai_kitchen/arena_exit:exit:link:
+                  {}
+              iai_kitchen/bed:bed:table_origin:
+                iai_kitchen/bed:bed:table_center:
+                  {}
+                iai_kitchen/bed:bed:table_front_edge_center:
+                  {}
+              iai_kitchen/bedroom:bedroom:room_center_link:
+                iai_kitchen/bedroom_entry_exit:entry_exit:link:
+                  {}
+              iai_kitchen/bedside_table:bedside_table:table_origin:
+                iai_kitchen/bedside_table:bedside_table:table_center:
+                  {}
+                iai_kitchen/bedside_table:bedside_table:table_front_edge_center:
+                  {}
+              iai_kitchen/bookshelf:bookshelf:shelf_origin:
+                iai_kitchen/bookshelf:bookshelf:shelf_back:
+                  {}
+                iai_kitchen/bookshelf:bookshelf:shelf_base_center:
+                  iai_kitchen/bookshelf:bookshelf:shelf_floor_0:
+                    {}
+                  iai_kitchen/bookshelf:bookshelf:shelf_floor_1:
+                    {}
+                  iai_kitchen/bookshelf:bookshelf:shelf_floor_2:
+                    {}
+                  iai_kitchen/bookshelf:bookshelf:shelf_floor_3:
+                    {}
+                iai_kitchen/bookshelf:bookshelf:shelf_center:
+                  {}
+                iai_kitchen/bookshelf:bookshelf:shelf_left_side:
+                  {}
+                iai_kitchen/bookshelf:bookshelf:shelf_right_side:
+                  {}
+              iai_kitchen/cabinet:cabinet:table_origin:
+                iai_kitchen/cabinet:cabinet:table_center:
+                  {}
+                iai_kitchen/cabinet:cabinet:table_front_edge_center:
+                  {}
+              iai_kitchen/coatrack:coatrack:table_origin:
+                iai_kitchen/coatrack:coatrack:table_center:
+                  {}
+                iai_kitchen/coatrack:coatrack:table_front_edge_center:
+                  {}
+              iai_kitchen/cupboard:cupboard:table_origin:
+                iai_kitchen/cupboard:cupboard:table_center:
+                  {}
+                iai_kitchen/cupboard:cupboard:table_front_edge_center:
+                  {}
+              iai_kitchen/desk:desk:table_origin:
+                iai_kitchen/desk:desk:table_center:
+                  {}
+                iai_kitchen/desk:desk:table_front_edge_center:
+                  {}
+              iai_kitchen/dishwasher:dishwasher:table_origin:
+                iai_kitchen/dishwasher:dishwasher:table_center:
+                  {}
+                iai_kitchen/dishwasher:dishwasher:table_front_edge_center:
+                  {}
+              iai_kitchen/kitchen:kitchen:room_center_link:
+                iai_kitchen/kitchen_entry_exit:entry_exit:link:
+                  {}
+              iai_kitchen/kitchen_table:kitchen_table:table_origin:
+                iai_kitchen/kitchen_table:kitchen_table:table_center:
+                  {}
+                iai_kitchen/kitchen_table:kitchen_table:table_front_edge_center:
+                  {}
+              iai_kitchen/living_room:living_room:room_center_link:
+                iai_kitchen/living_room_entry_exit:entry_exit:link:
+                  {}
+              iai_kitchen/pantry:pantry:shelf_origin:
+                iai_kitchen/pantry:pantry:shelf_back:
+                  {}
+                iai_kitchen/pantry:pantry:shelf_base_center:
+                  iai_kitchen/pantry:pantry:shelf_floor_0:
+                    {}
+                  iai_kitchen/pantry:pantry:shelf_floor_1:
+                    {}
+                  iai_kitchen/pantry:pantry:shelf_floor_2:
+                    {}
+                iai_kitchen/pantry:pantry:shelf_center:
+                  {}
+                iai_kitchen/pantry:pantry:shelf_left_side:
+                  iai_kitchen/pantry:pantry:shelf_door_left:
+                    iai_kitchen/pantry:pantry:shelf_door_left:handle:
+                      {}
+                iai_kitchen/pantry:pantry:shelf_right_side:
+                  {}
+              iai_kitchen/refrigerator:refrigerator:table_origin:
+                iai_kitchen/refrigerator:refrigerator:table_center:
+                  {}
+                iai_kitchen/refrigerator:refrigerator:table_front_edge_center:
+                  {}
+              iai_kitchen/shelf:shelf:shelf_origin:
+                iai_kitchen/shelf:shelf:shelf_back:
+                  {}
+                iai_kitchen/shelf:shelf:shelf_base_center:
+                  iai_kitchen/shelf:shelf:shelf_floor_0:
+                    {}
+                  iai_kitchen/shelf:shelf:shelf_floor_1:
+                    {}
+                  iai_kitchen/shelf:shelf:shelf_floor_2:
+                    {}
+                  iai_kitchen/shelf:shelf:shelf_floor_3:
+                    {}
+                  iai_kitchen/shelf:shelf:shelf_floor_4:
+                    {}
+                  iai_kitchen/shelf:shelf:shelf_floor_5:
+                    {}
+                  iai_kitchen/shelf:shelf:shelf_floor_6:
+                    {}
+                iai_kitchen/shelf:shelf:shelf_center:
+                  {}
+                iai_kitchen/shelf:shelf:shelf_left_side:
+                  {}
+                iai_kitchen/shelf:shelf:shelf_right_side:
+                  {}
+              iai_kitchen/side_table1:side_table:table_origin:
+                iai_kitchen/side_table1:side_table:table_center:
+                  {}
+                iai_kitchen/side_table1:side_table:table_front_edge_center:
+                  {}
+              iai_kitchen/side_table2:side_table:table_origin:
+                iai_kitchen/side_table2:side_table:table_center:
+                  {}
+                iai_kitchen/side_table2:side_table:table_front_edge_center:
+                  {}
+              iai_kitchen/sink:sink:table_origin:
+                iai_kitchen/sink:sink:table_center:
+                  {}
+                iai_kitchen/sink:sink:table_front_edge_center:
+                  {}
+              iai_kitchen/sofa:sofa:table_origin:
+                iai_kitchen/sofa:sofa:table_center:
+                  {}
+                iai_kitchen/sofa:sofa:table_front_edge_center:
+                  {}
+              iai_kitchen/storage_rack:storage_rack:shelf_origin:
+                iai_kitchen/storage_rack:storage_rack:shelf_back:
+                  {}
+                iai_kitchen/storage_rack:storage_rack:shelf_base_center:
+                  iai_kitchen/storage_rack:storage_rack:shelf_floor_0:
+                    {}
+                  iai_kitchen/storage_rack:storage_rack:shelf_floor_1:
+                    {}
+                  iai_kitchen/storage_rack:storage_rack:shelf_floor_2:
+                    {}
+                  iai_kitchen/storage_rack:storage_rack:shelf_floor_3:
+                    {}
+                iai_kitchen/storage_rack:storage_rack:shelf_center:
+                  {}
+                iai_kitchen/storage_rack:storage_rack:shelf_left_side:
+                  {}
+                iai_kitchen/storage_rack:storage_rack:shelf_right_side:
+                  {}
+              iai_kitchen/storing_groceries_table:storing_groceries_table:table_origin:
+                iai_kitchen/storing_groceries_table:storing_groceries_table:table_center:
+                  {}
+                iai_kitchen/storing_groceries_table:storing_groceries_table:table_front_edge_center:
+                  {}
+              iai_kitchen/study:study:room_center_link:
+                iai_kitchen/study_entry_exit:entry_exit:link:
+                  {}
+              iai_kitchen/tv_stand:tv_stand:table_origin:
+                iai_kitchen/tv_stand:tv_stand:table_center:
+                  {}
+                iai_kitchen/tv_stand:tv_stand:table_front_edge_center:
+                  {}
+              iai_kitchen/waste_basket:waste_basket:table_origin:
+                iai_kitchen/waste_basket:waste_basket:table_center:
+                  {}
+                iai_kitchen/waste_basket:waste_basket:table_front_edge_center:
+                  {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -780,19 +1115,19 @@ Visualization Manager:
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.13739725947380066
-        Y: 0.7776492238044739
-        Z: 0.5440699458122253
+        X: 1.5304937362670898
+        Y: -1.7671618461608887
+        Z: 2.2485036849975586
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.8313930034637451
+      Pitch: 0.7847970724105835
       Target Frame: <Fixed Frame>
-      Value: Orbit (rviz)
-      Yaw: 5.601322174072266
+      Yaw: 3.0262832641601562
     Saved: ~
 Window Geometry:
   Displays:
@@ -800,7 +1135,7 @@ Window Geometry:
   Height: 887
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001d8000002d3fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001d7000001d0000002610000015ffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000002d3000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000012f0000035dfc0200000008fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb00000014005800740069006f006e00440065007000740068010000003d000000900000000000000000fb00000014005800740069006f006e0049006d006100670065010000003d000000940000000000000000fc0000003d0000013a0000000000fffffffa000000000100000002fb0000001400480061006e006400430061006d0065007200610100000000ffffffff0000000000000000fb00000020004800650061006400430061006d00650072006100430065006e007400650072010000057e0000012f0000000000000000fb0000001c004800650061006400430061006d006500720061004c006500660074010000003d000001a90000000000000000fb0000001e004800650061006400430061006d00650072006100520069006700680074010000003d0000035d0000000000000000fb0000000a0056006900650077007300000002e7000000f8000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000059600000044fc0100000002fb0000000800540069006d0065010000000000000596000002eb00fffffffb0000000800540069006d00650100000000000004500000000000000000000003b8000002d300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001d8000002d3fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001d7000001d0000002610000015ffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000002d3000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000012f0000035dfc0200000008fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb00000014005800740069006f006e00440065007000740068010000003d000000900000000000000000fb00000014005800740069006f006e0049006d006100670065010000003d000000940000000000000000fc0000003d0000013a0000000000fffffffa000000000100000002fb0000001400480061006e006400430061006d0065007200610100000000ffffffff0000000000000000fb00000020004800650061006400430061006d00650072006100430065006e007400650072010000057e0000012f0000000000000000fb0000001c004800650061006400430061006d006500720061004c006500660074010000003d000001a90000000000000000fb0000001e004800650061006400430061006d00650072006100520069006700680074010000003d0000035d0000000000000000fb0000000a0056006900650077007300000002e7000000f8000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000059600000044fc0100000002fb0000000800540069006d0065010000000000000596000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000003b8000002d300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -810,5 +1145,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1430
-  X: 1521
-  Y: 212
+  X: 490
+  Y: 82

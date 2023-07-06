@@ -90,9 +90,9 @@ tables:
       width:  0.5
       height: 0.575
       depth: 0.455
-      z_rot: 3.1415
+      z_rot: 0
       x_pos: 9
-      y_pos: 0
+      y_pos: -1
    4: #E
      name: sofa
      knowledge_role: sofa
@@ -137,12 +137,12 @@ tables:
     name: bed
     knowledge_role: bed
     parent: urdf_offset
-    width: 0.91
+    width: 1.91
     height: 0.31
-    depth: 1.91
-    z_rot: 0.0
+    depth: 0.91
+    z_rot: -1.571
     x_pos: 7.5
-    y_pos: -2.5
+    y_pos: -1.59
    9: 
     name: tv_stand
     knowledge_role: tv_stand
