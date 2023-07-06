@@ -17,26 +17,10 @@ drawers:
 simple_drawers:
   perception_postfix: drawer_center
   amount: 0
-  0:
-    name: fake_dishwasher_tray
-    knowledge_role: dishwasher
-    parent: urdf_offset
-    width: 0.845
-    height: 0.595
-    depth: 0.59
-    z_rot: 3.1415
-    x_pos: 10.2
-    y_pos: 2.5
-    z_pos: 00
-    handle_x: -0.03
-    handle_z: 0.055
-    handle_size_x: 0.01
-    handle_size_y: 0.02
-    handle_size_z: 0.12
     
 dishwashers:
    perception_postfix: dishwasher_center
-   amount: 0
+   amount: 1
    0:
       name: dishwasher
       knowledge_role: dishwasher
@@ -44,15 +28,14 @@ dishwashers:
       width: 0.59
       height: 0.845
       depth: 0.595
-      z_rot: 3.1415926535897932
-      x_pos: 10.2
-      y_pos: 2.5
-
+      z_rot: 0
+      x_pos: 9.2
+      y_pos: 2.8
 
 
 tables:
    perception_postfix: table_center
-   amount: 13
+   amount: 10
    0: #A
       name: desk
       knowledge_role: desk
@@ -63,37 +46,17 @@ tables:
       z_rot: 0
       x_pos: 2.4
       y_pos: -2
-   1: #C
-      name: cabinet
-      knowledge_role: cabinet
-      parent: urdf_offset
-      width:  0.92
-      height: 0.66
-      depth: 0.46
-      z_rot: 0
-      x_pos: 4.5
-      y_pos: -1.8
-   2: #J
-      name: dishwasher
-      knowledge_role: dishwasher
-      parent: urdf_offset
-      width: 0.59
-      height: 0.845
-      depth: 0.595
-      z_rot: 3.1415
-      x_pos: 9.5
-      y_pos: 3
-   3: #B
+   1: #B
       name: bedside_table
       knowledge_role: bedside_table
       parent: urdf_offset
       width:  0.5
       height: 0.575
       depth: 0.455
-      z_rot: 3.1415
+      z_rot: 0
       x_pos: 9
-      y_pos: 0
-   4: #E
+      y_pos: -1
+   2: #E
      name: sofa
      knowledge_role: sofa
      parent: urdf_offset
@@ -103,87 +66,87 @@ tables:
      z_rot: 1.571 
      x_pos: 3.4
      y_pos: 5.5
-   5: #F
+   3: #F
       name: side_table1
       knowledge_role: side_table
       parent: urdf_offset
       width: 0.5
       height: 0.405
       depth: 0.5
-      z_rot: -0.00
-      x_pos: 2.5
+      z_rot: 1.5708
+      x_pos: 3.0
       y_pos: 4.8
-   6: #G
+   4: #G
       name: side_table2
       knowledge_role: side_table
       parent: urdf_offset
       width: 0.5
       height: 0.405
       depth: 0.5
-      z_rot: -0.00
-      x_pos: 2
+      z_rot: 1.5708
+      x_pos: 2.5
       y_pos: 4.8
-   7: #J
+   5: #J
      name: refrigerator
      knowledge_role: refrigerator
      parent: urdf_offset
      width: 0.6
      height: 1.73
      depth: 0.56
-     z_rot: 0.00
-     x_pos: 5.3
-     y_pos: 1.65
-   8: #N
+     z_rot: 3.14159
+     x_pos: 5.86
+     y_pos: 2.25
+   6: #N
     name: bed
     knowledge_role: bed
     parent: urdf_offset
-    width: 0.91
+    width: 1.91
     height: 0.31
-    depth: 1.91
-    z_rot: 0.0
+    depth: 0.91
+    z_rot: -1.571
     x_pos: 7.5
-    y_pos: -2.5
-   9: 
+    y_pos: -1.59
+   7: 
     name: tv_stand
     knowledge_role: tv_stand
     parent: urdf_offset
     width: 0.7
     height: 0.5
     depth: 0.45
-    z_rot: 1.571
-    x_pos: 2.2
-    y_pos: 1.1
-   10: 
+    z_rot: 4.71259
+    x_pos: 1.5
+    y_pos: 1.55
+   8: 
     name: sink
     knowledge_role: sink
     parent: urdf_offset
     width: 0.52
     height: 0.95
     depth: 0.46
-    z_rot: 0
-    x_pos: 5.5
-    y_pos: 2.5
-   11: 
+    z_rot: 3.14159
+    x_pos: 5.82
+    y_pos: 2.79
+   9: 
     name: cupboard
     knowledge_role: cupboard
     parent: urdf_offset
     width: 0.825
     height: 0.855
     depth: 0.455
-    z_rot: 0
-    x_pos: 5.25
-    y_pos: 4.7
-   12:
-    name: storing_groceries_table
-    knowledge_role: storing_groceries_table
-    parent: urdf_offset
-    width: 0.7
-    height: 0.405
-    depth: 0.4
-    z_rot: 3.1415
-    x_pos: 6.16
-    y_pos: 5.83
-    
+    z_rot: 3.14159
+    x_pos: 5.705
+    y_pos: 5.525
+   # 11:
+   #  name: dishwasher
+   #  knowledge_role: dishwasher
+   #  parent: urdf_offset
+   #  width: 0.59
+   #  height: 0.845
+   #  depth: 0.595
+   #  z_rot: 0
+   #  x_pos: 8.905
+   #  y_pos: 2.41
+
 round_tables:
    perception_postfix: table_center
    amount: 3
@@ -242,7 +205,7 @@ shelves:
       height: 1.59
       depth: 0.45
       z_rot: 3.14
-      x_pos: 1.15
+      x_pos: 1
       y_pos: 5.5
       floors_height: [0.105, 0.63, 1.10, 1.59]
       number_of_floors: 4
@@ -265,7 +228,7 @@ shelves:
 
 shelves_openable:
    perception_postfix: shelf_floor_X
-   amount: 1
+   amount: 2
    0:
       name: pantry
       knowledge_role: pantry
@@ -285,7 +248,25 @@ shelves_openable:
       handle_height: 0.084
       handle_width: 0.01
       handle_depth: 0.02
-      
+   1:
+      name: cabinet
+      knowledge_role: cabinet
+      parent: urdf_offset
+      width:  0.90
+      height: 0.66
+      depth: 0.46
+      z_rot: 0
+      x_pos: 4.6
+      y_pos: -1.79
+      floors_height: [0.345, 0.66]
+      number_of_floors: 2
+      door: left
+      wall_thickness: 0.03
+      handle_from_bottom: 0.575
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.02
     
 
     

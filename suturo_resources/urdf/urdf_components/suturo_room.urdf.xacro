@@ -18,7 +18,7 @@
   <xacro:macro name="suturo_room" params="name parent center_x center_y color size_x size_y connections">
 
     <joint name="world_${name}:room_joint" type="fixed">
-        <origin xyz="${center_x} ${center_y} -0.01 " rpy="0 0 0" />
+        <origin xyz="${center_x} ${center_y} -0.05 " rpy="0 0 0" />
         <parent link="${parent}"/>
         <child link="${name}:room_center_link"/>
     </joint>

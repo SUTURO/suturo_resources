@@ -2,6 +2,9 @@
 *~
 \#*#
 
+## vscode folder
+.vscode/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
