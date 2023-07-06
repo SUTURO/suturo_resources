@@ -147,7 +147,7 @@
                             rpy="0 0 ${data['shelves_openable'][shelf_openable_number]['z_rot']}" />
         </xacro:suturo_shelf_openable>
         <xacro:if value="${(number_of_shelves_openable - 1) > shelf_openable_number}">
-            <xacro:shelf_openable_loop shelf_number="${shelf_openable_number + 1}" />
+            <xacro:shelf_openable_loop shelf_openable_number="${shelf_openable_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
