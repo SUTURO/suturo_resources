@@ -36,7 +36,7 @@ simple_drawers:
     
 dishwashers:
    perception_postfix: dishwasher_center
-   amount: 0
+   amount: 1
    0:
       name: dishwasher
       knowledge_role: dishwasher
@@ -45,14 +45,14 @@ dishwashers:
       height: 0.845
       depth: 0.595
       z_rot: 0
-      x_pos: 9.605
-      y_pos: 1.91
+      x_pos: 9.2
+      y_pos: 2.8
 
 
 
 tables:
    perception_postfix: table_center
-   amount: 12
+   amount: 11
    0: #A
       name: desk
       knowledge_role: desk
@@ -63,17 +63,7 @@ tables:
       z_rot: 0
       x_pos: 2.4
       y_pos: -2
-   1: #J
-      name: dishwasher
-      knowledge_role: dishwasher
-      parent: urdf_offset
-      width: 0.59
-      height: 0.845
-      depth: 0.595
-      z_rot: 0
-      x_pos: 8.905
-      y_pos: 2.55
-   2: #B
+   1: #B
       name: bedside_table
       knowledge_role: bedside_table
       parent: urdf_offset
@@ -83,7 +73,7 @@ tables:
       z_rot: 0
       x_pos: 9
       y_pos: -1
-   3: #E
+   2: #E
      name: sofa
      knowledge_role: sofa
      parent: urdf_offset
@@ -93,7 +83,7 @@ tables:
      z_rot: 1.571 
      x_pos: 3.4
      y_pos: 5.5
-   4: #F
+   3: #F
       name: side_table1
       knowledge_role: side_table
       parent: urdf_offset
@@ -103,7 +93,7 @@ tables:
       z_rot: 1.5708
       x_pos: 3.0
       y_pos: 4.8
-   5: #G
+   4: #G
       name: side_table2
       knowledge_role: side_table
       parent: urdf_offset
@@ -113,7 +103,7 @@ tables:
       z_rot: 1.5708
       x_pos: 2.5
       y_pos: 4.8
-   6: #J
+   5: #J
      name: refrigerator
      knowledge_role: refrigerator
      parent: urdf_offset
@@ -123,7 +113,7 @@ tables:
      z_rot: 3.14159
      x_pos: 5.86
      y_pos: 2.25
-   7: #N
+   6: #N
     name: bed
     knowledge_role: bed
     parent: urdf_offset
@@ -133,7 +123,7 @@ tables:
     z_rot: -1.571
     x_pos: 7.5
     y_pos: -1.59
-   8: 
+   7: 
     name: tv_stand
     knowledge_role: tv_stand
     parent: urdf_offset
@@ -143,7 +133,7 @@ tables:
     z_rot: 4.71259
     x_pos: 1.5
     y_pos: 1.55
-   9: 
+   8: 
     name: sink
     knowledge_role: sink
     parent: urdf_offset
@@ -153,7 +143,7 @@ tables:
     z_rot: 3.14159
     x_pos: 5.82
     y_pos: 2.79
-   10: 
+   9: 
     name: cupboard
     knowledge_role: cupboard
     parent: urdf_offset
@@ -163,7 +153,7 @@ tables:
     z_rot: 3.14159
     x_pos: 5.705
     y_pos: 5.525
-   11:
+   10:
     name: storing_groceries_table
     knowledge_role: storing_groceries_table
     parent: urdf_offset
