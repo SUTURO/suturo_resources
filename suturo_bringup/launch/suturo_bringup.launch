@@ -34,8 +34,6 @@
   <arg name="publish_environment" default="true" />
   <arg name="env_model_yaml" default="rw_robocup_2023.yaml" />
 
-  <arg name="show_rooms" default="true"/>
-
   <arg name="run_snap_map" default="true" />
 
   <!-- where to spawn the robot-->
@@ -78,25 +76,20 @@
     <include file="$(find suturo_resources)/urdf/launch/urdf.launch" pass_all_args="true" >
       <arg name="world_urdf_yaml" value="$(arg env_model_yaml)"/>
     </include>
+	
   </group>
 
   <group if="$(eval arg('upload_map') == true)">
     <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/$(arg map_name)" /> <!-- map3-door-open-cleaned.yaml" /-->
   </group>
 
-  <!-- Show Rooms -->
-  <group if="$(eval arg('show_rooms') == true)">
-    <include file="$(find suturo_room_viz)/launch/suturo_room_viz.launch" pass_all_args="false" >      
-    </include>
-  </group>
-
   <group if="$(arg publish_joint_state)">
-    <node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="hand_gripper_tool_frame_publisher" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
   </group>
 
 
   <group if="$(eval arg('use_rviz') == true)">
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz" />
+    <include file="$(find suturo_bringup)/launch/rviz.launch"/>
   </group>
   
   <node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen" />

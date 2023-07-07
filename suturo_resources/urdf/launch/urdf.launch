@@ -7,7 +7,9 @@
   <arg name="loc_of_urdf_2" default="kitchen_description"/>
   <arg name="tf_prefix" default="iai_kitchen"/>
   <arg name="joint_states_prefix" default="iai_kitchen"/>
-    
+
+  <!-- Needed for knowledge to find the map. TODO use EITHER iai_kitchen XOR kitchen_description and keep that consistent. -->
+  <param name="/suturo_room_viz/urdf_param" value="$(arg loc_of_urdf_2)" />
 
   <param name="$(arg loc_of_urdf_1)" command="$(find xacro)/xacro $(arg model) yaml_file:=$(find suturo_resources)/urdf/yaml/$(arg world_urdf_yaml)" />  
   
