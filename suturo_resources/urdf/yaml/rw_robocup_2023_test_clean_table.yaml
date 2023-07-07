@@ -9,9 +9,9 @@ dishwashers:
       width: 0.59
       height: 0.845
       depth: 0.595
-      z_rot: 1.5708
-      x_pos: 3
-      y_pos: 2
+      z_rot: 0
+      x_pos: 1.5
+      y_pos: -0.20
 
 round_tables:
    perception_postfix: table_center
@@ -22,27 +22,27 @@ round_tables:
       parent: urdf_offset
       radius: 0.4
       length: 0.725
-      z_rot: 3.14159
-      x_pos: 1
-      y_pos: 1
+      z_rot: 1.5708
+      x_pos: 0.4
+      y_pos: 1.0
    
 rooms:
     amount: 1
     0:
         name: kitchen
         knowledge_role: kitchen
-        center_x: 2
+        center_x: 0.5
         center_y: 0
-        size_x: 5
-        size_y: 6
+        size_x: 4
+        size_y: 4
         color: 0.66 0.51 1 0.5
         connections:
           amount: 1
           0:
             name: kitchen_entry_exit
             knowledge_role: entry_exit
-            center_x: 3
-            center_y: -3
+            center_x: 1.5
+            center_y: -2
 
 # Moves everything in the URDF by the given distances
 world_offset:
