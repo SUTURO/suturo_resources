@@ -1,0 +1,38 @@
+tables:
+   perception_postfix: table_center
+   amount: 1
+   0:
+      name: cupboard
+      knowledge_role: cupboard
+      parent: urdf_offset
+      width:  0.75
+      height: 0.74
+      depth: 0.75
+      z_rot: 1.57
+      x_pos: 1.62
+      y_pos: 0.89
+
+
+shelves:
+   perception_postfix: shelf_floor_0
+   amount: 1
+   0:
+      name: pantry
+      knowledge_role: pantry
+      parent: urdf_offset
+      width: 0.4
+      height: 1.30
+      depth: 0.5
+      z_rot: 0
+      x_pos: 1.78
+      y_pos: -1.57
+      floors_height: [0.91]
+      number_of_floors: 1
+      door: none
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+
