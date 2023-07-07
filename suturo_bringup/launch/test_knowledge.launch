@@ -7,7 +7,6 @@
 		<arg name="publish_environment" value="true" />
 		<arg name="env_model_yaml" value="rw_lab_master_2023.yaml" />
 
-		<arg name="show_rooms" value="true"/>
 		<arg name="publish_robot_description" value="true" />
 		<arg name="run_snap_map" value="false" />
 		
