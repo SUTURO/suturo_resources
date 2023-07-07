@@ -107,11 +107,11 @@
     </joint>
 
     <xacro:dishwasher_tray name="${name}:dishwasher_tray" parent="${name}:dishwasher_main">
-      <origin xyz="-0.08 0 0.15"/>
+      <origin xyz="-0.08 0 0.26"/>
     </xacro:dishwasher_tray>
     
     <xacro:dishwasher_tray name="${name}:dishwasher_tray_2" parent="${name}:dishwasher_main">
-      <origin xyz="-0.08 0 -0.15"/>
+      <origin xyz="-0.08 0 -0.07"/>
     </xacro:dishwasher_tray>
 
   </xacro:macro>
