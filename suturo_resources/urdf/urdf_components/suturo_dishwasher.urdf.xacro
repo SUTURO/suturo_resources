@@ -54,9 +54,17 @@
         </geometry>
       </collision>
     </link>
-    <!--
+
+	<link name="${name}:dishwasher_tab"/>
+
+	<!--
     <xacro:if value="simulated"/>
     -->
+	<joint name="${name}:dishwasher_tab_joint" type="fixed">
+	  <origin xyz="0.18 -0.33 0.1775" rpy="0 0 0" />
+	  <parent link="${name}:dishwasher_door"/>
+      <child link="${name}:dishwasher_tab"/>
+	</joint>
     <joint name="${name}:dishwasher_main_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
