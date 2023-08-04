@@ -28,7 +28,7 @@
         <geometry>
           <box size="${size_x} ${size_y} 0.01" />
         </geometry>
-        <material name="color">
+        <material name="${name}:color">
           <color rgba="${color}"/>
         </material>
       </visual>
