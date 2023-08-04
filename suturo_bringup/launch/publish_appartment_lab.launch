@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find suturo_resources)/urdf/launch/urdf.launch">
+    <arg name="world_urdf_yaml" value="rw_appartment_lab_2023.yaml"/>
+    <!--<arg name="joint_states_prefix" value="iai_kitchen"/>-->
+  </include>
+</launch>
