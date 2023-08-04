@@ -1,0 +1,275 @@
+
+drawers:
+  perception_postfix: drawer_center
+  amount: 0
+   # 0:
+    # name: drawer
+    # knowledge_role: drawer
+    # parent: urdf_offset
+    # width: 0.30
+    # height: 0.26
+    # depth: 0.42
+    # z_rot: 1.5707963
+    # x_pos: 0.18
+    # y_pos: -0.54
+
+
+simple_drawers:
+  perception_postfix: drawer_center
+  amount: 0
+  0:
+    name: fake_dishwasher_tray
+    knowledge_role: dishwasher
+    parent: urdf_offset
+    width: 0.41
+    height: 0.10
+    depth: 0.51
+    z_rot: 3.1415
+    x_pos: 0.326
+    y_pos: 1.21
+    z_pos: 0.51
+    handle_x: -0.03
+    handle_z: 0.055
+    handle_size_x: 0.01
+    handle_size_y: 0.02
+    handle_size_z: 0.12
+
+
+
+dishwashers:
+   perception_postfix: dishwasher_center
+   amount: 0
+   # 0:
+   #    name: imaginary_dishwasher
+   #    knowledge_role: dishwasher
+   #    parent: urdf_offset
+   #    z_rot: 3.1415926535897932
+   #    x_pos: 0.8
+   #    y_pos: 1.5
+
+
+tables:
+   perception_postfix: table_center
+   amount: 4
+   0:
+      name: kitchen_island
+      knowledge_role: table
+      parent: urdf_offset
+      width: 3.18
+      height: 0.93
+      depth: 1.0
+      z_rot: 3.1415
+      x_pos: 3.0
+      y_pos: 4.27
+   1:
+      name: dining_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  0.90
+      height: 0.75
+      depth: 1.40
+      z_rot: 1.5707
+      x_pos: 6.66
+      y_pos: 3.67
+   2:
+      name: couch_table
+      knowledge_role: table
+      parent: urdf_offset
+      width: 1.20
+      height: 0.405
+      depth: 0.70
+      z_rot: 1.5707
+      x_pos: 13.5
+      y_pos: 2.62
+   3:
+      name: bedside_table
+      knowledge_role: table
+      parent: urdf_offset
+      width: 0.32
+      height: 0.46
+      depth: 0.32
+      z_rot: 0.78539
+      x_pos: 17.0
+      y_pos: 4.48
+
+
+      
+shelves:
+   perception_postfix: shelf_floor_0 # replace X with floor number starting with 0
+   amount: 1
+   0:
+      name: open_shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.85
+      height: 1.90
+      depth: 0.30
+      z_rot: -1.5707
+      x_pos: 7.60
+      y_pos: 0.255
+      floors_height: [0.29, 0.64, 0.96, 1.275, 1.62]
+      number_of_floors: 5 
+      door: none
+      
+
+
+shelves_openable:
+   perception_postfix: shelf_floor_X
+   amount: 0
+   0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.71
+      height: 1.04
+      depth: 0.32
+      z_rot: 1.570796327
+      x_pos: 2.37
+      y_pos: 2.31
+      floors_height: [0.07, 0.46, 0.72, 1.04]
+      number_of_floors: 4
+      door: both
+      wall_thickness: 0.015
+      handle_from_bottom: 0.795
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.02
+
+
+buckets:
+    perception_postfix: bucket_center
+    amount: 0
+    0:
+      name: bucket
+      knowledge_role: bucket
+      parent: urdf_offset
+      width:  0.3
+      height: 0.32
+      depth: 0.3
+      z_rot: 0.0
+      x_pos: 1.8
+      y_pos: -2.76
+
+
+walls:
+    amount: 0
+    0:
+      name: wall_1
+      parent: urdf_offset
+      pos_1_x: -0.64
+      pos_1_y: -3.21
+      pos_2_x: -2.96
+      pos_2_y: -3.21
+      
+
+
+rooms:
+    amount: 4
+    0:
+        name: dining_room
+        knowledge_role: dining_room
+        center_x: 7.0
+        center_y: 2.5
+        size_x: 6.0
+        size_y: 5.0
+        color: '1 0 0 0.5'
+        connections:
+          amount: 1
+          0:
+            name: dining_room_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: 0.0
+    1:
+        name: iai_kitchen
+        knowledge_role: kitchen
+        center_x: 2.0
+        center_y: 2.5
+        size_x: 4.0
+        size_y: 5.0
+        color: '1 1 0 0.5'
+        connections:
+          amount: 1
+          0:
+            name: kitchen_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
+    2:
+        name: living_room
+        knowledge_role: living_room
+        center_x: 13.0
+        center_y: 2.5
+        size_x: 6.0
+        size_y: 5.0
+        color: '0 0 1 0.5'
+        connections:
+          amount: 1
+          0:
+            name: living_room_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
+    3:
+        name: bedroom
+        knowledge_role: bedroom
+        center_x: 17.5
+        center_y: 2.5
+        size_x: 3.0
+        size_y: 5.0
+        color: '0 1 0 0.5'
+        connections:
+          amount: 1
+          0:
+            name: bedroom_entry_exit
+            knowledge_role: entry_exit
+            center_x: 1.0
+            center_y: -1.0
+    ignored:
+        name: arena
+        knowledge_role: arena
+        center_x: -0.1
+        center_y: 0.0
+        size_x: 0.01
+        size_y: 0.01
+        color: 0.66 0.51 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: arena_entry_exit
+            knowledge_role: entry_exit
+            center_x: -0.1
+            center_y: 0.0
+
+doors:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        height: 2
+        width: 0.983
+        depth: 0.055
+        x: 2.18
+        y: 1.28
+        z: 1.0
+        zrot: -1.75
+        door_turn_limit_lower: -1.4
+        door_turn_limit_max: 0
+
+paths:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        x_pos: 2.6
+        y_pos: 2.1
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+
