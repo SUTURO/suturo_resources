@@ -59,7 +59,7 @@ tables:
       height: 0.93
       depth: 1.0
       z_rot: 3.1415
-      x_pos: 3.0
+      x_pos: 3.32
       y_pos: 4.27
    1:
       name: dining_table
@@ -69,8 +69,8 @@ tables:
       height: 0.75
       depth: 1.40
       z_rot: 1.5707
-      x_pos: 6.66
-      y_pos: 3.67
+      x_pos: 6.9
+      y_pos: 3.57
    2:
       name: couch_table
       knowledge_role: table
@@ -105,7 +105,7 @@ shelves:
       height: 1.90
       depth: 0.30
       z_rot: -1.5707
-      x_pos: 7.60
+      x_pos: 7.54
       y_pos: 0.255
       floors_height: [0.29, 0.64, 0.96, 1.275, 1.62]
       number_of_floors: 5 
