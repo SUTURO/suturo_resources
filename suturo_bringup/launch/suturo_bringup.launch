@@ -23,7 +23,7 @@
   <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/-->
 
   <arg name="world" default="empty.world" />
-  <arg name="map_name" default="robocup_2023/robocup.yaml" />
+  <arg name="map_name" default="hsr_lab_master_2023_post_robocup/hsr_lab_master_2023_post_robocup.yaml" />
   <arg name="gazebo" default="false" />
 
   <!--arg name="map_server" default="true" /-->
@@ -32,7 +32,7 @@
 
   <arg name="upload_map" default="true" />
   <arg name="publish_environment" default="true" />
-  <arg name="env_model_yaml" default="rw_robocup_2023.yaml" />
+  <arg name="env_model_yaml" default="rw_lab_master_2023_post_robocup.yaml" />
 
   <arg name="show_rooms" default="true"/>
 
