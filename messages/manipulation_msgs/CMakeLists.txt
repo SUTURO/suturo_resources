@@ -20,6 +20,12 @@ add_message_files(
   DIRECTORY msg
   FILES
   ObjectInGripper.msg
+  ContextAction.msg
+  ContextFromAbove.msg
+  ContextNeatly.msg
+  ContextObjectSize.msg
+  ContextObjectType.msg
+  ContextObjectShape.msg
 )
 
 add_action_files(
