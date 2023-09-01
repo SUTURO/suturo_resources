@@ -59,8 +59,8 @@ tables:
       height: 0.7
       depth: 0.8
       z_rot: 1.5708
-      x_pos: 2.53
-      y_pos: 1.13
+      x_pos: 2.48
+      y_pos: 1.15
 
 
       
@@ -94,8 +94,8 @@ shelves_openable:
       height: 1.04
       depth: 0.32
       z_rot: 0.0
-      x_pos: 3.29
-      y_pos: -0.14
+      x_pos: 3.28
+      y_pos: -0.21
       floors_height: [0.07, 0.46, 0.72, 1.04]
       number_of_floors: 4
       door: both
