@@ -22,6 +22,7 @@ add_message_files(
   ObjectInGripper.msg
   ContextAction.msg
   ContextFromAbove.msg
+  ContextAlignVertical.msg
   ContextNeatly.msg
   ContextObjectType.msg
   ContextObjectShape.msg
