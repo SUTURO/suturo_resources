@@ -23,7 +23,6 @@ add_message_files(
   ContextAction.msg
   ContextFromAbove.msg
   ContextNeatly.msg
-  ContextObjectSize.msg
   ContextObjectType.msg
   ContextObjectShape.msg
 )
