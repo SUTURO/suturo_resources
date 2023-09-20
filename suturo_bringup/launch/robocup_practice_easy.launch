@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<launch>
+<launch>	
 	<param name="locations_ontology_file" type="str" value="robocup_practice_easy_locations.owl"/>
 	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
 		<!--arg name="namespace" value="hsrb"/>
@@ -40,6 +40,7 @@
 		<arg name="robot_spawn_pose_y" default="2.5" />
 		<arg name="robot_spawn_pose_z" default="0" />
 		<arg name="robot_spawn_rotation" default="-1.57079632679" />
+		<arg name="publish_joint_state" default="true" />
 
 
     </include>
@@ -49,5 +50,7 @@
 <node pkg="rostopic" type="rostopic" name="rostopic" args="pub /laser_2d_correct_pose geometry_msgs/PoseWithCovarianceStamped '
 {header: { seq: 0, stamp: {secs: 0, nsecs: 0},
     frame_id: 'map'}, pose:{ pose:{ position:{ x: -1.3, y: -0.3, z: 0.0}, orientation:{ x: 0.0, y: 0.0, z: 0.0, w: 1.0} }, covariance:[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}}'"/>
+   
+
 
 </launch>
