@@ -1,0 +1,6 @@
+# Service definition for interacting with NLP
+
+string name		# the name of the person
+---
+bool is_known		# true if person is already known, else false 
+
