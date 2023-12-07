@@ -7,7 +7,10 @@ add_service_files(DIRECTORY srv
   FILES
   Empty.srv
   SetBool.srv
-  Trigger.srv)
+  Trigger.srv
+  IsKnown.srv
+  GiveMeFavDrink.srv
+  SaveInfo.srv)
 
 generate_messages()
 
