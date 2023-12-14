@@ -35,7 +35,7 @@ arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
 <arg name="publish_joint_state" default="true"/>
 <arg name="upload_map" default="true"/>
 <arg name="publish_environment" default="true"/>
-<arg name="env_model_yaml" default="rw_lab_master_2023_post_robocup.yaml"/>
+<arg name="env_model_yaml" default="final_projectroom_map.yaml"/>
 <arg name="show_rooms" default="false"/>
 <arg name="run_snap_map" default="false"/>
 <!-- where to spawn the robot-->
@@ -90,3 +90,4 @@ group if="$(eval arg('gazebo') == false)">
 </group>
 <node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen"/>
 </launch>
+
