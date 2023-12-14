@@ -4,7 +4,7 @@
 <!--arg name="namespace" default="hsrb" /-->
 <!--arg name="debug" default="false"/-->
 <!--arg name="gui" default="true" /-->
-<arg name="use_rviz" default="false"/>
+<arg name="use_rviz" default="true"/>
 <!--arg name="gazebo_visualization" default="false" /-->
 <!--
 arg name="use_manipulation" default="true" />
@@ -25,7 +25,7 @@ arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
   <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/
 -->
 <arg name="world" default="empty.world"/>
-<arg name="map_name" default="projectroom_beta/projectroom1.yaml"/>
+<arg name="map_name" default="projectroom_beta/final_projectroom_map.yaml"/>
 <arg name="gazebo" default="false"/>
 <!--arg name="map_server" default="true" /-->
 <arg name="upload_hsrb" default="false"/>
@@ -34,10 +34,10 @@ arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
 -->
 <arg name="publish_joint_state" default="false"/>
 <arg name="upload_map" default="true"/>
-<arg name="publish_environment" default="true"/>
-<arg name="env_model_yaml" default="rw_lab_master_2023_post_robocup.yaml"/>
+<arg name="publish_environment" default="false"/>
+<arg name="env_model_yaml" default="final_projectroom_map.yaml"/>
 <arg name="show_rooms" default="false"/>
-<arg name="run_snap_map" default="false"/>
+<arg name="run_snap_map" default="true"/>
 <!-- where to spawn the robot-->
 <arg name="robot_spawn_pose_x" default="0"/>
 <arg name="robot_spawn_pose_y" default="0"/>

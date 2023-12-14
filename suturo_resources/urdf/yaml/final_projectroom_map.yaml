@@ -1,0 +1,59 @@
+shelves_openable:
+   perception_postfix: shelf_floor_X
+   amount: 1
+   0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.71
+      height: 1.04
+      depth: 0.32
+      z_rot: -1.56
+      x_pos: 1.9
+      y_pos: 3.3
+      floors_height: [0.07, 0.46, 0.72, 1.04]
+      number_of_floors: 4
+      door: both
+      wall_thickness: 0.015
+      handle_from_bottom: 0.795
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.02
+
+tables:
+   perception_postfix: table_center
+   amount: 2
+   0:
+      name: table_kitchen_counter
+      knowledge_role: table
+      parent: urdf_offset
+      width:  2.45
+      height: 0.85
+      depth: 0.76
+      z_rot: -1.56
+      x_pos: 3.08
+      y_pos: 0.8
+      
+   1:
+      name: long_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.17
+      height: 0.735
+      depth: 0.73
+      z_rot: 3.15
+      x_pos: 5.5
+      y_pos: 2.8
+      
+      
+    
+    
+
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0
+
