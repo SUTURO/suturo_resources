@@ -61,6 +61,21 @@ tables:
       z_rot: 1.5708
       x_pos: 2.48
       y_pos: 1.15
+      
+      
+couch:
+    perception_postfix: origin
+    amount: 1
+    0:
+      name: suturo_couch
+      knowledge_role: couch
+      parent: urdf_offset
+      width:  1.5
+      height: 1
+      depth: 0.8
+      z_rot: 0
+      x_pos: 3
+      y_pos: 5 
 
 
       
@@ -131,6 +146,9 @@ walls:
       pos_1_y: -3.21
       pos_2_x: -2.96
       pos_2_y: -3.21
+      
+      
+     
       
 
 
