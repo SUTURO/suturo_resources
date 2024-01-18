@@ -10,7 +10,8 @@ add_service_files(DIRECTORY srv
   Trigger.srv
   IsKnown.srv
   GiveMeFavDrink.srv
-  SaveInfo.srv)
+  SaveInfo.srv
+  IsFragile.srv)
 
 generate_messages()
 
