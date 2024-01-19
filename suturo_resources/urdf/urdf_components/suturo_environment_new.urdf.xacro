@@ -46,8 +46,6 @@
         value="${data.get('simple_drawers', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_tables"
         value="${data.get('tables', dict(amount=0)).get('amount', 0)}" />
-    <xacro:property name="number_of_couches"
-        value="${data.get('couch', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_round_tables"
         value="${data.get('round_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_buckets"
@@ -83,26 +81,7 @@
             <xacro:table_loop table_number="${table_number + 1}" />
         </xacro:if>
     </xacro:macro>
-    
-    
-      <!--  ~~Couches~~  -->
-    <xacro:macro name="couch_loop" params="couch_number">
-        <xacro:suturo_couch
-            name="${data['couch'][couch_number]['name']}:${data['couch'][couch_number]['knowledge_role']}"
-            parent="${data['couch'][couch_number]['parent']}"
-            size_x="${data['couch'][couch_number]['depth']}"
-            size_y="${data['couch'][couch_number]['width']}"
-            size_z="${data['couch'][couch_number]['height']}">
-            <origin
-                xyz="${data['couch'][couch_number]['x_pos']} ${data['couch'][couch_number]['y_pos']} 0"
-                rpy="0 0 ${data['couch'][couch_number]['z_rot']}" />
-        </xacro:suturo_couch>
-        <xacro:if value="${(number_of_couches - 1) > couch_number}">
-            <xacro:couch_loop couch_number="${couch_number + 1}" />
-        </xacro:if>
-    </xacro:macro>
-    
-    
+
 
     <!--  ~~Round_tables~~  -->
     <xacro:macro name="round_table_loop" params="round_table_number">
@@ -321,10 +300,6 @@
 
     <xacro:if value="${number_of_tables > 0}">
         <xacro:table_loop table_number="0" />
-    </xacro:if>
-    
-    <xacro:if value="${number_of_couches > 0}">
-        <xacro:couch_loop couch_number="0" />
     </xacro:if>
 
     <xacro:if value="${number_of_round_tables > 0}">
