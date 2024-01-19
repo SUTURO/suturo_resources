@@ -50,17 +50,39 @@ dishwashers:
 
 tables:
    perception_postfix: table_center
-   amount: 1
+   amount: 3
    0:
-      name: left_table
+      name: table_kitchen_counter
       knowledge_role: table
       parent: urdf_offset
-      width:  1.4
-      height: 0.7
-      depth: 0.8
-      z_rot: 1.5708
-      x_pos: 2.48
-      y_pos: 1.15
+      width:  2.45
+      height: 0.85
+      depth: 0.76
+      z_rot: -1.56
+      x_pos: 3.08
+      y_pos: 0.8
+      
+   1:
+      name: long_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.17
+      height: 0.735
+      depth: 0.73
+      z_rot: 3.15
+      x_pos: 5.5
+      y_pos: 2.8
+      
+   2:
+      name: popcorn_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.75
+      height: 0.72
+      depth: 0.64
+      z_rot: 0
+      x_pos: 0.435
+      y_pos: 1.47
       
       
 couch:
@@ -108,9 +130,9 @@ shelves_openable:
       width: 0.71
       height: 1.04
       depth: 0.32
-      z_rot: 0.0
-      x_pos: 3.28
-      y_pos: -0.21
+      z_rot: 1.56
+      x_pos: 2.61
+      y_pos: 2.97
       floors_height: [0.07, 0.46, 0.72, 1.04]
       number_of_floors: 4
       door: both

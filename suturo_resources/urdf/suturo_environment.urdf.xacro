@@ -21,6 +21,7 @@
 
     <!--  Include the files containing the macros -->
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_popcorn_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
@@ -46,6 +47,8 @@
         value="${data.get('simple_drawers', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_tables"
         value="${data.get('tables', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_popcorn_tables"
+        value="${data.get('popcorn_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_couches"
         value="${data.get('couch', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_round_tables"
@@ -84,6 +87,22 @@
         </xacro:if>
     </xacro:macro>
     
+    <!--  ~~Popcorn_tables~~  -->
+    <xacro:macro name="popcorn_table_loop" params="popcorn_table_number">
+        <xacro:suturo_popcorn_table
+            name="${data['popcorn_tables'][popcorn_table_number]['name']}:${data['popcorn_tables'][popcorn_table_number]['knowledge_role']}"
+            parent="${data['popcorn_tables'][popcorn_table_number]['parent']}"
+            size_x="${data['popcorn_tables'][popcorn_table_number]['depth']}"
+            size_y="${data['popcorn_tables'][popcorn_table_number]['width']}"
+            size_z="${data['popcorn_tables'][popcorn_table_number]['height']}">
+            <origin
+                xyz="${data['popcorn_tables'][popcorn_table_number]['x_pos']} ${data['popcorn_tables'][popcorn_table_number]['y_pos']} 0"
+                rpy="0 0 ${data['popcorn_tables'][popcorn_table_number]['z_rot']}" />
+        </xacro:suturo_popcorn_table>
+        <xacro:if value="${(number_of_popcorn_tables - 1) > popcorn_table_number}">
+            <xacro:popcorn_table_loop popcorn_table_number="${popcorn_table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
     
       <!--  ~~Couches~~  -->
     <xacro:macro name="couch_loop" params="couch_number">
@@ -321,6 +340,10 @@
 
     <xacro:if value="${number_of_tables > 0}">
         <xacro:table_loop table_number="0" />
+    </xacro:if>
+    
+    <xacro:if value="${number_of_popcorn_tables > 0}">
+        <xacro:popcorn_table_loop popcorn_table_number="0" />
     </xacro:if>
     
     <xacro:if value="${number_of_couches > 0}">
