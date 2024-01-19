@@ -2,5 +2,5 @@
 
 string name		    # the name of the person
 ---
-bool is_known		# true if person is already known, else false 
+string person_infos	    # true if person is already known, else false 
 

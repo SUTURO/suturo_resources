@@ -1,7 +1,7 @@
 # Service definition for interacting with NLP
 
-string name_drink	# name of the person and their favourite drink
-					# "Lisa, Coffee"
+string name_drink_id	# name of the person and their favourite drink plus an ID
+					# "Lisa, Coffee, <ID>"
 ---
 string confirm		# confirmation of saving info 
 
