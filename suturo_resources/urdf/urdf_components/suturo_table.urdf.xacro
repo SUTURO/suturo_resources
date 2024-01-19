@@ -2,8 +2,13 @@
 
 <robot name="suturo_table" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <material name="table_grey">
+  <!--<material name="table_grey">
     <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+  -->
+  
+  <material name="table_grey">
+	<color rgba="0.255 0.62 0.223 1"/>
   </material>
 
   <xacro:macro name="suturo_table" params="name parent *origin size_x size_y size_z">
