@@ -92,12 +92,12 @@ couch:
       name: suturo_couch
       knowledge_role: couch
       parent: urdf_offset
-      width:  1.5
-      height: 1
-      depth: 0.8
+      width:  1.7
+      height: 0.3
+      depth: 1
       z_rot: 0
-      x_pos: 3
-      y_pos: 5 
+      x_pos: 0.81
+      y_pos: 5.25 
 
 
       
