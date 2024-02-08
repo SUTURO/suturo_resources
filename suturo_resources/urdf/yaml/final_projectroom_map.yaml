@@ -1,3 +1,5 @@
+
+      
 shelves_openable:
    perception_postfix: shelf_floor_X
    amount: 1
@@ -8,9 +10,9 @@ shelves_openable:
       width: 0.71
       height: 1.04
       depth: 0.32
-      z_rot: -1.56
-      x_pos: 1.9
-      y_pos: 3.3
+      z_rot: 1.56
+      x_pos: 2.61
+      y_pos: 2.97
       floors_height: [0.07, 0.46, 0.72, 1.04]
       number_of_floors: 4
       door: both
@@ -19,11 +21,12 @@ shelves_openable:
       handle_from_side: 0.30
       handle_height: 0.084
       handle_width: 0.01
-      handle_depth: 0.02
+      handle_depth: 0.0
 
+      
 tables:
    perception_postfix: table_center
-   amount: 2
+   amount: 3
    0:
       name: table_kitchen_counter
       knowledge_role: table
@@ -46,14 +49,72 @@ tables:
       x_pos: 5.5
       y_pos: 2.8
       
+   2:
+      name: popcorn_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.75
+      height: 0.72
+      depth: 0.64
+      z_rot: 0
+      x_pos: 0.435
+      y_pos: 1.47
+      
+      
+rooms:
+    amount: 2
+    0:
+        name: iai_kitchen
+        knowledge_role: kitchen
+        center_x: 2.1
+        center_y: 0.54
+        size_x: 3.0
+        size_y: 2.75
+        color: 0 0 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: kitchen_entry_exit
+            knowledge_role: entry_exit
+            center_x: 0.70
+            center_y: 0.09
+    1:
+        name: arena
+        knowledge_role: arena
+        center_x: 2.1
+        center_y: 0.54
+        size_x: 3.0
+        size_y: 2.75
+        color: 1 0 0 0.1
+        connections:
+          amount: 1
+          0:
+            name: arena_entry_exit
+            knowledge_role: entry_exit
+            center_x: 0.70
+            center_y: 0.09
+            
+couch:
+    perception_postfix: origin
+    amount: 1
+    0:
+      name: suturo_couch
+      knowledge_role: couch
+      parent: urdf_offset
+      width:  1.7
+      height: 0.3
+      depth: 1
+      z_rot: 0
+      x_pos: 0.81
+      y_pos: 5.25 
+      
       
     
-    
-
+   
 
 # Moves everything in the URDF by the given distances
 world_offset:
     X: 0
     Y: 0
-    zrot: 0
+    zrot: 0.0
 
