@@ -60,6 +60,7 @@ add_service_files(DIRECTORY srv
    GiveMeFavDrink.srv
    SaveInfo.srv
    IsFragile.srv
+   ObjectPose.srv
 )
 
 ## Generate actions in the 'action' folder
