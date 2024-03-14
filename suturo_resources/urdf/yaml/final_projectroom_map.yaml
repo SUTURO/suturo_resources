@@ -46,19 +46,19 @@ tables:
       height: 0.735
       depth: 0.73
       z_rot: 3.15
-      x_pos: 5.5
-      y_pos: 2.8
+      x_pos: 5.49
+      y_pos: 2.73
       
    2:
       name: popcorn_table
       knowledge_role: table
       parent: urdf_offset
-      width:  1.75
-      height: 0.72
-      depth: 0.64
+      width:  1.8
+      height: 0.71
+      depth: 0.55
       z_rot: 0
       x_pos: 0.435
-      y_pos: 1.47
+      y_pos: 1.4
       
       
 rooms:

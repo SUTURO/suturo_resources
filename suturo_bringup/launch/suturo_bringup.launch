@@ -37,7 +37,7 @@ arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
 <arg name="publish_environment" default="true"/>
 <arg name="env_model_yaml" default="final_projectroom_map.yaml"/>
 <arg name="show_rooms" default="false"/>
-<arg name="run_snap_map" default="false"/>
+<arg name="run_snap_map" default="true"/>
 <!-- where to spawn the robot-->
 <arg name="robot_spawn_pose_x" default="0"/>
 <arg name="robot_spawn_pose_y" default="0"/>
