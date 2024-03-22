@@ -1,5 +1,19 @@
 
-      
+dishwashers:
+   perception_postfix: dishwasher_center
+   amount: 1
+   0:
+      name: dishwasher
+      knowledge_role: dishwasher
+      parent: urdf_offset
+      width:  0.59
+      height: 1.5
+      depth: 0.595
+      z_rot: -1.5708
+      x_pos: 2.79
+      y_pos: -2.17
+
+     
 shelves_openable:
    perception_postfix: shelf_floor_X
    amount: 1
@@ -11,11 +25,11 @@ shelves_openable:
       height: 1.04
       depth: 0.32
       z_rot: 1.56
-      x_pos: 2.61
-      y_pos: 2.97
+      x_pos: 2.59
+      y_pos: 2.94
       floors_height: [0.07, 0.46, 0.72, 1.04]
       number_of_floors: 4
-      door: both
+      door: both_open
       wall_thickness: 0.015
       handle_from_bottom: 0.795
       handle_from_side: 0.30
@@ -108,8 +122,6 @@ couch:
       x_pos: 0.81
       y_pos: 5.25 
       
-      
-    
    
 
 # Moves everything in the URDF by the given distances

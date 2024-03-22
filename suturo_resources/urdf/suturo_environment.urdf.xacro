@@ -138,6 +138,22 @@
             <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
         </xacro:if>
     </xacro:macro>
+    
+         <!--<xacro:macro name="dishwasher_loop" params="dishwasher_number">
+        <xacro:suturo_dishwasher
+            name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
+            parent="${data['dishwashers'][dishwasher_number]['parent']}"
+             size_x="${data['dishwashers'][dishwasher_number]['depth']}"
+            size_y="${data['dishwashers'][dishwasher_number]['width']}"
+            size_z="${data['dishwashers'][dishwasher_number]['height']}">
+            <origin
+                xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.33475"
+                rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
+        </xacro:suturo_dishwasher>
+        <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
+            <xacro:dishwasher_loop couch_number="${dishwasher_number + 1}" />
+        </xacro:if>
+    </xacro:macro> -->
 
 
     <!--  ~~Dishwashers~~  -->

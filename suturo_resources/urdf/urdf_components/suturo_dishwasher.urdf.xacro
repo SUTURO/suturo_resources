@@ -9,15 +9,15 @@
 
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 ${pi}" />
+        <origin xyz="0 0 0.148" rpy="0 0 ${pi}" />
         <geometry>
-          <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.dae" scale="1.1 1.2 1"/>
+          <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.dae" scale="1.1 1.2 1.1"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0.148" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.obj"  scale="1.1 1.2 1"/>
+          <mesh filename="package://iai_kitchen/meshes/misc/DishWasher.obj"  scale="1.1 1.2 1.1"/>
         </geometry>
       </collision>
     </link>
@@ -26,13 +26,13 @@
 
       <xacro:sphere_inertia radius="0" mass="0"/>
       <visual>
-        <origin xyz="0 0.055 0" rpy="${0.5*pi} 0 0" />
+        <origin xyz="0 -0.108 0" rpy="${0.5*pi} 0 0" />
         <geometry>
           <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0.055 0" rpy="${0.5*pi} 0 0" />
+        <origin xyz="0 -0.108 0" rpy="${0.5*pi} 0 0" />
         <geometry>
           <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.obj"/>
         </geometry>
@@ -88,7 +88,7 @@
     <xacro:unless value="${simulated}">
     -->
     <joint name="${name}:dishwasher_door_joint" type="revolute">
-      <origin xyz="-0.27 0. -0.285" rpy="${-0.5*pi} 0 0" />
+      <origin xyz="-0.27 0. -0.285" rpy="${-0.5*pi} 0 0" />   <!-- <origin xyz="-0.085 0. -0.13" rpy="${-0.5*pi} -1.57 0" /> -->
       <parent link="${name}:dishwasher_main"/>
       <child link="${name}:dishwasher_door"/>
       <axis xyz="0 0 1"/>
@@ -101,7 +101,7 @@
     </xacro:unless>
   -->
     <joint name="${name}:dishwasher_door_handle_joint" type="fixed">
-      <origin xyz="-0.065 -0.575 0.0" rpy="${pi/2} 0 0" />
+      <origin xyz="-0.08 -0.728 0.0" rpy="${pi/2} 0 0" />
       <parent link="${name}:dishwasher_door"/>
       <child link="${name}:dishwasher_door_handle"/>
     </joint>
