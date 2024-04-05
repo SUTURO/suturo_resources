@@ -213,6 +213,39 @@ couch:
       x_pos: 0.81
       y_pos: 5.25 
       
+rooms:
+    amount: 1
+    0:
+      name: iai_kitchen
+      knowledge_role: kitchen
+      center_x: 3
+      center_y: 0.75
+      size_x: 5.21
+      size_y: 5.3
+      color: 0 0 1 0.5
+      connections:
+       amount: 1
+       0:
+         name: kitchen_entry_exit
+         knowledge_role: entry_exit
+         center_x: 0.60
+         center_y: 0.09
+       
+    1:
+      name: arena
+      knowledge_role: arena
+      center_x: 2.1
+      center_y: 0.54
+      size_x: 3.0
+      size_y: 2.75
+      color: 1 0 0 0.1
+      connections:
+       amount: 1
+       0:
+         name: arena_entry_exit
+         knowledge_role: entry_exit
+         center_x: 0.70
+         center_y: 0.09
 
 
          
