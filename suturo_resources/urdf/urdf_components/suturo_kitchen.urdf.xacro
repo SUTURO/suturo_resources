@@ -1381,7 +1381,7 @@
     <parent link="kitchen_main"/>
   </joint>
   <joint name="kitchen_island_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.2975 1.1292 0.421"/>
+    <origin rpy="0 0 0" xyz="0.2975 1.05 0.421"/>
     <parent link="kitchen_island_footprint"/>
     <child link="kitchen_island"/>
   </joint>

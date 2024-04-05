@@ -30,7 +30,7 @@ kitchens:
       parent: urdf_offset
       z_rot: -1.57
       x_pos: 2.6
-      y_pos: -0.6
+      y_pos: -0.63
          
 tables:
    perception_postfix: table_center

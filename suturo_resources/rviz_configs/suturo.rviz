@@ -12,7 +12,6 @@ Panels:
   - Class: rviz/Tool Properties
     Expanded:
       - /2D Pose Estimate1
-      - /2D Nav Goal1
       - /Publish Point1
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
@@ -320,6 +319,105 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        dishwasher:dishwasher:dishwasher_door:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_door_handle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_main:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tab:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        dishwasher:dishwasher:dishwasher_tray_2_back_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_bottom:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_front_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_handle_front_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_handle_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_handle_right_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_2_right_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_back_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_bottom:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_front_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_handle_front_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_handle_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_handle_right_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_left_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        dishwasher:dishwasher:dishwasher_tray_right_side:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         iai_kitchen:kitchen:room_center_link:
           Alpha: 1
           Show Axes: false
@@ -532,8 +630,7 @@ Visualization Manager:
           Marker Topic: /giskard/visualization_marker_array
           Name: Giskard Plan
           Namespaces:
-            collisions: true
-            planning_visualization: true
+            {}
           Queue Size: 100
           Value: true
         - Class: rviz/InteractiveMarkers
@@ -607,6 +704,7 @@ Visualization Manager:
           Giskard Plan: true
           Value: true
           manipulation_test_marker: true
+        MarkerArray: true
         Path: true
         PointCloud2: true
         PoseArray: true
@@ -661,6 +759,15 @@ Visualization Manager:
       Topic: /particlecloud
       Unreliable: false
       Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /pycram/viz_marker
+      Name: MarkerArray
+      Namespaces:
+        hsrb: true
+        kitchen: true
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -680,8 +787,6 @@ Visualization Manager:
       Topic: /initialpose
       X std deviation: 0.5
       Y std deviation: 0.5
-    - Class: rviz/SetGoal
-      Topic: /goal
     - Class: rviz/PublishPoint
       Single click: true
       Topic: /clicked_point
@@ -689,7 +794,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.26106858253479
+      Distance: 3.5012197494506836
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -697,17 +802,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 1.5653349161148071
-        Y: 1.6364187002182007
-        Z: 0.9667020440101624
+        X: 2.3900859355926514
+        Y: -1.3361597061157227
+        Z: 0.6075817346572876
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.374796748161316
+      Pitch: 0.5297965407371521
       Target Frame: <Fixed Frame>
-      Yaw: 4.658586025238037
+      Yaw: 0.018582478165626526
     Saved: ~
 Window Geometry:
   Camera:
