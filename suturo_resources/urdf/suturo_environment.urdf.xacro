@@ -37,8 +37,8 @@
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
     <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" /> 
-   
+        filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
+
 
     <!-- general data -->
     <xacro:property name="number_of_drawers"
@@ -68,7 +68,7 @@
     <xacro:property name="number_of_paths"
         value="${data.get('paths', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_kitchens"
-        value="${data.get('kitchens', dict(amount=0)).get('amount', 0)}" /> 
+        value="${data.get('kitchens', dict(amount=0)).get('amount', 0)}" />
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
@@ -138,8 +138,8 @@
             <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
         </xacro:if>
     </xacro:macro>
-    
-         <!--<xacro:macro name="dishwasher_loop" params="dishwasher_number">
+
+<!--<xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
             parent="${data['dishwashers'][dishwasher_number]['parent']}"
@@ -156,7 +156,7 @@
     </xacro:macro> -->
 
 
-    <!--  ~~Dishwashers~~  
+    <!--  ~~Dishwashers~~
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
@@ -288,9 +288,9 @@
             <xacro:wall_loop wall_number="${wall_number + 1}" />
         </xacro:if>
     </xacro:macro>
-    
-    <!--  ~~Kitchen~~  -->
-     <xacro:macro name="kitchen_loop" params="kitchen_number">
+
+<!--  ~~Kitchen~~  -->
+    <xacro:macro name="kitchen_loop" params="kitchen_number">
         <xacro:suturo_kitchen
             name="${data['kitchens'][kitchen_number]['name']}:${data['kitchens'][kitchen_number]['knowledge_role']}"
             parent="${data['kitchens'][kitchen_number]['parent']}">
@@ -377,10 +377,10 @@
     </xacro:if>
     <!--<xacro:if value="${number_of_rooms > 0}">
         <xacro:room_loop room_number="0" />
-    </xacro:if> -->
+</xacro:if> -->
     <xacro:if value="${number_of_kitchens > 0}">
         <xacro:kitchen_loop kitchen_number="0" /> 
-    </xacro:if> 
+    </xacro:if>
     <xacro:if value="${number_of_doors > 0}">
         <xacro:door_loop door_number="0" />
     </xacro:if>
