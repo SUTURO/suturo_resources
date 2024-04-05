@@ -76,7 +76,7 @@ doors:
         door_turn_limit_max: 0
         
 walls:
-    amount: 13
+    amount: 10
     0:
       name: wall_1
       knowledge_role: wall_1
@@ -85,7 +85,7 @@ walls:
       pos_1_y: 0.435
       pos_2_x: 0.61
       pos_2_y: 0.588
-       
+
     1:
       name: wall_2
       knowledge_role: wall_2
@@ -94,8 +94,8 @@ walls:
       pos_1_y: 0.47
       pos_2_x: 0.58
       pos_2_y: 0.47
-      
-      
+
+
     2:
       name: wall_3
       knowledge_role: wall_3
@@ -104,7 +104,7 @@ walls:
       pos_1_y: 0.466
       pos_2_x: 0.345
       pos_2_y: 3.34
-      
+
     3:
       name: wall_4
       knowledge_role: wall_4
@@ -113,7 +113,7 @@ walls:
       pos_1_y: 3.31
       pos_2_x: 3.85
       pos_2_y: 3.31
-      
+
     4:
       name: wall_5
       knowledge_role: wall_5
@@ -122,36 +122,8 @@ walls:
       pos_1_y: 3.31
       pos_2_x: 5.56
       pos_2_y: 3.31
-      
+
     5:
-      name: wall_6
-      knowledge_role: wall_6
-      parent: urdf_offset
-      pos_1_x: 5.6
-      pos_1_y: 3.37
-      pos_2_x: 5.6
-      pos_2_y: -2.44
-      
-    6:
-      name: wall_7
-      knowledge_role: wall_7
-      parent: urdf_offset
-      pos_1_x: 5.12
-      pos_1_y: -2.42
-      pos_2_x: 5.47
-      pos_2_y: -2.42
-      
-    7:
-      name: wall_8
-      knowledge_role: wall_8
-      parent: urdf_offset
-      pos_1_x: 5.13
-      pos_1_y: -2.44
-      pos_2_x: 5.13
-      pos_2_y: -1.82
-      
-      
-    8:
       name: wall_9
       knowledge_role: wall_9
       parent: urdf_offset
@@ -159,8 +131,8 @@ walls:
       pos_1_y: -2.47
       pos_2_x: 1.31
       pos_2_y: -2.47
-      
-    9:
+
+    6:
       name: wall_10
       knowledge_role: wall_10
       parent: urdf_offset
@@ -168,8 +140,8 @@ walls:
       pos_1_y: -1.49
       pos_2_x: 0.78
       pos_2_y: -2.51
-      
-    10:
+
+    7:
       name: wall_11
       knowledge_role: wall_11
       parent: urdf_offset
@@ -177,8 +149,8 @@ walls:
       pos_1_y: -1.5
       pos_2_x: 0.825
       pos_2_y: -1.5
-      
-    11:
+
+    8:
       name: wall_12
       knowledge_role: wall_12
       parent: urdf_offset
@@ -186,8 +158,8 @@ walls:
       pos_1_y: -1.53
       pos_2_x: 0.4
       pos_2_y: -0.436
-      
-    12:
+
+    9:
       name: wall_13
       knowledge_role: wall_13
       parent: urdf_offset
@@ -195,7 +167,6 @@ walls:
       pos_1_y: -0.464
       pos_2_x: 0.7
       pos_2_y: -0.464
-   
 
        
             
