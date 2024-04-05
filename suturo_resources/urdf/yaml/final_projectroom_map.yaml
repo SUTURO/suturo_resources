@@ -1,5 +1,3 @@
-
-      
 shelves_openable:
    perception_postfix: shelf_floor_X
    amount: 1
@@ -29,7 +27,7 @@ tables:
    amount: 3
    0:
       name: table_kitchen_counter
-      knowledge_role: table
+      knowledge_role: kc_table
       parent: urdf_offset
       width:  2.45
       height: 0.85
@@ -40,7 +38,7 @@ tables:
       
    1:
       name: long_table
-      knowledge_role: table
+      knowledge_role: l_table
       parent: urdf_offset
       width:  1.17
       height: 0.735
@@ -51,7 +49,7 @@ tables:
       
    2:
       name: popcorn_table
-      knowledge_role: table
+      knowledge_role: p_table
       parent: urdf_offset
       width:  1.8
       height: 0.71
@@ -60,24 +58,164 @@ tables:
       x_pos: 0.435
       y_pos: 1.4
       
+doors:
+    amount: 1
+    0:
+        room1: iai_kitchen
+        room2: arena
+        parent: urdf_offset
+        knowledge_role: door
+        height: 2
+        width: 0.83
+        depth: 0.04
+        x: 0.63
+        y: -0.396
+        z: 1.0
+        zrot: 1.57
+        door_turn_limit_lower: -1.4
+        door_turn_limit_max: 0
+        
+walls:
+    amount: 13
+    0:
+      name: wall_1
+      knowledge_role: wall_1
+      parent: urdf_offset
+      pos_1_x: 0.61
+      pos_1_y: 0.435
+      pos_2_x: 0.61
+      pos_2_y: 0.588
+       
+    1:
+      name: wall_2
+      knowledge_role: wall_2
+      parent: urdf_offset
+      pos_1_x: 0.377
+      pos_1_y: 0.47
+      pos_2_x: 0.58
+      pos_2_y: 0.47
+      
+      
+    2:
+      name: wall_3
+      knowledge_role: wall_3
+      parent: urdf_offset
+      pos_1_x: 0.345
+      pos_1_y: 0.466
+      pos_2_x: 0.345
+      pos_2_y: 3.34
+      
+    3:
+      name: wall_4
+      knowledge_role: wall_4
+      parent: urdf_offset
+      pos_1_x: 0.255
+      pos_1_y: 3.31
+      pos_2_x: 3.85
+      pos_2_y: 3.31
+      
+    4:
+      name: wall_5
+      knowledge_role: wall_5
+      parent: urdf_offset
+      pos_1_x: 4.81
+      pos_1_y: 3.31
+      pos_2_x: 5.56
+      pos_2_y: 3.31
+      
+    5:
+      name: wall_6
+      knowledge_role: wall_6
+      parent: urdf_offset
+      pos_1_x: 5.6
+      pos_1_y: 3.37
+      pos_2_x: 5.6
+      pos_2_y: -2.44
+      
+    6:
+      name: wall_7
+      knowledge_role: wall_7
+      parent: urdf_offset
+      pos_1_x: 5.12
+      pos_1_y: -2.42
+      pos_2_x: 5.47
+      pos_2_y: -2.42
+      
+    7:
+      name: wall_8
+      knowledge_role: wall_8
+      parent: urdf_offset
+      pos_1_x: 5.13
+      pos_1_y: -2.44
+      pos_2_x: 5.13
+      pos_2_y: -1.82
+      
+      
+    8:
+      name: wall_9
+      knowledge_role: wall_9
+      parent: urdf_offset
+      pos_1_x: 0.766
+      pos_1_y: -2.47
+      pos_2_x: 1.31
+      pos_2_y: -2.47
+      
+    9:
+      name: wall_10
+      knowledge_role: wall_10
+      parent: urdf_offset
+      pos_1_x: 0.794
+      pos_1_y: -1.49
+      pos_2_x: 0.78
+      pos_2_y: -2.51
+      
+    10:
+      name: wall_11
+      knowledge_role: wall_11
+      parent: urdf_offset
+      pos_1_x: 0.4
+      pos_1_y: -1.5
+      pos_2_x: 0.825
+      pos_2_y: -1.5
+      
+    11:
+      name: wall_12
+      knowledge_role: wall_12
+      parent: urdf_offset
+      pos_1_x: 0.4
+      pos_1_y: -1.53
+      pos_2_x: 0.4
+      pos_2_y: -0.436
+      
+    12:
+      name: wall_13
+      knowledge_role: wall_13
+      parent: urdf_offset
+      pos_1_x: 0.32
+      pos_1_y: -0.464
+      pos_2_x: 0.7
+      pos_2_y: -0.464
+   
+      
       
 rooms:
     amount: 2
     0:
         name: iai_kitchen
         knowledge_role: kitchen
-        center_x: 2.1
-        center_y: 0.54
-        size_x: 3.0
-        size_y: 2.75
+        center_x: 3
+        center_y: 0.75
+        size_x: 5.21
+        size_y: 5.3
         color: 0 0 1 0.5
         connections:
           amount: 1
           0:
             name: kitchen_entry_exit
             knowledge_role: entry_exit
-            center_x: 0.70
+            center_x: 0.60
             center_y: 0.09
+       
     1:
         name: arena
         knowledge_role: arena
@@ -108,10 +246,8 @@ couch:
       x_pos: 0.81
       y_pos: 5.25 
       
-      
-    
-   
 
+         
 # Moves everything in the URDF by the given distances
 world_offset:
     X: 0

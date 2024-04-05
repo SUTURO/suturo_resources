@@ -2,8 +2,8 @@
 
 <robot name="suturo_wall" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <material name="wall_red">
-    <color rgba="0.75 0.22 0.17 1"/>
+  <material name="wall_pink">
+    <color rgba="0.95 0.43 0.96 1"/>
   </material>
 
   <xacro:macro name="suturo_wall" params="name parent pos_1_x pos_1_y pos_2_x pos_2_y">
@@ -27,16 +27,16 @@
 
     <link name="${name}_link">
       <visual>
-        <material name="wall_red"/>
+        <material name="wall_pink"/>
         <origin xyz="0 0 0" rpy="0 0 ${z_rotation}"/>
         <geometry>
-          <box size="${length} 0.02 0.6" />
+          <box size="${length} 0.06 0.6" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 ${z_rotation}"/>
         <geometry>
-          <box size="${length} 0.02 0.6" />
+          <box size="${length} 0.06 0.6" />
         </geometry>
       </collision>
     </link>
