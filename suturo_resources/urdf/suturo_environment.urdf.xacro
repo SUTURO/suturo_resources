@@ -30,15 +30,15 @@
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_door.urdf.xacro" />
-    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro" />
+    <!-- <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro" />-->
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bucket.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_path.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_drawer.urdf.xacro" />
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
     <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
-
+        filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" /> 
+   
 
     <!-- general data -->
     <xacro:property name="number_of_drawers"
@@ -63,12 +63,12 @@
         value="${data.get('walls', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_doors"
         value="${data.get('doors', dict(amount=0)).get('amount', 0)}" />
-    <xacro:property name="number_of_rooms"
-        value="${data.get('rooms', dict(amount=0)).get('amount', 0)}" />
+    <!-- <xacro:property name="number_of_rooms"
+        value="${data.get('rooms', dict(amount=0)).get('amount', 0)}" /> -->
     <xacro:property name="number_of_paths"
         value="${data.get('paths', dict(amount=0)).get('amount', 0)}" />
-    <xacro:property name="number_of_dishwashers"
-        value="${data.get('dishwashers', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_kitchens"
+        value="${data.get('kitchens', dict(amount=0)).get('amount', 0)}" /> 
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
@@ -138,9 +138,25 @@
             <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
         </xacro:if>
     </xacro:macro>
+    
+         <!--<xacro:macro name="dishwasher_loop" params="dishwasher_number">
+        <xacro:suturo_dishwasher
+            name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
+            parent="${data['dishwashers'][dishwasher_number]['parent']}"
+             size_x="${data['dishwashers'][dishwasher_number]['depth']}"
+            size_y="${data['dishwashers'][dishwasher_number]['width']}"
+            size_z="${data['dishwashers'][dishwasher_number]['height']}">
+            <origin
+                xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.33475"
+                rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
+        </xacro:suturo_dishwasher>
+        <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
+            <xacro:dishwasher_loop couch_number="${dishwasher_number + 1}" />
+        </xacro:if>
+    </xacro:macro> -->
 
 
-    <!--  ~~Dishwashers~~  -->
+    <!--  ~~Dishwashers~~  
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
@@ -152,7 +168,7 @@
         <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
             <xacro:dishwasher_loop dishwasher_number="${dishwasher_number + 1}" />
         </xacro:if>
-    </xacro:macro>
+    </xacro:macro> -->
 
 
     <!--  ~~Bucket~~  -->
@@ -272,23 +288,16 @@
             <xacro:wall_loop wall_number="${wall_number + 1}" />
         </xacro:if>
     </xacro:macro>
-
-
-    <!--  ~~Rooms~~  -->
-    <xacro:macro name="room_loop" params="room_number">
-        <xacro:suturo_room
-            name="${data['rooms'][room_number]['name']}:${data['rooms'][room_number]['knowledge_role']}"
-            parent="urdf_offset"
-            center_x="${data['rooms'][room_number]['center_x']}"
-            center_y="${data['rooms'][room_number]['center_y']}"
-            size_x="${data['rooms'][room_number]['size_x']}"
-            size_y="${data['rooms'][room_number]['size_y']}"
-            color="${data['rooms'][room_number]['color']}"
-            connections="${data['rooms'][room_number]['connections']}">
-        </xacro:suturo_room>
-        <xacro:if value="${(number_of_rooms - 1) > room_number}">
-            <xacro:room_loop room_number="${room_number + 1}" />
-        </xacro:if>
+    
+    <!--  ~~Kitchen~~  -->
+     <xacro:macro name="kitchen_loop" params="kitchen_number">
+        <xacro:suturo_kitchen
+            name="${data['kitchens'][kitchen_number]['name']}:${data['kitchens'][kitchen_number]['knowledge_role']}"
+            parent="${data['kitchens'][kitchen_number]['parent']}">
+            <origin
+                xyz="${data['kitchens'][kitchen_number]['x_pos']} ${data['kitchens'][kitchen_number]['y_pos']} 0"
+                rpy="0 0 ${data['kitchens'][kitchen_number]['z_rot']}" />
+        </xacro:suturo_kitchen>
     </xacro:macro>
 
 
@@ -366,18 +375,21 @@
     <xacro:if value="${number_of_walls > 0}">
         <xacro:wall_loop wall_number="0" />
     </xacro:if>
-    <xacro:if value="${number_of_rooms > 0}">
+    <!--<xacro:if value="${number_of_rooms > 0}">
         <xacro:room_loop room_number="0" />
-    </xacro:if>
+    </xacro:if> -->
+    <xacro:if value="${number_of_kitchens > 0}">
+        <xacro:kitchen_loop kitchen_number="0" /> 
+    </xacro:if> 
     <xacro:if value="${number_of_doors > 0}">
         <xacro:door_loop door_number="0" />
     </xacro:if>
     <xacro:if value="${number_of_paths > 0}">
         <xacro:path_loop path_number="0" />
     </xacro:if>
-    <xacro:if value="${number_of_dishwashers > 0}">
+    <!--<xacro:if value="${number_of_dishwashers > 0}">
         <xacro:dishwasher_loop dishwasher_number="0" />
-    </xacro:if>
+    </xacro:if> -->
 
     <link name="urdf_main" />
     <joint name="map_urdf_joint" type="fixed">

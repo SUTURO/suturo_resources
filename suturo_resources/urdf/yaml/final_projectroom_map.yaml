@@ -9,11 +9,11 @@ shelves_openable:
       height: 1.04
       depth: 0.32
       z_rot: 1.56
-      x_pos: 2.61
-      y_pos: 2.97
+      x_pos: 2.59
+      y_pos: 2.94
       floors_height: [0.07, 0.46, 0.72, 1.04]
       number_of_floors: 4
-      door: both
+      door: both_open
       wall_thickness: 0.015
       handle_from_bottom: 0.795
       handle_from_side: 0.30
@@ -21,22 +21,21 @@ shelves_openable:
       handle_width: 0.01
       handle_depth: 0.0
 
-      
+kitchens:
+   perception_postfix: kitchen_center
+   amount: 1
+   0:
+      name: suturo_kitchen
+      knowledge_role: kitchen
+      parent: urdf_offset
+      z_rot: -1.57
+      x_pos: 2.6
+      y_pos: -0.6
+         
 tables:
    perception_postfix: table_center
-   amount: 3
+   amount: 2  
    0:
-      name: table_kitchen_counter
-      knowledge_role: kc_table
-      parent: urdf_offset
-      width:  2.45
-      height: 0.85
-      depth: 0.76
-      z_rot: -1.56
-      x_pos: 3.08
-      y_pos: 0.8
-      
-   1:
       name: long_table
       knowledge_role: l_table
       parent: urdf_offset
@@ -47,7 +46,7 @@ tables:
       x_pos: 5.49
       y_pos: 2.73
       
-   2:
+   1:
       name: popcorn_table
       knowledge_role: p_table
       parent: urdf_offset
@@ -58,6 +57,7 @@ tables:
       x_pos: 0.435
       y_pos: 1.4
       
+
 doors:
     amount: 1
     0:
@@ -196,41 +196,8 @@ walls:
       pos_2_x: 0.7
       pos_2_y: -0.464
    
-      
-      
-rooms:
-    amount: 2
-    0:
-        name: iai_kitchen
-        knowledge_role: kitchen
-        center_x: 3
-        center_y: 0.75
-        size_x: 5.21
-        size_y: 5.3
-        color: 0 0 1 0.5
-        connections:
-          amount: 1
-          0:
-            name: kitchen_entry_exit
-            knowledge_role: entry_exit
-            center_x: 0.60
-            center_y: 0.09
+
        
-    1:
-        name: arena
-        knowledge_role: arena
-        center_x: 2.1
-        center_y: 0.54
-        size_x: 3.0
-        size_y: 2.75
-        color: 1 0 0 0.1
-        connections:
-          amount: 1
-          0:
-            name: arena_entry_exit
-            knowledge_role: entry_exit
-            center_x: 0.70
-            center_y: 0.09
             
 couch:
     perception_postfix: origin
@@ -246,6 +213,7 @@ couch:
       x_pos: 0.81
       y_pos: 5.25 
       
+
 
          
 # Moves everything in the URDF by the given distances

@@ -95,6 +95,20 @@
         <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
     </xacro:if>
+    
+    <xacro:if value="${door == 'both_open'}">
+       <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
+        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+       handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
+        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
+       </xacro:suturo_shelf_right_door_openable>
+
+         <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
+          wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+	  handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
+        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
+      </xacro:suturo_shelf_left_door_openable>
+    </xacro:if>
 
 
   </xacro:macro>
@@ -175,13 +189,25 @@
       <child link="${name}:handle"/>
     </joint>
 
-    <joint name="${name}:joint" type="revolute">
-      <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} 0" rpy="0 0 0"/>
-      <axis xyz="0 0 1" />
-      <parent link="${parent}"/>
-      <child link="${name}"/>
-      <limit effort="30" velocity="1.0" lower="-1.7" upper="0.0" />
-    </joint>
+    <xacro:if value="${door == 'both_open'}">
+      <joint name="${name}:joint" type="revolute">
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} 0" rpy="0 0 -1.77"/>
+        <axis xyz="0 0 1" />
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+        <limit effort="30" velocity="1.0" lower="-1.7" upper="0.0" />
+      </joint>
+    </xacro:if>
+    
+    <xacro:if value="${door == 'both'}">
+      <joint name="${name}:joint" type="revolute">
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1" />
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+        <limit effort="30" velocity="1.0" lower="-1.7" upper="0.0" />
+      </joint>
+    </xacro:if>
   </xacro:macro>
 
 
@@ -228,13 +254,25 @@
       <child link="${name}:handle"/>
     </joint>
 
-    <joint name="${name}:joint" type="revolute">
-      <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} 0" rpy="0 0 0"/>
-      <axis xyz="0 0 1" />
-      <parent link="${parent}"/>
-      <child link="${name}"/>
-      <limit effort="30" velocity="1.0" lower="0.0" upper="1.7" />
-    </joint>
+    <xacro:if value="${door == 'both_open'}">
+      <joint name="${name}:joint" type="revolute">
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} 0" rpy="0 0 1.77"/>
+        <axis xyz="0 0 1" />
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+        <limit effort="30" velocity="1.0" lower="0.0" upper="1.7" />
+      </joint>
+    </xacro:if>
+    
+    <xacro:if value="${door == 'both'}">
+      <joint name="${name}:joint" type="revolute">
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1" />
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+        <limit effort="30" velocity="1.0" lower="0.0" upper="1.7" />
+      </joint>
+    </xacro:if>
   </xacro:macro>
 
 
