@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<robot name="iai_kitchen" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_door.urdf.xacro"/>
+
+  <xacro:property name="pi" value="3.1415926535897931" />
+  <xacro:property name="simulated" value="true" />
+  <xacro:property name="include_wall_7" value="false"/>
+  <xacro:macro name="sphere_inertia" params="radius mass">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+          ixx="1" ixy="0.0" ixz="0.0"
+          iyy="1" iyz="0.0"
+          izz="1"/>
+    </inertial>
+  </xacro:macro>
+
+  <link name="room_link">
+    <xacro:sphere_inertia radius="0" mass="0"/>
+  </link>
+  <xacro:if value="${simulated}">
+    <link name="world"/>
+    <joint name="world_room_joint" type="fixed">
+      <origin xyz="0.0 0.03 0 " rpy="0 0 0" />
+      <parent link="world"/>
+      <child link="room_link"/>
+    </joint>
+  </xacro:if>
+
+  <xacro:suturo_door name="suturo_door_area" parent="room_link" 
+			height="2" 
+            width="0.86" 
+            depth="0.04" 
+            x="2" 
+            y="0" 
+            z="1.0" 
+            zrot="${0.5 * pi}" 
+            door_turn_limit_lower="-1.4" 
+            door_turn_limit_max="0">
+  </xacro:suturo_door>
+
+  <gazebo>
+    <static>false</static>
+  </gazebo>
+
+</robot>

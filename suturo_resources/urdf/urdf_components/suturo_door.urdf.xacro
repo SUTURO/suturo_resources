@@ -51,6 +51,21 @@
         </geometry>
       </collision>
     </link>
+	
+	<link name="${name}:door_handle_link">
+      <visual >
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry name="handle_blue">
+          <cylinder radius="0.013" length="0.15" />
+        </geometry>
+      </visual>
+      <collision >
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry name="handle_collision_geom">
+          <cylinder radius="0.013" length="0.15" />
+        </geometry>
+      </collision>
+    </link>
 
     <link name="${name}:door_handle_outside">
 
@@ -108,19 +123,23 @@
       <child link="${name}:door_hinge"/>
     </joint>
 
-    <joint name="${name}:door_handle_inside_joint" type="fixed">
-      <axis xyz="0 0 0"/>
-      <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
-      <origin xyz="${0.88 * width} ${-1.25 * depth} -0.12" rpy="0 0 ${pi/2}" />
+    <joint name="${name}:door_handle_joint" type="revolute" >
+      <axis xyz="0 0 1"/>
+      <limit effort="1" lower="0" upper="${pi/5}" velocity="1"/>
+      <origin xyz="${0.92 * width} 0 0.05" rpy="${pi/2} 0 0" />
       <parent link="${name}:door_center"/>
+	  <child link="${name}:door_handle_link"/>
+    </joint>
+
+    <joint name="${name}:door_handle_inside_joint" type="fixed">
+      <origin xyz="-0.075 0 0.075" rpy="0 0 ${pi/2}" />
+      <parent link="${name}:door_handle_link"/>
       <child link="${name}:door_handle_inside"/>
     </joint>
 	
     <joint name="${name}:door_handle_outside_joint" type="fixed">
-      <axis xyz="0 0 0"/>
-      <limit effort="1" lower="0" upper="1.5708" velocity="1"/>
-      <origin xyz="${0.88 * width} ${depth} -0.12" rpy="0 0 ${-pi/2}" />
-      <parent link="${name}:door_center"/>
+      <origin xyz="-0.075 0 -0.075" rpy="0 0 ${-pi/2}" />
+      <parent link="${name}:door_handle_link"/>
       <child link="${name}:door_handle_outside"/>
     </joint>
 
