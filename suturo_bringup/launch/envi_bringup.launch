@@ -1,0 +1,32 @@
+<launch>
+<arg name="use_rviz" default="true"/>
+<arg name="map_name" default="projectroom_beta/final_projectroom_map.yaml"/>
+<arg name="upload_map" default="true"/>
+<arg name="publish_environment" default="true"/>
+<arg name="env_model_yaml" default="final_projectroom_map.yaml"/>
+<arg name="show_rooms" default="false"/>
+<arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>
+<arg name="rviz" value="false"/>
+
+<!-- URDF OF THE ENVIORNMENT -->
+<group if="$(eval arg('publish_environment') == true)">
+<include file="$(find suturo_resources)/urdf/launch/urdf.launch" pass_all_args="true">
+<arg name="world_urdf_yaml" value="$(arg env_model_yaml)"/>
+</include>
+</group>
+
+<!-- upload amcl/map -->
+<include file="$(find hsr_navigation)/launch/hsr_amcl_map.launch">
+</include>
+
+<!-- Show Rooms -->
+<group if="$(eval arg('show_rooms') == true)">
+<include file="$(find suturo_room_viz)/launch/suturo_room_viz.launch" pass_all_args="false"> </include>
+</group>
+
+<!--Rviz -->
+<group if="$(eval arg('use_rviz') == true)">
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz"/>
+</group>
+</launch>
+
