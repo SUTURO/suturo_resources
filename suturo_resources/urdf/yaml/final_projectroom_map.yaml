@@ -66,14 +66,16 @@ doors:
         parent: urdf_offset
         knowledge_role: door
         height: 2
-        width: 0.83
+        width: 0.855
         depth: 0.04
-        x: 0.63
+        x: 0.66
         y: -0.396
-        z: 1.0
+        z: 1.04
         zrot: 1.57
         door_turn_limit_lower: -1.4
         door_turn_limit_max: 0
+        handle_x: 0.82
+        handle_z: 0.02
         
 walls:
     amount: 10

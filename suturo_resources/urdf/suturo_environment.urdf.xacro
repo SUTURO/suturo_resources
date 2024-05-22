@@ -331,7 +331,9 @@
             z="${data['doors'][door_number]['z']}"
             zrot="${data['doors'][door_number]['zrot']}"
             door_turn_limit_lower="${data['doors'][door_number]['door_turn_limit_lower']}"
-            door_turn_limit_max="${data['doors'][door_number]['door_turn_limit_max']}">
+            door_turn_limit_max="${data['doors'][door_number]['door_turn_limit_max']}"
+            handle_x="${data['doors'][door_number]['handle_x']}"
+            handle_z="${data['doors'][door_number]['handle_z']}">
         </xacro:suturo_door>
         <xacro:if value="${(number_of_doors - 1) > door_number}">
             <xacro:door_loop door_number="${door_number + 1}" />

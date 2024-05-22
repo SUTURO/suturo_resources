@@ -15,7 +15,7 @@
   </material>
   <xacro:property name="half_pi" value="1.570796327" /> 
 
-  <xacro:macro name="suturo_door" params="name parent height width depth x y z zrot door_turn_limit_lower door_turn_limit_max">
+  <xacro:macro name="suturo_door" params="name parent height width depth x y z zrot door_turn_limit_lower door_turn_limit_max handle_x handle_z">
     <!-- LINKS -->
 
 
@@ -56,13 +56,13 @@
       <visual >
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <geometry name="handle_blue">
-          <cylinder radius="0.013" length="0.15" />
+          <cylinder radius="0.013" length="0.10" />
         </geometry>
       </visual>
       <collision >
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <geometry name="handle_collision_geom">
-          <cylinder radius="0.013" length="0.15" />
+          <cylinder radius="0.013" length="0.10" />
         </geometry>
       </collision>
     </link>
@@ -126,19 +126,19 @@
     <joint name="${name}:door_handle_joint" type="revolute" >
       <axis xyz="0 0 1"/>
       <limit effort="1" lower="0" upper="${pi/5}" velocity="1"/>
-      <origin xyz="${0.92 * width} 0 0.05" rpy="${pi/2} 0 0" />
+      <origin xyz="${handle_x} 0 ${handle_z}" rpy="${pi/2} 0 0" />
       <parent link="${name}:door_center"/>
 	  <child link="${name}:door_handle_link"/>
     </joint>
 
     <joint name="${name}:door_handle_inside_joint" type="fixed">
-      <origin xyz="-0.075 0 0.075" rpy="0 0 ${pi/2}" />
+      <origin xyz="-0.06 0 0.035" rpy="0 0 ${pi/2}" />
       <parent link="${name}:door_handle_link"/>
       <child link="${name}:door_handle_inside"/>
     </joint>
 	
     <joint name="${name}:door_handle_outside_joint" type="fixed">
-      <origin xyz="-0.075 0 -0.075" rpy="0 0 ${-pi/2}" />
+      <origin xyz="-0.075 0 -0.05" rpy="0 0 ${-pi/2}" />
       <parent link="${name}:door_handle_link"/>
       <child link="${name}:door_handle_outside"/>
     </joint>
