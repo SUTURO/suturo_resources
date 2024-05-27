@@ -1,9 +1,9 @@
 <launch>
 <arg name="use_rviz" default="true"/>
-<arg name="map_name" default="projectroom_beta/final_projectroom_map.yaml"/>
+<arg name="map_name" default="projectroom_beta/ms3_room_02.yaml"/>
 <arg name="upload_map" default="true"/>
 <arg name="publish_environment" default="true"/>
-<arg name="env_model_yaml" default="final_projectroom_map.yaml"/>
+<arg name="env_model_yaml" default="ms3_room_02.yaml"/>
 <arg name="show_rooms" default="false"/>
 <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>
 <arg name="rviz" value="false"/>
@@ -28,5 +28,13 @@
 <group if="$(eval arg('use_rviz') == true)">
 <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz"/>
 </group>
+
+
+<!-- HSRB URDF -->
+<param name="robot_description" command="$(find xacro)/xacro '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
+
+
+<node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
+
 </launch>
 
