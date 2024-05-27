@@ -1,0 +1,82 @@
+
+tables:
+   perception_postfix: table_center
+   amount: 1
+   0:
+      name: left_table
+      knowledge_role: table
+      parent: urdf_offset
+      width:  1.4
+      height: 0.7
+      depth: 0.8
+      z_rot: 0
+      x_pos: 0.55
+      y_pos: -0.7
+
+
+      
+
+rooms:
+    amount: 0
+    0:
+        name: iai_kitchen
+        knowledge_role: kitchen
+        center_x: 2.1
+        center_y: 0.54
+        size_x: 3.0
+        size_y: 2.75
+        color: 0 0 1 0.5
+        connections:
+          amount: 1
+          0:
+            name: kitchen_entry_exit
+            knowledge_role: entry_exit
+            center_x: 0.70
+            center_y: 0.09
+    1:
+        name: arena
+        knowledge_role: arena
+        center_x: 2.1
+        center_y: 0.54
+        size_x: 3.0
+        size_y: 2.75
+        color: 1 0 0 0.1
+        connections:
+          amount: 1
+          0:
+            name: arena_entry_exit
+            knowledge_role: entry_exit
+            center_x: 0.70
+            center_y: 0.09
+
+doors:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        height: 2
+        width: 0.983
+        depth: 0.055
+        x: 2.18
+        y: 1.28
+        z: 1.0
+        zrot: -1.75
+        door_turn_limit_lower: -1.4
+        door_turn_limit_max: 0
+
+paths:
+    amount: 0
+    0:
+        room1: iai_kitchen
+        room2: living_room
+        parent: urdf_offset
+        x_pos: 2.6
+        y_pos: 2.1
+
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+

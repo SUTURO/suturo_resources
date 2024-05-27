@@ -1,9 +1,0 @@
-#goal definition
-bool visualize
-string[] regions
----
-# picture id
-string cas_id
----
-#feedback
-string feedback

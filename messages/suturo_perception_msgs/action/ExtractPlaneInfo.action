@@ -1,9 +1,0 @@
-#goal definition
-bool visualize
-string[] regions
----
-#result definition
-DoorDetectionData detectionData
----
-#feedback
-string feedback

@@ -1,8 +1,0 @@
-# Service definition for interacting with NLP
-
-string object	# the name of the person
-
----
-
-bool fragile		# returns favourite drink of that person
-

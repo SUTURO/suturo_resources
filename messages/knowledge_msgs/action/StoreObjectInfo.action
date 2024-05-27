@@ -1,8 +1,0 @@
-#goal definition
-suturo_perception_msgs/ObjectDetectionData[] detectionData
----
-#result definition
-bool succeeded
----
-#feedback
-string feedback

@@ -1,6 +1,0 @@
-# Service definition for interacting with NLP
-
-string name		    # the name of the person
----
-string person_infos	    # true if person is already known, else false 
-
