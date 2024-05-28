@@ -1,7 +1,0 @@
-# Service definition for interacting with Planning
-
-string furniture		         # the name of the furniture searched for
-------
-
-geometry_msgs/PoseStamped posestamped	 # posestemped of searched object 
-

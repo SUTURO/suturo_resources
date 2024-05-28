@@ -1,0 +1,92 @@
+<launch>
+<!--<node pkg="suturo_resources" name="base_scan_limiter" type="base_scan_opening_limiter.py" output="screen"/>
+<remap from="/hsrb/base_scan" to="/hsrb/base_scan_unlimited"/>/-->
+<!--arg name="namespace" default="hsrb" /-->
+<!--arg name="debug" default="false"/-->
+<!--arg name="gui" default="true" /-->
+<arg name="use_rviz" default="true"/>
+<!--arg name="gazebo_visualization" default="false" /-->
+<!--
+arg name="use_manipulation" default="true" />
+  <arg name="use_navigation" default="true" />
+  <arg name="use_perception" default="true" />
+  <arg name="use_task" default="true" />
+  <arg name="use_teleop" default="true" />
+  <arg name="use_web" default="false" />
+  <arg name="use_laser_odom" default="true" /
+-->
+<!--arg name="paused" default="false" /-->
+<!--arg name="fast_physics" default="false" /-->
+<!--
+arg name="robot_name" default="$(optenv ROBOT_NAME hsrb)" /
+-->
+<!--
+arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
+  <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/
+-->
+<arg name="world" default="empty.world"/>
+<arg name="map_name" default="miniLab.yaml"/>
+<arg name="gazebo" default="false"/>
+<!--arg name="map_server" default="true" /-->
+<arg name="upload_hsrb" default="true"/>
+<!--
+ Set true if robot has publishes faulty robot_description 
+-->
+<arg name="publish_joint_state" default="true"/>
+<arg name="upload_map" default="true"/>
+<arg name="publish_environment" default="true"/>
+<arg name="env_model_yaml" default="vanessa-env.yaml"/>
+<arg name="show_rooms" default="false"/>
+<arg name="run_snap_map" default="false"/>
+<!-- where to spawn the robot-->
+<arg name="robot_spawn_pose_x" default="0"/>
+<arg name="robot_spawn_pose_y" default="0"/>
+<arg name="robot_spawn_pose_z" default="0"/>
+<arg name="robot_spawn_rotation" default="0"/>
+<group if="$(eval arg('run_snap_map') == true)">
+<include file="$(find snap_map_icp)/launch/snap_map_icp.launch"/>
+</group>
+<group if="$(eval arg('gazebo') == true)">
+<include file="$(find hsrb_gazebo_launch)/launch/include/hsrb_gazebo_common.xml" pass_all_args="true">
+<arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>
+<arg name="world_name" value="$(find suturo_resources)/gazebo_worlds/$(arg world)"/>
+<arg name="robot_pos" value="-x $(arg robot_spawn_pose_x) -y $(arg robot_spawn_pose_y) -z $(arg robot_spawn_pose_z) -Y $(arg robot_spawn_rotation)"/>
+<arg name="ground_truth_xyz_offset" value="0.0\ 0.0\ 0.0"/>
+<arg name="ground_truth_rpy_offset" value="0.0\ 0.0\ 0.0"/>
+<arg name="rviz" value="false"/>
+</include>
+</group>
+<!--
+group if="$(eval arg('gazebo') == false)">
+    <group if="$(eval arg('map_server') == true)">
+      <node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/$(arg map_name)" />
+    </group>
+  </group
+-->
+<!-- HSRB URDF -->
+<group if="$(arg upload_hsrb)">
+<param name="robot_description" command="$(find xacro)/xacro '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
+</group>
+<!-- URDF OF THE ENVIORNMENT -->
+<group if="$(eval arg('publish_environment') == true)">
+<include file="$(find suturo_resources)/urdf/launch/urdf.launch" pass_all_args="true">
+<arg name="world_urdf_yaml" value="$(arg env_model_yaml)"/>
+</include>
+</group>
+<!-- upload map -->
+<group if="$(eval arg('upload_map') == true)">
+<node name="map_server" pkg="map_server" type="map_server" args="$(find suturo_resources)/maps/$(arg map_name)"/>
+<!-- map3-door-open-cleaned.yaml" /-->
+</group>
+<!-- Show Rooms -->
+<group if="$(eval arg('show_rooms') == true)">
+<include file="$(find suturo_room_viz)/launch/suturo_room_viz.launch" pass_all_args="false"> </include>
+</group>
+<group if="$(arg publish_joint_state)">
+<node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
+</group>
+<group if="$(eval arg('use_rviz') == true)">
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz"/>
+</group>
+<node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen"/>
+</launch>
