@@ -39,7 +39,9 @@
             z="1.0" 
             zrot="${0.5 * pi}" 
             door_turn_limit_lower="-1.4" 
-            door_turn_limit_max="0">
+            door_turn_limit_max="0"
+			handle_x= "0.82"
+			handle_z="0.02">
   </xacro:suturo_door>
 
   <gazebo>
