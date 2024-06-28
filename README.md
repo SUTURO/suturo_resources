@@ -1,3 +1,13 @@
+#SETUP
+```
+git clone --recurse-submodules https://github.com/sunava/hsrb_rosnav
+```
+You will need this for navigation and map.
+
+```
+roslaunch suturo_bringup envi_bringup.launch
+```
+
 # suturo_resources
 Repository for shared resources like world descriptions etc.
 
