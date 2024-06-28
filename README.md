@@ -7,7 +7,7 @@ You will need this for navigation and map.
 ```
 roslaunch suturo_bringup envi_bringup.launch
 ```
-
+Note: You do not need iai_hsr pkg atm 
 # suturo_resources
 Repository for shared resources like world descriptions etc.
 
