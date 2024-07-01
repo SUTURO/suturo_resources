@@ -1,6 +1,7 @@
 # SETUP
 ```
 git clone --recurse-submodules https://github.com/sunava/hsrb_rosnav
+sudo apt install ros-noetic-map-server
 ```
 You will need this for navigation and map.
 
