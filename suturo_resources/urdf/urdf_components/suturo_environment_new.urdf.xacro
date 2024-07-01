@@ -35,7 +35,8 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_drawer.urdf.xacro" />
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
-    
+    <xacro:include
+        filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
 
 
     <!-- general data -->
@@ -61,8 +62,8 @@
         value="${data.get('rooms', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_paths"
         value="${data.get('paths', dict(amount=0)).get('amount', 0)}" />
-    <!--<xacro:property name="number_of_dishwashers"
-        value="${data.get('dishwashers', dict(amount=0)).get('amount', 0)}" /> -->
+    <xacro:property name="number_of_dishwashers"
+        value="${data.get('dishwashers', dict(amount=0)).get('amount', 0)}" />
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
@@ -98,8 +99,8 @@
         </xacro:if>
     </xacro:macro>
 
-    <!--
-     ~~Dishwashers~~  
+
+    <!--  ~~Dishwashers~~  -->
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
@@ -112,7 +113,7 @@
             <xacro:dishwasher_loop dishwasher_number="${dishwasher_number + 1}" />
         </xacro:if>
     </xacro:macro>
--->
+
 
     <!--  ~~Bucket~~  -->
     <xacro:macro name="bucket_loop" params="bucket_number">
