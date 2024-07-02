@@ -7,6 +7,9 @@
 		<arg name="publish_environment" default="true" />
 		<!--<arg name="env_model_yaml" default="rw_robocup_2023.yaml" />-->
 		<!--<arg name="map_name" default="robocup_2023/robocup.yaml" />-->
+		<arg name="env_model_yaml" default="ms3_room_02.yaml"/>
+        <arg name="map_name" default="projectroom_beta/ms3_room_02.yaml"/>
+
 
 		<arg name="show_rooms" default="true"/>
 		<arg name="publish_robot_description" default="false" />
