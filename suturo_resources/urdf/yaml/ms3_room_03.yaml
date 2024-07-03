@@ -39,20 +39,20 @@ shelves:
       door: none
    
 
-kitchens:
-   perception_postfix: kitchen_center
+dishwashers:
+   perception_postfix: dishwasher_center
    amount: 1
    0:
-      name: suturo_kitchen
-      knowledge_role: kitchen
+      name: suturo_dishwasher
+      knowledge_role: dishwasher
       parent: urdf_offset
-      z_rot: -1.57
-      x_pos: 2.45
-      y_pos: -0.67
+      z_rot: 1.57
+      x_pos: 1.86
+      y_pos: -2.2
          
 tables:
    perception_postfix: table_center
-   amount: 3 
+   amount: 8
    0:
       name: long_table
       knowledge_role: l_table
@@ -85,7 +85,63 @@ tables:
       z_rot: 0
       x_pos: 4.83
       y_pos: 1.99
+
+   3: 
+      name: kitchen_island
+      knowledge_role: kitchen_island
+      parent: urdf_offset
+      width:  -2.47
+      height: 0.853
+      depth: 0.796
+      z_rot: 1.57
+      x_pos: 3
+      y_pos: 0.134
       
+   4: 
+      name: oven_area
+      knowledge_role: oven_area
+      parent: urdf_offset
+      width:  1.2
+      height: 1.51
+      depth: 0.68
+      z_rot: 4.72
+      x_pos: 3.77
+      y_pos: -1.8
+
+   5:
+      name: work_surface_left
+      knowledge_role: work_surface_left
+      parent: urdf_offset
+      width:  0.82
+      height: 0.84
+      depth: 0.68
+      z_rot: 4.72
+      x_pos: 2.94
+      y_pos: -1.84
+
+   6: 
+      name: work_surface_right
+      knowledge_role: work_surface_right
+      parent: urdf_offset
+      width: 0.64
+      height: 0.84
+      depth: 0.68
+      z_rot: 4.72
+      x_pos: 1.705
+      y_pos: -1.84
+
+   7: 
+      name: refrigerator
+      knowledge_role: refrigerator
+      parent: urdf_offset
+      width: 0.595
+      height: 1.51
+      depth: 0.68
+      z_rot: 4.72
+      x_pos: 1.11
+      y_pos: -1.84
+
+
 doors:
    amount: 2
    0:

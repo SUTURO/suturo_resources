@@ -37,6 +37,8 @@
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
     <xacro:include
+        filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
+    <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
 
 
@@ -69,6 +71,10 @@
         value="${data.get('paths', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_kitchens"
         value="${data.get('kitchens', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_dishwashers"
+        value="${data.get('dishwashers', dict(amount=0)).get('amount', 0)}" />
+        
+
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
@@ -156,19 +162,19 @@
     </xacro:macro> -->
 
 
-    <!--  ~~Dishwashers~~
+    <!--  ~~Dishwashers~~ -->
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
             parent="${data['dishwashers'][dishwasher_number]['parent']}">
             <origin
-                xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.33475"
+                xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.0"
                 rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
         </xacro:suturo_dishwasher>
         <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
             <xacro:dishwasher_loop dishwasher_number="${dishwasher_number + 1}" />
         </xacro:if>
-    </xacro:macro> -->
+    </xacro:macro> 
 
 
     <!--  ~~Bucket~~  -->
@@ -307,7 +313,7 @@
     </xacro:macro>
 
 <!--  ~~Kitchen~~  -->
-    <xacro:macro name="kitchen_loop" params="kitchen_number">
+     <xacro:macro name="kitchen_loop" params="kitchen_number">
         <xacro:suturo_kitchen
             name="${data['kitchens'][kitchen_number]['name']}:${data['kitchens'][kitchen_number]['knowledge_role']}"
             parent="${data['kitchens'][kitchen_number]['parent']}">
@@ -406,9 +412,9 @@
     <xacro:if value="${number_of_paths > 0}">
         <xacro:path_loop path_number="0" />
     </xacro:if>
-    <!--<xacro:if value="${number_of_dishwashers > 0}">
+    <xacro:if value="${number_of_dishwashers > 0}">
         <xacro:dishwasher_loop dishwasher_number="0" />
-    </xacro:if> -->
+    </xacro:if>
 
     <link name="urdf_main" />
     <joint name="map_urdf_joint" type="fixed">
