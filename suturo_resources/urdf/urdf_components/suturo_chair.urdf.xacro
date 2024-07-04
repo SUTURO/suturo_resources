@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_chair" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--<material name="table_grey">
+    <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+  -->
+  
+  <material name="chair_color">
+	<color rgba="0 0 0.5 1"/>
+  </material>
+
+  <xacro:macro name="suturo_chair" params="name parent *origin size_x size_y size_z">
+    <!-- LINKS -->
+
+    <link name="${name}:chair_center">
+      <visual>
+        <material name="chair_color"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link> 
+    
+    <link name="${name}:chair_backrest">
+      <visual>
+        <material name="chair_color"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} 0.05  ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} 0.05 ${size_z}" />
+        </geometry>
+      </collision>
+    </link> 
+    
+
+    <link name="${name}:chair_origin"/>
+    
+    <link name="${name}:chair_front_edge_center"/>
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}:chair_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}:chair_origin"/>
+    </joint>
+
+    <joint name="${name}:center_joint" type="fixed">
+      <origin xyz="0 0 ${(size_z)/2}" rpy="0 0 0" />
+      <parent link="${name}:chair_origin"/>
+      <child link="${name}:chair_center"/>
+    </joint>
+    
+    <joint name="${name}:chair_front_edge_center_joint" type="fixed">
+      <origin xyz="0 ${(size_y)/2} ${size_z}" rpy="0 0 0" />
+      <parent link="${name}:chair_origin"/>
+      <child link="${name}:chair_front_edge_center"/>
+    </joint> 
+
+    <joint name="${name}:chair_backrest_joint" type="fixed">
+      <origin xyz="0 ${-(((size_y)/2)-0.03)} ${(size_z)/2}" rpy="0 0 0" />
+      <parent link="${name}:chair_center"/>
+      <child link="${name}:chair_backrest"/>
+    </joint> 
+
+
+
+  </xacro:macro>
+</robot>

@@ -40,7 +40,10 @@
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
     <xacro:include
         filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
-
+    <xacro:include
+        filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" />    
+    <xacro:include
+        filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_hohc.urdf.xacro" />  
 
     <!-- general data -->
     <xacro:property name="number_of_drawers"
@@ -73,7 +76,10 @@
         value="${data.get('kitchens', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_dishwashers"
         value="${data.get('dishwashers', dict(amount=0)).get('amount', 0)}" />
-        
+    <xacro:property name="number_of_chairs"
+        value="${data.get('chairs', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_shelves_hohc"
+        value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />        
 
 
     <!--  ~~Tables~~  -->
@@ -240,6 +246,32 @@
         </xacro:if>
     </xacro:macro>
 
+    <!--  ~~Shelves_hohc~~  -->
+    <xacro:macro name="shelf_hohc_loop" params="shelf_hohc_number">
+        <xacro:suturo_shelf_hohc
+            name="${data['shelves_hohc'][shelf_hohc_number]['name']}:${data['shelves_hohc'][shelf_hohc_number]['knowledge_role']}"
+            parent="${data['shelves_hohc'][shelf_hohc_number]['parent']}"
+            size_x="${data['shelves_hohc'][shelf_hohc_number]['depth']}"
+            size_y="${data['shelves_hohc'][shelf_hohc_number]['width']}"
+            size_z="${data['shelves_hohc'][shelf_hohc_number]['height']}"
+            floors_height="${data['shelves_hohc'][shelf_hohc_number]['floors_height']}"
+            number_of_floors="${data['shelves_hohc'][shelf_hohc_number]['number_of_floors']}"
+            door="${data['shelves_hohc'][shelf_hohc_number]['door']}"
+            wall_thickness="${data['shelves_hohc'][shelf_hohc_number]['wall_thickness']}"
+            handle_from_bottom="${data['shelves_hohc'][shelf_hohc_number]['handle_from_bottom']}"
+            handle_from_side="${data['shelves_hohc'][shelf_hohc_number]['handle_from_side']}"
+            handle_height="${data['shelves_hohc'][shelf_hohc_number]['handle_height']}"
+            handle_width="${data['shelves_hohc'][shelf_hohc_number]['handle_width']}"
+            handle_depth="${data['shelves_hohc'][shelf_hohc_number]['handle_depth']}">
+            <origin
+                xyz="${data['shelves_hohc'][shelf_hohc_number]['x_pos']} ${data['shelves_hohc'][shelf_hohc_number]['y_pos']} 0"
+                rpy="0 0 ${data['shelves_hohc'][shelf_hohc_number]['z_rot']}" />
+        </xacro:suturo_shelf_hohc>
+        <xacro:if value="${(number_of_shelves_hohc - 1) > shelf_hohc_number}">
+            <xacro:shelf_hohc_loop shelf_hohc_number="${shelf_hohc_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
   <!--  ~~Rooms~~  -->
     <xacro:macro name="room_loop" params="room_number">
         <xacro:suturo_room
@@ -346,6 +378,23 @@
         </xacro:if>
     </xacro:macro>
 
+        <!--  ~~Chairs~~  -->
+    <xacro:macro name="chair_loop" params="chair_number">
+        <xacro:suturo_chair
+            name="${data['chairs'][chair_number]['name']}:${data['chairs'][chair_number]['knowledge_role']}"
+            parent="${data['chairs'][chair_number]['parent']}"
+            size_x="${data['chairs'][chair_number]['depth']}"
+            size_y="${data['chairs'][chair_number]['width']}"
+            size_z="${data['chairs'][chair_number]['height']}">
+            <origin
+                xyz="${data['chairs'][chair_number]['x_pos']} ${data['chairs'][chair_number]['y_pos']} 0"
+                rpy="0 0 ${data['chairs'][chair_number]['z_rot']}" />
+        </xacro:suturo_chair>
+        <xacro:if value="${(number_of_chairs - 1) > chair_number}">
+            <xacro:chair_loop chair_number="${chair_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
 
     <!--  ~~Paths~~  -->
     <xacro:macro name="path_loop" params="path_number">
@@ -414,6 +463,12 @@
     </xacro:if>
     <xacro:if value="${number_of_dishwashers > 0}">
         <xacro:dishwasher_loop dishwasher_number="0" />
+    </xacro:if>
+        <xacro:if value="${number_of_chairs > 0}">
+        <xacro:chair_loop chair_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_shelves_hohc > 0}">
+        <xacro:shelf_hohc_loop shelf_hohc_number="0" />
     </xacro:if>
 
     <link name="urdf_main" />
