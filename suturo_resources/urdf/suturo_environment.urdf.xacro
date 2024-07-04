@@ -257,6 +257,8 @@
             floors_height="${data['shelves_hohc'][shelf_hohc_number]['floors_height']}"
             number_of_floors="${data['shelves_hohc'][shelf_hohc_number]['number_of_floors']}"
             door="${data['shelves_hohc'][shelf_hohc_number]['door']}"
+            door_height="${data['shelves_hohc'][shelf_hohc_number]['door_height']}"
+            door_length="${data['shelves_hohc'][shelf_hohc_number]['door_length']}"
             wall_thickness="${data['shelves_hohc'][shelf_hohc_number]['wall_thickness']}"
             handle_from_bottom="${data['shelves_hohc'][shelf_hohc_number]['handle_from_bottom']}"
             handle_from_side="${data['shelves_hohc'][shelf_hohc_number]['handle_from_side']}"

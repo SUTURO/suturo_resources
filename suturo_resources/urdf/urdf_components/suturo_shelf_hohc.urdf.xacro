@@ -6,7 +6,7 @@
   </material>
 
 
-  <xacro:macro name="suturo_shelf_hohc" params="name parent *origin size_x size_y size_z floors_height number_of_floors door wall_thickness handle_from_bottom handle_from_side handle_height handle_width handle_depth">
+  <xacro:macro name="suturo_shelf_hohc" params="name parent *origin size_x size_y size_z floors_height number_of_floors door door_height door_length wall_thickness handle_from_bottom handle_from_side handle_height handle_width handle_depth">
     
     <!-- General conveinience links -->
     <link name="${name}:shelf_origin"/>
@@ -67,7 +67,7 @@
     <!-- door -->
     <xacro:if value="${door == 'left'}">
       <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
-       wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+       wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
@@ -76,37 +76,37 @@
 
     <xacro:if value="${door == 'right'}">
       <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y*0.75} ${door_length/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_right_door_openable>
     </xacro:if>
 
     <xacro:if value="${door == 'both'}">
        <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
        </xacro:suturo_shelf_right_door_openable>
 
          <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
-          wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+          wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
 	  handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
     </xacro:if>
     
     <xacro:if value="${door == 'both_open'}">
        <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+        wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
        </xacro:suturo_shelf_right_door_openable>
 
          <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
-          wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${size_z}" shelf_x_size="${size_x}"
+          wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
 	  handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
     </xacro:if>
 
@@ -146,7 +146,7 @@
   </xacro:macro>
 
 
-  <xacro:macro name="suturo_shelf_left_door_openable" params="name parent *origin wall_thickness size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_height handle_width handle_depth">
+  <xacro:macro name="suturo_shelf_left_door_openable" params="name parent *origin wall_thickness door_height size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_height handle_width handle_depth">
 
     <xacro:property name="size_x" value="${wall_thickness}"/>
 
@@ -191,7 +191,7 @@
 
     <xacro:if value="${door == 'both_open'}">
       <joint name="${name}:joint" type="revolute">
-        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} 0" rpy="0 0 -1.77"/>
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} ${door_height}" rpy="0 0 -1.77"/>
         <axis xyz="0 0 1" />
         <parent link="${parent}"/>
         <child link="${name}"/>
@@ -201,7 +201,7 @@
     
     <xacro:if value="${door == 'both'}">
       <joint name="${name}:joint" type="revolute">
-        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} 0" rpy="0 0 0"/>
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${-wall_thickness} ${door_height}" rpy="0 0 0"/>
         <axis xyz="0 0 1" />
         <parent link="${parent}"/>
         <child link="${name}"/>
@@ -211,7 +211,7 @@
   </xacro:macro>
 
 
-  <xacro:macro name="suturo_shelf_right_door_openable" params="name parent *origin wall_thickness size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_height handle_width handle_depth">
+  <xacro:macro name="suturo_shelf_right_door_openable" params="name parent *origin wall_thickness door_height size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_height handle_width handle_depth">
 
     <xacro:property name="size_x" value="${wall_thickness}"/>
 
@@ -256,7 +256,7 @@
 
     <xacro:if value="${door == 'both_open'}">
       <joint name="${name}:joint" type="revolute">
-        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} 0" rpy="0 0 1.77"/>
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} ${door_height}" rpy="0 0 1.77"/>
         <axis xyz="0 0 1" />
         <parent link="${parent}"/>
         <child link="${name}"/>
@@ -266,7 +266,7 @@
     
     <xacro:if value="${door == 'both'}">
       <joint name="${name}:joint" type="revolute">
-        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} 0" rpy="0 0 0"/>
+        <origin xyz="${-shelf_x_size/2+wall_thickness/2} ${wall_thickness} ${door_height}" rpy="0 0 0"/>
         <axis xyz="0 0 1" />
         <parent link="${parent}"/>
         <child link="${name}"/>
