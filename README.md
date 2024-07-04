@@ -1,6 +1,6 @@
 # SETUP
 ```
-git clone --recurse-submodules https://github.com/sunava/hsrb_rosnav
+git clone --recurse-submodules https://github.com/sunava/hsrb_rosnav # into your ROS workspace
 sudo apt install ros-noetic-map-server
 sudo apt-get install ros-noetic-dwa-local-planner
 
