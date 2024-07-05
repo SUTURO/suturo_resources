@@ -1,9 +1,8 @@
-
 # C
 chairs:
-    perception_postfix: chair_center
-    amount: 1
-    0:
+   perception_postfix: chair_center
+   amount: 1
+   0:
       name: chair
       knowledge_role: chair
       parent: urdf_offset
@@ -73,7 +72,7 @@ doors:
       door_turn_limit_max: 0
       handle_x: 0.82
       handle_z: 0.02
-   1:
+    1:
       room1: living_room
       room2: arena
       parent: urdf_offset
