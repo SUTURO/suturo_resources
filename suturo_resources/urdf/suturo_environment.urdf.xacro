@@ -22,28 +22,34 @@
     <!--  Include the files containing the macros -->
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_popcorn_table.urdf.xacro" />
-    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_wall.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_hohc.urdf.xacro" />  
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_door.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bucket.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_path.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_drawer.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" />    
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_hohc.urdf.xacro" />  
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_couch.urdf.xacro" />  
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" /> 
+
 
     <!-- general data -->
     <xacro:property name="number_of_drawers"
@@ -56,6 +62,8 @@
         value="${data.get('popcorn_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_couches"
         value="${data.get('couch', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_simple_couches"
+        value="${data.get('simple_couch', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_round_tables"
         value="${data.get('round_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_buckets"
@@ -133,6 +141,22 @@
         </xacro:if>
     </xacro:macro>
     
+      <!--  ~~Simple Couches~~  -->
+    <xacro:macro name="simple_couch_loop" params="simple_couch_number">
+        <xacro:suturo_simple_couch
+            name="${data['simple_couch'][simple_couch_number]['name']}:${data['simple_couch'][simple_couch_number]['knowledge_role']}"
+            parent="${data['simple_couch'][simple_couch_number]['parent']}"
+            size_x="${data['simple_couch'][simple_couch_number]['depth']}"
+            size_y="${data['simple_couch'][simple_couch_number]['width']}"
+            size_z="${data['simple_couch'][simple_couch_number]['height']}">
+            <origin
+                xyz="${data['simple_couch'][simple_couch_number]['x_pos']} ${data['simple_couch'][simple_couch_number]['y_pos']} 0"
+                rpy="0 0 ${data['simple_couch'][simple_couch_number]['z_rot']}" />
+        </xacro:suturo_simple_couch>
+        <xacro:if value="${(number_of_simple_couches - 1) > simple_couch_number}">
+            <xacro:simple_couch_loop simple_couch_number="${simple_couch_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
     
 
     <!--  ~~Round_tables~~  -->
@@ -471,6 +495,9 @@
     </xacro:if>
     <xacro:if value="${number_of_shelves_hohc > 0}">
         <xacro:shelf_hohc_loop shelf_hohc_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_simple_couches > 0}">
+        <xacro:simple_couch_loop simple_couch_number="0" />
     </xacro:if>
 
     <link name="urdf_main" />

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_simple_couch" xmlns:xacro="http://ros.org/wiki/xacro">
+ <material name="simple_couch_color_grey">
+    <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+  
+  <material name="simple_couch_color_red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  
+  <material name="simple_couch_color_blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <xacro:macro name="suturo_simple_couch" params="name parent *origin size_x size_y size_z">
+    <!-- LINKS -->
+
+    <link name="${name}:place1">
+      <visual>
+        <material name="simple_couch_color_grey"/>
+        <origin xyz="0 0 ${size_z/2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link> 
+    
+
+    <link name="${name}:place2">
+    <visual>
+        <material name="simple_couch_color_red"/>
+        <origin xyz="0 ${-(size_y)/4} ${(size_z)/2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${(size_y)/2} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link> 
+    
+    
+    
+    <link name="${name}:place3">
+    <visual>
+        <material name="simple_couch_color_blue"/>
+        <origin xyz="0 ${+(size_y)/4} ${(size_z)/2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${(size_y)/2} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${-(size_z)/2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link> 
+    
+     <!-- JOINTS -->
+
+    <joint name="${name}:couch_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}:place1"/>
+    </joint>
+
+    <joint name="${name}:couch_left_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${name}:place1"/>
+      <child link="${name}:place2"/>
+    </joint>
+    
+    <joint name="${name}:couch_right_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${name}:place1"/>
+      <child link="${name}:place3"/>
+    </joint> 
+    
+  </xacro:macro>
+
+</robot>

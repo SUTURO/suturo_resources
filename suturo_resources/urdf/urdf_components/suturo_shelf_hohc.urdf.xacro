@@ -67,7 +67,7 @@
     <!-- door -->
     <xacro:if value="${door == 'left'}">
       <xacro:suturo_shelf_left_door_openable name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
-       wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
+       wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y*0.75} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_left_door_openable>
@@ -76,7 +76,7 @@
 
     <xacro:if value="${door == 'right'}">
       <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
+        wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y*0.75} ${door_length/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_right_door_openable>
@@ -84,7 +84,7 @@
 
     <xacro:if value="${door == 'both'}">
        <xacro:suturo_shelf_right_door_openable name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
-        wall_thickness="${wall_thickness}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
+        wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_height="${handle_height}" handle_width="${handle_width}" handle_depth="${handle_depth}">
         <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
        </xacro:suturo_shelf_right_door_openable>
