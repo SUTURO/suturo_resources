@@ -1,0 +1,17 @@
+<launch>  
+  <arg name="urdf_name"/>
+  
+  <!-- Load the URDF file into the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find suturo_resources)/urdf/pure_urdf/$(arg urdf_name)'" />
+
+  <!-- Run a ROS parameter server -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Launch Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+	<arg name="paused" value="true"/>
+  </include>
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model your_robot" />
+</launch>
