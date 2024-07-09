@@ -22,11 +22,13 @@
 	  <child link="dishwasher_main"/>
     </joint>
 
-    <joint name="dishwasher_main_joint" type="fixed">
-	  <xacro:insert_block name="origin" />
-	  <parent link="dishwasher_main"/>
-	  <child link="sink_area_dish_washer_main"/>
-    </joint>
+	<!-- Below there is another joint connecting these two links,
+		 which breaks giskards ability to work with this -->
+    <!-- <joint name="dishwasher_main_joint" type="fixed"> -->
+	<!--   <xacro:insert_block name="origin" /> -->
+	<!--   <parent link="dishwasher_main"/> -->
+	<!--   <child link="sink_area_dish_washer_main"/> -->
+    <!-- </joint> -->
 
   <link name="sink_area_dish_washer_main">
     <inertial>
