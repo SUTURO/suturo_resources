@@ -11,6 +11,7 @@ You will need this for navigation and map.
 roslaunch suturo_bringup envi_bringup.launch
 ```
 Note: You do not need iai_hsr pkg atm 
+
 # suturo_resources
 Repository for shared resources like world descriptions etc.
 
@@ -22,4 +23,3 @@ This package contains map files, gazebo_worlds and URDF files.
 
 ## SUTURO_ROOM_VIZ
 This package contains a node publishing a Visualisation_Marker_Array that colors the floor of each room based on TF data published by suturo_bringup.
-
