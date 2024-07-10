@@ -65,9 +65,6 @@
         <mass value="1.0"/>
         <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
       </inertial>
-            <gazebo>
-   <turnGravityOff>true</turnGravityOff>
-</gazebo>
     </link>
 	
 	<link name="${name}:door_handle_link">
@@ -88,9 +85,6 @@
         <mass value="1.0"/>
         <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
       </inertial>
-                  <gazebo>
-   <turnGravityOff>true</turnGravityOff>
-</gazebo>
     </link>
 
     <link name="${name}:door_handle_outside">
@@ -114,9 +108,6 @@
         <mass value="1.0"/>
         <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
       </inertial>
-                        <gazebo>
-   <turnGravityOff>true</turnGravityOff>
-</gazebo>
     </link>
 
     <link name="${name}:door_handle_inside">
@@ -140,9 +131,6 @@
         <mass value="1.0"/>
         <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
       </inertial>                        
-      <gazebo>
-   <turnGravityOff>true</turnGravityOff>
-</gazebo>
     </link>
     
       
@@ -172,6 +160,10 @@
       <parent link="${name}:door_center"/>
 	  <child link="${name}:door_handle_link"/>
     </joint>
+    <gazebo reference="${name}:door_handle_joint">
+      <springReference>-${pi}</springReference>
+      <springStiffness>1</springStiffness>
+    </gazebo>
 
     <joint name="${name}:door_handle_inside_joint" type="fixed">
       <origin xyz="-0.04 0 0.06" rpy="0 0 ${pi/2}" />
