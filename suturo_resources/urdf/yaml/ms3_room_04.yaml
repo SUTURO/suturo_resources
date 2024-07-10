@@ -22,25 +22,10 @@ couch:
       parent: urdf_offset
       width:  1.7
       height: 0.3
-      depth: 1
+      depth: 0.75
       z_rot: 1.57
       x_pos: 4.2
-      y_pos: 1.19 
-      
-simple_couches:
-    perception_postfix: origin
-    amount: 1
-    0:
-      name: simple_couch
-      knowledge_role: couch
-      parent: urdf_offset
-      width:  1.7
-      height: 0.3
-      depth: 1
-      z_rot: 1.57
-      x_pos: 3.2
-      y_pos: 2.3s
-
+      y_pos: 1.31
 
 dishwashers:
     perception_postfix: dishwasher_center
