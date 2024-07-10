@@ -32,16 +32,6 @@
           <color rgba="${color}"/>
         </material>
       </visual>
-      <collision>
-        <geometry>
-          <box size="${size_x} ${size_y} 0.01" />
-        </geometry>
-      </collision>
-      <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="1.0"/>
-        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
-      </inertial>
     </link>
 
     <xacro:property name="number_of_connections" value="${connections['amount']}" />
