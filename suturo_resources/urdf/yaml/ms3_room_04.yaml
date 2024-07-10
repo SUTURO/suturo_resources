@@ -162,6 +162,26 @@ rooms:
          center_x: 2.1
          center_y: 3.9
 
+# round tables are modeled as cylinders
+round_tables:
+    amount: 0
+    0:
+      name: test_round_table
+      knowledge_role: test_round_table
+      parent: urdf_offset
+      radius:  0.73
+      # length is actually the height
+      length: 0.735
+      # useful for setting the direction from which the robot approaches.
+      # since the pos below is the front center,
+      # changing the rotation also leads to a change in the position of the center of the table.
+      z_rot: 3.1415
+      # front center of the table
+      # enable the tf frames in rviz to see where, if you are unsure.
+      x_pos: 1.01
+      y_pos: 2.13
+
+
 # S
 shelves_openable:
     perception_postfix: shelf_floor_X
