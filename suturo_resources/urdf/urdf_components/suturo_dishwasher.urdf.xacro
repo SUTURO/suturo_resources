@@ -68,6 +68,9 @@
       </geometry>
     </collision>
   </link>
+  <gazebo reference="sink_area_dish_washer_door">
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
   <link name="sink_area_dish_washer_door_handle">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -87,6 +90,9 @@
       </geometry>
     </collision>
   </link>
+  <gazebo reference="sink_area_dish_washer_door_handle">
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
 
   <link name="dishwasher_tab"/>
 
