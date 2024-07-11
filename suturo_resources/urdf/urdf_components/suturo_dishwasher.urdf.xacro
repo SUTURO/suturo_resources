@@ -53,7 +53,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="1"/>
-      <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.07" iyz="0.0" izz="0.041"/>
     </inertial>
     <visual>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
@@ -70,12 +70,14 @@
   </link>
   <gazebo reference="sink_area_dish_washer_door">
     <turnGravityOff>true</turnGravityOff>
+    <!-- this value is not accurate, but for now it should be enough for the simulation -->
+    <dampingFactor>0.005</dampingFactor>
   </gazebo>
   <link name="sink_area_dish_washer_door_handle">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="1"/>
-      <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0025" ixy="0.0" ixz="0.0" iyy="0.0025" iyz="0.0" izz="0.000125"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
