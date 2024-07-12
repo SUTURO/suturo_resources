@@ -150,13 +150,13 @@
 
   <!-- from here for dishwasher_table -->
   <joint name="dish_washer_table_main_joint" type="fixed">
-    <origin rpy="0.0 0 0" xyz="0.0 0.0 0.39"/>
+    <origin rpy="0 0 ${pi}" xyz="0.0 0.0 0.39"/>
     <parent link="sink_area_dish_washer_main"/>
     <child link="dishwasher_table:d_table:table_origin"/>
   </joint>
 
   <joint name="dish_washer_table_center_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.3 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.3 0 0"/>
     <parent link="dishwasher_table:d_table:table_origin"/>
     <child link="dishwasher_table:d_table:table_front_edge_center"/>
   </joint>
