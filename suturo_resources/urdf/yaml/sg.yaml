@@ -1,0 +1,75 @@
+shelves_openable:
+   perception_postfix: shelf_floor_X
+   amount: 0
+   0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.71
+      height: 1.04
+      depth: 0.32
+      z_rot: 1.56
+      x_pos: 2.59
+      y_pos: 2.94
+      floors_height: [0.07, 0.46, 0.72, 1.04]
+      number_of_floors: 4
+      door: both_open
+      wall_thickness: 0.015
+      handle_from_bottom: 0.795
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.0
+      
+shelves:
+   perception_postfix: shelf_floor_0
+   amount: 1
+   0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 1.04
+      height: 1.355
+      depth: 0.34
+      z_rot: 0
+      x_pos: 5.11
+      y_pos: 4.42
+      floors_height: [0.077,0.371,0.716]
+      number_of_floors: 3
+      door: none
+   
+
+kitchens:
+   perception_postfix: kitchen_center
+   amount: 1
+   0:
+      name: suturo_kitchen
+      knowledge_role: kitchen
+      parent: urdf_offset
+      z_rot: -1.57
+      x_pos: 2.45
+      y_pos: -0.67
+         
+tables:
+   perception_postfix: table_center
+   amount: 1 
+      
+   0:
+      name: popcorn_table
+      knowledge_role: p_table
+      parent: urdf_offset
+      width:  1.8
+      height: 0.71
+      depth: 0.55
+      z_rot: 1.57
+      x_pos: 3.03
+      y_pos: 5.68
+
+      
+         
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+
