@@ -118,7 +118,7 @@
 	<material name="handle_blue"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.015 0.15 0.01" />
+          <box size="0.012 0.12 0.01" />
         </geometry>
       </visual>
       <collision>
@@ -166,7 +166,7 @@
     </joint>
 
     <joint name="${name}:door_handle_inside_joint" type="fixed">
-      <origin xyz="-0.04 0 0.06" rpy="0 0 ${pi/2}" />
+      <origin xyz="-0.069 0 0.06" rpy="0 0 ${pi/2}" />
       <parent link="${name}:door_handle_link"/>
       <child link="${name}:door_handle_inside"/>
     </joint>

@@ -1,0 +1,43 @@
+
+couch:
+    perception_postfix: origin
+    amount: 1
+    0:
+      name: suturo_couch
+      knowledge_role: couch
+      parent: urdf_offset
+      width:  1.7
+      height: 0.3
+      depth: 1
+      z_rot: 0.1
+      x_pos: 10.5
+      y_pos: -0.1 
+      
+
+# D
+doors:
+    amount: 1
+    0:
+      room1: iai_kitchen
+      room2: arena
+      parent: urdf_offset
+      knowledge_role: door
+      height: 2
+      width: 0.855
+      depth: 0.038
+      x: 1.85
+      y: -0.05
+      z: 1.04
+      zrot: 1.57
+      door_turn_limit_lower: -1.4
+      door_turn_limit_max: 0
+      handle_x: 0.82
+      handle_z: 0.02
+
+   
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+
