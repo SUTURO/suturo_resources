@@ -6,29 +6,29 @@ chairs:
       name: chair
       knowledge_role: desk_chair
       parent: urdf_offset
-      width:  0.3
-      height: 0.5
-      depth: 0.3
-      z_rot: 1.56
+      width:  0.435
+      height: 0.47
+      depth: 0.42
+      z_rot: 3.15
       x_pos: 3.38
       y_pos: 3.07
    1:
       name: chair
       knowledge_role: lounge_chair
       parent: urdf_offset
-      width:  0.3
-      height: 0.5
-      depth: 0.3
-      z_rot: 0
-      x_pos: 9.4
-      y_pos: -1.9
+      width:  0.825
+      height: 0.415
+      depth: 0.71
+      z_rot: 0.6
+      x_pos: 8.96
+      y_pos: -1.54
    2:
       name: chair
       knowledge_role: kitchen_chair_one
       parent: urdf_offset
-      width:  0.3
-      height: 0.5
-      depth: 0.3
+      width:  0.435
+      height: 0.47
+      depth: 0.42
       z_rot: 1.56
       x_pos: 8.5
       y_pos: 4.1
@@ -36,9 +36,9 @@ chairs:
       name: chair
       knowledge_role: kitchen_chair_two
       parent: urdf_offset
-      width:  0.3
-      height: 0.5
-      depth: 0.3
+      width:  0.435
+      height: 0.47
+      depth: 0.42
       z_rot: 1.56
       x_pos: 8.5
       y_pos: 5.34
@@ -47,9 +47,9 @@ chairs:
       name: chair
       knowledge_role: kitchen_chair_three
       parent: urdf_offset
-      width:  0.3
-      height: 0.5
-      depth: 0.3
+      width:  0.435
+      height: 0.47
+      depth: 0.42
       z_rot: -1.56
       x_pos: 6.65
       y_pos: 5.53
@@ -58,9 +58,9 @@ chairs:
       name: chair
       knowledge_role: kitchen_chair_four
       parent: urdf_offset
-      width:  0.3
-      height: 0.5
-      depth: 0.3
+      width:  0.435
+      height: 0.47
+      depth: 0.42
       z_rot: -1.56
       x_pos: 6.8
       y_pos: 4.05
@@ -80,16 +80,16 @@ couch:
       y_pos: -0.1
 
 # D
-dishwashers:
-    perception_postfix: dishwasher_center
-    amount: 0
+dishwashers_robocup:
+    perception_postfix: dishwasher_suturo_center
+    amount: 1
     0:
-      name: suturo_dishwasher
-      knowledge_role: dishwasher
+      name: suturo_dishwasher_robocup
+      knowledge_role: dishwasher_robocup
       parent: urdf_offset
-      z_rot: 1.57
-      x_pos: 1.86
-      y_pos: -2.2
+      z_rot: 3.19
+      x_pos: 10.5
+      y_pos: 4.77
 
 doors:
     amount: 2
@@ -325,7 +325,7 @@ shelves:
 # T     
 tables:
     perception_postfix: table_center
-    amount: 4
+    amount: 5
     0:
       name: tv_table
       knowledge_role: tv_table
@@ -370,7 +370,28 @@ tables:
       x_pos: 7.425
       y_pos: 3.78
 
-    
+    4:
+      name: kitchen_counter
+      knowledge_role: kitchen_counter
+      parent: urdf_offset
+      width:  1.82
+      height: 0.91
+      depth: 0.68
+      z_rot: 0.05
+      x_pos: 10.2
+      y_pos: 5.06
+
+trashbins:
+    amount: 1
+    0:
+      name: trashcan
+      knowledge_role: trashcan
+      parent: urdf_offset
+      radius:  0.19
+      length: 0.49
+      z_rot: 3.2
+      x_pos: 5.86
+      y_pos: 2.03  
     
 
 # W     
