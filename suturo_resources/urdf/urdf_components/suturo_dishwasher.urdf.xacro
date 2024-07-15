@@ -22,11 +22,13 @@
 	  <child link="dishwasher_main"/>
     </joint>
 
-    <joint name="dishwasher_main_joint" type="fixed">
-	  <xacro:insert_block name="origin" />
-	  <parent link="dishwasher_main"/>
-	  <child link="sink_area_dish_washer_main"/>
-    </joint>
+	<!-- Below there is another joint connecting these two links,
+		 which breaks giskards ability to work with this -->
+    <!-- <joint name="dishwasher_main_joint" type="fixed"> -->
+	<!--   <xacro:insert_block name="origin" /> -->
+	<!--   <parent link="dishwasher_main"/> -->
+	<!--   <child link="sink_area_dish_washer_main"/> -->
+    <!-- </joint> -->
 
   <link name="sink_area_dish_washer_main">
     <inertial>
@@ -66,6 +68,9 @@
       </geometry>
     </collision>
   </link>
+  <gazebo reference="sink_area_dish_washer_door">
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
   <link name="sink_area_dish_washer_door_handle">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -85,6 +90,9 @@
       </geometry>
     </collision>
   </link>
+  <gazebo reference="sink_area_dish_washer_door_handle">
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
 
   <link name="dishwasher_tab"/>
 
@@ -121,7 +129,7 @@
   <joint name="sink_area_dish_washer_main_joint" type="fixed"> <!-- was revolute before, changed to fixed -->
     <axis xyz="1 0 0" />
     <!-- <limit effort="300" lower="0" upper="0" velocity="10"/> -->
-    <origin rpy="0 0 0" xyz="0.08 -0.78 0.44 "/>
+    <origin rpy="0 0 0" xyz="0.08 -0.78 0.455 "/>
     <parent link="dishwasher_main"/>
     <child link="sink_area_dish_washer_main"/>
   </joint>
@@ -142,13 +150,13 @@
 
   <!-- from here for dishwasher_table -->
   <joint name="dish_washer_table_main_joint" type="fixed">
-    <origin rpy="0.0 0 0" xyz="0.0 0.0 0.39"/>
+    <origin rpy="0 0 ${pi}" xyz="0.0 0.0 0.39"/>
     <parent link="sink_area_dish_washer_main"/>
     <child link="dishwasher_table:d_table:table_origin"/>
   </joint>
 
   <joint name="dish_washer_table_center_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.3 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.3 0 0"/>
     <parent link="dishwasher_table:d_table:table_origin"/>
     <child link="dishwasher_table:d_table:table_front_edge_center"/>
   </joint>
