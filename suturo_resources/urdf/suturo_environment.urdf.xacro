@@ -50,6 +50,7 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_couch.urdf.xacro" />  
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_trashbin.urdf.xacro" /> 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" /> 
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_coathanger.urdf.xacro" /> 
 
 
     <!-- general data -->
@@ -93,6 +94,9 @@
         value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />        
     <xacro:property name="number_of_trashbins"
         value="${data.get('trashbins', dict(amount=0)).get('amount', 0)}" />  
+    <xacro:property name="number_of_coathangers"
+        value="${data.get('coathangers', dict(amount=0)).get('amount', 0)}" /> 
+
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
@@ -415,6 +419,22 @@
         </xacro:suturo_kitchen>
     </xacro:macro>
 
+<!--  ~~Coathangers~~  -->
+    <xacro:macro name="coathanger_loop" params="coathanger_number">
+        <xacro:suturo_coathanger
+            name="${data['coathangers'][coathanger_number]['name']}:${data['coathangers'][coathanger_number]['knowledge_role']}"
+            parent="${data['coathangers'][coathanger_number]['parent']}"
+            size_x="${data['coathangers'][coathanger_number]['depth']}"
+            size_y="${data['coathangers'][coathanger_number]['width']}"
+            size_z="${data['coathangers'][coathanger_number]['height']}">
+            <origin
+                xyz="${data['coathangers'][coathanger_number]['x_pos']} ${data['coathangers'][coathanger_number]['y_pos']} 0"
+                rpy="0 0 ${data['coathangers'][coathanger_number]['z_rot']}" />
+        </xacro:suturo_coathanger>
+        <xacro:if value="${(number_of_coathangers - 1) > coathanger_number}">
+            <xacro:coathanger_loop coathanger_number="${coathanger_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
 
     <!--  ~~Doors~~  -->
     <xacro:macro name="door_loop" params="door_number">
@@ -538,6 +558,9 @@
     </xacro:if>
     <xacro:if value="${number_of_trashbins > 0}">
         <xacro:trashbin_loop trashbin_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_coathangers > 0}">
+        <xacro:coathanger_loop coathanger_number="0" />
     </xacro:if>
 
     <link name="urdf_main" />
