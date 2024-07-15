@@ -166,7 +166,7 @@
     </joint>
 
     <joint name="${name}:door_handle_inside_joint" type="fixed">
-      <origin xyz="-0.04 0 0.06" rpy="0 0 ${pi/2}" />
+      <origin xyz="-0.069 0 0.06" rpy="0 0 ${pi/2}" />
       <parent link="${name}:door_handle_link"/>
       <child link="${name}:door_handle_inside"/>
     </joint>
