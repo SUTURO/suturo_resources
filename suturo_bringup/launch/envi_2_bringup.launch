@@ -7,7 +7,7 @@
 <arg name="env_model_yaml" default="ms3_room_04.yaml"/>
 <!-- model is used by urdf.launch -->
 <arg name="model" default="$(find suturo_resources)/urdf/ms3_room_04.urdf.xacro"/>
-<arg name="show_rooms" default="false"/>
+<arg name="show_rooms" default="true"/>
 
 <arg name="map_name" default="projectroom_beta/ms3_room_02.yaml"/>
 <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>

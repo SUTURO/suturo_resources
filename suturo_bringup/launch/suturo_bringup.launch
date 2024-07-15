@@ -25,7 +25,7 @@ arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
   <arg     if="$(arg fast_physics)" name="world_suffix" value="_fast"/
 -->
 <arg name="world" default="empty.world"/>
-<arg name="map_name" default="projectroom_beta/final_projectroom_map.yaml"/>
+<arg name="map_name" default="projectroom_beta/ms3_room_02.yaml"/>
 <arg name="gazebo" default="false"/>
 <!--arg name="map_server" default="true" /-->
 <arg name="upload_hsrb" default="true"/>
@@ -35,9 +35,9 @@ arg unless="$(arg fast_physics)" name="world_suffix" value=""/>
 <arg name="publish_joint_state" default="true"/>
 <arg name="upload_map" default="true"/>
 <arg name="publish_environment" default="true"/>
-<arg name="env_model_yaml" default="final_projectroom_map.yaml"/>
-<arg name="show_rooms" default="false"/>
-<arg name="run_snap_map" default="true"/>
+<arg name="env_model_yaml" default="ms3_room_02.yaml"/>
+<arg name="show_rooms" default="true"/>
+<arg name="run_snap_map" default="false"/>
 <!-- where to spawn the robot-->
 <arg name="robot_spawn_pose_x" default="0"/>
 <arg name="robot_spawn_pose_y" default="0"/>
@@ -88,6 +88,6 @@ group if="$(eval arg('gazebo') == false)">
 <group if="$(eval arg('use_rviz') == true)">
 <node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz"/>
 </group>
-<node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen"/>
+<!--node pkg="tf2_ros" type="buffer_server" name="tf_server" output="screen"/-->
 </launch>
 
