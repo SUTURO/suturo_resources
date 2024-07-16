@@ -140,6 +140,19 @@ doors:
       handle_x: 0.77
       handle_z: 0.02
 
+# L
+lamps:
+    amount: 1
+    0:
+      name: lamp
+      knowledge_role: lamp
+      parent: urdf_offset
+      radius:  0.09
+      length: 1.8
+      z_rot: 0
+      x_pos: 10.7
+      y_pos: -1.6 
+
 # R
 rooms:
     amount: 5

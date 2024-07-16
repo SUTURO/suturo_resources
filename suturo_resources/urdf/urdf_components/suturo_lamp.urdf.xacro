@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_lamp" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="lamp_color">
+    <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+
+  <xacro:macro name="suturo_lamp" params="name parent *origin radius length">
+    <!-- LINKS -->
+
+    <link name="${name}:lamp_center">
+      <visual>
+        <material name="lamp_color"/>
+        <origin xyz="0 0 ${-(length)/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}"  length="${length}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${-(length)/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}"  length="${length}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
+    </link> 
+    
+
+    <link name="${name}:lamp_origin"/>
+    
+    <link name="${name}:lamp_front_edge_center"/>
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}:lamp_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}:lamp_origin"/>
+    </joint>
+
+    <joint name="${name}:center_joint" type="fixed">
+      <origin xyz="${radius} 0 ${length}" rpy="0 0 0" />
+      <parent link="${name}:lamp_origin"/>
+      <child link="${name}:lamp_center"/>
+    </joint>
+    
+    <joint name="${name}:lamp_front_edge_center_joint" type="fixed">
+      <origin xyz="0 0 ${length}" rpy="0 0 0" />
+      <parent link="${name}:lamp_origin"/>
+      <child link="${name}:lamp_front_edge_center"/>
+    </joint> 
+  </xacro:macro>
+</robot>

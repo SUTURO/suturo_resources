@@ -51,6 +51,7 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_trashcan.urdf.xacro" /> 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" /> 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_coathanger.urdf.xacro" /> 
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_lamp.urdf.xacro" /> 
 
 
     <!-- general data -->
@@ -96,6 +97,8 @@
         value="${data.get('trashcans', dict(amount=0)).get('amount', 0)}" />  
     <xacro:property name="number_of_coathangers"
         value="${data.get('coathangers', dict(amount=0)).get('amount', 0)}" /> 
+    <xacro:property name="number_of_lamps"
+        value="${data.get('lamps', dict(amount=0)).get('amount', 0)}" /> 
 
 
     <!--  ~~Tables~~  -->
@@ -180,6 +183,22 @@
         </xacro:suturo_round_table>
         <xacro:if value="${(number_of_round_tables - 1) > round_table_number}">
             <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Lamps~~  -->
+    <xacro:macro name="lamp_loop" params="lamp_number">
+        <xacro:suturo_lamp
+            name="${data['lamps'][lamp_number]['name']}:${data['lamps'][lamp_number]['knowledge_role']}"
+            parent="${data['lamps'][lamp_number]['parent']}"
+            radius="${data['lamps'][lamp_number]['radius']}"
+            length="${data['lamps'][lamp_number]['length']}">
+            <origin
+                xyz="${data['lamps'][lamp_number]['x_pos']} ${data['lamps'][lamp_number]['y_pos']} 0"
+                rpy="0 0 ${data['lamps'][lamp_number]['z_rot']}" />
+        </xacro:suturo_lamp>
+        <xacro:if value="${(number_of_lamps - 1) > lamp_number}">
+            <xacro:lamp_loop lamp_number="${lamp_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -561,6 +580,9 @@
     </xacro:if>
     <xacro:if value="${number_of_coathangers > 0}">
         <xacro:coathanger_loop coathanger_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_lamps > 0}">
+        <xacro:lamp_loop lamp_number="0" />
     </xacro:if>
 
     <link name="urdf_main" />
