@@ -144,7 +144,7 @@
     <limit effort="300" lower="0.0" upper="1.57079632679" velocity="10"/>
   </joint>
   <joint name="sink_area_dish_washer_door_handle_joint" type="fixed">
-    <origin rpy="-1.57079632679 0 0" xyz="0.0625 -0.6325 0."/>
+    <origin rpy="-1.57079632679 0 0" xyz="0.0625 -0.6625 0."/>
     <parent link="sink_area_dish_washer_door"/>
     <child link="sink_area_dish_washer_door_handle"/>
   </joint>
