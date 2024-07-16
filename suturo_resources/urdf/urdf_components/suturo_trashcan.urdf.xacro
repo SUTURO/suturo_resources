@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 
-<robot name="suturo_trashbin" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="suturo_trashcan" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <material name="trashbin_color">
+  <material name="trashcan_color">
     <color rgba="0.8 0.8 0.8 1"/>
   </material>
 
-  <xacro:macro name="suturo_trashbin" params="name parent *origin radius length">
+  <xacro:macro name="suturo_trashcan" params="name parent *origin radius length">
     <!-- LINKS -->
 
-    <link name="${name}:trashbin_center">
+    <link name="${name}:trashcan_center">
       <visual>
-        <material name="trashbin_color"/>
+        <material name="trashcan_color"/>
         <origin xyz="0 0 ${-(length)/2}" rpy="0 0 0" />
         <geometry>
           <cylinder radius="${radius}"  length="${length}"/>
@@ -31,28 +31,28 @@
     </link> 
     
 
-    <link name="${name}:trashbin_origin"/>
+    <link name="${name}:trashcan_origin"/>
     
-    <link name="${name}:trashbin_front_edge_center"/>
+    <link name="${name}:trashcan_front_edge_center"/>
     
     <!-- JOINTS -->
 
-    <joint name="${name}:trashbin_origin_joint" type="fixed">
+    <joint name="${name}:trashcan_origin_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${name}:trashbin_origin"/>
+      <child link="${name}:trashcan_origin"/>
     </joint>
 
     <joint name="${name}:center_joint" type="fixed">
       <origin xyz="${radius} 0 ${length}" rpy="0 0 0" />
-      <parent link="${name}:trashbin_origin"/>
-      <child link="${name}:trashbin_center"/>
+      <parent link="${name}:trashcan_origin"/>
+      <child link="${name}:trashcan_center"/>
     </joint>
     
-    <joint name="${name}:trashbin_front_edge_center_joint" type="fixed">
+    <joint name="${name}:trashcan_front_edge_center_joint" type="fixed">
       <origin xyz="0 0 ${length}" rpy="0 0 0" />
-      <parent link="${name}:trashbin_origin"/>
-      <child link="${name}:trashbin_front_edge_center"/>
+      <parent link="${name}:trashcan_origin"/>
+      <child link="${name}:trashcan_front_edge_center"/>
     </joint> 
   </xacro:macro>
 </robot>

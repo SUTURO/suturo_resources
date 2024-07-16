@@ -395,7 +395,7 @@ tables:
       x_pos: 10.2
       y_pos: 5.06
 
-trashbins:
+trashcans:
     amount: 1
     0:
       name: trashcan

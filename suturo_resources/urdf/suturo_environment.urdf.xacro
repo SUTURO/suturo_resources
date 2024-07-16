@@ -48,7 +48,7 @@
 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_couch.urdf.xacro" />  
-    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_trashbin.urdf.xacro" /> 
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_trashcan.urdf.xacro" /> 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" /> 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_coathanger.urdf.xacro" /> 
 
@@ -92,8 +92,8 @@
         value="${data.get('chairs', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_shelves_hohc"
         value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />        
-    <xacro:property name="number_of_trashbins"
-        value="${data.get('trashbins', dict(amount=0)).get('amount', 0)}" />  
+    <xacro:property name="number_of_trashcans"
+        value="${data.get('trashcans', dict(amount=0)).get('amount', 0)}" />  
     <xacro:property name="number_of_coathangers"
         value="${data.get('coathangers', dict(amount=0)).get('amount', 0)}" /> 
 
@@ -184,18 +184,18 @@
     </xacro:macro>
 
     <!--  ~~Trashbins~~  -->
-    <xacro:macro name="trashbin_loop" params="trashbin_number">
-        <xacro:suturo_trashbin
-            name="${data['trashbins'][trashbin_number]['name']}:${data['trashbins'][trashbin_number]['knowledge_role']}"
-            parent="${data['trashbins'][trashbin_number]['parent']}"
-            radius="${data['trashbins'][trashbin_number]['radius']}"
-            length="${data['trashbins'][trashbin_number]['length']}">
+    <xacro:macro name="trashcan_loop" params="trashcan_number">
+        <xacro:suturo_trashcan
+            name="${data['trashcans'][trashcan_number]['name']}:${data['trashcans'][trashcan_number]['knowledge_role']}"
+            parent="${data['trashcans'][trashcan_number]['parent']}"
+            radius="${data['trashcans'][trashcan_number]['radius']}"
+            length="${data['trashcans'][trashcan_number]['length']}">
             <origin
-                xyz="${data['trashbins'][trashbin_number]['x_pos']} ${data['trashbins'][trashbin_number]['y_pos']} 0"
-                rpy="0 0 ${data['trashbins'][trashbin_number]['z_rot']}" />
-        </xacro:suturo_trashbin>
-        <xacro:if value="${(number_of_round_tables - 1) > trashbin_number}">
-            <xacro:trashbin_loop trashbin_number="${trashbin_number + 1}" />
+                xyz="${data['trashcans'][trashcan_number]['x_pos']} ${data['trashcans'][trashcan_number]['y_pos']} 0"
+                rpy="0 0 ${data['trashcans'][trashcan_number]['z_rot']}" />
+        </xacro:suturo_trashcan>
+        <xacro:if value="${(number_of_round_tables - 1) > trashcan_number}">
+            <xacro:trashcan_loop trashcan_number="${trashcan_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -556,8 +556,8 @@
     <xacro:if value="${number_of_simple_couches > 0}">
         <xacro:simple_couch_loop simple_couch_number="0" />
     </xacro:if>
-    <xacro:if value="${number_of_trashbins > 0}">
-        <xacro:trashbin_loop trashbin_number="0" />
+    <xacro:if value="${number_of_trashcans > 0}">
+        <xacro:trashcan_loop trashcan_number="0" />
     </xacro:if>
     <xacro:if value="${number_of_coathangers > 0}">
         <xacro:coathanger_loop coathanger_number="0" />
