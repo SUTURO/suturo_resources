@@ -423,7 +423,7 @@ trashcans:
 
 # W     
 walls:
-    amount: 7
+    amount: 8
     0:
       name: wall_1
       knowledge_role: wall_1
@@ -470,8 +470,8 @@ walls:
       pos_2_y: 1.55
 
     5:
-      name: wall_9
-      knowledge_role: wall_9
+      name: wall_6
+      knowledge_role: wall_6
       parent: urdf_offset
       pos_1_x: 1.9
       pos_1_y: 3.0
@@ -479,8 +479,8 @@ walls:
       pos_2_y: 1.0
 
     6:
-      name: wall_10
-      knowledge_role: wall_10
+      name: wall_7
+      knowledge_role: wall_7
       parent: urdf_offset
       pos_1_x: 5.25
       pos_1_y: 5.35
@@ -488,50 +488,15 @@ walls:
       pos_2_y: 4.2
 
     7:
-      name: wall_11
-      knowledge_role: wall_11
+      name: wall_8
+      knowledge_role: wall_8
       parent: urdf_offset
-      pos_1_x: 0.255
-      pos_1_y: -1.5
-      pos_2_x: 0.659
-      pos_2_y: -1.5
+      pos_1_x: 5.25
+      pos_1_y: 6.70
+      pos_2_x: 7.0
+      pos_2_y: 6.75
 
-    8:
-      name: wall_12
-      knowledge_role: wall_12
-      parent: urdf_offset
-      pos_1_x: 0.255
-      pos_1_y: -1.53
-      pos_2_x: 0.26
-      pos_2_y: -0.436
-
-    9:
-      name: wall_13
-      knowledge_role: wall_13
-      parent: urdf_offset
-      pos_1_x: 0.25
-      pos_1_y: -0.464
-      pos_2_x: 0.57
-      pos_2_y: -0.464
-
-    10:
-      name: wall_14
-      knowledge_role: wall_14
-      parent: urdf_offset
-      pos_1_x: 0.25
-      pos_1_y: 6.62
-      pos_2_x: 5.58
-      pos_2_y: 6.62
-
-    11:
-      name: wall_15
-      knowledge_role: wall_15
-      parent: urdf_offset
-      pos_1_x: 5.58
-      pos_1_y: 6.62
-      pos_2_x: 5.5
-      pos_2_y: 3.3
-   
+    
 # Moves everything in the URDF by the given distances
 world_offset:
     X: 0
