@@ -73,7 +73,7 @@
   </gazebo>
   <link name="sink_area_dish_washer_door_handle">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.1 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0.1 0 0.0"/>
       <mass value="1"/>
       <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
     </inertial>
@@ -96,7 +96,7 @@
 
   <link name="dishwasher_tab"/>
 
-  <link name="dishwasher_table:d_table:table_origin"/>
+  <link name="dishwasher_table:d_table:d_table_origin"/>
   <link name="dishwasher_table:d_table:table_front_edge_center"/>
   <link name="dishwasher_table:d_table:table_center">
       <visual>
@@ -153,18 +153,18 @@
   <joint name="dish_washer_table_main_joint" type="fixed">
     <origin rpy="0 0 ${pi}" xyz="0.0 0.0 0.3971"/>
     <parent link="sink_area_dish_washer_main"/>
-    <child link="dishwasher_table:d_table:table_origin"/>
+    <child link="dishwasher_table:d_table:d_table_origin"/>
   </joint>
 
   <joint name="dish_washer_table_center_joint" type="fixed">
     <origin rpy="0 0 0" xyz="-0.3 0 0"/>
-    <parent link="dishwasher_table:d_table:table_origin"/>
+    <parent link="dishwasher_table:d_table:d_table_origin"/>
     <child link="dishwasher_table:d_table:table_front_edge_center"/>
   </joint>
 
   <joint name="dish_washer_table_edge_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="dishwasher_table:d_table:table_origin"/>
+    <parent link="dishwasher_table:d_table:d_table_origin"/>
     <child link="dishwasher_table:d_table:table_center"/>
   </joint>
 
