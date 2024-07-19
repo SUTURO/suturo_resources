@@ -1,0 +1,148 @@
+
+# D
+dishwashers_robocup:
+    perception_postfix: dishwasher_suturo_center
+    amount: 1
+    0:
+      name: suturo_dishwasher_robocup
+      knowledge_role: dishwasher_robocup
+      parent: urdf_offset
+      z_rot: 3.19
+      x_pos: 10.5
+      y_pos: 4.77
+# R
+rooms:
+    amount: 1
+    0:
+      name: iai_kitchen
+      knowledge_role: kitchen
+      center_x: 8.1
+      center_y: 4.3
+      size_x: 5.57
+      size_y: 4.9
+      color: 0 1 0 0.1
+      connections:
+       amount: 2
+       0:
+         name: kitchen_living_room_entry_exit
+         knowledge_role: entry_exit
+         center_x: 8.81
+         center_y: 0.22
+       1:
+         name: kitchen_office_entry_exit
+         knowledge_role: entry_exit
+         center_x: 5.34
+         center_y: 3.58
+ 
+# S
+shelves_hohc:
+    perception_postfix: shelf_floor_X
+    amount: 1
+    0:
+      name: shelf_hohc
+      knowledge_role: kitchen_cabinet
+      parent: urdf_offset
+      width: 0.8
+      height: 2.02
+      depth: 0.30
+      z_rot: 3.23
+      x_pos: 5.42
+      y_pos: 6.2
+      floors_height: [0.09, 0.40, 0.72, 1.045, 1.4, 1.685, 2.015]
+      number_of_floors: 7
+      door: both_open
+      door_height: -0.48
+      door_length: 0.97
+      wall_thickness: 0.02
+      handle_from_bottom: 0.57
+      handle_from_side: 0.35
+      handle_height: 0.135
+      handle_width: 0.005
+      handle_depth: 0.035
+
+   
+# T     
+tables:
+    perception_postfix: table_center
+    amount: 2
+    0:
+      name: dinner_table
+      knowledge_role: dinner_table
+      parent: urdf_offset
+      width:  2
+      height: 0.77
+      depth: 0.782
+      z_rot: 3.189
+      x_pos: 8.1
+      y_pos: 5.73
+
+    1:
+      name: kitchen_counter
+      knowledge_role: kitchen_counter
+      parent: urdf_offset
+      width:  1.82
+      height: 0.905
+      depth: 0.68
+      z_rot: 0.05
+      x_pos: 10.2
+      y_pos: 5.06
+
+trashcans:
+    amount: 1
+    0:
+      name: trashcan
+      knowledge_role: trashcan
+      parent: urdf_offset
+      radius:  0.19
+      length: 0.49
+      z_rot: 3.2
+      x_pos: 5.86
+      y_pos: 2.03  
+    
+
+# W     
+walls:
+    amount: 4
+    0:
+      name: wall_1
+      knowledge_role: wall_1
+      parent: urdf_offset
+      pos_1_x: 10.8
+      pos_1_y: 6.93
+      pos_2_x: 9.48
+      pos_2_y: 6.89
+
+    1:
+      name: wall_2
+      knowledge_role: wall_2
+      parent: urdf_offset
+      pos_1_x: 10.85
+      pos_1_y: 5.0
+      pos_2_x: 10.85
+      pos_2_y: 3.63
+
+    2:
+      name: wall_3
+      knowledge_role: wall_3
+      parent: urdf_offset
+      pos_1_x: 5.25
+      pos_1_y: 5.35
+      pos_2_x: 5.25
+      pos_2_y: 4.2
+
+    3:
+      name: wall_4
+      knowledge_role: wall_4
+      parent: urdf_offset
+      pos_1_x: 5.25
+      pos_1_y: 6.70
+      pos_2_x: 7.0
+      pos_2_y: 6.75
+
+    
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+
