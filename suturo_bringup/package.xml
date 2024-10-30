@@ -13,7 +13,6 @@
   <license>ToDo</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <depend>hsr_description</depend>
   <depend>suturo_resources</depend>
   <depend>map_server</depend> 
   <depend>xacro</depend> 

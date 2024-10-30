@@ -1,19 +1,22 @@
 <?xml version="1.0"?>
 <!-- This launch file just uploads the semantic map and starts rviz. Because of this, it is useful for knowledge and for quickly testing a semantic map. -->
 <launch>
-	<include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true" >
-		<arg name="use_rviz" default="true"/>
+  <include file="$(find suturo_bringup)/launch/suturo_bringup.launch" pass_all_args="true">
+    <arg name="run_snap_map" default="false"/>
+    <arg name="upload_hsrb" default="false"/>
+    <arg name="upload_map" default="false"/>
+        <arg name="use_rviz" default="true"/>
 
-		<arg name="publish_environment" default="true" />
-		<!--<arg name="env_model_yaml" default="rw_robocup_2023.yaml" />-->
-		<!--<arg name="map_name" default="robocup_2023/robocup.yaml" />-->
-		<arg name="env_model_yaml" default="ms3_room_02.yaml"/>
+        <arg name="publish_environment" default="true" />
+        <!--<arg name="env_model_yaml" default="rw_robocup_2023.yaml" />-->
+        <!--<arg name="map_name" default="robocup_2023/robocup.yaml" />-->
+        <arg name="env_model_yaml" default="rw_appartment_lab_2023.yaml"/>
         <arg name="map_name" default="projectroom_beta/ms3_room_02.yaml"/>
 
 
-		<arg name="show_rooms" default="true"/>
-		<arg name="publish_robot_description" default="false" />
-	</include>
+        <arg name="show_rooms" default="true"/>
+        <arg name="publish_robot_description" default="false" />
+    </include>
 
 
 </launch>
