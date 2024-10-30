@@ -89,15 +89,12 @@
                 <box size= "0.01 0.066 0.03"/>
             </geometry>
           </collision>
+          <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
         </link>
-
-
-
-
-
-
-
-
 
         <link name="${name}:wrc_stair_like_drawer">
             <collision name="slit1">
@@ -147,10 +144,6 @@
                 </geometry>
                 <material name ="white"/>
               </visual>
-
-
-
-
 
           <collision name="holder_slit1_1_right_low">
             <origin xyz="0 -0.18 0.30" rpy="0 0 0" />
@@ -430,6 +423,11 @@
             </geometry>
             <material name ="white"/>
           </visual>
+          <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
         </link>
 
         <link name="${name}:drawer_knob"/>

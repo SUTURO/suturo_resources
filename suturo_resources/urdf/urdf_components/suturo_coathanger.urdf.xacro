@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_coathanger" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--<material name="table_grey">
+    <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+  -->
+  
+  <material name="coathanger_color">
+	<color rgba="0.255 0.62 0.223 1"/>
+  </material>
+
+  <xacro:macro name="suturo_coathanger" params="name parent *origin size_x size_y size_z">
+    <!-- LINKS -->
+
+    <link name="${name}:coathanger_center">
+      <visual>
+        <material name="coathanger_color"/>
+        <origin xyz="0 0 ${-(size_z)/2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${-(size_z)/2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
+    </link> 
+    
+
+    <link name="${name}:coathanger_origin"/>
+    
+    <link name="${name}:coathanger_front_edge_center"/>
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}:coathanger_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}:coathanger_origin"/>
+    </joint>
+
+    <joint name="${name}:center_joint" type="fixed">
+      <origin xyz="${size_x/2} ${size_y/2} ${size_z}" rpy="0 0 0" />
+      <parent link="${name}:coathanger_origin"/>
+      <child link="${name}:coathanger_center"/>
+    </joint>
+    
+    <joint name="${name}:coathanger_front_edge_center_joint" type="fixed">
+      <origin xyz="0 ${size_y/2} ${size_z}" rpy="0 0 0" />
+      <parent link="${name}:coathanger_origin"/>
+      <child link="${name}:coathanger_front_edge_center"/>
+    </joint> 
+  </xacro:macro>
+</robot>

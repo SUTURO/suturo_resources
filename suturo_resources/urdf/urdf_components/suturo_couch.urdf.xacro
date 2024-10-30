@@ -16,55 +16,71 @@
   <xacro:macro name="suturo_couch" params="name parent *origin size_x size_y size_z">
     <!-- LINKS -->
 
-    <link name="${name}:place1">
-      <visual>
-        <material name="color_grey"/>
-        <origin xyz="0 0 ${size_z/2}" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${size_y} ${size_z}" />
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${size_y} ${size_z}" />
-        </geometry>
-      </collision>
-    </link> 
+    <!-- Center of the couch, should not have a collision/visual to not overlap with the other two links -->
+    <link name="${name}:place_one">
+       <visual> 
+         <material name="color_grey"/> 
+         <origin xyz="0 0 ${size_z/2}" rpy="0 0 0" /> 
+         <geometry> 
+           <box size="${size_x} ${size_y} ${size_z}" /> 
+         </geometry> 
+       </visual> 
+       <collision> 
+         <origin xyz="0 0 0" rpy="0 0 0" /> 
+         <geometry> 
+           <box size="${size_x} ${size_y} ${size_z}" /> 
+         </geometry> 
+       </collision> 
+       <inertial>
+         <origin xyz="0 0 0" rpy="0 0 0"/> 
+         <mass value="1.0"/> 
+         <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/> 
+       </inertial> 
+    </link>
     
 
-    <link name="${name}:place2">
-    <visual>
-        <material name="color_red"/>
-        <origin xyz="0 ${-(size_y)/4} ${(size_z)/2}" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${(size_y)/2} ${size_z}" />
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${size_y} ${size_z}" />
-        </geometry>
-      </collision>
+    <link name="${name}:place_two">
+    <!--<visual> -->
+    <!--    <material name="color_red"/> -->
+    <!--    <origin xyz="0 0 0" rpy="0 0 0" /> -->
+    <!--    <geometry> -->
+    <!--      <box size="${size_x} ${(size_y)/2} ${size_z}" /> -->
+    <!--    </geometry> -->
+    <!--  </visual> -->
+      <!--<collision>-->
+      <!--  <origin xyz="0 0 0" rpy="0 0 0" />-->
+      <!--  <geometry>-->
+      <!--    <box size="${size_x} ${(size_y)/2} ${size_z}" />-->
+      <!--  </geometry>-->
+      <!--</collision> -->
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link> 
     
     
     
-    <link name="${name}:place3">
-    <visual>
-        <material name="color_blue"/>
-        <origin xyz="0 ${+(size_y)/4} ${(size_z)/2}" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${(size_y)/2} ${size_z}" />
-        </geometry>
-      </visual>
-      <collision>
-        <origin xyz="0 0 ${-(size_z)/2}" rpy="0 0 0" />
-        <geometry>
-          <box size="${size_x} ${size_y} ${size_z}" />
-        </geometry>
-      </collision>
+    <link name="${name}:place_three">
+    <!--<visual> -->
+    <!--    <material name="color_blue"/> -->
+    <!--    <origin xyz="0 0 0" rpy="0 0 0" /> -->
+    <!--    <geometry> -->
+    <!--      <box size="${size_x} ${(size_y)/2} ${size_z}" /> -->
+    <!--    </geometry> -->
+    <!--  </visual> -->
+      <!--<collision> -->
+      <!--  <origin xyz="0 0 0" rpy="0 0 0" /> -->
+      <!--  <geometry> -->
+      <!--    <box size="${size_x} ${(size_y)/2} ${size_z}" /> -->
+      <!--  </geometry> -->
+      <!--</collision> -->
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link> 
     
      <!-- JOINTS -->
@@ -72,19 +88,19 @@
     <joint name="${name}:couch_origin_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${name}:place1"/>
+      <child link="${name}:place_one"/>
     </joint>
 
     <joint name="${name}:couch_left_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${name}:place1"/>
-      <child link="${name}:place2"/>
+      <origin xyz="0 ${-(size_y)/4} ${(size_z)/2}" rpy="0 0 0" />
+      <parent link="${name}:place_one"/>
+      <child link="${name}:place_two"/>
     </joint>
     
     <joint name="${name}:couch_right_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${name}:place1"/>
-      <child link="${name}:place3"/>
+      <origin xyz="0 ${+(size_y)/4} ${(size_z)/2}" rpy="0 0 0" />
+      <parent link="${name}:place_one"/>
+      <child link="${name}:place_three"/>
     </joint> 
     
   </xacro:macro>

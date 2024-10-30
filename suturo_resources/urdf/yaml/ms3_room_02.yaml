@@ -256,7 +256,7 @@ rooms:
       center_y: 0.75
       size_x: 5.28
       size_y: 5.3
-      color: 0 0 1 0.5
+      color: 0 0 1 0.1
       connections:
        amount: 1
        0:
@@ -268,18 +268,24 @@ rooms:
     1:
       name: arena
       knowledge_role: arena
-      center_x: 2.1
-      center_y: 0.54
-      size_x: 3.0
-      size_y: 2.75
+      # 0.3,6.6 - 5.5,-2.5
+      center_x: 2.9
+      center_y: 2.05
+      size_x: 5.2
+      size_y: 9.1
       color: 1 0 0 0.1
       connections:
-       amount: 1
+       amount: 2
        0:
-         name: arena_entry_exit
-         knowledge_role: entry_exit
+         name: arena_entry
+         knowledge_role: entry
          center_x: 0.67
          center_y: -0
+       1:
+         name: arena_exit
+         knowledge_role: exit
+         center_x: 0.67
+         center_y: 3.8
 
     2:
       name: living_room
@@ -288,7 +294,7 @@ rooms:
       center_y: 4.95
       size_x: 5.07
       size_y: 3.25
-      color: 0 0 1 0.5
+      color: 0 1 0 0.1
       connections:
        amount: 1
        0:

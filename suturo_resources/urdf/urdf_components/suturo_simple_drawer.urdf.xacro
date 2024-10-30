@@ -43,6 +43,11 @@
 		  <box size="${size_x} ${size_y} 0.01" />
 		</geometry>
 	  </collision>
+	  <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
 	</link>
 
 	<link name="${name}:drawer_back">
@@ -59,6 +64,11 @@
 		  <box size="0.01 ${size_y} ${size_z}" />
 		</geometry>
 	  </collision>
+	  <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
 	</link>
 
 	<link name="${name}:drawer_front">
@@ -75,6 +85,11 @@
 		  <box size="0.01 ${size_y} ${size_z}" />
 		</geometry>
 	  </collision>
+	  <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
 	</link>
 
 	<link name="${name}:drawer_right">
@@ -91,6 +106,11 @@
 		  <box size="${size_x} 0.01 ${size_z}" />
 		</geometry>
 	  </collision>
+	  <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
 	</link>
 
 	<link name="${name}:drawer_left">
@@ -107,6 +127,11 @@
 		  <box size="${size_x} 0.01 ${size_z}" />
 		</geometry>
 	  </collision>
+	  <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
 	</link>
 
 	<link name="${name}:drawer_handle">
@@ -123,6 +148,11 @@
 		  <box size="${handle_size_x} ${handle_size_y} ${handle_size_z}" />
 		</geometry>
 	  </collision>
+	  <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+          </inertial>
 	</link>
 
 	<!-- JOINTS-->

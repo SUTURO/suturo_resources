@@ -22,22 +22,36 @@
     <!--  Include the files containing the macros -->
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_popcorn_table.urdf.xacro" />
-    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_wall.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_hohc.urdf.xacro" />  
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_door.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bucket.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_path.urdf.xacro" />
+
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_drawer.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
-    <xacro:include
-        filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_drawer.urdf.xacro" />
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_dishwasher_robocup.urdf.xacro" />
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_kitchen.urdf.xacro" />
+
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_couch.urdf.xacro" />  
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_trashcan.urdf.xacro" /> 
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" /> 
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_coathanger.urdf.xacro" /> 
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_lamp.urdf.xacro" /> 
 
 
     <!-- general data -->
@@ -51,6 +65,8 @@
         value="${data.get('popcorn_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_couches"
         value="${data.get('couch', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_simple_couches"
+        value="${data.get('simple_couch', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_round_tables"
         value="${data.get('round_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_buckets"
@@ -69,6 +85,21 @@
         value="${data.get('paths', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_kitchens"
         value="${data.get('kitchens', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_dishwashers"
+        value="${data.get('dishwashers', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_dishwashers_robocup"
+        value="${data.get('dishwashers_robocup', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_chairs"
+        value="${data.get('chairs', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_shelves_hohc"
+        value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />        
+    <xacro:property name="number_of_trashcans"
+        value="${data.get('trashcans', dict(amount=0)).get('amount', 0)}" />  
+    <xacro:property name="number_of_coathangers"
+        value="${data.get('coathangers', dict(amount=0)).get('amount', 0)}" /> 
+    <xacro:property name="number_of_lamps"
+        value="${data.get('lamps', dict(amount=0)).get('amount', 0)}" /> 
+
 
     <!--  ~~Tables~~  -->
     <xacro:macro name="table_loop" params="table_number">
@@ -121,6 +152,22 @@
         </xacro:if>
     </xacro:macro>
     
+      <!--  ~~Simple Couches~~  -->
+    <xacro:macro name="simple_couch_loop" params="simple_couch_number">
+        <xacro:suturo_simple_couch
+            name="${data['simple_couch'][simple_couch_number]['name']}:${data['simple_couch'][simple_couch_number]['knowledge_role']}"
+            parent="${data['simple_couch'][simple_couch_number]['parent']}"
+            size_x="${data['simple_couch'][simple_couch_number]['depth']}"
+            size_y="${data['simple_couch'][simple_couch_number]['width']}"
+            size_z="${data['simple_couch'][simple_couch_number]['height']}">
+            <origin
+                xyz="${data['simple_couch'][simple_couch_number]['x_pos']} ${data['simple_couch'][simple_couch_number]['y_pos']} 0"
+                rpy="0 0 ${data['simple_couch'][simple_couch_number]['z_rot']}" />
+        </xacro:suturo_simple_couch>
+        <xacro:if value="${(number_of_simple_couches - 1) > simple_couch_number}">
+            <xacro:simple_couch_loop simple_couch_number="${simple_couch_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
     
 
     <!--  ~~Round_tables~~  -->
@@ -136,6 +183,38 @@
         </xacro:suturo_round_table>
         <xacro:if value="${(number_of_round_tables - 1) > round_table_number}">
             <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Lamps~~  -->
+    <xacro:macro name="lamp_loop" params="lamp_number">
+        <xacro:suturo_lamp
+            name="${data['lamps'][lamp_number]['name']}:${data['lamps'][lamp_number]['knowledge_role']}"
+            parent="${data['lamps'][lamp_number]['parent']}"
+            radius="${data['lamps'][lamp_number]['radius']}"
+            length="${data['lamps'][lamp_number]['length']}">
+            <origin
+                xyz="${data['lamps'][lamp_number]['x_pos']} ${data['lamps'][lamp_number]['y_pos']} 0"
+                rpy="0 0 ${data['lamps'][lamp_number]['z_rot']}" />
+        </xacro:suturo_lamp>
+        <xacro:if value="${(number_of_lamps - 1) > lamp_number}">
+            <xacro:lamp_loop lamp_number="${lamp_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Trashbins~~  -->
+    <xacro:macro name="trashcan_loop" params="trashcan_number">
+        <xacro:suturo_trashcan
+            name="${data['trashcans'][trashcan_number]['name']}:${data['trashcans'][trashcan_number]['knowledge_role']}"
+            parent="${data['trashcans'][trashcan_number]['parent']}"
+            radius="${data['trashcans'][trashcan_number]['radius']}"
+            length="${data['trashcans'][trashcan_number]['length']}">
+            <origin
+                xyz="${data['trashcans'][trashcan_number]['x_pos']} ${data['trashcans'][trashcan_number]['y_pos']} 0"
+                rpy="0 0 ${data['trashcans'][trashcan_number]['z_rot']}" />
+        </xacro:suturo_trashcan>
+        <xacro:if value="${(number_of_round_tables - 1) > trashcan_number}">
+            <xacro:trashcan_loop trashcan_number="${trashcan_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -156,19 +235,33 @@
     </xacro:macro> -->
 
 
-    <!--  ~~Dishwashers~~
+    <!--  ~~Dishwashers~~ -->
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
             parent="${data['dishwashers'][dishwasher_number]['parent']}">
             <origin
-                xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.33475"
+                xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.0"
                 rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
         </xacro:suturo_dishwasher>
         <xacro:if value="${(number_of_dishwashers - 1) > dishwasher_number}">
             <xacro:dishwasher_loop dishwasher_number="${dishwasher_number + 1}" />
         </xacro:if>
-    </xacro:macro> -->
+    </xacro:macro> 
+
+    <!--  ~~Dishwashers Robocup~~ -->
+    <xacro:macro name="dishwasher_robocup_loop" params="dishwasher_robocup_number">
+        <xacro:suturo_dishwasher_robocup
+            name="${data['dishwashers_robocup'][dishwasher_robocup_number]['name']}:${data['dishwashers_robocup'][dishwasher_robocup_number]['knowledge_role']}"
+            parent="${data['dishwashers_robocup'][dishwasher_robocup_number]['parent']}">
+            <origin
+                xyz="${data['dishwashers_robocup'][dishwasher_robocup_number]['x_pos']} ${data['dishwashers_robocup'][dishwasher_robocup_number]['y_pos']} 0.0"
+                rpy="0 0 ${data['dishwashers_robocup'][dishwasher_robocup_number]['z_rot']}" />
+        </xacro:suturo_dishwasher_robocup>
+        <xacro:if value="${(number_of_dishwashers_robocup - 1) > dishwasher_robocup_number}">
+            <xacro:dishwasher_robocup_loop dishwasher_robocup_number="${dishwasher_robocup_number + 1}" />
+        </xacro:if>
+    </xacro:macro> 
 
 
     <!--  ~~Bucket~~  -->
@@ -231,6 +324,34 @@
         </xacro:suturo_shelf_openable>
         <xacro:if value="${(number_of_shelves_openable - 1) > shelf_openable_number}">
             <xacro:shelf_openable_loop shelf_openable_number="${shelf_openable_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Shelves_hohc~~  -->
+    <xacro:macro name="shelf_hohc_loop" params="shelf_hohc_number">
+        <xacro:suturo_shelf_hohc
+            name="${data['shelves_hohc'][shelf_hohc_number]['name']}:${data['shelves_hohc'][shelf_hohc_number]['knowledge_role']}"
+            parent="${data['shelves_hohc'][shelf_hohc_number]['parent']}"
+            size_x="${data['shelves_hohc'][shelf_hohc_number]['depth']}"
+            size_y="${data['shelves_hohc'][shelf_hohc_number]['width']}"
+            size_z="${data['shelves_hohc'][shelf_hohc_number]['height']}"
+            floors_height="${data['shelves_hohc'][shelf_hohc_number]['floors_height']}"
+            number_of_floors="${data['shelves_hohc'][shelf_hohc_number]['number_of_floors']}"
+            door="${data['shelves_hohc'][shelf_hohc_number]['door']}"
+            door_height="${data['shelves_hohc'][shelf_hohc_number]['door_height']}"
+            door_length="${data['shelves_hohc'][shelf_hohc_number]['door_length']}"
+            wall_thickness="${data['shelves_hohc'][shelf_hohc_number]['wall_thickness']}"
+            handle_from_bottom="${data['shelves_hohc'][shelf_hohc_number]['handle_from_bottom']}"
+            handle_from_side="${data['shelves_hohc'][shelf_hohc_number]['handle_from_side']}"
+            handle_height="${data['shelves_hohc'][shelf_hohc_number]['handle_height']}"
+            handle_width="${data['shelves_hohc'][shelf_hohc_number]['handle_width']}"
+            handle_depth="${data['shelves_hohc'][shelf_hohc_number]['handle_depth']}">
+            <origin
+                xyz="${data['shelves_hohc'][shelf_hohc_number]['x_pos']} ${data['shelves_hohc'][shelf_hohc_number]['y_pos']} 0"
+                rpy="0 0 ${data['shelves_hohc'][shelf_hohc_number]['z_rot']}" />
+        </xacro:suturo_shelf_hohc>
+        <xacro:if value="${(number_of_shelves_hohc - 1) > shelf_hohc_number}">
+            <xacro:shelf_hohc_loop shelf_hohc_number="${shelf_hohc_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -307,7 +428,7 @@
     </xacro:macro>
 
 <!--  ~~Kitchen~~  -->
-    <xacro:macro name="kitchen_loop" params="kitchen_number">
+     <xacro:macro name="kitchen_loop" params="kitchen_number">
         <xacro:suturo_kitchen
             name="${data['kitchens'][kitchen_number]['name']}:${data['kitchens'][kitchen_number]['knowledge_role']}"
             parent="${data['kitchens'][kitchen_number]['parent']}">
@@ -317,6 +438,22 @@
         </xacro:suturo_kitchen>
     </xacro:macro>
 
+<!--  ~~Coathangers~~  -->
+    <xacro:macro name="coathanger_loop" params="coathanger_number">
+        <xacro:suturo_coathanger
+            name="${data['coathangers'][coathanger_number]['name']}:${data['coathangers'][coathanger_number]['knowledge_role']}"
+            parent="${data['coathangers'][coathanger_number]['parent']}"
+            size_x="${data['coathangers'][coathanger_number]['depth']}"
+            size_y="${data['coathangers'][coathanger_number]['width']}"
+            size_z="${data['coathangers'][coathanger_number]['height']}">
+            <origin
+                xyz="${data['coathangers'][coathanger_number]['x_pos']} ${data['coathangers'][coathanger_number]['y_pos']} 0"
+                rpy="0 0 ${data['coathangers'][coathanger_number]['z_rot']}" />
+        </xacro:suturo_coathanger>
+        <xacro:if value="${(number_of_coathangers - 1) > coathanger_number}">
+            <xacro:coathanger_loop coathanger_number="${coathanger_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
 
     <!--  ~~Doors~~  -->
     <xacro:macro name="door_loop" params="door_number">
@@ -337,6 +474,23 @@
         </xacro:suturo_door>
         <xacro:if value="${(number_of_doors - 1) > door_number}">
             <xacro:door_loop door_number="${door_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+        <!--  ~~Chairs~~  -->
+    <xacro:macro name="chair_loop" params="chair_number">
+        <xacro:suturo_chair
+            name="${data['chairs'][chair_number]['name']}:${data['chairs'][chair_number]['knowledge_role']}"
+            parent="${data['chairs'][chair_number]['parent']}"
+            size_x="${data['chairs'][chair_number]['depth']}"
+            size_y="${data['chairs'][chair_number]['width']}"
+            size_z="${data['chairs'][chair_number]['height']}">
+            <origin
+                xyz="${data['chairs'][chair_number]['x_pos']} ${data['chairs'][chair_number]['y_pos']} 0"
+                rpy="0 0 ${data['chairs'][chair_number]['z_rot']}" />
+        </xacro:suturo_chair>
+        <xacro:if value="${(number_of_chairs - 1) > chair_number}">
+            <xacro:chair_loop chair_number="${chair_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -406,9 +560,30 @@
     <xacro:if value="${number_of_paths > 0}">
         <xacro:path_loop path_number="0" />
     </xacro:if>
-    <!--<xacro:if value="${number_of_dishwashers > 0}">
+    <xacro:if value="${number_of_dishwashers > 0}">
         <xacro:dishwasher_loop dishwasher_number="0" />
-    </xacro:if> -->
+    </xacro:if>
+    <xacro:if value="${number_of_dishwashers_robocup > 0}">
+        <xacro:dishwasher_robocup_loop dishwasher_robocup_number="0" />
+    </xacro:if>
+        <xacro:if value="${number_of_chairs > 0}">
+        <xacro:chair_loop chair_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_shelves_hohc > 0}">
+        <xacro:shelf_hohc_loop shelf_hohc_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_simple_couches > 0}">
+        <xacro:simple_couch_loop simple_couch_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_trashcans > 0}">
+        <xacro:trashcan_loop trashcan_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_coathangers > 0}">
+        <xacro:coathanger_loop coathanger_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_lamps > 0}">
+        <xacro:lamp_loop lamp_number="0" />
+    </xacro:if>
 
     <link name="urdf_main" />
     <joint name="map_urdf_joint" type="fixed">

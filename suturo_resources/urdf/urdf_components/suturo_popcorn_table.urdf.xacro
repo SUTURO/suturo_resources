@@ -23,6 +23,11 @@
           <box size="0.06 0.06 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_front_right_leg">
@@ -36,6 +41,11 @@
           <box size="0.06 0.06 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_back_left_leg">
@@ -49,6 +59,11 @@
           <box size="0.06 0.06 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_back_right_leg">
@@ -62,6 +77,11 @@
           <box size="0.06 0.06 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_left_panel">
@@ -75,6 +95,11 @@
           <box size="0.01 0.54 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_right_panel">
@@ -88,6 +113,11 @@
           <box size="0.01 0.54 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_front_panel">
@@ -101,6 +131,11 @@
           <box size="1.56 0.01 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_surface">
@@ -114,6 +149,11 @@
           <box size="1.75 0.64 0.025"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_stove">
@@ -127,6 +167,11 @@
           <box size="0.59 0.52 0.01"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_left_wall">
@@ -140,6 +185,11 @@
           <box size="0.02 0.54 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_right_wall">
@@ -153,6 +203,11 @@
           <box size="0.02 0.54 0.69"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_right_grid">
@@ -166,6 +221,11 @@
           <box size="0.5 0.5 0.015"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
     <link name="${name}_left_grid">
@@ -179,6 +239,11 @@
           <box size="0.5 0.5 0.015"/>
         </geometry>
       </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
     </link>
 
 
