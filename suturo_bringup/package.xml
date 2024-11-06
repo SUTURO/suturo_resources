@@ -14,8 +14,6 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <depend>suturo_resources</depend>
-  <depend>map_server</depend> 
   <depend>xacro</depend> 
-  <depend>tf2_ros</depend>
 
 </package>
