@@ -229,8 +229,8 @@ shelves_billy:
       height: 2.02
       depth: 0.39
       z_rot: 0
-      x_pos: 5.25
-      y_pos: 3.5
+      x_pos: 5.3
+      y_pos: 3.53
       floors_height: [0.1, 0.54, 1.055, 2.02]
       number_of_floors: 4
       door: left
@@ -282,11 +282,11 @@ tables:
       name: popcorn_table
       knowledge_role: p_table
       parent: urdf_offset
-      width:  1.8
+      width:  1.75
       height: 0.71
       depth: 0.55
       z_rot: 1.57
-      x_pos: 2.82
+      x_pos: 2.95
       y_pos: 4.7
 
     2:
