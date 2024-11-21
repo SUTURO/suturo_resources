@@ -29,7 +29,7 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_openable.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_hohc.urdf.xacro" />  
-
+	<xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_shelf_billy.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_door.urdf.xacro" />
 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_room.urdf.xacro" />
@@ -92,7 +92,9 @@
     <xacro:property name="number_of_chairs"
         value="${data.get('chairs', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_shelves_hohc"
-        value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />        
+        value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_shelves_billy"
+        value="${data.get('shelves_billy', dict(amount=0)).get('amount', 0)}" />                
     <xacro:property name="number_of_trashcans"
         value="${data.get('trashcans', dict(amount=0)).get('amount', 0)}" />  
     <xacro:property name="number_of_coathangers"
@@ -355,6 +357,34 @@
         </xacro:if>
     </xacro:macro>
 
+    <!--  ~~Shelves_billy~~  -->
+    <xacro:macro name="shelf_billy_loop" params="shelf_billy_number">
+        <xacro:suturo_shelf_billy
+            name="${data['shelves_billy'][shelf_billy_number]['name']}:${data['shelves_billy'][shelf_billy_number]['knowledge_role']}"
+            parent="${data['shelves_billy'][shelf_billy_number]['parent']}"
+            size_x="${data['shelves_billy'][shelf_billy_number]['depth']}"
+            size_y="${data['shelves_billy'][shelf_billy_number]['width']}"
+            size_z="${data['shelves_billy'][shelf_billy_number]['height']}"
+            floors_height="${data['shelves_billy'][shelf_billy_number]['floors_height']}"
+            number_of_floors="${data['shelves_billy'][shelf_billy_number]['number_of_floors']}"
+            door="${data['shelves_billy'][shelf_billy_number]['door']}"
+            door_height="${data['shelves_billy'][shelf_billy_number]['door_height']}"
+            door_length="${data['shelves_billy'][shelf_billy_number]['door_length']}"
+            wall_thickness="${data['shelves_billy'][shelf_billy_number]['wall_thickness']}"
+            handle_from_bottom="${data['shelves_billy'][shelf_billy_number]['handle_from_bottom']}"
+            handle_from_side="${data['shelves_billy'][shelf_billy_number]['handle_from_side']}"
+            handle_diameter="${data['shelves_billy'][shelf_billy_number]['handle_diameter']}"
+            handle_depth="${data['shelves_billy'][shelf_billy_number]['handle_depth']}">
+            <origin
+                xyz="${data['shelves_billy'][shelf_billy_number]['x_pos']} ${data['shelves_billy'][shelf_billy_number]['y_pos']} 0"
+                rpy="0 0 ${data['shelves_billy'][shelf_billy_number]['z_rot']}" />
+        </xacro:suturo_shelf_billy>
+        <xacro:if value="${(number_of_shelves_billy - 1) > shelf_billy_number}">
+            <xacro:shelf_billy_loop shelf_billy_number="${shelf_billy_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+
   <!--  ~~Rooms~~  -->
     <xacro:macro name="room_loop" params="room_number">
         <xacro:suturo_room
@@ -571,6 +601,9 @@
     </xacro:if>
     <xacro:if value="${number_of_shelves_hohc > 0}">
         <xacro:shelf_hohc_loop shelf_hohc_number="0" />
+    </xacro:if>
+    <xacro:if value="${number_of_shelves_billy > 0}">
+        <xacro:shelf_billy_loop shelf_billy_number="0" />
     </xacro:if>
     <xacro:if value="${number_of_simple_couches > 0}">
         <xacro:simple_couch_loop simple_couch_number="0" />
