@@ -1,0 +1,6 @@
+# Service definition for interacting with Planning
+
+string obj_name			    # the name of the object
+---
+string infos                # returns characteristics of an object
+
