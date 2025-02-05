@@ -77,7 +77,7 @@
       <xacro:suturo_shelf_billy_right_door name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
         wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_diameter="${handle_diameter}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_billy_right_door>
     </xacro:if>
 
@@ -85,13 +85,13 @@
        <xacro:suturo_shelf_billy_right_door name="${name}:shelf_door_right" parent="${name}:shelf_right_side"
         wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
        handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_diameter="${handle_diameter}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
        </xacro:suturo_shelf_billy_right_door>
 
          <xacro:suturo_shelf_billy_left_door name="${name}:shelf_door_left" parent="${name}:shelf_left_side"
           wall_thickness="${wall_thickness}" door_height="${door_height}" size_y="${door_width}" size_z="${door_length}" shelf_x_size="${size_x}"
 	  handle_from_bottom="${handle_from_bottom}" handle_from_side="${handle_from_side}" handle_diameter="${handle_diameter}" handle_depth="${handle_depth}">
-        <origin xyz="0 ${size_y} ${door_length/2}" rpy="0 0 0"/>
+        <origin xyz="0 ${size_y} ${size_z/2}" rpy="0 0 0"/>
       </xacro:suturo_shelf_billy_left_door>
     </xacro:if>
 
@@ -198,7 +198,7 @@
   </xacro:macro>
 
 
-  <xacro:macro name="suturo_shelf_billy_right_door" params="name parent *origin wall_thickness door_height size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_diameter">
+  <xacro:macro name="suturo_shelf_billy_right_door" params="name parent *origin wall_thickness door_height size_y size_z shelf_x_size handle_from_bottom handle_from_side handle_diameter handle_depth">
 
     <xacro:property name="size_x" value="${wall_thickness}"/>
 
