@@ -23,6 +23,7 @@
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_popcorn_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_armchair.urdf.xacro" />
 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_wall.urdf.xacro" />
 
@@ -69,6 +70,8 @@
         value="${data.get('simple_couch', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_round_tables"
         value="${data.get('round_tables', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_round_armchairs"
+        value="${data.get('round_armchairs', dict(amount=0)).get('amount', 0)}" />        
     <xacro:property name="number_of_buckets"
         value="${data.get('buckets', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_shelves"
@@ -185,6 +188,22 @@
         </xacro:suturo_round_table>
         <xacro:if value="${(number_of_round_tables - 1) > round_table_number}">
             <xacro:round_table_loop round_table_number="${round_table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Round_armchairs~~  -->
+    <xacro:macro name="round_armchair_loop" params="round_armchair_number">
+        <xacro:suturo_round_armchair
+            name="${data['round_armchairs'][round_armchair_number]['name']}:${data['round_armchairs'][round_armchair_number]['knowledge_role']}"
+            parent="${data['round_armchairs'][round_armchair_number]['parent']}"
+            radius="${data['round_armchairs'][round_armchair_number]['radius']}"
+            length="${data['round_armchairs'][round_armchair_number]['length']}">
+            <origin
+                xyz="${data['round_armchairs'][round_armchair_number]['x_pos']} ${data['round_armchairs'][round_armchair_number]['y_pos']} 0"
+                rpy="0 0 ${data['round_armchairs'][round_armchair_number]['z_rot']}" />
+        </xacro:suturo_round_armchair>
+        <xacro:if value="${(number_of_round_armchairs - 1) > round_armchair_number}">
+            <xacro:round_armchair_loop round_armchair_number="${round_armchair_number + 1}" />
         </xacro:if>
     </xacro:macro>
 
@@ -565,6 +584,10 @@
     <xacro:if value="${number_of_round_tables > 0}">
         <xacro:round_table_loop round_table_number="0" />
     </xacro:if>
+
+    <xacro:if value="${number_of_round_armchairs > 0}">
+        <xacro:round_armchair_loop round_armchair_number="0" />
+    </xacro:if>    
 
     <xacro:if value="${number_of_buckets > 0}">
         <xacro:bucket_loop bucket_number="0" />
