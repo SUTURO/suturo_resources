@@ -316,7 +316,8 @@
             door_length="${data['shelves_billy'][shelf_billy_number]['door_length']}"
             wall_thickness="${data['shelves_billy'][shelf_billy_number]['wall_thickness']}"
             handle_from_bottom="${data['shelves_billy'][shelf_billy_number]['handle_from_bottom']}"
-            handle_from_side="${data['shelves_billy'][shelf_billy_number]['handle_from_side']}"
+            handle_from_side_left="${data['shelves_billy'][shelf_billy_number]['handle_from_side_left']}"
+            handle_from_side_right="${data['shelves_billy'][shelf_billy_number]['handle_from_side_right']}"
             handle_diameter="${data['shelves_billy'][shelf_billy_number]['handle_diameter']}"
             handle_depth="${data['shelves_billy'][shelf_billy_number]['handle_depth']}">
             <origin
