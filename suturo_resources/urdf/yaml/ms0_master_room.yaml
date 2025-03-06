@@ -35,8 +35,16 @@ dishwashers:
       knowledge_role: dishwasher
       parent: urdf_offset
       z_rot: 1.57
-      x_pos: 2.05
-      y_pos: -3.3
+      x_pos: 2.837
+      y_pos: -3.2
+      table_size_x: 0.6
+      table_size_y: 0.6
+      table_size_z: 0.02
+      height: 0.455
+      table_height: 0.39
+      handle_x: 0.0625
+      handle_y: -0.6325
+      handle_z: 0.0
 
 # D
 doors:
