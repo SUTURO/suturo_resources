@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<robot name="suturo_round_armchair" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="round_armchair_pink">
+    <color rgba="1 0.1 0.5 1"/>
+  </material>
+
+  <xacro:macro name="suturo_round_armchair" params="name parent *origin radius length">
+    <!-- LINKS -->
+
+    <link name="${name}:armchair_center">
+      <visual>
+        <material name="round_armchair_pink"/>
+        <origin xyz="0 0 ${-(length)/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}"  length="${length}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${-(length)/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${radius}"  length="${length}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
+    </link> 
+    
+
+    <link name="${name}:armchair_origin"/>
+    
+    <!-- JOINTS -->
+
+    <joint name="${name}:armchair_origin_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}:armchair_origin"/>
+    </joint>
+
+    <joint name="${name}:center_joint" type="fixed">
+      <origin xyz="${radius} 0 ${length}" rpy="0 0 0" />
+      <parent link="${name}:armchair_origin"/>
+      <child link="${name}:armchair_center"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

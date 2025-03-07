@@ -57,7 +57,7 @@ add_message_files(
 add_service_files(DIRECTORY srv
    FILES
    IsKnown.srv
-   GiveMeFavDrink.srv
+   ObjectInfo.srv
    SaveInfo.srv
    IsFragile.srv
    ObjectPose.srv

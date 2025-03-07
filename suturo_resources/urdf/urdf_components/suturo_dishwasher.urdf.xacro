@@ -6,7 +6,7 @@
 	<color rgba="0.255 0.62 0.223 1"/>
   </material>
 
-  <xacro:macro name="suturo_dishwasher" params="name parent *origin">
+  <xacro:macro name="suturo_dishwasher" params="name parent *origin table_size_x table_size_y table_size_z height table_height handle_x handle_y handle_z">
      <link name="dishwasher_main">
        <inertial>
          <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
@@ -103,13 +103,13 @@
         <material name="dishwasher_table_color"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.6 0.6 0.02" />
+          <box size="${table_size_x} ${table_size_y} ${table_size_z}" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.6 0.6 0.02" />
+          <box size="${table_size_x} ${table_size_y} ${table_size_z}" />
         </geometry>
       </collision>
   </link>
@@ -129,7 +129,7 @@
   <joint name="sink_area_dish_washer_main_joint" type="fixed"> <!-- was revolute before, changed to fixed -->
     <axis xyz="1 0 0" />
     <!-- <limit effort="300" lower="0" upper="0" velocity="10"/> -->
-    <origin rpy="0 0 0" xyz="0.08 -0.78 0.455 "/>
+    <origin rpy="0 0 0" xyz="0 0 ${height} "/>
     <parent link="dishwasher_main"/>
     <child link="sink_area_dish_washer_main"/>
   </joint>
@@ -142,15 +142,16 @@
     <!-- TODO Fix Limits to be able to open dishwasher-->
     <limit effort="300" lower="0.0" upper="1.57079632679" velocity="10"/>
   </joint>
+  <!--x,y,z Handle position change-->
   <joint name="sink_area_dish_washer_door_handle_joint" type="fixed">
-    <origin rpy="-1.57079632679 0 0" xyz="0.0625 -0.6325 0."/>
+    <origin rpy="-1.57079632679 0 0" xyz="${handle_x} ${handle_y} ${handle_z}"/>
     <parent link="sink_area_dish_washer_door"/>
     <child link="sink_area_dish_washer_door_handle"/>
   </joint>
 
   <!-- from here for dishwasher_table -->
   <joint name="dish_washer_table_main_joint" type="fixed">
-    <origin rpy="0 0 ${pi}" xyz="0.0 0.0 0.39"/>
+    <origin rpy="0 0 ${pi}" xyz="0.0 0.0 ${table_height}"/>
     <parent link="sink_area_dish_washer_main"/>
     <child link="dishwasher_table:d_table:table_origin"/>
   </joint>

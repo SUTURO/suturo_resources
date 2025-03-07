@@ -199,7 +199,16 @@
     <xacro:macro name="dishwasher_loop" params="dishwasher_number">
         <xacro:suturo_dishwasher
             name="${data['dishwashers'][dishwasher_number]['name']}:${data['dishwashers'][dishwasher_number]['knowledge_role']}"
-            parent="${data['dishwashers'][dishwasher_number]['parent']}">
+            parent="${data['dishwashers'][dishwasher_number]['parent']}"
+            table_size_x="${data['dishwashers'][dishwasher_number]['table_size_x']}"
+            table_size_y="${data['dishwashers'][dishwasher_number]['table_size_y']}"
+            table_size_z="${data['dishwashers'][dishwasher_number]['table_size_z']}"
+            height="${data['dishwashers'][dishwasher_number]['height']}"
+            table_height="${data['dishwashers'][dishwasher_number]['table_height']}"
+            handle_x="${data['dishwashers'][dishwasher_number]['handle_x']}"
+            handle_y="${data['dishwashers'][dishwasher_number]['handle_y']}"
+            handle_z="${data['dishwashers'][dishwasher_number]['handle_z']}"
+            >
             <origin
                 xyz="${data['dishwashers'][dishwasher_number]['x_pos']} ${data['dishwashers'][dishwasher_number]['y_pos']} 0.0"
                 rpy="0 0 ${data['dishwashers'][dishwasher_number]['z_rot']}" />
@@ -316,7 +325,8 @@
             door_length="${data['shelves_billy'][shelf_billy_number]['door_length']}"
             wall_thickness="${data['shelves_billy'][shelf_billy_number]['wall_thickness']}"
             handle_from_bottom="${data['shelves_billy'][shelf_billy_number]['handle_from_bottom']}"
-            handle_from_side="${data['shelves_billy'][shelf_billy_number]['handle_from_side']}"
+            handle_from_side_left="${data['shelves_billy'][shelf_billy_number]['handle_from_side_left']}"
+            handle_from_side_right="${data['shelves_billy'][shelf_billy_number]['handle_from_side_right']}"
             handle_diameter="${data['shelves_billy'][shelf_billy_number]['handle_diameter']}"
             handle_depth="${data['shelves_billy'][shelf_billy_number]['handle_depth']}">
             <origin

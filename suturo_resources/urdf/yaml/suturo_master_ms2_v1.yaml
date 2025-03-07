@@ -1,0 +1,454 @@
+# C
+chairs:
+   perception_postfix: chair_center
+   amount: 7
+   0:
+      name: green_chair_1
+      knowledge_role: chair
+      parent: urdf_offset
+      width:  0.51
+      height: 0.47
+      depth: 0.4
+      z_rot: 0
+      x_pos: 3.28
+      y_pos: -8.51
+
+   1:
+      name: green_chair_2
+      knowledge_role: chair
+      parent: urdf_offset
+      width:  0.51
+      height: 0.47
+      depth: 0.4
+      z_rot: 0
+      x_pos: 2.7
+      y_pos: -8.51
+
+   2: 
+      name: green_chair_3
+      knowledge_role: chair
+      parent: urdf_offset
+      width:  0.51
+      height: 0.47
+      depth: 0.4
+      z_rot: 0
+      x_pos: 4.75
+      y_pos: 3.6
+
+   3:
+      name: green_chair_4
+      knowledge_role: chair
+      parent: urdf_offset
+      width: 0.51
+      height: 0.5
+      depth: 0.4
+      z_rot: 0
+      x_pos: 4.12
+      y_pos: 3.6
+  
+   4:
+      name: desk_chair_bedroom
+      knowledge_role: chair
+      parent: urdf_offset
+      width:  0.7
+      height: 0.5
+      depth: 0.7
+      z_rot: 0
+      x_pos: 5.22
+      y_pos: -5.87
+
+   5:
+      name: desk_chair_livingroom
+      knowledge_role: chair
+      parent: urdf_offset
+      width:  0.7
+      height: 0.5
+      depth: 0.7
+      z_rot: 0
+      x_pos: 5.07
+      y_pos: 0.55
+
+   6:
+      name: desk_chair_kitchen
+      knowledge_role: chair
+      parent: urdf_offset
+      width:  0.7
+      height: 0.5
+      depth: 0.7
+      z_rot: 1.57
+      x_pos: 1.64
+      y_pos: 3.4
+
+
+round_armchairs:
+   perception_postfix: origin
+   amount: 3
+   0:
+      name: armchair_1
+      knowledge_role: chair
+      parent: urdf_offset
+      radius: 0.405
+      length: 0.43
+      z_rot: 0
+      x_pos: 3.67
+      y_pos: -1.55
+
+   1:
+      name: armchair_2
+      knowledge_role: chair
+      parent: urdf_offset
+      radius: 0.405
+      length: 0.43
+      z_rot: 0
+      x_pos: 3.94
+      y_pos: -3.93
+
+   2:  
+      name: armchair_3
+      knowledge_role: chair
+      parent: urdf_offset
+      radius: 0.405
+      length: 0.43
+      z_rot: 0
+      x_pos: 2.95
+      y_pos: -4.02
+
+
+couch:
+    perception_postfix: origin
+    amount: 2
+    0:
+      name: suturo_couch_bedroom
+      knowledge_role: couch
+      parent: urdf_offset
+      width:  1.63
+      height: 0.3
+      depth: 0.7
+      z_rot: -0.87
+      x_pos: 4.64
+      y_pos: -7.6
+    1:
+      name: suturo_couch_livingroom
+      knowledge_role: couch
+      parent: urdf_offset
+      width:  2
+      height: 0.42
+      depth: 0.61
+      z_rot: 0
+      x_pos: 5.0
+      y_pos: -2.4
+
+dishwashers:
+    perception_postfix: dishwasher_center
+    amount: 1
+    0:
+      name: suturo_dishwasher
+      knowledge_role: dishwasher
+      parent: urdf_offset
+      z_rot: 1.57
+      x_pos: 3.87
+      y_pos: 7.545
+
+
+# R
+rooms:
+    amount: 4
+    0:
+      name: iai_kitchen
+      knowledge_role: kitchen
+      center_x: 3.16
+      center_y: 5.9
+      size_x: 5.25
+      size_y: 8.7
+      color: 0 0 1 0.1
+      connections:
+       amount: 2
+       0:
+         name: kitchen_entry
+         knowledge_role: entry
+         center_x: 3.12
+         center_y: 2.16
+       1:
+         name: kitchen_exit
+         knowledge_role: exit
+         center_x: 3.27
+         center_y: 1.06
+       
+    1:
+      name: living_room
+      knowledge_role: living_room
+      center_x: 3.3
+      center_y: -1.62
+      size_x: 5.04
+      size_y: 6.27
+      color: 0 1 0 0.1
+      connections:
+       amount: 6
+       0:
+         name: living_room_entry_1
+         knowledge_role: entry
+         center_x: 3.23
+         center_y: 1
+       1:
+         name: living_room_exit_1
+         knowledge_role: exit
+         center_x: 3.37
+         center_y: 1.82
+       2:
+         name: living_room_entry_2
+         knowledge_role: entry
+         center_x: 2.18
+         center_y: -4.19
+       3:
+         name: living_room_entry_3
+         knowledge_role: entry
+         center_x: 1.03
+         center_y: 0
+       4:
+         name: living_room_exit_2
+         knowledge_role: exit
+         center_x: 2.2
+         center_y: -5.33
+       5:
+         name: living_room_exit_3
+         knowledge_role: exit
+         center_x: 0.612
+         center_y: -1.79
+      
+    2:
+      name: bed_room
+      knowledge_role: bed_room
+      center_x: 3.32
+      center_y: -6.86
+      size_x: 5.08
+      size_y: 3.95
+      color: 1 0 0 0.1
+      connections:
+       amount: 2
+       0:
+         name: bed_room_entry_1
+         knowledge_role: entry
+         center_x: 2.59
+         center_y: -5.3
+       1:
+         name: bed_room_exit_1
+         knowledge_role: exit
+         center_x: 2.24
+         center_y: -4.51
+      
+    3:
+      name: arena
+      knowledge_role: arena
+      # 0.3,6.6 - 5.5,-2.5
+      center_x: 3.31
+      center_y: 1.45
+      size_x: 5.07
+      size_y: 19
+      color: 1 0 0 0.0
+      connections:
+       amount: 2
+       0:
+        name: arena_entry
+        knowledge_role: entry
+        center_x: 1.3
+        center_y: 0
+       1:
+        name: arena_exit
+        knowledge_role: exit
+        center_x: 0.3
+        center_y: -1.9
+       
+
+# S
+shelves_openable:
+    perception_postfix: shelf_floor_X
+    amount: 1
+    0:
+      name: shelf_openable
+      knowledge_role: shelf_openable
+      parent: urdf_offset
+      width: 1.0
+      height: 1.8
+      depth: 0.5
+      z_rot: 3.15
+      x_pos: 1.29
+      y_pos: -7.5
+      floors_height: [0.07, 0.46, 0.72, 1.04]
+      number_of_floors: 4
+      door: both
+      wall_thickness: 0.015
+      handle_from_bottom: 0.795
+      handle_from_side: 0.30
+      handle_height: 0.084
+      handle_width: 0.01
+      handle_depth: 0.0
+
+
+shelves_billy:
+    perception_postfix: shelf_floor_X
+    amount: 1
+    0:
+      name: shelf_billy
+      knowledge_role: shelf_billy
+      parent: urdf_offset
+      # outside measurements
+      width: 0.8
+      height: 2.02
+      depth: 0.39
+      z_rot: 0.03
+      x_pos: 5.37
+      y_pos: 5.54
+      floors_height: [0.1, 0.54, 1.055, 2.02]
+      number_of_floors: 4
+      door: both
+      # z position of the door relative to the side wall
+      # - (height/2 - door_length/2 - door_above_ground)
+      door_height: -0.44
+      # actual height of door
+      door_length: 0.97
+      wall_thickness: 0.02
+      # from bottom of door
+      handle_from_bottom: 0.485
+      handle_from_side: 0.37
+      handle_diameter: 0.015
+      handle_depth: 0.02
+
+
+shelves:
+    perception_postfix: shelf_floor_0
+    amount: 1
+    0:
+      name: shelf
+      knowledge_role: shelf
+      parent: urdf_offset
+      width: 0.85
+      height: 1.905
+      depth: 0.3
+      z_rot: 3.15
+      x_pos: 1.1
+      y_pos: 2.6
+      floors_height: [0.29,0.63,0.95, 1.27,1.615]
+      number_of_floors: 5
+      door: none
+   
+# T     
+tables:
+    perception_postfix: table_center
+    amount: 10
+    0:
+      name: dinner_table
+      knowledge_role: dinner_table
+      parent: urdf_offset
+      width:  1.4
+      height: 0.75
+      depth: 0.9
+      z_rot: -1.57
+      x_pos: 3.77
+      y_pos: 4.71
+      
+    1:
+      name: high_table
+      knowledge_role: high_table
+      parent: urdf_offset
+      width:  0.7
+      height: 1.055
+      depth: 0.7
+      z_rot: 3.15
+      x_pos: 1.39
+      y_pos: -4.7
+
+    2:
+      name: couch_table
+      knowledge_role: couch_table
+      parent: urdf_offset
+      width:  1.2
+      height: 0.4
+      depth: 0.695
+      z_rot: 0.03
+      x_pos: 3.56
+      y_pos: -3.39
+
+    3: 
+      name: kitchen_counter
+      knowledge_role: kitchen_counter
+      parent: urdf_offset
+      width:  3.255
+      height: 2.0
+      depth: 0.59
+      z_rot: -1.57
+      x_pos: 1.25
+      y_pos: 10.2
+
+    4: 
+      name: kitchen_island
+      knowledge_role: kitchen_island
+      parent: urdf_offset
+      width:  3.18
+      height: 0.935
+      depth: 1
+      z_rot: 1.57
+      x_pos: 4.98
+      y_pos: 6.9
+      
+    5:
+      name: desk_bedroom
+      knowledge_role: desk
+      parent: urdf_offset
+      width:  1.4
+      height: 0.8
+      depth: 0.8
+      z_rot: 1.57
+      x_pos: 5.84
+      y_pos: -5.58
+
+    6:
+      name: desk_livingroom_1
+      knowledge_role: desk
+      parent: urdf_offset
+      width:  1.4
+      height: 0.8
+      depth: 0.8
+      z_rot: 1.57
+      x_pos: 5.72
+      y_pos: 0.84
+
+    7:
+      name: desk_livingroom_2
+      knowledge_role: desk
+      parent: urdf_offset
+      width:  1.4
+      height: 0.8
+      depth: 0.8
+      z_rot: 3.15
+      x_pos: 1.44
+      y_pos: -3.13
+
+    8:
+      name: desk_kitchen_1
+      knowledge_role: desk
+      parent: urdf_offset
+      width:  1.4
+      height: 0.8
+      depth: 0.8
+      z_rot: -1.57
+      x_pos: 4.06
+      y_pos: 2.67
+    
+    9:
+      name: desk_kitchen_2
+      knowledge_role: desk
+      parent: urdf_offset
+      width:  1.4
+      height: 0.8
+      depth: 0.8
+      z_rot: 3.15
+      x_pos: 1.38
+      y_pos: 4.14
+
+   
+# Moves everything in the URDF by the given distances
+world_offset:
+    X: 0
+    Y: 0
+    zrot: 0.0
+
