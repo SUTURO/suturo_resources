@@ -33,7 +33,7 @@ tmux send-keys -t "$SESSION:1.2" 'hsr' C-m
 tmux send-keys -t "$SESSION:1.3" 'hsr' C-m
 
 tmux send-keys -t "$SESSION:1.0" 'virtual_nlp && run_rasa' C-m
-tmux send-keys -t "$SESSION:1.1" 'nlp_venv && python3 nlp_receptionist.py -hsr' C-m
+tmux send-keys -t "$SESSION:1.1" 'nlp_venv && python3 nlp_mcrs.py -hsr' C-m
 tmux send-keys -t "$SESSION:1.2" 'ssh -i /home/suturo/.ssh/id_ed25519 administrator@hsrb.local' C-m
 tmux send-keys -t "$SESSION:1.2" 'roslaunch audio_capture capture_wave.launch' C-m
 
