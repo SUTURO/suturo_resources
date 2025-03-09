@@ -42,6 +42,8 @@
 
 <node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
 
+<node pkg="global_pose_updater" name="kill_pose_integrator" type="kill_pose_integrator.sh" launch-prefix="bash" />
+
 <node pkg="global_pose_updater" type="amcl_to_global_pose.py" name="amcl_to_global_pose_publisher_node" />
 
 </launch>
