@@ -18,7 +18,7 @@ tmux send-keys -t "$SESSION:0.2" 'hsr' C-m
 tmux send-keys -t "$SESSION:0.3" 'hsr' C-m
 
 tmux send-keys -t "$SESSION:0.0" 'roslaunch suturo_bringup suturo_tab.launch' C-m
-tmux send-keys -t "$SESSION:0.1" 'robokudo_venv && rosrun robokudo main.py _ae=receptionist _ros_pkg=milestone1' C-m
+tmux send-keys -t "$SESSION:0.1" 'robokudo_venv && rosrun robokudo main.py _ae=receptionist _ros_pkg=robokudo_robocup_receptionist' C-m
 # Magic Number
 sleep 2
 tmux send-keys -t "$SESSION:0.2" 'roslaunch giskardpy_ros giskardpy_hsr_real_vel_with_kitchen.launch' C-m
