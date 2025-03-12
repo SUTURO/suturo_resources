@@ -10,7 +10,7 @@
 <arg name="model" default="$(find suturo_resources)/urdf/ms3_room_04.urdf.xacro"/>
 <arg name="show_rooms" default="true"/>
 
-<arg name="map_name" default="projectroom_beta/new_suturo_lab.yaml"/>
+<arg name="map_name" default="projectroom_beta/germanOpen_v1.yaml"/>
 <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>
 <arg name="rviz" value="false"/>
 
@@ -33,7 +33,7 @@
 
 <!--Rviz -->
 <group if="$(eval arg('use_rviz') == true)">
-<node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz"/>
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_bringup)/germanOpen.rviz"/>
 </group>
 
 

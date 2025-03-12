@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
 <arg name="use_rviz" default="true"/>
 
@@ -32,7 +33,7 @@
 
 <!--Rviz -->
 <group if="$(eval arg('use_rviz') == true)">
-<node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_resources)/rviz_configs/suturo.rviz"/>
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find suturo_bringup)/germanOpen.rviz"/>
 </group>
 
 
@@ -40,6 +41,13 @@
 <param name="robot_description" command="$(find xacro)/xacro '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
 
 <node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
+
+<!-- Move Base -->
+<!-- kills pose integrator-->
+<node pkg="global_pose_updater" name="kill_pose_integrator" type="kill_pose_integrator.sh" launch-prefix="bash" />
+
+<!-- republishes pose from amcl pose to global pose so that we can kill pose integrator and use amcl fully -->
+<node pkg="global_pose_updater" type="amcl_to_global_pose.py" name="amcl_to_global_pose_publisher_node" />
 
 </launch>
 
