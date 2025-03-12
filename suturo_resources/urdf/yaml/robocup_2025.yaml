@@ -62,6 +62,20 @@ round_armchairs:
       x_pos: 3.28
       y_pos: -8.51
 
+coathangers:
+    perception_postfix: coathanger_center
+    amount: 1
+    0:
+      name: coathanger
+      knowledge_role: coatrack
+      parent: urdf_offset
+      width:  0.5
+      height: 1.8
+      depth: 0.5
+      z_rot: 3.17
+      x_pos: 5.37
+      y_pos: 7.47
+
 couch:
     perception_postfix: origin
     amount: 1
@@ -215,8 +229,8 @@ rooms:
         center_y: -0.19
 
     5:
-      name: corridor 
-      knowledge_role: corridor
+      name: hallway
+      knowledge_role: hallway
       center_x: 2.24
       center_y: 2.6
       size_x: 4.24
@@ -225,12 +239,12 @@ rooms:
       connections:
        amount: 2
        0:
-        name: corridor_entry
+        name: hallway_entry
         knowledge_role: entry
         center_x: 0.62
         center_y: 2.36
        1:
-        name: corridor_exit
+        name: hallway_exit
         knowledge_role: exit
         center_x: -0.15
         center_y: 2.0
@@ -243,7 +257,7 @@ shelves_billy:
     amount: 2
     0:
       name: shelf_billy_corridor
-      knowledge_role: shelf_billy
+      knowledge_role: cabinet
       parent: urdf_offset
       # outside measurements
       width: 0.8
@@ -270,7 +284,7 @@ shelves_billy:
 
     1:
       name: shelf_billy_kitchen
-      knowledge_role: shelf_billy
+      knowledge_role: bookshelf
       parent: urdf_offset
       # outside measurements
       width: 0.8
@@ -306,15 +320,15 @@ trashcans:
       radius:  0.145
       length: 0.3451
       z_rot: 3.2
-      x_pos: 5.45
-      y_pos: -0.5 
+      x_pos: 5.77
+      y_pos: -0.77 
 
 tables:
     perception_postfix: table_center
     amount: 8
     0:
-      name: dinner_table
-      knowledge_role: dinner_table
+      name: kitchen_table
+      knowledge_role: kitchen_table
       parent: urdf_offset
       width:  0.756
       height: 0.68
@@ -325,7 +339,7 @@ tables:
 
     1: 
       name: kitchen_counter
-      knowledge_role: kitchen_counter
+      knowledge_role: kitchen_shelf
       parent: urdf_offset
       width:  1.2
       height: 1.03
@@ -336,7 +350,7 @@ tables:
 
     2: 
       name: table_block_living_room
-      knowledge_role: table
+      knowledge_role: bar
       parent: urdf_offset
       width:  0.5
       height: 0.55
@@ -347,7 +361,7 @@ tables:
       
     3:
       name: tv_table
-      knowledge_role: tv_table
+      knowledge_role: tv_sideboard
       parent: urdf_offset
       width:  1.52
       height: 0.36
@@ -369,7 +383,7 @@ tables:
 
     5:
       name: kitchen_island_block
-      knowledge_role: kitchen_island
+      knowledge_role: kitchen_counter
       parent: urdf_offset
       width:  1.0
       height: 1.0
@@ -380,7 +394,7 @@ tables:
     
     6:
       name: table_block_bedroom
-      knowledge_role: table_block
+      knowledge_role: side_table
       parent: urdf_offset
       width:  0.5
       height: 0.5
