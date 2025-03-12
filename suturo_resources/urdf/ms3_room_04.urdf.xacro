@@ -49,7 +49,7 @@
 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_couch.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_simple_couch.urdf.xacro" />  
-
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_trashcan.urdf.xacro" /> 
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_chair.urdf.xacro" /> 
 
 
@@ -93,7 +93,9 @@
     <xacro:property name="number_of_shelves_hohc"
         value="${data.get('shelves_hohc', dict(amount=0)).get('amount', 0)}" />        
     <xacro:property name="number_of_shelves_billy"
-        value="${data.get('shelves_billy', dict(amount=0)).get('amount', 0)}" />        
+        value="${data.get('shelves_billy', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_trashcans"
+        value="${data.get('trashcans', dict(amount=0)).get('amount', 0)}" />          
 
 
     <!--  ~~Tables~~  -->
@@ -416,6 +418,23 @@
     </xacro:macro>
 
 
+    <!--  ~~Trashcans~~  -->
+    <xacro:macro name="trashcan_loop" params="trashcan_number">
+        <xacro:suturo_trashcan
+            name="${data['trashcans'][trashcan_number]['name']}:${data['trashcans'][trashcan_number]['knowledge_role']}"
+            parent="${data['trashcans'][trashcan_number]['parent']}"
+            radius="${data['trashcans'][trashcan_number]['radius']}"
+            length="${data['trashcans'][trashcan_number]['length']}">
+            <origin
+                xyz="${data['trashcans'][trashcan_number]['x_pos']} ${data['trashcans'][trashcan_number]['y_pos']} 0"
+                rpy="0 0 ${data['trashcans'][trashcan_number]['z_rot']}" />
+        </xacro:suturo_trashcan>
+        <xacro:if value="${(number_of_trashcans - 1) > trashcan_number}">
+            <xacro:trashcan_loop trashcan_number="${trashcan_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+
     <!--  ~~Walls~~  -->
     <xacro:macro name="wall_loop" params="wall_number">
         <xacro:suturo_wall name="${data['walls'][wall_number]['name']}"
@@ -562,6 +581,8 @@
     </xacro:if>
     <xacro:if value="${number_of_shelves_billy > 0}">
         <xacro:shelf_billy_loop shelf_billy_number="0" />
+    <xacro:if value="${number_of_trashcans > 0}">
+        <xacro:trashcan_loop trashcan_number="0" />
     </xacro:if>
     <xacro:if value="${number_of_simple_couches > 0}">
         <xacro:simple_couch_loop simple_couch_number="0" />

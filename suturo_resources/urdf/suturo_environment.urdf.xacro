@@ -254,7 +254,7 @@
                 xyz="${data['trashcans'][trashcan_number]['x_pos']} ${data['trashcans'][trashcan_number]['y_pos']} 0"
                 rpy="0 0 ${data['trashcans'][trashcan_number]['z_rot']}" />
         </xacro:suturo_trashcan>
-        <xacro:if value="${(number_of_round_tables - 1) > trashcan_number}">
+        <xacro:if value="${(number_of_trashcans - 1) > trashcan_number}">
             <xacro:trashcan_loop trashcan_number="${trashcan_number + 1}" />
         </xacro:if>
     </xacro:macro>
