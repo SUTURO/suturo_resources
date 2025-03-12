@@ -21,6 +21,7 @@
 
     <!--  Include the files containing the macros -->
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_table.urdf.xacro" />
+    <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_bed.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_popcorn_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_table.urdf.xacro" />
     <xacro:include filename="$(find suturo_resources)/urdf/urdf_components/suturo_round_armchair.urdf.xacro" />
@@ -62,6 +63,8 @@
         value="${data.get('simple_drawers', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_tables"
         value="${data.get('tables', dict(amount=0)).get('amount', 0)}" />
+    <xacro:property name="number_of_beds"
+        value="${data.get('beds', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_popcorn_tables"
         value="${data.get('popcorn_tables', dict(amount=0)).get('amount', 0)}" />
     <xacro:property name="number_of_couches"
@@ -120,6 +123,23 @@
         </xacro:suturo_table>
         <xacro:if value="${(number_of_tables - 1) > table_number}">
             <xacro:table_loop table_number="${table_number + 1}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <!--  ~~Beds~~  -->
+    <xacro:macro name="bed_loop" params="bed_number">
+        <xacro:suturo_bed
+            name="${data['beds'][bed_number]['name']}:${data['beds'][bed_number]['knowledge_role']}"
+            parent="${data['beds'][bed_number]['parent']}"
+            size_x="${data['beds'][bed_number]['depth']}"
+            size_y="${data['beds'][bed_number]['width']}"
+            size_z="${data['beds'][bed_number]['height']}">
+            <origin
+                xyz="${data['beds'][bed_number]['x_pos']} ${data['beds'][bed_number]['y_pos']} 0"
+                rpy="0 0 ${data['beds'][bed_number]['z_rot']}" />
+        </xacro:suturo_bed>
+        <xacro:if value="${(number_of_beds - 1) > bed_number}">
+            <xacro:bed_loop bed_number="${bed_number + 1}" />
         </xacro:if>
     </xacro:macro>
     
@@ -582,6 +602,10 @@
 
     <xacro:if value="${number_of_tables > 0}">
         <xacro:table_loop table_number="0" />
+    </xacro:if>
+
+    <xacro:if value="${number_of_beds > 0}">
+        <xacro:bed_loop bed_number="0" />
     </xacro:if>
     
     <xacro:if value="${number_of_popcorn_tables > 0}">
