@@ -581,6 +581,7 @@
     </xacro:if>
     <xacro:if value="${number_of_shelves_billy > 0}">
         <xacro:shelf_billy_loop shelf_billy_number="0" />
+    </xacro:if>
     <xacro:if value="${number_of_trashcans > 0}">
         <xacro:trashcan_loop trashcan_number="0" />
     </xacro:if>
