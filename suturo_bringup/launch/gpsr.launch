@@ -1,15 +1,16 @@
+<?xml version="1.0"?>
 <launch>
 <arg name="use_rviz" default="true"/>
 
 <arg name="upload_map" default="true"/>
 <arg name="publish_environment" default="true"/>
 <!-- Check that the following two args match -->
-<arg name="env_model_yaml" default="ms3_room_04.yaml"/>
+<arg name="env_model_yaml" default="ms0_master_room.yaml"/>
 <!-- model is used by urdf.launch -->
 <arg name="model" default="$(find suturo_resources)/urdf/ms3_room_04.urdf.xacro"/>
 <arg name="show_rooms" default="true"/>
 
-<arg name="map_name" default="projectroom_beta/ms3_room_02.yaml"/>
+<arg name="map_name" default="projectroom_beta/new_suturo_lab.yaml"/>
 <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>
 <arg name="rviz" value="false"/>
 
@@ -40,6 +41,10 @@
 <param name="robot_description" command="$(find xacro)/xacro '$(find hsr_description)/robots/hsrb4s.urdf.xacro'"/>
 
 <node pkg="tf" type="static_transform_publisher" name="map_to_base_footprint_broadcaster" args="0 0 0.08 0 0 0 1 hand_palm_link hand_gripper_tool_frame 100"/>
+
+<node pkg="global_pose_updater" name="kill_pose_integrator" type="kill_pose_integrator.sh" launch-prefix="bash" />
+
+<node pkg="global_pose_updater" type="amcl_to_global_pose.py" name="amcl_to_global_pose_publisher_node" />
 
 </launch>
 
