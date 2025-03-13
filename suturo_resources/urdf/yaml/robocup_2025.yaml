@@ -335,7 +335,7 @@ trashcans:
 
 tables:
     perception_postfix: table_center
-    amount: 8
+    amount: 9
     0:
       name: kitchen_table
       knowledge_role: kitchen_table
@@ -349,9 +349,9 @@ tables:
 
     1: 
       name: kitchen_counter
-      knowledge_role: kitchen_shelf
+      knowledge_role: fridge
       parent: urdf_offset
-      width:  1.2
+      width:  0.62
       height: 1.03
       depth: 0.6
       z_rot: -1.57
@@ -423,6 +423,17 @@ tables:
       z_rot: -3.1
       x_pos: 0.43
       y_pos: 5.25
+
+    8: 
+      name: kitchen_counter
+      knowledge_role: sink
+      parent: urdf_offset
+      width:  0.58
+      height: 1.03
+      depth: 0.6
+      z_rot: -1.57
+      x_pos: 6.38
+      y_pos: -1.48
     
 round_tables:
     perception_postfix: table_center
