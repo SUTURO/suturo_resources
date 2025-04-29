@@ -24,7 +24,7 @@ tmux send-keys -t "$SESSION:0.3" 'record_map' C-m
 sleep 2
 tmux send-keys -t "$SESSION:0.2" 'roslaunch giskardpy_ros giskardpy_hsr_real_vel_with_kitchen.launch' C-m
 
-tmux new-window
+tmux new-window -t $SESSION
 tmux split-window -h -t "$SESSION:1"
 tmux split-window -v -t "$SESSION:1.0"
 tmux split-window -v -t "$SESSION:1.2"
