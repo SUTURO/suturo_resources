@@ -17,9 +17,11 @@ tmux send-keys -t "$SESSION:0.1" 'hsr' C-m
 tmux send-keys -t "$SESSION:0.2" 'hsr' C-m
 tmux send-keys -t "$SESSION:0.3" 'hsr' C-m
 
+# map bekannt bzw in der nähe der bekannten map cml
+tmux send-keys -t "$SESSION:0.0" 'roslaunch suturo_bringup suturo_tab.launch' C-m
+
 tmux send-keys -t "$SESSION:0.0" 'roslaunch suturo_bringup cml_test.launch' C-m
 tmux send-keys -t "$SESSION:0.1" 'robokudo_venv && rosrun robokudo main.py _ae=query_human_tracking_hsr _ros_pkg=robokudo_robocup_cml' C-m
-tmux send-keys -t "$SESSION:0.3" 'record_map' C-m
 
 # Magic Number
 sleep 2

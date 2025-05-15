@@ -12,10 +12,10 @@ tmux new-session -d -s $SESSION
 tmux split-window -h -t "$SESSION"
 tmux split-window -v -t "$SESSION:0.0"
 tmux split-window -v -t "$SESSION:0.2"
-tmux send-keys -t "$SESSION:0.0" 'hsr' C-m
-tmux send-keys -t "$SESSION:0.1" 'hsr' C-m
-tmux send-keys -t "$SESSION:0.2" 'hsr' C-m
-tmux send-keys -t "$SESSION:0.3" 'hsr' C-m
+tmux send-keys -t "$SESSION:0.0" 'hotfix' C-m
+tmux send-keys -t "$SESSION:0.1" 'hotfix' C-m
+tmux send-keys -t "$SESSION:0.2" 'hotfix' C-m
+tmux send-keys -t "$SESSION:0.3" 'hotfix' C-m
 
 tmux send-keys -t "$SESSION:0.0" 'roslaunch suturo_bringup GermanOpen_bringup.launch' C-m
 tmux send-keys -t "$SESSION:0.1" 'robokudo_venv && rosrun robokudo main.py _ae=serve_breakfast _ros_pkg=milestone1' C-m
