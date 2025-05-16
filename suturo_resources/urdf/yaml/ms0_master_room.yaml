@@ -35,7 +35,7 @@ dishwashers:
       knowledge_role: dishwasher
       parent: urdf_offset
       z_rot: 1.57
-      x_pos: 2.837
+      x_pos: 2.867
       y_pos: -3.2
       table_size_x: 0.6
       table_size_y: 0.6
@@ -328,7 +328,7 @@ tables:
       height: 1.51
       depth: 0.68
       z_rot: 4.72
-      x_pos: 3.96
+      x_pos: 3.99
       y_pos: -2.91
 
     5:
@@ -339,7 +339,7 @@ tables:
       height: 0.84
       depth: 0.68
       z_rot: 4.72
-      x_pos: 3.13
+      x_pos: 3.16
       y_pos: -2.91
 
     6: 
@@ -350,7 +350,7 @@ tables:
       height: 0.84
       depth: 0.68
       z_rot: 4.72
-      x_pos: 1.895
+      x_pos: 1.925
       y_pos: -2.91
 
     7: 
@@ -361,7 +361,7 @@ tables:
       height: 1.51
       depth: 0.68
       z_rot: 4.72
-      x_pos: 1.3
+      x_pos: 1.33
       y_pos: -2.91
 
 # W     

@@ -56,7 +56,7 @@
       <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
     </inertial>
     <visual>
-      <origin rpy="1.57079632679 0 0" xyz="0 0.05 0"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0.07 0"/>
       <geometry>
         <mesh filename="package://iai_kitchen/meshes/misc/DishWasherDoor.obj"/>
       </geometry>
