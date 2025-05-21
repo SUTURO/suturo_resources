@@ -57,13 +57,13 @@ doors:
       height: 2
       width: 0.855
       depth: 0.04
-      x: 0.78
-      y: -1.44
+      x: 0.84
+      y: -1.41
       z: 1.04
       zrot: 1.57
       door_turn_limit_lower: -1.4
       door_turn_limit_max: 0
-      handle_x: 0.82
+      handle_x: 0.79
       handle_z: 0.02
     1:
       room1: living_room
