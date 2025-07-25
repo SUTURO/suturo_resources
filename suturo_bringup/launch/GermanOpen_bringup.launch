@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-<arg name="use_rviz" default="true"/>
+<arg name="use_rviz" default="false"/>
 
 <arg name="upload_map" default="true"/>
 <arg name="publish_environment" default="true"/>
@@ -8,7 +8,7 @@
 <arg name="env_model_yaml" default="robocup_2025.yaml"/>
 <!-- model is used by urdf.launch -->
 <arg name="model" default="$(find suturo_resources)/urdf/ms3_room_04.urdf.xacro"/>
-<arg name="show_rooms" default="false"/>
+<arg name="show_rooms" default="true"/>
 
 <arg name="map_name" default="projectroom_beta/germanOpen_v1.yaml"/>
 <arg name="map" default="$(find suturo_resources)/maps/$(arg map_name)"/>
@@ -44,8 +44,8 @@
 
 <!-- Move Base -->
 <!-- kills pose integrator-->
-<node pkg="global_pose_updater" name="kill_pose_integrator" type="kill_pose_integrator.sh" launch-prefix="bash" />
-
+<!--<node pkg="global_pose_updater" name="kill_pose_integrator" type="kill_pose_integrator.sh" launch-prefix="bash" />
+-->
 <!-- republishes pose from amcl pose to global pose so that we can kill pose integrator and use amcl fully -->
 <node pkg="global_pose_updater" type="amcl_to_global_pose.py" name="amcl_to_global_pose_publisher_node" />
 
