@@ -371,7 +371,7 @@ tables:
       
     3:
       name: tv_table
-      knowledge_role: tv_sideboard
+      knowledge_role: tv_table
       parent: urdf_offset
       width:  1.52
       height: 0.36
