@@ -1,7 +1,7 @@
 # C
 chairs:
    perception_postfix: chair_center
-   amount: 3
+   amount: 0
    0:
       name: chair_1_living_room
       knowledge_role: chair
@@ -37,7 +37,7 @@ chairs:
 
 beds:
     perception_postfix: origin
-    amount: 1
+    amount: 0
     0:
       name: bed
       knowledge_role: bed
@@ -50,7 +50,7 @@ beds:
       y_pos: 5.38
 
 round_armchairs:
-    amount: 1
+    amount: 0
     0:
       name: chair
       knowledge_role: chair
@@ -63,7 +63,7 @@ round_armchairs:
 
 coathangers:
     perception_postfix: coathanger_center
-    amount: 1
+    amount: 0
     0:
       name: coathanger
       knowledge_role: coatrack
@@ -77,7 +77,7 @@ coathangers:
 
 couch:
     perception_postfix: origin
-    amount: 1
+    amount: 0
     0:
       name: suturo_couch_bedroom
       knowledge_role: couch
@@ -91,7 +91,7 @@ couch:
 
 dishwashers:
     perception_postfix: dishwasher_center
-    amount: 1
+    amount: 0
     0:
       name: suturo_dishwasher
       knowledge_role: dishwasher
@@ -112,33 +112,32 @@ dishwashers:
 rooms:
     amount: 6
     0:
-      name: iai_kitchen
+      name: kitchen
       knowledge_role: kitchen
       center_x: 7.93
       center_y: -0.11
       size_x: 5.12
       size_y: 3.97
-      color: 0 0 1 0.1
+      color: 0 0 1 1
       connections:
        amount: 4
        0:
-         name: kitchen_entry
+         name: kitchen_entry_living
          knowledge_role: entry
          center_x: 7.71
          center_y: 1.35
        1:
-         name: kitchen_exit
+         name: kitchen_exit_living
          knowledge_role: exit
          center_x: 7.66
          center_y: 2.5
-    
        2:
-         name: kitchen_entry_2
+         name: kitchen_entry_office
          knowledge_role: entry
          center_x: 5.9
          center_y: 0.17
        3:
-         name: kitchen_exit_2
+         name: kitchen_exit_office
          knowledge_role: exit
          center_x: 4.98
          center_y: 0.14
@@ -150,26 +149,26 @@ rooms:
       center_y: 4.93
       size_x: 5.99
       size_y: 6.0
-      color: 0 1 0 0.1
+      color: 0 1 0 1
       connections:
        amount: 4
        0:
-         name: living_room_entry_1
+         name: living_room_entry_hallway
          knowledge_role: entry
          center_x: 5.08
          center_y: 2.74
        1:
-         name: living_room_exit_1
+         name: living_room_exit_hallway
          knowledge_role: exit
          center_x: 3.67
          center_y: 2.64
        2:
-         name: living_room_entry_2
+         name: living_room_entry_kitchen
          knowledge_role: entry
          center_x: 7.66
          center_y: 2.5
        3:
-         name: living_room_exit_2
+         name: living_room_exit_kitchen
          knowledge_role: exit
          center_x: 7.71
          center_y: 1.35
@@ -177,25 +176,129 @@ rooms:
     2:
       name: bedroom
       knowledge_role: bedroom
-      center_x: 2.08
-      center_y: 5.69
+      center_x: 2.16
+      center_y: 5.89
       size_x: 4.09
       size_y: 3.99
-      color: 1 0 0 0.1
+      color: 0 1 0.949 1
       connections:
-       amount: 2
+       amount: 4
        0:
-         name: bedroom_entry_1
+         name: bedroom_entry_hallway
          knowledge_role: entry
-         center_x: 2.6
-         center_y: 4.11
+         center_x: 2.68
+         center_y: 4.31
        1:
-         name: bedroom_exit_1
+         name: bedroom_exit_hallway
          knowledge_role: exit
-         center_x: 2.62
-         center_y: 3.16
+         center_x: 2.70
+         center_y: 3.36
+       2:
+        name: bedroom_entry_entrance
+        knowledge_role: entry
+        center_x: 0.6
+        center_y: 5
+       3:
+        name: bedroom_exit_entrance
+        knowledge_role: exit
+        center_x: -0.35
+        center_y: 5
       
+
+
     3:
+      name: office
+      knowledge_role: office
+      center_x: 2.8
+      center_y: -0.26
+      size_x: 5.2
+      size_y: 3.9
+      color: 1 0 0 1
+      connections:
+       amount: 4
+       0:
+        name: office_entry_entrance
+        knowledge_role: entry
+        center_x: 0.76
+        center_y: 0
+       1:
+        name: office_exit_entrance
+        knowledge_role: exit
+        center_x: -0.23
+        center_y: -0.19
+       2:
+         name: office_entry_kitchen
+         knowledge_role: entry
+         center_x: 4.98
+         center_y: 0.14     
+       3:
+         name: office_exit_kitchen
+         knowledge_role: exit
+         center_x: 5.9
+         center_y: 0.17   
+
+    4:
+      name: hallway
+      knowledge_role: hallway
+      center_x: 2.24
+      center_y: 2.8
+      size_x: 4.04
+      size_y: 2.13
+      color: 1 0.639 0 1
+      connections:
+       amount: 4
+       0:
+         name: hallway_entry_bedroom
+         knowledge_role: entry
+         center_x: 2.70
+         center_y: 3.36       
+       1:
+         name: hallway_exit_bedroom
+         knowledge_role: exit
+         center_x: 2.68
+         center_y: 4.31
+       2:
+         name: hallway_entry_living_room
+         knowledge_role: entry
+         center_x: 3.67
+         center_y: 2.64
+       3:
+         name: hallway_exit_living_room
+         knowledge_role: exit
+         center_x: 5.08
+         center_y: 2.74
+
+    5:
+      name: entrance
+      knowledge_role: hallway
+      center_x: -0.75
+      center_y: 2
+      size_x: 1.9
+      size_y: 8.04
+      color: 1 0.639 0 1
+      connections:
+       amount: 4
+       0:
+        name: entrance_entry_bedroom
+        knowledge_role: entry
+        center_x: -0.35
+        center_y: 5
+       1:
+        name: entrance_exit_bedroom
+        knowledge_role: exit
+        center_x: 0.6
+        center_y: 5
+       2:
+        name: entrance_entry_office
+        knowledge_role: entry
+        center_x: -0.23
+        center_y: -0.19
+       3:
+        name: entrance_exit_office
+        knowledge_role: exit
+        center_x: 0.76
+        center_y: 0        
+    6:
       name: arena
       knowledge_role: arena
       # 0.3,6.6 - 5.5,-2.5
@@ -203,7 +306,7 @@ rooms:
       center_y: 2.8
       size_x: 10
       size_y: 10
-      color: 1 0 0 0.1
+      color: 1 0 0 0
       connections:
        amount: 2
        0:
@@ -217,54 +320,10 @@ rooms:
         center_x: 0.08
         center_y: -0.25
 
-    4:
-      name: office
-      knowledge_role: office
-      center_x: 3.04
-      center_y: -0.46
-      size_x: 4.9
-      size_y: 3.9
-      color: 1 0 0 0.1
-      connections:
-       amount: 2
-       0:
-        name: office_entry
-        knowledge_role: entry
-        center_x: 0.86
-        center_y: 0
-       1:
-        name: office_exit
-        knowledge_role: exit
-        center_x: -0.13
-        center_y: -0.19
-
-    5:
-      name: hallway
-      knowledge_role: hallway
-      center_x: 2.24
-      center_y: 2.6
-      size_x: 4.24
-      size_y: 1.98
-      color: 1 0 0 0.1
-      connections:
-       amount: 2
-       0:
-        name: hallway_entry
-        knowledge_role: entry
-        center_x: 0.62
-        center_y: 2.36
-       1:
-        name: hallway_exit
-        knowledge_role: exit
-        center_x: -0.15
-        center_y: 2.0
-       
-       
-
 # S
 shelves_billy:
     perception_postfix: shelf_floor_X
-    amount: 2
+    amount: 0
     0:
       name: shelf_billy_corridor
       knowledge_role: cabinet
@@ -322,7 +381,7 @@ shelves_billy:
   
 # T     
 trashcans:
-    amount: 1
+    amount: 0
     0:
       name: trashcan
       knowledge_role: trashcan
@@ -335,7 +394,7 @@ trashcans:
 
 tables:
     perception_postfix: table_center
-    amount: 9
+    amount: 0
     0:
       name: kitchen_table
       knowledge_role: kitchen_table
@@ -343,9 +402,9 @@ tables:
       width:  0.756
       height: 0.68
       depth: 0.552
-      z_rot: -0.6
-      x_pos: 8.76
-      y_pos: -0.77
+      z_rot: 0.6
+      x_pos: 9.1
+      y_pos: 0.45
 
     1: 
       name: kitchen_counter
@@ -371,7 +430,7 @@ tables:
       
     3:
       name: tv_table
-      knowledge_role: tv_table
+      knowledge_role: tv_sideboard
       parent: urdf_offset
       width:  1.52
       height: 0.36
@@ -437,7 +496,7 @@ tables:
     
 round_tables:
     perception_postfix: table_center
-    amount: 1
+    amount: 0
     0:
       name: couch_table
       knowledge_role: couch_table
