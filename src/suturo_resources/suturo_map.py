@@ -1,3 +1,5 @@
+from PIL.ImageOps import scale
+
 from semantic_digital_twin.world import World
 from semantic_digital_twin.world_description.geometry import Cylinder, Sphere
 from semantic_digital_twin.adapters.viz_marker import VizMarkerPublisher
@@ -29,7 +31,7 @@ def load_environment():
     root = Body(name=PrefixedName("root"))
 
     root_slam_C_root = FixedConnection(parent=root_slam, child=root,
-                                      parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=0.33,y=0.28,yaw=0.10707963267))
+                                      parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=0.33,y=0.28,yaw=0.10707963267)) #
     with world.modify_world():
         world.add_connection(root_slam_C_root)
 
@@ -241,6 +243,21 @@ def build_environment_furniture(world: World):
                                   parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=1.325, y=5.99, z=0.355))
     all_elements_connections.append(root_C_cookingTable)
 
+    chips = Cylinder(width=0.07, height=0.23, color=red)
+    shape_geometry = ShapeCollection([chips])
+    chips_body = Body(name=PrefixedName("chips_body"), collision=shape_geometry, visual=shape_geometry)
+
+    root_C_chips = FixedConnection(parent=root, child=chips_body,
+                                      parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=1.305, y=5.9, z=0.825))
+    all_elements_connections.append(root_C_chips)
+
+    cup = Cylinder(width=0.07, height=0.10, color=red)
+    shape_geometry = ShapeCollection([cup])
+    cup_body = Body(name=PrefixedName("cup_body"), collision=shape_geometry, visual=shape_geometry)
+    root_C_cup = FixedConnection(parent=root, child=cup_body,
+                                 parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=1.45, y=5.9, z=0.7))
+    all_elements_connections.append(root_C_cup)
+
 
     diningTable = Box(scale=Scale(0.73, 1.18, 0.73),color=wood)
     shape_geometry = ShapeCollection([diningTable])
@@ -273,12 +290,7 @@ def build_environment_furniture(world: World):
                                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=3.245, y=0.426, z=0.8225))
     all_elements_connections.append(root_C_banana)
 
-    cup = Cylinder(width=0.07, height=0.10, color=red)
-    shape_geometry = ShapeCollection([cup])
-    cup_body = Body(name=PrefixedName("cup_body"), collision=shape_geometry, visual=shape_geometry)
-    root_C_cup = FixedConnection(parent=root, child=cup_body,
-                                   parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=1.859,y=-2.181, z=0.5725))
-    all_elements_connections.append(root_C_cup)
+
 
 #-----------------------------------------------------------------------#
     kitchen_floor = [
