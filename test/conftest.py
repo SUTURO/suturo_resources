@@ -4,7 +4,7 @@ from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Orange,
     Carrot,
     Lettuce,
-    Table, Cup, Dishwasher,
+    Table, Cup,
 )
 from semantic_digital_twin.world import World
 from semantic_digital_twin.datastructures.prefixed_name import PrefixedName

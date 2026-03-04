@@ -5,6 +5,7 @@ from semantic_digital_twin.adapters.ros.visualization.viz_marker import (
 from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Table,
     Sofa,
+    DiningTable,
     TrashCan,
     Fridge, Counter_Top, Wall, Cabinet,
 )
@@ -275,14 +276,15 @@ def build_environment_furniture(world: World):
         for color in cooking_table.bodies[0].visual.shapes:
             color.color = Color.BEIGE()
 
-        dinning_table = Table.create_with_new_body_in_world(
+        dining_table = DiningTable.create_with_new_body_in_world(
             world=world,
             name=PrefixedName("dining_table"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.59975, y=5.705, z=0.365),
-            scale=Scale(0.73, 1.18, 0.73),
+            # Z=0.76 The table height (top of the table) is such that the legs reach down to the floor.
+            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.59975, y=5.705, z=0.76),
+            length=0.73,
+            width=1.18,
+            color=Color.BEIGE(),
         )
-        for color in dinning_table.bodies[0].visual.shapes:
-            color.color = Color.BEIGE()
 
         world.add_connection(root_C_ovenArea)
     return world

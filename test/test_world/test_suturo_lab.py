@@ -1,6 +1,7 @@
 from semantic_digital_twin.datastructures.prefixed_name import PrefixedName
 from semantic_digital_twin.world import World
 from semantic_digital_twin.world_description.geometry import Color
+from semantic_digital_twin.semantic_annotations.semantic_annotations import DiningTable, Leg
 
 from conftest import test_load_world
 from suturo_resources.queries import (
@@ -18,6 +19,22 @@ def test_load_environment_returns_world():
     world = load_environment()
     assert isinstance(world, World)
     assert world.root.name == PrefixedName("root")
+
+
+def test_dining_table_structure():
+    """
+    Tests that the DiningTable is correctly constructed with legs and color.
+    """
+    world = load_environment()
+    dining_tables = world.get_semantic_annotations_by_type(DiningTable)
+    assert len(dining_tables) == 1
+    table = dining_tables[0]
+
+    assert len(table.legs) == 4
+    for leg in table.legs:
+        assert isinstance(leg, Leg)
+        # Check if leg is beige (assuming visual shapes exist)
+        assert leg.root.visual.shapes[0].color == Color.BEIGE()
 
 
 def test_query_semantic_annotations_on_surfaces():
