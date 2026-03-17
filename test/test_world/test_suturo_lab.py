@@ -4,7 +4,7 @@ from semantic_digital_twin.world_description.geometry import Color
 
 from conftest import test_load_world
 from suturo_resources.queries import (
-    query_surface_of_most_similar_obj,
+    query_surface_of_most_similar_obj_eql,
     query_semantic_annotations_on_surfaces,
     query_get_next_object_euclidean_x_y, query_annotations_by_color, query_class_by_label,
 )
@@ -69,9 +69,9 @@ def test_query_get_next_object_euclidean_x_y():
     assert query_get_next_object_euclidean_x_y(toya, table3).tolist() == []
 
 
-def test_query_surface_of_most_similar_obj():
+def test_query_surface_of_most_similar_obj_eql():
     """
-    Tests the `query_surface_of_most_similar_obj` function for determining the surface of the most suitable
+    Tests the `query_surface_of_most_similar_obj_eql` function for determining the surface of the most suitable
     semantic annotation object from a set of candidates based on similarity and
     other constraints. The function is evaluated under multiple scenarios to verify
     its logic in choosing the correct table, handling empty tables, and cases with
@@ -90,19 +90,19 @@ def test_query_surface_of_most_similar_obj():
     lettuce = world.get_semantic_annotation_by_name("lettuce")
 
     # choosing the correct table
-    assert query_surface_of_most_similar_obj(banana, [table1, table2, table3]) == table1
-    assert query_surface_of_most_similar_obj(carrot, [table1, table2, table3]) == table2
+    assert query_surface_of_most_similar_obj_eql(banana, [table1, table2, table3]) == table1
+    assert query_surface_of_most_similar_obj_eql(carrot, [table1, table2, table3]) == table2
     # choosing the empty table
-    assert query_surface_of_most_similar_obj(lettuce, [table1, table3]) == table3
-    assert query_surface_of_most_similar_obj(table1, [table1, table2, table3]) == table3
+    assert query_surface_of_most_similar_obj_eql(lettuce, [table1, table3]) == table3
+    assert query_surface_of_most_similar_obj_eql(table1, [table1, table2, table3]) == table3
     # trying with a new threshold
-    assert query_surface_of_most_similar_obj(orange, [table2, table3], 2) == table2
+    assert query_surface_of_most_similar_obj_eql(orange, [table2, table3], 2) == table2
     # returning None if there is no empty table or no tables
-    assert query_surface_of_most_similar_obj(apple, [table2]) == None
-    assert query_surface_of_most_similar_obj(orange, []) == None
+    assert query_surface_of_most_similar_obj_eql(apple, [table2]) == None
+    assert query_surface_of_most_similar_obj_eql(orange, []) == None
     # trying with 2 empty tables
-    assert query_surface_of_most_similar_obj(apple, [table2, table3, table4]) == table3
-    assert query_surface_of_most_similar_obj(apple, [table2, table4, table3]) == table4
+    assert query_surface_of_most_similar_obj_eql(apple, [table2, table3, table4]) == table3
+    assert query_surface_of_most_similar_obj_eql(apple, [table2, table4, table3]) == table4
 
 def test_query_body_by_color():
     """
