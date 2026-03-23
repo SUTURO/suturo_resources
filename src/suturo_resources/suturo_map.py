@@ -7,7 +7,7 @@ from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Sofa,
     DiningTable,
     TrashCan,
-    Fridge, Counter_Top, Wall, Cabinet,
+    Fridge, Counter_Top, Wall, Cabinet, Leg,
 )
 from semantic_digital_twin.world import World
 import threading
@@ -276,15 +276,64 @@ def build_environment_furniture(world: World):
         for color in cooking_table.bodies[0].visual.shapes:
             color.color = Color.BEIGE()
 
+        # Dining Table Construction
+        dt_length = 0.73
+        dt_width = 1.18
+        dt_height = 0.76
+        dt_color = Color.BEIGE()
+        
+        dt_plate_thickness = 0.04
+        dt_leg_width = 0.06
+        dt_leg_height = dt_height - dt_plate_thickness
+
         dining_table = DiningTable.create_with_new_body_in_world(
             world=world,
             name=PrefixedName("dining_table"),
             # Z=0.76 The table height (top of the table) is such that the legs reach down to the floor.
             world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.59975, y=5.705, z=0.76),
-            length=0.73,
-            width=1.18,
-            color=Color.BEIGE(),
+            scale=Scale(dt_length, dt_width, dt_plate_thickness),
         )
+        
+        # Color the plate
+        for shape in dining_table.root.visual.shapes:
+            shape.color = dt_color
+
+        # Create Legs
+        leg_scale = Scale(dt_leg_width, dt_leg_width, dt_leg_height)
+        x_offset = (dt_length / 2) - (dt_leg_width / 2)
+        y_offset = (dt_width / 2) - (dt_leg_width / 2)
+        z_pos = -(dt_plate_thickness / 2) - (dt_leg_height / 2)
+
+        corners = [
+            (1, 1), (1, -1), (-1, 1), (-1, -1)
+        ]
+
+        for i, (sign_x, sign_y) in enumerate(corners):
+            leg_name = PrefixedName(f"dining_table_leg_{i}")
+            leg = Leg.create_with_new_body_in_world(
+                name=leg_name,
+                world=world,
+                scale=leg_scale
+            )
+            for shape in leg.root.visual.shapes:
+                shape.color = dt_color
+            
+            # Reparent
+            world.remove_connection(leg.root.parent_connection)
+            
+            table_C_leg = FixedConnection(
+                parent=dining_table.root,
+                child=leg.root,
+                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                    x=sign_x * x_offset,
+                    y=sign_y * y_offset,
+                    z=z_pos
+                )
+            )
+            world.add_connection(table_C_leg)
+            dining_table.add_leg(leg)
+            
+        dining_table.calculate_supporting_surface()
 
         world.add_connection(root_C_ovenArea)
     return world
