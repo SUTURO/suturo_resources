@@ -10,7 +10,7 @@ from suturo_resources.queries import (
     query_semantic_annotations_on_surfaces,
     query_get_next_object_euclidean_x_y, query_annotations_by_color,
 )
-from suturo_resources.suturo_map import load_environment
+from suturo_resources.suturo_map import load_environment, Publisher
 
 
 def test_load_environment_returns_world():
@@ -18,6 +18,8 @@ def test_load_environment_returns_world():
     Tests that loading the environment returns a World object with the correct root name.
     """
     world = load_environment()
+    publisher = Publisher("semantic_digital_twin")
+    publisher.publish(world)
     assert isinstance(world, World)
     assert world.root.name == PrefixedName("root")
 
@@ -35,14 +37,14 @@ def test_sofa_structure():
     # Since the sofa is now a single body with complex geometry (CSG),
     # we check the bounding box of the entire object.
     # The expected dimensions correspond to the parameters from the factory:
-    # length=1.68, width=0.94, height=0.68
+    # scale=Scale(x=1.68, y=0.94, z=0.68)
 
     # Calculate the bounding box of all shapes combined in the local frame
     bbox = sofa.root.collision.as_bounding_box_collection_in_frame(sofa.root).bounding_box()
 
     # Tolerance for floating point numbers (numpy is required: import numpy as np)
-    assert np.isclose(bbox.depth, 1.68, atol=1e-3)  # x-axis (length)
-    assert np.isclose(bbox.width, 0.94, atol=1e-3)  # y-axis (width)
+    assert np.isclose(bbox.width, 0.94, atol=1e-3)  # x-axis (depth)
+    assert np.isclose(bbox.depth, 1.68, atol=1e-3)  # y-axis (witdh)
     assert np.isclose(bbox.height, 0.68, atol=1e-3)  # z-axis (height)
 
     # Check color (Gray)
