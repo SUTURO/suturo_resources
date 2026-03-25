@@ -465,11 +465,10 @@ def build_environment_furniture(world: World):
         sofa = Sofa.create_with_new_body_in_world(
             world=world,
             name=PrefixedName("sofa"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.60, y=1.20, z=0.34),
+            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.60, y=1.20, z=0.34, yaw=np.pi),
             scale=Scale(x=1.68, y=0.94, z=0.68),
+            color=Color.GRAY(),
         )
-        for color in sofa.bodies[0].visual.shapes:
-            color.color = Color.BEIGE()
 
         lowerTable = Table.create_with_new_body_in_world(
             world=world,
