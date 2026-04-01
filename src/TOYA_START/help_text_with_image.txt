@@ -1,0 +1,90 @@
+............................................................        ---------------------------------------
+............................................................        Hello and welcome to HOW TO START TOYA!
+............................................................        ---------------------------------------
+......................=-:..............:....................        
+.....................=======:......:=====..........=*.......        This is a short and quick tutorial on where to
+....................:--::..:==-::==-:::-:..---:..-*-+*-.....        find the Virtual Environments, how the localization
+..................-+=====--:.:::::::----..----:-****+.......        on the robot is done, and more.
+.................:+++-::---::... .--===-:.    -****.........        
+...................   ---::         :--- ..   .==:..........        Please update this file if needed.
+.................     ..   ..................   -:..........        
+.................  .::::::::::::.............. .-...........        ---- Localization in RVIZ2 --------------------------
+.................  :::::::::::::............   .............        Open the program and use "2D Pose Estimate" to enter
+................   ::::::::::::.............   :-...........        the robots location on the map. Now move the robot
+...............:  .:::::::::::..............   -:...........        until the scan points from the laser scanner match
+...............   ::::::::::...............    -:...........        the obstacles in the map.
+...............  .....::...................   .-............        IMPORTANT: (only for restart, automated on launch)
+...............  .........................#%+ --............        Map is only published once -> RVIZ2 has to be started
+.....+::-..:---------------------.     --+@%%%%=............        first! After that start toya_slam.
+.....*        .  :   ..           .. :    +++===- ..........        
+.....+.      - ::   :==-         -. -   .@@%%%%%*...........        ---- Camera active? ---------------------------------
+.....*:::   .-----===-===-            .:+@%%%%%%=...........        To check if the Camera is active open RVIZ2 and check
+.....@=.:=--+============--------....:-#@@%%%%%%:...........        the checkbox 'Camera'. If camera doesn't work,
+.....@@@#+==============---====--==*#@@@@%%%%%%#............        restart the robot. If it doesn't work after several
+.....@@@@@@@@%%%%%%%%%%%%%%%%%%@@@@@@@@@@%%%%%%-............        restarts, ask the perception group for help.
+.....*@@@@@@@%#%###***********#@@@@@@@@@%%%%#=..............        
+.....:@@@@@@@#@@@@@@@@@@@@@@@@@@@@@@@@@@%%%#................        ---- NLP Pipeline -----------------------------------
+......%%%%%%%#@@@@@@@@@@@@@@@@%@@@@@@@@%%%#.................        To start the NLP Pipeline either use the script
+.......%%%%%%*%%%%%%%%%%%%%%%%%%%%%%%%%%%#..................        starting_demo_nlp.py to start the pipeline with voice
+........*####%%%%%%%%%%%%%%%%%#%%%%%%%%%#...................        commands or use:
+..............-%%%%%%%%%%%%%%%%*#######=....................        
+..........=@@%@@@@@@@@@@@@@@@@%@%###........................        nlp_info - get commands for start and cleanup
+.............#%%%%%%%%%%@@@%%@@@@@@@@@@%=...................        start_nlp <optional: model> - start the nlp pipeline
+................-@@@@@@@@@@@%@@@@@@@@@@@+...................        			      with default or specific
+.....................:=%@@@@@@@@@@*:........................        			      model, format like this
+............................................................        	model: nlp_rasa_<model>_start
+............................................................        nlp_cleanup - properly end all processes from start_nlp
+............................................................        nlp_input_init - start recording for input
+
+---- Robokudo ---------------------------------------
+To start the environment for robokudo, use 'rksetup'
+in every terminal used for robokudo.
+Now you can play bagfiles via
+cd ~/robokudo_ws/ROS2-bags-files
+ros2 bag play xyz --loop
+
+
+If you want to start a demo, type in:
+ros2 run robokudo main _ae=<challenge> _ros_pkg=robokudo_robocup_<challenge>
+in one line with your challenge and without '<' and '>'.
+
+Now you can run queries like:
+ros2 action send_goal /robokudo/query robokudo_msgs/action/Query "{obj: {type: 'human', attribute: ['waving']}}" 
+
+ros2 action send_goal /robokudo/query robokudo_msgs/action/Query "{obj: {type: 'object'}}"
+
+ros2 action send_goal /robokudo/query robokudo_msgs/action/Query "{obj: {type: 'human', color: ['red'],
+ description: ['shirt']}}"
+
+ros2 action send_goal /robokudo/query robokudo_msgs/action/Query "{obj: {type: 'object', attribute: ['biggest']}}"
+
+Of course these also have to be written in one line.
+
+---- Semantic World ----------------------------------------------------------------------------------------------
+To load the semantic world into RVIZ2 go to suturo_resources/test/test_world/test_suturo_lab.py and check, if your
+method looks like the following:
+
+def test_load_environment_returns_world():
+    """
+    Tests that loading the environment returns a World object with the correct root name.
+    """
+    world = load_environment()
+    publisher = Publisher("semantic_digital_twin")
+    publisher.publish(world)
+    assert isinstance(world, World)
+    assert world.root.name == PrefixedName("root_slam")
+
+Now execute, open RVIZ2 and add a MarkerArray topic with the name '/semworld/viz_marker'.
+
+-----------------------------------------------------------------------------------------------------------------
+To show this message again, type in 'toya_help'
+To start the robot, type in 'beep_bopp' or 'beep_bopp <challenge>' (ONLY WORKS IF NO TERMINATOR WINDOWS OPEN)
+To change this text, type in 'update_help_text'
+To see more detailed infos about this package, 'cat PATH/TOYA_START/SETUP.md'
+
+
+
+#############################################################################################################################
+Activate Virtual Environments:		PATH/bin/activate
+or for some:				WORKON x
+---------------------------------------------------------
