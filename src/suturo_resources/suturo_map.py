@@ -239,8 +239,8 @@ def build_environment_furniture(world: World):
         sofa = Sofa.create_with_new_body_in_world(
             world=world,
             name=PrefixedName("sofa"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.60, y=1.20, z=0.34),
-            scale=Scale(x=1.68, y=0.94, z=0.68),
+            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.60, y=1.20, z=0.34, yaw=4.7124),
+            scale=Scale(x=0.94, y=1.68, z=0.68),
         )
         for color in sofa.bodies[0].visual.shapes:
             color.color = Color.BEIGE()
@@ -380,5 +380,6 @@ class Publisher:
         self.thread.start()
 
     def publish(self, world):
-        viz = VizMarkerPublisher(world=world, node=self.node)
+        viz = VizMarkerPublisher(_world=world, node=self.node)
+        viz.notify()
         viz.with_tf_publisher()

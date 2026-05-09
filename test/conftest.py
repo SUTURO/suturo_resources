@@ -1,3 +1,10 @@
+import sys
+import os
+workspace_root = "/home/alim/studies/uni-bremen-informatik-bsc/05-semester/02-Bachelor-Projekte/SUTURO/cognitive_robot_abstract_machine"
+for pkg in ["semantic_digital_twin", "krrood", "random_events", "probabilistic_model", "pycram", "giskardpy"]:
+    path = os.path.join(workspace_root, pkg, "src")
+    if path not in sys.path:
+        sys.path.insert(0, path)
 from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Banana,
     Apple,
