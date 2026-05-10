@@ -6,7 +6,7 @@ from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Table,
     Sofa,
     TrashCan,
-    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle,
+    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle, DiningTable, Leg,
 )
 from semantic_digital_twin.world_description.degree_of_freedom import DegreeOfFreedomLimits
 from semantic_digital_twin.spatial_types.derivatives import DerivativeMap
@@ -464,14 +464,39 @@ def build_environment_furniture(world: World):
         for color in cooking_table.bodies[0].visual.shapes:
             color.color = Color.BEIGE()
 
-        dinning_table = Table.create_with_new_body_in_world(
+        # Dining Table Construction
+        dt_length, dt_width, dt_height = 0.73, 1.18, 0.76
+        dt_color = Color.BEIGE()
+        dt_plate_thickness = 0.04
+        
+        dining_table = DiningTable.create_with_new_body_in_world(
             world=world,
             name=PrefixedName("dining_table"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.59975, y=5.705, z=0.365),
-            scale=Scale(0.73, 1.18, 0.73),
+            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.59975, y=5.705, z=0.76),
+            scale=Scale(dt_length, dt_width, dt_plate_thickness),
         )
-        for color in dinning_table.bodies[0].visual.shapes:
-            color.color = Color.BEIGE()
+        for shape in dining_table.root.visual.shapes: shape.color = dt_color
+
+        leg_scale = Scale(0.06, 0.06, dt_height - dt_plate_thickness)
+        x_offset = (dt_length / 2) - 0.03
+        y_offset = (dt_width / 2) - 0.03
+        z_pos = -(dt_plate_thickness / 2) - (leg_scale.z / 2)
+
+        for i, (sign_x, sign_y) in enumerate([(1, 1), (1, -1), (-1, 1), (-1, -1)]):
+            l_body = Body(name=PrefixedName(f"dining_table_leg_{i}_body"))
+            leg = Leg(root=l_body, name=PrefixedName(f"dining_table_leg_{i}"))
+            l_geom = ShapeCollection([Box(scale=leg_scale, color=dt_color)], reference_frame=l_body)
+            l_geom.transform_all_shapes_to_own_frame()
+            l_body.collision = l_geom
+            l_body.visual = l_geom
+            # Create connection and add to world
+            world.add_connection(FixedConnection(
+                parent=dining_table.root,
+                child=l_body,
+                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=sign_x * x_offset, y=sign_y * y_offset, z=z_pos)
+            ))
+            world.add_semantic_annotation(leg)
+            dining_table.add_leg(leg)
 
         world.add_connection(root_C_ovenArea)
     return world
