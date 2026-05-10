@@ -6,7 +6,7 @@ from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Table,
     Sofa,
     TrashCan,
-    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle, DiningTable, Leg, Drawer,
+    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle, DiningTable, Leg, Drawer, Desk,
 )
 from semantic_digital_twin.world_description.degree_of_freedom import DegreeOfFreedomLimits
 from semantic_digital_twin.spatial_types.derivatives import DerivativeMap
@@ -448,12 +448,37 @@ def build_environment_furniture(world: World):
         world.add_semantic_annotation(handle_right)
         cupboard.add_door(door_right)
 
-        desk = Table.create_with_new_body_in_world(
+        # Detailed White Desk Construction
+        desk_l, desk_w, desk_h = 0.60, 1.20, 0.75
+        desk_color = Color.WHITE()
+        desk_plate_thick = 0.03
+        
+        desk = Desk.create_with_new_body_in_world(
             world=world,
             name=PrefixedName("desk"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=0.05, y=1.28, z=0.375),
-            scale=Scale(x=0.60, y=1.20, z=0.75),
+            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=0.05, y=1.28, z=desk_h),
+            scale=Scale(desk_l, desk_w, desk_plate_thick),
         )
+        for shape in desk.root.visual.shapes: shape.color = desk_color
+
+        leg_scale = Scale(0.04, 0.04, desk_h - desk_plate_thick)
+        x_off = (desk_l / 2) - 0.02
+        y_off = (desk_w / 2) - 0.02
+        z_pos = -(desk_plate_thick / 2) - (leg_scale.z / 2)
+
+        for i, (sx, sy) in enumerate([(1, 1), (1, -1), (-1, 1), (-1, -1)]):
+            l_body = Body(name=PrefixedName(f"desk_leg_{i}_body"))
+            l_geom = ShapeCollection([Box(scale=leg_scale, color=desk_color)], reference_frame=l_body)
+            l_geom.transform_all_shapes_to_own_frame()
+            l_body.collision, l_body.visual = l_geom, l_geom
+            leg = Leg(root=l_body, name=PrefixedName(f"desk_leg_{i}"))
+            world.add_connection(FixedConnection(
+                parent=desk.root,
+                child=l_body,
+                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=sx * x_off, y=sy * y_off, z=z_pos)
+            ))
+            world.add_semantic_annotation(leg)
+            # desk.add_leg(leg) # Generic Desk might not have add_leg, using semantic annotation is enough
 
         # --- MODULAR COOKING TABLE --- 
         ct_l, ct_d, ct_h, ct_thick = 1.75, 0.64, 0.71, 0.04
