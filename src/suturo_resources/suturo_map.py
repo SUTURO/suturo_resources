@@ -6,11 +6,11 @@ from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Table,
     Sofa,
     TrashCan,
-    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle, DiningTable, Leg,
+    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle, DiningTable, Leg, Drawer,
 )
 from semantic_digital_twin.world_description.degree_of_freedom import DegreeOfFreedomLimits
 from semantic_digital_twin.spatial_types.derivatives import DerivativeMap
-from semantic_digital_twin.world_description.connections import FixedConnection, RevoluteConnection
+from semantic_digital_twin.world_description.connections import FixedConnection, RevoluteConnection, PrismaticConnection
 from semantic_digital_twin.spatial_types.spatial_types import Vector3
 from semantic_digital_twin.world import World
 import threading
@@ -455,14 +455,65 @@ def build_environment_furniture(world: World):
             scale=Scale(x=0.60, y=1.20, z=0.75),
         )
 
-        cooking_table = Table.create_with_new_body_in_world(
-            world=world,
-            name=PrefixedName("cooking_table"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.325, y=5.99, z=0.355),
-            scale=Scale(1.75, 0.64, 0.71),
-        )
-        for color in cooking_table.bodies[0].visual.shapes:
-            color.color = Color.BEIGE()
+        # --- MODULAR COOKING TABLE --- 
+        ct_l, ct_d, ct_h, ct_thick = 1.75, 0.64, 0.71, 0.04
+        # 1. Top Layer (The Worktop)
+        cooking_table = Table.create_with_new_body_in_world(world=world, name=PrefixedName("cooking_table"), world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.325, y=5.99, z=ct_h), scale=Scale(ct_l, ct_d, ct_thick))
+        for s in cooking_table.bodies[0].visual.shapes: s.color = Color.BEIGE()
+        
+        # Ceran Field
+        cooktop_body = Body(name=PrefixedName("cooktop_body"))
+        cooktop_geom = ShapeCollection([Box(scale=Scale(0.5,0.5,0.01), color=Color.BLACK())], reference_frame=cooktop_body)
+        cooktop_geom.transform_all_shapes_to_own_frame()
+        cooktop_body.collision, cooktop_body.visual = cooktop_geom, cooktop_geom
+        world.add_connection(FixedConnection(parent=cooking_table.root, child=cooktop_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=ct_thick/2 + 0.005)))
+
+        # 2. Bottom Layer (The Support)
+        ct_bottom_body = Body(name=PrefixedName("cooking_table_bottom_body"))
+        ct_bottom_geom = ShapeCollection([Box(scale=Scale(ct_l, ct_d, ct_thick), color=Color.BEIGE())], reference_frame=ct_bottom_body)
+        ct_bottom_geom.transform_all_shapes_to_own_frame()
+        ct_bottom_body.collision, ct_bottom_body.visual = ct_bottom_geom, ct_bottom_geom
+        world.add_connection(FixedConnection(parent=cooking_table.root, child=ct_bottom_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-ct_h + ct_thick)))
+
+        # 3. Side Modules (Cupboards with Drawers)
+        mod_w = (ct_l - 0.60) / 2
+        dr_limits = DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.40))
+        for side in [-1, 1]:
+            s_n = "left" if side == -1 else "right"
+            # Module Cupboard
+            mod_cupboard = Cupboard.create_with_new_body_in_world(name=PrefixedName(f"cooking_mod_{s_n}"), world=world, scale=Scale(mod_w, ct_d, ct_h - 2*ct_thick))
+            for s in mod_cupboard.bodies[0].visual.shapes: s.color = Color.WHITE()
+            world.remove_connection(mod_cupboard.root.parent_connection)
+            world.add_connection(FixedConnection(parent=cooking_table.root, child=mod_cupboard.root, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(0.3+mod_w/2), z=-ct_h/2 + ct_thick, yaw=1.5708)))
+            
+            # Drawer in Module
+            dr_body = Body(name=PrefixedName(f"cooking_drawer_{s_n}_body"))
+            dr_geom = ShapeCollection([Box(scale=Scale(mod_w-0.04, ct_d-0.05, 0.15), color=Color.BEIGE())], reference_frame=dr_body)
+            dr_geom.transform_all_shapes_to_own_frame()
+            dr_body.collision, dr_body.visual = dr_geom, dr_geom
+            drawer = Drawer(root=dr_body, name=PrefixedName(f"cooking_drawer_{s_n}"))
+            world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=mod_cupboard.root, child=dr_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=0.2), axis=Vector3.Y(), dof_limits=dr_limits))
+            world.add_semantic_annotation(drawer)
+            
+            # Drawer Handle (Rectangular)
+            ha_body = Body(name=PrefixedName(f"cooking_drawer_handle_{s_n}_body"))
+            ha_geom = ShapeCollection([Box(scale=Scale(0.02, mod_w/3, 0.04), color=Color.GRAY())], reference_frame=ha_body)
+            ha_geom.transform_all_shapes_to_own_frame()
+            ha_body.collision, ha_body.visual = ha_geom, ha_geom
+            handle = Handle(root=ha_body, name=PrefixedName(f"cooking_drawer_handle_{s_n}"))
+            world.add_connection(FixedConnection(parent=dr_body, child=ha_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-mod_w/2)))
+            world.add_semantic_annotation(handle)
+            drawer.add_handle(handle)
+            
+            # Shelf below Drawer
+            sh_body = Body(name=PrefixedName(f"cooking_shelf_{s_n}_body"))
+            sh_geom = ShapeCollection([Box(scale=Scale(mod_w-0.04, ct_d-0.05, 0.02), color=Color.WHITE())], reference_frame=sh_body)
+            sh_geom.transform_all_shapes_to_own_frame()
+            sh_body.collision, sh_body.visual = sh_geom, sh_geom
+            shelf = ShelfLayer(root=sh_body, name=PrefixedName(f"cooking_shelf_{s_n}"))
+            world.add_connection(FixedConnection(parent=mod_cupboard.root, child=sh_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-0.1)))
+            world.add_semantic_annotation(shelf)
+            mod_cupboard.add_shelf_layer(shelf)
 
         # Dining Table Construction
         dt_length, dt_width, dt_height = 0.73, 1.18, 0.76
