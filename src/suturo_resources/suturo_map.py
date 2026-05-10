@@ -6,8 +6,12 @@ from semantic_digital_twin.semantic_annotations.semantic_annotations import (
     Table,
     Sofa,
     TrashCan,
-    Fridge, Counter_Top, Wall, Cabinet,
+    Fridge, Counter_Top, Wall, Cabinet, Cupboard, ShelfLayer, Hinge, Door, Handle,
 )
+from semantic_digital_twin.world_description.degree_of_freedom import DegreeOfFreedomLimits
+from semantic_digital_twin.spatial_types.derivatives import DerivativeMap
+from semantic_digital_twin.world_description.connections import FixedConnection, RevoluteConnection
+from semantic_digital_twin.spatial_types.spatial_types import Vector3
 from semantic_digital_twin.world import World
 import threading
 import rclpy
@@ -252,12 +256,197 @@ def build_environment_furniture(world: World):
             scale=Scale(x=0.37, y=0.91, z=0.44),
         )
 
-        cabinet = Cabinet.create_with_new_body_in_world(
+        cupboard_scale = Scale(0.43, 0.80, 2.02)
+
+        cupboard = Cupboard.create_with_new_body_in_world(
+            name=PrefixedName("cupboard_annotation"),
             world=world,
-            name=PrefixedName("cabinet"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=4.8, y=4.72, z=1.01),
-            scale=Scale(x=0.43, y=0.80, z=2.02),
+            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=4.55, y=4.72, z=1.01),
+            scale=cupboard_scale,
+            wall_thickness=0.02,
         )
+        # Connect the cupboard tp 'root' , to ensure that the coordinates are relative to the room
+        cupboard_connection = cupboard.root.parent_connection
+        world.remove_connection(cupboard_connection)
+        cupboard_connection.parent = root
+        world.add_connection(cupboard_connection)
+
+        # create shelflayers manually and attach them directly to the cupboard
+        shelf_scale = Scale(0.40, 0.76, 0.02)
+
+        # Shelf 1
+        shelf_1_geom = ShapeCollection([Box(scale=shelf_scale, color=Color.WHITE())])
+        shelf_1_body = Body(
+            name=PrefixedName("cupboard_shelf_1_body"),
+            collision=shelf_1_geom,
+            visual=shelf_1_geom,
+        )
+        shelf_1 = ShelfLayer(root=shelf_1_body, name=PrefixedName("cupboard_shelf_1"))
+
+        cupboard_C_shelf_1 = FixedConnection(
+            parent=cupboard.root,
+            child=shelf_1_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                x=0, y=0, z=-0.5
+            ),
+        )
+        world.add_connection(cupboard_C_shelf_1)
+        world.add_semantic_annotation(shelf_1)
+        cupboard.add_shelf_layer(shelf_1)
+
+        # Shelf 2
+        shelf_2_geom = ShapeCollection([Box(scale=shelf_scale, color=Color.WHITE())])
+        shelf_2_body = Body(
+            name=PrefixedName("cupboard_shelf_2_body"),
+            collision=shelf_2_geom,
+            visual=shelf_2_geom,
+        )
+        shelf_2 = ShelfLayer(root=shelf_2_body, name=PrefixedName("cupboard_shelf_2"))
+
+        cupboard_C_shelf_2 = FixedConnection(
+            parent=cupboard.root,
+            child=shelf_2_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                x=0, y=0, z=0.5
+            ),
+        )
+        world.add_connection(cupboard_C_shelf_2)
+        world.add_semantic_annotation(shelf_2)
+        cupboard.add_shelf_layer(shelf_2)
+
+        # Creating doors manually and attaching them directly to the cupboard
+        # Door height 105.5 cm (1.055 m)
+        door_height = 1.055
+        # Position Z: Bottom of cupboard is at -cupboard_scale.z / 2.
+        # Door center should be at Bottom + door_height / 2
+        door_z_rel = -(cupboard_scale.z / 2) + (door_height / 2)
+
+        door_x_rel = -(cupboard_scale.x / 2) - 0.01
+        door_scale = Scale(0.02, 0.40, door_height)
+
+        # Define limits for doors
+        # Left door opens outwards (0 to +90 degrees)
+        left_lower = DerivativeMap[float](position=0.0)
+        left_upper = DerivativeMap[float](position=np.pi / 2)
+        left_door_limits = DegreeOfFreedomLimits(lower=left_lower, upper=left_upper)
+
+        # Right door opens outwards (-90 to 0 degrees)
+        right_lower = DerivativeMap[float](position=-np.pi / 2)
+        right_upper = DerivativeMap[float](position=0.0)
+        right_door_limits = DegreeOfFreedomLimits(lower=right_lower, upper=right_upper)
+
+        # Left Door (Open via Hinge)
+        # Create Hinge for the left door
+        hinge_left_body = Body(name=PrefixedName("cupboard_hinge_left_body"))
+        hinge_left = Hinge(
+            root=hinge_left_body,
+            name=PrefixedName("cupboard_hinge_left"),
+        )
+
+        cupboard_C_hinge_left = RevoluteConnection.create_with_dofs(
+            world=world,
+            parent=cupboard.root,
+            child=hinge_left_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                x=door_x_rel, y=-0.40, z=door_z_rel
+            ),
+            axis=Vector3.Z(),
+            dof_limits=left_door_limits,
+        )
+        world.add_connection(cupboard_C_hinge_left)
+        world.add_semantic_annotation(hinge_left)
+
+        # Create left door
+        door_left_geom = ShapeCollection([Box(scale=door_scale, color=Color.WHITE())])
+        door_left_body = Body(
+            name=PrefixedName("cupboard_door_left_body"),
+            collision=door_left_geom,
+            visual=door_left_geom,
+        )
+        door_left = Door(root=door_left_body, name=PrefixedName("cupboard_door_left"))
+
+        # Connect Door to Hinge (Fixed)
+        # Door center is at y=+0.20 relative to hinge (hinge at -0.40, door center at -0.20)
+        hinge_left_C_door_left = FixedConnection(
+            parent=hinge_left_body,
+            child=door_left_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                x=0, y=0.20, z=0
+            ),
+        )
+        world.add_connection(hinge_left_C_door_left)
+        world.add_semantic_annotation(door_left)
+        door_left.add_hinge(hinge_left)
+
+        # Handle for Left Door
+        handle_scale = Scale(0.04, 0.04, 0.04)
+        handle_left_geom = ShapeCollection([Box(scale=handle_scale, color=Color.GRAY())])
+        handle_left_body = Body(name=PrefixedName("cupboard_handle_left_body"), collision=handle_left_geom, visual=handle_left_geom)
+        handle_left = Handle(root=handle_left_body, name=PrefixedName("cupboard_handle_left"))
+        
+        # Position: near the opening edge (+y for left door) and centered vertically
+        door_left_C_handle_left = FixedConnection(
+            parent=door_left_body,
+            child=handle_left_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.03, y=0.15, z=0)
+        )
+        world.add_connection(door_left_C_handle_left)
+        world.add_semantic_annotation(handle_left)
+        cupboard.add_door(door_left)
+
+        # Right Door (Closed via Hinge)
+        hinge_right_body = Body(name=PrefixedName("cupboard_hinge_right_body"))
+        hinge_right = Hinge(
+            root=hinge_right_body,
+            name=PrefixedName("cupboard_hinge_right"),
+        )
+
+        cupboard_C_hinge_right = RevoluteConnection.create_with_dofs(
+            world=world,
+            parent=cupboard.root,
+            child=hinge_right_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                x=door_x_rel, y=0.40, z=door_z_rel
+            ),
+            axis=Vector3.Z(),
+            dof_limits=right_door_limits,
+        )
+        world.add_connection(cupboard_C_hinge_right)
+        world.add_semantic_annotation(hinge_right)
+
+        door_right_geom = ShapeCollection([Box(scale=door_scale, color=Color.WHITE())])
+        door_right_body = Body(
+            name=PrefixedName("cupboard_door_right_body"),
+            collision=door_right_geom,
+            visual=door_right_geom,
+        )
+        door_right = Door(root=door_right_body, name=PrefixedName("cupboard_door_right"))
+
+        hinge_right_C_door_right = FixedConnection(
+            parent=hinge_right_body,
+            child=door_right_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(
+                x=0, y=-0.20, z=0
+            ),
+        )
+        world.add_connection(hinge_right_C_door_right)
+        world.add_semantic_annotation(door_right)
+        door_right.add_hinge(hinge_right)
+
+        # Handle for Right Door
+        handle_right_geom = ShapeCollection([Box(scale=handle_scale, color=Color.GRAY())])
+        handle_right_body = Body(name=PrefixedName("cupboard_handle_right_body"), collision=handle_right_geom, visual=handle_right_geom)
+        handle_right = Handle(root=handle_right_body, name=PrefixedName("cupboard_handle_right"))
+        
+        # Position: near the opening edge (-y for right door) and centered vertically
+        door_right_C_handle_right = FixedConnection(
+            parent=door_right_body,
+            child=handle_right_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.03, y=-0.15, z=0)
+        )
+        world.add_connection(door_right_C_handle_right)
+        world.add_semantic_annotation(handle_right)
+        cupboard.add_door(door_right)
 
         desk = Table.create_with_new_body_in_world(
             world=world,
