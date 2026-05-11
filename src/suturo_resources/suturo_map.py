@@ -548,12 +548,53 @@ def build_environment_furniture(world: World):
         for color in sofa.bodies[0].visual.shapes:
             color.color = Color.BEIGE()
 
-        lowerTable = Table.create_with_new_body_in_world(
-            world=world,
-            name=PrefixedName("lowerTable"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=4.22, y=2.22, z=0.22),
-            scale=Scale(x=0.37, y=0.91, z=0.44),
-        )
+        # --- REFINED COFFEE TABLE (White, Front-Closed, with Floor) ---
+        ct_l, ct_w, ct_h = 0.37, 0.91, 0.44
+        ct_thick = 0.02
+        ct_color = Color.WHITE()
+        ct_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=4.22, y=2.22, z=ct_h, yaw=np.pi)
+        
+        coffeeTable = Table.create_with_new_body_in_world(
+            world=world, name=PrefixedName("coffee_table"),
+            world_root_T_self=ct_root_T, scale=Scale(ct_l, ct_w, ct_thick))
+        for s in coffeeTable.bodies[0].visual.shapes: s.color = ct_color
+
+        # Middle Shelf
+        shelf_body = Body(name=PrefixedName("coffee_table_shelf_body"))
+        shelf_geom = ShapeCollection([Box(scale=Scale(ct_l, ct_w, 0.01), color=ct_color)], reference_frame=shelf_body)
+        shelf_geom.transform_all_shapes_to_own_frame()
+        shelf_body.collision, shelf_body.visual = shelf_geom, shelf_geom
+        world.add_connection(FixedConnection(parent=coffeeTable.root, child=shelf_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-ct_h/2)))
+
+        # Bottom Plate (Floor)
+        floor_body = Body(name=PrefixedName("coffee_table_floor_body"))
+        floor_geom = ShapeCollection([Box(scale=Scale(ct_l, ct_w, ct_thick), color=ct_color)], reference_frame=floor_body)
+        floor_geom.transform_all_shapes_to_own_frame()
+        floor_body.collision, floor_body.visual = floor_geom, floor_geom
+        world.add_connection(FixedConnection(parent=coffeeTable.root, child=floor_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-ct_h + ct_thick/2)))
+
+        # Walls (Supporting structure) - Both short sides closed
+        for i, y_dir in enumerate([-1, 1]):
+            side_wall = Body(name=PrefixedName(f"coffee_table_wall_short_{i}_body"))
+            side_wall_geom = ShapeCollection([Box(scale=Scale(ct_l, ct_thick, ct_h), color=ct_color)], reference_frame=side_wall)
+            side_wall_geom.transform_all_shapes_to_own_frame()
+            side_wall.collision, side_wall.visual = side_wall_geom, side_wall_geom
+            world.add_connection(FixedConnection(parent=coffeeTable.root, child=side_wall, 
+                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=y_dir*(ct_w/2 - ct_thick/2), z=-ct_h/2)))
+
+        # 2. Long Sides (1/3 closed at the front, 2/3 open at the back)
+        wall_len = ct_w / 3
+        for side in [-1, 1]:
+            s_n = "left" if side == -1 else "right"
+            long_wall_body = Body(name=PrefixedName(f"coffee_table_wall_long_{s_n}_body"))
+            long_wall_geom = ShapeCollection([Box(scale=Scale(ct_thick, wall_len, ct_h), color=ct_color)], reference_frame=long_wall_body)
+            long_wall_geom.transform_all_shapes_to_own_frame()
+            long_wall_body.collision, long_wall_body.visual = long_wall_geom, long_wall_geom
+            # Positioned at +y side (front)
+            world.add_connection(FixedConnection(parent=coffeeTable.root, child=long_wall_body, 
+                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(ct_l/2 - ct_thick/2), y=ct_w/2 - wall_len/2, z=-ct_h/2)))
 
         cupboard_scale = Scale(0.43, 0.80, 2.02)
 
