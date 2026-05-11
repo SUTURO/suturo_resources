@@ -192,14 +192,36 @@ def build_environment_furniture(world: World):
 
 
     with world.modify_world():
+        # --- REFINED TRASH CAN ---
+        tc_l, tc_w, tc_h = 0.30, 0.30, 0.40
+        tc_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=0.416, y=5.5, z=tc_h)
+        
         trash_can = TrashCan.create_with_new_body_in_world(
-            world=world,
-            name=PrefixedName("trash_can"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(
-                x=0.416, y=5.5, z=0.20
-            ),
-            scale=Scale(x=0.30, y=0.30, z=0.40),
-        )
+            world=world, name=PrefixedName("trash_can"),
+            world_root_T_self=tc_root_T, scale=Scale(tc_l, tc_w, 0.02))
+        for s in trash_can.bodies[0].visual.shapes: s.color = Color.GRAY()
+
+        # Bin Body
+        bin_body = Body(name=PrefixedName("trash_bin_body"))
+        bin_geom = ShapeCollection([Box(scale=Scale(tc_l, tc_w, tc_h), color=Color.GRAY())], reference_frame=bin_body)
+        bin_geom.transform_all_shapes_to_own_frame()
+        bin_body.collision, bin_body.visual = bin_geom, bin_geom
+        world.add_connection(FixedConnection(parent=trash_can.root, child=bin_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-tc_h/2)))
+
+        # Lid (Deckel)
+        lid_h = 0.02
+        lid_body = Body(name=PrefixedName("trash_lid_body"))
+        lid_geom = ShapeCollection([Box(scale=Scale(tc_l, tc_w, lid_h), color=Color.BLACK())], reference_frame=lid_body)
+        lid_geom.transform_all_shapes_to_own_frame()
+        lid_body.collision, lid_body.visual = lid_geom, lid_geom
+        
+        lid_hinge = Body(name=PrefixedName("trash_lid_hinge_body"))
+        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=bin_body, child=lid_hinge,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-tc_l/2, z=tc_h/2),
+            axis=Vector3.Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=-np.pi/2), upper=DerivativeMap[float](position=0.0))))
+        world.add_connection(FixedConnection(parent=lid_hinge, child=lid_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=tc_l/2, z=lid_h/2)))
 
         # --- DETAILED REFRIGERATOR --- 
         fridge_l, fridge_w, fridge_h = 0.60, 0.658, 1.49
