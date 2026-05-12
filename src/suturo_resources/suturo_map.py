@@ -532,12 +532,64 @@ def build_environment_furniture(world: World):
         world.add_semantic_annotation(Door(root=oven_door_body, name=PrefixedName("ot_oven_door")))
 
 
-        table = Table.create_with_new_body_in_world(
-            world=world,
-            name=PrefixedName("table"),
-            world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.545, y=0.426, z=0.4225),
-            scale=Scale(x=2.45, y=0.796, z=0.845),
-        )
+        # --- REFINED SIDEBOARD / KITCHEN ISLAND (2.45 x 0.796 x 0.845) ---
+        sb_l, sb_w, sb_h = 2.45, 0.796, 0.845
+        sb_thick = 0.04
+        sb_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.545, y=0.426, z=sb_h)
+        
+        sideboard = Table.create_with_new_body_in_world(
+            world=world, name=PrefixedName("sideboard"),
+            world_root_T_self=sb_root_T, scale=Scale(sb_l, sb_w, sb_thick))
+        for s in sideboard.bodies[0].visual.shapes: s.color = Color.WHITE()
+
+        # Main Body (Static Frame)
+        sb_body = Body(name=PrefixedName("sb_body"))
+        sb_geom = ShapeCollection([Box(scale=Scale(sb_l, sb_w, sb_h), color=Color.WHITE())], reference_frame=sb_body)
+        sb_geom.transform_all_shapes_to_own_frame()
+        sb_body.collision, sb_body.visual = sb_geom, sb_geom
+        world.add_connection(FixedConnection(parent=sideboard.root, child=sb_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-sb_h/2)))
+
+        # Cooktop (Ceran-Feld) on the right side
+        cooktop_body = Body(name=PrefixedName("sb_cooktop_body"))
+        cooktop_geom = ShapeCollection([Box(scale=Scale(0.6, 0.5, 0.005), color=Color.BLACK())], reference_frame=cooktop_body)
+        cooktop_geom.transform_all_shapes_to_own_frame()
+        cooktop_body.collision, cooktop_body.visual = cooktop_geom, cooktop_geom
+        world.add_connection(FixedConnection(parent=sideboard.root, child=cooktop_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=0.7, z=sb_thick/2 + 0.001)))
+
+        # Drawer Layout: 3 Columns (30%, 40%, 30%), 2 Rows
+        w_outer = sb_l * 0.3
+        w_mid = sb_l * 0.4
+        widths = [w_outer, w_mid, w_outer]
+        x_offsets = [-sb_l/2 + w_outer/2, 0, sb_l/2 - w_outer/2]
+        
+        # Drawers start 10cm below top
+        dr_area_h = sb_h - 0.15 # 10cm offset + 5cm base
+        dr_h = dr_area_h / 2
+        z_offsets = [-sb_h/2 + 0.05 + dr_h/2, -sb_h/2 + 0.05 + 3*dr_h/2]
+        
+        for col_idx, (w, x_off) in enumerate(zip(widths, x_offsets)):
+            for row_idx, z_off in enumerate(z_offsets):
+                dr_id = f"sb_drawer_{col_idx}_{row_idx}"
+                dr_body = Body(name=PrefixedName(f"{dr_id}_body"))
+                dr_front = ShapeCollection([Box(scale=Scale(w-0.01, 0.02, dr_h-0.01), color=Color.WHITE())], reference_frame=dr_body)
+                dr_front.transform_all_shapes_to_own_frame()
+                dr_body.collision, dr_body.visual = dr_front, dr_front
+                
+                # Drawers face -y (away from sofa)
+                world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=sb_body, child=dr_body,
+                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=x_off, y=-sb_w/2, z=z_off),
+                    axis=Vector3.NEGATIVE_Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
+                
+                # Handles
+                ha_body = Body(name=PrefixedName(f"{dr_id}_handle_body"))
+                ha_geom = ShapeCollection([Box(scale=Scale(w - 0.1, 0.02, 0.03), color=Color.GRAY())], reference_frame=ha_body)
+                ha_geom.transform_all_shapes_to_own_frame()
+                ha_body.collision, ha_body.visual = ha_geom, ha_geom
+                world.add_connection(FixedConnection(parent=dr_body, child=ha_body, 
+                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=-0.02, z=dr_h/2 - 0.05)))
+                world.add_semantic_annotation(Drawer(root=dr_body, name=PrefixedName(dr_id)))
 
         sofa = Sofa.create_with_new_body_in_world(
             world=world,
