@@ -304,294 +304,314 @@ def build_environment_furniture(world: World):
             parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-fridge_l/2, z=drawer_h/2 - 0.03)))
         world.add_semantic_annotation(Handle(root=ha_dr_body, name=PrefixedName("fridge_drawer_handle")))
 
-        # --- DETAILED KITCHEN COUNTER (3 Modules) ---
+        # --- KITCHEN COUNTER (Final Corrected Framework Implementation) ---
         ct_l, ct_d, ct_h = 2.044, 0.658, 0.6
-        ct_color = Color.BEIGE()
-        ct_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.887, y=-2.181, z=ct_h)
+        ct_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.887, y=-2.181, z=ct_h/2, yaw=-np.pi/2)
         
-        # Main Counter Annotation (using the top plate as root)
         counterTop = Counter_Top.create_with_new_body_in_world(
             world=world, name=PrefixedName("counterTop"),
-            world_root_T_self=ct_root_T, scale=Scale(ct_l, ct_d, 0.04))
-        for s in counterTop.bodies[0].visual.shapes: s.color = ct_color
+            world_root_T_self=ct_root_T, scale=Scale(ct_d, ct_l, 0.04))
+        for s in counterTop.root.visual.shapes: s.color = Color.BEIGE()
 
-        # 0. Sink (Waschbecken) - Visualized on the worktop
+        # 0. Sink (Waschbecken)
         sink_body = Body(name=PrefixedName("sink_body"))
-        sink_geom = ShapeCollection([Box(scale=Scale(0.6, 0.4, 0.005), color=Color.BLACK())], reference_frame=sink_body)
+        sink_geom = ShapeCollection([Box(scale=Scale(0.4, 0.6, 0.005), color=Color.BLACK())], reference_frame=sink_body)
         sink_geom.transform_all_shapes_to_own_frame()
         sink_body.collision, sink_body.visual = sink_geom, sink_geom
+        for s in sink_body.visual.shapes: s.color = Color.BLACK()
         world.add_connection(FixedConnection(parent=counterTop.root, child=sink_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.6, y=0, z=0.021)))
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=-0.7, z=0.025)))
 
-        # --- MODULE 1: Cabinet with swing door (60cm) ---
-        m1_l = 0.60
-        m1_x = -ct_l/2 + 0.30
-        m1_body = Body(name=PrefixedName("ct_mod1_body"))
-        m1_geom = ShapeCollection([Box(scale=Scale(m1_l, ct_d, ct_h), color=Color.GRAY())], reference_frame=m1_body)
-        m1_geom.transform_all_shapes_to_own_frame()
-        m1_body.collision, m1_body.visual = m1_geom, m1_geom
-        world.add_connection(FixedConnection(parent=counterTop.root, child=m1_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=m1_x, z=-ct_h/2)))
-        
-        # Door for Mod 1 (Hinge Right, Handle Left - same as Fridge)
+        m1_w, m2_w = 0.60, 0.55
+        m3_w = ct_l - m1_w - m2_w
+        h_thick, h_depth = 0.02, 0.04
+
+        # 1. Module 1: Cabinet (Drehtür)
+        m1_y = -ct_l/2 + m1_w/2
+        m1_anno = Cabinet.create_with_new_body_in_world(
+            world=world, name=PrefixedName("ct_mod1"),
+            world_root_T_self=ct_root_T @ HomogeneousTransformationMatrix.from_xyz_rpy(y=m1_y),
+            scale=Scale(ct_d, m1_w, ct_h), wall_thickness=0.02)
+        for s in m1_anno.root.visual.shapes: s.color = Color.GRAY()
+
         m1_door_body = Body(name=PrefixedName("ct_mod1_door_body"))
-        m1_door_geom = ShapeCollection([Box(scale=Scale(m1_l, 0.02, ct_h), color=Color.WHITE())], reference_frame=m1_door_body)
+        m1_door_geom = ShapeCollection([Box(scale=Scale(0.02, m1_w, ct_h), color=Color.WHITE())], reference_frame=m1_door_body)
         m1_door_geom.transform_all_shapes_to_own_frame()
         m1_door_body.collision, m1_door_body.visual = m1_door_geom, m1_door_geom
         m1_hinge = Body(name=PrefixedName("ct_mod1_hinge_body"))
-        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=m1_body, child=m1_hinge,
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-m1_l/2, y=ct_d/2, z=0),
-            axis=Vector3.Z(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=-np.pi/2), upper=DerivativeMap[float](position=0.0))))
-        world.add_connection(FixedConnection(parent=m1_hinge, child=m1_door_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=m1_l/2)))
+        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=m1_anno.root, child=m1_hinge,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ct_d/2, y=m1_w/2, z=0),
+            axis=Vector3.Z(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi/2))))
+        world.add_connection(FixedConnection(parent=m1_hinge, child=m1_door_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=-m1_w/2)))
         
-        # Horizontal Handle for Mod 1
-        m1_ha_body = Body(name=PrefixedName("ct_mod1_handle_body"))
-        m1_ha_geom = ShapeCollection([Box(scale=Scale(m1_l - 0.06, 0.02, 0.03), color=Color.GRAY())], reference_frame=m1_ha_body)
-        m1_ha_geom.transform_all_shapes_to_own_frame()
-        m1_ha_body.collision, m1_ha_body.visual = m1_ha_geom, m1_ha_geom
-        world.add_connection(FixedConnection(parent=m1_door_body, child=m1_ha_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02, z=ct_h/3 - 0.05)))
+        # Horizontal U-Handle for M1
+        ha1_body = Body(name=PrefixedName("ct_mod1_handle_body"))
+        bar1 = Box(scale=Scale(h_thick, m1_w - 0.06, h_thick), color=Color.GRAY())
+        bar1.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+        cl1 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cl1.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-(m1_w-0.06)/2 + h_thick/2)
+        cr1 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cr1.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=(m1_w-0.06)/2 - h_thick/2)
+        ha1_geom = ShapeCollection([bar1, cl1, cr1], reference_frame=ha1_body)
+        ha1_geom.transform_all_shapes_to_own_frame()
+        ha1_body.collision, ha1_body.visual = ha1_geom, ha_door_body.visual # Reuse some visual if needed
+        ha1_body.visual = ha1_geom
+        world.add_connection(FixedConnection(parent=m1_door_body, child=ha1_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=ct_h/2 - 0.05)))
+        world.add_semantic_annotation(Handle(root=ha1_body, name=PrefixedName("ct_mod1_handle")))
         world.add_semantic_annotation(Door(root=m1_door_body, name=PrefixedName("ct_mod1_door")))
 
-        # --- MODULE 2: Dishwasher (55cm) ---
-        m2_l = 0.55
-        m2_x = -ct_l/2 + 0.60 + 0.275
-        m2_body = Body(name=PrefixedName("ct_mod2_body"))
-        m2_geom = ShapeCollection([Box(scale=Scale(m2_l, ct_d, ct_h), color=Color.GRAY())], reference_frame=m2_body)
-        m2_geom.transform_all_shapes_to_own_frame()
-        m2_body.collision, m2_body.visual = m2_geom, m2_geom
-        world.add_connection(FixedConnection(parent=counterTop.root, child=m2_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=m2_x, z=-ct_h/2)))
-        
-        # Dishwasher Door (Pull down)
-        m2_door_body = Body(name=PrefixedName("ct_dw_door_body"))
-        m2_door_geom = ShapeCollection([Box(scale=Scale(m2_l, 0.02, ct_h), color=Color.WHITE())], reference_frame=m2_door_body)
-        m2_door_geom.transform_all_shapes_to_own_frame()
-        m2_door_body.collision, m2_door_body.visual = m2_door_geom, m2_door_geom
-        m2_hinge = Body(name=PrefixedName("ct_dw_hinge_body"))
-        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=m2_body, child=m2_hinge,
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=ct_d/2, z=-ct_h/2),
-            axis=Vector3.X(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi/2))))
-        world.add_connection(FixedConnection(parent=m2_hinge, child=m2_door_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=ct_h/2)))
-        
-        # Dishwasher Handle
-        m2_ha_body = Body(name=PrefixedName("ct_dw_handle_body"))
-        m2_ha_geom = ShapeCollection([Box(scale=Scale(m2_l - 0.06, 0.02, 0.03), color=Color.GRAY())], reference_frame=m2_ha_body)
-        m2_ha_geom.transform_all_shapes_to_own_frame()
-        m2_ha_body.collision, m2_ha_body.visual = m2_ha_geom, m2_ha_geom
-        world.add_connection(FixedConnection(parent=m2_door_body, child=m2_ha_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02, z=ct_h/2 - 0.03)))
-        world.add_semantic_annotation(Handle(root=m2_ha_body, name=PrefixedName("ct_dw_handle")))
-        world.add_semantic_annotation(Door(root=m2_door_body, name=PrefixedName("ct_dishwasher_door")))
+        # 2. Module 2: Dishwasher (Klapptür)
+        m2_y = -ct_l/2 + m1_w + m2_w/2
+        m2_anno = Cabinet.create_with_new_body_in_world(
+            world=world, name=PrefixedName("ct_dishwasher"),
+            world_root_T_self=ct_root_T @ HomogeneousTransformationMatrix.from_xyz_rpy(y=m2_y),
+            scale=Scale(ct_d, m2_w, ct_h), wall_thickness=0.02)
+        for s in m2_anno.root.visual.shapes: s.color = Color.GRAY()
 
-        # --- MODULE 3: 3 Drawers (89.4cm) ---
-        m3_l = ct_l - m1_l - m2_l
-        m3_x = ct_l/2 - m3_l/2
+        dw_door_body = Body(name=PrefixedName("ct_dw_door_body"))
+        dw_door_geom = ShapeCollection([Box(scale=Scale(0.02, m2_w, ct_h), color=Color.WHITE())], reference_frame=dw_door_body)
+        dw_door_geom.transform_all_shapes_to_own_frame()
+        dw_door_body.collision, dw_door_body.visual = dw_door_geom, dw_door_geom
+        dw_hinge = Body(name=PrefixedName("ct_dw_hinge_body"))
+        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=m2_anno.root, child=dw_hinge,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ct_d/2, z=-ct_h/2),
+            axis=Vector3.Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi/2))))
+        world.add_connection(FixedConnection(parent=dw_hinge, child=dw_door_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=ct_h/2)))
+        
+        # Horizontal U-Handle for DW (at Top)
+        ha2_body = Body(name=PrefixedName("ct_dw_handle_body"))
+        bar2 = Box(scale=Scale(h_thick, m2_w - 0.06, h_thick), color=Color.GRAY())
+        bar2.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+        cl2 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cl2.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-(m2_w-0.06)/2 + h_thick/2)
+        cr2 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cr2.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=(m2_w-0.06)/2 - h_thick/2)
+        ha2_geom = ShapeCollection([bar2, cl2, cr2], reference_frame=ha2_body)
+        ha2_geom.transform_all_shapes_to_own_frame()
+        ha2_body.collision, ha2_body.visual = ha2_geom, ha2_geom
+        world.add_connection(FixedConnection(parent=dw_door_body, child=ha2_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=ct_h/2 - 0.03)))
+        world.add_semantic_annotation(Handle(root=ha2_body, name=PrefixedName("ct_dw_handle")))
+        world.add_semantic_annotation(Door(root=dw_door_body, name=PrefixedName("ct_dishwasher_door")))
+
+        # 3. Module 3: Drawers (40/40/20)
+        m3_y = ct_l/2 - m3_w/2
         m3_body = Body(name=PrefixedName("ct_mod3_body"))
-        m3_geom = ShapeCollection([Box(scale=Scale(m3_l, ct_d, ct_h), color=Color.GRAY())], reference_frame=m3_body)
+        m3_geom = ShapeCollection([Box(scale=Scale(ct_d, m3_w, ct_h), color=Color.GRAY())], reference_frame=m3_body)
         m3_geom.transform_all_shapes_to_own_frame()
         m3_body.collision, m3_body.visual = m3_geom, m3_geom
-        world.add_connection(FixedConnection(parent=counterTop.root, child=m3_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=m3_x, z=-ct_h/2)))
+        world.add_connection(FixedConnection(parent=counterTop.root, child=m3_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=m3_y, z=0)))
         
-        # Drawer Heights: 40%, 40%, 20%
         h_bot, h_mid, h_top = ct_h * 0.4, ct_h * 0.4, ct_h * 0.2
         z_pos = [-ct_h/2 + h_bot/2, -ct_h/2 + h_bot + h_mid/2, ct_h/2 - h_top/2]
         h_list = [h_bot, h_mid, h_top]
         for i, (h, z) in enumerate(zip(h_list, z_pos)):
             dr_body = Body(name=PrefixedName(f"ct_drawer_{i}_body"))
-            dr_front = ShapeCollection([Box(scale=Scale(m3_l, 0.02, h), color=Color.WHITE())], reference_frame=dr_body)
+            dr_front = ShapeCollection([Box(scale=Scale(0.02, m3_w, h), color=Color.WHITE())], reference_frame=dr_body)
             dr_front.transform_all_shapes_to_own_frame()
             dr_body.collision, dr_body.visual = dr_front, dr_front
             world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=m3_body, child=dr_body,
-                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=ct_d/2, z=z),
-                axis=Vector3.Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
+                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ct_d/2, z=z),
+                axis=Vector3.NEGATIVE_X(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
             
-            # Drawer Handles
-            ha_body = Body(name=PrefixedName(f"ct_drawer_{i}_handle_body"))
-            ha_geom = ShapeCollection([Box(scale=Scale(m3_l - 0.06, 0.02, 0.03), color=Color.GRAY())], reference_frame=ha_body)
-            ha_geom.transform_all_shapes_to_own_frame()
-            ha_body.collision, ha_body.visual = ha_geom, ha_geom
-            world.add_connection(FixedConnection(parent=dr_body, child=ha_body, 
-                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02, z=h/2 - 0.03)))
+            # U-Handle for Drawers
+            ha3_body = Body(name=PrefixedName(f"ct_drawer_{i}_handle_body"))
+            h_bar_w3 = m3_w - 0.06
+            bar3 = Box(scale=Scale(h_thick, h_bar_w3, h_thick), color=Color.GRAY())
+            bar3.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+            cl3 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+            cl3.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-h_bar_w3/2 + h_thick/2)
+            cr3 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+            cr3.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=h_bar_w3/2 - h_thick/2)
+            ha3_geom = ShapeCollection([bar3, cl3, cr3], reference_frame=ha3_body)
+            ha3_geom.transform_all_shapes_to_own_frame()
+            ha3_body.collision, ha3_body.visual = ha3_geom, ha3_geom
+            world.add_connection(FixedConnection(parent=dr_body, child=ha3_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=h/2 - 0.03)))
+            world.add_semantic_annotation(Handle(root=ha3_body, name=PrefixedName(f"ct_drawer_{i}_handle")))
             world.add_semantic_annotation(Drawer(root=dr_body, name=PrefixedName(f"ct_drawer_{i}")))
-        # --- OVEN TOWER (Modular Center + 2 Side Drawers) ---
-        ot_l, ot_d, ot_h = 1.20, 0.658, 1.49
-        ot_color = Color.GRAY()
-        ot_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.481, y=-2.181, z=ot_h)
+        # --- OVEN TOWER (Final Corrected Framework Implementation) ---
+        ot_w, ot_d, ot_h = 1.20, 0.658, 1.49
+        ot_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.51, y=-2.181, z=ot_h/2, yaw=-np.pi/2)
         
         ovenTower = Cupboard.create_with_new_body_in_world(
             world=world, name=PrefixedName("oven_tower"),
-            world_root_T_self=ot_root_T, scale=Scale(ot_l, ot_d, 0.04))
-        for s in ovenTower.bodies[0].visual.shapes: s.color = ot_color
+            world_root_T_self=ot_root_T, scale=Scale(ot_d, ot_w, ot_h), wall_thickness=0.02)
+        for s in ovenTower.root.visual.shapes: s.color = Color.GRAY()
 
-        m_center_l = 0.60
-        m_side_l = (ot_l - m_center_l) / 2
-        h_cabinet = 0.60
-        h_drawer = 0.15
+        m_center_w, m_side_w = 0.60, 0.30
+        h_cabinet, h_drawer = 0.60, 0.15
         h_oven = ot_h - h_cabinet - h_drawer
+        h_thick, h_depth = 0.02, 0.04
 
-        # 1. Side Modules (Full-height Drawers)
+        # 2.1 Side Drawers (Left & Right)
         for side in [-1, 1]:
             s_n = "left" if side == -1 else "right"
-            s_body = Body(name=PrefixedName(f"ot_side_{s_n}_body"))
-            s_geom = ShapeCollection([Box(scale=Scale(m_side_l, ot_d, ot_h), color=Color.GRAY())], reference_frame=s_body)
-            s_geom.transform_all_shapes_to_own_frame()
-            s_body.collision, s_body.visual = s_geom, s_geom
-            world.add_connection(FixedConnection(parent=ovenTower.root, child=s_body, 
-                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(m_center_l/2 + m_side_l/2), z=-ot_h/2)))
+            dr_anno = Drawer.create_with_new_body_in_world(
+                world=world, name=PrefixedName(f"ot_side_drawer_{s_n}"),
+                world_root_T_self=ot_root_T @ HomogeneousTransformationMatrix.from_xyz_rpy(y=side*(m_center_w/2 + m_side_w/2)),
+                scale=Scale(ot_d, m_side_w, ot_h), active_axis=Vector3.NEGATIVE_X())
+            for s in dr_anno.root.visual.shapes: s.color = Color.WHITE()
             
-            # Pull-out Drawer Front
-            dr_body = Body(name=PrefixedName(f"ot_side_drawer_{s_n}_body"))
-            dr_front = ShapeCollection([Box(scale=Scale(m_side_l, 0.02, ot_h), color=Color.WHITE())], reference_frame=dr_body)
-            dr_front.transform_all_shapes_to_own_frame()
-            dr_body.collision, dr_body.visual = dr_front, dr_front
-            world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=s_body, child=dr_body,
-                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=ot_d/2),
-                axis=Vector3.Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
-            
-            # Vertical Handle (4cm margin top/bottom)
+            # Vertical U-Handle
             ha_body = Body(name=PrefixedName(f"ot_side_handle_{s_n}_body"))
-            ha_geom = ShapeCollection([Box(scale=Scale(0.04, 0.02, ot_h - 0.08), color=Color.GRAY())], reference_frame=ha_body)
+            h_bar_l = ot_h - 0.08
+            bar = Box(scale=Scale(h_thick, h_thick, h_bar_l), color=Color.GRAY())
+            bar.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+            ct = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+            ct.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, z=h_bar_l/2 - h_thick/2)
+            cb = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+            cb.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, z=-h_bar_l/2 + h_thick/2)
+            ha_geom = ShapeCollection([bar, ct, cb], reference_frame=ha_body)
             ha_geom.transform_all_shapes_to_own_frame()
             ha_body.collision, ha_body.visual = ha_geom, ha_geom
-            world.add_connection(FixedConnection(parent=dr_body, child=ha_body, 
-                parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02)))
-            world.add_semantic_annotation(Drawer(root=dr_body, name=PrefixedName(f"ot_side_drawer_{s_n}")))
+            world.add_connection(FixedConnection(parent=dr_anno.root, child=ha_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ot_d/2)))
+            world.add_semantic_annotation(Handle(root=ha_body, name=PrefixedName(f"ot_side_handle_{s_n}")))
 
-        # 2. Center Section (Oven + Drawer + Cabinet)
-        c_body = Body(name=PrefixedName("ot_center_body"))
-        c_geom = ShapeCollection([Box(scale=Scale(m_center_l, ot_d, ot_h), color=Color.GRAY())], reference_frame=c_body)
-        c_geom.transform_all_shapes_to_own_frame()
-        c_body.collision, c_body.visual = c_geom, c_geom
-        world.add_connection(FixedConnection(parent=ovenTower.root, child=c_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-ot_h/2)))
-
-        # 2.1 Center Cabinet (Bottom)
+        # 2.2 Center Section: Bottom Cabinet
         cab_body = Body(name=PrefixedName("ot_cab_body"))
-        cab_front = ShapeCollection([Box(scale=Scale(m_center_l, 0.02, h_cabinet), color=Color.WHITE())], reference_frame=cab_body)
+        cab_front = ShapeCollection([Box(scale=Scale(0.02, m_center_w, h_cabinet), color=Color.WHITE())], reference_frame=cab_body)
         cab_front.transform_all_shapes_to_own_frame()
         cab_body.collision, cab_body.visual = cab_front, cab_front
         cab_hinge = Body(name=PrefixedName("ot_cab_hinge_body"))
-        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=c_body, child=cab_hinge,
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=m_center_l/2, y=ot_d/2, z=-ot_h/2 + h_cabinet/2),
-            axis=Vector3.Z(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=-np.pi/2), upper=DerivativeMap[float](position=0.0))))
-        world.add_connection(FixedConnection(parent=cab_hinge, child=cab_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-m_center_l/2)))
-        # Horizontal Handle for Cabinet
-        ha_body = Body(name=PrefixedName("ot_cab_handle_body"))
-        ha_geom = ShapeCollection([Box(scale=Scale(m_center_l - 0.06, 0.02, 0.03), color=Color.GRAY())], reference_frame=ha_body)
-        ha_geom.transform_all_shapes_to_own_frame()
-        ha_body.collision, ha_body.visual = ha_geom, ha_geom
-        world.add_connection(FixedConnection(parent=cab_body, child=ha_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02, z=h_cabinet/2 - 0.05)))
+        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=ovenTower.root, child=cab_hinge,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ot_d/2, y=m_center_w/2, z=-ot_h/2 + h_cabinet/2),
+            axis=Vector3.Z(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi/2))))
+        world.add_connection(FixedConnection(parent=cab_hinge, child=cab_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=-m_center_w/2)))
+        
+        # Horizontal U-Handle for Cabinet
+        ha_cab_body = Body(name=PrefixedName("ot_cab_handle_body"))
+        h_bar_w = m_center_w - 0.06
+        bar = Box(scale=Scale(h_thick, h_bar_w, h_thick), color=Color.GRAY())
+        bar.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+        cl = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cl.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-h_bar_w/2 + h_thick/2)
+        cr = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cr.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=h_bar_w/2 - h_thick/2)
+        ha_cab_geom = ShapeCollection([bar, cl, cr], reference_frame=ha_cab_body)
+        ha_cab_geom.transform_all_shapes_to_own_frame()
+        ha_cab_body.collision, ha_cab_body.visual = ha_cab_geom, ha_cab_geom
+        world.add_connection(FixedConnection(parent=cab_body, child=ha_cab_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=h_cabinet/2 - 0.05)))
+        world.add_semantic_annotation(Handle(root=ha_cab_body, name=PrefixedName("ot_cab_handle")))
         world.add_semantic_annotation(Door(root=cab_body, name=PrefixedName("ot_cab_door")))
 
-        # 2.2 Center Drawer (Middle)
+        # 2.3 Center Section: Middle Drawer
         cdr_body = Body(name=PrefixedName("ot_center_drawer_body"))
-        cdr_front = ShapeCollection([Box(scale=Scale(m_center_l, 0.02, h_drawer), color=Color.WHITE())], reference_frame=cdr_body)
+        cdr_front = ShapeCollection([Box(scale=Scale(0.02, m_center_w, h_drawer), color=Color.WHITE())], reference_frame=cdr_body)
         cdr_front.transform_all_shapes_to_own_frame()
         cdr_body.collision, cdr_body.visual = cdr_front, cdr_front
-        world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=c_body, child=cdr_body,
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=ot_d/2, z=-ot_h/2 + h_cabinet + h_drawer/2),
-            axis=Vector3.Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
-        # Handle for Drawer
-        ha_body = Body(name=PrefixedName("ot_center_drawer_handle_body"))
-        ha_geom = ShapeCollection([Box(scale=Scale(m_center_l - 0.06, 0.02, 0.03), color=Color.GRAY())], reference_frame=ha_body)
-        ha_geom.transform_all_shapes_to_own_frame()
-        ha_body.collision, ha_body.visual = ha_geom, ha_geom
-        world.add_connection(FixedConnection(parent=cdr_body, child=ha_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02, z=h_drawer/2 - 0.03)))
+        world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=ovenTower.root, child=cdr_body,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ot_d/2, z=-ot_h/2 + h_cabinet + h_drawer/2),
+            axis=Vector3.NEGATIVE_X(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
+        
+        # Horizontal U-Handle for Drawer
+        ha_cdr_body = Body(name=PrefixedName("ot_center_drawer_handle_body"))
+        bar_cdr = Box(scale=Scale(h_thick, h_bar_w, h_thick), color=Color.GRAY())
+        bar_cdr.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+        cl2 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cl2.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-h_bar_w/2 + h_thick/2)
+        cr2 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cr2.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=h_bar_w/2 - h_thick/2)
+        ha_cdr_geom = ShapeCollection([bar_cdr, cl2, cr2], reference_frame=ha_cdr_body)
+        ha_cdr_geom.transform_all_shapes_to_own_frame()
+        ha_cdr_body.collision, ha_cdr_body.visual = ha_cdr_geom, ha_cdr_geom
+        world.add_connection(FixedConnection(parent=cdr_body, child=ha_cdr_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=h_drawer/2 - 0.03)))
+        world.add_semantic_annotation(Handle(root=ha_cdr_body, name=PrefixedName("ot_center_drawer_handle")))
         world.add_semantic_annotation(Drawer(root=cdr_body, name=PrefixedName("ot_center_drawer")))
 
-        # 2.3 Oven (Top)
+        # 2.4 Center Section: Oven (Top)
         oven_door_body = Body(name=PrefixedName("ot_oven_door_body"))
-        
-        # White door frame
-        oven_frame_geom = Box(scale=Scale(m_center_l, 0.02, h_oven), color=Color.WHITE())
-        # Black glass panel
-        oven_glass_geom = Box(scale=Scale(0.35, 0.005, 0.35), color=Color.BLACK())
-        oven_glass_geom.origin = HomogeneousTransformationMatrix.from_xyz_rpy(y=0.011) # Slightly in front of white frame
-        
+        oven_frame_geom = Box(scale=Scale(0.02, m_center_w, h_oven), color=Color.WHITE())
+        oven_glass_geom = Box(scale=Scale(0.005, 0.35, 0.35), color=Color.BLACK())
+        oven_glass_geom.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.011)
         oven_door_geom = ShapeCollection([oven_frame_geom, oven_glass_geom], reference_frame=oven_door_body)
         oven_door_geom.transform_all_shapes_to_own_frame()
         oven_door_body.collision, oven_door_body.visual = oven_door_geom, oven_door_geom
-        
         oven_hinge = Body(name=PrefixedName("ot_oven_hinge_body"))
-        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=c_body, child=oven_hinge,
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=ot_d/2, z=ot_h/2 - h_oven),
-            axis=Vector3.X(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi/2))))
-        world.add_connection(FixedConnection(parent=oven_hinge, child=oven_door_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=h_oven/2)))
-        # Handle for Oven
-        ha_body = Body(name=PrefixedName("ot_oven_handle_body"))
-        ha_geom = ShapeCollection([Box(scale=Scale(m_center_l - 0.06, 0.02, 0.03), color=Color.GRAY())], reference_frame=ha_body)
-        ha_geom.transform_all_shapes_to_own_frame()
-        ha_body.collision, ha_body.visual = ha_geom, ha_geom
-        world.add_connection(FixedConnection(parent=oven_door_body, child=ha_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=0.02, z=h_oven/2 - 0.05)))
+        world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=ovenTower.root, child=oven_hinge,
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-ot_d/2, z=ot_h/2 - h_oven),
+            axis=Vector3.Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi/2))))
+        world.add_connection(FixedConnection(parent=oven_hinge, child=oven_door_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=h_oven/2)))
+        
+        # Horizontal U-Handle for Oven
+        ha_ov_body = Body(name=PrefixedName("ot_oven_handle_body"))
+        bar_ov = Box(scale=Scale(h_thick, h_bar_w, h_thick), color=Color.GRAY())
+        bar_ov.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+        cl3 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cl3.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-h_bar_w/2 + h_thick/2)
+        cr3 = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+        cr3.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=h_bar_w/2 - h_thick/2)
+        ha_ov_geom = ShapeCollection([bar_ov, cl3, cr3], reference_frame=ha_ov_body)
+        ha_ov_geom.transform_all_shapes_to_own_frame()
+        ha_ov_body.collision, ha_ov_body.visual = ha_ov_geom, ha_ov_geom
+        world.add_connection(FixedConnection(parent=oven_door_body, child=ha_ov_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=h_oven/2 - 0.05)))
+        world.add_semantic_annotation(Handle(root=ha_ov_body, name=PrefixedName("ot_oven_handle")))
         world.add_semantic_annotation(Door(root=oven_door_body, name=PrefixedName("ot_oven_door")))
 
 
-        # --- REFINED SIDEBOARD / KITCHEN ISLAND (2.45 x 0.796 x 0.845) ---
+        # --- SIDEBOARD / KITCHEN ISLAND (Final Corrected Framework Version) ---
         sb_l, sb_w, sb_h = 2.45, 0.796, 0.845
         sb_thick = 0.04
-        sb_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.545, y=0.426, z=sb_h)
+        # Position z=sb_h/2, yaw=-np.pi/2. Moved y=0.2 to avoid sofa intersection
+        # Local -X is now facing into the room (+Y in world)
+        sb_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.545, y=0.2, z=sb_h/2, yaw=np.pi/2)
         
+        # 1. Top Plate (Root)
         sideboard = Table.create_with_new_body_in_world(
             world=world, name=PrefixedName("sideboard"),
-            world_root_T_self=sb_root_T, scale=Scale(sb_l, sb_w, sb_thick))
-        for s in sideboard.bodies[0].visual.shapes: s.color = Color.WHITE()
+            world_root_T_self=sb_root_T @ HomogeneousTransformationMatrix.from_xyz_rpy(z=sb_h/2 - sb_thick/2), 
+            scale=Scale(sb_w, sb_l, sb_thick))
+        for s in sideboard.root.visual.shapes: s.color = Color.WHITE()
 
-        # Main Body (Static Frame)
-        sb_body = Body(name=PrefixedName("sb_body"))
-        sb_geom = ShapeCollection([Box(scale=Scale(sb_l, sb_w, sb_h), color=Color.WHITE())], reference_frame=sb_body)
-        sb_geom.transform_all_shapes_to_own_frame()
-        sb_body.collision, sb_body.visual = sb_geom, sb_geom
-        world.add_connection(FixedConnection(parent=sideboard.root, child=sb_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(z=-sb_h/2)))
+        # 2. Main Body (Hollow Cabinet, Open towards local -X)
+        sb_anno = Cabinet.create_with_new_body_in_world(
+            world=world, name=PrefixedName("sb_main_body"),
+            world_root_T_self=sb_root_T, scale=Scale(sb_w, sb_l, sb_h), wall_thickness=0.02)
+        for s in sb_anno.root.visual.shapes: s.color = Color.WHITE()
 
-        # Cooktop (Ceran-Feld) on the right side
-        cooktop_body = Body(name=PrefixedName("sb_cooktop_body"))
-        cooktop_geom = ShapeCollection([Box(scale=Scale(0.6, 0.5, 0.005), color=Color.BLACK())], reference_frame=cooktop_body)
-        cooktop_geom.transform_all_shapes_to_own_frame()
-        cooktop_body.collision, cooktop_body.visual = cooktop_geom, cooktop_geom
-        world.add_connection(FixedConnection(parent=sideboard.root, child=cooktop_body, 
-            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=0.7, z=sb_thick/2 + 0.001)))
+        # 3. Cooktop (Ceran-Feld) on the Top Plate (on the right side in world coordinates)
+        ct_body = Body(name=PrefixedName("sb_cooktop_body"))
+        ct_geom = ShapeCollection([Box(scale=Scale(0.5, 0.6, 0.005), color=Color.BLACK())], reference_frame=ct_body)
+        ct_geom.transform_all_shapes_to_own_frame()
+        ct_body.collision, ct_body.visual = ct_geom, ct_geom
+        # Position at the 'right' end of sideboard (local +Y)
+        world.add_connection(FixedConnection(parent=sideboard.root, child=ct_body, 
+            parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=-0.7, z=sb_thick/2 + 0.001)))
 
-        # Drawer Layout: 3 Columns (30%, 40%, 30%), 2 Rows
-        w_outer = sb_l * 0.3
-        w_mid = sb_l * 0.4
+        # 4. Drawer Layout (3x2 Grid on local -X face)
+        w_outer, w_mid = sb_l * 0.3, sb_l * 0.4
         widths = [w_outer, w_mid, w_outer]
-        x_offsets = [-sb_l/2 + w_outer/2, 0, sb_l/2 - w_outer/2]
+        y_offs = [-sb_l/2 + w_outer/2, 0, sb_l/2 - w_outer/2]
+        dr_h = (sb_h - 0.15) / 2
+        z_offs = [-sb_h/2 + 0.05 + dr_h/2, -sb_h/2 + 0.05 + 3*dr_h/2]
+        h_thick, h_depth = 0.02, 0.04
         
-        # Drawers start 10cm below top
-        dr_area_h = sb_h - 0.15 # 10cm offset + 5cm base
-        dr_h = dr_area_h / 2
-        z_offsets = [-sb_h/2 + 0.05 + dr_h/2, -sb_h/2 + 0.05 + 3*dr_h/2]
-        
-        for col_idx, (w, x_off) in enumerate(zip(widths, x_offsets)):
-            for row_idx, z_off in enumerate(z_offsets):
-                dr_id = f"sb_drawer_{col_idx}_{row_idx}"
+        for c_idx, (w, y_off) in enumerate(zip(widths, y_offs)):
+            for r_idx, z_off in enumerate(z_offs):
+                dr_id = f"sb_drawer_{c_idx}_{r_idx}"
                 dr_body = Body(name=PrefixedName(f"{dr_id}_body"))
-                dr_front = ShapeCollection([Box(scale=Scale(w-0.01, 0.02, dr_h-0.01), color=Color.WHITE())], reference_frame=dr_body)
+                dr_front = ShapeCollection([Box(scale=Scale(0.02, w-0.01, dr_h-0.01), color=Color.WHITE())], reference_frame=dr_body)
                 dr_front.transform_all_shapes_to_own_frame()
                 dr_body.collision, dr_body.visual = dr_front, dr_front
                 
-                # Drawers face -y (away from sofa)
-                world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=sb_body, child=dr_body,
-                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=x_off, y=-sb_w/2, z=z_off),
-                    axis=Vector3.NEGATIVE_Y(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
+                # Drawers face local -x
+                world.add_connection(PrismaticConnection.create_with_dofs(world=world, parent=sb_anno.root, child=dr_body,
+                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-sb_w/2, y=y_off, z=z_off),
+                    axis=Vector3.NEGATIVE_X(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=0.4))))
                 
-                # Handles
+                # Horizontal U-Handle
                 ha_body = Body(name=PrefixedName(f"{dr_id}_handle_body"))
-                ha_geom = ShapeCollection([Box(scale=Scale(w - 0.1, 0.02, 0.03), color=Color.GRAY())], reference_frame=ha_body)
+                h_bar_w = w - 0.1
+                bar = Box(scale=Scale(h_thick, h_bar_w, h_thick), color=Color.GRAY())
+                bar.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth)
+                cl = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+                cl.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=-h_bar_w/2 + h_thick/2)
+                cr = Box(scale=Scale(h_depth, h_thick, h_thick), color=Color.GRAY())
+                cr.origin = HomogeneousTransformationMatrix.from_xyz_rpy(x=-h_depth/2, y=h_bar_w/2 - h_thick/2)
+                ha_geom = ShapeCollection([bar, cl, cr], reference_frame=ha_body)
                 ha_geom.transform_all_shapes_to_own_frame()
                 ha_body.collision, ha_body.visual = ha_geom, ha_geom
                 world.add_connection(FixedConnection(parent=dr_body, child=ha_body, 
-                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=-0.02, z=dr_h/2 - 0.05)))
+                    parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.02, z=dr_h/2 - 0.05)))
+                world.add_semantic_annotation(Handle(root=ha_body, name=PrefixedName(f"{dr_id}_handle")))
                 world.add_semantic_annotation(Drawer(root=dr_body, name=PrefixedName(dr_id)))
 
         sofa = Sofa.create_with_new_body_in_world(
