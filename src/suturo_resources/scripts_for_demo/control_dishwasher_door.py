@@ -26,13 +26,23 @@ def run_showcase():
     world = load_environment()
     viz = VizMarkerPublisher(_world=world, node=node)
     viz.with_tf_publisher()
+    
     door = next((d for d in world.get_semantic_annotations_by_type(Door) if d.name.name == "ct_dishwasher_door"), None)
-    hinge = door.root.parent_connection
+    
+    # The door root is dw_door_body. Its parent connection is Fixed (to hinge_body).
+    # We need to find the RevoluteConnection which is the parent of the hinge_body.
+    fixed_conn = door.root.parent_connection
+    hinge_body = fixed_conn.parent
+    revolute_conn = hinge_body.parent_connection
+    
     print("Opening dishwasher...")
-    hinge.position = np.pi/2
+    revolute_conn.position = np.pi/2
     viz.notify()
     time.sleep(2.0)
-    hinge.position = 0.0
+    
+    revolute_conn.position = 0.0
     viz.notify()
     rclpy.shutdown()
-if __name__ == '__main__': run_showcase()
+
+if __name__ == '__main__': 
+    run_showcase()

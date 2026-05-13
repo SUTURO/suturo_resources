@@ -15,30 +15,30 @@ import time
 import numpy as np
 from semantic_digital_twin.world import World
 from semantic_digital_twin.datastructures.prefixed_name import PrefixedName
-from semantic_digital_twin.semantic_annotations.semantic_annotations import Door, Drawer
-from semantic_digital_twin.world_description.connections import RevoluteConnection, PrismaticConnection, FixedConnection
+from semantic_digital_twin.semantic_annotations.semantic_annotations import Drawer
 from suturo_resources.suturo_map import load_environment
 from semantic_digital_twin.adapters.ros.visualization.viz_marker import VizMarkerPublisher
 
 def run_showcase():
     rclpy.init()
-    node = rclpy.create_node('showcase_sb_drawer')
+    node = rclpy.create_node('showcase_cooking_table_drawers')
     world = load_environment()
     viz = VizMarkerPublisher(_world=world, node=node)
     viz.with_tf_publisher()
     
-    # Get all sideboard drawers
-    drawers = [d for d in world.get_semantic_annotations_by_type(Drawer) if d.name.name.startswith("sb_drawer")]
+    # Get all Cooking Table drawers
+    drawers = [d for d in world.get_semantic_annotations_by_type(Drawer) if d.name.name.startswith("cooking_drawer_")]
     
-    print(f"Opening {len(drawers)} sideboard drawers...")
+    print(f"Opening {len(drawers)} Cooking Table drawers...")
     for drawer in drawers:
+        # Use the parent_connection property directly on the drawer root body
         slider = drawer.root.parent_connection
         slider.position = 0.4
     
     viz.notify()
-    time.sleep(5.0)
+    time.sleep(3.0)
     
-    print("Closing sideboard drawers...")
+    print("Closing Cooking Table drawers...")
     for drawer in drawers:
         slider = drawer.root.parent_connection
         slider.position = 0.0
