@@ -245,7 +245,7 @@ def build_environment_furniture(world: World):
         hinge_body = Body(name=PrefixedName("fridge_hinge_body"))
         world.add_connection(RevoluteConnection.create_with_dofs(world=world, parent=refrigerator.root, child=hinge_body, 
             parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-fridge_l/2, y=-fridge_w/2, z=fridge_h/2 - door_h/2), 
-            axis=Vector3.Z(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=-np.pi/2), upper=DerivativeMap[float](position=0.0))))
+            axis=Vector3.Z(), dof_limits=DegreeOfFreedomLimits(lower=DerivativeMap[float](position=0.0), upper=DerivativeMap[float](position=np.pi / 2))))
         world.add_connection(FixedConnection(parent=hinge_body, child=door_body, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(y=fridge_w/2)))
         world.add_semantic_annotation(fridge_door)
 
@@ -307,7 +307,7 @@ def build_environment_furniture(world: World):
             parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=-0.26, z=drawer_h/2 - 0.03)))
         world.add_semantic_annotation(Handle(root=ha_dr_body, name=PrefixedName("fridge_drawer_handle")))
 
-        # --- KITCHEN COUNTER (Final Corrected Framework Implementation) ---
+        # --- KITCHEN COUNTER  ---
         ct_l, ct_d, ct_h = 2.044, 0.658, 0.6
         ct_root_T = root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.887, y=-2.181, z=ct_h/2, yaw=-np.pi/2)
         
@@ -318,7 +318,7 @@ def build_environment_furniture(world: World):
             scale=Scale(ct_d, ct_l, 0.04))
         for s in counterTop.root.visual.shapes: s.color = Color.BEIGE()
 
-        # 0. Sink (Waschbecken)
+        # 0. Sink
         sink_body = Body(name=PrefixedName("sink_body"))
         sink_geom = ShapeCollection([Box(scale=Scale(0.4, 0.6, 0.005), color=Color.BLACK())], reference_frame=sink_body)
         sink_geom.transform_all_shapes_to_own_frame()
@@ -705,6 +705,7 @@ def build_environment_furniture(world: World):
             world.add_connection(FixedConnection(parent=coffeeTable.root, child=long_wall_body, 
                 parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(ct_l/2 - ct_thick/2), y=ct_w/2 - wall_len/2, z=-ct_h/2)))
 
+        # --- Cupboard (tall cabinet with doors) ---
         cupboard_scale = Scale(0.43, 0.80, 2.02)
 
         cupboard = Cupboard.create_with_new_body_in_world(
@@ -841,7 +842,6 @@ def build_environment_furniture(world: World):
         )
         world.add_connection(door_left_C_handle_left)
         world.add_semantic_annotation(handle_left)
-        cupboard.add_door(door_left)
 
         # Right Door (Closed via Hinge)
         hinge_right_body = Body(name=PrefixedName("cupboard_hinge_right_body"))
@@ -895,7 +895,6 @@ def build_environment_furniture(world: World):
         )
         world.add_connection(door_right_C_handle_right)
         world.add_semantic_annotation(handle_right)
-        cupboard.add_door(door_right)
 
         # Detailed White Desk Construction
         desk_l, desk_w, desk_h = 0.60, 1.20, 0.75
@@ -932,7 +931,7 @@ def build_environment_furniture(world: World):
         # --- MODULAR COOKING TABLE --- 
         ct_l, ct_d, ct_h, ct_thick = 1.75, 0.64, 0.71, 0.04
         # 1. Top Layer (The Worktop)
-        cooking_table = Table.create_with_new_body_in_world(world=world, name=PrefixedName("cooking_table"), world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.325, y=5.99, z=ct_h), scale=Scale(ct_l, ct_d, ct_thick))
+        cooking_table = Table.create_with_new_body_in_world(world=world, name=PrefixedName("cooking_table"), world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.28, y=5.99, z=ct_h), scale=Scale(ct_l, ct_d, ct_thick))
         for s in cooking_table.bodies[0].visual.shapes: s.color = Color.BEIGE()
         
         # Ceran Field
@@ -958,13 +957,13 @@ def build_environment_furniture(world: World):
             mod_cupboard = Cupboard.create_with_new_body_in_world(name=PrefixedName(f"cooking_mod_{s_n}"), world=world, scale=Scale(mod_w, ct_d, ct_h - 2*ct_thick))
             for s in mod_cupboard.bodies[0].visual.shapes: s.color = Color.BEIGE()
             world.remove_connection(mod_cupboard.root.parent_connection)
-            world.add_connection(FixedConnection(parent=cooking_table.root, child=mod_cupboard.root, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(0.3+mod_w/2), z=-ct_h/2 + ct_thick, yaw=1.5708)))
+            world.add_connection(FixedConnection(parent=cooking_table.root, child=mod_cupboard.root, parent_T_connection_expression=HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(0.265+mod_w/2), z=-ct_h/2 + ct_thick, yaw=1.5708)))
             
             # Drawer in Module
             drawer = Drawer.create_with_new_body_in_world(
                 world=world, name=PrefixedName(f"cooking_drawer_{s_n}"),
-                world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.325, y=5.99, z=ct_h) @ HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(0.3+mod_w/2), z=-ct_h/2 + ct_thick, yaw=1.5708) @ HomogeneousTransformationMatrix.from_xyz_rpy(y=0.2),
-                scale=Scale(mod_w-0.04, ct_d-0.05, 0.15),
+                world_root_T_self=root_transformation @ HomogeneousTransformationMatrix.from_xyz_rpy(x=1.325, y=5.99, z=ct_h) @ HomogeneousTransformationMatrix.from_xyz_rpy(x=side*(0.265+mod_w/2), z=-ct_h/2 + ct_thick, yaw=1.5708) @ HomogeneousTransformationMatrix.from_xyz_rpy(y=0.2),
+                scale=Scale(mod_w-0.04, ct_d-0.02, 0.18),
                 active_axis=Vector3.NEGATIVE_X(),
                 connection_limits=dr_limits)
             for s in drawer.root.visual.shapes: s.color = Color.BEIGE()
@@ -988,7 +987,7 @@ def build_environment_furniture(world: World):
             
             # Shelf below Drawer
             sh_body = Body(name=PrefixedName(f"cooking_shelf_{s_n}_body"))
-            sh_geom = ShapeCollection([Box(scale=Scale(mod_w-0.04, ct_d-0.05, 0.02), color=Color.WHITE())], reference_frame=sh_body)
+            sh_geom = ShapeCollection([Box(scale=Scale(mod_w-0.04, ct_d-0.02, 0.02), color=Color.WHITE())], reference_frame=sh_body)
             sh_geom.transform_all_shapes_to_own_frame()
             sh_body.collision, sh_body.visual = sh_geom, sh_geom
             shelf = ShelfLayer(root=sh_body, name=PrefixedName(f"cooking_shelf_{s_n}"))

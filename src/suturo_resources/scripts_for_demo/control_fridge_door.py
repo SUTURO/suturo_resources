@@ -41,7 +41,7 @@ def run_showcase():
     
     if isinstance(hinge, RevoluteConnection):
         print("Step 1: Opening fridge door...")
-        hinge.position = -1.57
+        hinge.position = 1.57
         viz.notify() # Update RViz
         time.sleep(2.0)
         
