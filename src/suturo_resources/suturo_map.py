@@ -1,4 +1,3 @@
-import numpy as np
 from semantic_digital_twin.adapters.ros.visualization.viz_marker import (
     VizMarkerPublisher,
 )
@@ -15,17 +14,23 @@ from semantic_digital_twin.spatial_types.spatial_types import Vector3
 from semantic_digital_twin.world import World
 import threading
 import rclpy
+import numpy as np
 from semantic_digital_twin.datastructures.prefixed_name import PrefixedName
 from semantic_digital_twin.semantic_annotations.semantic_annotations import Room, Floor
 from semantic_digital_twin.spatial_types.spatial_types import (
     HomogeneousTransformationMatrix,
     Point3,
 )
-from semantic_digital_twin.world_description.connections import FixedConnection
+from semantic_digital_twin.spatial_types.derivatives import DerivativeMap
+from semantic_digital_twin.world_description.connections import FixedConnection, RevoluteConnection
 from semantic_digital_twin.world_description.geometry import Box, Scale, Color
 from semantic_digital_twin.world_description.geometry import Cylinder
 from semantic_digital_twin.world_description.shape_collection import ShapeCollection
 from semantic_digital_twin.world_description.world_entity import Body
+from semantic_digital_twin.spatial_types.spatial_types import Vector3
+from semantic_digital_twin.world_description.degree_of_freedom import (
+    DegreeOfFreedomLimits, DegreeOfFreedom,
+)
 
 def load_environment():
     """
@@ -182,7 +187,6 @@ def build_environment_furniture(world: World):
     Connects furniture bodies and room structures hierarchically under the main root.
     Returns the updated World object with furniture integrated.
     """
-    # all_elements_connections = []
     root = world.root
 
     root_transformation = HomogeneousTransformationMatrix.from_xyz_rpy(
@@ -1035,8 +1039,6 @@ def build_environment_furniture(world: World):
 
 def build_environment_rooms(world: World):
 
-    room_annotations = []
-
     root_transformation = HomogeneousTransformationMatrix.from_xyz_rpy(
         x=0.33, y=0.28, yaw=0.10707963267
     )
@@ -1078,7 +1080,6 @@ def build_environment_rooms(world: World):
             @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.317, y=-0.843),
         )
         kitchen = Room(floor=kitchen_floor, name=PrefixedName("kitchen"))
-        room_annotations.append(kitchen)
 
         living_room_floor = Floor.create_with_new_body_from_polytope_in_world(
             name=PrefixedName("living_room_floor"),
@@ -1088,7 +1089,6 @@ def build_environment_rooms(world: World):
             @ HomogeneousTransformationMatrix.from_xyz_rpy(x=2.317, y=2.3095),
         )
         living_room = Room(floor=living_room_floor, name=PrefixedName("living_room"))
-        room_annotations.append(living_room)
 
         bed_room_floor = Floor.create_with_new_body_from_polytope_in_world(
             name=PrefixedName("bed_room_floor"),
@@ -1098,7 +1098,6 @@ def build_environment_rooms(world: World):
             @ HomogeneousTransformationMatrix.from_xyz_rpy(x=0.96, y=4.96),
         )
         bed_room = Room(floor=bed_room_floor, name=PrefixedName("bed_room"))
-        room_annotations.append(bed_room)
 
         office_floor = Floor.create_with_new_body_from_polytope_in_world(
             name=PrefixedName("office_floor"),
@@ -1108,9 +1107,6 @@ def build_environment_rooms(world: World):
             @ HomogeneousTransformationMatrix.from_xyz_rpy(x=3.56, y=4.96),
         )
         office = Room(floor=office_floor, name=PrefixedName("office"))
-        room_annotations.append(office)
-
-        world.add_semantic_annotations(room_annotations)
 
     return world
 

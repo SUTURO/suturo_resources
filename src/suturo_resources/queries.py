@@ -1,15 +1,16 @@
 import math
 from typing import List, Union, Optional
-
-from krrood.entity_query_language.factories import variable_from, entity, flat_variable
+from krrood.entity_query_language.factories import variable_from, entity, flat_variable, in_, the, contains, variable, \
+    an
 from krrood.entity_query_language.query.query import Entity
-from krrood.utils import inheritance_path_length
+from krrood.entity_query_language.predicate import symbolic_function
+from krrood.utils import inheritance_path_length, recursive_subclasses
 from semantic_digital_twin.reasoning.predicates import (
     is_supported_by,
     compute_euclidean_distance_2d,
     is_supporting,
 )
-from semantic_digital_twin.semantic_annotations.mixins import HasSupportingSurface, IsPerceivable
+from semantic_digital_twin.semantic_annotations.mixins import HasSupportingSurface, IsPerceivable, HasRootBody
 from semantic_digital_twin.world import World
 from semantic_digital_twin.world_description.geometry import Color
 
@@ -18,8 +19,9 @@ from semantic_digital_twin.world_description.world_entity import (
     SemanticAnnotation,
 )
 
+
 def query_semantic_annotations_on_surfaces(
-    supporting_surfaces: List[SemanticAnnotation], world: World
+    supporting_surfaces: List[HasRootBody], world: World
 ) -> Union[Entity[SemanticAnnotation], SemanticAnnotation]:
     """
     Queries a list of Semantic annotations that are on top of a given list of other annotations (ex. Tables).
@@ -28,18 +30,16 @@ def query_semantic_annotations_on_surfaces(
     return: List of SemanticAnnotations that are supported by the given supporting_surfaces.
     """
     supporting_surfaces_var = variable_from(supporting_surfaces)
-    body_with_enabled_collision = variable_from(world.bodies_with_enabled_collision)
-    semantic_annotations = flat_variable(
-        body_with_enabled_collision._semantic_annotations
-    )
-    semantic_annotations_that_are_supported = entity(semantic_annotations).where(
+    bodies = variable_from(world.bodies_with_collision)
+    body = entity(bodies).where(
         is_supported_by(
-            supported_body=body_with_enabled_collision,
-            supporting_body=supporting_surfaces_var.bodies[0],
+            supported_body=bodies,
+            supporting_body=supporting_surfaces_var.root,
         )
     )
-    return semantic_annotations_that_are_supported
-
+    return entity(
+            semantic_annotation := variable(HasRootBody, domain=world.semantic_annotations)
+        ).where(semantic_annotation.root == body)
 
 def query_get_next_object_euclidean_x_y(
     main_body: Body,
@@ -124,7 +124,6 @@ def query_surface_of_most_similar_obj(
         if is_supported_by(most_similar.bodies[0], supporting_surface.bodies[0]):
             return supporting_surface
 
-
 def query_annotations_by_color(color: Color, objects: list[SemanticAnnotation]) -> List[SemanticAnnotation]:
     """
     Queries and retrieves a list of annotations from another one that match
@@ -150,5 +149,55 @@ def query_annotations_by_color(color: Color, objects: list[SemanticAnnotation]) 
             filtered_bodies.append(body)
     filtered_annotations = []
     for body in filtered_bodies:
-        filtered_annotations.append(list(body._semantic_annotations)[0])
+        world = body._world
+        filtered_annotations.extend(an(entity(
+            semantic_annotation := variable(HasRootBody, domain=world.semantic_annotations)
+        ).where(semantic_annotation.root == body)).tolist())
     return filtered_annotations
+
+
+@symbolic_function
+def class_name_in_label(cls: type, label: str) -> bool:
+    """Check if the class name is contained in the label."""
+    return cls.__name__.lower() in label.lower()
+
+
+def query_class_by_label(label: str) -> Optional[type]:
+    """
+    Finds the class whose name is contained within the given label.
+    It searches through all subclasses of IsPerceivable.
+
+    :param label: The string input from perception (e.g., "bowl_collapsable_yellowgrey").
+    :return: The matching class (e.g., Bowl) or None if no match is found.
+    """
+    semantic_class = variable_from(recursive_subclasses(IsPerceivable))
+    matching_class = entity(semantic_class).where(
+        class_name_in_label(semantic_class, label)
+    )
+    return None if matching_class.tolist() == [] else matching_class.first()
+
+
+def query_sort_by_size(annotations: List[HasRootBody], order: Optional[bool]=True) -> List[SemanticAnnotation]:
+    """
+    Sorts a list of SemanticAnnotations by volume in descending order (largest to smallest).
+    Volume is calculated by multiplying the scale dimensions (x * y * z) of the object's shape.
+
+    :param annotations: List of annotations of type HasRootBody to sort.
+    :param order: Whether to sort in ascending or descending order (default is True).
+    :return: List of SemanticAnnotation objects sorted by volume (largest to smallest).
+    """
+    newList = []
+    for annotation in annotations:
+        if annotation.bodies:
+            newList.append(annotation)
+
+    def get_volume(annotation: SemanticAnnotation) -> float:
+        """Calculate volume from the annotation's body scale."""
+        body = annotation.bodies[0]
+
+        # Get shapes from collision if available, otherwise from visual
+        if body.collision is not None:
+            return body.collision.scale.x * body.collision.scale.y * body.collision.scale.z
+        else:
+            return 0.0
+    return sorted(newList, key=get_volume, reverse=order)
